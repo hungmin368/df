@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#fffdf9">
+<title>尋龍高手 DragonFinder v1.9.3 — 恐龍解謎</title>
+<link rel="stylesheet" href="css/fonts.css?v=1.9.3">
+<link rel="stylesheet" href="css/style.css?v=1.9.3">
+<noscript><style>#splash{ display:none }</style></noscript>
+</head>
+<body class="splash-on">
+
+<div id="splash" aria-hidden="true">
+  <div class="sp-bg"></div>
+  <img src="assets/logo.png" alt="尋龍高手 DragonFinder">
+</div>
+
+<header>
+  <div class="logo">⚡ 尋龍高手 <span lang="en">DragonFinder</span><span class="ver-badge">v1.9.3</span></div>
+  <div class="hud">
+    <span>第 <b id="round">1</b> 局</span>
+    <span>分數 <b id="score">0</b></span>
+    <span title="獎勵券">🎟 <b id="tickets">0</b></span>
+    <span title="星願種子">🌌 <b id="seeds">0</b></span>
+    <span title="進化藥水（伴伴進化用）">🧪 <b id="potions">0</b></span>
+    <span id="hud-timer">
+      <svg width="19" height="26" viewBox="0 0 24 32" aria-hidden="true">
+        <defs>
+          <clipPath id="cTop"><rect id="clipTop" x="0" y="4" width="24" height="11"/></clipPath>
+          <clipPath id="cBot"><rect id="clipBot" x="0" y="17" width="24" height="10.6"/></clipPath>
+        </defs>
+        <rect x="2.2" y="2.2" width="19.6" height="2.4" rx="1.2" fill="#8a6f4d"/>
+        <rect x="2.2" y="27.4" width="19.6" height="2.4" rx="1.2" fill="#8a6f4d"/>
+        <path id="sandTop" d="M5 5 H19 L12 14.8 Z" fill="#ffcf6b" clip-path="url(#cTop)"/>
+        <path id="sandBot" d="M5.6 27.2 L12 18.4 L18.4 27.2 Z" fill="#ffcf6b" clip-path="url(#cBot)"/>
+        <rect id="hg-stream" x="11.3" y="14.6" width="1.4" height="3.6" fill="#ffcf6b" style="opacity:0"/>
+        <path d="M4 4 H20 L12 15 Z" fill="none" stroke="#b99c72" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M12 17 L4 28 H20 Z" fill="none" stroke="#b99c72" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+      <b id="time-text">6:00</b>
+    </span>
+    <span class="hearts" id="hearts"></span>
+    <button class="icon-btn" id="btn-lv" title="戰績">🏆</button>
+    <button class="icon-btn" id="btn-dex" title="恐龍圖鑑">📖</button>
+    <button class="icon-btn" id="btn-sound">🔊</button>
+    <button class="icon-btn" id="btn-help">❓</button>
+  </div>
+</header>
+
+<main id="main">
+  <div id="play-row">
+  <div id="board-area">
+    <div id="board-scroll">
+      <div id="colcounts"></div>
+      <div id="mid">
+        <div id="board"></div>
+        <div id="rowcounts"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div id="status"></div>
+  <div id="controls">
+    <button class="btn btn-ghost" id="btn-clear">清除 ✕</button>
+    <button class="btn btn-ghost" id="btn-hint">提示 🌿×6</button>
+    <button class="btn btn-ghost" id="btn-restart" style="color:#1f6f8b">重來 ↻</button>
+    <button class="btn btn-ghost" id="btn-giveup" style="color:#b3541e">放棄 ⏏</button>
+    <button class="btn btn-ghost" id="btn-ball"><svg width="15" height="15" viewBox="0 0 32 32" style="vertical-align:-2px" aria-hidden="true"><defs><clipPath id="cnetClip"><circle cx="12.5" cy="12.5" r="8.6"/></clipPath></defs><path d="M19.5 19.5 L29 29" stroke="#6b4423" stroke-width="4.6" stroke-linecap="round"/><path d="M19.8 19.8 L29 29" stroke="#9c6a35" stroke-width="1.8" stroke-linecap="round"/><circle cx="12.5" cy="12.5" r="10.6" fill="#ffedcd" stroke="#6b4423" stroke-width="2.6"/><g clip-path="url(#cnetClip)" stroke="#d29a4e" stroke-width="1.1" opacity=".95"><path d="M3.9 8 H21.1 M3.9 12.5 H21.1 M3.9 17 H21.1 M8 3.9 V21.1 M12.5 3.9 V21.1 M17 3.9 V21.1"/><path d="M4.8 4.8 L20.2 20.2 M20.2 4.8 L4.8 20.2" stroke-width=".85" opacity=".65"/></g><circle cx="12.5" cy="12.5" r="10.6" fill="none" stroke="#6b4423" stroke-width="2.6"/><circle cx="19.6" cy="19.6" r="2.4" fill="#6b4423"/></svg> 捕捉器 <span id="ball-n">×6</span></button>
+  </div>
+
+  <div id="foot">尋龍高手 DragonFinder v1.9.3 · 本遊戲不販賣、不公開，家庭自用，請勿盜用。</div>
+</main>
+
+<div class="overlay show" id="ov-menu">
+  <div class="modal">
+    <div class="menu-top">
+      <div id="menu-logo" title="尋龍高手 DragonFinder"><img src="assets/logo.png" alt="尋龍高手 DragonFinder"><span class="ver-badge">v1.9.3</span></div>
+      <div id="dex-banner">
+      <div class="db-book">📖</div>
+      <div class="db-mid">
+        <div class="db-label">圖鑑完成度</div>
+        <div class="db-num"><span id="ld-count">0 / 140</span></div>
+        <div class="ld-bar"><div id="ld-fill"></div></div>
+      </div>
+      <div class="db-end"><span class="ld-pct" id="ld-pct">0%</span></div>
+      </div>
+    </div>
+
+    <div id="dlg">
+      <div id="dlg-ava" class="p3d" title="隨行夥伴"><img id="dlg-img" alt=""></div>
+      <div id="dlg-main">
+        <div id="dlg-name">？？？</div>
+        <div id="dlg-text">…</div>
+        <div id="dlg-sub">
+          <span id="dlg-frp"></span>
+          <div id="dlg-skills"></div>
+          <button id="dlg-feed" class="bfeed" title="餵食：消耗 🌌×1，友好度 +5%">🍖</button>
+        </div>
+        <div id="dlg-tut">
+          <button class="btn btn-primary" id="tut-btn" style="display:none">繼續</button>
+          <button class="btn btn-ghost" id="tut-skip">跳過教學 ▶▶</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-wrap">
+      <div class="map-ribbon">探索地圖</div>
+      <div id="map">
+        <div class="map-inner">
+          <div id="map-decor" aria-hidden="true"></div>
+          <div id="map-nodes"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-nav">
+      <button class="mnav" id="menu-reward"><span class="mnav-ic">🎁</span><span class="mnav-tx">獎勵</span></button>
+      <button class="mnav" id="menu-record"><span class="mnav-ic">🏆</span><span class="mnav-tx">戰績</span></button>
+      <button class="mnav" id="menu-story"><span class="mnav-ic">🎬</span><span class="mnav-tx">故事</span></button>
+      <button class="mnav" id="menu-help"><span class="mnav-ic">❓</span><span class="mnav-tx">玩法說明</span></button>
+      <button class="mnav" id="menu-exit"><span class="mnav-ic">🚪</span><span class="mnav-tx">退出遊戲</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-exit">
+  <div class="modal" style="max-width:300px">
+    <div class="big-emoji">🚪</div>
+    <h2>退出遊戲？</h2>
+    <div class="sub" id="exit-sub">要離開尋龍高手了嗎？<br>所有進度都會自動保存喔！</div>
+    <div class="btns">
+      <button class="btn btn-ghost" id="exit-no">再玩一下</button>
+      <button class="btn btn-primary" id="exit-yes">退出遊戲</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-help">
+  <div class="modal">
+    <h2>📖 玩法說明</h2>
+    <div class="rules">
+      <b>🦕 專屬領地</b>：盤面分成多個顏色區塊，每個區塊只藏 <b>1 隻恐龍</b>。<br>
+      <b>👑 高冷法則</b>：同一橫列、同一直欄，以及恐龍周圍八格（含斜角），都不會出現其他恐龍。<br>
+      <b>✕ 標記排除</b>：點格子打 ✕（再點一次取消），✕ 表示你判斷「這裡沒有恐龍」；沒打 ✕ 的格子就是你的候選格。<br>
+      <b>🔴 捕捉器</b>：數量＝恐龍隻數＋3（容錯），按下後游標變捕捉器、點方格直接捕獲——命中 3D 召喚（新捕獲入圖鑑），落空自動 ✕。再按一次取消。<br>
+      <b>⏱ 沙漏計時（6×6 起）</b>：開局 N×30 秒倒數；每捕獲一隻 <b>+30 秒</b>（沙回填，上限＝初始時間）；<b class="neg">時間歸零＝遊戲結束</b>。打開本說明會<b>暫停計時</b>。<br>
+      <b>🌿 提示</b>：消耗 1 顆<b>星願種子 🌌</b>（不扣沙漏時間），指出一隻<b>還沒被捕獲</b>的恐龍（優先救援被 ✕ 掉的）。<br>
+      <b>🏆 過關與計分</b>：找齊全部恐龍即過關，<b>剩餘秒數＝該局分數</b>，累積到個人分數與該區域戰績；捕捉器用完沒找齊＝遊戲結束。
+    </div>
+    <h2 style="margin-top:14px">🌌 經濟與獎勵</h2>
+    <div class="rules" style="font-size:13px">
+      <b>🎟 獎勵券</b>：每過一關 +1 張。<br>
+      <b>🎁 獎勵中心</b>：主選單「獎勵」→ 6 種小遊戲（刮刮樂／拉霸／翻牌／輪盤／剪影／尋寶），每場耗 1 🎟，有機會抽到恐龍直接入圖鑑！<br>
+      <b>🌌 星願種子</b>：提示、🍖 餵食、潛能激發都要用種子——過關與小遊戲獎勵都能賺。<br>
+      <b>🎬 故事</b>：各區域（4×4～18×18）<b>首次過關</b>會解鎖一幕專屬故事；第一次開啟遊戲時，還會演出「序章：星願之夜」。
+    </div>
+    <h2 style="margin-top:14px">🎒 隨行技能說明</h2>
+    <div class="rules" style="font-size:13px">
+      <b>星級技能</b>：一星沒有技能；二星有 1 個空白槽；三星有 1 個天生技能＋1 個空白槽；四星有 1 個天生技能＋2 個空白槽；五星有 1 個天生技能＋3 個空白槽。<br>
+      <b>潛能激發</b>：到<b>圖鑑 → 點恐龍</b>消耗星願種子填充空槽。二星 🌌5 抽一星技能、三星 🌌25 抽一至二星、四星 🌌125 抽一至三星、五星 🌌500 抽一至四星。<br>
+      <b>⚡ 潛能值</b>：二至五星夥伴每次成功過關 +10，最高 100。技能槽已滿且潛能 100 時，可再次支付種子替換一個已學技能；天生技能不可替換，完成後潛能歸零。<br>
+      <b>發動方式</b>：在關卡中點隨行夥伴下方的技能按鍵主動發動，冷卻時間如下表。
+      <div id="help-skills" style="margin:8px 0 6px"></div>
+      <b>♥ 友好度</b>：🍖 餵食（耗 🌌×1 → +5%）或帶牠過關（+5%/勝）。<br>
+      <b>🐉 伴伴（No.000）</b>：遊戲一開始就陪伴你的特殊夥伴，固定為隨行、不會在野外出沒，友好度從 50% 開始。收集 🧪 <b>進化藥水</b>可讓牠進化（2★→🧪×3、3★→🧪×5、4★→🧪×8、5★→🧪×12，最高 5★）：新恐龍加入圖鑑、獎勵小遊戲與寶箱都能獲得藥水。伴伴<b>沒有天生技能</b>；3★ 開啟 2 個空白技能槽、4★ 3 個、5★ 4 個，一樣用 🌌 激發。圖鑑中伴伴永遠在 No.000，星數越高，圖鑑資料越豐富。其它恐龍不可進化。
+    </div>
+    <div class="btns"><button class="btn btn-primary" id="help-ok">了解了！</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-loading">
+  <div class="modal" style="max-width:260px">
+    <div class="big-emoji">⚡</div>
+    <h2>生成盤面中…</h2>
+    <div class="sub" id="gen-what">唯一解盤面</div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-genfail">
+  <div class="modal" style="max-width:300px">
+    <div class="big-emoji">😵</div>
+    <h2>生成失敗</h2>
+    <div class="sub" id="genfail-sub">這次運氣不好，再試一次？</div>
+    <div class="btns">
+      <button class="btn btn-primary" id="genfail-retry">重試</button>
+      <button class="btn btn-ghost" id="genfail-menu">回主選單</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-reward">
+  <div class="modal" style="max-width:460px">
+    <div class="big-emoji">🎁</div>
+    <h2>獎勵小遊戲</h2>
+    <div class="sub">獎勵券 <b id="rw-tickets">0</b> 張 · 每玩一次消耗 1 張<br>可獲得 1~5 顆星願種子 🌌、進化藥水 🧪 或恐龍（有機會稀有！✨）</div>
+    <div id="reward-games">
+      <button class="rg-btn" data-g="scratch">🪙 刮刮樂<small>刮開銀膜看獎</small></button>
+      <button class="rg-btn" data-g="slot">🎰 拉霸機<small>三個轉輪拚運氣</small></button>
+      <button class="rg-btn" data-g="cards">🃏 翻牌抽卡<small>五選二</small></button>
+      <button class="rg-btn" data-g="wheel">🎡 幸運輪盤<small>轉出好運</small></button>
+      <button class="rg-btn" data-g="sil">👤 猜剪影<small>答對加碼</small></button>
+      <button class="rg-btn" data-g="tiles">⛏ 尋寶九宮格<small>避開⚡翻寶藏</small></button>
+    </div>
+    <div class="btns"><button class="btn btn-primary" id="reward-close">關閉</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-game">
+  <div class="modal" style="max-width:460px">
+    <h2 id="game-title">小遊戲</h2>
+    <div id="game-area"></div>
+    <div class="btns">
+      <button class="btn btn-ghost" id="game-again" style="display:none">再玩一張 🎟</button>
+      <button class="btn btn-primary" id="game-back">離開</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-dev">
+  <div class="modal" style="max-width:340px">
+    <div class="big-emoji">🛠</div>
+    <h2>工程模式</h2>
+    <div class="sub" id="dev-info"></div>
+    <div class="btns" style="flex-direction:column;gap:8px">
+      <button class="btn btn-primary" id="dev-win">🎯 立即過關</button>
+      <div class="btns" style="margin:0">
+        <button class="btn btn-ghost" id="dev-seeds">🌌 種子 +100</button>
+        <button class="btn btn-ghost" id="dev-tickets">🎟 券 +10</button>
+        <button class="btn btn-ghost" id="dev-potion">🧪 藥水 +10</button>
+      </div>
+      <div class="btns" style="margin:0">
+        <select id="dev-lv" class="res-sel"></select>
+        <button class="btn btn-ghost" id="dev-jump">跳關 ▶</button>
+      </div>
+      <div class="btns" style="margin:0">
+        <button class="btn btn-ghost" id="dev-wipe" style="color:#d64545">🧹 清存檔</button>
+        <button class="btn btn-ghost" id="dev-reset" style="color:#d64545" title="分數／圖鑑／資源／技能／隨行／故事／關卡進度全部歸零">♻️ 重置遊戲</button>
+      </div>
+      <div class="btns" style="margin:0">
+        <button class="btn btn-ghost" id="dev-free">∞ 無限種子：開</button>
+        <button class="btn btn-ghost" id="dev-reward">🎮 獎勵中心</button>
+      </div>
+      <button class="btn btn-ghost" id="dev-dex-all">📖 開啟全圖鑑</button>
+      <div class="btns" style="margin:0">
+        <button class="btn btn-ghost" id="dev-feed">🍖 餵食+10♥</button>
+        <button class="btn btn-ghost" id="dev-skill">⚡ 技能測試</button>
+      </div>
+      <button class="btn btn-primary" id="dev-close">關閉</button>
+    </div>
+  </div>
+</div>
+
+<div id="story-stage">
+  <div id="story-bg" aria-hidden="true"></div>
+  <button class="btn btn-ghost" id="story-skip">跳過 ▶▶</button>
+  <div id="story-text"><div class="st-title"></div><div class="st-body"></div></div>
+</div>
+
+<div class="overlay" id="ov-lv" onclick="if(event.target===this)hide('ov-lv')">
+  <div class="modal" style="max-width:360px">
+    <div class="big-emoji">🏆</div>
+    <h2>區域戰績</h2>
+    <div class="sub">單次最佳</div>
+    <div id="lv-rows2"></div>
+    <div class="btns"><button class="btn btn-primary" id="lv-close">關閉</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-result">
+  <div class="modal">
+    <div class="big-emoji" id="res-emoji"><img id="res-img" alt="伴伴" draggable="false"></div>
+    <h2 id="res-title"></h2>
+    <div class="sub" id="res-sub"></div>
+    <div class="res-chests" id="res-chests" style="display:none"></div>
+    <div class="breakdown" id="res-breakdown"></div>
+    <div class="btns">
+      <select id="res-lv" class="res-sel"></select>
+      <button class="btn btn-primary" id="res-next">下一局 ▶</button>
+      <button class="btn btn-ghost" id="res-menu">換難度</button>
+      <button class="btn btn-ghost" id="res-reward">🎁 獎勵中心</button>
+      <button class="btn btn-ghost" id="res-rest">休息去 😴</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-rest">
+  <div class="modal" style="max-width:330px">
+    <div class="big-emoji">😴</div>
+    <h2>休息愉快！</h2>
+    <div class="sub" id="rest-sub"></div>
+    <div class="btns"><button class="btn btn-primary" id="rest-menu">回主選單</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-dexfull" onclick="if(event.target===this)hide('ov-dexfull')">
+  <div class="modal" style="max-width:560px">
+    <h2>📖 恐龍圖鑑</h2>
+    <div class="sub" id="dexfull-count"></div>
+    <div id="dex-tabs">
+      <button class="dtab on" data-t="all">全部 140</button>
+      <button class="dtab" data-t="gen1">常見 76</button>
+      <button class="dtab" data-t="legend">遠古王者 63 ✨</button>
+    </div>
+    <div id="dexfull-grid"></div>
+    <div class="btns"><button class="btn btn-primary" id="dexfull-close">關閉</button><button class="btn btn-ghost" id="dexfull-reset">🔄 重置收藏</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-dex" onclick="if(event.target===this)hide('ov-dex')">
+  <div class="modal" style="max-width:280px;padding:22px">
+    <span class="p3d dexdp"><img id="dexd-img" style="width:150px;height:150px;object-fit:contain;display:block;margin:0 auto;transition:filter .2s" alt=""></span>
+    <h2 id="dexd-name" style="font-size:21px;margin:10px 0 2px"></h2>
+    <div class="sub" id="dexd-sub"></div>
+    <div id="dexd-hab" style="display:none;margin:0 0 8px;font-size:12.5px;color:#8a6f4d;background:#f7efe2;border:1.5px dashed #e3cfa4;border-radius:10px;padding:7px 10px;text-align:left;line-height:1.6"></div>
+    <div id="dexd-extra" style="text-align:left;margin:10px 0 4px"></div>
+    <div class="btns">
+      <button class="btn btn-primary" id="dexd-buddy" style="display:none">🎒 設為隨行</button>
+      <button class="btn btn-ghost" id="dexd-close">關閉</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-newmon">
+  <div class="nm-scene">
+    <div class="nm-moon" aria-hidden="true"></div>
+    <div class="nm-badge">NEW!</div>
+    <span class="p3d nmp"><img id="nm-img" alt="" draggable="false"></span>
+    <div class="nm-name" id="nm-name"></div>
+    <div class="nm-card">
+      <div class="nm-title">🌟 發現新的夥伴！</div>
+      <div class="nm-sub" id="nm-sub"></div>
+      <button class="btn btn-primary nm-btn" id="nm-ok">太棒了！</button>
+      <div class="nm-hint">點擊畫面任意處回到遊戲</div>
+    </div>
+  </div>
+</div>
+<script src="js/data.js?v=1.9.3"></script>
+<script src="js/main.js?v=1.9.3"></script>
+</body>
+</html>
