@@ -16,4 +16,4 @@
 
 ## Status
 
-- Pending commit（完成驗證後回填 commit hash）
+- Final：任務變更與工作日志已提交（d0bffc1），commit hash 回填於後續提交（慣例同 44dd00e）。
