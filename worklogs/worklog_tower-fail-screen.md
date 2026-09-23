@@ -65,7 +65,7 @@
 
 ### 7. 補漏：頁尾版號（完成）
 - 提交後檢查 GitHub Pages（https://hungmin368.github.io/df/）發現頁尾 `#foot` 版號仍是 v1.9.6（本次 1.9.6→1.9.7 版號更新遺漏了這一處），補上為 v1.9.7。
-- 僅動 `index.html` 該行；已對外服務（`python -m http.server`）重新檢查 HTTP 200 與頁尾文字。
+- 僅動 `index.html` 該行；已對外服務（`python -m http.server` 8125）重新檢查 HTTP 200 與頁尾文字（瀏覽器讀 `#foot`＝v1.9.7）。commit：`30162a9`。
 
 ## 最終狀態
 - 交付：`index.html`（版號 1.9.7＋`#res-options`＋`#ov-opts` 選項面板）、`css/style.css`（`#ov-opts`／`#ov-help` z-index）、`js/main.js`（`resTowerFail()`、龍塔失敗不標記 ghost／不揭示位置、時間到失敗同步處理、選項面板事件、`soundUI()`、`#res-menu` 龍塔失敗回地圖）、本工作日志。
