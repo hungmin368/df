@@ -75,4 +75,4 @@
 - 交付：js/tower.js（2000 盤，8 尺寸）、js/main.js 龍塔模組、index.html（ov-tower＋引入 tower.js）、css/style.css（龍塔樣式）、本工作日志。
 - 驗證：tmp_check_tower.js 全尺寸 ALL OK（唯一解／連通／區塊≥2 格／D4 去重／數量）；HTTP 資產全 200；瀏覽器實測逐項通過。
 - 需求對照：地圖未使用區塊（18 區天空帶）設龍塔 ✅；預生成盤面闖關 ✅；尺寸數量依規格（7×7 以關卡數 10 為準）✅；過關才解鎖下一層 ✅；預生成不使用旋轉/鏡像 ✅；地圖其他區域維持即時生成 ✅。
-- Commit：<待補>
+- Commit：fa6bd07（Add Dragon Tower: 2000 pre-generated levels in the unused map area）
