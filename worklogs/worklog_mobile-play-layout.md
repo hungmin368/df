@@ -19,4 +19,4 @@
 
 ## Status
 
-- Pending commit（完成驗證後回填 commit hash）
+- Final：任務變更與工作日誌已提交（bd8cd4f），本地 HTTP 與瀏覽器驗證通過，commit hash 回填於後續提交（慣例同 61c4eb4）。

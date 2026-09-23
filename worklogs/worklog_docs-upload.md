@@ -16,4 +16,4 @@
 
 ## Status
 
-- Pending commit（完成驗證後回填 commit hash）
+- Final：docs/ 兩檔與本工作日誌已提交（1225dc1），本地 HTTP 驗證通過，commit hash 回填於後續提交（慣例同 61c4eb4）。
