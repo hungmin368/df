@@ -761,8 +761,10 @@ function triggerBuddySkill(forceSk){
     if(TOWER.level){ doBuddyChat('龍塔的考驗要靠自己～在這裡我不能給你提示！'); return; }
     if(typeof freeHint==='function' && typeof showHintAt==='function'){ const i=freeHint(); if(i!==null){ showHintAt(i); done=true; } }
   }
-  else if(sk==='time15'){ timerAdd(15); done=true; }
-  else if(sk==='time30'){ timerAdd(30); done=true; }
+  else if(sk==='time15'||sk==='time30'){ /* 時間技能：龍塔不計時，比照 hint1 擋下 */
+    if(TOWER.level){ doBuddyChat('龍塔的考驗不計時～時間技能在這裡派不上用場！'); return; }
+    timerAdd(sk==='time15'?15:30); done=true;
+  }
   else if(sk==='intel'){ const cand=[...G.cats].filter(i=>!G.cells[i].revealed); if(cand.length){ const fr=frOf(BUDDY.id); const sure=cand.filter(()=>Math.random()<fr/100); if(sure.length){ const i=sure[0]; const rc=Math.floor(i/G.N)%G.N+1, cc=i%G.N+1; doBuddyChat('我覺得…<b>第'+rc+'行第'+cc+'列</b>可能有恐龍！'); done=true; } else { doBuddyChat('嗯…我也不是很確定呢…'); done=true; } } }
   else if(sk==='reveal'){ const cand=[...G.cats].filter(i=>!G.cells[i].revealed); if(cand.length){ const i=cand[Math.floor(Math.random()*cand.length)]; G.cells[i].revealed=true; cellEls[i].classList.add('alive'); G.found++; updateStatus(); updateHUD(); SFX.catchp(); checkBallEnd(); done=true; } }
   else if(sk==='luck1'||sk==='luck2'){ ECON.luck=(ECON.luck||0)|(sk==='luck1'?1:2); econSave(); econRender(); done=true; }
@@ -1313,6 +1315,7 @@ function updateStatus(){
 function updateHUD(){
   $('round').textContent = TOWER.level ? ('塔'+TOWER.level) : G.round;
   $('score').textContent = lvTotal();
+  $('hud-score').style.display = TOWER.level ? 'none' : ''; /* 龍塔不算分數 */
   renderHearts();
 }
 function renderHearts(){
@@ -1326,7 +1329,7 @@ function timerPaused(){
   return document.hidden || !!document.querySelector('.overlay.show');
 }
 function timerStart(){
-  if(G.tutorial || G.N<=5){ $('hud-timer').style.display='none'; TIMER.on=false; return; }
+  if(G.tutorial || G.N<=5 || TOWER.level){ $('hud-timer').style.display='none'; TIMER.on=false; return; } /* 龍塔不計時 */
   TIMER.total=G.N*30; TIMER.left=TIMER.total; TIMER.el=0; TIMER.on=true; TIMER.lastWhole=-1;
   TIMER.last=performance.now();
   $('hud-timer').style.display='inline-flex';
@@ -1410,7 +1413,8 @@ function timeoutRound(){
   if(lostN) bd+='<div class="row"><span>📖 圖鑑新捕獲</span><span class="neg">闖關失敗，'+lostN+' 筆已取消</span></div>';
   if(G.keyChestTier) bd+='<div class="row"><span>🔑 關鍵寶箱</span><span class="dim">過關才能開啟，這次錯失了…</span></div>';
   bd+=chests.rows;
-  bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
+  if(towerFail) bd+=row('🐉 龍塔進度', '止步第 '+TOWER.level+' 關', '最高第 '+(TOWER.max||0)+' 關', '');
+  if(!towerFail) bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
   $('res-breakdown').innerHTML=bd;
   $('res-next').textContent = towerFail ? '重新挑戰' : '再挑戰一局';
   if(!towerFail) setupResSel();
@@ -2363,8 +2367,9 @@ function winRound(){
     progUnlock(G.N+1);
     progSave();
   }
-  const sc=G.N>=6?Math.max(0, Math.floor(TIMER.left)):0;
-  if(G.N>=6){ /* 戰績與計分 6×6 起；4×4／5×5 為自由練習盤 */
+  const towerWin=!!TOWER.level;
+  const sc=(G.N>=6 && !towerWin)?Math.max(0, Math.floor(TIMER.left)):0; /* 龍塔不計時不計分 */
+  if(G.N>=6 && !towerWin){ /* 戰績與計分 6×6 起；4×4／5×5 為自由練習盤 */
     const rec=lvRec(G.N);
     rec.best=Math.max(rec.best||0, sc);
     rec.total=(rec.total||0)+sc;
@@ -2372,19 +2377,20 @@ function winRound(){
     lvSave();
   }
   updateHUD(); renderLV();
-  $('res-sub').textContent=G.N>=6 ? '剩餘 '+fmtSec(sc)+' 全部換算成你的分數！' : '自由練習盤，沒有沙漏壓力，玩得開心！';
+  $('res-sub').textContent = towerWin ? '第 '+TOWER.level+' 關通過！龍塔只看你能闖到第幾關！' : (G.N>=6 ? '剩餘 '+fmtSec(sc)+' 全部換算成你的分數！' : '自由練習盤，沒有沙漏壓力，玩得開心！');
   let bd='';
   bd+=row('🎯 捕獲恐龍', G.found+' / '+G.N, '', '');
   bd+=chests.rows;
   bd+=row('🎟 獎勵券', '+1', '累積 '+ECON.tickets+' 張', 'pos');
   if(G.potentialReward) bd+=row('⚡ 隨行潛能', '+'+G.potentialReward.gain, G.potentialReward.value+' / 100', 'pos');
-  if(G.N>=6){
+  if(towerWin){
+    bd+=row('🐉 龍塔進度', '第 '+TOWER.level+' 關', '最高第 '+TOWER.max+' 關', 'pos');
+  }else if(G.N>=6){
     bd+=row('⏳ 剩餘秒數', sc+' 秒', '+'+sc, 'pos');
-    if(!TOWER.level) bd+=row('⏱ '+REGION_META[G.N].name+' 個人累積', lvRec(G.N).total, '', ''); /* 龍塔不顯示地圖區域名 */
+    bd+=row('⏱ '+REGION_META[G.N].name+' 個人累積', lvRec(G.N).total, '', '');
   }
-  bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
+  if(!towerWin) bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
   $('res-breakdown').innerHTML=bd;
-  const towerWin=!!TOWER.level;
   $('res-next').textContent = towerWin ? '下一關 ▶' : '下一局 ▶';
   resTowerUI(towerWin);
   if(!towerWin) setupResSel();
@@ -2418,7 +2424,8 @@ function failRound(){
   if(lostN) bd+='<div class="row"><span>📖 圖鑑新捕獲</span><span class="neg">闖關失敗，'+lostN+' 筆已取消</span></div>';
   if(G.keyChestTier) bd+='<div class="row"><span>🔑 關鍵寶箱</span><span class="dim">過關才能開啟，這次錯失了…</span></div>';
   bd+=chests.rows;
-  bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
+  if(towerFail) bd+=row('🐉 龍塔進度', '止步第 '+TOWER.level+' 關', '最高第 '+(TOWER.max||0)+' 關', '');
+  if(!towerFail) bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
   $('res-breakdown').innerHTML=bd;
   $('res-next').textContent = towerFail ? '重新挑戰' : '再挑戰一局';
   if(!towerFail) setupResSel();
