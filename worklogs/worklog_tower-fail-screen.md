@@ -65,4 +65,4 @@
 
 ## 最終狀態
 - 交付：`index.html`（版號 1.9.7＋`#res-options`＋`#ov-opts` 選項面板）、`css/style.css`（`#ov-opts`／`#ov-help` z-index）、`js/main.js`（`resTowerFail()`、龍塔失敗不標記 ghost／不揭示位置、時間到失敗同步處理、選項面板事件、`soundUI()`、`#res-menu` 龍塔失敗回地圖）、本工作日志。
-- commit：（提交後回填）
+- commit：`7f9aefb`（Simplify the Dragon Tower failure screen and stop revealing positions）
