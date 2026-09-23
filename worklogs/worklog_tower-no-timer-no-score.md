@@ -37,4 +37,4 @@
 
 ## 最終狀態
 - 交付：`js/main.js`（龍塔不啟動計時器、過關/失敗結算無分數與時間並顯示龍塔進度、時間技能於龍塔擋下、HUD 分數於龍塔隱藏）、`index.html`（`#hud-score` id、版號 1.9.10）、本工作日志。
-- commit：（尚未提交）
+- commit：`1d8ed7b`（Make Dragon Tower rounds untimed and unscored）
