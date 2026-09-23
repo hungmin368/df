@@ -31,8 +31,10 @@
 - console／`error` 收集器：上述完整流程（地圖提示→龍塔點擊與技能→回地圖）收集結果為空陣列。
 
 ### 4. 提交與線上驗證（完成）
-- 僅提交 `index.html`、`js/main.js`、本工作日志；工作區另有其他工作階段的未追蹤檔案 `worklogs/worklog_investigate-6x6-generation.md`，不納入本次提交。
+- 僅提交 `index.html`、`js/main.js`、本工作日志；工作區另有其他工作階段的未追蹤檔案 `worklogs/worklog_investigate-6x6-generation.md`，不納入本次提交。commit：`0674b7e`，已推送 `origin/main`。
+- GitHub Pages 部署後檢查（https://hungmin368.github.io/df/）：頁尾與 `.ver-badge`＝v1.9.9；`js/main.js` 含「龍塔挑戰不提供提示」「龍塔不給提示」「龍塔的考驗要靠自己」等字串。
+- 以瀏覽器實測線上版本（種子 5）：龍塔關卡 `#btn-hint` 不可見、程式化點擊無效（種子 5→5）、夥伴「心靈感應」顯示拒絕訊息且無 🌿；回到地圖關卡提示恢復可用（種子 5→4 並出現 🌿）；整段流程 `error` 收集為空。
 
 ## 最終狀態
 - 交付：龍塔關卡不顯示且無法使用「提示」（含夥伴「心靈感應」技能提示），地圖關卡提示功能不變；版號 1.9.9。
-- commit：（待提交後回填）
+- commit：`0674b7e`（Withhold hints during Dragon Tower challenges）
