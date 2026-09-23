@@ -43,4 +43,4 @@
 
 ## 最終狀態
 - 交付：乾淨盤面（無 ✕）的詳細逐步解法，解答 A@R1C1、B@R2C3、C@R3C5、D@R4C7、E@R5C2、F@R6C4、G@R7C6；所有反證分支皆以枚舉複驗（矛盾分支 0 解、正解分支恰 1 解）。
-- commit：（待補記）
+- commit：`2a07c41`（Add a step-by-step walkthrough worklog for the clean 7x7 board）
