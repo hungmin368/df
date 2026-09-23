@@ -37,4 +37,4 @@
 ## 最終狀態
 - 交付：js/main.js（地圖進度 clear{}／towerGate／towerEnter／winRound 不汙染地圖進度／res-next、res-menu 調整）、index.html（移除 ov-tower）、css/style.css（.mtower.lock）、本工作日志。
 - 驗證：node --check 通過；合併 dragon-tower 第二版規格於瀏覽器逐項實測通過（見上節）。
-- Commit：本任務變更與 dragon-tower 第二版規格重排同一提交（hash 見 `worklog_dragon-tower.md` 最終狀態）。
+- Commit：本任務變更與 dragon-tower 第二版規格重排同一提交 `1cd74db`（Renumber the Dragon Tower and enter it directly from the map）。
