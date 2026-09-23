@@ -67,6 +67,13 @@
 - 提交後檢查 GitHub Pages（https://hungmin368.github.io/df/）發現頁尾 `#foot` 版號仍是 v1.9.6（本次 1.9.6→1.9.7 版號更新遺漏了這一處），補上為 v1.9.7。
 - 僅動 `index.html` 該行；已對外服務（`python -m http.server` 8125）重新檢查 HTTP 200 與頁尾文字（瀏覽器讀 `#foot`＝v1.9.7）。commit：`30162a9`。
 
+### 8. 合併後再驗證（完成）
+- 另一並行工作階段在本次提交之上提交並推送 `1cd74db`（龍塔重新編號＋點地標直接進入＋`js/tower.js` 規格重排），已含本次改動；工作區隨之乾淨。
+- 對合併後的最新 main 重跑龍塔失敗流程（`python -m http.server 8125` 服務工作區）：
+  - 點地圖龍塔地標直接進入第 1 層（`TOWER.level`＝1、6×6、9 顆球、HUD「塔1」）。
+  - 球用完後結果畫面仍僅 `res-next`（重新挑戰）／`res-menu`（回地圖）／`res-options`（選項），`.cell.ghost`＝0，文案「（龍塔不揭示位置）」，盤面無恐龍現形（截圖確認）。
+  - 選項面板（z-index 55）可開、玩法說明（60）可開可關、關閉後回結果畫面且三按鈕不變。
+
 ## 最終狀態
 - 交付：`index.html`（版號 1.9.7＋`#res-options`＋`#ov-opts` 選項面板）、`css/style.css`（`#ov-opts`／`#ov-help` z-index）、`js/main.js`（`resTowerFail()`、龍塔失敗不標記 ghost／不揭示位置、時間到失敗同步處理、選項面板事件、`soundUI()`、`#res-menu` 龍塔失敗回地圖）、本工作日志。
 - commit：`7f9aefb`（Simplify the Dragon Tower failure screen and stop revealing positions）
