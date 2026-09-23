@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#fffdf9">
 <title>尋龍高手 DragonFinder v1.9.3 — 恐龍解謎</title>
-<link rel="stylesheet" href="css/fonts.css?v=1.9.4">
-<link rel="stylesheet" href="css/style.css?v=1.9.4">
+<link rel="stylesheet" href="css/fonts.css?v=1.9.5">
+<link rel="stylesheet" href="css/style.css?v=1.9.5">
 <noscript><style>#splash{ display:none }</style></noscript>
 </head>
 <body class="splash-on">
@@ -52,9 +52,11 @@
   <div id="play-row">
   <div id="board-area">
     <div id="board-scroll">
-      <div id="colcounts"></div>
       <div id="mid">
-        <div id="board"></div>
+        <div id="board-col">
+          <div id="colcounts"></div>
+          <div id="board"></div>
+        </div>
         <div id="rowcounts"></div>
       </div>
     </div>
@@ -88,9 +90,11 @@
     </div>
 
     <div id="dlg">
-      <div id="dlg-ava" class="p3d" title="隨行夥伴"><img id="dlg-img" alt=""></div>
+      <div id="dlg-side">
+        <div id="dlg-ava" class="p3d" title="隨行夥伴"><img id="dlg-img" alt=""></div>
+        <div id="dlg-stars"></div>
+      </div>
       <div id="dlg-main">
-        <div id="dlg-name">？？？</div>
         <div id="dlg-text">…</div>
         <div id="dlg-sub">
           <span id="dlg-frp"></span>
@@ -118,8 +122,8 @@
       <button class="mnav" id="menu-reward"><span class="mnav-ic">🎁</span><span class="mnav-tx">獎勵</span></button>
       <button class="mnav" id="menu-record"><span class="mnav-ic">🏆</span><span class="mnav-tx">戰績</span></button>
       <button class="mnav" id="menu-story"><span class="mnav-ic">🎬</span><span class="mnav-tx">故事</span></button>
-      <button class="mnav" id="menu-help"><span class="mnav-ic">❓</span><span class="mnav-tx">玩法說明</span></button>
-      <button class="mnav" id="menu-exit"><span class="mnav-ic">🚪</span><span class="mnav-tx">退出遊戲</span></button>
+      <button class="mnav" id="menu-help"><span class="mnav-ic">❓</span><span class="mnav-tx">玩法</span></button>
+      <button class="mnav" id="menu-exit"><span class="mnav-ic">🚪</span><span class="mnav-tx">退出</span></button>
     </div>
   </div>
 </div>
@@ -335,7 +339,7 @@
     </div>
   </div>
 </div>
-<script src="js/data.js?v=1.9.4"></script>
-<script src="js/main.js?v=1.9.4"></script>
+<script src="js/data.js?v=1.9.5"></script>
+<script src="js/main.js?v=1.9.5"></script>
 </body>
 </html>

@@ -580,7 +580,7 @@ function renderBuddy(){
   if(!m){
     dlg.classList.add('none');
     $('dlg-img').removeAttribute('src');
-    $('dlg-name').textContent='？？？';
+    $('dlg-stars').textContent='';
     if(!$('dlg-text').dataset.lock) $('dlg-text').innerHTML='還沒有隨行夥伴～到 <b>📖 圖鑑</b> 點一隻已捕獲的恐龍，設為隨行吧！';
     $('dlg-frp').textContent='';
     $('dlg-skills').innerHTML='';
@@ -590,14 +590,19 @@ function renderBuddy(){
   const starClass='st'+(m.stars||1);
   dlg.classList.add(starClass);
   $('dlg-img').src=m.img;
-  $('dlg-name').innerHTML=m.name+' <small>'+RARITY_NAMES[(m.stars||1)-1]+'</small>';
-  if(!$('dlg-text').textContent || $('dlg-text').textContent==='…') $('dlg-text').textContent='準備好了！我們一起出發吧！';
+  $('dlg-stars').textContent=RARITY_NAMES[(m.stars||1)-1];
+  if(!$('dlg-text').textContent || $('dlg-text').textContent==='…') $('dlg-text').innerHTML=buddyTag()+'準備好了！我們一起出發吧！';
   $('dlg-feed').style.display='';
   frRender();
   renderBuddySkills();
 if(typeof renderLiveDex==="function"){
   renderLiveDex();
 }
+}
+/* 對話起頭前綴「名字：」——名字已併入聊天訊息（無隨行夥伴時無前綴） */
+function buddyTag(){
+  const m=BUDDY.id ? MON_BY_ID[BUDDY.id] : null;
+  return m ? '<b>'+m.name+'：</b>' : '';
 }
 /* 對話框高度 → CSS 變數 --dlgh：#controls 以 sticky 固定在對話框正上方 */
 (function(){
@@ -676,7 +681,7 @@ function doBuddyChat(msg){
   if(!txt) return;
   if(!msg && t.dataset.tut) return; /* 教學說明顯示中，閒聊先不插話 */
   t.dataset.lock='1';
-  t.innerHTML=txt;
+  t.innerHTML=buddyTag()+txt;
   t.classList.remove('new'); void t.offsetWidth; t.classList.add('new');
 }
 function scheduleBuddyChat(){
@@ -2401,7 +2406,7 @@ function tutShow(html, btnLabel){
   const t=$('dlg-text');
   t.dataset.lock='1';
   t.dataset.tut='1';
-  t.innerHTML = html;
+  t.innerHTML = buddyTag()+html;
   t.classList.remove('new'); void t.offsetWidth; t.classList.add('new');
   const b=$('tut-btn');
   if(btnLabel){ b.style.display=''; b.textContent=btnLabel; } else b.style.display='none';
