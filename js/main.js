@@ -420,6 +420,8 @@ const MAP_REGIONS = {
   17:{col:'#4fb3d9', lab:[46,90], pts:[[16,96],[18,86],[32,80],[52,84],[56,88],[72,86],[74,100]]},
   18:{col:'#8fc3ee', lab:[49,8],  pts:[[34,0],[62,0],[64,14],[54,22],[42,22],[38,18]]}
 };
+/* 龍塔地標：使用未繪製的 18 區（蒼穹龍境）頂部天空帶（此地圖區塊無其他用途） */
+const TOWER_GEO = {col:'#9b7ede', lab:[49,8.5], pts:[[34,0],[62,0],[64,14],[54,22],[42,22],[38,18]]};
 function regionLabel(n){ const m=REGION_META[n]; return m.e+m.name+'（'+n+'×'+n+'）'; }
 /* 3★以上恐龍的出沒區域：以 id 雜湊穩定決定（3★→3 個、4★→2 個、5★→1 個，皆位於 6×6~18×18） */
 function habitatsOf(id){
@@ -461,6 +463,17 @@ let HAB_REVEALED=new Set();
 try{ HAB_REVEALED=new Set(JSON.parse(LS.get('dinodoku-hab')||'[]')||[]); }catch(e){}
 HAB_REVEALED=new Set([...HAB_REVEALED].filter(id=>MON_BY_ID[id]));
 function habSave(){ LS.set('dinodoku-hab', JSON.stringify([...HAB_REVEALED])); }
+
+/* ---------- 龍塔：預生成盤面闖關（地圖未使用的頂部天空帶；關卡 1~2000） ---------- */
+const TOWER_OK = (typeof TOWER_DATA!=='undefined') && !!TOWER_DATA && !!TOWER_DATA["6"];
+let TOWER = { level:0, max:0 }; /* level＝進行中關卡（不存檔）；max＝已通關最高層 */
+try{ const tw=JSON.parse(LS.get('dinodoku-tower')||'{}')||{}; TOWER.max=Math.max(0, Math.min(2000, +tw.max||0)); }catch(e){}
+function towerSave(){ LS.set('dinodoku-tower', JSON.stringify({max:TOWER.max})); }
+function towerSizeOf(L){
+  for(const n of [6,7,8,9,10,11,12,13]){ const s=TOWER_START[n]||0, c=TOWER_COUNTS[n]||0; if(L>=s && L<s+c) return n; }
+  return 0;
+}
+function towerDecode(N,s){ const ro=new Array(N*N); for(let i=0;i<N*N;i++) ro[i]=parseInt(s[i],36); return ro; }
 
 /* 顏色屬性：越稀有越多色（1~4），以 id 雜湊決定 */
 function colorAttrs(id, N){
@@ -889,7 +902,7 @@ $('dev-win').onclick=()=>{
 };
 $('dev-seeds').onclick=()=>{ ECON.seeds=(ECON.seeds||0)+100; econSave(); econRender(); openDev(); };
 $('dev-tickets').onclick=()=>{ ECON.tickets=(ECON.tickets||0)+10; econSave(); econRender(); openDev(); };
-$('dev-jump').onclick=()=>{ const n=+$('dev-lv').value; if(!n||n<4||n>18) return; hide('ov-dev'); hide('ov-menu'); newRun(n); };
+$('dev-jump').onclick=()=>{ const n=+$('dev-lv').value; if(!n||n<4||n>18) return; TOWER.level=0; hide('ov-dev'); hide('ov-menu'); newRun(n); };
 $('dev-free').onclick=()=>{ ECON.devFree=!ECON.devFree; econSave(); econRender(); openDev(); };
 $('dev-reward').onclick=()=>{ hide('ov-dev'); econRender(); show('ov-reward'); SFX.tap(); };
 $('dev-dex-all').onclick=()=>{
@@ -916,7 +929,7 @@ $('dev-skill').onclick=()=>{
 };
 $('dev-wipe').onclick=()=>{
   if(!confirm('清除所有存檔？（分數／圖鑑／種子／技能／隨行全部重置）')) return;
-  ['dinodoku-dex','dinodoku-sound','dinodoku-lv','dinodoku-econ','dinodoku-skills','dinodoku-potential','dinodoku-buddy','dinodoku-friend','dinodoku-friend2','dinodoku-story','dinodoku-companion','dinodoku-prog','dinodoku-hab'].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
+  ['dinodoku-dex','dinodoku-sound','dinodoku-lv','dinodoku-econ','dinodoku-skills','dinodoku-potential','dinodoku-buddy','dinodoku-friend','dinodoku-friend2','dinodoku-story','dinodoku-companion','dinodoku-prog','dinodoku-hab','dinodoku-tower'].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
   location.reload();
 };
 /* 完整重置：掃掉所有 dinodoku-* 紀錄（含最近獲得、專屬碎片），關卡進度回到全新狀態 */
@@ -939,6 +952,7 @@ const OLD_WINROUND = winRound;
 winRound = function(){
   const oldArgs=arguments;
   ECON.streak=(ECON.streak||0)+1; econSave();
+  if(TOWER.level && TOWER.level>(TOWER.max||0)){ TOWER.max=TOWER.level; towerSave(); } /* 龍塔：過關解鎖上一層 */
   G.potentialReward=null;
   if(BUDDY.id && G && G.N>=4){
     frGain(BUDDY.id, 5);
@@ -972,6 +986,22 @@ function newRun(N){
 
 function newBoard(){
   const N = G.N;
+  if(TOWER.level && TOWER_OK){ /* 龍塔：預生成盤面直接用（不旋轉/不鏡像） */
+    const tn=towerSizeOf(TOWER.level);
+    const tarr=tn ? TOWER_DATA[String(tn)] : null;
+    const ts=tarr ? tarr[TOWER.level-(TOWER_START[tn]||0)] : null;
+    if(ts){
+      const ro=towerDecode(tn, ts);
+      const sol=solve2(tn, ro);
+      if(sol && sol.length===1){
+        const cats=new Set();
+        for(let r=0;r<tn;r++) cats.add(r*tn+sol[0][r]);
+        finishBoard({cats, regionOf:ro});
+        return;
+      }
+    }
+    /* 塔盤面資料缺損或非唯一解：退回一般生成流程，過關仍照常解鎖上一層 */
+  }
   if(N>=10){
     const ro = poolTake(N);
     if(ro){
@@ -1273,7 +1303,7 @@ function updateStatus(){
 }
 
 function updateHUD(){
-  $('round').textContent = G.round;
+  $('round').textContent = TOWER.level ? ('塔'+TOWER.level) : G.round;
   $('score').textContent = lvTotal();
   renderHearts();
 }
@@ -2374,11 +2404,18 @@ $('res-next').onclick = ()=>{
   hide('ov-result');
   if(G.nextMode==='guided5'){ newRun(5); return; }
   if(G.nextMode==='size6'){ newRun(6); return; }
+  if(TOWER.level){ /* 龍塔：過關往上一層；失敗重試同一層（同一預生成盤面） */
+    if(G.lastFail){ newBoard(); startBuddyTimers(); return; }
+    const nx=TOWER.level+1;
+    if(nx<=TOWER_TOTAL && towerSizeOf(nx)){ TOWER.level=nx; newRun(towerSizeOf(nx)); }
+    else { TOWER.level=0; openTower(); }
+    return;
+  }
   if(G.lastFail){ G.round=1; } else { G.round++; }
   newBoard();
   startBuddyTimers();
 };
-$('res-menu').onclick = ()=>{ hide('ov-result'); openMenu(); };
+$('res-menu').onclick = ()=>{ hide('ov-result'); if(TOWER.level){ TOWER.level=0; openTower(); return; } openMenu(); };
 $('res-reward').onclick = ()=>{ hide('ov-result'); econRender(); show('ov-reward'); SFX.tap(); };
 $('res-rest').onclick = ()=>{
   hide('ov-result');
@@ -2401,7 +2438,7 @@ function setupResSel(){
   }
   sel.style.display='';
 }
-$('res-lv').addEventListener('change', ()=>{ hide('ov-result'); newRun(+$('res-lv').value); });
+$('res-lv').addEventListener('change', ()=>{ hide('ov-result'); TOWER.level=0; newRun(+$('res-lv').value); });
 $('genfail-retry').onclick = ()=>{ hide('ov-genfail'); newBoard(); };
 $('genfail-menu').onclick = ()=>{ hide('ov-genfail'); openMenu(); };
 
@@ -2813,6 +2850,16 @@ function renderMap(){
       +'<text class="mr-sub" x="'+lx.toFixed(1)+'" y="'+(ly+8).toFixed(1)+'">'+sub+'</text>'
       +'</g>';
   }
+  if(TOWER_OK){ /* 龍塔地標：永遠可進，顯示闖關進度 */
+    const tg=TOWER_GEO, tmax=TOWER.max||0;
+    const tsub = tmax>0 ? ('✓ 已通關 '+tmax+' 層') : '🐾 從第 1 層開始';
+    const tlx=tg.lab[0]*2, tly=tg.lab[1]*3;
+    svg+='<g class="mreg mtower" data-tower="1" role="button" tabindex="0" aria-label="龍塔：預生成盤面闖關">'
+      +'<path d="'+mapRegionPath(tg.pts)+'" fill="'+tg.col+'"/>'
+      +'<text class="mr-name" x="'+tlx.toFixed(1)+'" y="'+tly.toFixed(1)+'">🐉 龍塔</text>'
+      +'<text class="mr-sub" x="'+tlx.toFixed(1)+'" y="'+(tly+8).toFixed(1)+'">'+tsub+'</text>'
+      +'</g>';
+  }
   svg+='</svg>';
   box.innerHTML=svg;
   const svgEl=box.querySelector('#map-svg');
@@ -2826,6 +2873,7 @@ function renderMap(){
     return inside;
   };
   const regionAt=(x,y)=>{ /* x,y：地圖百分比 0~100 */
+    if(pip(x,y,TOWER_GEO.pts)) return 'tower';
     for(let n=18;n>=4;n--){ const geo=MAP_REGIONS[n]; if(geo && pip(x,y,geo.pts)) return n; }
     return null;
   };
@@ -2846,7 +2894,9 @@ function renderMap(){
     const r=svgEl.getBoundingClientRect();
     if(!r.width || !r.height) return;
     const g=e.target && e.target.closest ? e.target.closest('g.mreg') : null;
+    if(g && g.dataset.tower){ openTower(); return; }
     const n=g ? +g.dataset.n : regionAt((e.clientX-r.left)/r.width*100, (e.clientY-r.top)/r.height*100);
+    if(n==='tower'){ openTower(); return; }
     if(n) tryGo(n);
   };
   svgEl.addEventListener('pointerdown', e=>{ pDown=(e.isPrimary && e.button===0) ? {x:e.clientX,y:e.clientY} : null; });
@@ -2865,7 +2915,7 @@ function renderMap(){
   });
   box.querySelectorAll('.mreg').forEach(g=>{
     const n=+g.dataset.n;
-    g.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); tryGo(n); } });
+    g.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(g.dataset.tower){ openTower(); return; } tryGo(n); } });
   });
   /* 滑鼠懸停時把區塊移到最上層（僅限真實滑鼠），讓其邊線與文字不被鄰塊蓋住 */
   svgEl.addEventListener('pointerover', e=>{
@@ -2887,7 +2937,54 @@ function renderMap(){
     }
   }
 }
-function openLevel(n){ hide('ov-menu'); newRun(n); }
+function openLevel(n){ TOWER.level=0; hide('ov-menu'); newRun(n); }
+/* ---------- 龍塔 UI：尺寸分頁＋關卡格 ---------- */
+let towerTab=6;
+function openTower(){
+  if(!TOWER_OK){ SFX.wrong(); return; }
+  const nx=Math.min(TOWER_TOTAL, (TOWER.max||0)+1);
+  towerTab=towerSizeOf(nx)||13;
+  renderTowerTabs(); renderTowerGrid();
+  show('ov-tower'); SFX.tap();
+}
+function renderTowerTabs(){
+  const box=$('tower-tabs'); if(!box) return;
+  box.innerHTML='';
+  for(const n of [6,7,8,9,10,11,12,13]){
+    const b=document.createElement('button');
+    b.className='dtab'+(towerTab===n?' on':'');
+    b.textContent=n+'×'+n;
+    b.title='關卡 '+TOWER_START[n]+'–'+(TOWER_START[n]+TOWER_COUNTS[n]-1);
+    b.onclick=()=>{ towerTab=n; renderTowerTabs(); renderTowerGrid(); SFX.tap(); };
+    box.appendChild(b);
+  }
+}
+function renderTowerGrid(){
+  const grid=$('tower-grid'); if(!grid) return;
+  const n=towerTab, start=TOWER_START[n], count=TOWER_COUNTS[n], tmax=TOWER.max||0;
+  const nx=Math.min(TOWER_TOTAL, tmax+1);
+  $('tower-sub').innerHTML='預生成盤面闖關，過關才能往上一層<br>已通關 <b>'+tmax+'</b> / '+TOWER_TOTAL+' 層'+(tmax>=TOWER_TOTAL?' 🎉':(nx>=start&&nx<start+count?'':' · 目前進度：第 '+nx+' 層（'+towerSizeOf(nx)+'×'+towerSizeOf(nx)+'）'));
+  grid.innerHTML='';
+  const frag=document.createDocumentFragment();
+  for(let L=start; L<start+count; L++){
+    const b=document.createElement('button');
+    const done=L<=tmax, next=L===tmax+1;
+    b.className='tlv'+(done?' done':(next?' next':' locked'));
+    b.textContent=L;
+    b.title='第 '+L+' 層（'+n+'×'+n+'）'+(done?' ✓ 已通關':(next?'':' 🔒 先通過第 '+(L-1)+' 層'));
+    b.onclick=()=>{ if(done || next) towerStart(L); else SFX.wrong(); };
+    frag.appendChild(b);
+  }
+  grid.appendChild(frag);
+}
+function towerStart(L){
+  if(!TOWER_OK) return;
+  if(L>(TOWER.max||0)+1){ SFX.wrong(); return; }
+  TOWER.level=L;
+  hide('ov-tower'); hide('ov-menu');
+  newRun(towerSizeOf(L));
+}
+if($('tower-close')) $('tower-close').onclick=()=>hide('ov-tower');
 function openMenu(){
 
   renderMap();
