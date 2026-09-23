@@ -49,6 +49,12 @@
 - 另以一次性內嵌腳本獨立複驗 13 項全 PASS（唯一解、10 個 ✕ 全相容、C@(4,6)/G@(7,5)/D@(1,6)/G 第 7 欄各分支皆 0 解、C@(3,5) 與 C@(3,5)&G@(7,6) 皆恰 1 解＝答案）；`HEAD == origin/main`、工作區乾淨。
 - commit：`5c1e5ea`（Add the x-marks-driven deduction walkthrough to the 7x7 worklog）。
 
+### 7. 追問「為何第一步淺藍候選是 R1C1–C4、R2C1」：表意澄清（完成）
+- 疑問點：使用者把「候選清單」讀成「要對這些格打 ✕」。澄清：步驟 1 表格是「已套用盤面 ✕ 之後，還可能放恐龍的格」，不是被排除的格；括號數字是候選數（不是 ✕ 數）。
+- 淺藍區共 7 格（R1C1–C5、R2C1、R2C5），其中 R1C5、R2C5 是盤面上可見的 ✕ → 扣掉後候選 5 格＝R1C1–C4、R2C1。真正被 ✕ 排除的是 R1C5、R2C5。
+- 以程式複驗全區統計（總格數 / ✕ 格數 → 候選數）：A 7/2→5、B 12/1→11、C 8/5→3、D 6/0→6、E 5/0→5、F 6/2→4、G 5/0→5，與步驟 1、6 字串一致。
+- commit：（提交後補錄）。
+
 ## 最終狀態
-- 交付：該 7×7 盤面的唯一解（R1C1、R2C3、R3C5、R4C7、R5C2、R6C4、R7C6）與逐步推論說明；確認 10 個玩家 ✕ 均正確。另補「以 ✕ 為主的逐步推導」教學（步驟 6）。無程式碼變更。
-- commit：`672caf2`（Record the 7x7 puzzle solution in a worklog）；補充（步驟 6）：`5c1e5ea`（Add the x-marks-driven deduction walkthrough to the 7x7 worklog）
+- 交付：該 7×7 盤面的唯一解（R1C1、R2C3、R3C5、R4C7、R5C2、R6C4、R7C6）與逐步推論說明；確認 10 個玩家 ✕ 均正確。另補「以 ✕ 為主的逐步推導」教學（步驟 6）與候選清單表意澄清（步驟 7）。無程式碼變更。
+- commit：`672caf2`（Record the 7x7 puzzle solution in a worklog）；補充（步驟 6）：`5c1e5ea`（Add the x-marks-driven deduction walkthrough to the 7x7 worklog）；補充（步驟 7）：（提交後補錄）
