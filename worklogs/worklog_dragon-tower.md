@@ -75,4 +75,6 @@
 - 交付：js/tower.js（2000 盤，8 尺寸）、js/main.js 龍塔模組、index.html（ov-tower＋引入 tower.js）、css/style.css（龍塔樣式）、本工作日志。
 - 驗證：tmp_check_tower.js 全尺寸 ALL OK（唯一解／連通／區塊≥2 格／D4 去重／數量）；HTTP 資產全 200；瀏覽器實測逐項通過。
 - 需求對照：地圖未使用區塊（18 區天空帶）設龍塔 ✅；預生成盤面闖關 ✅；尺寸數量依規格（7×7 以關卡數 10 為準）✅；過關才解鎖下一層 ✅；預生成不使用旋轉/鏡像 ✅；地圖其他區域維持即時生成 ✅。
-- Commit：fa6bd07（Add Dragon Tower: 2000 pre-generated levels in the unused map area）
+- Commit：fa6bd07（Add Dragon Tower: 2000 pre-generated levels in the unused map area）＋ 3db8af7（本工作日志補 hash）
+- 部署驗證：GitHub Pages（https://hungmin368.github.io/df/）已上線，js/tower.js 與本機位元組一致（2000 盤）。
+- 工具保留：tmp_gen_tower.js（生成）與 tmp_check_tower.js（驗證）留在工作區（.gitignore 的 tmp_*.js 已排除，不進版控），日後擴充關卡可直接再跑；中繼檔 tmp_tower_<N>.json 已刪除（可由 js/tower.js 或重跑生成）。
