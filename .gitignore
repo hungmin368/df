@@ -1,0 +1,9 @@
+# Temporary working files
+tmp_map/
+tmp_logo/
+tmp_*.js
+tmp_*.html
+
+# Backups (historical backups already tracked stay in the repo)
+*.bak*
+index_backup_*.html

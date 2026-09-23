@@ -1165,10 +1165,17 @@ box-shadow:0 3px 7px rgba(140,100,40,.12); transition:transform .15s, box-shadow
 /* 地圖檢視區固定於 logo 列與獎勵導航之間，地圖內容過高時於 #map 內部上下捲動 */
 @media (max-width:620px){
 .menu-panels{ grid-template-columns:1fr; }
-#ov-menu .modal{ max-width:400px; }
-.menu-top{ flex-direction:column; align-items:stretch; gap:8px; }
+/* 手機：主選單近乎滿版，吃掉左右灰邊、把空間還給地圖 */
+#ov-menu{ padding:6px; }
+#ov-menu .modal{ max-width:none; width:100%; height:calc(100vh - 12px); height:calc(100dvh - 12px); max-height:none; padding:14px 12px calc(12px + env(safe-area-inset-bottom)); }
+.menu-top{ flex-direction:column; align-items:stretch; gap:8px; margin-bottom:8px; }
 #menu-logo{ align-self:center; }
-#menu-logo img{ max-width:210px; margin:0 auto; }
+#menu-logo img{ max-width:180px; margin:0 auto; }
+#ov-menu #dlg{ margin-bottom:8px; }
+.menu-nav{ gap:5px; margin:10px -2px 0; padding:6px 3px 7px; }
+.mnav{ padding:7px 1px 6px; border-radius:10px; }
+.mnav-ic{ font-size:22px; }
+.mnav-tx{ font-size:11px; white-space:nowrap; }
 }
 /* ---------- 伴伴（一星）2.5D 生動化：眼瞼與動作 ---------- */
 .bb-alive{ position:relative; display:inline-block; line-height:0; }
