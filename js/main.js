@@ -446,11 +446,14 @@ function spawnWeight(p,N){
   return w;
 }
 /* 區域解鎖進度：從 4×4 起源地開始，過關解鎖下一區（共 15 區，到 18×18 蒼穹龍境） */
-let PROG = { max:4 };
-try{ PROG = Object.assign({max:4}, JSON.parse(LS.get('dinodoku-prog')||'{}')||{}); }catch(e){}
+let PROG = { max:4, clear:{} };
+try{ PROG = Object.assign({max:4, clear:{}}, JSON.parse(LS.get('dinodoku-prog')||'{}')||{}); }catch(e){}
 (function(){ /* 舊版玩家遷移：依 LV 戰績推算已解鎖區域 */
   let m=4;
-  for(let n=6;n<=13;n++){ if(lvRec(n).total>0) m=Math.max(m,n+1); }
+  PROG.clear=(PROG.clear && typeof PROG.clear==='object') ? PROG.clear : {};
+  for(let n=6;n<=13;n++){
+    if(lvRec(n).total>0){ m=Math.max(m,n+1); PROG.clear[n]=1; } /* 有戰績＝地圖該尺寸已通關 */
+  }
   PROG.max=Math.max(PROG.max||4, Math.min(13,m));
   /* 看過教學關卡故事＝已完成該教學，之後以一般關卡進入 */
   try{ const st=JSON.parse(LS.get('dinodoku-story')||'{}')||{}; if(st[4]) PROG.tut4=true; if(st[5]) PROG.tut5=true; }catch(e){}
@@ -467,13 +470,15 @@ function habSave(){ LS.set('dinodoku-hab', JSON.stringify([...HAB_REVEALED])); }
 /* ---------- 龍塔：預生成盤面闖關（地圖未使用的頂部天空帶；關卡 1~2000） ---------- */
 const TOWER_OK = (typeof TOWER_DATA!=='undefined') && !!TOWER_DATA && !!TOWER_DATA["6"];
 let TOWER = { level:0, max:0 }; /* level＝進行中關卡（不存檔）；max＝已通關最高層 */
-try{ const tw=JSON.parse(LS.get('dinodoku-tower')||'{}')||{}; TOWER.max=Math.max(0, Math.min(2000, +tw.max||0)); }catch(e){}
+try{ const tw=JSON.parse(LS.get('dinodoku-tower')||'{}')||{}; TOWER.max=Math.max(0, Math.min((typeof TOWER_TOTAL!=='undefined'?TOWER_TOTAL:2000), +tw.max||0)); }catch(e){}
 function towerSave(){ LS.set('dinodoku-tower', JSON.stringify({max:TOWER.max})); }
 function towerSizeOf(L){
   for(const n of [6,7,8,9,10,11,12,13]){ const s=TOWER_START[n]||0, c=TOWER_COUNTS[n]||0; if(L>=s && L<s+c) return n; }
   return 0;
 }
 function towerDecode(N,s){ const ro=new Array(N*N); for(let i=0;i<N*N;i++) ro[i]=parseInt(s[i],36); return ro; }
+/* 龍塔開放門檻＝地圖已通關的最大尺寸：地圖 6×6 過關才開塔；地圖 N×N 過關才開塔內 N×N 區段 */
+function towerGate(){ let m=0; for(let n=6;n<=13;n++){ if(PROG.clear && PROG.clear[n]) m=n; } return m; }
 
 /* 顏色屬性：越稀有越多色（1~4），以 id 雜湊決定 */
 function colorAttrs(id, N){
@@ -2349,7 +2354,11 @@ function winRound(){
     return;
   }
   ECON.tickets=(ECON.tickets||0)+1; econSave(); econRender();
-  progUnlock(G.N+1);
+  if(!TOWER.level){ /* 地圖進度只由地圖過關推進（龍塔過關不影響） */
+    if(G.N>=6 && G.N<=13){ PROG.clear=PROG.clear||{}; PROG.clear[G.N]=1; }
+    progUnlock(G.N+1);
+    progSave();
+  }
   const sc=G.N>=6?Math.max(0, Math.floor(TIMER.left)):0;
   if(G.N>=6){ /* 戰績與計分 6×6 起；4×4／5×5 為自由練習盤 */
     const rec=lvRec(G.N);
@@ -2426,9 +2435,12 @@ $('res-next').onclick = ()=>{
   if(G.nextMode==='size6'){ newRun(6); return; }
   if(TOWER.level){ /* 龍塔：過關往上一層；失敗重試同一層（同一預生成盤面） */
     if(G.lastFail){ newBoard(); startBuddyTimers(); return; }
-    const nx=TOWER.level+1;
-    if(nx<=TOWER_TOTAL && towerSizeOf(nx)){ TOWER.level=nx; newRun(towerSizeOf(nx)); }
-    else { TOWER.level=0; openTower(); }
+    const nx=TOWER.level+1, tn=towerSizeOf(nx);
+    if(nx<=TOWER_TOTAL && tn && tn<=towerGate()){ TOWER.level=nx; newRun(tn); return; }
+    TOWER.level=0;
+    openMenu();
+    if(nx<=TOWER_TOTAL && tn>towerGate() && typeof doBuddyChat==='function' && BUDDY.id) doBuddyChat('龍塔的 '+tn+'×'+tn+' 關卡還封印著～先在地圖通過 '+tn+'×'+tn+' 區域吧！');
+    else if(nx>TOWER_TOTAL && typeof doBuddyChat==='function' && BUDDY.id) doBuddyChat('🎉 龍塔 '+TOWER_TOTAL+' 層全部通關！太厲害了！');
     return;
   }
   if(G.lastFail){ G.round=1; } else { G.round++; }
@@ -2876,11 +2888,15 @@ function renderMap(){
       +'<text class="mr-sub" x="'+lx.toFixed(1)+'" y="'+(ly+8).toFixed(1)+'">'+sub+'</text>'
       +'</g>';
   }
-  if(TOWER_OK){ /* 龍塔地標：永遠可進，顯示闖關進度 */
-    const tg=TOWER_GEO, tmax=TOWER.max||0;
-    const tsub = tmax>0 ? ('✓ 已通關 '+tmax+' 層') : '🐾 從第 1 層開始';
+  if(TOWER_OK){ /* 龍塔地標：地圖 6×6 過關才開放；之後每過一個地圖尺寸開放對應塔內區段 */
+    const tg=TOWER_GEO, tmax=TOWER.max||0, gate=towerGate();
+    const tlockN = towerSizeOf(Math.min(TOWER_TOTAL, tmax+1))||0;
+    const tsub = gate<6 ? '🔒 地圖 6×6 過關後開放'
+      : (tmax>=TOWER_TOTAL ? '👑 全部通關'
+      : (tlockN>gate ? '🔒 '+tlockN+'×'+tlockN+' 待地圖通過'
+      : (tmax>0 ? ('✓ 已通關 '+tmax+' 層') : '🐾 從第 1 層開始')));
     const tlx=tg.lab[0]*2, tly=tg.lab[1]*3;
-    svg+='<g class="mreg mtower" data-tower="1" role="button" tabindex="0" aria-label="龍塔：預生成盤面闖關">'
+    svg+='<g class="mreg mtower'+(gate>=6?'':' lock')+'" data-tower="1" role="button" tabindex="0" aria-label="龍塔：預生成盤面闖關">'
       +'<path d="'+mapRegionPath(tg.pts)+'" fill="'+tg.col+'"/>'
       +'<text class="mr-name" x="'+tlx.toFixed(1)+'" y="'+tly.toFixed(1)+'">🐉 龍塔</text>'
       +'<text class="mr-sub" x="'+tlx.toFixed(1)+'" y="'+(tly+8).toFixed(1)+'">'+tsub+'</text>'
@@ -2920,9 +2936,9 @@ function renderMap(){
     const r=svgEl.getBoundingClientRect();
     if(!r.width || !r.height) return;
     const g=e.target && e.target.closest ? e.target.closest('g.mreg') : null;
-    if(g && g.dataset.tower){ openTower(); return; }
+    if(g && g.dataset.tower){ towerEnter(); return; }
     const n=g ? +g.dataset.n : regionAt((e.clientX-r.left)/r.width*100, (e.clientY-r.top)/r.height*100);
-    if(n==='tower'){ openTower(); return; }
+    if(n==='tower'){ towerEnter(); return; }
     if(n) tryGo(n);
   };
   svgEl.addEventListener('pointerdown', e=>{ pDown=(e.isPrimary && e.button===0) ? {x:e.clientX,y:e.clientY} : null; });
@@ -2941,7 +2957,7 @@ function renderMap(){
   });
   box.querySelectorAll('.mreg').forEach(g=>{
     const n=+g.dataset.n;
-    g.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(g.dataset.tower){ openTower(); return; } tryGo(n); } });
+    g.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(g.dataset.tower){ towerEnter(); return; } tryGo(n); } });
   });
   /* 滑鼠懸停時把區塊移到最上層（僅限真實滑鼠），讓其邊線與文字不被鄰塊蓋住 */
   svgEl.addEventListener('pointerover', e=>{
@@ -2964,53 +2980,24 @@ function renderMap(){
   }
 }
 function openLevel(n){ TOWER.level=0; hide('ov-menu'); newRun(n); }
-/* ---------- 龍塔 UI：尺寸分頁＋關卡格 ---------- */
-let towerTab=6;
-function openTower(){
+/* ---------- 龍塔：無選關介面，點地標直接進入下一層；地圖進度決定開放範圍 ---------- */
+function towerEnter(){
   if(!TOWER_OK){ SFX.wrong(); return; }
+  const gate=towerGate();
+  if(gate<6){ SFX.wrong(); if(typeof doBuddyChat==='function' && BUDDY.id) doBuddyChat('龍塔還在封印中～先通過地圖的 6×6 區域吧！'); return; }
   const nx=Math.min(TOWER_TOTAL, (TOWER.max||0)+1);
-  towerTab=towerSizeOf(nx)||13;
-  renderTowerTabs(); renderTowerGrid();
-  show('ov-tower'); SFX.tap();
-}
-function renderTowerTabs(){
-  const box=$('tower-tabs'); if(!box) return;
-  box.innerHTML='';
-  for(const n of [6,7,8,9,10,11,12,13]){
-    const b=document.createElement('button');
-    b.className='dtab'+(towerTab===n?' on':'');
-    b.textContent=n+'×'+n;
-    b.title='關卡 '+TOWER_START[n]+'–'+(TOWER_START[n]+TOWER_COUNTS[n]-1);
-    b.onclick=()=>{ towerTab=n; renderTowerTabs(); renderTowerGrid(); SFX.tap(); };
-    box.appendChild(b);
-  }
-}
-function renderTowerGrid(){
-  const grid=$('tower-grid'); if(!grid) return;
-  const n=towerTab, start=TOWER_START[n], count=TOWER_COUNTS[n], tmax=TOWER.max||0;
-  const nx=Math.min(TOWER_TOTAL, tmax+1);
-  $('tower-sub').innerHTML='預生成盤面闖關，過關才能往上一層<br>已通關 <b>'+tmax+'</b> / '+TOWER_TOTAL+' 層'+(tmax>=TOWER_TOTAL?' 🎉':(nx>=start&&nx<start+count?'':' · 目前進度：第 '+nx+' 層（'+towerSizeOf(nx)+'×'+towerSizeOf(nx)+'）'));
-  grid.innerHTML='';
-  const frag=document.createDocumentFragment();
-  for(let L=start; L<start+count; L++){
-    const b=document.createElement('button');
-    const done=L<=tmax, next=L===tmax+1;
-    b.className='tlv'+(done?' done':(next?' next':' locked'));
-    b.textContent=L;
-    b.title='第 '+L+' 層（'+n+'×'+n+'）'+(done?' ✓ 已通關':(next?'':' 🔒 先通過第 '+(L-1)+' 層'));
-    b.onclick=()=>{ if(done || next) towerStart(L); else SFX.wrong(); };
-    frag.appendChild(b);
-  }
-  grid.appendChild(frag);
+  const tn=towerSizeOf(nx);
+  if(!tn) return;
+  if(tn>gate){ SFX.wrong(); if(typeof doBuddyChat==='function' && BUDDY.id) doBuddyChat('龍塔的 '+tn+'×'+tn+' 關卡還封印著～先在地圖通過 '+tn+'×'+tn+' 區域吧！'); return; }
+  towerStart(nx);
 }
 function towerStart(L){
   if(!TOWER_OK) return;
-  if(L>(TOWER.max||0)+1){ SFX.wrong(); return; }
+  if(L>(TOWER.max||0)+1){ SFX.wrong(); return; } /* 不可跳關：只能挑戰已通關層的下一層 */
   TOWER.level=L;
-  hide('ov-tower'); hide('ov-menu');
+  hide('ov-menu');
   newRun(towerSizeOf(L));
 }
-if($('tower-close')) $('tower-close').onclick=()=>hide('ov-tower');
 function openMenu(){
 
   renderMap();
