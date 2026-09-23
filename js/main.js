@@ -1364,7 +1364,7 @@ function renderTimer(){
 function timeUp(){
   if(!G || G.state!=='marking') return;
   timerStop(); G.state='ending';
-  G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed && c.mark!=='x') cellEls[i].classList.add('ghost'); });
+  if(!TOWER.level) G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed && c.mark!=='x') cellEls[i].classList.add('ghost'); }); /* 龍塔失敗不揭示位置 */
   SFX.fail();
   setTimeout(timeoutRound, 900);
 }
@@ -1393,9 +1393,10 @@ function timeoutRound(){
   const lostN=rollbackRoundDex();
   const chests=chestRollAll();
   const left=G.N-G.found;
+  const towerFail=!!TOWER.level;
   $('res-img').src=RESULT_IMGS.fail;
   $('res-title').textContent='時間到！';
-  $('res-sub').textContent='沙漏的沙流光了…還有 '+left+' 隻恐龍沒找到（位置已揭示）';
+  $('res-sub').textContent='沙漏的沙流光了…還有 '+left+' 隻恐龍沒找到'+(towerFail?'（龍塔不揭示位置）':'（位置已揭示）');
   let bd='';
   bd+=row('🎯 捕獲恐龍', G.found+' / '+G.N, '+0', '');
   if(lostN) bd+='<div class="row"><span>📖 圖鑑新捕獲</span><span class="neg">闖關失敗，'+lostN+' 筆已取消</span></div>';
@@ -1403,8 +1404,9 @@ function timeoutRound(){
   bd+=chests.rows;
   bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
   $('res-breakdown').innerHTML=bd;
-  $('res-next').textContent='再挑戰一局';
+  $('res-next').textContent = towerFail ? '重新挑戰' : '再挑戰一局';
   setupResSel();
+  resTowerFail(towerFail);
   show('ov-result');
   chestStripAnimate(chests.list, null);
 }
@@ -2092,7 +2094,8 @@ function gameBackDefault(){
   else show('ov-reward');
 }
 $('menu-reward').onclick=()=>{ econRender(); show('ov-reward'); SFX.tap(); };
-$('reward-close').onclick=()=>hide('ov-reward');
+let resOptsBack=false; /* 由龍塔失敗的「選項」進獎勵中心時，關閉後回到結果畫面 */
+$('reward-close').onclick=()=>{ hide('ov-reward'); if(resOptsBack){ resOptsBack=false; show('ov-result'); } };
 document.querySelectorAll('#reward-games .rg-btn').forEach(b=>{ b.onclick=()=>startGame(b.dataset.g); });
 $('game-back').onclick=gameBackDefault;
 $('game-again').onclick=()=>{ if(GAME) startGame(GAME.cur); };
@@ -2317,6 +2320,7 @@ function checkBallEnd(){
 function winRound(){
   G.state='done'; G.lastFail=false;
   timerStop();
+  resTowerFail(false); /* 回復一般按鈕組（前一場可能是龍塔失敗） */
   SFX.win(); confetti();
   const chests=chestRollAll();
   if(G.keyChestTier){ /* 關鍵寶箱：過關才抽獎（失敗落空） */
@@ -2373,18 +2377,33 @@ function winRound(){
   chestStripAnimate(chests.list, G.caughtMons);
 }
 
+/* 龍塔失敗：結果畫面只留「重新挑戰／回地圖／選項」；一般關卡維持原本按鈕與難度下拉 */
+function resTowerFail(on){
+  $('res-menu').textContent = on ? '回地圖' : '換難度';
+  if(on){
+    $('res-lv').style.display='none';
+    $('res-reward').style.display='none';
+    $('res-rest').style.display='none';
+    $('res-options').style.display='';
+  } else {
+    $('res-reward').style.display='';
+    $('res-rest').style.display='';
+    $('res-options').style.display='none';
+  }
+}
 function failRound(){
   G.state='done'; G.lastFail=true;
   ECON.streak=0; econSave();
   timerStop();
   const lostN=rollbackRoundDex();
   const chests=chestRollAll();
-  G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed) cellEls[i].classList.add('ghost'); });
+  const towerFail=!!TOWER.level;
+  if(!towerFail) G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed) cellEls[i].classList.add('ghost'); }); /* 龍塔失敗不揭示位置 */
   SFX.fail();
   const left = G.N-G.found;
   $('res-img').src=RESULT_IMGS.fail;
   $('res-title').textContent='遊戲結束';
-  $('res-sub').textContent='捕捉器用完了，還有 '+left+' 隻恐龍沒找到（位置已揭示）';
+  $('res-sub').textContent='捕捉器用完了，還有 '+left+' 隻恐龍沒找到'+(towerFail?'（龍塔不揭示位置）':'（位置已揭示）');
   let bd='';
   bd+=row('🎯 捕獲恐龍', G.found+' / '+G.N, '+0', '');
   if(lostN) bd+='<div class="row"><span>📖 圖鑑新捕獲</span><span class="neg">闖關失敗，'+lostN+' 筆已取消</span></div>';
@@ -2392,8 +2411,9 @@ function failRound(){
   bd+=chests.rows;
   bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
   $('res-breakdown').innerHTML=bd;
-  $('res-next').textContent='再挑戰一局';
+  $('res-next').textContent = towerFail ? '重新挑戰' : '再挑戰一局';
   setupResSel();
+  resTowerFail(towerFail);
   show('ov-result');
   chestStripAnimate(chests.list, null);
 }
@@ -2415,7 +2435,7 @@ $('res-next').onclick = ()=>{
   newBoard();
   startBuddyTimers();
 };
-$('res-menu').onclick = ()=>{ hide('ov-result'); if(TOWER.level){ TOWER.level=0; openTower(); return; } openMenu(); };
+$('res-menu').onclick = ()=>{ hide('ov-result'); TOWER.level=0; openMenu(); };
 $('res-reward').onclick = ()=>{ hide('ov-result'); econRender(); show('ov-reward'); SFX.tap(); };
 $('res-rest').onclick = ()=>{
   hide('ov-result');
@@ -2441,6 +2461,12 @@ function setupResSel(){
 $('res-lv').addEventListener('change', ()=>{ hide('ov-result'); TOWER.level=0; newRun(+$('res-lv').value); });
 $('genfail-retry').onclick = ()=>{ hide('ov-genfail'); newBoard(); };
 $('genfail-menu').onclick = ()=>{ hide('ov-genfail'); openMenu(); };
+/* 龍塔失敗「選項」：音效／獎勵中心／玩法說明 */
+$('res-options').onclick = ()=>{ soundUI(); show('ov-opts'); SFX.tap(); };
+$('opt-close').onclick = ()=>hide('ov-opts');
+$('opt-sound').onclick = ()=>{ soundOn = !soundOn; LS.set('dinodoku-sound', soundOn?'1':'0'); soundUI(); SFX.tap(); };
+$('opt-help').onclick = ()=>{ hide('ov-opts'); show('ov-help'); SFX.tap(); };
+$('opt-reward').onclick = ()=>{ hide('ov-opts'); hide('ov-result'); resOptsBack=true; econRender(); show('ov-reward'); SFX.tap(); };
 
 /* ---------- 教學引擎 ---------- */
 function tutShow(html, btnLabel){
@@ -3003,12 +3029,17 @@ $('exit-yes').onclick = ()=>{
   $('exit-sub').innerHTML='如果視窗沒有自動關閉，<br>請直接關閉瀏覽器分頁喔！';
   $('exit-yes').style.display='none';
 };
+function soundUI(){
+  const t=soundOn?'🔊':'🔇';
+  $('btn-sound').textContent=t;
+  $('opt-sound').textContent=t+' 音效：'+(soundOn?'開':'關');
+}
 $('btn-sound').onclick = ()=>{
   soundOn = !soundOn;
   LS.set('dinodoku-sound', soundOn?'1':'0');
-  $('btn-sound').textContent = soundOn?'🔊':'🔇';
+  soundUI();
 };
-$('btn-sound').textContent = soundOn?'🔊':'🔇';
+soundUI();
 
 /* ---------- 啟動 ---------- */
 poolInit();

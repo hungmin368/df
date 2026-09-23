@@ -256,6 +256,8 @@ button.btn:disabled { opacity:.4; pointer-events:none; }
 .overlay.show .modal { transform:scale(1); }
 #ov-result { align-items:flex-end; padding:0; }
 #ov-result .modal { border-radius:22px 22px 0 0; max-width:540px; padding-bottom:max(26px, env(safe-area-inset-bottom)); }
+#ov-opts { z-index:55; } /* 龍塔失敗「選項」：需蓋在 #ov-result（bottom sheet）之上 */
+#ov-help { z-index:60; } /* 由「選項」開啟玩法說明時，需蓋在結果畫面上 */
 .modal h2 { font-size:22px; margin-bottom:12px; }
 .modal .sub { color:#8a7d6f; font-size:14px; margin-bottom:14px; line-height:1.6; }
 .rules { text-align:left; font-size:14px; line-height:1.8; color:#5c5248; background:#f7efe2; border-radius:12px; padding:14px 16px; margin:10px 0 16px; }

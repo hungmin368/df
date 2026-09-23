@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#fffdf9">
-<title>尋龍高手 DragonFinder v1.9.6 — 恐龍解謎</title>
-<link rel="stylesheet" href="css/fonts.css?v=1.9.6">
-<link rel="stylesheet" href="css/style.css?v=1.9.6">
+<title>尋龍高手 DragonFinder v1.9.7 — 恐龍解謎</title>
+<link rel="stylesheet" href="css/fonts.css?v=1.9.7">
+<link rel="stylesheet" href="css/style.css?v=1.9.7">
 <noscript><style>#splash{ display:none }</style></noscript>
 </head>
 <body class="splash-on">
@@ -17,7 +17,7 @@
 </div>
 
 <header>
-  <div class="logo">⚡ 尋龍高手 <span lang="en">DragonFinder</span><span class="ver-badge">v1.9.6</span></div>
+  <div class="logo">⚡ 尋龍高手 <span lang="en">DragonFinder</span><span class="ver-badge">v1.9.7</span></div>
   <div class="hud">
     <span>第 <b id="round">1</b> 局</span>
     <span>分數 <b id="score">0</b></span>
@@ -77,7 +77,7 @@
 <div class="overlay show" id="ov-menu">
   <div class="modal">
     <div class="menu-top">
-      <div id="menu-logo" title="尋龍高手 DragonFinder"><img src="assets/logo.png" alt="尋龍高手 DragonFinder"><span class="ver-badge">v1.9.6</span></div>
+      <div id="menu-logo" title="尋龍高手 DragonFinder"><img src="assets/logo.png" alt="尋龍高手 DragonFinder"><span class="ver-badge">v1.9.7</span></div>
       <div id="dex-banner">
       <div class="db-book">📖</div>
       <div class="db-mid">
@@ -284,6 +284,20 @@
       <button class="btn btn-ghost" id="res-menu">換難度</button>
       <button class="btn btn-ghost" id="res-reward">🎁 獎勵中心</button>
       <button class="btn btn-ghost" id="res-rest">休息去 😴</button>
+      <button class="btn btn-ghost" id="res-options" style="display:none">選項</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-opts">
+  <div class="modal" style="max-width:300px">
+    <div class="big-emoji">⚙️</div>
+    <h2>選項</h2>
+    <div class="btns" style="flex-direction:column;gap:8px">
+      <button class="btn btn-ghost" id="opt-sound">🔊 音效：開</button>
+      <button class="btn btn-ghost" id="opt-reward">🎁 獎勵中心</button>
+      <button class="btn btn-ghost" id="opt-help">❓ 玩法說明</button>
+      <button class="btn btn-primary" id="opt-close">關閉</button>
     </div>
   </div>
 </div>
@@ -350,8 +364,8 @@
     </div>
   </div>
 </div>
-<script src="js/data.js?v=1.9.6"></script>
-<script src="js/tower.js?v=1.9.6"></script>
-<script src="js/main.js?v=1.9.6"></script>
+<script src="js/data.js?v=1.9.7"></script>
+<script src="js/tower.js?v=1.9.7"></script>
+<script src="js/main.js?v=1.9.7"></script>
 </body>
 </html>
