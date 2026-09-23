@@ -35,8 +35,8 @@
 
 ### 5. 清理與提交（完成）
 - 刪除臨時檔（`tmp_grid7.py`、`tmp_solve7.py`、`tmp_solve7b.py`、`tmp_analyze7.py`、`tmp_proof7.py`、`tmp_chain7.py`、`tmp_zoom_bottom.png`）；未追蹤的 `worklogs/worklog_investigate-6x6-generation.md` 屬其他工作階段，不納入提交。
-- commit：（提交後補錄）。
+- commit：`672caf2`（Record the 7x7 puzzle solution in a worklog）。
 
 ## 最終狀態
 - 交付：該 7×7 盤面的唯一解（R1C1、R2C3、R3C5、R4C7、R5C2、R6C4、R7C6）與逐步推論說明；確認 10 個玩家 ✕ 均正確。無程式碼變更。
-- commit：（提交後補錄）
+- commit：`672caf2`（Record the 7x7 puzzle solution in a worklog）
