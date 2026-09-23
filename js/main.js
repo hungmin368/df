@@ -432,8 +432,12 @@ function habitatsOf(id){
   for(let i=0;i<k;i++){ h=(h*1103515245+12345)>>>0; res.push(avail.splice(h%avail.length,1)[0]); }
   return res.sort((a,b)=>a-b);
 }
-/* 出現權重：基礎 1★>2★>3★>4★>5★；出沒區域內 ×4（整體機率仍維持星級遞減） */
-const SPAWN_W=[24,16,6,4,3];
+/* 隱藏物品初始權重：統一稀有度階梯（越左越常見）
+   鐵箱 > 1★ > 2★ > 銀寶箱 > 3★ > 金寶箱 > 4★ > 5★。
+   寶箱梯隊對應階梯位置：iron＝鐵箱、gold（黃金寶箱）＝銀寶箱位、plat（白金寶箱）＝金寶箱位。
+   出沒區域內星級權重 ×4（地區加成：出沒區域會提高星級機率） */
+const HIDDEN_W={ iron:64, s1:48, s2:34, silver:24, s3:15, gold:9, s4:5, s5:2 };
+const SPAWN_W=[HIDDEN_W.s1,HIDDEN_W.s2,HIDDEN_W.s3,HIDDEN_W.s4,HIDDEN_W.s5];
 function spawnWeight(p,N){
   let w=SPAWN_W[(p.stars||1)-1]||1;
   if(N>=6 && habitatsOf(p.id).includes(N)) w*=4;
@@ -2109,7 +2113,7 @@ function placeChests(){
   const pool = [];
   for(let i=0;i<N*N;i++) if(!G.catUnion.has(i) && !G.cells[i].fixed) pool.push(i);
   shuffle(pool);
-  const w = N>=10 ? {iron:55, gold:32, plat:13} : {iron:68, gold:26, plat:6};
+  const w = { iron:HIDDEN_W.iron, gold:HIDDEN_W.silver, plat:HIDDEN_W.gold }; /* 階梯：鐵箱 > 銀寶箱位(黃金) > 金寶箱位(白金) */
   for(let k=0;k<cnt && k<pool.length;k++){
     G.cells[pool[k]].chest = wpick(['iron','gold','plat'], t=>w[t]);
   }
