@@ -1410,8 +1410,8 @@ function timeoutRound(){
   bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
   $('res-breakdown').innerHTML=bd;
   $('res-next').textContent = towerFail ? '重新挑戰' : '再挑戰一局';
-  setupResSel();
-  resTowerFail(towerFail);
+  if(!towerFail) setupResSel();
+  resTowerUI(towerFail);
   show('ov-result');
   chestStripAnimate(chests.list, null);
 }
@@ -2099,8 +2099,7 @@ function gameBackDefault(){
   else show('ov-reward');
 }
 $('menu-reward').onclick=()=>{ econRender(); show('ov-reward'); SFX.tap(); };
-let resOptsBack=false; /* 由龍塔失敗的「選項」進獎勵中心時，關閉後回到結果畫面 */
-$('reward-close').onclick=()=>{ hide('ov-reward'); if(resOptsBack){ resOptsBack=false; show('ov-result'); } };
+$('reward-close').onclick=()=>hide('ov-reward');
 document.querySelectorAll('#reward-games .rg-btn').forEach(b=>{ b.onclick=()=>startGame(b.dataset.g); });
 $('game-back').onclick=gameBackDefault;
 $('game-again').onclick=()=>{ if(GAME) startGame(GAME.cur); };
@@ -2325,7 +2324,7 @@ function checkBallEnd(){
 function winRound(){
   G.state='done'; G.lastFail=false;
   timerStop();
-  resTowerFail(false); /* 回復一般按鈕組（前一場可能是龍塔失敗） */
+  resTowerUI(false); /* 先回復一般按鈕組（前一場可能是龍塔失敗），龍塔過關於下方再切換 */
   SFX.win(); confetti();
   const chests=chestRollAll();
   if(G.keyChestTier){ /* 關鍵寶箱：過關才抽獎（失敗落空） */
@@ -2376,29 +2375,25 @@ function winRound(){
   if(G.potentialReward) bd+=row('⚡ 隨行潛能', '+'+G.potentialReward.gain, G.potentialReward.value+' / 100', 'pos');
   if(G.N>=6){
     bd+=row('⏳ 剩餘秒數', sc+' 秒', '+'+sc, 'pos');
-    bd+=row('⏱ '+REGION_META[G.N].name+' 個人累積', lvRec(G.N).total, '', '');
+    if(!TOWER.level) bd+=row('⏱ '+REGION_META[G.N].name+' 個人累積', lvRec(G.N).total, '', ''); /* 龍塔不顯示地圖區域名 */
   }
   bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
   $('res-breakdown').innerHTML=bd;
-  $('res-next').textContent='下一局 ▶';
-  setupResSel();
+  const towerWin=!!TOWER.level;
+  $('res-next').textContent = towerWin ? '下一關 ▶' : '下一局 ▶';
+  resTowerUI(towerWin);
+  if(!towerWin) setupResSel();
   show('ov-result');
   chestStripAnimate(chests.list, G.caughtMons);
 }
 
-/* 龍塔失敗：結果畫面只留「重新挑戰／回地圖／選項」；一般關卡維持原本按鈕與難度下拉 */
-function resTowerFail(on){
+/* 龍塔結果畫面：只留兩顆按鈕（失敗＝重新挑戰、過關＝下一關，皆搭配回地圖）；
+   一般關卡維持原本按鈕與難度下拉 */
+function resTowerUI(on){
+  $('res-lv').style.display = on ? 'none' : '';
+  $('res-reward').style.display = on ? 'none' : '';
+  $('res-rest').style.display = on ? 'none' : '';
   $('res-menu').textContent = on ? '回地圖' : '換難度';
-  if(on){
-    $('res-lv').style.display='none';
-    $('res-reward').style.display='none';
-    $('res-rest').style.display='none';
-    $('res-options').style.display='';
-  } else {
-    $('res-reward').style.display='';
-    $('res-rest').style.display='';
-    $('res-options').style.display='none';
-  }
 }
 function failRound(){
   G.state='done'; G.lastFail=true;
@@ -2421,8 +2416,8 @@ function failRound(){
   bd+='<div class="row" style="border-top:1px dashed #ddd0ba;margin-top:6px;padding-top:6px"><span><b>個人總分</b></span><span><b>'+fmtSec(lvTotal())+'</b></span></div>';
   $('res-breakdown').innerHTML=bd;
   $('res-next').textContent = towerFail ? '重新挑戰' : '再挑戰一局';
-  setupResSel();
-  resTowerFail(towerFail);
+  if(!towerFail) setupResSel();
+  resTowerUI(towerFail);
   show('ov-result');
   chestStripAnimate(chests.list, null);
 }
@@ -2473,12 +2468,6 @@ function setupResSel(){
 $('res-lv').addEventListener('change', ()=>{ hide('ov-result'); TOWER.level=0; newRun(+$('res-lv').value); });
 $('genfail-retry').onclick = ()=>{ hide('ov-genfail'); newBoard(); };
 $('genfail-menu').onclick = ()=>{ hide('ov-genfail'); openMenu(); };
-/* 龍塔失敗「選項」：音效／獎勵中心／玩法說明 */
-$('res-options').onclick = ()=>{ soundUI(); show('ov-opts'); SFX.tap(); };
-$('opt-close').onclick = ()=>hide('ov-opts');
-$('opt-sound').onclick = ()=>{ soundOn = !soundOn; LS.set('dinodoku-sound', soundOn?'1':'0'); soundUI(); SFX.tap(); };
-$('opt-help').onclick = ()=>{ hide('ov-opts'); show('ov-help'); SFX.tap(); };
-$('opt-reward').onclick = ()=>{ hide('ov-opts'); hide('ov-result'); resOptsBack=true; econRender(); show('ov-reward'); SFX.tap(); };
 
 /* ---------- 教學引擎 ---------- */
 function tutShow(html, btnLabel){
@@ -3016,17 +3005,12 @@ $('exit-yes').onclick = ()=>{
   $('exit-sub').innerHTML='如果視窗沒有自動關閉，<br>請直接關閉瀏覽器分頁喔！';
   $('exit-yes').style.display='none';
 };
-function soundUI(){
-  const t=soundOn?'🔊':'🔇';
-  $('btn-sound').textContent=t;
-  $('opt-sound').textContent=t+' 音效：'+(soundOn?'開':'關');
-}
 $('btn-sound').onclick = ()=>{
   soundOn = !soundOn;
   LS.set('dinodoku-sound', soundOn?'1':'0');
-  soundUI();
+  $('btn-sound').textContent = soundOn?'🔊':'🔇';
 };
-soundUI();
+$('btn-sound').textContent = soundOn?'🔊':'🔇';
 
 /* ---------- 啟動 ---------- */
 poolInit();
