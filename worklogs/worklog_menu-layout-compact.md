@@ -60,4 +60,4 @@
 ## 最終狀態
 - 紅框1/2/3 與後續四項調整（退出按鈕、對話框再縮高、頂列靠邊、版號定位）全部完成，並通過本機桌面／手機／遊戲中驗證，console 無錯誤。
 - 依 AGENTS.md 慣例：本工作日誌連同 col-number-alignment 任務變更一併提交（兩任務變更交錯於相同檔案），commit hash 回填於後續提交。
-- commit hash：Pending（完成驗證後回填）
+- commit hash：b384b1a（與 col-number-alignment 合併提交，兩任務變更交錯於相同檔案），hash 回填於後續提交（慣例同 61c4eb4）
