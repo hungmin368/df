@@ -19,9 +19,9 @@
 
 ### Step 4: Commit and push
 - **What:** `git add AGENTS.md worklogs/`, reviewed `git status`, committed with a message describing the new worklog convention and first worklog, then `git push origin main`.
-- **Result/Verification:** Pending.
+- **Result/Verification:** Passed. Staged files were exactly `AGENTS.md` (modified) and `worklogs/worklog_agents-worklog-convention.md` (new); committed as `5e2157b`. The commit hash was written into this worklog via a small follow-up commit (a commit cannot contain its own hash), then both commits were pushed to `origin main`.
 
 ## Final status
 
-- Pending commit.
-- Commit hash: (to be filled after commit)
+- Completed and pushed on 2026-09-23.
+- Commit hash: 5e2157b (worklog hash recorded by follow-up commit)
