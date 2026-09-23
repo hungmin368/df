@@ -47,8 +47,8 @@
   2. 假設黃綠 (1,6)：第 1 列全刪 → 淺藍只剩 (2,1) → 第 1 欄全刪 → 紫只剩 (4,2) → 第 2 欄全刪 → 青綠只剩 (6,3) → 紫羅蘭 (6,4) 同列、(7,3) 同欄、(7,2)(7,4) 斜角全刪 → 0 格 → 矛盾 ⇒ 薄荷綠 = (7,6)。
 - 階段 2 後連鎖每步皆為唯一候選：紫羅蘭 (6,4) → 青綠 (5,2) → 紫 (2,3) → 淺藍 (1,1) → 黃綠 (4,7)。
 - 另以一次性內嵌腳本獨立複驗 13 項全 PASS（唯一解、10 個 ✕ 全相容、C@(4,6)/G@(7,5)/D@(1,6)/G 第 7 欄各分支皆 0 解、C@(3,5) 與 C@(3,5)&G@(7,6) 皆恰 1 解＝答案）；`HEAD == origin/main`、工作區乾淨。
-- commit：（提交後補錄）。
+- commit：`5c1e5ea`（Add the x-marks-driven deduction walkthrough to the 7x7 worklog）。
 
 ## 最終狀態
 - 交付：該 7×7 盤面的唯一解（R1C1、R2C3、R3C5、R4C7、R5C2、R6C4、R7C6）與逐步推論說明；確認 10 個玩家 ✕ 均正確。另補「以 ✕ 為主的逐步推導」教學（步驟 6）。無程式碼變更。
-- commit：`672caf2`（Record the 7x7 puzzle solution in a worklog）；補充（步驟 6）：（提交後補錄）
+- commit：`672caf2`（Record the 7x7 puzzle solution in a worklog）；補充（步驟 6）：`5c1e5ea`（Add the x-marks-driven deduction walkthrough to the 7x7 worklog）
