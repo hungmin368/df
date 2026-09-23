@@ -757,7 +757,10 @@ function triggerBuddySkill(forceSk){
   const doMsg=()=>doBuddyChat(BUDDY_SKILL_TALK[sk]||'我用技能了！');
   if(sk==='sweep1'){ const c=findRandomSafe(); if(c!==-1){ G.cells[c].mark='x'; cellEls[c].classList.add('x'); updateStatus(); SFX.tap(); done=true; } }
   else if(sk==='sweep2'||sk==='sweep3'){ const n=sk==='sweep3'?4:2; const w=[]; for(let i=0;i<n;i++){ const c=findRandomSafe(); if(c!==-1)w.push(c); } w.forEach(c=>{ G.cells[c].mark='x'; cellEls[c].classList.add('x'); }); updateStatus(); if(w.length)SFX.tap(); done=!!w.length; }
-  else if(sk==='hint1'){ if(typeof freeHint==='function' && typeof showHintAt==='function'){ const i=freeHint(); if(i!==null){ showHintAt(i); done=true; } } }
+  else if(sk==='hint1'){ /* 心靈感應＝提示：龍塔挑戰不提供 */
+    if(TOWER.level){ doBuddyChat('龍塔的考驗要靠自己～在這裡我不能給你提示！'); return; }
+    if(typeof freeHint==='function' && typeof showHintAt==='function'){ const i=freeHint(); if(i!==null){ showHintAt(i); done=true; } }
+  }
   else if(sk==='time15'){ timerAdd(15); done=true; }
   else if(sk==='time30'){ timerAdd(30); done=true; }
   else if(sk==='intel'){ const cand=[...G.cats].filter(i=>!G.cells[i].revealed); if(cand.length){ const fr=frOf(BUDDY.id); const sure=cand.filter(()=>Math.random()<fr/100); if(sure.length){ const i=sure[0]; const rc=Math.floor(i/G.N)%G.N+1, cc=i%G.N+1; doBuddyChat('我覺得…<b>第'+rc+'行第'+cc+'列</b>可能有恐龍！'); done=true; } else { doBuddyChat('嗯…我也不是很確定呢…'); done=true; } } }
@@ -2262,6 +2265,8 @@ $('btn-ball').onclick = ()=>{
 };
 function updateHintBtn(){
   const b=$('btn-hint'); if(!b) return;
+  if(TOWER.level){ b.style.display='none'; b.disabled=true; return; } /* 龍塔挑戰不提供提示 */
+  b.style.display='';
   const can = G && G.state==='marking' && !G.tutorial && (ECON.devFree||(ECON.seeds||0)>0) && !hintBusy;
   b.disabled = !can;
   b.textContent = '提示 🌿 '+(ECON.devFree?'🌌∞':'🌌'+(ECON.seeds||0));
@@ -2301,7 +2306,7 @@ $('btn-restart').onclick = ()=>{
   newRun(n); SFX.tap();
 };
 $('btn-hint').onclick = ()=>{
-  if(!G || G.state!=='marking' || G.tutorial || hintBusy) return;
+  if(!G || G.state!=='marking' || G.tutorial || hintBusy || TOWER.level) return; /* 龍塔不給提示 */
   if(!ECON.devFree && (ECON.seeds||0)<1){ SFX.wrong(); floatText($('btn-hint'),'需要 1 顆星願種子 🌌','#d64545'); return; }
   const i=freeHint();
   if(i===null) return;
