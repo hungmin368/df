@@ -41,9 +41,13 @@
 - 手機寬度（iframe 390×800／360×640）：龍塔失敗＝`[res-next,res-menu]`、龍塔過關＝`[res-next,res-menu]`（`下一關 ▶`／`回地圖`），按鈕皆在視窗內、modal 無橫向溢出。
 - console：8126 頁面無新增錯誤；另於頁面安裝 `error`／`unhandledrejection` 收集器跑完上述完整流程，收集結果為空陣列。
 
-### 4. 提交（待補 commit hash）
-- 僅提交 `index.html`、`css/style.css`、`js/main.js`、本工作日志；工作區另有其他工作階段的未追蹤檔案 `worklogs/worklog_investigate-6x6-generation.md`，不納入本次提交。
+### 4. 提交與線上驗證（完成）
+- 僅提交 `index.html`、`css/style.css`、`js/main.js`、本工作日志；工作區另有其他工作階段的未追蹤檔案 `worklogs/worklog_investigate-6x6-generation.md`，不納入本次提交。commit：`97ff0c8`，已推送 `origin/main`。
+- GitHub Pages 部署後檢查（https://hungmin368.github.io/df/）：
+  - `index.html` 頁尾＝「尋龍高手 DragonFinder v1.9.8」、`.ver-badge`＝v1.9.8，HTML 已無 `res-options`／`ov-opts`；`css/style.css` 已無 `ov-opts`。
+  - `js/main.js` 含 `resTowerUI`（5 處），無 `resTowerFail`／`soundUI`／`res-options`。
+  - 以瀏覽器實測線上版本：龍塔失敗＝僅 `res-next`（重新挑戰）／`res-menu`（回地圖）、`.cell.ghost`＝0、無選項面板；龍塔過關＝僅 `res-next`（下一關 ▶）／`res-menu`（回地圖）、`#res-lv` 隱藏、明細無地圖關卡名；整段流程 `error` 事件收集結果為空。
 
 ## 最終狀態
 - 交付：龍塔失敗畫面（重新挑戰／回地圖）、龍塔過關畫面（下一關／回地圖，無地圖關卡名與下拉）、移除「選項」按鈕與 `#ov-opts` 面板及相關死碼、版號 1.9.8。
-- commit：（待提交後回填）
+- commit：`97ff0c8`（Cut the Dragon Tower result screens to two buttons）
