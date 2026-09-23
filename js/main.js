@@ -602,7 +602,7 @@ if(typeof renderLiveDex==="function"){
 /* 對話框高度 → CSS 變數 --dlgh：#controls 以 sticky 固定在對話框正上方 */
 (function(){
   const dlg=$('dlg'); if(!dlg) return;
-  const sync=()=>{ document.documentElement.style.setProperty('--dlgh', Math.ceil(dlg.getBoundingClientRect().height)+'px'); };
+  const sync=()=>{ document.documentElement.style.setProperty('--dlgh', Math.ceil(dlg.getBoundingClientRect().height)+'px'); fitMobileBoard(); };
   if(window.ResizeObserver) new ResizeObserver(sync).observe(dlg);
   window.addEventListener('resize', sync);
   sync();
@@ -1086,6 +1086,7 @@ function renderBoard(){
   for(let r=0;r<N;r++){ const s=document.createElement('span'); s.textContent=r+1; rc.appendChild(s); }
   sizeFont();
   syncDexSize();
+  fitMobileBoard();
 }
 function syncDexSize(){ /* 圖鑑圖示固定＝6×6 時的方格尺寸（上限 92px）；v1.2.1 扣除面板內距 */
   const w = $('board-area').clientWidth;
@@ -1098,7 +1099,17 @@ function sizeFont(){
   const px = Math.max(20, board.clientWidth / G.N);
   board.style.fontSize = Math.max(8, Math.floor(px*0.5)) + 'px';
 }
-window.addEventListener('resize', ()=>{ if(G && cellEls.length){ sizeFont(); syncDexSize(); } });
+/* 手機版：量測 header/狀態列/按鈕列/伴伴列實際高度，反推棋盤可用寬度 → --boardw */
+function fitMobileBoard(){
+  const root=document.documentElement;
+  if(window.innerWidth>720){ root.style.removeProperty('--boardw'); return; }
+  const vpH=window.visualViewport?window.visualViewport.height:window.innerHeight;
+  const h=el=>el?el.getBoundingClientRect().height:0;
+  const chrome=h(document.querySelector('header'))+h($('status'))+h($('controls'))+h($('dlg'))+30;
+  const w=Math.min(window.innerWidth*0.94, 500, Math.max(220, vpH-chrome));
+  root.style.setProperty('--boardw', Math.floor(w)+'px');
+}
+window.addEventListener('resize', ()=>{ if(G && cellEls.length){ sizeFont(); syncDexSize(); } fitMobileBoard(); });
 
 /* ---------- 偽 3D 傾斜引擎：所有 .p3d 元素隨指標傾斜＋動態光影（全域事件委派） ---------- */
 (function(){
