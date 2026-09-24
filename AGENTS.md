@@ -16,6 +16,10 @@ This file provides guidance to the AI agent when working with code in this repos
 - Whenever a task produces tables, lists, or long-form information, automatically render that content as an HTML file too, then notify the user to open it; do not dump large tables or long data into chat.
 - Keep report content in Traditional Chinese.
 
+## Unity workspace
+
+- All Unity development lives under `unity_workspace/` and stays self-contained: do not reference, import, or share files between `unity_workspace/` and the upper-level web app — no cross-boundary file usage in either direction.
+
 ## Git workflow
 
 - Remote repository: https://github.com/hungmin368/df.git (branch `main`).
