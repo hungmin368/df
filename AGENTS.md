@@ -10,6 +10,12 @@ This file provides guidance to the AI agent when working with code in this repos
 - Do not edit historical `*.bak` files or `index_backup_*.html` snapshots.
 - Keep player-facing UI text in Traditional Chinese.
 
+## HTML reports
+
+- When the user asks for a report (報告), deliver it as a standalone HTML file named `<topic>_report.html` in the repository root (existing convention: `appstore_publish_report.html`); the file should be self-contained and styled for readability.
+- Whenever a task produces tables, lists, or long-form information, automatically render that content as an HTML file too, then notify the user to open it; do not dump large tables or long data into chat.
+- Keep report content in Traditional Chinese.
+
 ## Git workflow
 
 - Remote repository: https://github.com/hungmin368/df.git (branch `main`).
