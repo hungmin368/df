@@ -31,4 +31,4 @@
 ## 最終狀態
 
 - 狀態：完成
-- Commit hash：（待提交後填入）
+- Commit hash：7079a07
