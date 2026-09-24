@@ -21,4 +21,12 @@
 
 ### 3. 提交
 - 提交策略：AGENTS.md 的 pokemon-rename 改動（`POKEMON`→`DINOS` 一行）先暫時還原 → 暫存 AGENTS.md 與本 worklog → 提交（僅含 HTML reports 規則）→ 再把該行還原回工作區，確保 pokemon-rename 的未提交改動原樣保留。
+- 執行：`git add AGENTS.md worklogs/worklog_agents-html-report-rule.md` → commit（僅含 HTML reports hunk，經 diff 複核）→ `git push origin main` 成功。
+- 提交後複核：`git status` 顯示 AGENTS.md 相對 HEAD 僅剩 `POKEMON`→`DINOS` 一行（pokemon-rename 的未提交改動原樣保留），其餘工作區檔案不受影響。
+
+## 最終狀態
+
+- 完成：AGENTS.md 已新增 `## HTML reports` 章節（報告須為獨立 HTML 檔、表格／列表／長資訊自動做成 HTML 並通知使用者打開、報告使用繁體中文），已提交並推送到 `main`。
+- Commit：9df36711f50201225db68cbeabb277993ed338ab
+- 驗證：本地 http.server（127.0.0.1:8125）curl 檢查 `/`、`/js/data.js`、`/js/main.js`、`/css/style.css`、`/AGENTS.md` 皆 200，且伺服端 AGENTS.md 含完整新章節；推播前 diff 複核提交內容僅含本任務變更。
 
