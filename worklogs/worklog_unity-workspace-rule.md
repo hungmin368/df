@@ -17,3 +17,13 @@
 - `curl http://127.0.0.1:8126/AGENTS.md` 確認伺服端檔案含 `## Unity workspace` 章節且規則內容完整。
 - 驗證完成後以 taskkill 結束伺服器（背景命令因此回報非零退出碼，屬預期）。
 
+### 3. 提交
+- 提交策略同前一次 AGENTS.md 任務：暫時還原 pokemon-rename 的 `POKEMON` 行 → `git add AGENTS.md worklogs/worklog_unity-workspace-rule.md` → commit（diff 複核僅含 Unity workspace hunk）→ `git push origin main` 成功 → 把 `DINOS` 行還原回工作區。
+- 提交後複核：`git diff AGENTS.md` 相對 HEAD 僅剩 `POKEMON`→`DINOS` 一行（pokemon-rename 未提交改動原樣保留）。
+
+## 最終狀態
+
+- 完成：AGENTS.md 已新增 `## Unity workspace` 章節（Unity 開發都在 `unity_workspace/` 下且自包含，雙向禁止與上層交互使用檔案），已提交並推送到 `main`。
+- Commit：8d26140fc62e65ea4df0446fafd444ec0f9c9a2a
+- 驗證：本地 http.server（127.0.0.1:8126）curl 檢查 `/`、`/js/data.js`、`/js/main.js`、`/css/style.css`、`/AGENTS.md` 皆 200，且伺服端 AGENTS.md 含完整新章節；提交前 diff 複核僅含本任務變更。
+
