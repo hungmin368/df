@@ -10,10 +10,10 @@
 </head>
 <body><main>
 <h1>Dragon Finder Unity 轉換進度總覽</h1>
-<p><span class="status">垂直切片完成並已驗證</span>　<span class="warn">尚未提交／人工複核未完成</span>　日期：2026-09-25</p>
+<p><span class="status">垂直切片完成並已驗證</span>　<span class="warn">人工複核未完成</span>　日期：2026-09-25</p>
 
 <section><h2>一句話總結</h2>
-<p>Unity 版已從零建立到「可玩垂直切片」：專案骨架、純 C# 核心規則、JSON→ScriptableObject 內容匯入、<code>saveVersion=1</code> 本機存檔、uGUI/TextMeshPro 介面與完整鍵盤／滑鼠／觸控輸入、Windows x86_64 建置與端對端驗證全部完成；EditMode 13/13、PlayMode 8/8 通過，實機存檔寫入與回讀已證實。完整遊戲系統（圖鑑、地圖、龍塔等）與 iOS 適配尚未開始，且 Unity 工作區目前完全未納入 Git。</p></section>
+<p>Unity 版已從零建立到「可玩垂直切片」：專案骨架、純 C# 核心規則、JSON→ScriptableObject 內容匯入、<code>saveVersion=1</code> 本機存檔、uGUI/TextMeshPro 介面與完整鍵盤／滑鼠／觸控輸入、Windows x86_64 建置與端對端驗證全部完成；EditMode 13/13、PlayMode 8/8 通過，實機存檔寫入與回讀已證實。完整遊戲系統（圖鑑、地圖、龍塔等）與 iOS 適配尚未開始；Unity 工作區已於 09-25 11:19 隨 commit <code>438a0db</code> 提交（222 個檔案）。</p></section>
 
 <section><h2>里程碑時間軸</h2>
 <table><thead><tr><th>時間</th><th>任務</th><th>產出／結果</th></tr></thead><tbody>
@@ -52,7 +52,7 @@
 
 <section><h2>待辦與風險</h2>
 <ol>
-<li><b>尚未提交</b>：<code>unity_workspace/</code> 全部未納入 Git（無 commit/push，符合「未經要求不提交」規範）；Web 版主線則有未提交變更。</li>
+<li><b>Git 狀態</b>：<code>unity_workspace/</code> 已於 09-25 11:19 隨 commit <code>438a0db</code>（Add the self-contained Unity prototype workspace）提交 222 個檔案；本報告、<code>html2unity*</code> 追蹤文件與 Web 版主線部分變更仍未提交（未經要求不提交）。</li>
 <li><b>工作紀錄缺口</b>：<code>worklog_vertical-slice-verification.md</code>（09-25 10:35）尚未記錄 10:44–11:08 的驗證版建置、實機截圖與報告更新步驟，與 AGENTS.md「逐步即時記錄」要求不符。</li>
 <li><b>報告與現況不一致</b>：驗證報告第八節稱「驗證後已移除驗證啟動器與建置入口」，但 <code>TutorialVerificationBuild.cs</code>（10:44）與 <code>TutorialVerificationRunner.cs</code>（10:59，含 <code>#if DF_TUTORIAL_VERIFY</code>）仍在專案中。</li>
 <li><b>人工複核未完成</b>：以實體鍵盤在正式版完成一局教學；1280×720／1600×900／1920×1080 介面巡檢。</li>

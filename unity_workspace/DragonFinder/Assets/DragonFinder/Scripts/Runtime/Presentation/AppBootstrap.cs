@@ -14,6 +14,9 @@ namespace DragonFinder.Runtime.Presentation
 {
     public sealed class AppBootstrap : MonoBehaviour
     {
+        private const int FormalBoardSize = 6;
+        private const float PoolRefillInterval = 1f;
+
         private static readonly Color[] RegionColors =
         {
             new Color32(91, 170, 255, 255), new Color32(255, 150, 150, 255),
@@ -54,6 +57,9 @@ namespace DragonFinder.Runtime.Presentation
         private Button resultSecondaryButton;
         private Action resultPrimaryAction;
         private GameSession session;
+        private BoardPool boardPool;
+        private System.Random poolRandom;
+        private float nextPoolRefillAt;
         private bool tutorialMode;
         private int tutorialStage;
         private int tutorialTargetRow;
@@ -63,6 +69,7 @@ namespace DragonFinder.Runtime.Presentation
         public GameSession CurrentSession => session;
         public int FocusedCellIndex => focusedCell;
         public bool MenuVisible => menuScreen != null && menuScreen.activeSelf;
+        public int PooledFormalBoardCount => boardPool != null ? boardPool.Count(FormalBoardSize) : 0;
 
         private void Awake()
         {
@@ -74,6 +81,8 @@ namespace DragonFinder.Runtime.Presentation
             sfx = gameObject.AddComponent<SfxPlayer>();
             sfx.Enabled = save.sfxEnabled;
             font = CreateRuntimeFont();
+            boardPool = new BoardPool(6, FormalBoardSize);
+            poolRandom = new System.Random(unchecked((int)DateTime.UtcNow.Ticks));
             EnsureEventSystem();
             BuildInterface();
             ShowMenu();
@@ -81,6 +90,7 @@ namespace DragonFinder.Runtime.Presentation
 
         private void Update()
         {
+            PumpBoardPool();
             HandleGlobalKeys();
             if (session == null || !gameScreen.activeSelf || resultOverlay.activeSelf)
             {
@@ -207,10 +217,26 @@ namespace DragonFinder.Runtime.Presentation
         public void StartFormalRound()
         {
             int seed = unchecked((int)DateTime.UtcNow.Ticks);
-            BoardPuzzle puzzle = BoardGenerator.GenerateUnique(6, seed);
+            BoardPuzzle puzzle = boardPool.Take(FormalBoardSize, new System.Random(seed)) ?? BoardGenerator.GenerateUnique(FormalBoardSize, seed);
             tutorialMode = false;
-            BeginRound(puzzle, true, false, 6, seed);
+            BeginRound(puzzle, true, false, FormalBoardSize, seed);
             statusLabel.text = "每行、每列、每區各一隻龍；龍彼此不能相鄰。";
+        }
+
+        private void PumpBoardPool()
+        {
+            if (session != null && session.Phase == RoundPhase.Playing)
+            {
+                return;
+            }
+
+            if (Time.unscaledTime < nextPoolRefillAt)
+            {
+                return;
+            }
+
+            nextPoolRefillAt = Time.unscaledTime + PoolRefillInterval;
+            boardPool.RefillOnce(poolRandom, (size, random) => BoardGenerator.GenerateUnique(size, random.Next(int.MinValue, int.MaxValue)));
         }
 
         private void BeginRound(BoardPuzzle puzzle, bool timed, bool lowStarsOnly, int dragonCount, int seed)

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>尋龍高手 DragonFinder — 上架 Google Play / App Store 準備報告</title>
+<style>
+  :root{
+    --bg:#fffdf9; --ink:#3b3228; --muted:#8a7d6d; --line:#e8dfd2;
+    --amber:#b45309; --amber-bg:#fff7e8;
+    --green:#15803d; --green-bg:#ecfdf3;
+    --red:#b91c1c; --red-bg:#fef2f2;
+    --blue:#1d4ed8; --blue-bg:#eff6ff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    line-height:1.65;}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 80px;}
+  header.hero{background:linear-gradient(135deg,#b45309,#d97706 60%,#f59e0b);
+    color:#fff;border-radius:18px;padding:34px 30px;margin-bottom:26px;
+    box-shadow:0 10px 30px rgba(180,83,9,.25);}
+  header.hero h1{margin:0 0 8px;font-size:1.7rem;letter-spacing:.5px;}
+  header.hero p{margin:4px 0;opacity:.95;}
+  header.hero .meta{font-size:.85rem;opacity:.85;margin-top:12px;}
+  h2{font-size:1.25rem;color:var(--amber);border-bottom:2px solid var(--line);
+    padding-bottom:8px;margin:42px 0 14px;}
+  h3{font-size:1.05rem;margin:22px 0 8px;color:var(--ink);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:16px 0;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .card b{display:block;margin-bottom:4px;color:var(--amber);}
+  .risk{background:var(--red-bg);border:1px solid #fecaca;border-left:5px solid var(--red);
+    border-radius:10px;padding:12px 16px;margin:10px 0;}
+  .risk b{color:var(--red);}
+  .note{background:var(--amber-bg);border:1px solid #fde68a;border-radius:10px;padding:12px 16px;margin:14px 0;}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 6px;}
+  .badge{display:inline-block;border-radius:999px;padding:1px 12px;font-size:.85rem;font-weight:700;white-space:nowrap;}
+  .b-ai{background:var(--green-bg);color:var(--green);border:1px solid #bbf7d0;}
+  .b-you{background:var(--red-bg);color:var(--red);border:1px solid #fecaca;}
+  .b-both{background:var(--blue-bg);color:var(--blue);border:1px solid #bfdbfe;}
+  .b-opt{background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb;}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;min-width:760px;background:#fff;font-size:.95rem;}
+  th{background:var(--amber-bg);color:var(--amber);text-align:left;
+    padding:10px 12px;border-bottom:2px solid #fde68a;white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:#fffaf2;}
+  td.no{font-weight:700;color:var(--muted);white-space:nowrap;}
+  td.who{white-space:nowrap;}
+  .phase{background:#78350f;color:#fff;font-size:.9rem;padding:6px 12px;letter-spacing:1px;}
+  footer{margin-top:50px;color:var(--muted);font-size:.85rem;text-align:center;}
+  code{background:#f5efe6;border-radius:4px;padding:1px 6px;font-size:.88em;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>⚡ 尋龍高手 DragonFinder — 上架 Google Play / App Store 準備報告</h1>
+  <p>把現有網頁版遊戲（v1.9.10）包裝成 Android / iOS App 並送審上架的完整工作清單</p>
+  <p>清楚區分：<span class="badge b-ai">🤖 我可做</span> <span class="badge b-you">👤 必須你做</span> <span class="badge b-both">🤝 共同</span> <span class="badge b-opt">選配</span></p>
+  <div class="meta">產出日期：2026-09-24（v2 修訂：素材來源確認＋Copilot 授權查證）｜ 依據版本：v1.9.10 ｜ 報告檔：appstore_publish_report.html</div>
+</header>
+
+<h2>一、現況盤點（已完成的優勢）</h2>
+<p>依據對目前程式碼的實際調查，這個專案對上架而言起點非常好：</p>
+<div class="cards">
+  <div class="card"><b>✅ 完全離線</b>全專案零外部連結、零 fetch。WebView 包裝後不需任何網路權限，商店可申報「不收集任何資料」，隱私審核阻力最小。</div>
+  <div class="card"><b>✅ 已有單檔整合包</b><code>build_single_file.mjs</code> 已能把整個遊戲（含 139 張圖、字型、音效邏輯）包成一個 25 MB HTML，正是塞進 App 的理想形態。</div>
+  <div class="card"><b>✅ 無版權音檔</b>音效全部用 Web Audio API 即時合成（無 .mp3/.wav），沒有音樂授權問題。</div>
+  <div class="card"><b>✅ 無實質 Pokémon 內容</b>程式變數已更名為 <code>DINOS</code>（原 <code>POKEMON</code>），內容全是真實恐龍的中文名（梁龍、三角龍、霸王龍…），無任天堂素材。</div>
+  <div class="card"><b>✅ 開源字型</b>內嵌字型 jf open 粉圓（Huninn）、芫荽（Iansui）皆採 SIL OFL 授權，可合法嵌入 App，僅需標示來源。</div>
+</div>
+
+<h3>素材來源盤點（2026-09-24 你確認來源後更新）</h3>
+<div class="tbl-wrap"><table>
+<tr><th>素材</th><th style="width:48px">數量</th><th>來源</th><th>狀態／風險</th></tr>
+<tr><td>伴伴圖（<code>assets/dinos_2/DFD-000_*.png</code>）</td><td>7</td><td>Microsoft Copilot 生成（你確認）</td><td>🟢 低：依現行 Copilot 條款「Microsoft 不擁有你的內容」，權利在你（見 R1 備註）</td></tr>
+<tr><td>Logo（<code>assets/logo.png</code>）</td><td>1</td><td>Microsoft Copilot 生成（你確認）</td><td>🟢 低：同上。logo 是品牌門面，上架前建議再檢視清晰度與獨特性</td></tr>
+<tr><td>遊戲地圖（<code>assets/map.png</code>）</td><td>1</td><td>Microsoft Copilot 生成（你確認）</td><td>🟢 低：同上</td></tr>
+<tr><td>恐龍圖（<code>assets/dinos/*.webp</code>）</td><td>139</td><td><b>未確認</b></td><td>🔴 最高：遊戲核心素材、數量最大，須逐張確認來源（見 R1）</td></tr>
+<tr><td>游標（<code>assets/cursor.png</code>）</td><td>1</td><td><b>未確認</b>（目前為放大鏡圖示，已目視確認非寶可夢素材）</td><td>🟡 中：單張小圖，來源不明可直接替換</td></tr>
+<tr><td>故事圖（<code>assets/story/s*.svg</code>）</td><td>16</td><td><b>未確認</b></td><td>🟡 中：已檢查無嵌入外部圖片、無寶可夢相關內容；來源不明可替換</td></tr>
+<tr><td>字型（<code>assets/fonts/*.woff2</code>）</td><td>2</td><td>開源 SIL OFL（jf open 粉圓、芫荽）</td><td>🟢 低：可合法嵌入與散布，需標示授權（流水號 09）</td></tr>
+<tr><td>音效</td><td>—</td><td>程式即時合成（Web Audio API）</td><td>🟢 無風險：無音檔授權問題</td></tr>
+<tr><td>寶可夢球游標備份（<code>assets/cursor_pokeball.bak.png</code>）</td><td>1</td><td>像素風寶可夢球（已目視確認）</td><td>🔴 未被遊戲引用，但<b>已提交至公開 GitHub repo</b>（見 R7）</td></tr>
+</table></div>
+
+<h2>二、最高風險（動工前必讀）</h2>
+<div class="risk"><b>R1｜剩餘圖檔的著作權來源（最高風險，範圍已收斂）</b><br>
+  ✅ <b>已確認屬你</b>：伴伴圖×7、logo、遊戲地圖＝你以 Microsoft Copilot 生成（商用依據見下方備註）。<br>
+  ❌ <b>仍待確認</b>：<b>139 張 <code>assets/dinos/*.webp</code> 恐龍圖</b>、<code>assets/cursor.png</code> 游標、16 張 <code>assets/story/s*.svg</code> 故事圖（自繪？AI 生成？網路下載？）。若是他人作品且無授權，兩大商店都會因檢舉下架，且有侵權責任。<u>這是唯一我無法替你確認的事</u>。</div>
+<div class="note"><b>📝 Copilot 生成圖像的商用依據（2026-09-24 查證）</b><br>
+  ① 現行《Microsoft Copilot 補充使用條款》明訂「我們不擁有你的內容（Your Content）」，生成圖像權利在你，使用須遵守其行為準則；但 Microsoft 對 Copilot 生成內容<b>不提供任何擔保</b>。<br>
+  ② 歷史沿革：2023 年 Bing Image Creator 條款曾限定「個人非商業用途」；2024 年條款改版後該限制已移除，但 Microsoft 未發布正式商用聲明，社群解讀仍有分歧。<br>
+  ③ 實務建議：上架前留存<b>當下條款快照</b>與你的<b>生成紀錄</b>（prompt、日期、對話截圖）作為佐證；如需更高確定性，可訂閱 Copilot Pro 並向 Microsoft 支援取得確認。<br>
+  參考：<a href="https://www.microsoft.com/en-us/microsoft-copilot/for-individuals/termsofuse" target="_blank" rel="noopener">Copilot Supplemental Terms of Use</a>・<a href="https://learn.microsoft.com/en-us/answers/questions/2341778/bing-copilot-image-creator-commercial-use" target="_blank" rel="noopener">Microsoft Q&amp;A：圖像商用討論</a></div>
+<div class="risk"><b>R2｜Google 新個人帳號封測政策</b><br>
+  2023 年 11 月之後註冊的「個人」開發者帳號，正式上架前須先完成封閉測試：<b>至少 20 名測試員、連續 14 天</b>。組織帳號不受此限（但需要 D-U-N-S 碼與組織驗證）。這是 Android 上架最大的流程門檻，實際以 Play Console 當下規定為準。</div>
+<div class="risk"><b>R3｜iOS 必須有 Mac</b><br>
+  iOS 的建置與上傳（Xcode Archive）只能在 macOS 上進行。本機是 Windows，我無法在此完成 iOS build。替代方案：租用雲端建置（如 Codemagic），但 Apple 開發者帳號綁定與上傳憑證仍須你操作。</div>
+<div class="risk"><b>R4｜Android 簽署金鑰（keystore）遺失＝無法更新</b><br>
+  keystore 一旦遺失，該 App 永遠無法再發新版本（只能下架重發、玩家失去存檔）。金鑰實體與密碼必須由你保管，不可交給任何人（包括我）。</div>
+<div class="risk"><b>R5｜「家庭自用」聲明與公開發行矛盾</b><br>
+  目前 footer 寫「本遊戲不販賣、不公開，家庭自用，請勿盜用」，公開上架後這句話必須修改，否則觀感矛盾（文字修改我可做，見流水號 08）。</div>
+<div class="risk"><b>R6｜兒童向 App 審核更嚴</b><br>
+  本遊戲明顯適合兒童。若商店認定為兒童向，Google Families 政策與 Apple 兒童類別會加嚴審查（不得有廣告、外部連結、資料收集）。本 App 離線無收集，技術上符合，但問卷要填對。</div>
+<div class="risk"><b>R7｜公開 repo 內的寶可夢球備份檔（2026-09-24 盤點時發現）</b><br>
+  <code>assets/cursor_pokeball.bak.png</code> 經目視確認為像素風寶可夢球（Pokémon 系列代表性圖示）。它<b>未被遊戲引用</b>，但<b>已提交到公開 GitHub repo，可經 GitHub Pages 直接存取</b>。建議：以一個新 commit 將該檔自 repo 移除（不影響遊戲運作），讓它從網站與最新版本消失；注意 git 歷史仍會保留該檔，而本 repo 規則禁止改寫已發布歷史，是否進一步處理由你決策。商店審核不會掃描 repo，但這是現行且公開的任天堂 IP 暴露，建議越早處理越好（要動工時說一聲，我來做移除 commit）。</div>
+
+<h2>三、完整工作清單（流水號 01–44）</h2>
+<div class="legend">
+  <span class="badge b-ai">🤖 我可做</span>＝SophCode 可獨立完成（改檔、寫程式、產生設定、截圖、起草）。
+  <span class="badge b-you">👤 必須你做</span>＝帳號、付費、硬體、法律確認、商店後台送出——只有你能做。
+  <span class="badge b-both">🤝 共同</span>＝我準備／產生，你在你的環境或後台執行確認。
+</div>
+
+<div class="tbl-wrap"><table>
+<tr><th style="width:56px">#</th><th style="width:30%">工作項目</th><th>說明</th><th style="width:120px">負責</th></tr>
+<tr><td colspan="4" class="phase">階段一｜開發者帳號與環境（先決條件，全部擋在這裡）</td></tr>
+<tr><td class="no">01</td><td>註冊 Google Play 開發者帳號</td><td>play.google.com/console，一次性 US$25（終身），需 Google 帳號＋身分驗證。個人帳號即受 R2 封測政策規範。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">02</td><td>註冊 Apple Developer Program</td><td>developer.apple.com，US$99/年。需開啟兩步驟驗證的 Apple ID；個人帳號即可上架（商店會顯示你的姓名），組織帳號需 D-U-N-S 碼。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">03</td><td>準備 Mac ＋ Xcode（iOS 必備）</td><td>macOS 14 以上、Xcode 16。沒有 Mac 就無法做 iOS（見 R3）；可評估雲端建置服務替代。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">04</td><td>安裝 Android Studio ＋ JDK 17</td><td>Windows 本機即可。你負責安裝；裝好後我可以直接在本機代跑建置指令與除錯。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+
+<tr><td colspan="4" class="phase">階段二｜法務與內容權利（動工前先確認）</td></tr>
+<tr><td class="no">05</td><td>確認剩餘圖檔著作權</td><td>素材來源盤點表已產出（見第一節）：伴伴圖×7、logo、地圖已確認為你的 Copilot 生成。剩餘待你確認：139 張恐龍圖、游標、16 張故事圖；<b>權利的最終確認與授權取得只能你做</b>（見 R1 備註）。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">06</td><td>商標與名稱檢索</td><td>確認「尋龍高手 / DragonFinder」名稱在台灣與目標市場無商標衝突（經濟部智慧財產局商標檢索系統等）。法律判斷須由你做。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">07</td><td>決定發行名稱與 Bundle ID</td><td>例如 <code>com.hungmin.dragonfinder</code>（Android package name / iOS bundle ID 一旦上架不可改）。我提選項，你定案。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">08</td><td>修改「家庭自用」footer 文字</td><td>改為適合公開發行的版權聲明（見 R5）。主線 index.html 修改，我可以直接做。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">09</td><td>字型 OFL 授權標示</td><td>在關於／設定頁加入 jf open 粉圓、芫荽的 SIL OFL 授權出處標示（OFL 要求標示，嵌入 App 本身合法）。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">10</td><td>隱私權政策頁面</td><td>本 App 不連網、不收集任何資料，可寫成最簡政策。我起草（放置於現有 GitHub Pages），你審閱內容後確認上線。商店都要求填一個政策網址。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+
+<tr><td colspan="4" class="phase">階段三｜技術打包（Capacitor，我可獨立完成大部分）</td></tr>
+<tr><td class="no">11</td><td>導入 Capacitor 包裝架構</td><td>建立 package.json、capacitor 設定檔、webDir 目錄。這是把網頁包成原生 App 的標準做法，之後的項目都建立在它上面。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">12</td><td>決定打包內容形態</td><td>建議直接用單檔整合包（build_single_file.mjs 產物）作為 App 內容：零外部請求、離線保證、更新只需重跑打包。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">13</td><td>產生 Android 原生專案</td><td>Gradle 設定：直向鎖定、無任何權限、目標 SDK 版本、App 名稱（尋龍高手）。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">14</td><td>產生 iOS 原生專案</td><td>Xcode 專案檔、Info.plist（直向、無權限、顯示名稱）。你在 Mac 上打開執行即可。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">15</td><td>存檔遷移：localStorage → 原生儲存</td><td>WebView 的 localStorage 可能被系統清除導致玩家進度全滅。改用 Capacitor Preferences 並寫好 <code>dinodoku-*</code> 舊資料自動搬移。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">16</td><td>Android 返回鍵行為</td><td>讓實體返回鍵在遊戲內表現正常（回上一步選單而非直接跳出）。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">17</td><td>iPhone 劉海／安全區域適配</td><td>viewport-fit=cover ＋ CSS safe-area-inset，避免內容被瀏海與底橫條遮住。目前 index.html 尚無此設定。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">18</td><td>狀態列與導覽列配色</td><td>配合遊戲米白底色調整系統列，避免突兀黑條。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+<tr><td class="no">19</td><td>App 圖示各尺寸產生</td><td>你定案一張 1024×1024 主圖（可沿用 logo.png 由你確認），我產生 Android mipmap 全尺寸與 iOS Assets.xcassets 圖集。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">20</td><td>啟動畫面（Splash）</td><td>以現有 logo 與配色產生 Android/iOS 啟動圖。素材你確認樣式。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">21</td><td>Android 簽署金鑰</td><td>我可以代為產生 keystore 並設定簽署；<b>金鑰檔與密碼由你保管</b>（見 R4，絕不能外流、也請勿貼進對話）。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">22</td><td>版本號統一管理</td><td>v1.9.10 對應 Android versionName/versionCode 與 iOS CFBundleShortVersionString/CFBundleVersion，之後升版一處改。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+
+<tr><td colspan="4" class="phase">階段四｜建置與簽署產出</td></tr>
+<tr><td class="no">23</td><td>Android AAB 建置</td><td>環境裝好後我可代跑 gradle 指令產出 .aab（上架格式）；若你偏好自己跑，我提供逐步指令。錯誤由我除錯。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">24</td><td>iOS Archive ＋上傳</td><td>只能在你的 Mac 上：Xcode → Archive → 上傳 App Store Connect。我提供逐步操作指引。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">25</td><td>建置／執行期問題除錯</td><td>建置失敗、白畫面、字型沒載入、音效不響…這類技術問題全部可丟給我修。</td><td class="who"><span class="badge b-ai">🤖 我</span></td></tr>
+
+<tr><td colspan="4" class="phase">階段五｜商店素材與文案</td></tr>
+<tr><td class="no">26</td><td>商店文案撰寫</td><td>App 名稱、簡短說明（80 字內）、完整描述、關鍵字。繁中為主、可加英文。我起草，你定稿。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">27</td><td>商店截圖</td><td>Google 需手機＋平板各組、Apple 需多種尺寸（6.7"/6.5" 等）。我可以在瀏覽器以各裝置解析度實際操作遊戲並截圖產出初稿，你挑選定稿。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">28</td><td>Android 特色圖（1024×500）</td><td>以現有 logo／恐龍素材排版產出。我製作，你確認。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">29</td><td>預覽影片（30 秒內）</td><td>兩商店皆為選配。我可以操作遊戲錄一段流程當素材。</td><td class="who"><span class="badge b-opt">選配</span></td></tr>
+
+<tr><td colspan="4" class="phase">階段六｜商店申報與問卷（後台填寫是你，逐欄答案我準備）</td></tr>
+<tr><td class="no">30</td><td>Google Data Safety 表單</td><td>逐欄建議答案：不收集、不分享、無權限、離線可玩。我準備成對照表，你在 Play Console 填送。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">31</td><td>Google IARC 內容分級問卷</td><td>依問卷題目（暴力、賭博、廣告等）準備建議答案，分級預期 3+／全年齡。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">32</td><td>Google 目標對象與 Families 政策</td><td>若勾選「兒童與家庭」類別須符合 Families 計畫政策（本 App 離線無收集，技術上符合）。決策共同，後台勾選是你。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">33</td><td>Apple 隱私標籤（Privacy Nutrition Label）</td><td>逐欄建議答案：不收集任何資料。你在 App Store Connect 填。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">34</td><td>Apple 年齡分級問卷</td><td>預期 4+。我準備建議答案，你填。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">35</td><td>Apple 出口合規（加密聲明）</td><td>App 不使用加密（純離線、無 HTTPS 傳輸），申報為豁免。答案我準備，你勾選。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+
+<tr><td colspan="4" class="phase">階段七｜實機測試與送審</td></tr>
+<tr><td class="no">36</td><td>Android 實機測試</td><td>至少一台實體 Android 手機安裝完整安裝包測試（安裝、遊玩、音效、存檔關機重開）。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">37</td><td>iPhone 實機測試</td><td>至少一台實體 iPhone 測試（TestFlight 安裝最方便）。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">38</td><td>Google 封閉測試（20 人 × 14 天）</td><td>新個人帳號的正式上架前置（見 R2）。招募 20 名測試員、持續 14 天是你的人脈工作；我準備測試軌設定指引與招募文案。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">39</td><td>Apple TestFlight 測試</td><td>上傳後邀請內部／外部測試員。你在 App Store Connect 操作，我指引。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">40</td><td>提交正式審核</td><td>兩商店的「送出審核」按鈕與帳號操作。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">41</td><td>審核意見回覆與修改</td><td>被要求修正時：程式修改我來、回覆文稿我擬、送出回覆是你。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+
+<tr><td colspan="4" class="phase">階段八｜上架後維運</td></tr>
+<tr><td class="no">42</td><td>定價與發行地區</td><td>建議首發免費（無內購＝最單純，免抽成議題）。若未來要加內購，技術實作可交給我，但會增加審核複雜度。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+<tr><td class="no">43</td><td>版本更新流程</td><td>改主線 index.html → 我重打包 → 你重送審。程式側全由我維護。</td><td class="who"><span class="badge b-both">🤝 共同</span></td></tr>
+<tr><td class="no">44</td><td>政策維護與玩家回饋</td><td>商店評論回覆、隱私政策網址維持有效。後台操作是你。</td><td class="who"><span class="badge b-you">👤 你</span></td></tr>
+</table></div>
+
+<h2>四、費用總覽</h2>
+<div class="tbl-wrap"><table>
+<tr><th>項目</th><th>金額</th><th>備註</th></tr>
+<tr><td>Google Play 開發者帳號</td><td>US$25（一次性）</td><td>終身有效</td></tr>
+<tr><td>Apple Developer Program</td><td>US$99／年</td><td>每年續訂，未續訂 App 會下架</td></tr>
+<tr><td>Mac（若沒有）</td><td>— 或租雲端</td><td>iOS 必備；替代：Codemagic 等雲端建置（免費額度通常夠此小型專案）</td></tr>
+<tr><td>Android Studio / Xcode / Capacitor</td><td>免費</td><td>開源工具</td></tr>
+<tr><td>商店抽成</td><td>免費 App 無抽成議題</td><td>若未來收費：Android 15%（首 100 萬美元）、iOS 15%</td></tr>
+</table></div>
+
+<h2>五、時程預估</h2>
+<div class="tbl-wrap"><table>
+<tr><th>路徑</th><th>預估時程</th><th>主要瓶頸</th></tr>
+<tr><td>僅 iOS（有 Mac）</td><td>約 1～3 週</td><td>帳號審核 1～2 天＋我技術打包 1～2 個工作天＋審核約 1～3 天</td></tr>
+<tr><td>僅 Android（既有組織帳號）</td><td>約 2～3 週</td><td>無封測門檻，流程順</td></tr>
+<tr><td>僅 Android（新個人帳號）</td><td>約 4～6 週</td><td><b>20 人 × 14 天封測政策</b>（見 R2）</td></tr>
+<tr><td>雙平台上架</td><td>約 4～6 週</td><td>上述最長路徑＋兩邊問卷填寫</td></tr>
+</table></div>
+<div class="note">時程假設：帳號與環境申請啟動後，技術打包、素材、文案由我在 1～2 個工作天內完成；實機測試與商店送審以你方便的節奏進行。</div>
+
+<h2>六、你可以「現在就叫我動工」的項目</h2>
+<p>以下不依賴任何帳號或付費，說一聲我就開始：</p>
+<div class="cards">
+  <div class="card"><b>法務側準備</b>08 footer 文字、09 字型授權標示、10 隱私政策草稿（05 素材盤點表已於第一節產出，等你確認剩餘來源）</div>
+  <div class="card"><b>技術打包</b>11–18、22（Capacitor 導入、原生專案、存檔遷移、適配、版本管理）</div>
+  <div class="card"><b>商店素材</b>26 文案、27 截圖、28 特色圖</div>
+  <div class="card"><b>問卷答案</b>30–35（Data Safety、分級、隱私標籤逐欄答案對照表）</div>
+</div>
+
+<h2>七、建議的啟動順序</h2>
+<div class="tbl-wrap"><table>
+<tr><th style="width:56px">順序</th><th>動作</th><th>說明</th></tr>
+<tr><td class="no">①</td><td>先處理 R1 剩餘項（139 張恐龍圖／游標／故事圖來源）＋R7（移除公開 repo 的寶可夢球備份）與 R2 決策（個人或組織帳號）</td><td>素材範圍已收斂（伴伴圖、logo、地圖已確認為你的 Copilot 生成）；剩餘素材權利、repo IP 暴露與帳號類型決定整條路怎麼走</td></tr>
+<tr><td class="no">②</td><td>同步申請兩個開發者帳號（01、02）＋確認 Mac 來源（03）</td><td>帳號審核要等，先送件最省時間</td></tr>
+<tr><td class="no">③</td><td>叫我做階段二～三＋素材問卷（05、08–18、22、26–35）</td><td>等帳號審核的空檔就是我的工作時間</td></tr>
+<tr><td class="no">④</td><td>裝 Android Studio（04），我代跑建置（23）、你實機測（36）</td><td>Android 先行，門檻最低</td></tr>
+<tr><td class="no">⑤</td><td>Mac 端做 iOS Archive（24）、TestFlight（37、39）</td><td>有 Mac 之後</td></tr>
+<tr><td class="no">⑥</td><td>填問卷、送審（30–41）</td><td>按各商店清單逐項送出</td></tr>
+</table></div>
+
+<footer>本報告由 SophCode 產生於 2026-09-24（v2：素材來源確認＋Copilot 條款查證＋新增 R7）｜ 依據 v1.9.10 程式碼實況調查 ｜ 商店政策與 Copilot 條款以各官方頁面當時顯示為準</footer>
+</div>
+</body>
+</html>

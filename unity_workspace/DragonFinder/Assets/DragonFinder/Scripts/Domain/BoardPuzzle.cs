@@ -75,6 +75,14 @@ namespace DragonFinder.Domain
             return answerColumns[row] == index % Size;
         }
 
+        public BoardPuzzle Transform(int variant)
+        {
+            return new BoardPuzzle(
+                Size,
+                BoardTransforms.Apply(Size, regions, variant),
+                BoardTransforms.ApplyToAnswer(Size, answerColumns, variant));
+        }
+
         public static BoardPuzzle Tutorial5()
         {
             return new BoardPuzzle(

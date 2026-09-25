@@ -81,6 +81,30 @@ namespace DragonFinder.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator BoardPoolPrewarmsWhileIdleAndFormalRoundTakesFreshBoard()
+        {
+            AppBootstrap bootstrap = Object.FindFirstObjectByType<AppBootstrap>();
+            Assert.That(bootstrap.MenuVisible, Is.True);
+            Assert.That(bootstrap.PooledFormalBoardCount, Is.LessThan(6), "idle refills fill the pool gradually rather than all at once");
+
+            float deadline = Time.realtimeSinceStartup + 20f;
+            while (bootstrap.PooledFormalBoardCount == 0 && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+
+            int warmed = bootstrap.PooledFormalBoardCount;
+            Assert.That(warmed, Is.GreaterThan(0), "menu idle time should pre-generate formal boards");
+
+            bootstrap.StartFormalRound();
+            yield return null;
+
+            Assert.That(bootstrap.CurrentSession.Puzzle.Size, Is.EqualTo(6));
+            Assert.That(DragonFinder.Domain.BoardSolver.CountSolutions(6, bootstrap.CurrentSession.Puzzle.Regions, 2, out _), Is.EqualTo(1));
+            Assert.That(bootstrap.PooledFormalBoardCount, Is.EqualTo(warmed - 1), "the taken board leaves the pool and refills pause during play");
+        }
+
+        [UnityTest]
         public IEnumerator MenuKeyboardNavigationMovesBetweenButtons()
         {
             yield return null;
