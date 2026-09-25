@@ -341,9 +341,9 @@ function rarityOf(id){
   return m ? (m.stars||1)-1 : 0;
 }
 let MON_BY_ID = {};
-POKEMON.forEach(p=>{ MON_BY_ID[p.id]=p; });
+DINOS.forEach(p=>{ MON_BY_ID[p.id]=p; });
 if(typeof LEGENDS!=='undefined') LEGENDS.forEach(p=>{ MON_BY_ID[p.id]=p; });
-function allMons(){ return (typeof LEGENDS!=='undefined') ? POKEMON.concat(LEGENDS) : POKEMON.slice(); }
+function allMons(){ return (typeof LEGENDS!=='undefined') ? DINOS.concat(LEGENDS) : DINOS.slice(); }
 
 /* ---------- 伴伴（No.000）：初始隨身夥伴，可進化，不會野生出沒 ---------- */
 const COMPANION_ID = 1000; /* 內部 id（避開 BUDDY.id=0 的「無隨行」sentinel）；對外顯示編號 000 */
@@ -1067,7 +1067,7 @@ function finishBoard(pz){
     }
     if(picked.length<need){
       const ids=new Set(picked.map(p=>p.id));
-      const extra=shuffle([...POKEMON]).filter(p=>!ids.has(p.id));
+      const extra=shuffle([...DINOS]).filter(p=>!ids.has(p.id));
       while(picked.length<need && extra.length) picked.push(extra.shift());
     }
     [...G.catUnion].sort((a,b)=>a-b).forEach((ci,k)=>{ G.cells[ci].poke = picked[k]; });
@@ -1463,7 +1463,7 @@ function dexCount(){
   dc.textContent = (done?'🎉 收藏完成！':'收藏 ')+dexGot.size+' / '+all.length;
 }
 function dexPoolByTab(){
-  if(dexTab==='gen1') return POKEMON;
+  if(dexTab==='gen1') return DINOS;
   if(dexTab==='legend') return (typeof LEGENDS!=='undefined')?LEGENDS:[];
   return allMonsWithCompanion(); /* 「全部」以伴伴 No.000 開頭 */
 }
@@ -3071,10 +3071,17 @@ renderLiveDex();
     void img.offsetWidth;
     const a=img.getBoundingClientRect(), b=target && target.getBoundingClientRect();
     if(!a.width || !a.height || !b || !b.width){ finish(); return; }
+    /* 對齊 object-fit:contain 的可見範圍並等比縮放；直接縮進 #menu-logo img 的盒子會非等比拉伸，
+       到位換回真實 logo 時尺寸會瞬間跳縮 */
+    const ar=((img.naturalWidth>0)&&(img.naturalHeight>0)) ? img.naturalWidth/img.naturalHeight : a.width/a.height;
+    const tw=Math.min(b.width, b.height*ar), th=tw/ar;
+    const sw=Math.min(a.width, a.height*ar), sh=sw/ar;
+    const s=tw/sw, cx=(a.width-sw)/2, cy=(a.height-sh)/2;
+    const dx=b.left+(b.width-tw)/2-a.left-cx*s, dy=b.top+(b.height-th)/2-a.top-cy*s;
     if(bg){ bg.style.transition='opacity '+Math.round(FLY*.7)+'ms ease'; bg.style.opacity='0'; }
     img.style.transformOrigin='0 0';
     img.style.transition='transform '+FLY+'ms cubic-bezier(.22,.85,.25,1)';
-    img.style.transform='translate('+(b.left-a.left)+'px,'+(b.top-a.top)+'px) scale('+(b.width/a.width)+','+(b.height/a.height)+')';
+    img.style.transform='translate('+dx+'px,'+dy+'px) scale('+s+')';
     setTimeout(finish, FLY+60);
   }
   Promise.all([ready(img,900), ready(target,900)]).then(()=>setTimeout(fly, HOLD));

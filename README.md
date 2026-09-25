@@ -10,7 +10,7 @@ css/
   fonts.css         內嵌字型 @font-face（指向 assets/fonts/）
   style.css         主樣式（游標圖指向 assets/cursor.png）
 js/
-  data.js           恐龍資料 POKEMON / LEGENDS（139 隻，圖片路徑指向 assets/dinos/）
+  data.js           恐龍資料 DINOS / LEGENDS（139 隻，圖片路徑指向 assets/dinos/）
   main.js           遊戲主程式（其餘全部邏輯）
 assets/
   fonts/*.woff2     2 個內嵌字型（Huninn / Iansui）
