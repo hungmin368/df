@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>垂直切片核心邏輯稽核報告</title>
+<style>
+  body{font-family:"Microsoft JhengHei","PingFang TC",sans-serif;background:#f4f1ea;color:#2b2b2b;margin:0;padding:24px;line-height:1.7}
+  .wrap{max-width:860px;margin:0 auto;background:#fff;padding:32px 40px;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+  h1{font-size:26px;border-bottom:3px solid #2e6f5e;padding-bottom:10px;color:#2e6f5e}
+  h2{font-size:19px;color:#2e6f5e;margin-top:28px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+  th,td{border:1px solid #d8d2c4;padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#e7f0ec}
+  code{background:#f0ede5;padding:1px 5px;border-radius:4px;font-size:13px}
+  .ok{color:#1f7a46;font-weight:bold}
+  .note{background:#fdf6e3;border-left:4px solid #d9a62e;padding:10px 14px;font-size:14px}
+  ul{margin:8px 0}
+  .muted{color:#777;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Dragon Finder Unity 垂直切片核心邏輯稽核報告</h1>
+<p class="muted">日期：2026-09-24　｜　範圍：unity_workspace/DragonFinder　｜　對照基準：js/main.js（網頁版主線）</p>
+
+<h2>一、結論</h2>
+<p>Unity 端既有 Domain 純 C# 實作與網頁版垂直切片核心邏輯<b>逐項一致</b>，無需修改產品程式碼；本次補齊了 EditMode 測試覆蓋缺口並重新全量驗證，<span class="ok">EditMode 13/13 全數通過</span>。</p>
+
+<h2>二、規則對照（網頁版 → Unity Domain）</h2>
+<table>
+<tr><th>規則</th><th>網頁版（js/main.js）</th><th>Unity（DragonFinder.Domain）</th><th>判定</th></tr>
+<tr><td>5x5 教學盤</td><td>固定教學盤、教學與 N≤5 不計時</td><td><code>BoardPuzzle.Tutorial5()</code> 固定唯一解盤；<code>GameSession(puzzle, timed:false)</code></td><td class="ok">一致</td></tr>
+<tr><td>6x6 正式局出題</td><td><code>generatePuzzle</code> 生成唯一解連通分區盤</td><td><code>BoardGenerator.GenerateUnique(6, seed)</code>＋<code>BoardSolver</code> 唯一解驗證＋<code>Fallback6()</code> 兜底</td><td class="ok">一致</td></tr>
+<tr><td>計時 N×30 秒</td><td><code>TIMER.total=G.N*30</code>（6x6＝180 秒）</td><td><code>InitialSeconds = Size*30</code></td><td class="ok">一致</td></tr>
+<tr><td>計時暫停</td><td>頁面隱藏或彈窗時暫停</td><td><code>Tick(delta, paused)</code>；AppBootstrap 於失焦與結果彈窗時暫停</td><td class="ok">一致</td></tr>
+<tr><td>逾時判負</td><td><code>timeUp()</code> → 時間歸零即敗</td><td><code>RemainingSeconds ≤ 0 → Phase=Lost</code></td><td class="ok">一致</td></tr>
+<tr><td>捕捉器 N+3</td><td><code>G.balls=N+3</code>（6x6＝9）</td><td><code>CatchersLeft = Size+3</code></td><td class="ok">一致</td></tr>
+<tr><td>命中補時</td><td>每捕獲 <code>timerAdd(30)</code>，上限為總時間</td><td><code>Min(InitialSeconds, RemainingSeconds+30)</code>（僅計時局）</td><td class="ok">一致</td></tr>
+<tr><td>落空處理</td><td>自動標記 ✕（<code>c.mark='x'</code>）</td><td><code>marked[index]=true</code> → <code>Missed</code></td><td class="ok">一致</td></tr>
+<tr><td>勝負判定順序</td><td><code>checkBallEnd</code> 先查 <code>found≥N</code> 再查 <code>balls≤0</code></td><td><code>Found≥Size → Won</code> 先於 <code>CatchersLeft≤0 → Lost</code></td><td class="ok">一致</td></tr>
+<tr><td>盤面約束</td><td><code>solve2</code>：每行/列/區各一、列差 ≤1 禁止（八方向不相鄰）、分區連通</td><td><code>BoardRules.IsValidSolution</code>＋<code>IsRegionConnected</code> 同組約束</td><td class="ok">一致</td></tr>
+<tr><td>完成流程</td><td>過關存進度／敗局揭示剩餘恐龍位置</td><td><code>CompleteRound</code>：教學完成存檔→6x6、正式勝利收錄圖鑑＋存檔、捕捉器耗盡／逾時分流敗局文案（繁中）</td><td class="ok">一致</td></tr>
+</table>
+
+<h2>三、純 C# 邊界</h2>
+<ul>
+<li><code>DragonFinder.Domain.asmdef</code> 設定 <code>noEngineReferences: true</code>、零參照，Domain 組件完全不依賴 UnityEngine。</li>
+<li>測試 <code>DomainAssemblyHasNoUnityEngineReference</code> 持續把關此邊界（本次通過）。</li>
+<li>教學盤 ScriptableObject（<code>TutorialBoard.asset</code>）內容與 <code>BoardPuzzle.Tutorial5()</code> 完全相同（size 5、answers 1,3,0,2,4、safeCell 0）。</li>
+</ul>
+
+<h2>四、本次補齊的測試覆蓋</h2>
+<table>
+<tr><th>新增測試（DomainTests.cs）</th><th>驗證內容</th></tr>
+<tr><td><code>TutorialRoundIsUntimedWithFivePlusThreeCatchers</code></td><td>5x5 教學局：不計時、8 個捕捉器（5+3）、Tick 不生效、命中不加時、5 捕獲即勝</td></tr>
+<tr><td><code>CatchingRestoresThirtySecondsCappedAtTotal</code></td><td>+30 秒補時且上限為總時間（180 秒）</td></tr>
+<tr><td><code>MissedCaptureMarksCellAndLosesWhenCatchersRunOut</code></td><td>落空自動標記、第 9 次落空（捕捉器歸零）判負、敗局後輸入全忽略</td></tr>
+</table>
+
+<h2>五、驗證結果</h2>
+<ul>
+<li>Unity <code>6000.3.24f1</code> batch mode 執行 <code>-runTests -testPlatform EditMode</code>：程序結束碼 0。</li>
+<li><code>TestResults/editmode.xml</code>：13/13 通過（0 失敗、0 略過），含 3 個新增測試。</li>
+<li>同 session 執行 <code>-runTests -testPlatform PlayMode</code>：程序結束碼 0；<code>TestResults/playmode.xml</code> 3/3 通過 — 主場景載入、5x5 教學建立不計時 25 格盤面與可見焦點、6x6 正式局初始 180 秒／9 捕捉器／36 格。</li>
+<li>Log 僅含 batch mode 例行雜訊（授權驗證忽略訊息、結束時執行緒中止訊息），無編譯或測試錯誤。</li>
+</ul>
+
+<div class="note">本次未執行 commit / push（未獲指示）。工作紀錄見 <code>unity_workspace/worklog/worklog_vertical-slice-core-logic.md</code>。</div>
+</div>
+</body>
+</html>

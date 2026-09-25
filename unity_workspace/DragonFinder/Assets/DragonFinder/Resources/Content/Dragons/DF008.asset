@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e37d4d8858c574fa1a263a7877aba8, type: 3}
+  m_Name: DF008
+  m_EditorClassIdentifier: DragonFinder.Runtime::DragonFinder.Runtime.Data.DragonDefinition
+  id: DF008
+  displayName: "\u5929\u7A79\u5E1D\u9F8D"
+  stars: 5
+  colorHtml: '#F2CE66'
+  accessibilityLabel: "\u4E94\u661F\u5929\u7A79\u5E1D\u9F8D"

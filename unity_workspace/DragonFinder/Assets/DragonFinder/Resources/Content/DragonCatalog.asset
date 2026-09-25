@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256fda1fd73b3ba4d9eba431768d1ec7, type: 3}
+  m_Name: DragonCatalog
+  m_EditorClassIdentifier: DragonFinder.Runtime::DragonFinder.Runtime.Data.DragonCatalog
+  dragons:
+  - {fileID: 11400000, guid: c250b61998cc5fa4c86a053d67007190, type: 2}
+  - {fileID: 11400000, guid: 8429da58ad302aa4c8049b7f5535e3bf, type: 2}
+  - {fileID: 11400000, guid: 07e31e9672057a84f8b78070e25a1049, type: 2}
+  - {fileID: 11400000, guid: 5794ee355f0451f48bab8c5bda67854c, type: 2}
+  - {fileID: 11400000, guid: 31aa903b0a618e9489e3731c62d5ebaf, type: 2}
+  - {fileID: 11400000, guid: 909a155a83f435a4ba1964b6f3ce4289, type: 2}
+  - {fileID: 11400000, guid: 4653349c40fd2d14b980f3d81b5aea73, type: 2}
+  - {fileID: 11400000, guid: ca20e41f91965c443986b68370ee5739, type: 2}

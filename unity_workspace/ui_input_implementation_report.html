@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>可玩 UI 與輸入實作報告</title>
+<style>
+  body{font-family:"Microsoft JhengHei","PingFang TC",sans-serif;background:#f4f1ea;color:#2b2b2b;margin:0;padding:24px;line-height:1.7}
+  .wrap{max-width:860px;margin:0 auto;background:#fff;padding:32px 40px;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+  h1{font-size:26px;border-bottom:3px solid #2e6f5e;padding-bottom:10px;color:#2e6f5e}
+  h2{font-size:19px;color:#2e6f5e;margin-top:28px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+  th,td{border:1px solid #d8d2c4;padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#e7f0ec}
+  code{background:#f0ede5;padding:1px 5px;border-radius:4px;font-size:13px}
+  .ok{color:#1f7a46;font-weight:bold}
+  .fix{color:#b3541e;font-weight:bold}
+  .note{background:#fdf6e3;border-left:4px solid #d9a62e;padding:10px 14px;font-size:14px}
+  ul{margin:8px 0}
+  .muted{color:#777;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Dragon Finder Unity 可玩 UI 與輸入實作報告</h1>
+<p class="muted">日期：2026-09-24　｜　範圍：unity_workspace/DragonFinder　｜　工作：uGUI/TextMeshPro 可玩 UI 與輸入（主選單、教學、6×6 遊戲畫面、滑鼠／鍵盤／觸控）</p>
+
+<h2>一、結論</h2>
+<p>可玩 UI 與輸入工作已完成並通過全量驗證：以 uGUI 與 TextMeshPro 實作 16:9 中央直向版面、主選單、5×5 教學與 6×6 正式局；滑鼠走標準 uGUI 指標路徑；鍵盤焦點統一由 EventSystem 單一路徑處理；觸控經同一指標管线驗證可行。<span class="ok">EditMode 13/13、PlayMode 7/7 全數通過</span>，Windows x64 建置成功，實機啟動無例外、無缺字警告。</p>
+
+<h2>二、驗收條件對照</h2>
+<table>
+<tr><th>驗收條件</th><th>實作方式</th><th>判定</th></tr>
+<tr><td>uGUI + TextMeshPro</td><td>Canvas／Button／Image 為 uGUI；所有文字為 <code>TextMeshProUGUI</code>，執行期以微軟正黑體建立 TMP 字型資產（199 個介面用字全數有字形）</td><td class="ok">達成</td></tr>
+<tr><td>16:9 中央直向版面</td><td><code>CanvasScaler</code> 1920×1080 等比縮放；中央 <code>Presentation16x9</code> 直向面板（720×1000）置中，深色背景滿版延伸</td><td class="ok">達成</td></tr>
+<tr><td>主選單</td><td>標題、進度摘要、開始／操作說明／介面大小／音效／離開按鈕；鍵盤方向鍵即可導覽、Enter 啟動</td><td class="ok">達成</td></tr>
+<tr><td>教學</td><td>固定 5×5 盤，分階段提示（標記 ×→取消→捕捉模式→逐列捕捉），黃色高亮目標格、不計時</td><td class="ok">達成</td></tr>
+<tr><td>6×6 遊戲畫面</td><td>計時 180 秒、9 個捕捉器、36 格分區上色盤面、HUD 與捕捉模式／重開／返回按鈕；唯一解出題</td><td class="ok">達成</td></tr>
+<tr><td>滑鼠支援</td><td>標準 uGUI 指標路徑（<code>GraphicRaycaster</code> + <code>InputSystemUIInputModule</code>），按鈕有 hover／pressed 回饋</td><td class="ok">達成</td></tr>
+<tr><td>完整鍵盤焦點</td><td>方向鍵與 WASD 導覽、Enter 啟動目前格、Space 切換 ×、C 捕捉模式、R 重開、M 音效（全域）、Esc 返回；焦點外框可見且跟隨選取</td><td class="ok">達成</td></tr>
+<tr><td>預留觸控</td><td>觸控经同一 uGUI 指標管线運作，無滑鼠專用假設；PlayMode 以模擬觸控裝置點擊格子通過</td><td class="ok">達成</td></tr>
+</table>
+
+<h2>三、修正的焦點缺陷</h2>
+<table>
+<tr><th>缺陷</th><th>說明</th><th>修法</th></tr>
+<tr><td class="fix">Enter 雙重觸發</td><td>原生 uGUI Submit（Enter）與自訂 <code>enterKey</code> 處理各呼叫一次 <code>HandleCell</code>：標記被切兩次等於沒反應，捕捉會消耗兩個捕捉器</td><td>移除自訂 Enter 處理，只留原生單一路徑</td></tr>
+<tr><td class="fix">方向鍵雙重導覽</td><td>原生自動導覽與自訂焦點追蹤同時反應方向鍵，焦點可能一次跳兩格</td><td>移除自訂方向鍵處理；<code>SyncFocusFromSelection</code> 讓外框跟隨 EventSystem 選取</td></tr>
+<tr><td class="fix">M 快捷鍵在選單無效</td><td>M 只在遊戲內處理，與選單按鈕標示「音效：開 (M)」不符</td><td>M 移到全域 <code>HandleGlobalKeys</code></td></tr>
+<tr><td class="fix">批次測試注入輸入無反應</td><td>編輯器預設 <code>PointersAndKeyboardsRespectGameViewFocus</code> 在批次模式（遊戲視窗永遠無焦點）把鍵盤／觸控輸入導回編輯器，測試注入的事件被丟棄</td><td>測試於 <code>[UnitySetUp]</code> 設定 <code>editorInputBehaviorInPlayMode = AllDeviceInputAlwaysGoesToGameView</code> 與 <code>backgroundBehavior = IgnoreFocus</code>（測試專用、結束還原，不影響實機）</td></tr>
+</table>
+
+<h2>四、驗證結果</h2>
+<ul>
+<li>Unity <code>6000.3.24f1</code> batch mode 執行 <code>-runTests -testPlatform EditMode</code>：<span class="ok">13/13 通過</span>，結束碼 0（<code>TestResults/editmode.xml</code>，23:25 新鮮）。</li>
+<li>執行 <code>-runTests -testPlatform PlayMode</code>：<span class="ok">7/7 通過</span>，結束碼 0。七案為：場景/uGUI/TMP/輸入模組存在性、5×5 教學盤、6×6 初始狀態、選單鍵盤導覽、Enter 單次觸發、方向鍵與 WASD 移動焦點外框、觸控點擊標記。</li>
+<li>批次建置 <code>DragonFinder.Editor.WindowsBuild.BuildRelease</code>：結束碼 0，<code>Builds/Windows/DragonFinder.exe</code> 與 <code>UnityPlayer.dll</code> 皆為 PE32+ x86-64；managed 組件（<code>DragonFinder.Runtime.dll</code> 23:27）已更新。</li>
+<li>建置後玩家啟動煙霧測試（10 秒）：<code>Player.log</code>（23:47 新鮮）<span class="ok">無任何例外、無缺字警告</span>，輸入初始化正常（<code>Using Windows.Gaming.Input</code>）。</li>
+</ul>
+
+<h2>五、操作與未覆蓋事項</h2>
+<ul>
+<li>鍵盤：方向鍵／WASD 移動焦點；Enter 操作目前格；Space 切換 ×；C 捕捉模式；R 重開；M 音效；Esc 返回主選單（繁中提示已寫入「操作說明」）。</li>
+<li>批次測試注意：Unity CLI 同時下 <code>-quit</code> 與 <code>-runTests</code> 會在載入後直接結束、跳過測試且仍回傳 0（結果 XML 不更新）；正確用法是不帶 <code>-quit</code>。</li>
+<li>未覆蓋：建置後玩家的互動式整局遊玩，以及 1280×720／1600×900／1920×1080 三種解析度的介面檢查仍需手動進行。</li>
+</ul>
+
+<div class="note">本次未執行 commit / push（依規則與指示）。工作紀錄見 <code>unity_workspace/worklog/worklog_ui-input-implementation.md</code>。</div>
+</div>
+</body>
+</html>

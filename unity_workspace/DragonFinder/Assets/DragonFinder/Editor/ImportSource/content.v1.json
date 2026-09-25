@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "dragons": [
+    { "id": "DF001", "displayName": "沿岸草龍", "stars": 1, "colorHtml": "#64C99A", "accessibilityLabel": "一星沿岸草龍" },
+    { "id": "DF002", "displayName": "晨霧角龍", "stars": 1, "colorHtml": "#75B9F0", "accessibilityLabel": "一星晨霧角龍" },
+    { "id": "DF003", "displayName": "森芽甲龍", "stars": 1, "colorHtml": "#A8D06F", "accessibilityLabel": "一星森芽甲龍" },
+    { "id": "DF004", "displayName": "岩丘長頸龍", "stars": 2, "colorHtml": "#D6A96B", "accessibilityLabel": "二星岩丘長頸龍" },
+    { "id": "DF005", "displayName": "星紋迅龍", "stars": 2, "colorHtml": "#A989E8", "accessibilityLabel": "二星星紋迅龍" },
+    { "id": "DF006", "displayName": "火冠獵龍", "stars": 3, "colorHtml": "#EF836F", "accessibilityLabel": "三星火冠獵龍" },
+    { "id": "DF007", "displayName": "冰脊巨龍", "stars": 4, "colorHtml": "#77D5DC", "accessibilityLabel": "四星冰脊巨龍" },
+    { "id": "DF008", "displayName": "天穹帝龍", "stars": 5, "colorHtml": "#F2CE66", "accessibilityLabel": "五星天穹帝龍" }
+  ],
+  "tutorial": {
+    "size": 5,
+    "regions": [3, 3, 3, 2, 2, 3, 3, 3, 2, 2, 4, 4, 2, 2, 2, 4, 4, 0, 2, 2, 4, 4, 0, 1, 1],
+    "answerColumns": [1, 3, 0, 2, 4],
+    "safeCell": 0
+  }
+}

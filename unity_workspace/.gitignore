@@ -1,0 +1,26 @@
+# Unity-generated directories
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Ll]ogs/
+**/[Uu]ser[Ss]ettings/
+**/[Mm]emoryCaptures/
+**/[Rr]ecordings/
+
+# Builds and test output
+**/[Bb]uilds/
+**/[Tt]est[Rr]esults/
+
+# IDE files
+**/.vs/
+**/.idea/
+**/.vscode/
+**/*.csproj
+**/*.sln
+**/*.suo
+**/*.user
+**/*.userprefs
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,20 @@
+{
+  "name": "DragonFinder.Editor",
+  "rootNamespace": "DragonFinder.Editor",
+  "references": [
+    "DragonFinder.Domain",
+    "DragonFinder.Runtime",
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.RenderPipelines.Universal.2D.Runtime",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": ["Editor"],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

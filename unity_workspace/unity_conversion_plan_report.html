@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dragon Finder Unity 可玩垂直切片轉換計畫</title>
+<style>
+:root{color-scheme:dark;--bg:#10151d;--panel:#182231;--line:#33465f;--text:#eef5ff;--muted:#aebdd0;--accent:#59d0a5}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,"Microsoft JhengHei",sans-serif}main{max-width:1080px;margin:auto;padding:40px 24px 72px}h1,h2{line-height:1.25}h1{font-size:2rem}h2{margin-top:2rem;color:var(--accent)}section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0}table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#213148}code{color:#9ce8ca}ul,ol{padding-left:1.4rem}.status{display:inline-block;padding:4px 10px;border-radius:999px;background:#234d42;color:#baffea}.muted{color:var(--muted)}</style>
+</head>
+<body><main>
+<h1>Dragon Finder Unity 可玩垂直切片轉換計畫</h1>
+<p><span class="status">已確認開工</span>　日期：2026-09-24</p>
+<section><h2>目標</h2><p>在 <code>unity_workspace/DragonFinder</code> 建立可於 Windows 10 64 位元以上執行的 Unity 垂直切片；Windows 版本成熟後才開始 iOS 適配。</p></section>
+<section><h2>已確認技術基線</h2><table><thead><tr><th>項目</th><th>決策</th></tr></thead><tbody>
+<tr><td>Unity</td><td>Unity 6 LTS（實作版本 <code>6000.3.24f1</code>）與 URP 2D Renderer</td></tr>
+<tr><td>UI</td><td>uGUI + TextMeshPro，玩家文字使用繁體中文</td></tr>
+<tr><td>Windows</td><td>x86_64、Windows 10 64 位元以上、免安裝資料夾版</td></tr>
+<tr><td>畫面與輸入</td><td>可縮放 16:9 視窗、中央直向內容；滑鼠與完整鍵盤操作，保留觸控介面</td></tr>
+<tr><td>資料</td><td>JSON 作為轉換中介，匯入後使用 ScriptableObject</td></tr>
+<tr><td>存檔</td><td><code>saveVersion=1</code> 的本機 JSON；首版不匯入網頁存檔、不保存進行中棋盤</td></tr>
+<tr><td>連線</td><td>完全離線、零遙測、零崩潰回報服務</td></tr>
+</tbody></table></section>
+<section><h2>垂直切片內容</h2><ol>
+<li>啟動畫面與主選單。</li><li>固定唯一解的 5×5 簡化教學。</li><li>6×6 正式局：180 秒、9 個捕捉器。</li><li>每行、每列、每區各一隻恐龍，恐龍八方向不得相鄰。</li><li>捕捉成功加 30 秒但不超過初始時間；最後一個捕捉器抓到最後一隻時判定勝利。</li><li>勝敗結算、重玩、回主選單與基本進度保存。</li><li>6–12 個具明確使用權或自製臨時替代的代表素材。</li><li>短音效與音效開關；暫不加入背景音樂。</li></ol>
+<p class="muted">首版不包含完整圖鑑、地圖、寶箱、經濟、技能、伙伴養成、龍塔、故事、網頁存檔匯入與中途續局。</p></section>
+<section><h2>架構</h2><ul>
+<li>純 C# Domain：棋盤、求解、生成、回合狀態與規則，不依賴 UnityEngine。</li>
+<li>Unity 適配層：uGUI、輸入、存檔、音效與畫面控制。</li>
+<li>Editor：JSON 匯入、ScriptableObject 生成、內容驗證與 Windows 批次建置。</li>
+<li>單一主場景：在同一 Canvas 內切換選單、教學、正式局與結算。</li></ul></section>
+<section><h2>驗證方法</h2><table><thead><tr><th>層級</th><th>驗證</th><th>通過條件</th></tr></thead><tbody>
+<tr><td>EditMode</td><td>索引、鄰接、區域連通、規則、求解器、生成器、回合狀態、存檔與匯入資料</td><td>所有自動測試通過；5×5 與 6×6 盤面合法且唯一解</td></tr>
+<tr><td>PlayMode</td><td>新存檔進教學、鍵盤完成教學、6×6 勝敗、重新啟動、音效設定</td><td>完整流程可操作，沒有未處理例外或控制台錯誤</td></tr>
+<tr><td>UI</td><td>1280×720、1600×900、1920×1080；滑鼠和鍵盤</td><td>內容置中無裁切；焦點可見；狀態不只靠顏色辨識</td></tr>
+<tr><td>Windows Build</td><td>批次建置 StandaloneWindows64 並啟動冒煙測試</td><td>產出資料夾版，可進入並完成一局</td></tr>
+<tr><td>離線</td><td>斷網啟動與遊玩</td><td>核心流程及存檔正常，沒有外部請求</td></tr>
+</tbody></table></section>
+<section><h2>完成條件</h2><p>只有在自動測試、實際 UI 流程與 Windows 建置均通過後，才將本垂直切片標記完成；未經另行授權不提交、不推送、不發布。</p></section>
+</main></body></html>

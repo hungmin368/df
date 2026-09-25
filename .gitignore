@@ -7,3 +7,15 @@ tmp_*.html
 # Backups (historical backups already tracked stay in the repo)
 *.bak*
 index_backup_*.html
+
+# Unity auto-generated caches and build output (never commit)
+unity_workspace/*/Library/
+unity_workspace/*/Temp/
+unity_workspace/*/obj/
+unity_workspace/*/Build/
+unity_workspace/*/Builds/
+unity_workspace/*/Logs/
+unity_workspace/*/MemoryCaptures/
+unity_workspace/*/Recordings/
+unity_workspace/*/TestResults/
+unity_workspace/*/UserSettings/

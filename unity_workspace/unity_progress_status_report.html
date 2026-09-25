@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dragon Finder Unity 轉換進度總覽</title>
+<style>
+:root{color-scheme:dark;--bg:#10151d;--panel:#182231;--line:#33465f;--text:#eef5ff;--muted:#aebdd0;--accent:#59d0a5;--warn:#f0c674;--done:#baffea}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,"Microsoft JhengHei",sans-serif}main{max-width:1080px;margin:auto;padding:40px 24px 72px}h1,h2,h3{line-height:1.25}h1{font-size:2rem}h2{margin-top:2rem;color:var(--accent)}section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0}table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#213148}code{color:#9ce8ca}ul,ol{padding-left:1.4rem}.status{display:inline-block;padding:4px 10px;border-radius:999px;background:#234d42;color:var(--done)}.warn{display:inline-block;padding:4px 10px;border-radius:999px;background:#4d4323;color:var(--warn)}.muted{color:var(--muted)}
+</style>
+</head>
+<body><main>
+<h1>Dragon Finder Unity 轉換進度總覽</h1>
+<p><span class="status">垂直切片完成並已驗證</span>　<span class="warn">尚未提交／人工複核未完成</span>　日期：2026-09-25</p>
+
+<section><h2>一句話總結</h2>
+<p>Unity 版已從零建立到「可玩垂直切片」：專案骨架、純 C# 核心規則、JSON→ScriptableObject 內容匯入、<code>saveVersion=1</code> 本機存檔、uGUI/TextMeshPro 介面與完整鍵盤／滑鼠／觸控輸入、Windows x86_64 建置與端對端驗證全部完成；EditMode 13/13、PlayMode 8/8 通過，實機存檔寫入與回讀已證實。完整遊戲系統（圖鑑、地圖、龍塔等）與 iOS 適配尚未開始，且 Unity 工作區目前完全未納入 Git。</p></section>
+
+<section><h2>里程碑時間軸</h2>
+<table><thead><tr><th>時間</th><th>任務</th><th>產出／結果</th></tr></thead><tbody>
+<tr><td>09-24 18:17</td><td>Unity 工作區建立</td><td><code>unity_workspace/</code> 與隔離規範（不與上層網頁版互相引用）</td></tr>
+<tr><td>09-24 19:19</td><td>轉換決策確認</td><td>Unity 6 LTS、URP 2D、uGUI+TextMeshPro、Windows x64 先行、JSON 中介、<code>saveVersion=1</code>、完全離線</td></tr>
+<tr><td>09-24 19:28</td><td>垂直切片計畫報告</td><td><code>unity_conversion_plan_report.html</code>（範圍、架構、驗證方法、完成條件）</td></tr>
+<tr><td>09-24 21:59</td><td>Unity 專案建立</td><td>Unity <code>6000.3.24f1</code>；URP 17.3.0、uGUI/TMP 2.0.0、Input System 1.20.0、Test Framework 1.6.0；TMP 必要資源補齊；缺字形（✕→×）修正</td></tr>
+<tr><td>09-24 22:22</td><td>核心邏輯（Unity-free Domain）</td><td>棋盤模型、規則驗證、唯一解求解器、決定性生成器+備援盤、回合狀態機；5×5 教學盤與 6×6 備援盤皆經驗證唯一解</td></tr>
+<tr><td>09-24 22:38</td><td>內容匯入與存檔版本化</td><td>8 隻代表龍 JSON→ScriptableObject；原子寫入、損壞檔保留、未來版本不覆蓋</td></tr>
+<tr><td>09-24 23:49</td><td>可玩 UI 與輸入</td><td>主選單、5×5 教學、6×6 正式局；EventSystem 單一路徑（修掉 Enter 雙發與方向鍵雙跳）；焦點框、區A–區F、介面縮放、音效、狀態文字</td></tr>
+<tr><td>09-25 00:14</td><td>Windows x64 建置</td><td><code>Builds/Windows</code> 產物完整、PE32+ x86-64、啟動冒煙測試零例外零缺字</td></tr>
+<tr><td>09-25 10:35</td><td>垂直切片驗證</td><td>EditMode 13/13、PlayMode 8/8、離線稽核、無障礙稽核、建置與日誌全掃描</td></tr>
+<tr><td>09-25 11:01–11:08</td><td>實機存檔端對端</td><td><code>DF_TUTORIAL_VERIFY</code> 驗證版在真實 <code>AppBootstrap</code> 流程通關教學並寫出 <code>PASS</code>、<code>saveVersion=1</code>；未改動的正式版回讀顯示「教學：已完成」；報告更新</td></tr>
+</tbody></table></section>
+
+<section><h2>目前可玩內容（垂直切片範圍）</h2>
+<ul>
+<li>啟動畫面與主選單：開始 5×5 教學／開始 6×6 正式探索、介面大小 90%–110%、音效開關（M，可持久化）、「離線遊玩・不收集資料」宣示。</li>
+<li>5×5 簡化教學：固定唯一解盤面，3 次標記 → C 切換捕捉模式 → 5 次捕捉完成。</li>
+<li>6×6 正式局：180 秒、9 個捕捉器；捕捉成功加 30 秒且不超過初始時間；最後一抓判定勝利先於捕捉器耗盡。</li>
+<li>規則：每行、每列、每區各一隻恐龍；恐龍八方向不得相鄰。</li>
+<li>勝敗結算、重玩、回主選單；進度寫入 <code>%USERPROFILE%\AppData\LocalLow\Dragon Finder Studio\Dragon Finder\dragonfinder.save.json</code>（<code>saveVersion=1</code>）。</li>
+<li class="muted">首版不包含：完整圖鑑、地圖、寶箱、經濟、技能、伙伴養成、龍塔、故事、網頁存檔匯入、中途續局。</li>
+</ul></section>
+
+<section><h2>驗證證據</h2>
+<table><thead><tr><th>項目</th><th>方法</th><th>結果</th></tr></thead><tbody>
+<tr><td>EditMode</td><td>Unity 批次 <code>-runTests -testPlatform EditMode</code></td><td>13/13 通過（規則、連通、求解、生成、回合、存檔往返、未來版本保護、內容匯入）</td></tr>
+<tr><td>PlayMode</td><td><code>-runTests -testPlatform PlayMode</code></td><td>8/8 通過，含 <code>TutorialCompletesViaKeyboardAndPersistsSave</code>（真實 UI 輸入通關＋存檔回讀）</td></tr>
+<tr><td>Windows 建置</td><td><code>DragonFinder.Editor.WindowsBuild.BuildRelease</code></td><td>exit 0，<code>DragonFinder.exe</code>／<code>UnityPlayer.dll</code> 皆 PE32+ x86-64</td></tr>
+<tr><td>啟動冒煙</td><td>多次啟動建置版並檢視 <code>Player.log</code></td><td>零例外、零錯誤、零缺字形警告，程序存活後正常關閉</td></tr>
+<tr><td>離線</td><td>源碼網路 API 掃描＋套件清單＋日誌</td><td>零網路相依、零追蹤</td></tr>
+<tr><td>存檔端對端</td><td>驗證版玩家寫入 → 正式版玩家回讀</td><td>寫入 <code>PASS</code>＋<code>tutorialCompleted: true</code>；正式版主選單顯示「教學：已完成」</td></tr>
+<tr><td>輸入／無障礙</td><td>PlayMode 輸入注入＋程式碼稽核＋實機截圖</td><td>鍵盤（方向鍵/WASD/Enter/Space/C/R/Esc/M）、滑鼠、觸控；可見焦點框、區域字母、UI 縮放、音效與狀態文字回饋</td></tr>
+</tbody></table></section>
+
+<section><h2>待辦與風險</h2>
+<ol>
+<li><b>尚未提交</b>：<code>unity_workspace/</code> 全部未納入 Git（無 commit/push，符合「未經要求不提交」規範）；Web 版主線則有未提交變更。</li>
+<li><b>工作紀錄缺口</b>：<code>worklog_vertical-slice-verification.md</code>（09-25 10:35）尚未記錄 10:44–11:08 的驗證版建置、實機截圖與報告更新步驟，與 AGENTS.md「逐步即時記錄」要求不符。</li>
+<li><b>報告與現況不一致</b>：驗證報告第八節稱「驗證後已移除驗證啟動器與建置入口」，但 <code>TutorialVerificationBuild.cs</code>（10:44）與 <code>TutorialVerificationRunner.cs</code>（10:59，含 <code>#if DF_TUTORIAL_VERIFY</code>）仍在專案中。</li>
+<li><b>人工複核未完成</b>：以實體鍵盤在正式版完成一局教學；1280×720／1600×900／1920×1080 介面巡檢。</li>
+<li><b>本機限制</b>：此機器攔截所有合成輸入（WScript、SendInput、視窗訊息皆失效），建置版互動無法自動化；已用引擎層 PlayMode 測試與受編譯符號隔離的驗證版補償，真實玩家不受影響。</li>
+<li><b>後續範圍</b>：其餘遊戲系統（圖鑑、地圖、龍塔、經濟…）與 iOS 適配均未開始（iOS 需 Windows 版成熟且另行授權）。</li>
+</ol></section>
+
+<section><h2>關鍵位置</h2>
+<ul>
+<li>Unity 專案：<code>unity_workspace/DragonFinder</code>（<code>Assets/DragonFinder/Scripts/{Domain,Runtime}</code>、<code>Tests/{EditMode,PlayMode}</code>、<code>Editor</code>、<code>Scenes/Main.unity</code>）</li>
+<li>建置產物：<code>unity_workspace/DragonFinder/Builds/Windows</code></li>
+<li>驗證報告：<code>unity_workspace/vertical_slice_verification_report.html</code></li>
+<li>工作紀錄：<code>unity_workspace/worklog/*.md</code></li>
+</ul></section>
+
+<p class="muted">本報告由唯讀進度稽核產生，未修改任何程式碼、未提交、未推送。</p>
+</main></body></html>

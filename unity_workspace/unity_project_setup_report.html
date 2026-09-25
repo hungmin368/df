@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dragon Finder Unity 垂直切片專案建置報告</title>
+<style>
+:root{color-scheme:dark;--bg:#10151d;--panel:#182231;--line:#33465f;--text:#eef5ff;--muted:#aebdd0;--accent:#59d0a5}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,"Microsoft JhengHei",sans-serif}main{max-width:1080px;margin:auto;padding:40px 24px 72px}h1,h2{line-height:1.25}h1{font-size:2rem}h2{margin-top:2rem;color:var(--accent)}section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0}table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#213148}code{color:#9ce8ca}ul,ol{padding-left:1.4rem}.status{display:inline-block;padding:4px 10px;border-radius:999px;background:#234d42;color:#baffea}.warn{display:inline-block;padding:4px 10px;border-radius:999px;background:#4d3a23;color:#ffe2ba}.muted{color:var(--muted)}
+</style>
+</head>
+<body><main>
+<h1>Dragon Finder Unity 垂直切片專案建置報告</h1>
+<p><span class="status">專案已建立</span> <span class="status">驗證通過</span> <span class="warn">未上傳</span>　日期：2026-09-24</p>
+
+<section><h2>專案位置</h2>
+<table><thead><tr><th>項目</th><th>內容</th></tr></thead><tbody>
+<tr><td>專案路徑</td><td><code>unity_workspace/DragonFinder</code></td></tr>
+<tr><td>Unity 版本</td><td>Unity 6 LTS <code>6000.3.24f1</code>（<code>ProjectSettings/ProjectVersion.txt</code>）</td></tr>
+<tr><td>主場景</td><td><code>Assets/DragonFinder/Scenes/Main.unity</code>（唯一建置場景，內含 Main Camera 與 AppBootstrap）</td></tr>
+<tr><td>批次建置</td><td><code>Tools/Dragon Finder/Build Windows x64</code>，目標 <code>StandaloneWindows64</code>，輸出 <code>Builds/Windows/DragonFinder.exe</code></td></tr>
+<tr><td>一次性設定</td><td><code>Tools/Dragon Finder/Configure Project</code>（內容匯入、TMP 資源、渲染管線、玩家設定、主場景）</td></tr>
+</tbody></table></section>
+
+<section><h2>已確認設定的落實狀態</h2>
+<table><thead><tr><th>確認項目</th><th>落實結果</th><th>狀態</th></tr></thead><tbody>
+<tr><td>Unity 6 LTS</td><td>編輯器 <code>6000.3.24f1</code></td><td>完成</td></tr>
+<tr><td>URP 2D Renderer</td><td>套件 <code>com.unity.render-pipelines.universal 17.3.0</code>；<code>DragonFinderURP</code> 的 Renderer 清單指向 <code>DragonFinder2DRenderer</code>（<code>Renderer2DData</code>）</td><td>完成</td></tr>
+<tr><td>URP 指派</td><td><code>GraphicsSettings</code> 預設管線與目前品質等級皆指向 <code>DragonFinderURP</code></td><td>完成</td></tr>
+<tr><td>uGUI + TextMeshPro</td><td>套件 <code>com.unity.ugui 2.0.0</code>；TMP Essentials（TMP Settings、Shaders、LiberationSans SDF、Sprites、Style Sheets）已匯入</td><td>完成</td></tr>
+<tr><td>輸入</td><td><code>com.unity.inputsystem 1.20.0</code>，Player 設定為 Input System（新輸入系統）</td><td>完成</td></tr>
+<tr><td>Windows x86_64</td><td>作用中目標 Win64，架構 <code>x64</code>，Scripting Backend <code>Mono</code>；產出檔案為 PE32+ x86-64</td><td>完成</td></tr>
+<tr><td>視窗設定</td><td>產品名稱 Dragon Finder、版本 <code>0.1.0</code>、1280×720、視窗模式、可縮放</td><td>完成</td></tr>
+<tr><td>測試框架</td><td><code>com.unity.test-framework 1.6.0</code>，EditMode 與 PlayMode 測試組件已就位</td><td>完成</td></tr>
+</tbody></table></section>
+
+<section><h2>驗證結果</h2>
+<table><thead><tr><th>驗證項目</th><th>指令</th><th>結果</th></tr></thead><tbody>
+<tr><td>EditMode 測試</td><td><code>-runTests -testPlatform EditMode</code></td><td>10/10 通過，結束碼 0（棋盤規則、區域連通、唯一解、生成器、回合計時與捕捉器、標記與逾時、存檔版本與保護、匯入內容）</td></tr>
+<tr><td>PlayMode 測試</td><td><code>-runTests -testPlatform PlayMode</code></td><td>3/3 通過，結束碼 0（主場景載入、uGUI／TextMeshPro／Input System 選單、5×5 教學 25 格與焦點、6×6 正式局 180 秒／9 捕捉器／36 格）</td></tr>
+<tr><td>Windows x64 建置</td><td><code>-executeMethod DragonFinder.Editor.WindowsBuild.BuildRelease</code></td><td>結束碼 0，產出免安裝資料夾版；<code>DragonFinder.exe</code> 與 <code>UnityPlayer.dll</code> 皆為 PE32+ x86-64，Bee 產物確認 <code>StandaloneWindows64</code></td></tr>
+<tr><td>啟動冒煙測試</td><td>執行 <code>Builds/Windows/DragonFinder.exe</code> 並檢查 <code>Player.log</code></td><td>程序正常存活、無例外、無缺字警告（首次啟動因無存檔進入教學）</td></tr>
+</tbody></table></section>
+
+<section><h2>驗證發現並修正的缺陷</h2>
+<ol>
+<li>首次冒煙測試時，標記符號 U+2715（✕）在 <code>StatusLabel</code> 與 <code>Label</code> 共出現 4 次缺字警告，實際顯示為缺字方框。</li>
+<li>以實際執行字型 <code>Microsoft JhengHei UI</code> 檢查：U+2715（✕）、U+2713、U+2717 皆無字符；U+00D7（×）、U+25C6（◆）、U+3000、U+2192、U+2605 皆有字符。</li>
+<li>已將 UI 五處標記符號改為 U+00D7（×），並重新檢查介面原始碼使用到的 199 個字元，全部皆有字符。</li>
+<li>修正後重跑 EditMode 10/10、PlayMode 3/3、重新建置並再次冒煙測試：缺字警告 0、例外 0。</li>
+</ol></section>
+
+<section><h2>尚未涵蓋</h2>
+<ul>
+<li>未自動化「在產出檔中互動完成一整局 6×6」的端對端流程；勝敗判定由 EditMode 測試與程式邏輯覆蓋。</li>
+<li>計畫中的 1280×720、1600×900、1920×1080 介面巡檢與離線檢查仍需人工執行。</li>
+<li>建置輸出中的 <code>Dragon Finder_BurstDebugInformation_DoNotShip</code> 為 Unity Burst 產生的除錯符號資料夾，發佈打包時應排除。</li>
+<li>未提交、未推送（依指示不上傳）；本報告與專案內容僅存在於本機工作區。</li>
+</ul></section>
+</main></body></html>
