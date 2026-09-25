@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>報告：開場 logo 飛入選單「到位急縮小」修正</title>
+<style>
+  :root{ --ink:#2b2438; --muted:#6b6280; --line:#e6dff2; --accent:#8a63ff; --ok:#1f9d55; --bad:#d64545; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; padding:32px 16px 64px; background:#faf8ff; color:var(--ink);
+        font:15px/1.7 "Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif; }
+  .wrap{ max-width:960px; margin:0 auto; }
+  h1{ font-size:24px; margin:0 0 4px; }
+  .sub{ color:var(--muted); margin:0 0 24px; }
+  h2{ font-size:18px; margin:32px 0 10px; padding-left:10px; border-left:4px solid var(--accent); }
+  .card{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;
+         box-shadow:0 1px 2px rgba(60,40,120,.05); }
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  th,td{ padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th{ background:#f3eeff; font-weight:700; white-space:nowrap; }
+  tr:last-child td{ border-bottom:none; }
+  code{ background:#f4f1fb; border:1px solid var(--line); border-radius:6px; padding:1px 5px; font-size:13px; }
+  .ok{ color:var(--ok); font-weight:700; }
+  .bad{ color:var(--bad); font-weight:700; }
+  ul{ margin:6px 0; padding-left:22px; }
+  .foot{ color:var(--muted); font-size:13px; margin-top:28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>修正報告：開場 logo 飛入主選單時「到位急縮小」</h1>
+  <p class="sub">Dragon Finder v1.9.10 ｜ 2026-09-24 ｜ 任務 ID：logo-fly-shrink</p>
+
+  <h2>問題現象</h2>
+  <div class="card">進遊戲時 logo 從畫面中央飛向主選單左上，<b>到達定位瞬間會突然急縮一下</b>才變成選單 logo 的最終大小。</div>
+
+  <h2>根本原因</h2>
+  <div class="card">
+    <p>選單 logo <code>#menu-logo img</code> 的盒子是 <code>186×73.38px</code>（手機 <code>150×59.20px</code>），
+    但圖片 <code>game_logo.png</code>（1536×1024，比例 <b>1.5</b>）在 <code>object-fit:contain</code> 下實際只渲染到寬 <b>110.07px</b>，左右留白置中。</p>
+    <p>舊 <code>fly()</code> 卻把開場 logo 用<b>非等比縮放</b>直接縮進整個 186px 寬的盒子：
+    <code>scale(0.582074, 0.344433)</code>——水平被拉寬 1.69 倍；飛到定位後程式移除開場元素、換成真實選單 logo（110.07px 寬），
+    寬度瞬間由 186 → 110.07，<b>一次跳縮 41%</b>，就是看到的「急縮小」（左緣同時跳 38px）。</p>
+  </div>
+
+  <h2>修正內容（js/main.js `fly()`）</h2>
+  <div class="card">
+    <ul>
+      <li>改為對齊 <code>object-fit:contain</code> 後的<b>實際可見範圍</b>（含置中偏移）。</li>
+      <li>改用<b>單一等比縮放</b> <code>scale(s)</code>，飛行過程不再橫向拉伸。</li>
+      <li>落點換算讓可見框左上角精準落在選單 logo 可見框左上角；過場時間與曲線不變（680ms、原 easing）。</li>
+    </ul>
+  </div>
+
+  <h2>驗證結果（真實 Chrome + CDP 實測）</h2>
+  <table>
+    <tr><th>項目</th><th>修正前</th><th>修正後</th></tr>
+    <tr>
+      <td>fly() 寫入的 transform</td>
+      <td class="bad"><code>scale(0.582074, 0.344433)</code>（非等比）</td>
+      <td class="ok"><code>scale(0.344433)</code>（等比，桌面）<br><code>scale(0.340954)</code>（手機斷點）</td>
+    </tr>
+    <tr>
+      <td>抵達落點 rect（桌面 1280×800）</td>
+      <td class="bad">186×73.4 @ (357,19)</td>
+      <td class="ok">110.1×73.4 @ (395,19)</td>
+    </tr>
+    <tr>
+      <td>與選單 logo 可見框落差</td>
+      <td class="bad">寬 75.9px、左緣 38px（急縮來源）</td>
+      <td class="ok">dx=0.0　dy=0.0　ddx=0.0　ddy=0.0</td>
+    </tr>
+    <tr>
+      <td>手機斷點 400×800 落差</td>
+      <td>—</td>
+      <td class="ok">全 0（落點 88.8×59.2 @ 205.6,13）</td>
+    </tr>
+    <tr>
+      <td>js/main.js 語法檢查</td>
+      <td>—</td>
+      <td class="ok">通過</td>
+    </tr>
+    <tr>
+      <td>單檔 bundle（29.5 MB）</td>
+      <td>—</td>
+      <td class="ok">已重新產生；內含新修正、無外部引用、載入 0 個 JS 錯誤</td>
+    </tr>
+    <tr>
+      <td>最終驗收（1440×900，index.html 與 bundle 各重跑一次）</td>
+      <td>—</td>
+      <td class="ok">兩者標題正確、JS 錯誤 0；fly 皆寫入 <code>scale(0.344433)</code>，落點 <code>110.1×73.4 @ (475,19)</code> 與選單 logo 可見框完全一致（落差全 0）</td>
+    </tr>
+  </table>
+
+  <h2>連帶修正：單檔打包工具</h2>
+  <div class="card">
+    <p>產生 bundle 時發現既有問題（非本次動畫修正造成）：<code>assets/dinos_2/game_logo.png</code> 只被 index.html 引用，
+    但 <code>build_single_file.mjs</code> 要求它必須被 main.js 引用而中止；另有 3 張未使用的備用伴伴圖同理。
+    已最小修正打包工具：logo 改讀新路徑並內嵌、未被引用的素材改為跳過（原有「殘留外部引用」檢查仍保留把關）。</p>
+  </div>
+
+  <h2>異動檔案</h2>
+  <ul>
+    <li><code>js/main.js</code> — fly() 等比縮放 + 可見框對齊</li>
+    <li><code>build_single_file.mjs</code> — 打包工具修正（logo 內嵌、跳過未引用素材）</li>
+    <li><code>dragonfinder_v1.9.10.html</code> — 重新產生（自動生成物）</li>
+    <li><code>worklogs/worklog_logo-fly-shrink.md</code> — 工作記錄</li>
+  </ul>
+
+  <p class="foot">備註：自動化環境的 Chrome 會讓 CSS transition 瞬間完成（已用獨立測試元素證實），無法逐幀錄影；
+  因此以「fly() 實際寫入的 transform 值 + 過渡取消後的落點量測」驗證，兩者正是急縮發生的前後端點。未執行 git commit/push。</p>
+
+</div>
+</body>
+</html>
