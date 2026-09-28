@@ -2609,7 +2609,7 @@ async function demoEliminate(star, gap){
   }
 }
 
-async function startDemo(){
+function whyReveal(s){const N=G.N,r=(s/N)|0,c=s%N,rg=G.cells[s].region;const banned=new Set();G.cells.forEach((x,i)=>{if(x.revealed)neighbors8(i,N).forEach(nb=>banned.add(nb));});const isCand=i=>!G.cells[i].mark&&!G.cells[i].revealed&&!banned.has(i);let rowC=0,colC=0,regC=0;for(let i=r*N;i<r*N+N;i++)if(isCand(i))rowC++;for(let i=c;i<N*N;i+=N)if(isCand(i))colC++;for(let i=0;i<N*N;i++)if(G.cells[i].region===rg&&isCand(i))regC++;if(rowC<=1)return `牠是<b>第`+(r+1)+`列</b>唯一還沒被排除的格子`;if(colC<=1)return `牠是<b>第`+(c+1)+`欄</b>唯一還沒被排除的格子`;if(regC<=1)return `牠是<b>這個顏色區塊</b>唯一還沒被排除的格子`;const best=Math.min(rowC,colC,regC);const lab=(best===rowC)?(`第`+(r+1)+`列`):((best===colC)?(`第`+(c+1)+`欄`):`這個色塊`);return `牠的`+lab+`只剩 <b>`+best+` 格</b>可能是恐龍，牠是其中最值得先試的格子`;} async function startDemo(){
   const tk=++demoToken;
   const ok=()=>tk===demoToken && G && G.tutorial==='demo' && G.state!=='done';
   G.state='demo';
@@ -2639,7 +2639,7 @@ async function startDemo(){
 
   const stars=[...G.cats].sort((a,b)=>a-b);
   const s1=stars[0];
-  tutShow('答案先偷偷告訴你：發光這格有一隻！<br>牠周圍 <b>8 格</b>（含斜角）都不可能有 → 全部打 ✕');
+  tutShow('答案先偷偷告訴你：發光這格有一隻！為什麼？牠會佔住<b>整列、整欄、整個色塊</b>——先確定牠，就能排除一大片。<br>牠周圍 <b>8 格</b>（含斜角）也都不可能有 → 全部打 ✕');
   tutRing(s1); tutFocus(true);
   await sleep(D); if(!ok()) return;
   for(const nb of neighbors8(s1,N).sort((a,b)=>a-b)){
@@ -2660,7 +2660,7 @@ async function startDemo(){
 
   const f2=findForced();
   tutShow(f2 ? '看！<b>'+f2.why+'</b>只剩這格沒被 ✕ → 牠<b>鐵定在這</b>！丟球！'
-             : '候選格變少了！教學直接告訴你：這格有一隻，丟球！');
+             : '候選格變少了！這格有一隻——'+whyReveal(stars[1])+'丟球！');
   if(!G.ballMode) setBallMode(true);
   const s2=stars[1];
   tutClearRings(); tutRing(s2);
@@ -2672,7 +2672,7 @@ async function startDemo(){
 
   for(let k=2;k<stars.length;k++){
     const f=findForced();
-    tutShow(f ? '<b>'+f.why+'</b>只剩一個候選格 → 丟球！' : '如法炮製——丟球！');
+    tutShow(f ? '<b>'+f.why+'</b>只剩一個候選格 → 丟球！' : '如法炮製——這格有一隻（'+whyReveal(stars[k])+'）丟球！');
     if(!G.ballMode) setBallMode(true);
     tutClearRings(); tutRing(stars[k]);
     await sleep(D); if(!ok()) return;
@@ -2708,7 +2708,7 @@ async function startGuided(){
   tutShow('該你了：點下面的 <b>捕捉器</b> 按鈕切換模式');
   await waitBall(true); if(!ok()) return;
   SFX.ball();
-  tutShow('游標變捕捉器了！教學偷偷報料——發光那格有一隻，<b>點牠丟球</b>！');
+  tutShow('游標變捕捉器了！發光那格有一隻（先確定一隻，就能用「整列／整欄／整個色塊各 1 隻」排除其他格），<b>點牠丟球</b>！');
   await waitCellClick([s1]); if(!ok()) return;
   doBall(s1);
   await sleep(1900); if(!ok()) return;
@@ -2747,7 +2747,7 @@ async function startGuided(){
       SFX.ball();
     }
     tutShow(f ? '<b>'+f.why+'</b>只剩這格沒被 ✕ → 牠鐵定在這，<b>丟球！</b>'
-               : '教學提示：發光那格有一隻，<b>丟球！</b>');
+               : '教學提示：發光那格有一隻（'+whyReveal(stars[k])+'），<b>丟球！</b>');
     await waitCellClick([stars[k]]); if(!ok()) return;
     doBall(stars[k]);
     await sleep(1900); if(!ok()) return;
