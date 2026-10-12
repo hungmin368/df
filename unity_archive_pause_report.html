@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>報告：Unity 轉換工作暫停與封存清理</title>
+<style>
+  :root{ --ink:#2b2438; --muted:#6b6280; --line:#e6dff2; --accent:#8a63ff; --ok:#1f9d55; --bad:#d64545; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; padding:32px 16px 64px; background:#faf8ff; color:var(--ink);
+        font:15px/1.7 "Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif; }
+  .wrap{ max-width:960px; margin:0 auto; }
+  h1{ font-size:24px; margin:0 0 4px; }
+  .sub{ color:var(--muted); margin:0 0 24px; }
+  h2{ font-size:18px; margin:32px 0 10px; padding-left:10px; border-left:4px solid var(--accent); }
+  .card{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;
+         box-shadow:0 1px 2px rgba(60,40,120,.05); }
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  th,td{ padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th{ background:#f3eeff; font-weight:700; white-space:nowrap; }
+  tr:last-child td{ border-bottom:none; }
+  code{ background:#f4f1fb; border:1px solid var(--line); border-radius:6px; padding:1px 5px; font-size:13px; }
+  .ok{ color:var(--ok); font-weight:700; }
+  .bad{ color:var(--bad); font-weight:700; }
+  ul,ol{ margin:6px 0; padding-left:22px; }
+  .foot{ color:var(--muted); font-size:13px; margin-top:28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>報告：Unity 轉換工作暫停與封存清理</h1>
+  <p class="sub">Dragon Finder v1.9.10 ｜ 2026-10-12 ｜ 任務 ID：unity-archive-pause</p>
+
+  <h2>任務目的</h2>
+  <div class="card">
+    依使用者指示暫停 Unity 轉換工作：把<b>所有與 Unity 相關的內容</b>（記憶、報告、程式、工作目錄）打包壓縮成單一封存檔，
+    工作區只保留乾淨的 HTML 遊戲本體與非 Unity 的記憶、報告。封存檔即為轉換工作的完整快照，之後可原地還原續作。
+  </div>
+
+  <h2>封存成果</h2>
+  <table>
+    <tr><th>項目</th><th>內容</th><th>數量 / 大小</th></tr>
+    <tr>
+      <td><code>unity_archive_20261012.zip</code><br>（repo 根目錄）</td>
+      <td>單一 zip 封存包，內含下列全部內容＋還原說明 <code>README.md</code></td>
+      <td class="ok">2,427 檔｜209 MB</td>
+    </tr>
+    <tr>
+      <td>└ <code>unity_workspace/</code></td>
+      <td>DragonFinder Unity 專案（Assets 原始碼與素材、ProjectSettings、Packages、Builds 執行檔、TestResults 測試證據、Logs、UserSettings）、
+          追蹤表 <code>html2unity_v1.9.10.md</code>、<code>html2unity.md</code>、<code>html2unity_report.html</code>、
+          <code>worklog/</code>（約 70 份）、<code>tools/</code>、截圖與其他報告</td>
+      <td>2,406 檔｜662 MB（未壓縮）</td>
+    </tr>
+    <tr>
+      <td>└ <code>root_files/</code></td>
+      <td>原 repo 根目錄的 Unity 檔案：3 份差異複查報告、<code>Logs/</code>（8 份）、Unity worklog（5 份）、
+          <code>.sophcode/skills/unity-conversion-workflow/</code>（2 檔）、<code>AGENTS.md.before-unity-cleanup.md</code>、
+          <code>.gitignore.before-unity-cleanup</code></td>
+      <td>20 檔</td>
+    </tr>
+  </table>
+
+  <h2>未封存（可重建，刻意排除）</h2>
+  <div class="card">
+    <ul>
+      <li><code>DragonFinder/Library/</code>：約 2.0 GB，Unity 重新開啟專案時自動重建。</li>
+      <li><code>DragonFinder/Temp/</code>：Unity 暫存檔，自動重建。</li>
+    </ul>
+  </div>
+
+  <h2>封存時狀態</h2>
+  <div class="card">
+    <ul>
+      <li>追蹤表最後更新 2026-10-01；狀態統計：<b>80 已完成／2 進行中／0 待決策／10 未進行／0 故障／共 92</b>（進行中：步驟 69 追蹤文件維護、步驟 85 寶箱圖形化）。</li>
+      <li>封存時工作區含 <b>533 項未提交變更</b>與 494 個未追蹤檔案（新素材、新腳本、測試），已完整收入封存包。</li>
+      <li>封存包另含清理前的 <code>AGENTS.md</code> 與 <code>.gitignore</code> 快照，供還原記憶與規則之用。</li>
+    </ul>
+  </div>
+
+  <h2>驗證證據</h2>
+  <table>
+    <tr><th>驗證項目</th><th>方法</th><th>結果</th></tr>
+    <tr><td>複製完整性</td><td>來源（排除 Library/Temp）vs 暫存區全量 MD5</td><td class="ok">2,406／2,406 一致</td></tr>
+    <tr><td>壓縮完整性</td><td>7-Zip 完整性測試（CRC 全讀）</td><td class="ok">Everything is Ok</td></tr>
+    <tr><td>解壓還原正確性</td><td>全量解壓後與打包前目錄逐檔 MD5 比對</td><td class="ok">2,427／2,427 一致</td></tr>
+    <tr><td>路徑相容性</td><td>以 bsdtar 產生正斜線路徑 zip（7-Zip 產出為反斜線，已避開）</td><td class="ok">跨平台可解壓</td></tr>
+    <tr><td>工作區殘留</td><td><code>git status</code>＋目錄巡檢</td><td class="ok">230 筆刪除、2 筆修改；無 Unity 檔案殘留；zip 已排除於 git</td></tr>
+    <tr><td>HTML 遊戲不受影響</td><td><code>python http.server</code>＋<code>curl</code> 檢查 9 個頁面／資產</td><td class="ok">全部 HTTP 200</td></tr>
+  </table>
+
+  <h2>工作區清理處置</h2>
+  <table>
+    <tr><th>項目</th><th>處置</th></tr>
+    <tr><td><code>unity_workspace/</code>（2.7 GB、34,292 檔）</td><td>已刪除（僅可重建的 Library／Temp 未入包；其餘完整入包）</td></tr>
+    <tr><td>根目錄 3 份 unity 報告、<code>Logs/</code>、5 份 unity worklog</td><td>已刪除（完整入包 <code>root_files/</code>）</td></tr>
+    <tr><td><code>.sophcode/skills/unity-conversion-workflow/</code></td><td>已刪除（完整入包，還原時放回原路徑）</td></tr>
+    <tr><td><code>AGENTS.md</code> / <code>.gitignore</code></td><td>已移除 Unity 章節與規則（快照入包）</td></tr>
+    <tr><td><code>unity_archive_20261012.zip</code></td><td>保留於 repo 根目錄；已加入 <code>.git/info/exclude</code>（209 MB 過大不宜入 git，僅本機備份）</td></tr>
+  </table>
+
+  <h2>還原方式（日後續作）</h2>
+  <div class="card">
+    <ol>
+      <li>解壓 <code>unity_archive_20261012.zip</code>，將 <code>unity_workspace/</code> 複製回 repo 根目錄。</li>
+      <li>將 <code>root_files/</code> 內容放回原位置：報告與 <code>Logs/</code> 回根目錄、worklog 併入根 <code>worklogs/</code>、skill 放回 <code>.sophcode/skills/</code>。</li>
+      <li>把 <code>AGENTS.md.before-unity-cleanup.md</code> 的「Unity workspace」章節與 <code>.gitignore.before-unity-cleanup</code> 的規則加回。</li>
+      <li>以 Unity Hub 開啟 <code>unity_workspace/DragonFinder</code>（重建 Library），即可依追蹤表接續（入口：Skill「進行unity轉換工作」）。</li>
+    </ol>
+  </div>
+
+  <p class="foot">
+    對應工作紀錄：<code>worklogs/worklog_unity-archive-pause.md</code>。封存包為本機備份、未入 git；建議另拷貝至外部備份保存。
+  </p>
+
+</div>
+</body>
+</html>
