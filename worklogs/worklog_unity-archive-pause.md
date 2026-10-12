@@ -32,4 +32,4 @@
 - 已改檔：`AGENTS.md`、`.gitignore`、`.git/info/exclude`
 - 新增：`worklogs/worklog_unity-archive-pause.md`、`unity_archive_pause_report.html`
 - 封存時追蹤表狀態：80 已完成／2 進行中／0 待決策／10 未進行／0 故障／共 92（步驟 69、85 進行中）
-- commit：（尚未 commit，待使用者確認）
+- commit：`66d3f5e` — Pause the Unity conversion and remove Unity content from the repo
