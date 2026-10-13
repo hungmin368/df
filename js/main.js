@@ -2621,6 +2621,9 @@ async function demoEliminate(star, gap){
   tutShow('第 <b>'+(c+1)+' 欄</b>也一樣 ✕');
   for(let i=c;i<N*N;i+=N){ if(i!==star){ demoMark(i); await sleep(gap); } }
   if(!demoAlive()) return;
+  tutShow('牠的<b>周圍八格</b>（連斜角）也都不可能有恐龍 → ✕');
+  for(const nb of neighbors8(star,N)){ demoMark(nb); await sleep(gap); }
+  if(!demoAlive()) return;
   const rg=G.cells[star].region;
   const regCells=[]; G.cells.forEach((cc,idx)=>{ if(cc.region===rg && idx!==star && cc.mark!=='x') regCells.push(idx); });
   if(regCells.length){
@@ -2657,16 +2660,25 @@ function whyReveal(s){const N=G.N,r=(s/N)|0,c=s%N,rg=G.cells[s].region;const ban
   tutShow('而且恐龍<b>絕不互相接觸</b>——連斜角都不行！');
   await sleep(D); if(!ok()) return;
 
+  /* 固定盤秘訣教學（TUT_BOARDS[4]：A=(0,0..2),(1,1)、B=(0,3),(1,2),(1,3)、C 含 (1,0)，解=[1,3,0,2]） */
   const stars=[...G.cats].sort((a,b)=>a-b);
   const s1=stars[0];
-  tutShow('答案先偷偷告訴你：發光這格有一隻！為什麼？牠會佔住<b>整列、整欄、整個色塊</b>——先確定牠，就能排除一大片。<br>牠周圍 <b>8 格</b>（含斜角）也都不可能有 → 全部打 ✕');
-  tutRing(s1); tutFocus(true);
+  tutShow('💡 <b>秘訣一</b>：第 1、2 列共有 3 種顏色，其中 <b>A、B 兩色完全沒延伸到行外</b>——這兩列的 2 隻名額就是 A、B 的！所以 <b>C 色在這兩列的格子</b>確定沒有恐龍 → ✕');
+  tutRing([4]); tutFocus(true);
   await sleep(D); if(!ok()) return;
-  for(const nb of neighbors8(s1,N).sort((a,b)=>a-b)){
-    demoMark(nb); await sleep(500); if(!ok()) return;
-  }
-  await sleep(800); if(!ok()) return;
-  tutShow('排除完成，鎖定目標——丟<b>捕捉器</b>！');
+  demoMark(4);
+  await sleep(900); if(!ok()) return;
+  tutShow('💡 <b>秘訣二</b>：<b>B 色是 L 形 3 格</b>——無論恐龍在哪格，同時貼著這 3 格的「L 缺口」都緊鄰牠 → ✕');
+  tutClearRings(); tutRing([3,6,7]);
+  await sleep(D); if(!ok()) return;
+  tutClearRings(); tutRing([2]);
+  await sleep(900); if(!ok()) return;
+  demoMark(2);
+  await sleep(900); if(!ok()) return;
+  tutShow('秘訣排除了 2 格！現在還沒有 100% 確定的格子——就<b>挑最集中的先試</b>：第 1 列只剩 2 格、A 色塊也縮小了，發光這格機會最高！');
+  tutClearRings(); tutRing(s1);
+  await sleep(D); if(!ok()) return;
+  tutShow('按下<b>捕捉器</b>丟球——就算沒中也有容錯，抓到第一隻就能用秘訣排除一大片！');
   setBallMode(true);
   SFX.ball();
   await sleep(D); if(!ok()) return;
@@ -2725,10 +2737,27 @@ async function startGuided(){
   await waitCellClick([safe]); if(!ok()) return;
   await sleep(400); if(!ok()) return;
 
+  /* 固定盤秘訣教學（TUT_BOARDS[5]：row0 全 A、E=(3,0),(4,0)，解=[2,4,1,3,0]） */
+  tutShow('💡 <b>秘訣一</b>：<b>第 1 列整列都是 A 色</b>——A 的恐龍一定在第 1 列！所以<b>行外的 A 格</b>（發光這 3 格）都能打 ✕，把它們標起來！');
+  tutClearRings(); tutRing([6,7,8]); tutFocus(true);
+  await sleep(1200); if(!ok()) return;
+  await waitCells([6,7,8]); if(!ok()) return;
+  await sleep(400); if(!ok()) return;
+  tutShow('💡 <b>秘訣二</b>：<b>E 色只剩左下角這 2 格</b>——恐龍必在其中一格，所以<b>同時貼著這 2 格</b>的右側 2 格都緊鄰牠 → ✕');
+  tutClearRings(); tutRing([15,20]);
+  await sleep(1400); if(!ok()) return;
+  tutClearRings(); tutRing([16,21]);
+  await sleep(1000); if(!ok()) return;
+  await waitCells([16,21]); if(!ok()) return;
+  await sleep(400); if(!ok()) return;
+  tutShow('看！<b>A 色塊只剩這 1 格</b>沒被 ✕——牠<b>百分百確定</b>就在這！');
+  tutClearRings(); tutRing(s1); tutFocus(true);
+  await sleep(1600); if(!ok()) return;
+
   tutShow('該你了：點下面的 <b>捕捉器</b> 按鈕切換模式');
   await waitBall(true); if(!ok()) return;
   SFX.ball();
-  tutShow('游標變捕捉器了！發光那格有一隻（先確定一隻，就能用「整列／整欄／整個色塊各 1 隻」排除其他格），<b>點牠丟球</b>！');
+  tutShow('游標變捕捉器了！確定的獵物就在發光格——<b>點牠丟球</b>！');
   await waitCellClick([s1]); if(!ok()) return;
   doBall(s1);
   await sleep(1900); if(!ok()) return;
@@ -2750,6 +2779,9 @@ async function startGuided(){
     tutShow('別忘<b>斜角</b>！這 '+diagCells.length+' 格也不可能有人 ✕');
     await waitCells(diagCells); if(!ok()) return;
     await sleep(300); if(!ok()) return;
+  } else {
+    tutShow('別忘<b>斜角</b>！周圍八格也都不會有恐龍——剛剛秘訣一標的 A 格正好就是 ✕');
+    await sleep(1600); if(!ok()) return;
   }
   const rg1=G.cells[s1].region;
   const regRest=[]; G.cells.forEach((c,i)=>{ if(c.region===rg1 && i!==s1 && c.mark!=='x') regRest.push(i); });
@@ -2761,23 +2793,24 @@ async function startGuided(){
 
   for(let k=1;k<stars.length;k++){
     const f=findForced();
+    const target=f ? f.cell : stars[k]; /* 捕捉推理實際證明的格子，讓訊息與發光格一致 */
     if(!G.ballMode){
       tutShow(f ? '看！<b>'+f.why+'</b>只剩一個候選格！先切到<b>捕捉器</b>' : '下一隻在發光那格！先切到<b>捕捉器</b>');
       await waitBall(true); if(!ok()) return;
       SFX.ball();
     }
     tutShow(f ? '<b>'+f.why+'</b>只剩這格沒被 ✕ → 牠鐵定在這，<b>丟球！</b>'
-               : '教學提示：發光那格有一隻（'+whyReveal(stars[k])+'），<b>丟球！</b>');
-    await waitCellClick([stars[k]]); if(!ok()) return;
-    doBall(stars[k]);
+               : '教學提示：發光那格有一隻（'+whyReveal(target)+'），<b>丟球！</b>');
+    await waitCellClick([target]); if(!ok()) return;
+    doBall(target);
     await sleep(1900); if(!ok()) return;
     if(k<stars.length-1){
       tutShow('我幫你把相關格子 ✕ 起來…');
-      const rg=G.cells[stars[k]].region;
-      const rk=Math.floor(stars[k]/N), ck=stars[k]%N;
+      const rg=G.cells[target].region;
+      const rk=Math.floor(target/N), ck=target%N;
       const todo=[]; G.cells.forEach((c,i)=>{
         if(c.mark==='x'||c.revealed) return;
-        if(Math.floor(i/N)===rk||i%N===ck||c.region===rg||neighbors8(stars[k],N).includes(i)) todo.push(i);
+        if(Math.floor(i/N)===rk||i%N===ck||c.region===rg||neighbors8(target,N).includes(i)) todo.push(i);
       });
       for(const i of todo){ demoMark(i); await sleep(70); if(!ok()) return; }
       await sleep(400); if(!ok()) return;
