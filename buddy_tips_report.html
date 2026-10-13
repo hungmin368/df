@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隨行閒聊進階秘訣驗證報告</title>
+<style>
+  :root{ --ink:#2b2620; --sub:#7a6f63; --line:#e6ddcf; --bg:#fbf8f2; --card:#fffdf9; --ok:#1f7a46; --warn:#b3541e; --accent:#b8860b; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif; line-height:1.7; }
+  .wrap{ max-width:980px; margin:0 auto; padding:32px 20px 64px; }
+  header{ border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  h1{ font-size:26px; margin:0 0 6px; }
+  .meta{ color:var(--sub); font-size:13.5px; }
+  h2{ font-size:19px; margin:34px 0 10px; border-left:5px solid var(--accent); padding-left:10px; }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:14px 0; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  table{ width:100%; border-collapse:collapse; font-size:14px; margin:8px 0; }
+  th,td{ border:1px solid var(--line); padding:7px 10px; text-align:center; }
+  th{ background:#f4ecdd; font-weight:700; }
+  td.l, th.l{ text-align:left; }
+  .ok{ color:var(--ok); font-weight:700; }
+  .warn{ color:var(--warn); font-weight:700; }
+  .pill{ display:inline-block; background:#f4ecdd; border:1px solid var(--line); border-radius:999px; padding:2px 12px; font-size:12.5px; margin:2px 4px 2px 0; }
+  .note{ background:#fff6e6; border:1px solid #f0dcb4; border-radius:12px; padding:12px 16px; font-size:14px; }
+  ul{ margin:6px 0; padding-left:22px; }
+  code{ background:#f1ece2; border-radius:5px; padding:1px 6px; font-size:13px; }
+  .big{ font-size:15px; }
+  .chg{ background:#eef7ef; border:1px solid #cfe6d2; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>隨行閒聊進階秘訣驗證報告</h1>
+  <div class="meta">尋龍高手 DragonFinder v1.9.14 ・ 日期：2026-10-13 ・ Task ID：buddy-tips-advanced</div>
+</header>
+
+<h2>一、需求與結論</h2>
+<div class="card chg">
+  <p class="big">使用者提出 5 條「顏色計數／相鄰接觸」解謎秘訣，要求驗證正確性，修飾後加入隨行夥伴閒聊提示（<code>BUDDY_TALK</code>）。</p>
+  <p><b>結論：5 條全部正確 ✓</b>，已修飾為「💡 進階：」格式加入 <code>js/main.js</code> 的 <code>BUDDY_TALK</code> 陣列（提示總數 67 → 72），於遊戲中由 <code>pickTalk()</code> 隨機抽用。</p>
+  <p>遊戲規則依據：<b>每個顏色區塊、每行、每列各恰 1 個隱藏物</b>（🦕 恐龍／🧰 寶箱／🪨 石頭），且<b>隱藏物之間連斜角（八鄰接）都不得相鄰</b>（玩法說明「高冷法則」、<code>buddyAutoExclude</code> 的排除邏輯）。</p>
+</div>
+
+<h2>二、逐條驗證</h2>
+<div class="card">
+  <table>
+    <tr><th style="width:34%">原始秘訣</th><th>判定</th><th class="l">推演依據</th></tr>
+    <tr>
+      <td class="l">① N 排格子內部有 N+M 個顏色，N 顏色只在 N 排格子內，那麼多出的 M 顏色都可以清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">N 行恰有 N 個隱藏物；N 個不出行外的顏色各貢獻 1 個、全在行內，行內名額用滿 → 行內屬於其他 M 色的格子必無隱藏物。（精確說法：可 ✕ 的是「這 N 行內」屬於 M 色的格子）</td>
+    </tr>
+    <tr>
+      <td class="l">② N 排格子內只有 N 個顏色，溢出 N 排格子同顏色的都可以清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">行內 N 個隱藏物顏色互異、只有 N 色可用 → 每色各 1 個都在這幾行 → 這些顏色<b>行外</b>的格子可 ✕。</td>
+    </tr>
+    <tr>
+      <td class="l">③ 同顏色 2 連續格子，沒有其他格子同顏色，那同時接觸這 2 格子的周圍格子都可以清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">隱藏物必在其中一格 → 同時貼著（連斜角）這 2 格的格子，無論實際藏哪格都與之相鄰 → 可 ✕。（驗證中推廣：兩格<b>不一定要相鄰</b>也成立）</td>
+    </tr>
+    <tr>
+      <td class="l">④ 同顏色的 L 形連續格子，盤面其他區域沒同顏色，可以找出 L 形包圍同時接觸的格子做清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">L 形 3 格必在 2×2 範圍內 → 同時貼著 3 格的格子＝2×2 的<b>缺口格</b>（唯一），無論藏哪格都相鄰 → 可 ✕。</td>
+    </tr>
+    <tr>
+      <td class="l">⑤ 同顏色 3 連續格子成直線，盤面其他區域沒同顏色，可以找出相鄰同時接觸 3 連續格子做清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">直線 3 格 → 同時貼著 3 格的格子＝<b>中間格兩側</b>那 2 格（斜貼兩端、正貼中間）→ 可 ✕。</td>
+    </tr>
+  </table>
+  <p class="note">①②為「計數法」：祕訣①的「多出 M 顏色可清除」指其<b>行內</b>格子；③④⑤為「共同接觸法」：與所有可能藏匿位置同時相鄰的格子必可排除。①②對「列」同樣成立。</p>
+</div>
+
+<h2>三、遊戲內最終文案（BUDDY_TALK）</h2>
+<div class="card">
+  <ul>
+    <li>💡 進階：N 行裡若有 N 種顏色完全沒延伸到行外，這幾行剩下的格子都能打 ✕！（列也適用）</li>
+    <li>💡 進階：N 行裡剛好只有 N 種顏色，這些顏色就各藏一個在這幾行——行外同色的格子都能打 ✕！（列也適用）</li>
+    <li>💡 進階：一種顏色只剩 2 格——無論藏在哪格，同時貼著這 2 格的格子（連斜角）都能打 ✕！</li>
+    <li>💡 進階：一種顏色是 L 形 3 格，同時貼著這 3 格的格子（L 的缺口）能打 ✕！</li>
+    <li>💡 進階：一種顏色排成直線 3 格，同時貼著這 3 格的格子（中間格的兩側）能打 ✕！</li>
+  </ul>
+  <p>文案沿用既有提示風格（💡 開頭、✕ 標記用語、結尾驚嘆號），並以「進階：」前綴與基礎提示區隔。</p>
+</div>
+
+<h2>四、驗證與版控</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">項目</th><th class="l">結果</th></tr>
+    <tr><td class="l">語法檢查</td><td class="l"><code>node --check js/main.js</code> 通過；「進階：」出現 5 次</td></tr>
+    <tr><td class="l">瀏覽器實機</td><td class="l">新 origin（:8975）載入正常、console 無錯誤；<code>BUDDY_TALK</code> 共 72 條；<code>doBuddyChat()</code> 渲染新提示至 #dlg-text（DOM＋截圖確認伴伴對話卡顯示正常）</td></tr>
+    <tr><td class="l">HTTP 檢查</td><td class="l">index.html／js/main.js／js/data.js／js/tower.js／css/style.css 全部 200</td></tr>
+    <tr><td class="l">提交</td><td class="l">手術式提交（僅 <code>BUDDY_TALK</code> 單行 hunk＋worklog）：6f90267 → 0a9989a（hash 回填）→ fc3309b（worklog 封存），已推送 origin/main；工作樹中其他暫存／未提交變更未動</td></tr>
+  </table>
+</div>
+</div>
+</body>
+</html>
