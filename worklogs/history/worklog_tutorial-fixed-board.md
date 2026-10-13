@@ -42,4 +42,4 @@
 ## 續行最終狀態
 
 - 完成：兩個教學改為「秘訣排除 → 找確定格捕捉 → 捕後排除 → 重複」的教學循環，訊息與高亮格一致；盤面與教學後隨機性維持不變。
-- Commit：（待提交後回填）
+- Commit：12277ef（Teach the fixed-board tutorials with elimination strategies，僅含 js/main.js 教學函式 hunk、本 worklog 續行與報告更新；工作樹中其他暫存／未提交變更未動）
