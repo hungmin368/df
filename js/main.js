@@ -2153,7 +2153,8 @@ function chestSvgFor(tier){
 function placeChests(){
   const N = G.N;
   if(N<6) return;
-  const w = { iron:HIDDEN_W.iron, gold:HIDDEN_W.silver, plat:HIDDEN_W.gold }; /* 階梯：鐵箱 > 銀寶箱位(黃金) > 金寶箱位(白金) */
+  /* 鐵箱 50%（權重＝黃金＋白金之和）；黃金:白金 維持 24:9 → 黃金 36.4%、白金 13.6%，非鐵箱合計 50% */
+  const w = { iron:HIDDEN_W.silver+HIDDEN_W.gold, gold:HIDDEN_W.silver, plat:HIDDEN_W.gold };
   const pool = new Map(); /* region -> 可放寶箱的格子 */
   for(let i=0;i<N*N;i++){
     if(G.catUnion.has(i) || G.cells[i].fixed) continue;
