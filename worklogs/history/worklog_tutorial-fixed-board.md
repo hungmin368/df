@@ -61,4 +61,4 @@
 ## 續行最終狀態（確定性宣稱修正）
 
 - 完成：兩處不實宣稱改正——4×4 首捕改為誠實的「無確定格 → 試探＋單捕最大排除收益」說明；5×5 確定首捕改為真可證明的第 2 列唯一候選 (1,4)（新增秘訣三），練習格改為可證明空的 (1,1)，列／欄排除加空集合防護；教學全流程與隨機回歸驗證通過。
-- Commit：<hash>（僅含 js/main.js 教學訊息 hunks、本 worklog 續行與報告更新；工作樹中其他暫存／未提交變更未動）
+- Commit：bcddabe（Correct the tutorial first-catch reasoning to match the fixed boards，僅含 js/main.js 教學訊息 hunks、本 worklog 續行與報告更新；工作樹中其他暫存／未提交變更未動）
