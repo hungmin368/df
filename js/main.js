@@ -2675,7 +2675,7 @@ function whyReveal(s){const N=G.N,r=(s/N)|0,c=s%N,rg=G.cells[s].region;const ban
   await sleep(900); if(!ok()) return;
   demoMark(2);
   await sleep(900); if(!ok()) return;
-  tutShow('秘訣排除了 2 格！現在還沒有 100% 確定的格子——就<b>挑最集中的先試</b>：第 1 列只剩 2 格、A 色塊也縮小了，發光這格機會最高！');
+  tutShow('秘訣排除了 2 格！但每條線都還剩 <b>至少 3 格</b>——還沒有 100% 確定的格子。這時就<b>勇敢先試一格</b>：發光這格若抓到，列＋欄＋周圍八格＋色塊能一口氣確定 <b>8 格</b>（正好半個盤面），收穫非常大！');
   tutClearRings(); tutRing(s1);
   await sleep(D); if(!ok()) return;
   tutShow('按下<b>捕捉器</b>丟球——就算沒中也有容錯，抓到第一隻就能用秘訣排除一大片！');
@@ -2724,10 +2724,11 @@ async function startGuided(){
   await waitBtn(); if(!ok()) return;
 
   const stars=[...G.cats].sort((a,b)=>a-b);
-  const s1=stars[0];
+  const s1=9; /* 固定盤：秘訣標完後第 2 列唯一候選（TUT_BOARDS[5] 解=[2,4,1,3,0]） */
 
-  const safe=neighbors8(s1,N)[0];
-  tutShow('先熟悉操作：點發光那格<b>打 ✕</b><br>（它緊貼等下的獵物，確定沒有恐龍）');
+  /* 練習格 6＝行外 A 格：第 1 列整列都是 A → A 的恐龍必在第 1 列，此格確定無恐龍 */
+  const safe=6;
+  tutShow('先熟悉操作！💡 <b>第 1 列整列都是 A 色</b>——A 的恐龍必在第 1 列，所以行外的 A 格（發光這格）<b>確定沒有恐龍</b>。<br>點牠<b>打 ✕</b>！');
   await waitCellClick([safe]); if(!ok()) return;
   await sleep(350); if(!ok()) return;
   tutShow('再點一次可以<b>取消 ✕</b>，試試看！');
@@ -2738,10 +2739,10 @@ async function startGuided(){
   await sleep(400); if(!ok()) return;
 
   /* 固定盤秘訣教學（TUT_BOARDS[5]：row0 全 A、E=(3,0),(4,0)，解=[2,4,1,3,0]） */
-  tutShow('💡 <b>秘訣一</b>：<b>第 1 列整列都是 A 色</b>——A 的恐龍一定在第 1 列！所以<b>行外的 A 格</b>（發光這 3 格）都能打 ✕，把它們標起來！');
-  tutClearRings(); tutRing([6,7,8]); tutFocus(true);
+  tutShow('💡 <b>秘訣一</b>：行外的 A 格還有 <b>2 格</b>（發光這 2 格）——一樣確定沒有恐龍，把它們也 ✕ 起來！');
+  tutClearRings(); tutRing([7,8]); tutFocus(true);
   await sleep(1200); if(!ok()) return;
-  await waitCells([6,7,8]); if(!ok()) return;
+  await waitCells([7,8]); if(!ok()) return;
   await sleep(400); if(!ok()) return;
   tutShow('💡 <b>秘訣二</b>：<b>E 色只剩左下角這 2 格</b>——恐龍必在其中一格，所以<b>同時貼著這 2 格</b>的右側 2 格都緊鄰牠 → ✕');
   tutClearRings(); tutRing([15,20]);
@@ -2750,7 +2751,12 @@ async function startGuided(){
   await sleep(1000); if(!ok()) return;
   await waitCells([16,21]); if(!ok()) return;
   await sleep(400); if(!ok()) return;
-  tutShow('看！<b>A 色塊只剩這 1 格</b>沒被 ✕——牠<b>百分百確定</b>就在這！');
+  tutShow('💡 <b>秘訣三</b>：E 的這 2 格<b>都在第 1 欄</b>——第 1 欄唯一的名額就是 E 的！所以第 1 欄的其他 3 格（發光處）也確定沒有恐龍 → ✕');
+  tutClearRings(); tutRing([0,5,10]); tutFocus(true);
+  await sleep(1400); if(!ok()) return;
+  await waitCells([0,5,10]); if(!ok()) return;
+  await sleep(400); if(!ok()) return;
+  tutShow('看！<b>第 2 列</b> 5 格已出局 4 格——只剩這格沒被 ✕，牠<b>鐵定</b>在這！');
   tutClearRings(); tutRing(s1); tutFocus(true);
   await sleep(1600); if(!ok()) return;
 
@@ -2763,17 +2769,27 @@ async function startGuided(){
   await sleep(1900); if(!ok()) return;
 
   const r1=Math.floor(s1/N), c1=s1%N;
-  tutShow('🎉 第一次捕獲！接著推理：牠在第 <b>'+(r1+1)+' 列</b> → 這列其他格都沒有。<br>先切回一般模式：再點一下<b>捕捉器</b>按鈕');
+  tutShow('🎉 第一次捕獲！接著推理：牠在第 <b>'+(r1+1)+' 列</b>、第 <b>'+(c1+1)+' 欄</b>——列與欄的其他格都不可能有恐龍。<br>先切回一般模式：再點一下<b>捕捉器</b>按鈕');
   await waitBall(false); if(!ok()) return;
   SFX.ball();
   const rowCells=[]; for(let i=r1*N;i<r1*N+N;i++) if(i!==s1 && G.cells[i].mark!=='x') rowCells.push(i);
-  tutShow('把<b>第 '+(r1+1)+' 列</b>剩下的格子全部 ✕（任一順序）');
-  await waitCells(rowCells); if(!ok()) return;
-  await sleep(350); if(!ok()) return;
+  if(rowCells.length){
+    tutShow('把<b>第 '+(r1+1)+' 列</b>剩下的格子全部 ✕（任一順序）');
+    await waitCells(rowCells); if(!ok()) return;
+    await sleep(350); if(!ok()) return;
+  } else {
+    tutShow('<b>第 '+(r1+1)+' 列</b>的其他格——已經全被秘訣 ✕ 掉了，連標都不用標！');
+    await sleep(1600); if(!ok()) return;
+  }
   const colCells=[]; for(let i=c1;i<N*N;i+=N) if(i!==s1 && G.cells[i].mark!=='x') colCells.push(i);
-  tutShow('<b>第 '+(c1+1)+' 欄</b>也一樣 ✕');
-  await waitCells(colCells); if(!ok()) return;
-  await sleep(350); if(!ok()) return;
+  if(colCells.length){
+    tutShow('<b>第 '+(c1+1)+' 欄</b>也一樣：剩下 '+colCells.length+' 格全部 ✕（任一順序）');
+    await waitCells(colCells); if(!ok()) return;
+    await sleep(350); if(!ok()) return;
+  } else {
+    tutShow('<b>第 '+(c1+1)+' 欄</b>的其他格也早就被 ✕ 光了——秘訣連成一片了吧！');
+    await sleep(1600); if(!ok()) return;
+  }
   const diagCells=neighbors8(s1,N).filter(i=>Math.floor(i/N)!==r1 && i%N!==c1 && G.cells[i].mark!=='x');
   if(diagCells.length){
     tutShow('別忘<b>斜角</b>！這 '+diagCells.length+' 格也不可能有人 ✕');
