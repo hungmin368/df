@@ -27,4 +27,4 @@
 
 - 完成：4×4 示範與 5×5 引導皆改為預生成固定盤，首次玩家每次所見一致；教學腳本在固定盤上完整可跑；教學後一般盤面維持隨機。
 - 產出：js/main.js（`TUT_BOARDS`＋`newBoard()` 分支）、`tutorial_fixed_board_report.html`、本工作日志。
-- Commit：（待提交後回填）
+- Commit：8ca236f（Use pre-generated fixed boards for the first-time tutorials，僅含 js/main.js 的 `TUT_BOARDS` hunk、本 worklog 與 tutorial_fixed_board_report.html；工作樹中其他暫存／未提交變更未動）
