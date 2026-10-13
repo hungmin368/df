@@ -12,4 +12,4 @@
 ## 最終狀態
 4. 驗證：`python -m http.server 8642` 啟動後 `curl` 回報 HTTP 200；以瀏覽器開啟 http://127.0.0.1:8642/tutorial_4x4_report.html 截圖檢查：標題、六大章節、時間軸表格、動態模板、原始碼對照皆正常渲染，本頁無 console 錯誤（console 中僅有先前其他頁面/port 的歷史紀錄）。
 - 已改檔：tutorial_4x4_report.html（新增）、worklogs/worklog_tutorial-4x4-report.md（新增）
-- commit：（見下方）
+- commit：23188b2（Add the 4x4 tutorial steps HTML report，僅含報告與本 worklog 兩檔；工作樹中其他暫存變更未動）
