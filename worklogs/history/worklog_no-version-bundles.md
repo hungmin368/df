@@ -16,4 +16,4 @@
 
 - 完成：專案政策確立為「僅 index.html 啟動，不再產生版本後綴發佈包」；既有發佈包已清除。
 - 產出：AGENTS.md 條目更新、本工作日志。
-- Commit：（待提交後回填）
+- Commit：5d62467（Ship index.html only and stop generating version bundles，僅含 AGENTS.md 發佈包條目 hunk 與本 worklog；AGENTS.md 內其他工作階段的未提交增補未一併提交）
