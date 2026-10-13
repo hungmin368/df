@@ -22,8 +22,11 @@
    - 「一種顏色排成直線 3 格，同時貼著這 3 格的格子（中間格的兩側）能打 ✕！」
 5. `node --check js/main.js` 通過；grep 確認「進階：」出現 5 次。
 6. 瀏覽器實機驗證（`python -m http.server` 8975 新 origin 避快取）：index.html 載入正常（標題 v1.9.14）、console 無錯誤；`BUDDY_TALK` 共 72 條（原 67＋新 5）；`doBuddyChat()` 渲染新提示至 #dlg-text（DOM 內容＝「伴伴：💡 進階：N 行裡若有 N 種顏色…」）並截圖確認伴伴對話卡視覺正常；`curl` 檢查 index.html／js/main.js／js/data.js／js/tower.js／css/style.css 全部 HTTP 200。
+7. 手術式提交：從 `git diff js/main.js` 萃取出僅含 `BUDDY_TALK` 行的單一 hunk 製成 patch，以暫存索引（`GIT_INDEX_FILE`）read-tree HEAD → apply --cached → 加入本 worklog → write-tree → commit-tree → update-ref，產生提交 6f90267（僅 js/main.js 1 行＋本 worklog）；提交後 `git reset HEAD -- js/main.js` 對齊真實索引並 `git add` 本 worklog，複核：其他 38 個暫存檔與 241 行未提交變更全部保持原狀未動。
 
 ## 最終狀態
 
-- （進行中）
-- Commit：（待提交後回填）
+- 完成：5 條進階排除秘訣（顏色計數×2、共同接觸×3）經規則推演驗證全部正確，修飾為「💡 進階：」格式加入隨行夥伴閒聊提示 `BUDDY_TALK`（js/main.js:586，總數 67→72）。
+- 驗證：`node --check` 通過；瀏覽器實機（新 origin :8975）載入正常、console 無錯誤、新提示經 `doBuddyChat()` 渲染正確（DOM＋截圖）；`curl` 五項資源全 200。
+- 已改檔：js/main.js（BUDDY_TALK 追加 5 條）、worklogs/worklog_buddy-tips-advanced.md（新增）
+- Commit：6f90267（Add five advanced elimination tips to buddy chat，僅含 main.js 一行變更與本 worklog 兩檔；工作樹中其他暫存／未提交變更未動）
