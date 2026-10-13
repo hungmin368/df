@@ -2149,17 +2149,21 @@ function chestSvgFor(tier){
     +'</svg>';
 }
 
-/* 開局：在「保證沒有恐龍」的格子藏寶箱（教學盤不放，不打擾教學）；關鍵寶箱格（鎖定）排除 */
+/* 開局：寶箱跟恐龍同一條規則——每個顏色區塊恰藏 1 個，放在該區「保證沒有恐龍」的隨機格（教學盤不放，4×4/5×5 不放）；關鍵寶箱格（鎖定）排除 */
 function placeChests(){
   const N = G.N;
-  const cnt = N>=12 ? 3 : (N>=8 ? 2 : (N>=6 ? 1 : 0));
-  if(!cnt) return;
-  const pool = [];
-  for(let i=0;i<N*N;i++) if(!G.catUnion.has(i) && !G.cells[i].fixed) pool.push(i);
-  shuffle(pool);
+  if(N<6) return;
   const w = { iron:HIDDEN_W.iron, gold:HIDDEN_W.silver, plat:HIDDEN_W.gold }; /* 階梯：鐵箱 > 銀寶箱位(黃金) > 金寶箱位(白金) */
-  for(let k=0;k<cnt && k<pool.length;k++){
-    G.cells[pool[k]].chest = wpick(['iron','gold','plat'], t=>w[t]);
+  const pool = new Map(); /* region -> 可放寶箱的格子 */
+  for(let i=0;i<N*N;i++){
+    if(G.catUnion.has(i) || G.cells[i].fixed) continue;
+    const rg = G.cells[i].region;
+    if(!pool.has(rg)) pool.set(rg, []);
+    pool.get(rg).push(i);
+  }
+  for(const cells of pool.values()){
+    shuffle(cells);
+    G.cells[cells[0]].chest = wpick(['iron','gold','plat'], t=>w[t]);
   }
 }
 
