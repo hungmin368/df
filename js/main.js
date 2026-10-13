@@ -994,8 +994,23 @@ function newRun(N){
   newBoard();
 }
 
+/* 第一次教學固定盤面：4×4 示範／5×5 引導都用預生成唯一解盤（編碼同龍塔：每格 base-36 區域 id），
+   盤面＝A A A B／C A B B／C C D D／C D D D（4×4）與 row0 全 A 版（5×5），解由 solve2 導出 */
+const TUT_BOARDS = { 4:'0001201122332333', 5:'0000020001222314233142311' };
+
 function newBoard(){
   const N = G.N;
+  if(G.tutorial && TUT_BOARDS[N]){ /* 第一次教學：固定盤面，每次進入都相同 */
+    const ro=towerDecode(N, TUT_BOARDS[N]);
+    const sol=solve2(N, ro);
+    if(sol && sol.length===1){
+      const cats=new Set();
+      for(let r=0;r<N;r++) cats.add(r*N+sol[0][r]);
+      finishBoard({cats, regionOf:ro});
+      return;
+    }
+    /* 固定盤資料缺損或非唯一解：退回一般生成流程 */
+  }
   if(TOWER.level && TOWER_OK){ /* 龍塔：預生成盤面直接用（不旋轉/不鏡像） */
     const tn=towerSizeOf(TOWER.level);
     const tarr=tn ? TOWER_DATA[String(tn)] : null;
