@@ -18,4 +18,4 @@
 
 - 狀態：浮動灰框已移除並在三個捲動位置驗證；地圖外框暗角視覺保留，改為固定貼齊可視框。
 - 產出：`css/style.css`、本工作日志。
-- commit hash：（本 commit）
+- commit hash：31188ea
