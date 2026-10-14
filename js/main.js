@@ -325,9 +325,6 @@ try{ ECON = Object.assign(ECON, JSON.parse(LS.get('dinodoku-econ')||'{}')||{}); 
 function econSave(){ LS.set('dinodoku-econ', JSON.stringify(ECON)); }
 function econRender(){
   const free=!!ECON.devFree;
-  $('tickets').textContent = free?'∞':(ECON.tickets||0);
-  $('seeds').textContent = free?'∞':(ECON.seeds||0);
-  const po=$('potions'); if(po) po.textContent = free?'∞':(ECON.potions||0);
   const rw=$('rw-tickets'); if(rw) rw.textContent = free?'∞':(ECON.tickets||0);
   document.querySelectorAll('#reward-games .rg-btn').forEach(b=>{ b.disabled=!(free||ECON.tickets>0); });
   updateHintBtn();
@@ -440,6 +437,10 @@ function habitatsOf(id){
    出沒區域內星級權重 ×4（地區加成：出沒區域會提高星級機率） */
 const HIDDEN_W={ iron:64, s1:48, s2:34, silver:24, s3:15, gold:9, s4:5, s5:2 };
 const SPAWN_W=[HIDDEN_W.s1,HIDDEN_W.s2,HIDDEN_W.s3,HIDDEN_W.s4,HIDDEN_W.s5];
+/* 新規則：每行／每列／每色區恰 1 個「隱藏物」（解格），類型機率 恐龍40／寶箱40／石頭20；
+   寶箱階梯權重 33/24/9 → 鐵 50%／黃金 36.4%／白金 13.6% */
+const HIDDEN_TYPE_W={ dino:40, chest:40, stone:20 };
+const CHEST_TIER_W={ iron:HIDDEN_W.silver+HIDDEN_W.gold, gold:HIDDEN_W.silver, plat:HIDDEN_W.gold };
 function spawnWeight(p,N){
   let w=SPAWN_W[(p.stars||1)-1]||1;
   if(N>=6 && habitatsOf(p.id).includes(N)) w*=4;
@@ -478,7 +479,8 @@ function towerSizeOf(L){
 }
 function towerDecode(N,s){ const ro=new Array(N*N); for(let i=0;i<N*N;i++) ro[i]=parseInt(s[i],36); return ro; }
 /* 龍塔開放門檻＝地圖已通關的最大尺寸：地圖 6×6 過關才開塔；地圖 N×N 過關才開塔內 N×N 區段 */
-function towerGate(){ let m=0; for(let n=6;n<=13;n++){ if(PROG.clear && PROG.clear[n]) m=n; } return m; }
+let DEV_TOWER_GATE=0; /* 工程模式跳層用：僅本階段有效、不存檔 */
+function towerGate(){ let m=0; for(let n=6;n<=13;n++){ if(PROG.clear && PROG.clear[n]) m=n; } return Math.max(m, DEV_TOWER_GATE); }
 
 /* 顏色屬性：越稀有越多色（1~4），以 id 雜湊決定 */
 function colorAttrs(id, N){
@@ -492,14 +494,14 @@ function colorAttrs(id, N){
 /* ---------- 技能庫／潛能激發 ---------- */
 const SKILLS = [
   {id:'lucky1', n:'幸運星塵', t:0, d:'下次獎勵小遊戲多 1 顆種子'},
-  {id:'sweep1', n:'微風掃除', t:0, d:'自動標記 1 格沒有恐龍 ✕'},
-  {id:'sweep2', n:'色系淨化', t:1, d:'自動標記 2 格沒有恐龍 ✕'},
-  {id:'hint1',  n:'心靈感應', t:1, d:'免費提示一隻恐龍'},
+  {id:'sweep1', n:'微風掃除', t:0, d:'自動標記 1 格沒有隱藏物 ✕'},
+  {id:'sweep2', n:'色系淨化', t:1, d:'自動標記 2 格沒有隱藏物 ✕'},
+  {id:'hint1',  n:'心靈感應', t:1, d:'免費提示一個隱藏物'},
   {id:'time15', n:'時間沙·小', t:1, d:'沙漏 +15 秒'},
-  {id:'sweep3', n:'色系暴風', t:2, d:'自動標記 4 格沒有恐龍 ✕'},
+  {id:'sweep3', n:'色系暴風', t:2, d:'自動標記 4 格沒有隱藏物 ✕'},
   {id:'intel',  n:'情報耳語', t:2, d:'透露可能的藏匿座標'},
   {id:'time30', n:'時間沙·大', t:2, d:'沙漏 +30 秒'},
-  {id:'reveal', n:'星願爆發', t:3, d:'直接召喚一隻恐龍'},
+  {id:'reveal', n:'星願爆發', t:3, d:'直接揭示一個隱藏物'},
   {id:'luck2',  n:'幸運共鳴', t:3, d:'下次獎勵必出稀有以上'},
 ];
 const AWAKEN_COST = [5,25,125,500];
@@ -755,8 +757,8 @@ function triggerBuddySkill(forceSk){
   const S=selected;
   let done=false;
   const doMsg=()=>doBuddyChat(BUDDY_SKILL_TALK[sk]||'我用技能了！');
-  if(sk==='sweep1'){ const c=findRandomSafe(); if(c!==-1){ G.cells[c].mark='x'; cellEls[c].classList.add('x'); updateStatus(); SFX.tap(); done=true; } }
-  else if(sk==='sweep2'||sk==='sweep3'){ const n=sk==='sweep3'?4:2; const w=[]; for(let i=0;i<n;i++){ const c=findRandomSafe(); if(c!==-1)w.push(c); } w.forEach(c=>{ G.cells[c].mark='x'; cellEls[c].classList.add('x'); }); updateStatus(); if(w.length)SFX.tap(); done=!!w.length; }
+  if(sk==='sweep1'){ const c=findRandomSafe(); if(c!==-1){ G.cells[c].mark='x'; cellEls[c].classList.add('x'); SFX.tap(); done=true; } }
+  else if(sk==='sweep2'||sk==='sweep3'){ const n=sk==='sweep3'?4:2; const w=[]; for(let i=0;i<n;i++){ const c=findRandomSafe(); if(c!==-1)w.push(c); } w.forEach(c=>{ G.cells[c].mark='x'; cellEls[c].classList.add('x'); }); if(w.length)SFX.tap(); done=!!w.length; }
   else if(sk==='hint1'){ /* 心靈感應＝提示：龍塔挑戰不提供 */
     if(TOWER.level){ doBuddyChat('龍塔的考驗要靠自己～在這裡我不能給你提示！'); return; }
     if(typeof freeHint==='function' && typeof showHintAt==='function'){ const i=freeHint(); if(i!==null){ showHintAt(i); done=true; } }
@@ -765,8 +767,8 @@ function triggerBuddySkill(forceSk){
     if(TOWER.level){ doBuddyChat('龍塔的考驗不計時～時間技能在這裡派不上用場！'); return; }
     timerAdd(sk==='time15'?15:30); done=true;
   }
-  else if(sk==='intel'){ const cand=[...G.cats].filter(i=>!G.cells[i].revealed); if(cand.length){ const fr=frOf(BUDDY.id); const sure=cand.filter(()=>Math.random()<fr/100); if(sure.length){ const i=sure[0]; const rc=Math.floor(i/G.N)%G.N+1, cc=i%G.N+1; doBuddyChat('我覺得…<b>第'+rc+'行第'+cc+'列</b>可能有恐龍！'); done=true; } else { doBuddyChat('嗯…我也不是很確定呢…'); done=true; } } }
-  else if(sk==='reveal'){ const cand=[...G.cats].filter(i=>!G.cells[i].revealed); if(cand.length){ const i=cand[Math.floor(Math.random()*cand.length)]; G.cells[i].revealed=true; cellEls[i].classList.add('alive'); G.found++; updateStatus(); updateHUD(); SFX.catchp(); checkBallEnd(); done=true; } }
+  else if(sk==='intel'){ const cand=[...G.cats].filter(i=>!G.cells[i].revealed); if(cand.length){ const fr=frOf(BUDDY.id); const sure=cand.filter(()=>Math.random()<fr/100); if(sure.length){ const i=sure[0]; const rc=Math.floor(i/G.N)%G.N+1, cc=i%G.N+1; doBuddyChat('我覺得…<b>第'+rc+'行第'+cc+'列</b>可能有隱藏物！'); done=true; } else { doBuddyChat('嗯…我也不是很確定呢…'); done=true; } } }
+  else if(sk==='reveal'){ const cand=[...G.cats].filter(i=>!G.cells[i].revealed); if(cand.length){ const i=cand[Math.floor(Math.random()*cand.length)]; revealCellVisual(i); G.found++; updateHUD(); SFX.catchp(); buddyAutoExclude(i, 700); checkBallEnd(); done=true; } }
   else if(sk==='luck1'||sk==='luck2'){ ECON.luck=(ECON.luck||0)|(sk==='luck1'?1:2); econSave(); econRender(); done=true; }
   if(done){ SFX.catchp(); doMsg(); }
   else if(forceSk){ doBuddyChat('嗯…現在用不上這個技能呢～'); }
@@ -905,14 +907,15 @@ $('dev-close').onclick=()=>hide('ov-dev');
 $('dev-win').onclick=()=>{
   if(!G || G.tutorial || G.state!=='marking'){ floatText($('ov-dev'),'目前無進行中的關卡','#d64545'); return; }
   hide('ov-dev');
-  G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed){ c.revealed=true; cellEls[i].classList.add('alive'); } });
-  G.found=G.N; updateHUD(); updateStatus();
+  G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed){ revealCellVisual(i); } });
+  G.found=G.N; updateHUD();
   G.state='ending'; timerStop();
   setTimeout(winRound,600);
 };
 $('dev-seeds').onclick=()=>{ ECON.seeds=(ECON.seeds||0)+100; econSave(); econRender(); openDev(); };
 $('dev-tickets').onclick=()=>{ ECON.tickets=(ECON.tickets||0)+10; econSave(); econRender(); openDev(); };
-$('dev-jump').onclick=()=>{ const n=+$('dev-lv').value; if(!n||n<4||n>18) return; TOWER.level=0; hide('ov-dev'); hide('ov-menu'); newRun(n); };
+$('dev-jump').onclick=()=>{ const n=+$('dev-lv').value; if(!n||n<4||n>18) return; DEV_TOWER_GATE=0; TOWER.level=0; hide('ov-dev'); hide('ov-menu'); newRun(n); };
+$('dev-tower-jump').onclick=()=>{ const L=Math.floor(+$('dev-tower-lv').value); const tn=towerSizeOf(L); if(!tn) return; DEV_TOWER_GATE=tn; TOWER.level=L; hide('ov-dev'); hide('ov-menu'); newRun(tn); };
 $('dev-free').onclick=()=>{ ECON.devFree=!ECON.devFree; econSave(); econRender(); openDev(); };
 $('dev-reward').onclick=()=>{ hide('ov-dev'); econRender(); show('ov-reward'); SFX.tap(); };
 $('dev-dex-all').onclick=()=>{
@@ -938,8 +941,9 @@ $('dev-skill').onclick=()=>{
   setTimeout(()=>triggerBuddySkill(),350);
 };
 $('dev-wipe').onclick=()=>{
-  if(!confirm('清除所有存檔？（分數／圖鑑／種子／技能／隨行全部重置）')) return;
+  if(!confirm('清除所有存檔？（分數／圖鑑／種子／技能／隨行／攻略彈幕全部重置）')) return;
   ['dinodoku-dex','dinodoku-sound','dinodoku-lv','dinodoku-econ','dinodoku-skills','dinodoku-potential','dinodoku-buddy','dinodoku-friend','dinodoku-friend2','dinodoku-story','dinodoku-companion','dinodoku-prog','dinodoku-hab','dinodoku-tower'].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
+  try{ Object.keys(localStorage).forEach(function(k){ if(k.indexOf('dinodoku-twcomments-')===0||k==='dinodoku-twname'||k==='dinodoku-danmaku-on'||k==='dinodoku-twlast'||k==='dinodoku-twday'){ localStorage.removeItem(k); } }); }catch(e){}
   location.reload();
 };
 /* 完整重置：掃掉所有 dinodoku-* 紀錄（含最近獲得、專屬碎片），關卡進度回到全新狀態 */
@@ -1041,11 +1045,13 @@ function newBoard(){
   }
   $('gen-what').textContent = N+' × '+N+(G.tutorial?' 教學盤':' 唯一解盤面');
   show('ov-loading');
+  const g0=G; /* 60ms 內若已開新局（跳關／重來），舊回呼不得寫入新盤 */
   setTimeout(()=>{
+    hide('ov-loading');
+    if(G!==g0) return;
     let pz=null;
     if(N>=14){ pz=generatePuzzle(N,8000,G.tutorial); }
     else { for(const b of [1200,3000,8000]){ pz=generatePuzzle(N,b,G.tutorial); if(pz) break; } }
-    hide('ov-loading');
     if(pz){ finishBoard(pz); poolRefill(); }
     else {
       G.state='done';
@@ -1085,7 +1091,19 @@ function finishBoard(pz){
       const extra=shuffle([...DINOS]).filter(p=>!ids.has(p.id));
       while(picked.length<need && extra.length) picked.push(extra.shift());
     }
-    [...G.catUnion].sort((a,b)=>a-b).forEach((ci,k)=>{ G.cells[ci].poke = picked[k]; });
+    const sol=[...G.catUnion].sort((a,b)=>a-b);
+    sol.forEach(ci=>{
+      const c=G.cells[ci];
+      if(G.tutorial || (G.keyChest && G.keyChest.isCat && G.keyChest.cell===ci)) c.hidType='dino';
+      else c.hidType=wpick(['dino','chest','stone'], t=>HIDDEN_TYPE_W[t]);
+    });
+    let pk=0;
+    sol.forEach(ci=>{
+      const c=G.cells[ci];
+      if(c.hidType==='dino') c.poke = picked[pk++] || picked[picked.length-1];
+      else if(c.hidType==='chest') c.chest = wpick(['iron','gold','plat'], t=>CHEST_TIER_W[t]);
+      else c.stone = true;
+    });
   })();
   if(G.keyChest){
     const c = G.cells[G.keyChest.cell];
@@ -1097,7 +1115,6 @@ function finishBoard(pz){
     else c.mark = 'x'; /* 寶箱格保證無貓：鎖定排除，玩家不可翻 */
   }
   G.chests=[]; G.caughtMons=[]; G.roundNewDex=[];
-  if(!G.tutorial) placeChests();
   G.state='marking'; G.balls=N+3; G.ballMode=false; G.found=0; G.lastFail=false; /* v1.3：隻數+3 容錯 */
   if(typeof updateHintBtn==='function') updateHintBtn();
   G.colors = assignRegionColors(N, G.regionOf, buildPalette(N));
@@ -1116,7 +1133,7 @@ function finishBoard(pz){
   $('btn-ball').disabled=false; $('btn-ball').classList.remove('active'); $('ball-n').textContent='×'+G.balls;
   document.body.classList.remove('ball-mode');
   timerStart();
-  updateHUD(); updateStatus(); renderLV();
+  updateHUD(); renderLV();
   demoToken++;
   tutHide();
   if(G.tutorial==='demo') startDemo();
@@ -1139,6 +1156,7 @@ function renderBoard(){
     d.style.background = G.colors[G.cells[i].region];
     d.innerHTML = '<span class="mk">✕</span>'
       +(G.cells[i].chest?'<span class="chesthide">'+chestSvgFor(G.cells[i].chest)+'</span>':'')
+      +(G.cells[i].stone?'<span class="stonehide">🪨</span>':'')
       +(G.cells[i].keyChest?'<span class="chestshow" title="關鍵寶箱：過關才能開啟">'+chestSvgFor(G.cells[i].chestTier)+'</span>':'')
       +'<span class="catface"><span class="p3d"><img alt="" draggable="false"></span></span>';
     const im=d.querySelector('.catface img');
@@ -1160,16 +1178,19 @@ function syncDexSize(){ /* 圖鑑圖示固定＝6×6 時的方格尺寸（上限
 }
 function sizeFont(){
   const board=$('board');
-  const px = Math.max(20, board.clientWidth / G.N);
-  board.style.fontSize = Math.max(8, Math.floor(px*0.5)) + 'px';
+  /* 兩輪收斂：換大尺寸時首輪量到的寬度仍被舊字級撐大，單輪會殘留橫向溢出 */
+  for(let k=0;k<2;k++){
+    const px = Math.max(20, board.clientWidth / G.N);
+    board.style.fontSize = Math.max(8, Math.floor(px*0.5)) + 'px';
+  }
 }
-/* 手機版：量測 header/狀態列/按鈕列/伴伴列實際高度，反推棋盤可用寬度 → --boardw */
+/* 手機版：量測 header/按鈕列/伴伴列實際高度，反推棋盤可用寬度 → --boardw */
 function fitMobileBoard(){
   const root=document.documentElement;
   if(window.innerWidth>720){ root.style.removeProperty('--boardw'); return; }
   const vpH=window.visualViewport?window.visualViewport.height:window.innerHeight;
   const h=el=>el?el.getBoundingClientRect().height:0;
-  const chrome=h(document.querySelector('header'))+h($('status'))+h($('controls'))+h($('dlg'))+30;
+  const chrome=h(document.querySelector('header'))+h($('controls'))+h($('dlg'))+30;
   const w=Math.min(window.innerWidth*0.94, 500, Math.max(220, vpH-chrome));
   root.style.setProperty('--boardw', Math.floor(w)+'px');
 }
@@ -1222,14 +1243,35 @@ function markToggle(i){
   c.mark = (c.mark==='x') ? '' : 'x';
   cellEls[i].classList.toggle('x', c.mark==='x');
   (c.mark==='x'?SFX.tap:SFX.untap)();
-  updateStatus();
 }
 function setBallMode(on){
   G.ballMode=on;
   document.body.classList.toggle('ball-mode', on);
   $('btn-ball').classList.toggle('active', on);
-  updateStatus();
 }
+/* 滿好感（100%）加成：捕獲任一隱藏物後自動排除同行、同列與周圍八格（每行/列/區恰 1 個 → 邏輯必然安全） */
+function buddyAutoExclude(i, animMs){
+  if(G.tutorial || !BUDDY.id || frOf(BUDDY.id)<100) return;
+  const curG=G, N=G.N, rr=Math.floor(i/N), cc2=i%N;
+  const tset=new Set();
+  for(let c3=0;c3<N;c3++){ if(rr*N+c3!==i) tset.add(rr*N+c3); }
+  for(let r3=0;r3<N;r3++){ if(r3*N+cc2!==i) tset.add(r3*N+cc2); }
+  for(const nb of neighbors8(i,N)) tset.add(nb); /* 周圍八格（含斜角）也安全 */
+  /* 多解盤（N>=15）的 catUnion 為並集：同行/同列可能還有另一個隱藏物，不可誤標 */
+  const free=j=>!curG.cells[j].mark && !curG.cells[j].revealed && !curG.cells[j].fixed && !curG.catUnion.has(j);
+  const targets=[...tset].filter(free);
+  targets.forEach((j,k)=>{
+    setTimeout(()=>{
+      if(G===curG && G.state==='marking' && free(j)){
+        curG.cells[j].mark='x';
+        cellEls[j].classList.add('x');
+        SFX.tap();
+      }
+    }, animMs + k*200);
+  });
+  if(targets.length) doBuddyChat('滿滿的羈絆！這行、這列和周圍我都幫你排除了 ✕');
+}
+
 function doBall(i){
   if(G.balls<=0) return;
   const c=G.cells[i];
@@ -1241,69 +1283,57 @@ function doBall(i){
     c.revealed=true; c.mark='';
     el.classList.remove('x');
     G.found++;
-    if(c.poke) G.caughtMons.push(c.poke);
-    el.classList.add('cat');
-    const isNew = c.poke ? dexCollect(c.poke.id) : false;
-    if(isNew) G.roundNewDex.push(c.poke.id);
-    const isFive = !!(c.poke && c.poke.stars===5);
-    if(isNew) spawnCatchText(el, isFive);
-    if(isNew && !G.tutorial && c.poke){ /* 新發現：等寵物落到格子後彈出星空發現視窗 */
-      const mm=c.poke, gg=G;
-      setTimeout(()=>{ if(G===gg) queueNewMon(mm); }, isFive?4250:2150);
+    let animMs=700; /* 寶箱／石頭：無召喚動畫，短暫延遲後開始標記 */
+    if(c.poke){
+      G.caughtMons.push(c.poke);
+      el.classList.add('cat');
+      const isNew = dexCollect(c.poke.id);
+      if(isNew) G.roundNewDex.push(c.poke.id);
+      const isFive = !!(c.poke.stars===5);
+      if(isNew) spawnCatchText(el, isFive);
+      if(isNew && !G.tutorial){ /* 新發現：等寵物落到格子後彈出星空發現視窗 */
+        const mm=c.poke, gg=G;
+        setTimeout(()=>{ if(G===gg) queueNewMon(mm); }, isFive?4250:2150);
+      }
+      if(isFive){ confetti(); SFX.win(); }
+      SFX.catchp();
+      if(!G.tutorial && TIMER.on){
+        timerAdd(30);
+        setTimeout(()=>floatText(el,'+30s ⏱','#1f7a46'), 380);
+      }
+      animMs = isFive?4200:2200; /* 等恐龍出現動畫結束 */
+    } else if(c.chest && !c.chestGot){
+      c.chestGot=true;
+      G.chests.push(c.chest);
+      el.classList.add('chestgot');
+      floatText(el,'發現寶箱！','#b8860b');
+      SFX.bonus();
+    } else if(c.stone && !c.stoneGot){
+      c.stoneGot=true;
+      el.classList.add('stonegot');
+      floatText(el,'挖到石頭…沒用','#8a7d6f');
+      SFX.miss();
     }
-  if(isFive){
-
-    confetti();
-
-    SFX.win();
-}
-    SFX.catchp();
-    if(!G.tutorial && TIMER.on){
-      timerAdd(30);
-      setTimeout(()=>floatText(el,'+30s ⏱','#1f7a46'), 380);
-    }
-    updateStatus();
-    /* 滿好感（100%）加成：捕獲後自動排除同行同列（邏輯必然安全） */
-    if(!G.tutorial && BUDDY.id && frOf(BUDDY.id)>=100){
-      const curG=G;
-      const N=G.N, rr=Math.floor(i/N), cc2=i%N;
-      const tset=new Set();
-      for(let c3=0;c3<N;c3++){ if(rr*N+c3!==i) tset.add(rr*N+c3); }
-      for(let r3=0;r3<N;r3++){ if(r3*N+cc2!==i) tset.add(r3*N+cc2); }
-      for(const nb of neighbors8(i,N)) tset.add(nb); /* 周圍八格（含斜角）也安全 */
-      const targets=[...tset].filter(j=>!curG.cells[j].mark && !curG.cells[j].revealed);
-      const animMs = isFive?4200:2200; /* 等恐龍出現動畫結束 */
-      targets.forEach((j,k)=>{
-        setTimeout(()=>{
-          if(G===curG && G.state==='marking' && !curG.cells[j].mark && !curG.cells[j].revealed){
-            curG.cells[j].mark='x';
-            cellEls[j].classList.add('x');
-            SFX.tap();
-            updateStatus();
-          }
-        }, animMs + k*200);
-      });
-      if(targets.length) doBuddyChat('滿滿的羈絆！這行、這列和周圍我都幫你排除了 ✕');
-    }
-  } else if(c.chest && !c.chestGot){
-    c.chestGot=true; c.mark='';
-    el.classList.remove('x');
-    G.chests.push(c.chest);
-    el.classList.add('chestgot');
-    floatText(el,'發現寶箱！','#b8860b');
-    SFX.bonus();
-    updateStatus();
+    buddyAutoExclude(i, animMs);
   } else {
     c.mark='x';
     el.classList.add('x','missflash');
     setTimeout(()=>el.classList.remove('missflash'),600);
     floatText(el,'落空','#8a7d6f');
     SFX.miss();
-    updateStatus();
   }
   if(G.balls<=0) setBallMode(false);
   $('ball-n').textContent='×'+G.balls;
   checkBallEnd();
+}
+
+/* 揭示解格視覺（依隱藏物類型）：技能／工程過關／失敗揭示共用 */
+function revealCellVisual(i){
+  const c=G.cells[i], el=cellEls[i];
+  c.revealed=true; c.mark=''; el.classList.remove('x');
+  if(c.chest){ c.chestGot=true; el.classList.add('chestgot'); }
+  else if(c.stone){ c.stoneGot=true; el.classList.add('stonegot'); }
+  else el.classList.add('alive');
 }
 
 function onCell(i){
@@ -1321,14 +1351,10 @@ function onCell(i){
 
 function updateCounts(){ /* 座標為靜態標籤 1..N，無需更新 */ }
 
-function updateStatus(){
-  const cand = G.cells.filter(c=>c.mark!=='x').length;
-  const okk = cand===G.N ? ' ✅' : '';
-  $('status').innerHTML = '候選 <b>'+cand+'</b> 格 · 恐龍 <b>'+G.N+'</b> 隻 · 已排除 <b>'+(G.cells.length-cand)+'</b> 格'+okk+(G.ballMode?' · 🎯 <b>捕捉器模式：點方格捕獲</b>':'');
-}
-
 function updateHUD(){
-  $('round').textContent = TOWER.level ? ('塔'+TOWER.level) : G.round;
+  $('round').textContent = TOWER.level ? TOWER.level : G.round;
+  $('round-pre').textContent = TOWER.level ? '龍塔第' : '第 ';
+  $('round-post').textContent = TOWER.level ? '' : ' 局';
   $('score').textContent = lvTotal();
   $('hud-score').style.display = TOWER.level ? 'none' : ''; /* 龍塔不算分數 */
   renderHearts();
@@ -1390,7 +1416,7 @@ function renderTimer(){
 function timeUp(){
   if(!G || G.state!=='marking') return;
   timerStop(); G.state='ending';
-  if(!TOWER.level) G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed && c.mark!=='x') cellEls[i].classList.add('ghost'); }); /* 龍塔失敗不揭示位置 */
+  if(!TOWER.level) G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed && c.mark!=='x') cellEls[i].classList.add(c.poke?'ghost':(c.chest?'chestgot':(c.stone?'stonegot':'ghost'))); }); /* 龍塔失敗不揭示位置 */
   SFX.fail();
   setTimeout(timeoutRound, 900);
 }
@@ -1422,9 +1448,9 @@ function timeoutRound(){
   const towerFail=!!TOWER.level;
   $('res-img').src=RESULT_IMGS.fail;
   $('res-title').textContent='時間到！';
-  $('res-sub').textContent='沙漏的沙流光了…還有 '+left+' 隻恐龍沒找到'+(towerFail?'（龍塔不揭示位置）':'（位置已揭示）');
+  $('res-sub').textContent='沙漏的沙流光了…還有 '+left+' 個隱藏物沒找到'+(towerFail?'（龍塔不揭示位置）':'（位置已揭示）');
   let bd='';
-  bd+=row('🎯 捕獲恐龍', G.found+' / '+G.N, '+0', '');
+  bd+=row('🎯 找到隱藏物', G.found+' / '+G.N, '+0', '');
   if(lostN) bd+='<div class="row"><span>📖 圖鑑新捕獲</span><span class="neg">闖關失敗，'+lostN+' 筆已取消</span></div>';
   if(G.keyChestTier) bd+='<div class="row"><span>🔑 關鍵寶箱</span><span class="dim">過關才能開啟，這次錯失了…</span></div>';
   bd+=chests.rows;
@@ -1738,7 +1764,6 @@ function doAwaken(id, replaceIndex=null){
 $('dexd-close').onclick = ()=>hide('ov-dex');
 function openDexFull(){ renderDexFull(); show('ov-dexfull'); SFX.tap(); }
 $('dex-banner').onclick=()=>{ openDexFull(); };
-$('btn-lv').onclick=()=>{ renderLV(); show('ov-lv'); SFX.tap(); };
 $('lv-close').onclick=()=>hide('ov-lv');
 $('menu-record').onclick=()=>{ renderLV(); show('ov-lv'); SFX.tap(); };
 $('dexfull-close').onclick = ()=>hide('ov-dexfull');
@@ -1749,7 +1774,6 @@ $('dexfull-reset').onclick = ()=>{
   renderDexFull(); renderDex();
   SFX.wrong();
 };
-$('btn-dex').onclick = openDexFull;
 function dexCollect(id){
   if(dexGot.has(id)) return false;
 
@@ -2164,25 +2188,6 @@ function chestSvgFor(tier){
     +'</svg>';
 }
 
-/* 開局：寶箱跟恐龍同一條規則——每個顏色區塊恰藏 1 個，放在該區「保證沒有恐龍」的隨機格（教學盤不放，4×4/5×5 不放）；關鍵寶箱格（鎖定）排除 */
-function placeChests(){
-  const N = G.N;
-  if(N<6) return;
-  /* 鐵箱 50%（權重＝黃金＋白金之和）；黃金:白金 維持 24:9 → 黃金 36.4%、白金 13.6%，非鐵箱合計 50% */
-  const w = { iron:HIDDEN_W.silver+HIDDEN_W.gold, gold:HIDDEN_W.silver, plat:HIDDEN_W.gold };
-  const pool = new Map(); /* region -> 可放寶箱的格子 */
-  for(let i=0;i<N*N;i++){
-    if(G.catUnion.has(i) || G.cells[i].fixed) continue;
-    const rg = G.cells[i].region;
-    if(!pool.has(rg)) pool.set(rg, []);
-    pool.get(rg).push(i);
-  }
-  for(const cells of pool.values()){
-    shuffle(cells);
-    G.cells[cells[0]].chest = wpick(['iron','gold','plat'], t=>w[t]);
-  }
-}
-
 /* 結算時逐箱抽獎並立刻套用獎勵（之後的動畫只是揭示，避免玩家跳過漏領） */
 function rollChest(tier){
   const d = CHEST_DEFS[tier];
@@ -2267,7 +2272,7 @@ function chestStripAnimate(list, caught){
 $('btn-clear').onclick = ()=>{
   if(!G || G.state!=='marking' || G.tutorial) return;
   G.cells.forEach((c,i)=>{ c.mark=''; cellEls[i].classList.remove('x'); });
-  updateCounts(); updateStatus();
+  updateCounts();
 };
 let hintBusy=false;
 function spawnCatchText(el, isFive){
@@ -2371,7 +2376,7 @@ function winRound(){
       ? '流程就是：✕ 排除 → 鎖定唯一候選 → 丟球捕獲。換你上場！'
       : '你已經獨立完成一局，規則都學會了！6×6 起加入沙漏計時：每抓一隻 +30 秒！';
     let bd='';
-    bd+=row('🎯 捕獲恐龍', G.found+' / '+G.N, '', '');
+    bd+=row('🎯 找到隱藏物', G.found+' / '+G.N, '', '');
     if(G.potentialReward) bd+=row('⚡ 隨行潛能', '+'+G.potentialReward.gain, G.potentialReward.value+' / 100', 'pos');
     $('res-breakdown').innerHTML=bd;
     if(G.tutorial==='demo'){ PROG.tut4=true; progSave(); progUnlock(5); G.nextMode='guided5'; $('res-next').textContent='去 5×5 引導 ▶'; }
@@ -2399,7 +2404,7 @@ function winRound(){
   updateHUD(); renderLV();
   $('res-sub').textContent = towerWin ? '第 '+TOWER.level+' 關通過！龍塔只看你能闖到第幾關！' : (G.N>=6 ? '剩餘 '+fmtSec(sc)+' 全部換算成你的分數！' : '自由練習盤，沒有沙漏壓力，玩得開心！');
   let bd='';
-  bd+=row('🎯 捕獲恐龍', G.found+' / '+G.N, '', '');
+  bd+=row('🎯 找到隱藏物', G.found+' / '+G.N, '', '');
   bd+=chests.rows;
   bd+=row('🎟 獎勵券', '+1', '累積 '+ECON.tickets+' 張', 'pos');
   if(G.potentialReward) bd+=row('⚡ 隨行潛能', '+'+G.potentialReward.gain, G.potentialReward.value+' / 100', 'pos');
@@ -2433,14 +2438,14 @@ function failRound(){
   const lostN=rollbackRoundDex();
   const chests=chestRollAll();
   const towerFail=!!TOWER.level;
-  if(!towerFail) G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed) cellEls[i].classList.add('ghost'); }); /* 龍塔失敗不揭示位置 */
+  if(!towerFail) G.cells.forEach((c,i)=>{ if(c.cat && !c.revealed) cellEls[i].classList.add(c.poke?'ghost':(c.chest?'chestgot':(c.stone?'stonegot':'ghost'))); }); /* 龍塔失敗不揭示位置 */
   SFX.fail();
   const left = G.N-G.found;
   $('res-img').src=RESULT_IMGS.fail;
   $('res-title').textContent='遊戲結束';
-  $('res-sub').textContent='捕捉器用完了，還有 '+left+' 隻恐龍沒找到'+(towerFail?'（龍塔不揭示位置）':'（位置已揭示）');
+  $('res-sub').textContent='捕捉器用完了，還有 '+left+' 個隱藏物沒找到'+(towerFail?'（龍塔不揭示位置）':'（位置已揭示）');
   let bd='';
-  bd+=row('🎯 捕獲恐龍', G.found+' / '+G.N, '+0', '');
+  bd+=row('🎯 找到隱藏物', G.found+' / '+G.N, '+0', '');
   if(lostN) bd+='<div class="row"><span>📖 圖鑑新捕獲</span><span class="neg">闖關失敗，'+lostN+' 筆已取消</span></div>';
   if(G.keyChestTier) bd+='<div class="row"><span>🔑 關鍵寶箱</span><span class="dim">過關才能開啟，這次錯失了…</span></div>';
   bd+=chests.rows;
@@ -2589,7 +2594,6 @@ function demoMark(i){ /* 自動 ✕ */
   cellEls[i].classList.add('x','autoflash');
   setTimeout(()=>cellEls[i].classList.remove('autoflash'),450);
   SFX.tap();
-  updateStatus();
 }
 function demoAlive(){ return G && G.tutorial && G.state!=='done'; }
 
@@ -3086,12 +3090,6 @@ $('exit-yes').onclick = ()=>{
   $('exit-sub').innerHTML='如果視窗沒有自動關閉，<br>請直接關閉瀏覽器分頁喔！';
   $('exit-yes').style.display='none';
 };
-$('btn-sound').onclick = ()=>{
-  soundOn = !soundOn;
-  LS.set('dinodoku-sound', soundOn?'1':'0');
-  $('btn-sound').textContent = soundOn?'🔊':'🔇';
-};
-$('btn-sound').textContent = soundOn?'🔊':'🔇';
 
 /* ---------- 啟動 ---------- */
 poolInit();

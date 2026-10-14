@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#fffdf9">
-<title>尋龍高手 DragonFinder v1.9.10 — 恐龍解謎</title>
-<link rel="stylesheet" href="css/fonts.css?v=1.9.10">
-<link rel="stylesheet" href="css/style.css?v=1.9.10">
+<title>尋龍高手 DragonFinder v1.9.15 — 恐龍解謎</title>
+<link rel="stylesheet" href="css/fonts.css?v=1.9.15">
+<link rel="stylesheet" href="css/style.css?v=1.9.15">
 <noscript><style>#splash{ display:none }</style></noscript>
 </head>
 <body class="splash-on">
@@ -17,13 +17,10 @@
 </div>
 
 <header>
-  <div class="logo">⚡ 尋龍高手 <span lang="en">DragonFinder</span><span class="ver-badge">v1.9.10</span></div>
+  <div class="logo">⚡ 尋龍高手 <span lang="en">DragonFinder</span><span class="ver-badge">v1.9.15</span></div>
   <div class="hud">
-    <span>第 <b id="round">1</b> 局</span>
+    <span><span id="round-pre">第 </span><b id="round">1</b><span id="round-post"> 局</span></span>
     <span id="hud-score">分數 <b id="score">0</b></span>
-    <span title="獎勵券">🎟 <b id="tickets">0</b></span>
-    <span title="星願種子">🌌 <b id="seeds">0</b></span>
-    <span title="進化藥水（伴伴進化用）">🧪 <b id="potions">0</b></span>
     <span id="hud-timer">
       <svg width="19" height="26" viewBox="0 0 24 32" aria-hidden="true">
         <defs>
@@ -41,9 +38,6 @@
       <b id="time-text">6:00</b>
     </span>
     <span class="hearts" id="hearts"></span>
-    <button class="icon-btn" id="btn-lv" title="戰績">🏆</button>
-    <button class="icon-btn" id="btn-dex" title="恐龍圖鑑">📖</button>
-    <button class="icon-btn" id="btn-sound">🔊</button>
     <button class="icon-btn" id="btn-help">❓</button>
   </div>
 </header>
@@ -62,7 +56,6 @@
     </div>
   </div>
   </div>
-  <div id="status"></div>
   <div id="controls">
     <button class="btn btn-ghost" id="btn-clear">清除 ✕</button>
     <button class="btn btn-ghost" id="btn-hint">提示 🌿×6</button>
@@ -70,14 +63,12 @@
     <button class="btn btn-ghost" id="btn-giveup" style="color:#b3541e">放棄 ⏏</button>
     <button class="btn btn-ghost" id="btn-ball"><svg width="15" height="15" viewBox="0 0 32 32" style="vertical-align:-2px" aria-hidden="true"><defs><clipPath id="cnetClip"><circle cx="12.5" cy="12.5" r="8.6"/></clipPath></defs><path d="M19.5 19.5 L29 29" stroke="#6b4423" stroke-width="4.6" stroke-linecap="round"/><path d="M19.8 19.8 L29 29" stroke="#9c6a35" stroke-width="1.8" stroke-linecap="round"/><circle cx="12.5" cy="12.5" r="10.6" fill="#ffedcd" stroke="#6b4423" stroke-width="2.6"/><g clip-path="url(#cnetClip)" stroke="#d29a4e" stroke-width="1.1" opacity=".95"><path d="M3.9 8 H21.1 M3.9 12.5 H21.1 M3.9 17 H21.1 M8 3.9 V21.1 M12.5 3.9 V21.1 M17 3.9 V21.1"/><path d="M4.8 4.8 L20.2 20.2 M20.2 4.8 L4.8 20.2" stroke-width=".85" opacity=".65"/></g><circle cx="12.5" cy="12.5" r="10.6" fill="none" stroke="#6b4423" stroke-width="2.6"/><circle cx="19.6" cy="19.6" r="2.4" fill="#6b4423"/></svg> 捕捉器 <span id="ball-n">×6</span></button>
   </div>
-
-  <div id="foot">尋龍高手 DragonFinder v1.9.10 · 本遊戲不販賣、不公開，家庭自用，請勿盜用。</div>
 </main>
 
 <div class="overlay show" id="ov-menu">
   <div class="modal">
     <div class="menu-top">
-      <div id="menu-logo" title="尋龍高手 DragonFinder"><img src="assets/dinos_2/game_logo.png" alt="尋龍高手 DragonFinder"><span class="ver-badge">v1.9.10</span></div>
+      <div id="menu-logo" title="尋龍高手 DragonFinder"><img src="assets/dinos_2/game_logo.png" alt="尋龍高手 DragonFinder"><span class="ver-badge">v1.9.15</span></div>
       <div id="dex-banner">
       <div class="db-book">📖</div>
       <div class="db-mid">
@@ -125,6 +116,8 @@
       <button class="mnav" id="menu-help"><span class="mnav-ic">❓</span><span class="mnav-tx">玩法</span></button>
       <button class="mnav" id="menu-exit"><span class="mnav-ic">🚪</span><span class="mnav-tx">退出</span></button>
     </div>
+
+    <div class="menu-copy">© 2026 尋龍高手 DragonFinder · 保留一切權利</div>
   </div>
 </div>
 
@@ -144,13 +137,13 @@
   <div class="modal">
     <h2>📖 玩法說明</h2>
     <div class="rules">
-      <b>🦕 專屬領地</b>：盤面分成多個顏色區塊，每個區塊只藏 <b>1 隻恐龍</b>。<br>
-      <b>👑 高冷法則</b>：同一橫列、同一直欄，以及恐龍周圍八格（含斜角），都不會出現其他恐龍。<br>
-      <b>✕ 標記排除</b>：點格子打 ✕（再點一次取消），✕ 表示你判斷「這裡沒有恐龍」；沒打 ✕ 的格子就是你的候選格。<br>
-      <b>🔴 捕捉器</b>：數量＝恐龍隻數＋3（容錯），按下後游標變捕捉器、點方格直接捕獲——命中 3D 召喚（新捕獲入圖鑑），落空自動 ✕。再按一次取消。<br>
-      <b>⏱ 沙漏計時（6×6 起）</b>：開局 N×30 秒倒數；每捕獲一隻 <b>+30 秒</b>（沙回填，上限＝初始時間）；<b class="neg">時間歸零＝遊戲結束</b>。打開本說明會<b>暫停計時</b>。<br>
-      <b>🌿 提示</b>：消耗 1 顆<b>星願種子 🌌</b>（不扣沙漏時間），指出一隻<b>還沒被捕獲</b>的恐龍（優先救援被 ✕ 掉的）。<br>
-      <b>🏆 過關與計分</b>：找齊全部恐龍即過關，<b>剩餘秒數＝該局分數</b>，累積到個人分數與該區域戰績；捕捉器用完沒找齊＝遊戲結束。
+      <b>🦕 專屬領地</b>：盤面分成多個顏色區塊，每個區塊只藏 <b>1 個隱藏物</b>；同一橫列、直欄也各恰 1 個。隱藏物為 🦕 恐龍（40%）、🧰 寶箱（40%）、🪨 石頭（20%，無用途）。<br>
+      <b>👑 高冷法則</b>：同一橫列、同一直欄，以及隱藏物周圍八格（含斜角），都不會出現其他隱藏物。<br>
+      <b>✕ 標記排除</b>：點格子打 ✕（再點一次取消），✕ 表示你判斷「這裡沒有隱藏物」；沒打 ✕ 的格子就是你的候選格。<br>
+      <b>🔴 捕捉器</b>：數量＝隱藏物個數＋3（容錯），按下後游標變捕捉器、點方格揭示——命中恐龍 3D 召喚（新捕獲入圖鑑）、命中寶箱開箱得獎、命中石頭無用，落空自動 ✕。再按一次取消。<br>
+      <b>⏱ 沙漏計時（6×6 起）</b>：開局 N×30 秒倒數；每捕獲一隻恐龍 <b>+30 秒</b>（沙回填，上限＝初始時間）；<b class="neg">時間歸零＝遊戲結束</b>。打開本說明會<b>暫停計時</b>。<br>
+      <b>🌿 提示</b>：消耗 1 顆<b>星願種子 🌌</b>（不扣沙漏時間），指出一個<b>還沒被找到</b>的隱藏物（優先救援被 ✕ 掉的）。<br>
+      <b>🏆 過關與計分</b>：找齊全部隱藏物即過關，<b>剩餘秒數＝該局分數</b>，累積到個人分數與該區域戰績；捕捉器用完沒找齊＝遊戲結束。
     </div>
     <h2 style="margin-top:14px">🌌 經濟與獎勵</h2>
     <div class="rules" style="font-size:13px">
@@ -166,7 +159,7 @@
       <b>⚡ 潛能值</b>：二至五星夥伴每次成功過關 +10，最高 100。技能槽已滿且潛能 100 時，可再次支付種子替換一個已學技能；天生技能不可替換，完成後潛能歸零。<br>
       <b>發動方式</b>：在關卡中點隨行夥伴下方的技能按鍵主動發動，冷卻時間如下表。
       <div id="help-skills" style="margin:8px 0 6px"></div>
-      <b>♥ 友好度</b>：🍖 餵食（耗 🌌×1 → +5%）或帶牠過關（+5%/勝）。<br>
+      <b>♥ 友好度</b>：🍖 餵食（耗 🌌×1 → +5%）或帶牠過關（+5%/勝）。<b>滿 100%</b> 觸發羈絆加成：每捕獲 <b>1 個隱藏物</b>（🦕 恐龍／🧰 寶箱／🪨 石頭皆算），隨行夥伴自動幫你把<b>同行、同列與周圍八格</b>打 ✕。<br>
       <b>🐉 伴伴（No.000）</b>：遊戲一開始就陪伴你的特殊夥伴，固定為隨行、不會在野外出沒，友好度從 50% 開始。收集 🧪 <b>進化藥水</b>可讓牠進化（2★→🧪×3、3★→🧪×5、4★→🧪×8、5★→🧪×12，最高 5★）：新恐龍加入圖鑑、獎勵小遊戲與寶箱都能獲得藥水。伴伴<b>沒有天生技能</b>；3★ 開啟 2 個空白技能槽、4★ 3 個、5★ 4 個，一樣用 🌌 激發。圖鑑中伴伴永遠在 No.000，星數越高，圖鑑資料越豐富。其它恐龍不可進化。
     </div>
     <div class="btns"><button class="btn btn-primary" id="help-ok">了解了！</button></div>
@@ -236,6 +229,10 @@
       <div class="btns" style="margin:0">
         <select id="dev-lv" class="res-sel"></select>
         <button class="btn btn-ghost" id="dev-jump">跳關 ▶</button>
+      </div>
+      <div class="btns" style="margin:0">
+        <input id="dev-tower-lv" class="res-sel" type="number" min="1" max="2000" step="1" placeholder="1~2000" style="width:120px;cursor:text">
+        <button class="btn btn-ghost" id="dev-tower-jump">🐉 龍塔跳層 ▶</button>
       </div>
       <div class="btns" style="margin:0">
         <button class="btn btn-ghost" id="dev-wipe" style="color:#d64545">🧹 清存檔</button>
@@ -339,8 +336,9 @@
     </div>
   </div>
 </div>
-<script src="js/data.js?v=1.9.10"></script>
-<script src="js/tower.js?v=1.9.10"></script>
-<script src="js/main.js?v=1.9.10"></script>
+<script src="js/data.js?v=1.9.15"></script>
+<script src="js/tower.js?v=1.9.15"></script>
+<script src="js/main.js?v=1.9.15"></script>
+<script src="js/tower_comments.js?v=1.9.15"></script>
 </body>
 </html>
