@@ -279,7 +279,8 @@ button.btn:disabled { opacity:.4; pointer-events:none; }
 #map::-webkit-scrollbar-track{ background:transparent; }
 .map-inner { position:relative; width:100%; aspect-ratio:2/3;
   background:url('../assets/map.png') center/cover no-repeat #89b8d8; }
-#map::after { content:''; position:absolute; inset:0; border-radius:18px; pointer-events:none;
+/* 地圖外框光影：掛在不捲動的 .map-wrap 上（top:15px 避開緞帶），避免跟內容捲動在地圖中段露出浮動灰框 */
+.map-wrap::after { content:''; position:absolute; left:0; right:0; top:15px; bottom:0; border-radius:18px; pointer-events:none;
   box-shadow:inset 0 0 0 3px rgba(255,248,225,.32), inset 0 0 52px rgba(24,34,58,.34); }
 #map-decor span { position:absolute; font-size:19px; opacity:.5; pointer-events:none; filter:saturate(.9); }
 #map-nodes { position:absolute; inset:0; }
@@ -1244,15 +1245,38 @@ body.splash-on #menu-logo img, body.splash-on #menu-logo .ver-badge{ opacity:0; 
 .dk-text{ width:min(38vw,190px); }
 .dk-send{ border:none; background:#2e8b57; color:#fff; border-radius:6px; font-size:12px; font-weight:700; padding:3px 9px; cursor:pointer; white-space:nowrap; }
 .dk-toggle.off{ opacity:.45; text-decoration:line-through; }
-.dk-resultbox{ display:none; margin:6px 0 2px; text-align:left; }
-.dk-resultbox.show{ display:block; }
-.dk-resultbox .dk-row{ display:flex; gap:6px; }
-.dk-resultbox .dk-row input{ flex:1 1 auto; min-width:0; border:1px solid #d8c194; border-radius:6px; background:#fffdf8; font:inherit; font-size:12.5px; padding:4px 8px; color:#2b2118; }
-.dk-resultbox .dk-row input.dk-name{ flex:0 0 84px; }
-.dk-resultbox .dk-note{ font-size:11px; color:#8a6f4d; margin-top:4px; }
+
+/* ---------- 攻略留言板（overlay，與彈幕共用留言池） ---------- */
+.dk-boardwrap{ z-index:60; padding:14px; }
+.dk-boardwrap .modal{ max-width:430px; position:relative; }
+.dk-bclose{ position:absolute; top:8px; right:10px; width:34px; height:34px; border:none; border-radius:50%; background:#f1e7d2; color:#8a6f4d; font-size:15px; font-weight:700; cursor:pointer; }
+.dk-bclose:active{ transform:scale(.92); }
+.dk-boardwrap h2{ font-size:20px; margin-bottom:4px; }
+.dk-boardwrap .sub{ font-size:12.5px; margin-bottom:10px; }
+.dk-clist{ max-height:38vh; overflow-y:auto; text-align:left; margin-bottom:10px; padding:1px; }
+.dk-c{ border:1px solid #e3cfa4; border-radius:11px; background:#fbf6ec; padding:8px 11px; margin-bottom:7px; }
+.dk-chead{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+.dk-cname{ font-size:13px; color:#4a4039; }
+.dk-ctime{ font-size:11px; color:#b3a795; white-space:nowrap; }
+.dk-ctext{ font-size:13.5px; line-height:1.5; color:#2b2118; margin:3px 0 6px; word-break:break-word; }
+.dk-like{ border:1.5px solid #e3cfa4; background:#fffdf8; color:#8a6f4d; border-radius:999px; font:inherit; font-size:12px; font-weight:700; padding:3px 11px; cursor:pointer; }
+.dk-c.liked .dk-like{ background:#2e8b57; border-color:#2e8b57; color:#fff; }
+.dk-brow{ display:flex; gap:6px; }
+.dk-brow[hidden],.dk-bposted[hidden]{ display:none; } /* display:flex 會蓋過 hidden 屬性，需明確覆寫 */
+.dk-brow input{ flex:1 1 auto; min-width:0; border:1px solid #d8c194; border-radius:6px; background:#fffdf8; font:inherit; font-size:12.5px; padding:4px 8px; color:#2b2118; }
+.dk-brow input.dk-name{ flex:0 0 84px; width:84px; }
+.dk-bsend{ border:none; background:#2e8b57; color:#fff; border-radius:6px; font:inherit; font-size:12.5px; font-weight:700; padding:4px 12px; cursor:pointer; white-space:nowrap; }
+.dk-bposted{ font-size:12.5px; color:#2e8b57; margin:2px 0 4px; }
+.dk-note{ font-size:11px; color:#8a6f4d; margin-top:8px; line-height:1.5; }
+.dk-empty{ text-align:center; color:#8a6f4d; font-size:13px; padding:16px 0; }
 @media (max-width:720px){
   .dk-band{ height:32px; margin:4px 6px 2px; }
   .dk-item{ font-size:12px; margin-top:-11px; }
   .dk-name{ width:52px; }
   .dk-text{ width:30vw; }
+  .dk-clist{ max-height:32vh; }
+}
+/* 極窄手機：controls 兩顆攻略按鈕只留圖示，避免與其他按鈕擠壓斷行 */
+@media (max-width:360px){
+  .dk-toggle span, .dk-boardbtn span{ display:none; }
 }
