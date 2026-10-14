@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>尋龍高手 DragonFinder — 後端實作報告：分數驗證與內購</title>
+<style>
+  :root{
+    --bg:#fffdf9; --ink:#3b3228; --muted:#8a7d6d; --line:#e8dfd2;
+    --amber:#b45309; --amber-bg:#fff7e8;
+    --green:#15803d; --green-bg:#ecfdf3;
+    --red:#b91c1c; --red-bg:#fef2f2;
+    --blue:#1d4ed8; --blue-bg:#eff6ff;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    line-height:1.65;}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 80px;}
+  header.hero{background:linear-gradient(135deg,#4c1d95,#6d28d9 55%,#8b5cf6);
+    color:#fff;border-radius:18px;padding:34px 30px;margin-bottom:26px;
+    box-shadow:0 10px 30px rgba(109,40,217,.25);}
+  header.hero h1{margin:0 0 8px;font-size:1.65rem;letter-spacing:.5px;}
+  header.hero p{margin:4px 0;opacity:.95;}
+  header.hero .meta{font-size:.85rem;opacity:.85;margin-top:12px;}
+  h2{font-size:1.25rem;color:var(--purple);border-bottom:2px solid var(--line);
+    padding-bottom:8px;margin:42px 0 14px;}
+  h3{font-size:1.05rem;margin:24px 0 8px;color:var(--ink);}
+  h4{font-size:.98rem;margin:18px 0 6px;color:var(--amber);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:16px 0;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .card b{display:block;margin-bottom:4px;color:var(--purple);}
+  .note{background:var(--amber-bg);border:1px solid #fde68a;border-radius:10px;padding:12px 16px;margin:14px 0;}
+  .risk{background:var(--red-bg);border:1px solid #fecaca;border-left:5px solid var(--red);
+    border-radius:10px;padding:12px 16px;margin:10px 0;}
+  .risk b{color:var(--red);}
+  .ok{background:var(--green-bg);border:1px solid #bbf7d0;border-left:5px solid var(--green);
+    border-radius:10px;padding:12px 16px;margin:10px 0;}
+  .ok b{color:var(--green);}
+  .info{background:var(--blue-bg);border:1px solid #bfdbfe;border-left:5px solid var(--blue);
+    border-radius:10px;padding:12px 16px;margin:10px 0;}
+  .info b{color:var(--blue);}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 6px;}
+  .badge{display:inline-block;border-radius:999px;padding:1px 12px;font-size:.85rem;font-weight:700;white-space:nowrap;}
+  .b-ai{background:var(--green-bg);color:var(--green);border:1px solid #bbf7d0;}
+  .b-you{background:var(--red-bg);color:var(--red);border:1px solid #fecaca;}
+  .b-both{background:var(--blue-bg);color:var(--blue);border:1px solid #bfdbfe;}
+  .b-opt{background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb;}
+  .b-p1{background:var(--green-bg);color:var(--green);border:1px solid #bbf7d0;}
+  .b-p2{background:var(--amber-bg);color:var(--amber);border:1px solid #fde68a;}
+  .b-p3{background:var(--purple-bg);color:var(--purple);border:1px solid #ddd6fe;}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;min-width:720px;background:#fff;font-size:.94rem;}
+  th{background:var(--amber-bg);color:var(--amber);text-align:left;
+    padding:10px 12px;border-bottom:2px solid #fde68a;white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:#fffaf2;}
+  td.no{font-weight:700;color:var(--muted);white-space:nowrap;}
+  code{background:#f5efe6;border-radius:4px;padding:1px 6px;font-size:.88em;
+    font-family:ui-monospace,Consolas,"Cascadia Mono",monospace;}
+  pre{background:#2d2a26;color:#f4ede2;border-radius:12px;padding:14px 16px;
+    overflow-x:auto;font-size:.83rem;line-height:1.6;
+    font-family:ui-monospace,Consolas,"Cascadia Mono",monospace;}
+  pre code{background:none;color:inherit;padding:0;font-size:1em;}
+  .flow{display:flex;flex-direction:column;gap:0;margin:14px 0;}
+  .fstep{display:flex;gap:12px;align-items:flex-start;}
+  .fstep .num{flex:0 0 30px;height:30px;border-radius:50%;background:var(--purple);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;margin-top:2px;}
+  .fstep .body{flex:1;padding:0 0 16px;}
+  .fstep .body b{color:var(--purple);}
+  .fstep:not(:last-child) .body{border-left:2px dashed #ddd6fe;margin-left:-27px;padding-left:39px;}
+  .mut{color:var(--muted);font-size:.88em;}
+  .tag{display:inline-block;border-radius:6px;padding:1px 8px;font-size:.8rem;font-weight:700;}
+  .t-good{background:var(--green-bg);color:var(--green);}
+  .t-bad{background:var(--red-bg);color:var(--red);}
+  .t-warn{background:var(--amber-bg);color:var(--amber);}
+  .t-info{background:var(--blue-bg);color:var(--blue);}
+  footer{margin-top:50px;color:var(--muted);font-size:.85rem;text-align:center;}
+  .kbd{background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;
+    padding:0 6px;font-size:.85em;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>尋龍高手 DragonFinder — 後端實作報告：分數驗證與內購</h1>
+  <p>把「分數驗證」與「內購」兩項關鍵邏輯移到伺服器端的完整設計方案（本報告只做規劃，尚未實作）</p>
+  <p>前置文件：<code>appstore_publish_report.html</code>（上架準備）、<code>dragon_tower_comments_report.html</code>（後端選型調研）</p>
+  <div class="meta">產出日期：2026-10-13（2026-10-14 追加第十一章：離線核心＋連線留言混合模式規格） ｜ 依據版本：v1.9.15 ｜ 報告檔：backend_implementation_report.html ｜ 狀態：規劃報告（未動任何遊戲程式碼）</div>
+</header>
+
+<h2>零、結論摘要（先看這裡）</h2>
+<div class="cards">
+  <div class="card"><b>為什麼要做</b>目前遊戲 100% 離線，分數、圖鑑、資源全存在瀏覽器 localStorage；開 F12 改一行數字、或使用內建「工程模式」就能任意加資源與過關——單機自娛沒問題，但一旦有<strong>排行榜或付費</strong>，這些都必須由伺服器說了算。</div>
+  <div class="card"><b>分數怎麼驗</b>本遊戲分數＝過關時剩餘秒數、上限恆為 30×N 秒（N×30 的沙漏總量），且遊戲盤面是「唯一解」——這兩個性質讓驗證變得可行：伺服器握有盤面答案＋事件紀錄比對，即可否決絕大多數造假。詳見第三章。</div>
+  <div class="card"><b>內購怎麼做</b>上架商店賣數位商品<strong>必須走 Apple／Google 內購</strong>（平台政策），且收據驗證一定要在伺服器做（前端驗證可被繞過、金鑰不可放前端）。流程：App 購買 → 收據送自家後端 → 後端向 Apple／Google 驗證 → 入帳到雲端錢包。詳見第四章。</div>
+  <div class="card"><b>建議順序</b><span class="tag t-info">Phase 1</span> 匿名帳號＋雲端分數驗證 → <span class="tag t-info">Phase 2</span> 內購驗證與雲端錢包 → <span class="tag t-info">Phase 3</span> 排行榜與強化防作弊。後端沿用先前調研首選 <strong>Supabase</strong>（免費層、不綁卡），備選 Cloudflare Workers＋D1。</div>
+  <div class="card"><b>2026-10-14 追加</b><strong>第十一章</strong>回答「離線可玩＋留言需連線是否可行、如何收費」：可行。單機核心（含 8×8 以上與龍塔）永久離線免費；攻略留言在玩家主動開啟時才提示連線（非阻斷式提示卡＋離線快取可讀）；<strong>留言免費</strong>，錢只收在「完整版解鎖」一次買斷。含連線偵測 UI 流程、留言表 DDL、UGC 合規清單與防繞過界線。</div>
+</div>
+<div class="ok"><b>重點原則：</b>維持「離線也能玩」的體驗——單機遊玩、離線局不經雲端（分數只留本機，不進排行榜）；要上雲端的分數與付費資源，一律走伺服器驗證後才算數（server-authoritative）。</div>
+
+<h2>一、現況盤點：為什麼這些邏輯不能留在前端</h2>
+
+<h3>1.1 目前系統的事實（皆經程式碼核對）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>面向</th><th>現況</th><th>程式碼依據</th></tr>
+  <tr><td>網路</td><td>全站零網路請求（純離線靜態 App；GitHub Pages 託管）</td><td>grep <code>fetch</code>／<code>XMLHttpRequest</code>／<code>WebSocket</code>／<code>axios</code> 於 <code>js/</code> 全部零匹配</td></tr>
+  <tr><td>分數</td><td>過關分數＝剩餘秒數（向下取整）；累積入各區域 <code>LV[n]</code>；個人總分＝全部加總</td><td><code>js/main.js:2381</code>、<code>2382-2388</code>、<code>303</code></td></tr>
+  <tr><td>沙漏</td><td>總量＝N×30 秒；每捕獲<strong>恐龍</strong> +30 秒、上限回初始總量；歸零＝遊戲結束；開啟說明或切換分頁時暫停</td><td><code>js/main.js:1359</code>、<code>1375-1377</code>、<code>1285-1287</code>、<code>1354-1356</code></td></tr>
+  <tr><td>計分範圍</td><td>6×6～18×18 計分；4×4／5×5 教學練習不計分；龍塔不計時不計分</td><td><code>js/main.js:2382</code>、<code>1358</code></td></tr>
+  <tr><td>經濟</td><td>星願種子 🌌／獎勵券 🎟／進化藥水 🧪／碎片，全存 localStorage；過關 +1 券；提示、餵食、潛能消耗種子；寶箱與 6 種獎勵小遊戲抽資源</td><td><code>js/main.js:323</code>、<code>2374</code>、<code>2277-2335</code>、<code>2140-2142</code>、<code>index.html:187-202</code></td></tr>
+  <tr><td>盤面</td><td>客戶端即時生成（<code>Math.random</code>、無種子），重試直到「唯一解」；10～13 尺寸另有預生成池；龍塔為 tower.js 預生成 2000 關</td><td><code>js/main.js:102</code>、<code>120</code>、<code>178-255</code>、<code>257-283</code>；<code>js/tower.js</code></td></tr>
+  <tr><td>存檔</td><td>20+ 個 <code>dinodoku-*</code> localStorage 鍵：分數、經濟、圖鑑、技能、潛能、隨行、友好度、進度、龍塔、碎片、故事……</td><td><code>js/main.js:945</code>（清單）、<code>953</code>（全掃除）</td></tr>
+  <tr><td>內購</td><td>無。上架報告當時的建議是「首發免費（無內購最單純）」</td><td><code>appstore_publish_report.html:176</code></td></tr>
+  <tr><td>開發者工具</td><td>工程模式提供「立即過關、種子+100、無限種子、開全圖鑑」等按鈕，存在於正式頁面中</td><td><code>index.html:215-251</code>、<code>js/main.js:892-946</code></td></tr>
+</table>
+</div>
+
+<h3>1.2 作弊面（現行狀態下任何人都能做到的事）</h3>
+<div class="risk"><b>改 localStorage：</b>在瀏覽器主控台執行 <code>localStorage.setItem('dinodoku-lv', '{"13":{"best":390,"total":999999}}')</code> 即可把個人總分改成任意數字——總分顯示邏輯（<code>lvTotal()</code>）對存檔內容沒有任何校驗。</div>
+<div class="risk"><b>改記憶體／呼叫函式：</b>主控台可直接執行遊戲內部函式（如資源加值、強制過關），也能直接改 <code>ECON.seeds</code> 等變數後存檔。</div>
+<div class="risk"><b>工程模式：</b>正式版頁面仍包含 <code>dev-win</code>（立即過關）、<code>dev-seeds</code>（種子+100）等按鈕；即使入口隱藏，程式碼在瀏覽器端就能被觸發。上架／上線前應在發佈建置中整個剝除。</div>
+<div class="info"><b>誠實的界線：</b>休閒單機遊戲「自己改自己的存檔騙自己」通常無害；真正需要後端把關的是三件事——(1) 一旦有跨玩家排行榜或雲端存檔，分數的公信力；(2) 一旦收費，付費與發放的完整性；(3) 上架商店時平台對「數位商品必須經商店內購＋伺服器驗證」的要求。</div>
+
+<h3>1.3 讓驗證可行的兩個遊戲特性</h3>
+<div class="ok"><b>特性 A：分數有數學上限。</b>沙漏總量 <code>TIMER.total = N×30</code>，剩餘時間永遠 ≤ 總量（+30 秒回填也不能超過初始值，<code>js/main.js:1377</code>）。因此每一局分數必然落在 <code>[0, 30×N]</code>：6×6 最多 180 分、13×13 最多 390 分、18×18 最多 540 分。任何超出上限的分數不必驗證，直接拒絕。</div>
+<div class="ok"><b>特性 B：盤面唯一解且「揭示即證明」。</b>遊戲要求每行／每列／每色區恰 1 個隱藏物（<code>index.html:138-144</code>），生成器會重試到唯一解（<code>js/main.js:178-255</code>）。玩家只能靠逐格點擊揭示來過關，也就是說——<strong>一場合法的勝利，必然在事件紀錄中點中了全部 N 個正確位置</strong>。只要伺服器自己握有盤面答案，就能對事件紀錄做硬性驗證（見第三章）。</div>
+<div class="note"><b>注意：</b>盤面生成器（<code>randomRegions</code>／<code>solve2</code>／<code>generatePuzzle</code>）是純 JS、無 DOM 依賴的函式，可直接移植到伺服器端（Deno／Node 皆可）執行，這是後端能「自己產盤面、自己存答案」的關鍵。</div>
+
+<h2>二、設計目標與整體架構</h2>
+
+<h3>2.1 設計目標</h3>
+<ul>
+  <li><strong>保留離線可玩：</strong>沒有網路時遊戲與現在完全一樣（本機分數、本機存檔）；雲端只是「加值層」。</li>
+  <li><strong>伺服器權威（server-authoritative）：</strong>要進雲端的分數、要花錢買的資源，由伺服器驗證與記帳後才生效。</li>
+  <li><strong>最小侵入：</strong>不重寫遊戲；前端只加「開局取盤面、事件記錄、結果提交」三個掛點＋一個 API 客戶端。</li>
+  <li><strong>誠實標示：</strong>離線局與無法線上驗證的局標記為「本機限定」，不進排行榜、不參與雲端計分。</li>
+  <li><strong>零依賴精神：</strong>前端僅用 <code>fetch</code>；後端用免費層服務，不新增 npm 依賴鏈。</li>
+</ul>
+
+<h3>2.2 系統架構總覽</h3>
+<pre><code>┌────────────────────────── 玩家裝置 ──────────────────────────┐
+│  遊戲前端（現有 index.html + js/）                            │
+│   ├─ 本機存檔 localStorage dinodoku-*（保留，當離線快取）      │
+│   ├─ 新增：API 客戶端（fetch，匿名憑證）                       │
+│   ├─ 新增：事件記錄器（揭示／標記／提示，帶時間戳）             │
+│   └─ 新增：開局／結算流程（線上局走雲端，離線局走本機）          │
+└───────────────┬──────────────────────────────┬───────────────┘
+                │ HTTPS（JSON）                 │ App 內購 SDK
+                ▼                              ▼
+┌──────────────────────── 後端（Supabase）───────────────┐   ┌────────────────────┐
+│  Postgres（RLS）                                        │   │ Apple App Store     │
+│   players / runs / run_events / scores / wallet /       │   │  App Store Server   │
+│   ledger / iap_transactions / iap_notifications         │   │  API + Webhook V2   │
+│  Edge Functions（Deno，唯一能寫分數與錢包的角色）        │   │（伺服器對伺服器）    │
+│   runs-start / runs-finish / iap-verify /               │   └────────────────────┘
+│   iap-webhook-apple / iap-webhook-google                │   ┌────────────────────┐
+│  密鑰存放：Apple .p8、Google 服務帳戶（僅存函式環境變數） │   │ Google Play         │
+└──────────────────────────────────────────────────────────┘   │  Developer API +    │
+                                                               │  RTDN（Pub/Sub）     │
+                                                               └────────────────────┘</code></pre>
+
+<h3>2.3 身分模型：匿名裝置帳號</h3>
+<p>現有遊戲沒有帳號。為了把「雲端分數」與「購買紀錄」綁在一個可持續的身分上，建議最小可行的方案：</p>
+<div class="flow">
+  <div class="fstep"><div class="num">1</div><div class="body"><b>首次上線時註冊匿名帳號</b><br>App 產生一組隨機 <code>player_token</code>（32 bytes），向 <code>POST /v1/auth/device</code> 換取正式的 <code>player_id</code> 與權杖；權杖只存裝置端（localStorage <code>dinodoku-player</code>），伺服器端只存雜湊。<span class="mut">不用 email、不用密碼，符合休閒遊戲體驗。</span></div></div>
+  <div class="fstep"><div class="num">2</div><div class="body"><b>轉移碼（建議加值）</b><br>遊戲內「設定」顯示一組一次性轉移碼，玩家換裝置時輸入即可把雲端資料（含購買紀錄）帶過去。成本低、能擋掉最常見的「換手機＝付費紀錄全消失」客訴。</div></div>
+  <div class="fstep"><div class="num">3</div><div class="body"><b>（後續可選）正式登入</b><br>未來需要跨裝置同步或社群功能時，再疊加「Sign in with Apple／Google」把手機帳號升級成正式帳號，不影響既有匿名玩家。<span class="mut">列為 Phase 3 之後。</span></div></div>
+</div>
+<div class="risk"><b>為什麼不能不做？</b>消耗型內購（如種子包）一旦購買、發放、消耗，就不像「非消耗型」那樣可以靠商店的「恢復購買」重建。沒有帳號綁定，玩家清除瀏覽器資料／換裝置後付費紀錄無從恢復，幾乎必然產生退款糾紛——因此<strong>帳號（哪怕是匿名的）是內購的前置條件</strong>。</div>
+
+<h3>2.4 技術選型（沿用先前調研結論）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>方案</th><th>成本／綁卡</th><th>優勢</th><th>風險</th><th>結論</th></tr>
+  <tr><td><strong>Supabase（Postgres + Edge Functions）</strong></td><td>免費層充足（500MB DB／5 萬 MAU），不綁卡</td><td>先前調查已選為首選；RLS 權限模型清晰；Edge Functions 可直接寫收據驗證邏輯；不用自管伺服器</td><td>閒置 7 天暫停（有流量即不會）；暫停後需手動恢復</td><td><span class="tag t-good">首選</span></td></tr>
+  <tr><td>Cloudflare Workers + D1</td><td>免費層（約 10 萬請求／天），不綁卡</td><td>無閒置暫停、冷啟動佳</td><td>要自寫 Worker 與 wrangler 部署流程；D1 生態較新</td><td><span class="tag t-warn">備選</span></td></tr>
+  <tr><td>Firebase（Firestore + Functions）</td><td>Spark 免費層</td><td>生態成熟</td><td>官方主推 SDK（違背本專案零依賴精神）；收據驗證需 Blaze 方案才能外連？以官網為準</td><td><span class="tag t-warn">可行但非首選</span></td></tr>
+</table>
+</div>
+<p class="mut">註：免費額度為先前報告於 2026-10 的查證結果，導入前請以各官網為準；內購驗證 API 本身的呼叫量極小（每筆交易 1～2 次），不會成為成本瓶頸。</p>
+
+<h2>三、分數驗證設計（核心）</h2>
+
+<h3>3.1 伺服器端要驗證的「分數不變量」清單</h3>
+<p>以下每一條都是遊戲現行規則的直接對應，伺服器逐條檢查：</p>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>規則</th><th>來源（現行程式碼）</th><th>違反時的處理</th></tr>
+  <tr><td class="no">V1</td><td>盤面尺寸 N ∈ {6..18}（計分範圍）</td><td><code>js/main.js:2382</code></td><td>拒絕提交</td></tr>
+  <tr><td class="no">V2</td><td>0 ≤ 分數 ≤ 30×N（無條件上限）</td><td><code>js/main.js:1359</code>、<code>1377</code></td><td>拒絕（或夾為上限並標記）</td></tr>
+  <tr><td class="no">V3</td><td>分數為整數秒（剩餘時間向下取整）</td><td><code>js/main.js:2381</code></td><td>拒絕</td></tr>
+  <tr><td class="no">V4</td><td>要過關＝找到全部 N 個隱藏物</td><td><code>js/main.js:2338</code></td><td>與事件紀錄交叉驗證（見 3.4）</td></tr>
+  <tr><td class="no">V5</td><td>每次揭示耗 1 個捕捉器；捕捉器總數 = N+3</td><td><code>js/main.js:1103</code>、<code>1260-1264</code></td><td>揭示次數 &gt; N+3 即拒絕</td></tr>
+  <tr><td class="no">V6</td><td>每個「命中」都必須落在伺服器盤面的隱藏物位置上；落空（miss）只能是其他格</td><td>唯一解盤面（<code>js/main.js:178-255</code>）</td><td>任何一次「假命中」即整局判廢</td></tr>
+  <tr><td class="no">V7</td><td>+30 秒回填只發生在「捕獲恐龍」時，且剩餘時間 ≤ 初始總量</td><td><code>js/main.js:1285-1287</code></td><td>用於時間軸一致性檢查</td></tr>
+  <tr><td class="no">V8</td><td>龍塔不計分、4×4／5×5 不計分</td><td><code>js/main.js:1358</code>、<code>2382</code></td><td>不符合的來源類型直接拒收</td></tr>
+  <tr><td class="no">V9</td><td>暫停規則：開啟說明／切選單／切換分頁時沙漏暫停</td><td><code>js/main.js:1354-1356</code></td><td>牆鐘時間與「宣稱遊玩時間」關係檢查（見下）</td></tr>
+</table>
+</div>
+
+<h3>3.2 三層防護模型（可以做到什麼、做不到什麼）</h3>
+<p>防作弊沒有「一步到位」，只有低成本到高成本的疊加。建議依下表逐層加，並誠實理解每層的極限：</p>
+<div class="tbl-wrap">
+<table>
+  <tr><th>層級</th><th>做法</th><th>能擋住的作弊</th><th>擋不住的作弊</th><th>成本</th></tr>
+  <tr>
+    <td><span class="tag t-info">L1</span> 邊界與速率</td>
+    <td>結算時提交 (N, score, 用時)；伺服器只做 V1–V3＋速率限制（例如每 30 秒最多 1 局、單日上限）＋統計異常標記（例如平均每抓 &lt; 0.25 秒）</td>
+    <td>改 localStorage 直接刷天文數字的分數；超上限分數；腳本化分鐘刷數百局</td>
+    <td>「宣稱很快通關」（例如實際玩 3 分鐘、宣稱 40 秒）</td>
+    <td>極低（1 個函式）</td>
+  </tr>
+  <tr>
+    <td><span class="tag t-info">L2</span> 伺服器盤面＋事件驗證</td>
+    <td>開局由伺服器發盤（伺服器保存答案）；結算提交完整操作事件流；伺服器重演「點擊→揭示」序列，比對答案</td>
+    <td>上一層全部＋「點錯當命中」、「偷加捕捉器次數」、「沒點完就宣告過關」；盤面被改（答案在伺服器手上）</td>
+    <td>完全偽造時間軸（宣稱暫停時長、宣稱的單步反應速度）；外掛預知答案後快速點擊（仍受 V2 上限與統計標記約束）</td>
+    <td>中（Edge Function＋事件格式＋前端記錄器）</td>
+  </tr>
+  <tr>
+    <td><span class="tag t-info">L3</span> 即時串流</td>
+    <td>遊玩中每 2 秒心跳（含當前剩餘時間）；伺服器用<strong>自己的時鐘</strong>重建時間軸；關鍵事件即時回報</td>
+    <td>L2 全部＋「存檔後補交」「遠端游離改時間」（時間軸由伺服器記）</td>
+    <td>真人代打、以人類速度運行的腳本；手機端記憶體修改後即時送出合法操作（此時只能靠統計與人工複核）</td>
+    <td>較高（連線品質要求、前端改動多）</td>
+  </tr>
+</table>
+</div>
+<div class="info"><b>建議：</b>休閒解謎遊戲的分數動機有限，<strong>L1＋L2 已足以支撐一個可信的排行榜</strong>；L3 不需要一開始就做。真正要「零容忍」的其實是內購（第四章），那裡的驗證是商店官方 API 級別的硬驗證。</div>
+
+<h3>3.3 開局與結算流程（線上局）</h3>
+<div class="flow">
+  <div class="fstep"><div class="num">1</div><div class="body"><b>開局</b>　前端 <code>POST /v1/runs</code>（附 N）→ 伺服器從該尺寸的盤面庫挑一張（盤面庫＝伺服器持有的 regionOf＋隱藏物位置），生成 <code>runId</code> 並回傳盤面資料與 <code>startedAt</code>（伺服器時間）。<br><span class="mut">盤面庫可直接匯入現有 POOL_DATA（10～13 尺寸）＋伺服器端用移植的 <code>generatePuzzle</code> 預先產好 6～9／14～18 的存貨；旋轉／鏡像（現有 <code>transformBoard</code> 的 8 種變換）在結算時由選手申報，伺服器換算答案。</span></div></div>
+  <div class="fstep"><div class="num">2</div><div class="body"><b>遊玩</b>　與現在完全相同（即時、無等待）。前端記錄事件流：每次 <code>reveal</code>（揭示某格、命中或落空）、<code>mark</code>（✕ 標記）、<code>hint</code>（用提示）、<code>skip</code> 等，各帶一個「活動時間戳」（沿用沙漏的暫停邏輯：暫停期間不計）。<span class="mut">事件存在記憶體，結算才一次上傳——不影響遊玩效能。</span></div></div>
+  <div class="fstep"><div class="num">3</div><div class="body"><b>結算</b>　前端 <code>POST /v1/runs/{id}/finish</code>（附事件流、宣稱分數、變換參數）→ 伺服器（Edge Function）：驗證 V1–V8 → 用答案重演事件流 → 計算伺服器認可分數 → 寫入 <code>runs</code> 與 <code>scores</code>（僅當認可分數 ≥ 目前最佳或累積更新）→ 回傳新的區域戰績與個人總分。<span class="mut">同一個 runId 只接受一次結算（冪等：重送回傳相同結果，不重複計分）。</span></div></div>
+  <div class="fstep"><div class="num">4</div><div class="body"><b>顯示</b>　結算畫面顯示的分數改以「伺服器回傳值」為準；本地 <code>LV</code> 僅作為離線快取與顯示加速，連線時以雲端覆寫。<strong>衝突原則：server wins（只針對雲端局；離線局維持本機）。</strong></div></div>
+</div>
+
+<h3>3.4 事件紀錄格式（示意）</h3>
+<pre><code>{
+  "runId": "9f4c…",           // 開局時伺服器核發
+  "n": 6,
+  "transform": 5,              // 0..7 旋轉/鏡像，結算時申報
+  "claimedScore": 142,         // 前端沙漏算出的剩餘秒數
+  "events": [
+    {"t": 1200,  "a": "mark",   "c": 14},   // t＝活動時間（ms，暫停不計）
+    {"t": 3300,  "a": "reveal", "c": 8,  "hit": "dino"},
+    {"t": 5100,  "a": "mark",   "c": 9},
+    {"t": 7400,  "a": "reveal", "c": 21, "hit": "miss"},  // 落空：伺服器確認 c 不是答案格
+    {"t": 9600,  "a": "hint",   "c": 33},
+    {"t": 12400, "a": "reveal", "c": 33, "hit": "chest"}
+    // …直到第 N 個命中（過關）
+  ]
+}</code></pre>
+<p>伺服器驗證步驟：</p>
+<ol>
+  <li>事件時間單調遞增、格式合法、數量上限（例如 ≤ 4×N×N，防灌爆）。</li>
+  <li>每個 <code>reveal</code>：該格必須「尚未被揭示」且未超過 N+3 次；<code>hit</code> 與伺服器答案一致（transform 換算後）；<code>hit=miss</code> 時該格必須不是答案格。</li>
+  <li>過關條件：事件流中命中數恰為 N，且最後一筆後無異常事件。</li>
+  <li>分數：<code>serverScore = clamp(30N − activeMs/1000, 0, 30N)</code>（取整規則與前端 <code>Math.floor</code> 對齊），與 <code>claimedScore</code> 差距 ≤ 1 秒才認可，否則以 serverScore 為準並記警告。</li>
+  <li>統計標記：平均每步操作 &lt; 250ms、連續局數異常、同盤面重複秒殺 → 標記進審核佇列（不直接封鎖，先觀察）。</li>
+</ol>
+
+<h3>3.5 離線策略（明確規則，避免模糊地帶）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>情境</th><th>遊戲行為</th><th>分數去處</th></tr>
+  <tr><td>線上開局（有網路）</td><td>取伺服器盤面，正常遊玩</td><td>結算上傳，伺服器驗證後計入雲端戰績</td></tr>
+  <tr><td>離線開局（無網路）</td><td>用本機生成盤面（現行邏輯照舊），遊戲體驗不變</td><td>分數只存本機 <code>LV</code>、標記「本機限定」，不上傳、不進排行榜；之後也不補上傳（無法驗證時間軸）</td></tr>
+  <tr><td>線上遊玩中斷網</td><td>照常玩完（前端不因斷線中斷遊玩）</td><td>結算時重試 3 次；仍失敗→該局降級為「本機限定」</td></tr>
+  <tr><td>舊存檔玩家首次上線</td><td>保留本機分數顯示，但云端戰績自首日從零起算</td><td>舊分數不可驗證、不採信（見第九章風險 R3）</td></tr>
+</table>
+</div>
+
+<h3>3.6 前端改造清單（分數部分）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>改動</th><th>涉及現有程式碼</th><th>複雜度</th></tr>
+  <tr><td class="no">F1</td><td>新增 <code>api.js</code>／內嵌 API 客戶端（fetch＋權杖管理＋重試）</td><td>新檔案或 main.js 前段</td><td>低</td></tr>
+  <tr><td class="no">F2</td><td>開局流程分流：線上取盤／離線退回 <code>generatePuzzle</code></td><td><code>newBoard</code>／<code>poolTake</code>（js/main.js:257-283）</td><td>中</td></tr>
+  <tr><td class="no">F3</td><td>事件記錄器：掛在 <code>doBall</code>、<code>markToggle</code>、提示、技能等入口</td><td><code>js/main.js:1260</code> 等</td><td>中</td></tr>
+  <tr><td class="no">F4</td><td>結算提交與結果合併（<code>winRound</code> 末端新增上傳與覆寫）</td><td><code>js/main.js:2343-2409</code></td><td>中</td></tr>
+  <tr><td class="no">F5</td><td>發佈建置剝除工程模式（dev 按鈕與 <code>devFree</code> 路徑）</td><td><code>index.html:215-251</code>、<code>js/main.js:892-946</code></td><td>低（build flag）</td></tr>
+  <tr><td class="no">F6</td><td>版本與協定：提交格式帶 <code>schemaVersion</code>，便於日後演進</td><td>新</td><td>低</td></tr>
+</table>
+</div>
+
+<h2>四、內購設計（IAP）</h2>
+
+<h3>4.1 商品規劃（先定義「賣什麼」）</h3>
+<p>現有經濟體（種子 🌌／獎勵券 🎟／藥水 🧪）天生適合做消耗型商品。以下為建議的初始商品集，<strong>價格與實際組合是你的商業決策</strong>，僅示範對應關係：</p>
+<div class="tbl-wrap">
+<table>
+  <tr><th>SKU 範例</th><th>內容</th><th>類型</th><th>對應遊戲資源</th></tr>
+  <tr><td><code>seeds_pack_s</code></td><td>🌌×30</td><td>消耗型</td><td><code>ECON.seeds</code></td></tr>
+  <tr><td><code>seeds_pack_m</code></td><td>🌌×120</td><td>消耗型</td><td><code>ECON.seeds</code></td></tr>
+  <tr><td><code>tickets_pack_m</code></td><td>🎟×30</td><td>消耗型</td><td><code>ECON.tickets</code></td></tr>
+  <tr><td><code>potion_pack_m</code></td><td>🧪×10</td><td>消耗型</td><td><code>ECON.potions</code></td></tr>
+  <tr><td><code>starter_bundle</code></td><td>🌌×50＋🎟×10＋🧪×3</td><td>消耗型</td><td>三種資源</td></tr>
+</table>
+</div>
+<div class="note"><b>為什麼全是消耗型？</b>非消耗型（終身解鎖）需要「恢復購買」的正確還原，且本遊戲目前沒有天然適合的永久商品（無廣告可去、無訂閱機制）。先賣消耗型最單純；未來若要賣「永久造型」等，再加非消耗型並實作還原流程。</div>
+<div class="risk"><b>平台政策硬性要求：</b>iOS（App Store 審核指南 3.1.1）與 Android（Google Play 計費政策）都要求：解鎖 App 內功能、消耗虛擬貨幣等<strong>數位內容必須使用商店內購</strong>，不得用第三方支付；且商店會抽成。價格與稅務設定需在 App Store Connect／Play Console 完成。</div>
+
+<h3>4.2 平台整合現況（2026-10 查證）</h3>
+<h4>iOS（Apple）</h4>
+<ul>
+  <li>購買端：<strong>StoreKit 2</strong>；購買成功後拿到交易 JWS（signed transaction）。</li>
+  <li>伺服器驗證：<strong>App Store Server API</strong>——以後端向 <code>GET /inApps/v1/transactions/{transactionId}</code> 查驗交易狀態，或直接驗簽前端傳來的 JWS。金鑰為 <strong>In-App Purchase Key（.p8）＋ Issuer ID ＋ Key ID</strong>，只存後端。</li>
+  <li>事件通知：<strong>App Store Server Notifications V2</strong>（webhook，JWS 簽章鏈可對 Apple Root CA 驗證）——處理退款（REFUND）、撤銷等事後狀態變化。</li>
+  <li>消耗型商品：結算畫面需呼叫 <code>Transaction.finish()</code>（由前端在後端確認入帳後執行）。</li>
+  <li>測試：StoreKit Testing（本地）＋ App Store Sandbox 帳號。</li>
+</ul>
+<h4>Android（Google）</h4>
+<ul>
+  <li>購買端：<strong>Google Play Billing Library</strong>（0.1 節查證：2026-06 最新為 9.1.0；<strong>2026-08-31 起新上架／更新必須使用 8.0 以上</strong>，必要時可申請延長至 2026-11-01）。</li>
+  <li>伺服器驗證：<strong>Google Play Developer API（androidpublisher）</strong>——以 <code>purchaseToken</code> 查詢購買狀態（一次性商品 <code>purchases.products.get</code>；新式 API 以官方現行文件為準）。</li>
+  <li>事件通知：<strong>RTDN（Real-time Developer Notifications，經 Google Cloud Pub/Sub）</strong>——一次性商品事件 <code>ONE_TIME_PRODUCT_PURCHASED</code>／<code>ONE_TIME_PRODUCT_CANCELED</code>，退款走 <code>VoidedPurchaseNotification</code>；訊息含 <code>purchaseToken</code> 與 <code>sku</code>，收到後仍需呼叫 Developer API 取完整狀態。</li>
+  <li>消耗型商品：入帳後需「消耗」該筆購買（伺服器端呼叫 consume，或由 App 端 <code>consumeAsync</code>），否則同帳號無法再次購買同一商品。<strong>這是 Android 特有的必做步驟</strong>。</li>
+  <li>測試：Play Console 授權測試帳號（License testers）＋ 內部測試軌道。</li>
+</ul>
+
+<h3>4.3 購買與發放流程</h3>
+<div class="flow">
+  <div class="fstep"><div class="num">1</div><div class="body"><b>App 端發起購買</b>（StoreKit 2／Play Billing）→ 玩家以商店帳號完成付款。</div></div>
+  <div class="fstep"><div class="num">2</div><div class="body"><b>App 把交易憑證送自家後端</b>：iOS＝交易 JWS／transactionId；Android＝<code>purchaseToken</code>＋<code>productId</code>＋<code>orderId</code>。<span class="mut">前端只負責轉交，不做任何「是否已付款」的判斷。</span></div></div>
+  <div class="fstep"><div class="num">3</div><div class="body"><b>後端（Edge Function <code>iap-verify</code>）向商店驗證</b>：Apple App Store Server API／Google Developer API。檢查：簽章有效、<code>productId</code> 在白名單、交易狀態已付款、綁定的 App 正確、未被撤銷。</div></div>
+  <div class="fstep"><div class="num">4</div><div class="body"><b>冪等入帳</b>：以 <code>(platform, transaction_id)</code> 唯一鍵寫入 <code>iap_transactions</code>；同一筆交易重複送達→回傳「已處理」，<strong>不重複發放</strong>。發放寫入錢包 <code>wallet</code> 並記一筆 <code>ledger</code>（+🌌×120, reason=iap）。</div></div>
+  <div class="fstep"><div class="num">5</div><div class="body"><b>告知 App 更新餘額</b>：回傳最新錢包；App 更新顯示。（Android）伺服器端完成消耗；（iOS）App 端 <code>Transaction.finish()</code>。</div></div>
+  <div class="fstep"><div class="num">6</div><div class="body"><b>事後事件（非同步）</b>：Apple Notifications V2／Google RTDN 進入對應 webhook → 退款／撤銷時更新 <code>iap_transactions.status</code>，並依政策處理資源（見 4.5）。</div></div>
+</div>
+
+<h3>4.4 伺服器必須保管的機密（絕不可下發前端）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>機密</th><th>用途</th><th>取得方式（你做）</th><th>存放位置</th></tr>
+  <tr><td>Apple In-App Purchase Key（.p8）＋ Issuer ID ＋ Key ID</td><td>呼叫 App Store Server API</td><td>App Store Connect → 使用者與存取權限 → 整合</td><td>Edge Function 環境變數</td></tr>
+  <tr><td>Apple Bundle ID／App Apple ID</td><td>驗證交易歸屬</td><td>App Store Connect</td><td>同上（非機密）</td></tr>
+  <tr><td>Google Cloud 服務帳戶 JSON</td><td>呼叫 Play Developer API、建 Pub/Sub 訂閱</td><td>Google Cloud Console → 服務帳戶 → 授權 Play Console 財務/訂單權限</td><td>Edge Function 環境變數</td></tr>
+  <tr><td>RTDN Pub/Sub 設定</td><td>接收購買/退款事件</td><td>Play Console → 營利設定 → 即時開發人員通知</td><td>Google Cloud</td></tr>
+</table>
+</div>
+<div class="risk"><b>鐵則：</b>以上任何金鑰出現在前端程式碼或 repo 裡，等於把商店後台權限公開給所有人。程式碼入庫前用 <code>.gitignore</code>＋環境變數；本 repo 目前無金鑰需求，此段純為未來實作提醒。</div>
+
+<h3>4.5 退款、撤銷與異常處理政策（先定好，避免爭議）</h3>
+<ul>
+  <li><strong>退款（Apple REFUND／Google VoidedPurchase）：</strong>webhook 到達→標記交易為 refunded→<code>ledger</code> 記一筆負值。<strong>資源扣減策略建議：</strong>先扣未使用部分至 0；若已消耗完畢，餘額記為 0 並標記帳號（不主動追討、不封鎖——休閒遊戲以符合商店規範為底線，避免客訴升級）。</li>
+  <li><strong>重複送達／競態：</strong><code>(platform, transaction_id)</code> 唯一鍵＋交易內加鎖，保證恰好發放一次（exactly-once）。</li>
+  <li><strong>待處理購買（pending）：</strong>兩平台都有延遲付款情境，收到時回「處理中」，待 webhook 確認後才發放。</li>
+  <li><strong>沙盒交易：</strong>驗證環境與正式環境分流（Apple <code>sandboxReceipt</code>／Google test purchase），沙盒交易僅入測試玩家帳號。</li>
+</ul>
+
+<h2>五、API 設計總表</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>Method</th><th>路徑</th><th>用途</th><th>身分</th><th>冪等</th></tr>
+  <tr><td>POST</td><td><code>/v1/auth/device</code></td><td>匿名註冊／換發權杖</td><td>裝置祕密</td><td>是</td></tr>
+  <tr><td>POST</td><td><code>/v1/runs</code></td><td>開局：領取盤面與 runId</td><td>Bearer 權杖</td><td>—</td></tr>
+  <tr><td>POST</td><td><code>/v1/runs/{id}/finish</code></td><td>結算：事件流＋分數驗證</td><td>Bearer 權杖</td><td>是（runId 一次性）</td></tr>
+  <tr><td>GET</td><td><code>/v1/profile</code></td><td>雲端戰績＋錢包＋驗證狀態</td><td>Bearer 權杖</td><td>—</td></tr>
+  <tr><td>POST</td><td><code>/v1/iap/verify</code></td><td>內購收據驗證與發放</td><td>Bearer 權杖</td><td>是（交易唯一鍵）</td></tr>
+  <tr><td>POST</td><td><code>/v1/iap/webhook/apple</code></td><td>App Store Server Notifications V2</td><td>JWS 驗簽</td><td>是（通知 ID）</td></tr>
+  <tr><td>POST</td><td><code>/v1/iap/webhook/google</code></td><td>RTDN（Pub/Sub push）</td><td>OIDC／共用密鑰</td><td>是（messageId）</td></tr>
+  <tr><td>GET</td><td><code>/v1/leaderboard?n=13</code></td><td>（Phase 3）各區域最佳分數榜</td><td>公開</td><td>—</td></tr>
+</table>
+</div>
+<p class="mut">共用規範：JSON、UTF-8；錯誤格式統一 <code>{error:{code,message}}</code>；一律使用伺服器時間；回應可帶 <code>schemaVersion</code> 供舊版 App 相容處理。</p>
+
+<h2>六、資料庫 Schema（Postgres／Supabase DDL）</h2>
+<pre><code>-- 玩家（匿名裝置帳號）
+create table players (
+  id                 uuid primary key default gen_random_uuid(),
+  device_secret_hash text not null,          -- 只存雜湊
+  created_at         timestamptz not null default now(),
+  flagged            boolean not null default false   -- 統計異常標記
+);
+
+-- 盤面庫（伺服器持有的答案；匯入現有 POOL_DATA＋伺服器端預生成）
+create table boards (
+  id        bigint generated always as identity primary key,
+  n         smallint not null check (n between 6 and 18),
+  layout    jsonb    not null,   -- regionOf（N*N）
+  cats      jsonb    not null,   -- 隱藏物位置（N 個）
+  created_at timestamptz not null default now()
+);
+create index idx_boards_n on boards (n);
+
+-- 每局
+create table runs (
+  id          uuid primary key default gen_random_uuid(),
+  player_id   uuid not null references players(id),
+  board_id    bigint not null references boards(id),
+  n           smallint not null,
+  transform   smallint,                       -- 0..7，結算時填入
+  status      text not null default 'open'    -- open / finished / rejected / expired
+              check (status in ('open','finished','rejected','expired')),
+  started_at  timestamptz not null default now(),
+  expires_at  timestamptz not null,           -- 例：started_at + 6 小時
+  claimed_score int,
+  verified_score int,
+  result      jsonb                           -- 驗證明細（命中序列、警告）
+);
+
+-- 事件（可選：完整留存供複核；也可只留在 result）
+create table run_events (
+  run_id  uuid not null references runs(id) on delete cascade,
+  seq     int  not null,
+  t_ms    bigint not null,
+  action  text not null,
+  cell    int,
+  primary key (run_id, seq)
+);
+
+-- 雲端戰績（對應現有 LV[n].best / total）
+create table scores (
+  player_id uuid not null references players(id),
+  n         smallint not null,
+  best      int not null default 0 check (best  &gt;= 0),
+  total     int not null default 0 check (total &gt;= 0),
+  updated_at timestamptz not null default now(),
+  primary key (player_id, n)
+);
+
+-- 錢包（對應 ECON 的可付費資源）
+create table wallet (
+  player_id uuid primary key references players(id),
+  seeds     int not null default 0 check (seeds   &gt;= 0),
+  tickets   int not null default 0 check (tickets &gt;= 0),
+  potions   int not null default 0 check (potions &gt;= 0),
+  updated_at timestamptz not null default now()
+);
+
+-- 流水帳（每一筆增減都要有來源）
+create table ledger (
+  id         bigint generated always as identity primary key,
+  player_id  uuid not null references players(id),
+  currency   text not null check (currency in ('seeds','tickets','potions')),
+  delta      int  not null,
+  reason     text not null,           -- iap / refund / chest / reward / spend / adjust
+  ref        text,                    -- runId 或 transaction_id
+  created_at timestamptz not null default now()
+);
+create index idx_ledger_player on ledger (player_id, created_at desc);
+
+-- 內購交易（冪等的核心）
+create table iap_transactions (
+  id             bigint generated always as identity primary key,
+  player_id      uuid not null references players(id),
+  platform       text not null check (platform in ('apple','google')),
+  transaction_id text not null,       -- Apple transactionId／Google purchaseToken
+  product_id     text not null,
+  status         text not null default 'verified'
+                 check (status in ('verified','pending','refunded','revoked')),
+  raw            jsonb not null,      -- 商店原始回應（稽核用）
+  created_at     timestamptz not null default now(),
+  updated_at     timestamptz not null default now(),
+  unique (platform, transaction_id)
+);
+
+-- 商店通知稽核
+create table iap_notifications (
+  id           bigint generated always as identity primary key,
+  platform     text not null,
+  message_id   text not null,
+  payload      jsonb not null,
+  result       text,
+  received_at  timestamptz not null default now(),
+  unique (platform, message_id)
+);</code></pre>
+<div class="info"><b>權限原則（RLS）：</b>前端（anon key）只能<strong>讀取自己的</strong> profile／scores／wallet；<code>runs</code>、<code>run_events</code>、<code>scores</code>、<code>wallet</code>、<code>ledger</code>、<code>iap_*</code> 的<strong>寫入一律只允許 Edge Function（service role）</strong>。換句話說：前端拿不到「直接加分」的鑰匙。</div>
+
+<h2>七、安全與營運注意事項</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>項目</th><th>做法</th></tr>
+  <tr><td>速率限制</td><td>每玩家：結算 1 次／30 秒、開局 1 次／5 秒、每日上限（例：300 局）；驗證 API 每玩家每日上限。伺服器端計數，不依賴前端。</td></tr>
+  <tr><td>時間信任</td><td>runId 生命週期（started_at／expires_at）一律伺服器時間；忽略任何客戶端時鐘。</td></tr>
+  <tr><td>統計偵測</td><td>每步平均 &lt; 250ms、同盤面重複秒殺、極端分數分佈 → <code>players.flagged</code>＋人工複核佇列。先標記、後處理，避免誤傷。</td></tr>
+  <tr><td>工程模式</td><td>發佈建置剝除（build flag）；開發版保留。上架版本務必確認 <code>dev-*</code> 按鈕與無限資源路徑不存在。</td></tr>
+  <tr><td>離線佇列安全</td><td>結算重試帶同一 runId；伺服器以 runId 去重，避免重試造成重複計分。</td></tr>
+  <tr><td>隱私與商店申報</td><td>目前商店可申報「不收集任何資料」；上線後端後改為：蒐集「裝置識別碼、遊戲進度、購買紀錄」→ 需更新 Apple 隱私標籤（App Privacy）、Google Data safety，並補隱私政策頁。此為審核必備項。</td></tr>
+  <tr><td>成本</td><td>分數驗證（每局 1 次函式呼叫）與內購驗證（每筆 1～2 次）的量級都極小；免費層足以支撐初期數千至數萬玩家（以官方額度為準）。</td></tr>
+  <tr><td>備份</td><td>Supabase 每日自動備份（免費層保留期有限）；<code>ledger</code>＋<code>iap_transactions</code> 建議定期匯出保存，付費紀錄是財務級資料。</td></tr>
+</table>
+</div>
+
+<h2>八、分階段路線圖與驗收條件</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>階段</th><th>範圍</th><th>主要產出</th><th>驗收條件（可測）</th><th>粗估工作量</th></tr>
+  <tr>
+    <td><span class="tag b-p1">Phase 1</span> 雲端分數</td>
+    <td>匿名帳號、盤面庫、開局/結算 API、L1＋L2 驗證、前端掛點</td>
+    <td>Supabase 專案＋schema；Edge Functions（auth／runs-start／runs-finish）；前端 api 客戶端＋事件記錄＋工程模式剝除（build）</td>
+    <td>1) 線上局分數寫入雲端且結算畫面顯示一致；2) 重建假事件流（假命中）被伺服器判廢；3) 超上限分數被拒；4) 斷網遊玩不受影響、離線局不進雲端；5) 重送結算不重複計分；6) 舊存檔玩家可正常遊玩</td>
+    <td>約 3～5 個工作天</td>
+  </tr>
+  <tr>
+    <td><span class="tag b-p2">Phase 2</span> 內購</td>
+    <td>商品上架、收據驗證、雲端錢包、webhook、恢復流程</td>
+    <td>App Store Connect／Play Console 商品與金鑰設定（你）；<code>iap-verify</code>＋兩個 webhook；<code>wallet</code>／<code>ledger</code>／<code>iap_transactions</code></td>
+    <td>1) 沙盒購買後資源正確入帳且 App 顯示更新；2) 同一筆收據重送不重複發放；3) 退款通知後交易標記 refunded、資源依政策處理；4) Android 消耗流程可再次購買；5) 機密金鑰不在前端（程式碼掃描）</td>
+    <td>約 4～7 個工作天（不含商店審核等待）</td>
+  </tr>
+  <tr>
+    <td><span class="tag b-p3">Phase 3</span> 強化</td>
+    <td>排行榜、經濟伺服器化、L3 心跳、營運工具</td>
+    <td>leaderboard API＋UI；提示/開箱消耗改走伺服器；異常儀表板；視需要 Platform Integrity（包裝層）</td>
+    <td>1) 榜單只含已驗證分數；2) 資源消耗與雲端錢包一致（離線消耗待連線同步）；3) 標記帳號可人工複核</td>
+    <td>視需求滾動排程</td>
+  </tr>
+</table>
+</div>
+<div class="note"><b>順序建議：</b>若短期內不賣商品，先做 Phase 1（成本低、先把「分數公信力」的地基打好）；若已確定上架時就帶內購，把 Phase 2 提前——但兩者共同的前置（匿名帳號＋後端專案＋API 客戶端）只做一次，先做哪個都順。<strong>Phase 1 與 Phase 2 的認證層是同一套，建議至少一起設計。</strong></div>
+
+<h2>九、風險與對策</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>風險</th><th>影響</th><th>對策</th></tr>
+  <tr><td class="no">R1</td><td>連線不穩導致體驗退步</td><td>玩家抱怨、評分下降</td><td>離線全功能可玩；結算重試＋降級機制；遊玩中零網路請求（除開局/結算）</td></tr>
+  <tr><td class="no">R2</td><td>作弊者偽造完整時間軸（L2 極限）</td><td>排行榜公信力受損</td><td>統計標記＋榜單人工複核；必要時升級 L3；上限 V2 讓獲利空間有限</td></tr>
+  <tr><td class="no">R3</td><td>舊玩家本地高分不可驗證</td><td>玩家對「總分歸零」不滿</td><td>本機分數保留顯示、雲端自首日起算；提前在更新公告說明；離線局持續可用</td></tr>
+  <tr><td class="no">R4</td><td>裝置資料清除＝付費紀錄遺失</td><td>退款糾紛、客服成本</td><td>轉移碼（2.3 節）＋商店端還原流程；客服可用 <code>iap_transactions</code> 查詢重建</td></tr>
+  <tr><td class="no">R5</td><td>Supabase 閒置暫停（7 天低活動）</td><td>首週玩家可能遇到服務未啟動</td><td>上線首週必有流量不易暫停；設監控與喚醒排程；備選 Cloudflare Workers 方案已備妥</td></tr>
+  <tr><td class="no">R6</td><td>商店審核問題（內購、隱私申報）</td><td>延後上架</td><td>IAP 送審時附測試帳號；隱私標籤與隱私政策同步更新；Restore 流程先做好（即使目前只有消耗型）</td></tr>
+  <tr><td class="no">R7</td><td>退款被濫用（買了用完再退）</td><td>收入損失</td><td>商店本身有退款政策把關；我方依 webhook 記錄並標記慣犯；必要時限制該帳號購買</td></tr>
+</table>
+</div>
+
+<h2>十、需要你決定／需要你做的事</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>事項</th><th>誰做</th><th>說明</th></tr>
+  <tr><td class="no">1</td><td>要不要做、先做哪個 Phase</td><td><span class="badge b-you">你</span></td><td>本報告只規劃與估工；實作須經你確認</td></tr>
+  <tr><td class="no">2</td><td>商品清單與定價</td><td><span class="badge b-you">你</span></td><td>SKU、內容數量、價格級距（可先給一組草案再一起修）</td></tr>
+  <tr><td class="no">3</td><td>Apple／Google 開發者後台設定</td><td><span class="badge b-both">共同</span></td><td>你：開通商品、產生 .p8 金鑰與服務帳戶（金鑰只放後端）；我：寫驗證函式與文件化步驟</td></tr>
+  <tr><td class="no">4</td><td>Supabase 專案註冊</td><td><span class="badge b-both">共同</span></td><td>你：開帳號（免費、不綁卡）；我：建 schema 與函式</td></tr>
+  <tr><td class="no">5</td><td>隱私政策與商店申報更新</td><td><span class="badge b-both">共同</span></td><td>我：草擬內容；你：提交商店表單</td></tr>
+  <tr><td class="no">6</td><td>實作與驗證</td><td><span class="badge b-ai">我</span></td><td>Phase 1 起逐項實作、沙盒測試、產出後續報告</td></tr>
+</table>
+</div>
+
+<h2>十一、離線核心＋連線留言：混合模式規格（2026-10-14 追加）</h2>
+<div class="info"><b>這一章回答什麼：</b>提問「如果做成離線可玩，當要開啟攻略留言功能就會提醒玩家要連線，這樣可行嗎？那這樣要如何收費」。答案：<strong>可行，而且是這個產品最務實的切法</strong>——單機核心永久離線免費，留言等 UGC 功能在玩家主動開啟時才提示連線，收費只賣「完整版解鎖」（非消耗型一次買斷），<strong>留言功能本身不收費</strong>。以下為可直接動工的規格。</div>
+
+<h3>11.1 功能分層與網路需求</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>功能</th><th>離線</th><th>需連線</th><th>依據／說明</th></tr>
+  <tr><td>盤面挑戰 4×4–12×12（九大區域）</td><td><span class="tag t-good">可</span></td><td>—</td><td>盤面由客戶端 <code>newBoard()</code> 即時生成（<code>js/main.js:1005</code>），區域表 <code>REGION_META</code>（<code>js/main.js:393-396</code>）；全程零網路請求</td></tr>
+  <tr><td>圖鑑／資源／存檔</td><td><span class="tag t-good">可</span></td><td>—</td><td>localStorage <code>dinodoku-*</code></td></tr>
+  <tr><td>龍塔挑戰（2000 關）</td><td><span class="tag t-good">可</span></td><td>—</td><td><code>js/tower.js</code> 預生成關卡</td></tr>
+  <tr><td>攻略彈幕（飛字播放）</td><td><span class="tag t-warn">讀快取</span></td><td>取新留言</td><td>離線時播放最近快取；無快取則顯示「尚無留言」而非錯誤</td></tr>
+  <tr><td>攻略留言板（閱讀）</td><td><span class="tag t-warn">讀快取</span></td><td>取新留言</td><td>見 11.3 快取規格；狀態條須標示「離線快取 · 同步於 X」</td></tr>
+  <tr><td>攻略留言板（發表／按讚）</td><td><span class="tag t-bad">不可</span></td><td><span class="tag t-info">是</span></td><td>UGC 必須經伺服器過濾與留存（合規要求，見 11.5）</td></tr>
+  <tr><td>雲端分數／排行榜</td><td><span class="tag t-bad">不可</span></td><td><span class="tag t-info">是</span></td><td>第三章 L1–L3；離線局先存本機、連線後補送</td></tr>
+  <tr><td>內購／恢復購買</td><td><span class="tag t-bad">不可</span></td><td><span class="tag t-info">是</span></td><td>第四章；收據必須由伺服器向 Apple／Google 驗證</td></tr>
+</table>
+</div>
+
+<h3>11.2 連線偵測與提醒 UI 流程</h3>
+<div class="flow">
+  <div class="fstep"><div class="num">1</div><div class="body"><b>點「📋 留言板」→ 先秒開快取</b><div>立刻讀 <code>dinodoku-twcache-&lt;level&gt;</code> 渲染，狀態條顯示灰色「離線快取」。玩家不會看到空白或轉圈等網路。</div></div></div>
+  <div class="fstep"><div class="num">2</div><div class="body"><b>背景探測連線（不阻擋畫面）</b><div><code>navigator.onLine === false</code> → 直接判定離線；為 <code>true</code> 仍可能是無效連線（captive portal），故再發 <code>GET /v1/comments?level=n&amp;limit=20</code>，逾時 4 秒。</div></div></div>
+  <div class="fstep"><div class="num">3</div><div class="body"><b>成功 → 靜默同步</b><div>用伺服器資料取代快取、寫回快取與同步時間、狀態條轉綠「已同步 · 剛剛」、解鎖「發表／按讚／檢舉」。</div></div></div>
+  <div class="fstep"><div class="num">4</div><div class="body"><b>失敗 → 提示卡（非阻斷式）</b><div>顯示置中提示卡：「<strong>攻略留言需要網路連線</strong>」＋說明「你可以離線繼續玩，連線後即可閱讀與發表攻略」。按鈕：<span class="kbd">重試</span>、<span class="kbd">返回遊戲</span>；若本關有快取則多一顆 <span class="kbd">閱讀離線快取</span>。<strong>不使用蓋滿整頁的 modal</strong>，不鎖住返回鍵。</div></div></div>
+  <div class="fstep"><div class="num">5</div><div class="body"><b>離線按「送出」→ 不丟字</b><div>保留暱稱與內容於輸入框，提示「需要網路才能發表，已幫你保留內容」，並在 <code>dinodoku-twdraft-&lt;level&gt;</code> 存草稿；恢復連線後可一鍵送出（不自動送出，避免玩家沒注意就發表）。</div></div></div>
+  <div class="fstep"><div class="num">6</div><div class="body"><b><code>online</code>／<code>offline</code> 事件自動處理</b><div>監聽 <code>window.online</code>：留言板開著就自動重試一次並更新狀態條；遊戲中<strong>不主動跳窗</strong>打斷遊玩。</div></div></div>
+  <div class="fstep"><div class="num">7</div><div class="body"><b>鐵律</b><div>離線永不阻擋任何單機功能（含 8×8 以上與龍塔）；連線提示只出現在玩家<strong>主動要求</strong> UGC／雲端功能時。這是「離線可玩」承諾的底線，也是商店評論的保護傘。</div></div></div>
+</div>
+<div class="note"><b>文案建議（繁中、兒童友善）：</b>「攻略留言需要網路連線 🌐<br>單機玩法不用網路，隨時都能玩！連線後就可以看到其他玩家的攻略、發表你的發現。」— 避免「錯誤」「失敗」等字眼。</div>
+
+<h3>11.3 離線快取規格</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>項目</th><th>規格</th></tr>
+  <tr><td>快取鍵</td><td><code>dinodoku-twcache-&lt;level&gt;</code>（留言陣列）、<code>dinodoku-twcache-meta-&lt;level&gt;</code>（<code>{syncedAt,count}</code>）、<code>dinodoku-twdraft-&lt;level&gt;</code>（離線草稿）</td></tr>
+  <tr><td>每關快取筆數</td><td>20 則（最新 10 ＋ 最高讚 10，去重）</td></tr>
+  <tr><td>有效期</td><td>72 小時；過期仍可讀，狀態條改標「快取已過期 · 連線可更新」</td></tr>
+  <tr><td>容量控管</td><td>只保留最近 30 關，其餘以 LRU 淘汰（30 字留言極省空間，遠低於 localStorage 約 5MB 上限）</td></tr>
+  <tr><td>寫入時機</td><td>每次成功 <code>GET /v1/comments</code> 後；失敗不覆寫既有快取</td></tr>
+  <tr><td>相容既有本地版</td><td>現有 <code>dinodoku-twcomments-&lt;level&gt;</code>／<code>-twposted-</code>／<code>-twlikes-</code> 保留為離線降級資料來源；首次連線後遷移為「我的發言紀錄」，避免玩家既有留言消失（遷移需寫入 <code>js/main.js</code> 的初始化與開發者重設清單）</td></tr>
+  <tr><td>隱私</td><td>快取含其他玩家暱稱與留言 → 屬於「使用者產生內容」，須在隱私政策與商店申報中揭露</td></tr>
+</table>
+</div>
+
+<h3>11.4 留言後端 Schema（Postgres／Supabase DDL）</h3>
+<pre><code>-- 攻略留言（龍塔每關；規則沿用前端：每關限 1 則、留言 ≤30 字、暱稱 ≤12 字）
+create table tower_comments (
+  id           bigint generated always as identity primary key,
+  level        smallint not null check (level between 1 and 2000),
+  player_id    uuid not null references players(id),
+  name         text not null default '' check (char_length(name) &lt;= 12),
+  body         text not null check (char_length(body) between 1 and 30),
+  status       text not null default 'pending'
+               check (status in ('pending','approved','rejected','removed')),
+  like_count   int not null default 0 check (like_count &gt;= 0),
+  report_count int not null default 0 check (report_count &gt;= 0),
+  ip_hash      text,                              -- 只存雜湊，供灌水偵測
+  created_at   timestamptz not null default now(),
+  moderated_at timestamptz
+);
+create index idx_comments_level on tower_comments (level, status, like_count desc, created_at desc);
+-- 每玩家每關只能留 1 則（與前端 dinodoku-twposted-&lt;level&gt; 一致）
+create unique index uq_comments_player_level on tower_comments (player_id, level)
+  where status &lt;&gt; 'removed';
+
+-- 按讚（每玩家每關上限 3 個，於 Edge Function 計數檢查）
+create table comment_likes (
+  comment_id bigint not null references tower_comments(id) on delete cascade,
+  player_id  uuid   not null references players(id),
+  level      smallint not null,
+  created_at timestamptz not null default now(),
+  primary key (comment_id, player_id)
+);
+create index idx_likes_player_level on comment_likes (player_id, level);
+
+-- 檢舉（UGC 合規必備）
+create table comment_reports (
+  comment_id bigint not null references tower_comments(id) on delete cascade,
+  player_id  uuid   not null references players(id),
+  reason     text   not null check (char_length(reason) &lt;= 200),
+  handled    boolean not null default false,
+  created_at timestamptz not null default now(),
+  primary key (comment_id, player_id)
+);
+
+-- 敏感詞庫（把前端 BAD 清單升級為伺服器端可熱更新的詞庫）
+create table banned_words (
+  word       text primary key,
+  severity   smallint not null default 1 check (severity in (1,2)),  -- 1=直接擋下 2=轉人工審核
+  updated_at timestamptz not null default now()
+);
+
+-- 玩家禁言旗標（加在既有 players 表）
+alter table players add column muted boolean not null default false,
+                    add column muted_until timestamptz;
+
+-- 每日配額（每日 10 則，與前端 DAILY 一致；伺服器計數才算數）
+create table comment_quota (
+  player_id  uuid not null references players(id),
+  day        date not null default (now() at time zone 'Asia/Taipei')::date,
+  used       smallint not null default 0 check (used between 0 and 10),
+  primary key (player_id, day)
+);</code></pre>
+<h4>對應 API（沿用第五章風格）</h4>
+<div class="tbl-wrap">
+<table>
+  <tr><th>Method</th><th>路徑</th><th>用途</th><th>身分</th><th>離線行為</th></tr>
+  <tr><td>GET</td><td><code>/v1/comments?level=n&amp;limit=20</code></td><td>取該關已核准留言（按讚數＋時間排序）</td><td>公開（anon key）</td><td>讀快取＋提示卡</td></tr>
+  <tr><td>POST</td><td><code>/v1/comments</code></td><td>發表留言（伺服器過濾＋配額＋冪等）</td><td>Bearer 權杖</td><td>存草稿，不送出</td></tr>
+  <tr><td>POST</td><td><code>/v1/comments/{id}/like</code></td><td>按讚／收回（每關上限 3）</td><td>Bearer 權杖</td><td>按鈕停用＋提示</td></tr>
+  <tr><td>POST</td><td><code>/v1/comments/{id}/report</code></td><td>檢舉</td><td>Bearer 權杖</td><td>按鈕停用＋提示</td></tr>
+  <tr><td>POST</td><td><code>/v1/moderation/{id}</code></td><td>審核：核准／下架／禁言（內部）</td><td>service role</td><td>—</td></tr>
+</table>
+</div>
+<div class="info"><b>權限原則（RLS）：</b>前端只能<strong>讀取 <code>status='approved'</code></strong> 的留言；<code>tower_comments</code>／<code>comment_likes</code>／<code>comment_quota</code> 的寫入一律只允許 Edge Function（service role）。玩家無法用 anon key 直接插入留言、洗讚或改配額。</div>
+
+<h3>11.5 UGC 合規清單（兒童向 App 必備）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>項目</th><th>做法</th><th>現況差距</th></tr>
+  <tr><td class="no">C1</td><td>伺服器端敏感詞過濾</td><td>把前端 <code>BAD</code> 清單（<code>js/tower_comments.js:22</code>）搬進 <code>banned_words</code>，可熱更新；命中 severity 1 直接退件、2 轉 <code>pending</code>。前端過濾只當第一道，<strong>不可依賴</strong></td><td><span class="tag t-bad">目前僅客戶端</span></td></tr>
+  <tr><td class="no">C2</td><td>網址／聯絡方式過濾</td><td>沿用 <code>BAD_RE = /https?:\/\/|www\./i</code>（<code>js/tower_comments.js:23</code>），伺服器端再跑一次並擴充（電話、ID、社群帳號關鍵字）</td><td><span class="tag t-bad">目前僅客戶端</span></td></tr>
+  <tr><td class="no">C3</td><td>審核模式</td><td>建議「<strong>先發後審＋高風險詞先 pending</strong>」：一般留言立即可見（體驗好），命中 severity 2 或新帳號前 3 則走人工。若採「先審後發」則留言延遲可見，須在 UI 明示「審核中」</td><td><span class="tag t-warn">待你決定</span></td></tr>
+  <tr><td class="no">C4</td><td>檢舉</td><td>每則留言長按 → 檢舉（選項：不雅用語／廣告／劇透／其他＋自由文字 ≤200 字）；送 <code>comment_reports</code></td><td><span class="tag t-bad">尚無</span></td></tr>
+  <tr><td class="no">C5</td><td>封鎖</td><td>玩家可封鎖某帳號，被封鎖者留言對其隱藏（前端過濾 <code>blocked_ids</code>，不需新表亦可先以 localStorage 實作）</td><td><span class="tag t-bad">尚無</span></td></tr>
+  <tr><td class="no">C6</td><td>人工審核後台</td><td>Supabase 表格＋一個簡單審核頁（核准／下架／禁言 7 天）；<code>report_count ≥ 3</code> 自動進佇列</td><td><span class="tag t-bad">尚無</span></td></tr>
+  <tr><td class="no">C7</td><td>禁言機制</td><td><code>players.muted</code>＋<code>muted_until</code>；被禁言者仍可玩與閱讀，只是不能發表（UI 明示原因與期限）</td><td><span class="tag t-bad">尚無</span></td></tr>
+  <tr><td class="no">C8</td><td>商店申報</td><td>Apple 隱私標籤／Google Data safety 需勾「使用者產生內容」；年齡分級重評（UGC 通常要求 12+ 或提出有效的過濾＋檢舉機制，兒童類別須特別說明）</td><td><span class="tag t-warn">需更新</span></td></tr>
+  <tr><td class="no">C9</td><td>玩家告知</td><td>留言板入口固定顯示「內容由玩家提供，可長按檢舉」；首次使用彈一次說明（可勾選不再顯示）</td><td><span class="tag t-bad">尚無</span></td></tr>
+  <tr><td class="no">C10</td><td>個資最小化</td><td>不需真實姓名／Email；暱稱可留空（顯示「神秘探員」）；IP 只存雜湊；快取與草稿僅存本機</td><td><span class="tag t-good">已符合</span></td></tr>
+</table>
+</div>
+
+<h3>11.6 收費模型</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>層級</th><th>內容</th><th>價格</th><th>離線</th></tr>
+  <tr><td><span class="tag t-good">免費</span> 單機核心</td><td>4×4–7×7 全部區域、龍塔前段（建議前 200 關）、本地存檔與圖鑑、攻略留言<strong>閱讀＋發表</strong>（發表需連線）</td><td>NT$0</td><td><span class="tag t-good">全可</span></td></tr>
+  <tr><td><span class="tag t-info">一次買斷</span> 完整版解鎖</td><td>8×8–12×12 全部區域（含霜牙雪嶺／古城遺跡等高難區）、龍塔全 2000 關、日後新增區域自動含在內</td><td>建議 NT$60–90</td><td><span class="tag t-good">解鎖後全可離線</span></td></tr>
+  <tr><td><span class="tag t-warn">Web 版</span>（GitHub Pages）</td><td>免費試玩 4×4–6×6 ＋ 留言板閱讀；<strong>不接內購</strong>（網頁無法走 Apple／Google 收款），顯示「完整版請下載 App」</td><td>NT$0</td><td><span class="tag t-good">可</span></td></tr>
+  <tr><td>不做的事</td><td>廣告、訂閱、抽獎箱、留言付費、留言去廣告——兒童向產品一律不做</td><td>—</td><td>—</td></tr>
+</table>
+</div>
+<div class="ok"><b>為什麼留言免費：</b>留言是<strong>留存工具</strong>不是商品。收費會直接掐死 UGC 量（空留言板對新玩家是負分），而「完整版解鎖」的價值主張清楚（更多關卡＝更多玩法），家長也更容易接受一次性買斷、無廣告、可離線。</div>
+<div class="note"><b>技術前提：</b>「完整版解鎖」屬<strong>非消耗型</strong>商品，必須支援「恢復購買」；且需先有匿名帳號（第四章 2.1）才能把權益綁到雲端，否則換裝置即遺失。iOS／Android 上架賣數位商品<strong>只能走平台內購</strong>，不可導向外部付款。</div>
+
+<h3>11.7 防繞過界線（誠實說）</h3>
+<div class="risk"><b>本地繞過無法阻止：</b>盤面由客戶端 <code>newBoard()</code> 生成（<code>js/main.js:1005</code>）、龍塔關卡由 <code>js/tower.js</code> 預生成，8×8 以上的內容<strong>本來就在玩家手上的 JS 裡</strong>。改一行 HTML／JS 或用 DevTools 就能在本地解鎖，伺服器完全沒有參與環節、也無從否決。這在單機離線遊戲是結構性的，不是實作疏失。</div>
+<div class="tbl-wrap">
+<table>
+  <tr><th>方案</th><th>做法</th><th>防繞過</th><th>代價</th><th>建議</th></tr>
+  <tr><td>A 全離線</td><td>解鎖旗標存 localStorage＋雲端 entitlement 雙寫；進入 8×8 以上時檢查旗標</td><td><span class="tag t-bad">弱</span>（本地可改）</td><td>無：離線全功能、體驗最好</td><td><span class="tag t-good">採此</span></td></tr>
+  <tr><td>B 大盤面走伺服器</td><td>8×8 以上盤面改由 <code>POST /v1/runs</code> 下發（第三章 <code>boards</code> 表），客戶端不再有生成器</td><td><span class="tag t-good">強</span>（沒帳號／沒權益就拿不到盤面）</td><td>大圖<strong>離線不能玩</strong>，與「離線可玩」承諾衝突；需伺服端移植生成器</td><td><span class="tag t-warn">不建議</span></td></tr>
+  <tr><td>C 混合</td><td>免費區離線生成；付費區首次解鎖時向伺服器換取「盤面種子包」並快取，之後離線可用</td><td><span class="tag t-warn">中</span>（需先合法取得種子包）</td><td>實作複雜、種子包仍可被轉散</td><td><span class="tag t-warn">若在意破解再議</span></td></tr>
+</table>
+</div>
+<div class="info"><b>伺服器真正守得住的：</b>收據真偽與重複發放（<code>iap_transactions</code> 唯一鍵）、雲端分數／排行榜／錢包、留言 UGC 的過濾與配額。<strong>結論：</strong>把付費定位為「支持開發者＋跨裝置權益」的誠實解鎖，不設計成防破解的付費牆；免費版本身已完整好玩，願意付錢的家長不會去破解，會破解的人本來也不會付錢。</div>
+
+<h3>11.8 實作工時與驗收條件</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>階段</th><th>內容</th><th>前置</th><th>驗收條件</th><th>估工</th></tr>
+  <tr><td><span class="tag t-info">P0</span> 連線偵測與提示 UI</td><td><code>navigator.onLine</code>＋探測請求、提示卡、狀態條、草稿保留、快取讀寫（純前端，不需後端）</td><td>無（可先以假 API 打樁）</td><td>1) 斷網點留言板出現提示卡且不阻擋遊戲與返回；2) 輸入內容在離線送出後完整保留；3) 恢復網路自動重試並更新狀態條；4) 遊戲中離線不跳窗</td><td>1–2 個工作天</td></tr>
+  <tr><td><span class="tag t-info">P1</span> 留言後端</td><td>Supabase 專案＋11.4 schema＋4 支 Edge Function＋前端改接真 API＋本地版資料遷移</td><td>Supabase 帳號（你）；匿名帳號層（第四章 Phase 1）</td><td>1) 兩台裝置看到同一則留言；2) 每關 1 則／每日 10 則／每關 3 讚在<strong>伺服器</strong>生效（改前端也繞不過）；3) 敏感詞與網址在伺服器被擋；4) 離線讀快取、72 小時過期標示正確</td><td>3–4 個工作天</td></tr>
+  <tr><td><span class="tag t-info">P2</span> UGC 合規</td><td>檢舉／封鎖／審核後台／禁言；隱私政策與商店申報更新</td><td>P1</td><td>1) 檢舉可送出並進審核佇列；2) 審核下架後其他玩家看不見；3) <code>report_count ≥ 3</code> 自動入佇列；4) 商店表單含 UGC 申報</td><td>2–3 個工作天</td></tr>
+  <tr><td><span class="tag t-info">P3</span> 完整版解鎖 IAP</td><td>沿用第四章 Phase 2（商品上架、收據驗證、entitlement、恢復購買）＋前端尺寸門檻（≤7×7 免費）</td><td>P1 帳號層；商店商品設定（你）</td><td>1) 沙盒購買後 8×8 以上解鎖並雲端記錄；2) 移除重裝後「恢復購買」可還原；3) 退款 webhook 後權益依政策處理；4) 離線時已解鎖內容仍可玩</td><td>4–7 個工作天</td></tr>
+</table>
+</div>
+<div class="note"><b>需要你決定（動工前）：</b>1) 免費／付費的尺寸切線是否就是 <strong>7×7 免費、8×8 以上付費</strong>；2) 龍塔免費到第幾關（建議前 200）；3) 留言採「先發後審」或「先審後發」；4) 是否開 Supabase 專案（P1 前置，免費不綁卡）；5) 完整版定價。<br><b>可立即開工、不需後端的：</b>P0（純前端連線偵測與提示 UI）——你點頭我就做。</div>
+
+<h2>附錄 A：程式碼事實索引（本報告引用處）</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>事實</th><th>位置</th></tr>
+  <tr><td>過關分數＝剩餘秒數（整數）</td><td><code>js/main.js:2381</code></td></tr>
+  <tr><td>沙漏總量＝N×30；+30 秒回填上限＝初始總量</td><td><code>js/main.js:1359</code>、<code>1375-1383</code></td></tr>
+  <tr><td>只有捕獲恐龍 +30 秒（教學不計）</td><td><code>js/main.js:1285-1288</code></td></tr>
+  <tr><td>捕捉器數量＝N+3；每次揭示耗 1</td><td><code>js/main.js:1103</code>、<code>1260-1264</code></td></tr>
+  <tr><td>遊戲結束（時間到／捕捉器用完）</td><td><code>js/main.js:1372</code>、<code>2337-2341</code></td></tr>
+  <tr><td>分數累積（best／total）與個人總分</td><td><code>js/main.js:2382-2388</code>、<code>303</code></td></tr>
+  <tr><td>龍塔不計分／不計時；4×4、5×5 練習不計分</td><td><code>js/main.js:1358</code>、<code>2382</code></td></tr>
+  <tr><td>唯一解盤面生成（重試＋關鍵寶箱破局）</td><td><code>js/main.js:178-255</code></td></tr>
+  <tr><td>盤面預生成池（10～13）與 8 種旋轉/鏡像</td><td><code>js/main.js:257-283</code></td></tr>
+  <tr><td>經濟資源（種子/券/藥水）與本地存檔</td><td><code>js/main.js:323-325</code></td></tr>
+  <tr><td>過關 +1 獎勵券</td><td><code>js/main.js:2374</code></td></tr>
+  <tr><td>提示耗種子×1；餵食耗種子×1；進化耗藥水</td><td><code>js/main.js:2322-2335</code>、<code>741-742</code>、<code>376-383</code></td></tr>
+  <tr><td>寶箱獎勵表（鐵/金/白金）</td><td><code>js/main.js:2140-2142</code></td></tr>
+  <tr><td>工程模式按鈕（立即過關、資源+100、無限資源）</td><td><code>index.html:215-251</code>、<code>js/main.js:892-946</code></td></tr>
+  <tr><td>localStorage 鍵清單（含全掃除）</td><td><code>js/main.js:945</code>、<code>949-954</code></td></tr>
+  <tr><td>玩法說明內的分數與捕捉器規則（玩家可見）</td><td><code>index.html:138-144</code></td></tr>
+  <tr><td>攻略彈幕目前為本地模擬版（尚未連線）</td><td><code>js/tower_comments.js:1-3</code></td></tr>
+  <tr><td>留言上限：每關 1 則、每日 10 則、每關 3 個讚、留言 ≤30 字、暱稱 ≤12 字、每關池 ≤50 則</td><td><code>js/tower_comments.js:20</code>、<code>339</code>、<code>346-347</code>、<code>298</code>、<code>357</code></td></tr>
+  <tr><td>敏感詞黑名單與網址過濾（僅客戶端）</td><td><code>js/tower_comments.js:22-23</code></td></tr>
+  <tr><td>留言本地資料鍵（<code>twcomments-</code>／<code>twposted-</code>／<code>twlikes-</code>／<code>twname</code>／<code>danmaku-on</code>／<code>twday</code>）</td><td><code>js/tower_comments.js:12-19</code></td></tr>
+  <tr><td>盤面於客戶端生成（→ 8×8 以上無法由伺服器把關解鎖）</td><td><code>js/main.js:1005</code>；區域表 <code>js/main.js:393-396</code></td></tr>
+</table>
+</div>
+
+<h2>附錄 B：名詞對照</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>名詞</th><th>說明</th></tr>
+  <tr><td>run（一局）</td><td>從開局到過關／失敗的一次盤面挑戰；由伺服器核發唯一 runId</td></tr>
+  <tr><td>server-authoritative</td><td>伺服器權威：結果以伺服器驗證後為準，前端僅為呈現</td></tr>
+  <tr><td>冪等（idempotent）</td><td>同一請求重送多次，效果與一次相同（不重複計分、不重複發資源）</td></tr>
+  <tr><td>RTDN</td><td>Google Play 即時開發人員通知（經 Pub/Sub）＝Android 版的商店事件 webhook</td></tr>
+  <tr><td>App Store Server Notifications V2</td><td>Apple 版的商店事件 webhook（JWS 簽章）</td></tr>
+  <tr><td>消耗型商品</td><td>可重複購買、用完即消耗的商品（本方案的商品全屬此類）</td></tr>
+  <tr><td>非消耗型商品</td><td>買一次永久擁有（如「完整版解鎖」）；平台要求必須提供「恢復購買」</td></tr>
+  <tr><td>UGC</td><td>使用者產生內容（本遊戲＝攻略留言與彈幕）；上架商店須配套過濾、檢舉與審核機制</td></tr>
+  <tr><td>entitlement（權益）</td><td>伺服器記錄的「這個帳號買了什麼」；客戶端據此解鎖內容，可跨裝置還原</td></tr>
+</table>
+</div>
+
+<footer>
+  尋龍高手 DragonFinder — 後端實作報告（分數驗證與內購）｜ 2026-10-13（2026-10-14 追加第十一章：離線核心＋連線留言混合模式規格）｜ 本報告為規劃文件，實作尚未開始；任何後端變更都將在後續任務中另行實作與驗證。
+</footer>
+
+</div>
+</body>
+</html>
