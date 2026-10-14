@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>遊戲中文名稱更名建議報告 — 取代「尋龍高手」</title>
+<style>
+  :root{
+    --bg:#fffdf9; --ink:#3b3228; --muted:#8a7d6d; --line:#e8dfd2;
+    --amber:#b45309; --amber-bg:#fff7e8;
+    --green:#15803d; --green-bg:#ecfdf3;
+    --red:#b91c1c; --red-bg:#fef2f2;
+    --blue:#1d4ed8; --blue-bg:#eff6ff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    line-height:1.65;}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 80px;}
+  header.hero{background:linear-gradient(135deg,#b45309,#d97706 60%,#f59e0b);
+    color:#fff;border-radius:18px;padding:34px 30px;margin-bottom:26px;
+    box-shadow:0 10px 30px rgba(180,83,9,.25);}
+  header.hero h1{margin:0 0 8px;font-size:1.7rem;letter-spacing:.5px;}
+  header.hero p{margin:4px 0;opacity:.95;}
+  header.hero .meta{font-size:.85rem;opacity:.85;margin-top:12px;}
+  h2{font-size:1.25rem;color:var(--amber);border-bottom:2px solid var(--line);
+    padding-bottom:8px;margin:42px 0 14px;}
+  h3{font-size:1.05rem;margin:22px 0 8px;color:var(--ink);}
+  .risk{background:var(--red-bg);border:1px solid #fecaca;border-left:5px solid var(--red);
+    border-radius:10px;padding:12px 16px;margin:10px 0;}
+  .risk b{color:var(--red);}
+  .note{background:var(--amber-bg);border:1px solid #fde68a;border-radius:10px;padding:12px 16px;margin:14px 0;}
+  .good{background:var(--green-bg);border:1px solid #bbf7d0;border-left:5px solid var(--green);
+    border-radius:10px;padding:12px 16px;margin:10px 0;}
+  .good b{color:var(--green);}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 6px;}
+  .badge{display:inline-block;border-radius:999px;padding:1px 12px;font-size:.85rem;font-weight:700;white-space:nowrap;}
+  .b-lo{background:var(--green-bg);color:var(--green);border:1px solid #bbf7d0;}
+  .b-mid{background:var(--amber-bg);color:var(--amber);border:1px solid #fde68a;}
+  .b-hi{background:var(--red-bg);color:var(--red);border:1px solid #fecaca;}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:16px 0;background:#fff;}
+  table{border-collapse:collapse;width:100%;min-width:860px;font-size:.92rem;}
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  th{background:var(--amber-bg);color:var(--amber);white-space:nowrap;}
+  td.no{font-weight:800;color:var(--muted);}
+  .phase td{background:#faf6ee;font-weight:800;color:var(--amber);letter-spacing:1px;}
+  .name{font-size:1.05rem;font-weight:800;white-space:nowrap;}
+  code{background:#f6efe3;border-radius:6px;padding:1px 7px;font-size:.88em;}
+  ul{margin:8px 0;padding-left:1.4em;}
+  li{margin:4px 0;}
+  .foot{margin-top:48px;color:var(--muted);font-size:.85rem;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>遊戲中文名稱更名建議報告</h1>
+  <p>取代「尋龍高手」— 恐龍捉迷藏解謎遊戲（現行英文名 DragonFinder）</p>
+  <p class="meta">日期：2026-10-14 ・ 產出：SophCode ・ 狀態：待你定案</p>
+</header>
+
+<h2>一、為什麼要改：「尋龍高手」的侵權疑慮</h2>
+<div class="risk"><b>R-A｜台灣已有同名商品</b><br>
+  「尋龍高手」在台灣已是<b>華碩文化《STEAM 教養遊戲繪本：尋龍高手》</b>的產品名，博客來、momo、Coupang 等通路均有販售。同名且同為兒童向遊戲/書籍商品，商店審核與商標註冊都會撞名。</div>
+<div class="risk"><b>R-B｜與《馴龍高手》一字之差</b><br>
+  DreamWorks《How to Train Your Dragon》台灣譯名即《馴龍高手》。「尋龍高手」與其僅一字之差、節奏完全相同，構成高度混淆風險，是知名IP維權最愛抓的型態。</div>
+<div class="risk"><b>R-C｜「尋龍」系列既有作品</b><br>
+  《尋龍訣》（Mojin: The Lost Legend）等影视作品已讓「尋龍＋XX」有既有聯想，進一步壓縮獨特性。</div>
+<div class="note"><b>好消息</b>：英文名 <code>DragonFinder</code>、Bundle ID（如 <code>com.hungmin.dragonfinder</code>）、GitHub repo 與存檔機制都不受中文顯示名影響，<b>只需改中文名稱與對應美術文字</b>。</div>
+
+<h2>二、命名原則</h2>
+<div class="legend">
+  <span class="badge b-lo">🟢 低風險</span>
+  <span class="badge b-mid">🟡 中風險</span>
+  <span class="badge b-hi">🔴 高風險</span>
+</div>
+<ul>
+  <li><b>玩法直觀</b>：聽名字就知道是「找東西／捉迷藏」，兒童與家長一眼理解。</li>
+  <li><b>兒童親和</b>：疊字、口語、問句，好念好記（5 字內為佳）。</li>
+  <li><b>獨特性</b>：避開既有童書、玩具、App 常用組合；愈口語化愈難撞名。</li>
+  <li><b>避開 IP 用語</b>：不碰馴龍、侏羅紀、恐龍快打、寶可夢系字彙；不用「高手」綴。</li>
+  <li><b>可註冊性</b>：描述性愈低、暗示性愈高，商標註冊愈順。</li>
+</ul>
+
+<h2>三、候選名稱總表</h2>
+
+<div class="tbl-wrap"><table>
+<tr><th style="width:56px">#</th><th style="width:200px">名稱</th><th>發想與玩法連結</th><th style="width:270px">初篩結果（網路公開資料）</th><th style="width:90px">風險</th></tr>
+
+<tr><td colspan="5" class="phase">首選推薦（初篩乾淨、貼合玩法）</td></tr>
+<tr><td class="no">01</td><td class="name">恐龍躲好了</td><td>取自捉迷藏倒數喊話「……躲好了沒！」，氣球一喊就開局；直指「恐龍藏在格子裡」的核心玩法，語感活潑有畫面。</td><td>搜尋無任何同名產品（書籍/App/玩具皆無），獨特性最高。</td><td><span class="badge b-lo">🟢 低</span></td></tr>
+<tr><td class="no">02</td><td class="name">恐龍躲貓貓</td><td>「躲貓貓」是幼兒最熟悉的遊戲詞，疊字親和力滿分；一聽就懂。</td><td>有同名童書與幼兒活動紀錄（非 App、非遊戲商品），描述性通用詞。</td><td><span class="badge b-mid">🟡 低-中</span></td></tr>
+<tr><td class="no">03</td><td class="name">誰把恐龍藏起來了？</td><td>懸念句式名，本身就是遊戲的提問；「格子裡到底藏了誰」的推理感直接外顯。可縮短為「誰藏了恐龍？」。</td><td>無同名產品；僅與經典繪本《誰藏起來了》句型神似，整體組合獨特。</td><td><span class="badge b-lo">🟢 低</span></td></tr>
+<tr><td class="no">04</td><td class="name">恐龍在哪裡？</td><td>問句名，「威利在哪裡」式尋找聯想；跨齡好記，商店搜尋直覺。</td><td>有《恐龍在哪裡？》系列圖畫書（書名近似），無同名遊戲 App。</td><td><span class="badge b-mid">🟡 低-中</span></td></tr>
+
+<tr><td colspan="5" class="phase">備選（有近似商品，需正式檢索再評估）</td></tr>
+<tr><td class="no">05</td><td class="name">恐龍捉迷藏</td><td>玩法最正規的描述，家長搜尋命中率最高。</td><td>有多本同名童書（中文市場常見書名），描述性擁擠。</td><td><span class="badge b-mid">🟡 低-中</span></td></tr>
+<tr><td class="no">06</td><td class="name">恐龍偵探</td><td>呼應「高冷法則＋✕排除」的推理玩法，偵探定位精準；可擴充為「恐龍偵探社」建立世界觀。</td><td>已有「恐龍偵探社」童書系列、Dino-Detective 英文 App。</td><td><span class="badge b-mid">🟡 中</span></td></tr>
+<tr><td class="no">07</td><td class="name">恐龍捕手</td><td>呼應「捕捉器」操作，動感強。</td><td>疑似有陸版同名小遊戲與同名桌上玩具。</td><td><span class="badge b-mid">🟡 中</span></td></tr>
+
+<tr><td colspan="5" class="phase">其他發想（未逐一查證，僅供擴散思路）</td></tr>
+<tr><td class="no">08</td><td class="name">恐龍搜查線</td><td>「搜查線」帶偵探劇感，推理＋行動兼具。</td><td>未查證。</td><td><span class="badge b-mid">—</span></td></tr>
+<tr><td class="no">09</td><td class="name">小小恐龍探長</td><td>兒童角色扮演感，適合低齡向包裝。</td><td>未查證。</td><td><span class="badge b-mid">—</span></td></tr>
+<tr><td class="no">10</td><td class="name">恐龍不見了！</td><td>驚嘆句式，缺口感強（恐龍失蹤→你去找回來）。</td><td>未查證。</td><td><span class="badge b-mid">—</span></td></tr>
+</table></div>
+
+<h2>四、推薦詳評（Top 3）</h2>
+<h3>🥇 01 恐龍躲好了</h3>
+<div class="good"><b>推薦理由</b>：初篩唯一「完全無撞名」的候選；捉迷藏倒數喊話自帶遊戲感和臨場感，與開局「恐龍已藏好、你來找」的體驗完全同構；5 字、無生難字，中文商店排序與口傳都友善。英文對照可延用 DragonFinder（語意相符：恐龍已藏好→去找到牠）。</div>
+<h3>🥈 02 恐龍躲貓貓</h3>
+<div class="good"><b>推薦理由</b>：幼兒市場親和力最強，「躲貓貓」是最通用的兒童遊戲詞，家長觸及面廣；既有同名者皆為童書/活動而非 App，實際衝突有限。缺點是描述性太強，商標註冊的獨特性門檻略高。</div>
+<h3>🥉 03 誰把恐龍藏起來了？</h3>
+<div class="good"><b>推薦理由</b>：獨特性與懸念感兼具，句式名在商店裡辨識度高、幾乎不可能撞名；「藏起來了？」直接點出謎題本質。缺點是 8 字稍長，圖示上的字級會比較小（可採短版「誰藏了恐龍？」）。</div>
+
+<h2>五、應避開的地雷</h2>
+<div class="risk"><b>❌ 尋龍高手</b>：同名繪本已在市（R-A）＋《馴龍高手》混淆（R-B）。</div>
+<div class="risk"><b>❌ 馴龍／侏羅紀／恐龍快打／寶可夢系字彙</b>：既有知名 IP，任何近似組合都有維權風險。</div>
+<div class="risk"><b>❌「XX高手」綴</b>：與《馴龍高手》節奏相同的命名方式整組避開（如「養龍高手」「抓龍高手」）。</div>
+
+<h2>六、定案後的改名影響範圍（我先盤點，供你決策）</h2>
+<ul>
+  <li><b>index.html</b>：<code>&lt;title&gt;</code>、HUD 標題文字、<code>#menu-logo</code> 與 logo 的 title/alt、退出訊息「要離開尋龍高手了嗎？」等共多處字串。</li>
+  <li><b>js/main.js</b>：遊戲內以文字出現「尋龍高手」的訊息字串（我屆時全倉搜尋一次改齊）。</li>
+  <li><b>版權宣告</b>：本次剛加入的「© 2026 尋龍高手 DragonFinder · 保留一切權利」要同步更新。</li>
+  <li><b>Logo 美術</b>：現行 <code>assets/dinos_2/game_logo.png</code> 為 AI 生成，圖上中文字本來就是<b>無意義亂碼字</b>（非「尋龍高手」），定案後本來就該用正確字重製一版。</li>
+  <li><b>不受影響</b>：localStorage 存檔（<code>dinodoku-*</code>）、英文名 DragonFinder、repo 名稱、Bundle ID 規劃。</li>
+</ul>
+
+<h2>七、建議下一步</h2>
+<div class="legend">
+  <span class="badge b-ai" style="background:var(--green-bg);color:var(--green);border:1px solid #bbf7d0;">🤖 我可做</span>
+  <span class="badge b-you" style="background:var(--red-bg);color:var(--red);border:1px solid #fecaca;">👤 必須你做</span>
+</div>
+<ul>
+  <li><b>你</b>：從候選中挑 1–2 個口袋名單。</li>
+  <li><b>你</b>：正式商標檢索（經濟部智慧財產局商標檢索系統；建議查「第 9 類遊戲軟體」與「第 41 類提供線上遊戲」）— 本報告的網路初篩不能取代正式檢索。</li>
+  <li><b>我</b>：名稱定案後，執行全面改名（字串＋版權宣告＋整理 logo 重製需求），一次 commit 完成。</li>
+</ul>
+
+<div class="foot">DragonFinder 更名建議報告 ・ 2026-10-14 ・ 本報告僅為網路公開資料之初篩，不構成法律意見</div>
+
+</div>
+</body>
+</html>
