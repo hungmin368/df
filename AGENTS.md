@@ -30,3 +30,4 @@ This file provides guidance to the AI agent when working with code in this repos
 - Every step of task execution must also be recorded in the worklog, not just the final outcome.
 - Structure: task title, date, task ID, step-by-step records (what was done, result/verification for each step), and a final status section with the commit hash.
 - Commit the worklog file together with the task's changes.
+- When a task is finished, move its worklog to `worklogs/history/` (create it if needed) so that `worklogs/` keeps only unfinished tasks; a pending commit/push does not make a task unfinished.

@@ -33,3 +33,9 @@
 - 新增：`worklogs/worklog_unity-archive-pause.md`、`unity_archive_pause_report.html`
 - 封存時追蹤表狀態：80 已完成／2 進行中／0 待決策／10 未進行／0 故障／共 92（步驟 69、85 進行中）
 - commit：`66d3f5e` — Pause the Unity conversion and remove Unity content from the repo
+
+## 後記（2026-10-12，bundle-consistency-check 任務期間發現）
+
+- 封存檔與報告副本已移出 repo、存放於上一層目錄：`C:\MY_AI_JOBS\unity_archive_20261012.zip` 與 `C:\MY_AI_JOBS\unity_archive_pause_report.html`。
+- 複驗移出後的封存檔：大小 218,996,499 bytes（與封存完成時一致）；`7z t` 通過（95 資料夾、2,427 檔案、Everything is Ok）；報告副本與 git 版本內容一致。
+- repo 內的 `unity_archive_pause_report.html` 已自 `HEAD` 還原（維持入庫版本）。
