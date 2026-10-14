@@ -35,4 +35,4 @@
 - 驗證：HTTP 200（報告與 index 皆可存取）；瀏覽器實開渲染正常、無本頁 console 錯誤；HTML 完整性檢查通過（2026-10-13 與 2026-10-14 兩輪）。
 - 已改檔：backend_implementation_report.html（新增＋追加第十一章）、worklogs/history/worklog_backend-implementation-report.md（新增，後於本次一併提交）。
 - 待你決定：免費/付費尺寸切線、龍塔免費關數、先發後審或先審後發、是否開 Supabase 專案、完整版定價；P0（純前端連線偵測與提示 UI）可立即開工。
-- Commit：（hash 待回填）。
+- Commit：bca409f（報告第十一章＋本 worklog；hash 回填於後續 commit）。
