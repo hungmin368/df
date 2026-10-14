@@ -22,4 +22,4 @@
 ## 最終狀態
 
 - 狀態：完成。舊「家庭自用」宣告已隨 `#foot` 移除（本次 commit 自已發布版本中移除），正確版權宣告已顯示於主選單底部，驗證全數通過。
-- commit hash：待提交後回填。
+- commit hash：c1d0852（含同版面相依之 ui-status-foot-towerlabel 任務變更與 `js/tower_comments.js`，詳步驟 6）
