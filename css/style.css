@@ -284,12 +284,11 @@ button.btn:disabled { opacity:.4; pointer-events:none; }
 #map-decor span { position:absolute; font-size:19px; opacity:.5; pointer-events:none; filter:saturate(.9); }
 #map-nodes { position:absolute; inset:0; }
 #map-nodes svg { position:absolute; inset:0; width:100%; height:100%; display:block; }
-/* 地圖區塊（SVG <g>）：hover 上浮放大；可進入＝彩色、未解鎖＝灰階、已通關＝金框 */
+/* 地圖區塊（SVG <g>）：hover 上浮放大；可進入＝彩色、未解鎖＝灰階、已通關＝淡彩（無描邊） */
 .mreg { cursor:pointer; outline:none;
   transform-box:fill-box; transform-origin:50% 100%;
   transition:transform .18s cubic-bezier(.2,.9,.3,1.35), filter .18s; }
-.mreg path { stroke:#fffdf3; stroke-width:1.2; stroke-opacity:.9; stroke-linejoin:round;
-  transition:filter .15s; }
+.mreg path { transition:filter .15s; }
 .mreg text { font-family:inherit; text-anchor:middle; paint-order:stroke;
   stroke:rgba(24,32,52,.6); stroke-width:2.8; stroke-linejoin:round; pointer-events:none; }
 .mreg .mr-name { fill:#fff; font-size:7.4px; font-weight:900; letter-spacing:.15px; }
@@ -298,23 +297,23 @@ button.btn:disabled { opacity:.4; pointer-events:none; }
   transform:translateY(-7px) scale(1.06);
   filter:drop-shadow(0 7px 5px rgba(24,34,58,.45)); }
 .mreg:not(.lock):hover path { filter:saturate(1.18) brightness(1.06); }
-/* 可闖關（當前進度）：底色飽和＋邊線呼吸 */
+/* 可闖關（當前進度）：底色呼吸 */
 .mreg.new path { fill-opacity:.52; animation:mregPulse 1.8s ease-in-out infinite; }
-/* 已過關：金框 */
-.mreg.clear path { fill-opacity:.4; stroke:#f5a13c; stroke-width:1.7; }
+/* 已過關：淡彩 */
+.mreg.clear path { fill-opacity:.4; }
 .mreg.clear .mr-name { fill:#fff6dd; }
 /* 未過關（鎖定）：整塊灰階 */
 .mreg.lock { cursor:not-allowed; filter:grayscale(1); opacity:.6; }
-.mreg.lock path { fill-opacity:.5; stroke:#9d9d96; }
+.mreg.lock path { fill-opacity:.5; }
 .mreg.lock:hover { transform:translateY(-3px) scale(1.02); }
 .mreg.shake { animation:shake .3s; }
-@keyframes mregPulse { 0%,100%{ stroke-opacity:.9 } 50%{ stroke-opacity:.3 } }
+@keyframes mregPulse { 0%,100%{ fill-opacity:.52 } 50%{ fill-opacity:.3 } }
 @media (max-width:380px){ .mreg .mr-name { font-size:9px; } .mreg .mr-sub { font-size:6px; } }
 /* ---------- 龍塔地標 ---------- */
 .mtower path { fill-opacity:.58; animation:towerPulse 2.2s ease-in-out infinite; }
 .mtower .mr-name { fill:#fdfaff; font-size:8.2px; }
 .mtower.lock path { animation:none; }
-@keyframes towerPulse { 0%,100%{ stroke-opacity:.95 } 50%{ stroke-opacity:.35 } }
+@keyframes towerPulse { 0%,100%{ fill-opacity:.58 } 50%{ fill-opacity:.38 } }
 /* ---------- 常駐對話框 ---------- */
 #main { padding-bottom:128px; }
 #ov-menu { align-items:flex-start; padding-top:6px; padding-bottom:12px; }
