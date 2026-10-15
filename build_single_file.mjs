@@ -99,7 +99,7 @@ let html = htmlSrc
   .split('src="assets/dinos_2/game_logo.png"').join(`src="${gameLogo}"`)
   .replace('<meta name="theme-color" content="#fffdf9">',
     `<meta name="theme-color" content="#fffdf9">\n<link rel="icon" href="${favicon}">`)
-  .replace('<!DOCTYPE html>', `<!DOCTYPE html>\n<!-- 尋龍高手 DragonFinder v${VERSION} 單檔封裝版（build_single_file.mjs 自動生成於 2026-09-24，來源 commit ${commit}）。完全自給自足，無外部資源引用，可直接以瀏覽器開啟。 -->`);
+  .replace('<!DOCTYPE html>', `<!DOCTYPE html>\n<!-- 恐龍快找 DragonFinder v${VERSION} 單檔封裝版（build_single_file.mjs 自動生成於 2026-09-24，來源 commit ${commit}）。完全自給自足，無外部資源引用，可直接以瀏覽器開啟。 -->`);
 
 if (/(src|href)="(css|js|assets)\//.test(html)) throw new Error('leftover external reference in html');
 

@@ -2643,7 +2643,7 @@ function whyReveal(s){const N=G.N,r=(s/N)|0,c=s%N,rg=G.cells[s].region;const ban
   const N=G.N;
   const D=2000; /* 每個主步驟間隔 2 秒 */
   await sleep(600); if(!ok()) return;
-  tutShow('歡迎來到尋龍高手 🎬 我先示範一局，你看著！');
+  tutShow('歡迎來到恐龍快找 🎬 我先示範一局，你看著！');
   await sleep(D); if(!ok()) return;
   tutShow('盤面分成 <b>'+N+' 個顏色區塊</b>，每區剛好藏 <b>1 隻</b>恐龍');
   for(let rg=0; rg<N; rg++){
