@@ -20,8 +20,9 @@
    - 控制台：本頁 JS 錯誤 0（僅有一筆來自舊 `localhost:8123` origin 的歷史錯誤，與本次無關）。
    - 已知視覺差異：新圖為白底（JPG 無 alpha），在開場漸層背景上呈白卡片感；主選單因容器底色接近白色，目視無差異。若要完全貼合舊效果需去背素材（非本次範圍）。
    - 驗證後已關閉 http server。
-4. （進行中）worklog 歸檔、commit、push。
+4. worklog 隨任務變更一同 commit；驗證通過後 push 至 main；worklog 依規範移至 `worklogs/history/`。
 
 ## 最終狀態
 
-- 狀態：進行中
+- 狀態：完成
+- Commit：`0ac5551`（Replace the game logo with the 恐龍快找 version）
