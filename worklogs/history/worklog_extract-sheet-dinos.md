@@ -25,4 +25,4 @@
 ## Final status
 
 - Status: Complete — 5 張具名透明背景恐龍圖已交付至 `assets/dinos_2/` 並通過目檢與 HTTP 驗證；data.js 登錄待使用者決定
-- Commit hash: Pending
+- Commit hash: 0b43eff
