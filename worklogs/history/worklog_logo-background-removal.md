@@ -20,9 +20,9 @@
    - 開場 splash：重建 splash 截圖確認 logo 直接浮於漸層背景上（不再為白卡片）；實際 reload 驗證 fly 動畫後正常進入主選單。
    - 控制台：本頁 JS 錯誤 0。
    - 驗證後已關閉 http server。
-4. （進行中）worklog、commit、push、歸檔。
+4. worklog 隨任務變更一同 commit；驗證通過後 push 至 main；worklog 依規範移至 `worklogs/history/`。
 
 ## 最終狀態
 
 - 狀態：完成
-- Commit：（pending）
+- Commit：`36f54dc`（Make the game logo background transparent）
