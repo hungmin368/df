@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隨行羈絆自動排除驗證報告</title>
+<style>
+  :root{ --ink:#2b2620; --sub:#7a6f63; --line:#e6ddcf; --bg:#fbf8f2; --card:#fffdf9; --ok:#1f7a46; --warn:#b3541e; --accent:#b8860b; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif; line-height:1.7; }
+  .wrap{ max-width:980px; margin:0 auto; padding:32px 20px 64px; }
+  header{ border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  h1{ font-size:26px; margin:0 0 6px; }
+  .meta{ color:var(--sub); font-size:13.5px; }
+  h2{ font-size:19px; margin:34px 0 10px; border-left:5px solid var(--accent); padding-left:10px; }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:14px 0; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  table{ width:100%; border-collapse:collapse; font-size:14px; margin:8px 0; }
+  th,td{ border:1px solid var(--line); padding:7px 10px; text-align:center; }
+  th{ background:#f4ecdd; font-weight:700; }
+  td.l, th.l{ text-align:left; }
+  .ok{ color:var(--ok); font-weight:700; }
+  .warn{ color:var(--warn); font-weight:700; }
+  .pill{ display:inline-block; background:#f4ecdd; border:1px solid var(--line); border-radius:999px; padding:2px 12px; font-size:12.5px; margin:2px 4px 2px 0; }
+  .note{ background:#fff6e6; border:1px solid #f0dcb4; border-radius:12px; padding:12px 16px; font-size:14px; }
+  ul{ margin:6px 0; padding-left:22px; }
+  code{ background:#f1ece2; border-radius:5px; padding:1px 6px; font-size:13px; }
+  .big{ font-size:15px; }
+  .chg{ background:#eef7ef; border:1px solid #cfe6d2; }
+  .bad{ background:#fdeeee; border:1px solid #eec9c9; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>隨行羈絆自動排除驗證報告</h1>
+  <div class="meta">尋龍高手 DragonFinder v1.9.13 ・ 日期：2026-10-13 ・ Task ID：buddy-auto-exclude</div>
+</header>
+
+<h2>一、需求與變更</h2>
+<div class="card chg">
+  <p class="big">友好度 100% 的自動排除：<s>僅<b>捕獲恐龍</b>時觸發</s> → <b>捕獲任一「隱藏物」都觸發</b>（🦕 恐龍／🧰 寶箱／🪨 石頭）。</p>
+  <p>排除範圍維持原本口徑：<b>同一橫列</b> ＋ <b>同一直欄</b> ＋ <b>周圍八格（含斜角）</b>全部自動打 ✕。</p>
+  <p>實作方式：把原本內嵌在 <code>doBall()</code> 恐龍分支的滿好感區塊抽成共用函式 <code>buddyAutoExclude(i, animMs)</code>，命中解格後由三種類型共同呼叫。</p>
+  <p><b>觸發來源</b>：捕捉器命中隱藏物，以及隨行技能<b>「星願爆發」</b>（<code>reveal</code>）揭示隱藏物——後者同樣會 <code>G.found++</code>，口徑上等同「捕獲到隱藏物」，故一併觸發（延遲 700ms）。</p>
+  <p><b>刻意未納入</b>：開局關鍵寶箱格自動揭示（發生於渲染前、玩家尚未操作，開局就自動標記一片會造成困擾）、工程模式 <code>dev-win</code>（非玩家功能，直接結束該局）。</p>
+</div>
+
+<h2>二、觸發條件與時序</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">條件</th><th class="l">行為</th></tr>
+    <tr><td class="l">觸發來源</td><td class="l">① 捕捉器命中任一隱藏物（🦕／🧰／🪨）　② 隨行技能「星願爆發」揭示隱藏物</td></tr>
+    <tr><td class="l">隨行寵物友好度 <b>= 100%</b></td><td class="l">觸發自動排除；伴伴對話框提示「滿滿的羈絆！這行、這列和周圍我都幫你排除了 ✕」</td></tr>
+    <tr><td class="l">友好度 <b>&lt; 100%</b></td><td class="l">完全不自動標記（僅原本的命中效果）</td></tr>
+    <tr><td class="l">教學盤（4×4 示範／5×5 引導）</td><td class="l">不自動標記，避免干擾教學腳本</td></tr>
+    <tr><td class="l">起始延遲 <code>animMs</code></td><td class="l">恐龍 2200ms（五星 4200ms，等召喚動畫）；寶箱／石頭／星願爆發 700ms</td></tr>
+    <tr><td class="l">逐格節奏</td><td class="l">每格間隔 200ms，玩家可隨時繼續操作</td></tr>
+    <tr><td class="l">跳過的格子</td><td class="l">已標 ✕、已揭示、關鍵寶箱鎖定格（<code>fixed</code>）、<b>以及任何尚未找到的隱藏物格</b>（<code>catUnion</code>）</td></tr>
+  </table>
+</div>
+
+<h2>三、實機驗證（瀏覽器真實點擊）</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">盤面</th><th>隱藏物</th><th>座標</th><th>友好度</th><th>應標格數</th><th>實標格數</th><th>誤標隱藏物</th><th>結果</th></tr>
+    <tr><td class="l">地圖 6×6</td><td>🪨 石頭</td><td>r1c1</td><td>100%</td><td>11</td><td>11</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（10×10）</td><td>🧰 鐵箱</td><td>r1c2</td><td>100%</td><td>20</td><td>20</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（10×10）</td><td>🦕 恐龍（五彩冠龍 2★）</td><td>r9c1</td><td>100%</td><td>19</td><td>19</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（10×10）</td><td>🪨 石頭</td><td>r3c10</td><td>100%</td><td>20</td><td>20</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（加保護後複驗）</td><td>🧰 白金寶箱</td><td>r2c5</td><td>100%</td><td>22</td><td>22</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（加保護後複驗）</td><td>🪨 石頭</td><td>r4c7</td><td>100%</td><td>22</td><td>22</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">多解盤 18×18</td><td>🦕 恐龍</td><td>r17c10</td><td>100%</td><td>36（38 − 2 個並集隱藏物）</td><td>36</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（星願爆發技能）</td><td>🦕 恐龍（技能揭示）</td><td>r4c7</td><td>100%</td><td>22</td><td>22</td><td>0</td><td class="ok">✓</td></tr>
+  </table>
+  <p>「實標格數」同時比對 <b>遊戲內部模型</b>（<code>cells[].mark</code>）與 <b>畫面 DOM</b>（<code>.cell.x</code>），兩者完全一致；命中效果亦正常（<code>found</code> 遞增、<code>balls</code> 扣 1、<code>G.chests</code> 收到寶箱、格子 class 為 <code>cat</code>／<code>chestgot</code>／<code>stonegot</code>）。</p>
+</div>
+
+<h2>四、過程中發現並修正的缺陷：多解盤誤標</h2>
+<div class="card bad">
+  <p class="big"><b>問題</b>：N≥15 的盤面是「多解盤」——<code>G.catUnion</code> 存的是<b>最多 4 組可行解的並集</b>，所以同一列／同一欄／相鄰格可能各自還有<b>另一個也算數的隱藏物</b>。</p>
+  <p>實測 18×18：並集共 20 格，第 13 列與第 14 列各有 2 個隱藏物、第 10 欄與第 13 欄各有 2 個、另有 2 對相鄰。若照原邏輯整行整列標 ✕，會把「這裡沒有隱藏物」的 ✕ 打在<b>還沒找到的隱藏物</b>上，誤導玩家（此缺陷在舊版「僅恐龍觸發」時同樣存在）。</p>
+  <p><b>修正</b>：自動排除的候選過濾 <code>free()</code> 加入 <code>!catUnion.has(j)</code>，任何尚未找到的隱藏物一律跳過；同時補上 <code>!fixed</code>，避免動到關鍵寶箱鎖定格（玩家本身也不可翻該格）。</p>
+  <p><b>驗證</b>：18×18 捕捉 r17c10 恐龍 → 同行/同列/周圍 38 格中，2 格並集隱藏物（r17c16、r18c10）正確跳過，其餘 36 格全數標 ✕，被誤標的隱藏物 <b>0 個</b>。唯一解盤（≤14 與龍塔預生成盤）行為完全不變，因為那些盤面本來就不會有第二個隱藏物落在同行/同列/相鄰。</p>
+</div>
+
+<h2>五、負向與邊界案例</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">案例</th><th class="l">觀察</th><th>結果</th></tr>
+    <tr><td class="l">友好度 99%（龍塔 233，捕捉石頭 r1c2）</td><td class="l"><code>found</code> 0→1、<code>stoneGot=true</code>、balls 13→12，自動標記 <b>0 格</b></td><td class="ok">✓ 未達 100% 不觸發</td></tr>
+    <tr><td class="l">友好度 99%（發動星願爆發技能）</td><td class="l"><code>found</code> 1→2、技能正常揭示，自動標記數維持 <b>22 格</b>（未新增）</td><td class="ok">✓ 技能同樣需滿 100%</td></tr>
+    <tr><td class="l">教學盤 + 友好度 100%</td><td class="l">捕捉恐龍後 <code>found</code> 1→2，自動標記 <b>0 格</b></td><td class="ok">✓ 教學不受干擾</td></tr>
+    <tr><td class="l">捕捉落空（非隱藏物格）</td><td class="l">只標該格 ✕（原有行為），不觸發羈絆排除</td><td class="ok">✓</td></tr>
+    <tr><td class="l">新發現恐龍彈窗期間</td><td class="l">彈窗顯示中，延遲標記仍依序完成，狀態檢查 <code>state==='marking'</code> 生效</td><td class="ok">✓</td></tr>
+    <tr><td class="l">整局結束（找齊 N 個隱藏物）</td><td class="l">龍塔 233 結算「🎯 找到隱藏物（10 / 10）」、💠 白金寶箱＋🗝️ 鐵箱×2 獎勵、龍塔進度 233</td><td class="ok">✓ 過關流程未受影響</td></tr>
+  </table>
+</div>
+
+<h2>六、其他檢查</h2>
+<div class="card">
+  <ul>
+    <li>語法：<code>node --check js/main.js</code> <span class="ok">通過</span>。</li>
+    <li>資源：<code>index.html</code>、<code>js/data.js</code>、<code>js/tower.js</code>、<code>js/main.js</code>、<code>css/style.css</code>、<code>css/fonts.css</code> 全部 <span class="ok">HTTP 200</span>（版本已提升為 <code>?v=1.9.13</code> 防快取）。</li>
+    <li>Console：本次驗證的三個 origin <span class="ok">無應用程式錯誤</span>（唯一一則 <code>G.catUnion is not iterable</code> 是驗證腳本在同步迴圈中連續呼叫 <code>newRun</code> 造成的除錯競態，非產品缺陷）。</li>
+    <li>文案：玩法說明「♥ 友好度」已補上羈絆加成說明，於說明視窗實際渲染確認。</li>
+  </ul>
+</div>
+
+<h2>七、結論</h2>
+<div class="card">
+  <ul>
+    <li>需求已實現：<span class="ok">只要捕捉到隱藏物（恐龍／寶箱／石頭）且隨行寵物友好度達 100%，就會自動把同行、同列與周圍八格標 ✕</span>；隨行技能「星願爆發」揭示隱藏物時亦同。</li>
+    <li>安全性：唯一解盤上這些格子<b>必然</b>沒有隱藏物（每行/每列/每色區恰 1 個＋不相鄰），自動標記不會誤傷；多解盤已額外加入保護，不會把 ✕ 打在尚未找到的隱藏物上。</li>
+    <li>時機：寶箱／石頭 700ms 後開始、恐龍等召喚動畫（2.2s／五星 4.2s）後開始，每格 200ms；18×18 大盤約 36 格需 8~9 秒跑完，期間不阻擋操作。</li>
+    <li>尚未提交：工作樹混有前幾次工作階段的未提交變更，待確認提交範圍後回填 commit hash。</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

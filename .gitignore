@@ -2,8 +2,12 @@
 tmp_map/
 tmp_logo/
 tmp_*.js
+tmp_*.mjs
 tmp_*.html
 
 # Backups (historical backups already tracked stay in the repo)
 *.bak*
 index_backup_*.html
+
+# Single-file release bundles (generated on demand when preparing a release; not kept in the repo)
+dragonfinder_v*.html

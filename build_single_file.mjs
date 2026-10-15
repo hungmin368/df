@@ -69,6 +69,7 @@ dataJs = dataJs.replace(/"img"\s*:\s*"assets\/dinos\/(\d+)\.webp"/g, (mm, id) =>
 dataJs = dataJs.replace("'use strict';", "'use strict';\n" + storyMap);
 
 const towerJs = readFileSync('js/tower.js', 'utf8');
+const towerCommentsJs = readFileSync('js/tower_comments.js', 'utf8');
 
 let mainJs = readFileSync('js/main.js', 'utf8');
 for (const [p, uri] of Object.entries(buddy)) {
@@ -80,7 +81,7 @@ mainJs = mainJs
   .replaceAll("'url(assets/story/s'+(s.lv||0)+'.svg)'", "'url('+__storyImg(s.lv||0)+')'");
 
 // ---------- sanity checks ----------
-for (const [name, src] of [['data.js', dataJs], ['tower.js', towerJs], ['main.js', mainJs], ['fonts.css', fontsCss], ['style.css', styleCss]]) {
+for (const [name, src] of [['data.js', dataJs], ['tower.js', towerJs], ['tower_comments.js', towerCommentsJs], ['main.js', mainJs], ['fonts.css', fontsCss], ['style.css', styleCss]]) {
   if (/['"(]assets\//.test(src)) throw new Error(`leftover asset reference in ${name}`);
 }
 
@@ -94,6 +95,7 @@ let html = htmlSrc
   .replace('<script src="js/data.js?v=' + VERSION + '"></script>', () => `<script>\n${dataJs}</script>`)
   .replace('<script src="js/tower.js?v=' + VERSION + '"></script>', () => `<script>\n${towerJs}</script>`)
   .replace('<script src="js/main.js?v=' + VERSION + '"></script>', () => `<script>\n${mainJs}</script>`)
+  .replace('<script src="js/tower_comments.js?v=' + VERSION + '"></script>', () => `<script>\n${towerCommentsJs}</script>`)
   .split('src="assets/dinos_2/game_logo.png"').join(`src="${gameLogo}"`)
   .replace('<meta name="theme-color" content="#fffdf9">',
     `<meta name="theme-color" content="#fffdf9">\n<link rel="icon" href="${favicon}">`)

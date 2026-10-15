@@ -941,9 +941,9 @@ $('dev-skill').onclick=()=>{
   setTimeout(()=>triggerBuddySkill(),350);
 };
 $('dev-wipe').onclick=()=>{
-  if(!confirm('清除所有存檔？（分數／圖鑑／種子／技能／隨行／攻略彈幕全部重置）')) return;
+  if(!confirm('清除所有存檔？（分數／圖鑑／種子／技能／隨行／攻略留言全部重置）')) return;
   ['dinodoku-dex','dinodoku-sound','dinodoku-lv','dinodoku-econ','dinodoku-skills','dinodoku-potential','dinodoku-buddy','dinodoku-friend','dinodoku-friend2','dinodoku-story','dinodoku-companion','dinodoku-prog','dinodoku-hab','dinodoku-tower'].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
-  try{ Object.keys(localStorage).forEach(function(k){ if(k.indexOf('dinodoku-twcomments-')===0||k==='dinodoku-twname'||k==='dinodoku-danmaku-on'||k==='dinodoku-twlast'||k==='dinodoku-twday'){ localStorage.removeItem(k); } }); }catch(e){}
+  try{ Object.keys(localStorage).forEach(function(k){ if(k.indexOf('dinodoku-twcomments-')===0||k.indexOf('dinodoku-twlikes-')===0||k.indexOf('dinodoku-twposted-')===0||k==='dinodoku-twname'||k==='dinodoku-danmaku-on'||k==='dinodoku-twlast'||k==='dinodoku-twday'){ localStorage.removeItem(k); } }); }catch(e){}
   location.reload();
 };
 /* 完整重置：掃掉所有 dinodoku-* 紀錄（含最近獲得、專屬碎片），關卡進度回到全新狀態 */
@@ -2950,14 +2950,14 @@ function renderMap(){
     const rec=lvRec(n);
     const cleared=rec.total>0;
     const unlocked=isUnlocked(n);
-    const cls=cleared?'clear':(unlocked?'new':'lock');
+    const cls=cleared?'clear':(unlocked?'':'lock');
     const sub = !unlocked ? '🔒 未探索'
       : cleared ? ('✓ 已通關'+(rec.best?' '+fmtSec(rec.best):''))
       : (n+'×'+n+(n<=5?'':' '+n+':00'));
     const tip=meta.name+' '+n+'×'+n+' · '+sub;
     const lx=geo.lab[0]*2, ly=geo.lab[1]*3;
     svg+='<g class="mreg '+cls+'" data-n="'+n+'" role="button" tabindex="0" aria-label="'+tip+'">'
-      +'<path d="'+mapRegionPath(geo.pts)+'" fill="'+geo.col+'"/>'
+      +'<path d="'+mapRegionPath(geo.pts)+'" fill="transparent"/>'
       +'<text class="mr-name" x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'">'+meta.name+'</text>'
       +'<text class="mr-sub" x="'+lx.toFixed(1)+'" y="'+(ly+8).toFixed(1)+'">'+sub+'</text>'
       +'</g>';
@@ -2971,7 +2971,7 @@ function renderMap(){
       : (tmax>0 ? ('✓ 已通關 '+tmax+' 層') : '🐾 從第 1 層開始')));
     const tlx=tg.lab[0]*2, tly=tg.lab[1]*3;
     svg+='<g class="mreg mtower'+(gate>=6?'':' lock')+'" data-tower="1" role="button" tabindex="0" aria-label="龍塔：預生成盤面闖關">'
-      +'<path d="'+mapRegionPath(tg.pts)+'" fill="'+tg.col+'"/>'
+      +'<path d="'+mapRegionPath(tg.pts)+'" fill="transparent"/>'
       +'<text class="mr-name" x="'+tlx.toFixed(1)+'" y="'+tly.toFixed(1)+'">🐉 龍塔</text>'
       +'<text class="mr-sub" x="'+tlx.toFixed(1)+'" y="'+(tly+8).toFixed(1)+'">'+tsub+'</text>'
       +'</g>';
@@ -3033,7 +3033,7 @@ function renderMap(){
     const n=+g.dataset.n;
     g.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(g.dataset.tower){ towerEnter(); return; } tryGo(n); } });
   });
-  /* 滑鼠懸停時把區塊移到最上層（僅限真實滑鼠），讓其邊線與文字不被鄰塊蓋住 */
+  /* 滑鼠懸停時把區塊移到最上層（僅限真實滑鼠），讓其文字不被鄰塊蓋住 */
   svgEl.addEventListener('pointerover', e=>{
     if(e.pointerType!=='mouse') return;
     const g=e.target.closest && e.target.closest('g.mreg');
