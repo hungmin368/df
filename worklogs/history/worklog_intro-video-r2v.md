@@ -23,7 +23,7 @@
 
 ## 最終狀態
 
-- 狀態：✅ 完成——腳本已改為 `happyhorse-1.0-r2v`＋固定參考圖，實跑 shot 2 驗證角色一致性 PASS；交付 commit hash 待回填。
+- 狀態：✅ 完成——腳本已改為 `happyhorse-1.0-r2v`＋固定參考圖，實跑 shot 2 驗證角色一致性 PASS；交付 commit `d64fa86`。
 - 產出：`_gen_sophnet_intro_video.py`（R2V 版）、`_intro_bban_ref.jpg`（去浮水印參考圖）、`assets/intro_bban_hide_s2_720p.mp4`（驗證片）。
 - 成本：1 次 720P×5s 生成 ≈ ¥4.5。
 - 後續：其餘 shot（single/1/3）日後重跑時自動繼承同一參考圖，分段角色一致性問題從管線層面解除。
