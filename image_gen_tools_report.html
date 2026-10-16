@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>圖片生成工具指揮力評估報告</title>
+<style>
+  :root { --ink:#1f2430; --sub:#6b7280; --line:#e5e7eb; --accent:#7c3aed; --ok:#0f766e; --warn:#b45309; --bad:#b91c1c; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Microsoft JhengHei","PingFang TC",system-ui,sans-serif; color:var(--ink); background:#f6f7fb; line-height:1.7; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { background: linear-gradient(135deg,#7c3aed 0%,#2563eb 55%,#0ea5e9 100%); color:#fff; border-radius:16px; padding:32px 36px; margin-bottom:28px; }
+  header h1 { margin:0 0 8px; font-size:26px; }
+  header p { margin:4px 0; opacity:.92; font-size:14px; }
+  h2 { font-size:20px; margin:36px 0 12px; padding-left:12px; border-left:5px solid var(--accent); }
+  h3 { font-size:17px; margin:20px 0 6px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:14px 0; }
+  .tag { display:inline-block; font-size:12px; font-weight:bold; padding:2px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+  .tag.ok { background:#ccfbf1; color:var(--ok); }
+  .tag.warn { background:#fef3c7; color:var(--warn); }
+  .tag.bad { background:#fee2e2; color:var(--bad); }
+  table { width:100%; border-collapse:collapse; background:#fff; font-size:14px; }
+  th,td { border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top; }
+  th { background:#f3f4f6; white-space:nowrap; }
+  td.c { text-align:center; white-space:nowrap; }
+  .yes { color:var(--ok); font-weight:bold; }
+  .cond { color:var(--warn); font-weight:bold; }
+  .no { color:var(--bad); font-weight:bold; }
+  ul { margin:8px 0; padding-left:22px; }
+  li { margin:4px 0; }
+  .meta { color:var(--sub); font-size:13px; }
+  .foot { margin-top:40px; font-size:13px; color:var(--sub); border-top:1px solid var(--line); padding-top:14px; }
+  code { background:#f3f4f6; padding:1px 6px; border-radius:6px; font-size:13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>圖片生成工具指揮力評估報告</h1>
+  <p>評估日期：2026-10-15　｜　範圍：本機環境可直接或以金鑰驅動的所有文字生圖／圖生圖工具（付費亦列入）</p>
+  <p>評估標準：我（SophCode）能否在此環境實際指揮（REST API／本地腳本／受控瀏覽器），及其對「伴伴風格恐龍批量生成」的適合度</p>
+</header>
+
+<h2>一、總覽表</h2>
+<table>
+  <tr><th>工具</th><th>現在可指揮？</th><th>啟用條件</th><th>參考費用</th><th>恐龍批量適合度</th></tr>
+  <tr>
+    <td><b>pollinations.ai</b></td>
+    <td class="c yes">✔ 已實測</td>
+    <td>無（免費匿名）</td>
+    <td>免費（速率受限）</td>
+    <td>★★☆ 保底可用，顏色構圖控制弱</td>
+  </tr>
+  <tr>
+    <td><b>Gemini 圖像模型</b></td>
+    <td class="c cond">◐ 差一步</td>
+    <td>金鑰已有且有效；需在 Google Cloud 專案開通計費</td>
+    <td>約 US$0.03–0.14／張</td>
+    <td>★★★★★ 參考圖風格一致性全場最佳</td>
+  </tr>
+  <tr>
+    <td><b>Leonardo.Ai</b></td>
+    <td class="c cond">◐ 被擋</td>
+    <td>付費 API 方案金鑰，或在受控瀏覽器登入其網頁</td>
+    <td>約 US$12／月起（依方案）</td>
+    <td>★★★★☆ Image Guidance 參考圖、放大好用</td>
+  </tr>
+  <tr>
+    <td><b>OpenAI Images API</b><br><span class="meta">gpt-image-1／DALL·E 3</span></td>
+    <td class="c cond">◐ 待金鑰</td>
+    <td>提供 <code>OPENAI_API_KEY</code></td>
+    <td>約 US$0.02–0.19／張</td>
+    <td>★★★★☆ 指令遵循最穩、支援圖生圖編輯</td>
+  </tr>
+  <tr>
+    <td><b>fal.ai／Replicate</b></td>
+    <td class="c cond">◐ 待金鑰</td>
+    <td>註冊取得 API token（兩平台擇一）</td>
+    <td>約 US$0.003–0.05／張</td>
+    <td>★★★★☆ 想用 flux 最高品質的最省事管道</td>
+  </tr>
+  <tr>
+    <td><b>Stability AI</b></td>
+    <td class="c cond">◐ 待金鑰</td>
+    <td>註冊取得 API key</td>
+    <td>credit 制，約 US$0.06／張</td>
+    <td>★★★☆☆ 參數可調、授權清晰</td>
+  </tr>
+  <tr>
+    <td><b>Ideogram</b></td>
+    <td class="c cond">◐ 待金鑰</td>
+    <td>註冊取得 API key</td>
+    <td>約 US$8／月起</td>
+    <td>★★☆☆☆ 強項是圖中文字，恐龍用不到</td>
+  </tr>
+  <tr>
+    <td><b>Midjourney</b></td>
+    <td class="c no">✘ 不建議</td>
+    <td>無官方 API；僅受控瀏覽器登入網頁</td>
+    <td>約 US$10／月起</td>
+    <td>★★☆☆☆ 美感最強但自動化最脆</td>
+  </tr>
+  <tr>
+    <td><b>本機 ComfyUI＋Flux</b></td>
+    <td class="c no">✘ 未安裝</td>
+    <td>需獨立顯卡（建議 12GB+ VRAM）與模型下載</td>
+    <td>免費（電費）</td>
+    <td>★★★★☆ 免費無限、批量最佳，但本機目前無顯卡服務</td>
+  </tr>
+</table>
+<p class="meta">價格皆為參考值（2026-10），以各官網為準。</p>
+
+<h2>二、各工具特色詳述</h2>
+
+<div class="card">
+  <h3>1. pollinations.ai <span class="tag ok">現在就能用</span></h3>
+  <ul>
+    <li><b>特色</b>：免費、無需金鑰的純 GET 圖片端點（<code>image.pollinations.ai/prompt/&lt;提示&gt;</code>），支援 seed、模型參數；品質中上。</li>
+    <li><b>本次實測</b>：flux 模型 256×256 測試圖 2.7 秒成功回傳（HTTP 200）。</li>
+    <li><b>已知缺點</b>：免費層頻繁 402 速率限制（前次批量曾每 seed 都要重試）；顏色與解剖結構控制弱——前四轮已為此建了紫色色相閘門（hue gate）與候選重抽機制；<code>/models</code> 端點回傳不可靠（本次僅回 sana，但 flux 實測仍可用）。</li>
+    <li><b>適合</b>：樣品試做與免費保底，正式批量需搭配自動化篩選。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>2. Gemini 圖像模型（nano-banana 家族） <span class="tag warn">金鑰有效，差開通計費</span></h3>
+  <ul>
+    <li><b>特色</b>：<b>參考圖生圖（image-to-image with style reference）能力全場最強</b>——餵一張伴伴渲染圖當錨點，一次性鎖定「紫色身體、金色大眼、黃橘色角、乳白腹部、粉紅翼膜」的家族特徵，再逐種替換物種與配色。對「139 張同風格不同物種」這種需求是目前業界公認的最佳解。</li>
+    <li><b>可用模型</b>（本次以金鑰實測 models 列表 HTTP 200）：<code>gemini-2.5-flash-image</code>、<code>gemini-3-pro-image(-preview)</code>、<code>gemini-3.1-flash-image(-preview)</code>、<code>gemini-3.1-flash-lite-image</code> 等 6 個圖像模型。</li>
+    <li><b>阻擋點</b>：此 Google 帳號免費層的圖像生成額度上限為 <b>0</b>（8 個模型全部 429，屬帳號級付費牆，非暫時性限流）；文字模型免費可用。只需在 Google Cloud 專案開通 pay-as-you-go 計費即可解鎖。</li>
+    <li><b>費用</b>：約 US$0.03–0.14／張依模型；139 張約 US$4–19。</li>
+    <li><b>就緒度</b>：測試腳本 <code>assets/dinos_2/bban_samples/_gen_gemini_test.py</code> 已寫好（以 v4 暴龍 512 大圖當參考），金鑰存於本機未追蹤檔案，開通計費後一鍵可跑。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>3. Leonardo.Ai <span class="tag warn">瀏覽器仍登出；API 方案待購</span></h3>
+  <ul>
+    <li><b>特色</b>：Phoenix／Kino XL／Vision XL 等自家模型，照片級品質；<b>Image Guidance</b> 參考圖模式可餵伴伴圖鎖風格；Alchemy 高清放大；元素（Elements）可疊加風格 LoRA。</li>
+    <li><b>兩條啟用路徑</b>：(a) 購買 API Access 方案取得金鑰 → 批次全自動（腳本 <code>_gen_leonardo.py</code> 與 4 物種提示詞 <code>_leonardo_prompts.md</code> 已備好）；(b) 在本受控瀏覽器登入 app.leonardo.ai，我直接操作網頁 UI 產圖（本次實測仍跳轉登入頁，你的登入在另一個瀏覽器，我這邊看不到）。</li>
+    <li><b>費用</b>：App 訂閱約 US$12／月起；API 需額外 API 方案。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>4. OpenAI Images API（gpt-image-1／DALL·E 3） <span class="tag warn">待提供金鑰</span></h3>
+  <ul>
+    <li><b>特色</b>：提示詞遵循最穩定、構圖最聽話；<code>gpt-image-1</code> 支援傳入參考圖做<b>圖生圖編輯</b>（維持構圖換配色、局部重繪），也有透明背景輸出參數——對「同一恐龍多配色版本」特別有用。</li>
+    <li><b>費用</b>：gpt-image-1 低／中／高品質約 US$0.02／0.07／0.19 每張；DALL·E 3 約 US$0.04–0.08。</li>
+    <li><b>啟用</b>：提供 <code>OPENAI_API_KEY</code> 即可，我可以現場寫批次腳本。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>5. fal.ai／Replicate（模型聚合平台） <span class="tag warn">待註冊 token</span></h3>
+  <ul>
+    <li><b>特色</b>：一支 token 調用數百個模型——flux-pro／flux-dev／flux-schnell、SD 系列、各家微調版；REST 介面統一，按次計費不訂閱。想要 flux 最高品質又不想在本機裝 ComfyUI 時最省事。</li>
+    <li><b>費用</b>：flux-schnell 接近免費級，flux-pro 約 US$0.05／張。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>6. Stability AI <span class="tag warn">待金鑰</span></h3>
+  <ul>
+    <li><b>特色</b>：SD 3.5 Large／Turbo 官方 API；steps／cfg 等參數全開放可調，商用授權條款清晰；適合想細調參數的人。</li>
+    <li><b>費用</b>：credit 制，約 US$0.06／張。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>7. Ideogram <span class="tag warn">待金鑰</span></h3>
+  <ul>
+    <li><b>特色</b>：圖片內<b>文字渲染</b>業界最強（海報、LOGO、卡牌設計級）；對恐龍生成非必需，未來遊戲宣傳圖可考慮。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>8. Midjourney <span class="tag bad">無官方 API，不建議</span></h3>
+  <ul>
+    <li><b>特色</b>：美感與材質表現公認最強。</li>
+    <li><b>但</b>：沒有官方 API，只能靠受控瀏覽器登入其網頁或 Discord 操作；批次 139 張的自動化脆弱、容易被驗證碼擋（本次 Leonardo 登入頁已見 Cloudflare 驗證）。不建議用於正式批量。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>9. 本機 ComfyUI＋開源模型 <span class="tag bad">本機未安裝</span></h3>
+  <ul>
+    <li><b>特色</b>：完全免費、無張數限制、資料不出機、可寫 workflow 一鍵批量 139 張；flux-dev／SD3.5 品質接近付費前端。</li>
+    <li><b>代價</b>：需要夠力的獨立顯卡（flux-dev 建議 12GB+ VRAM），模型檔 12–25GB；本機已查過 7860／8188 埠無本地生圖服務，需從零安裝。若不確定顯卡型號，我可以幫你查。</li>
+  </ul>
+</div>
+
+<h2>三、針對本專案的建議順序</h2>
+<div class="card">
+  <ol style="margin:6px 0;padding-left:22px;">
+    <li><b>首選：Gemini 開通計費</b>——你已有的金鑰只差這一步；參考圖能力對「伴伴家族一致性」幫助最大，開通後立刻可跑現成測試腳本驗證一張（約 US$0.03）。</li>
+    <li><b>次選：Leonardo.Ai</b>——在受控瀏覽器登入（免額外付費可先用每日額度試）或直接購 API 方案；Image Guidance 適合鎖風格。</li>
+    <li><b>第三：OpenAI gpt-image-1 或 fal.ai</b>——提供金鑰即可上線，前者圖生圖編輯強、後者 flux 品質高且按次計費。</li>
+    <li><b>保底：pollinations.ai</b>——免費且現在就能跑（本次已實測），搭配既有的色相閘門管線先出樣品給你審風格。</li>
+    <li><b>長遠：本機 ComfyUI</b>——若這台机器有合格顯卡，139 張批量長期最省。</li>
+  </ol>
+</div>
+
+<h2>四、本機狀態快照（2026-10-15 實測）</h2>
+<div class="card">
+  <ul>
+    <li>環境變數掃描：<code>LEONARDO_API_KEY</code>／<code>OPENAI_API_KEY</code>／<code>REPLICATE_API_TOKEN</code>／<code>FAL_KEY</code>／<code>STABILITY_API_KEY</code> 等皆<b>不存在</b>；無 <code>.env</code>／<code>.netrc</code>。</li>
+    <li>Gemini 金鑰：存在（<code>assets/dinos_2/bban_samples/_gemini_key.txt</code>，未追蹤），models 列表 HTTP 200，帳號可見 6 個圖像模型；圖像生成額度仍被計費牆擋（limit=0）。</li>
+    <li>pollinations：flux 256×256 測試圖成功（2.7s，HTTP 200）。</li>
+    <li>Leonardo：受控瀏覽器造訪 app.leonardo.ai/library 仍導向登入頁（Cloudflare 驗證在運作），未登入。</li>
+    <li>既有管線資產：<code>_gen_ai.py</code>／<code>_regen_ai.py</code>（pollinations＋色相閘門）、<code>_gen_gemini_test.py</code>（Gemini 參考圖）、<code>_gen_leonardo.py</code>＋<code>_leonardo_prompts.md</code>（Leonardo 批次）、<code>_post_v3.py</code>（rembg→512→200 WebP）、<code>_extract_sheet5.py</code>（規格表摳圖）。金鑰檔永不提交。</li>
+  </ul>
+</div>
+
+<p class="foot">本報告依 AGENTS.md 報告慣例產出為自包含 HTML。下一步行動取決於你：開通 Gemini 計費／在受控瀏覽器登入 Leonardo／提供 OpenAI 或 fal token，任一到位我即可立即開始產圖。</p>
+
+</div>
+</body>
+</html>
