@@ -1504,14 +1504,15 @@ function dexCount(){
   const done = dexGot.size>=all.length;
   dc.textContent = (done?'🎉 收藏完成！':'收藏 ')+dexGot.size+' / '+all.length;
 }
-function dexPoolByTab(){
-  if(dexTab==='gen1') return DINOS;
-  if(dexTab==='legend') return (typeof LEGENDS!=='undefined')?LEGENDS:[];
+function dexPoolByTab(t){
+  t=t||dexTab;
+  if(t==='gen1') return DINOS;
+  if(t==='legend') return (typeof LEGENDS!=='undefined')?LEGENDS:[];
   return allMonsWithCompanion(); /* 「全部」以伴伴 No.000 開頭 */
 }
 function updateDexTabs(){
   document.querySelectorAll('.dtab').forEach(b=>{
-    const t=b.dataset.t, pool=dexPoolByTab();
+    const t=b.dataset.t, pool=dexPoolByTab(t);
     b.textContent=(t==='all'?'全部 ':t==='gen1'?'常見 ':'遠古王者 ')+pool.length+(t==='legend'?' ✨':'');
   });
 }
