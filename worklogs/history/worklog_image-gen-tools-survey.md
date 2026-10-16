@@ -20,4 +20,4 @@
 ## Final status
 
 - Status: Complete — 工具指揮力評估報告已交付（image_gen_tools_report.html），金鑰掃描與 pollinations/Gemini/Leonardo 三端點實測完成；後續待使用者選定啟用路徑
-- Commit hash: Pending
+- Commit hash: a4f6286
