@@ -42,13 +42,13 @@
 19. 【重複生成事故與處置】同一工作樹有並行流程：本 session 在不知情下以背景任務重送了 `single` 提示詞（任務 `ZJbbCbu6yXMrRXtsi3q2t`，+¥4.5 重複花費）。其完成後下載覆蓋了已驗證成品（第二版 3,784,377 bytes；備份指令在覆蓋後才執行，檔名誤標為 takeA 實為 takeB）。處置：**不隱瞞、不掩蓋**——先將誤名備份正名為 `C:/tmp/intro_bban_hide_takeB_720p.mp4`。
 20. 【成品復原】GET 任務 `79OOG9IRuXgemqMoHIKEFb` → 取得全新預簽名 URL → 重新下載原始版至 `C:/tmp/intro_bban_hide_takeA_720p.mp4`（3,812,306 bytes，md5 `8bdae6c4defcf27919ab5dbd5b3752f6`）→ 覆蓋回 `assets/intro_bban_hide_720p.mp4`，cv2 重驗 1280×720／24fps／123 幀／5.12s 通過。
 21. 【A/B 目視比較】兩版皆完成敘事弧；原版（take A）表情更萌、伴伴特徵更貼近 2★ 定稿、破功笑點更清楚 → 維持 take A 為正式交付檔；take B 保留於 `C:/tmp/intro_bban_hide_takeB_720p.mp4` 作為備選（未 commit），交付報告第五節已加註可換用說明。
-22. 最終 HTTP 驗證與提交：交付報告／提示詞報告／舊報告／mp4／影格全數 200 通過；commit `(見下)` 落地全部成品。
+22. 最終 HTTP 驗證與提交：交付報告／提示詞報告／舊報告／mp4／影格全數 200 通過；瀏覽器開啟交付報告，`<video>` readyState=4、1280×720、5.16s、播放器正常顯示；commit `3c12342` 落地全部成品。
 
 ## Final status
 
 - Status: Complete（捉迷藏單鏡版已交付並驗證；三幕分鏡版 s1/s2/s3 提示詞備妥未生成，每支約 ¥4.5，待使用者決定）
 - 成品：`assets/intro_bban_hide_720p.mp4`（5.12s・1280×720・3.8MB・md5 `8bdae6c4…`）；交付報告 `bban_intro_video_delivery_report.html`
 - 前段 commit：`bda118e`（蛋孵化組）、`0835730`（提示詞設計組）、`33d6577`（worklog 紀錄）
-- 本階段 commit：`(見下)`（捉迷藏 mp4、8 影格、交付報告、舊報告橫幅、本 worklog）
+- 本階段 commit：`3c12342`（捉迷藏 mp4、8 影格、交付報告、本 worklog；舊報告橫幅已含於 `bda118e`）
 - 累計費用：蛋孵版 ¥4.5 ＋ 捉迷藏版 ¥4.5 ＋ **重複生成 ¥4.5（並行流程事故，已誠實記錄）** ≈ ¥13.5
 - 已知限制：平台 Happy Horse 浮水印（本端點無 watermark 參數）；備選版本 take B 未 commit，置於 `C:/tmp/`
