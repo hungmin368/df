@@ -871,7 +871,8 @@ function introStoryOnce(){
   introPlayed=true;
   if(!storySeen['intro']){ storySeen['intro']=1; storySave(); playStory(0); }
 }
-setTimeout(introStoryOnce, 9000); /* 保險：開場動畫遲遲沒結束也要播 */
+/* 保險：開場流程遲遲沒結束也要播序章；由 startSplash() 起算，避免影片還在播就觸發 */
+function armIntroSafety(){ setTimeout(introStoryOnce, 9000); }
 
 /* ---------- 工程模式（隱藏：選單 logo 連點 5 下） ---------- */
 let devTaps=0, devTapT=0;
@@ -3107,7 +3108,8 @@ renderLiveDex();
 /* 初始渲染 */ renderMap(); renderBuddy(); scheduleBuddyChat();
 
 /* ---------- 開場：滿版 logo 展示 0.5 秒，再縮小飛進主選單左上 ---------- */
-(function(){
+function startSplash(){
+  armIntroSafety();
   const sp=$('splash');
   if(!sp){ document.body.classList.remove('splash-on'); introStoryOnce(); return; }
   const img=sp.querySelector('img'), bg=sp.querySelector('.sp-bg');
@@ -3151,7 +3153,47 @@ renderLiveDex();
     img.style.transform='translate('+dx+'px,'+dy+'px) scale('+s+')';
     setTimeout(finish, FLY+60);
   }
-  Promise.all([ready(img,900), ready(target,900)]).then(()=>setTimeout(fly, HOLD));
+}
+
+/* ---------- 開場影片：assets/game.mp4 播畢（或跳過／載入失敗）後接 logo 飛入 ---------- */
+(function(){
+  const stage=$('intro-video'), v=$('intro-vid'), skip=$('intro-skip'), snd=$('intro-sound');
+  if(!stage || !v){ if(stage) stage.remove(); startSplash(); return; }
+  let done=false;
+  function enter(){
+    if(done) return;
+    done=true;
+    clearTimeout(cap);
+    try{ v.pause(); }catch(e){}
+    document.body.classList.remove('intro-video-on');
+    stage.classList.add('iv-out');
+    setTimeout(()=>stage.remove(), 420);
+    startSplash();
+  }
+  const cap=setTimeout(enter, 14000); /* 保險：影片載入或播放卡住不會卡在開場 */
+  v.addEventListener('ended', enter);
+  v.addEventListener('error', enter);
+  skip.addEventListener('click', enter);
+  function tryPlay(){
+    const p=v.play();
+    if(p && p.catch) p.catch(()=>{
+      /* 瀏覽器擋「含聲音自動播放」：改靜音播放並提供開聲音按鈕 */
+      v.muted=true;
+      const p2=v.play();
+      if(p2 && p2.catch) p2.catch(enter); /* 連靜音自動播放也被擋：直接進遊戲 */
+      else if(snd) snd.style.display='';
+    });
+  }
+  if(snd){
+    snd.addEventListener('click', e=>{
+      e.stopPropagation();
+      v.muted=false; v.volume=.85;
+      snd.style.display='none';
+      SFX.tap();
+    });
+  }
+  if(v.readyState>=2) tryPlay();
+  else v.addEventListener('canplay', tryPlay, {once:true});
 })();
 
 

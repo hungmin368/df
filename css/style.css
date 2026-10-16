@@ -1270,3 +1270,17 @@ body.splash-on #menu-logo img, body.splash-on #menu-logo .ver-badge{ opacity:0; 
 @media (max-width:360px){
   .dk-toggle span, .dk-boardbtn span{ display:none; }
 }
+
+/* ===== 開場影片（assets/game.mp4）===== */
+#intro-video{ position:fixed; inset:0; z-index:400; display:flex; align-items:center; justify-content:center; overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255,199,120,.15), transparent 55%),
+    radial-gradient(circle at 82% 88%, rgba(84,160,86,.12), transparent 50%),
+    linear-gradient(168deg,#111f0e 0%,#1b2d13 46%,#0a1408 100%);
+  transition:opacity .4s ease; }
+#intro-video.iv-out{ opacity:0; pointer-events:none; }
+body.intro-video-on #splash{ display:none; }
+#intro-video video{ width:min(100vw,100vh); height:min(100vw,100vh); object-fit:contain; display:block;
+  box-shadow:0 18px 60px rgba(0,0,0,.55); border-radius:8px; }
+#intro-video .iv-btns{ position:absolute; right:12px; bottom:12px; display:flex; gap:8px; }
+#intro-video .btn{ background:rgba(255,253,249,.92); box-shadow:0 4px 14px rgba(0,0,0,.35); }

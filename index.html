@@ -7,9 +7,17 @@
 <title>恐龍快找 DragonFinder v1.9.16 — 恐龍解謎</title>
 <link rel="stylesheet" href="css/fonts.css?v=1.9.16">
 <link rel="stylesheet" href="css/style.css?v=1.9.16">
-<noscript><style>#splash{ display:none }</style></noscript>
+<noscript><style>#splash,#intro-video{ display:none }</style></noscript>
 </head>
-<body class="splash-on">
+<body class="splash-on intro-video-on">
+
+<div id="intro-video">
+  <video id="intro-vid" src="assets/game.mp4" preload="auto" playsinline disablepictureinpicture></video>
+  <div class="iv-btns">
+    <button class="btn btn-ghost" id="intro-sound" style="display:none">🔇 開啟聲音</button>
+    <button class="btn btn-ghost" id="intro-skip">跳過 ▶▶</button>
+  </div>
+</div>
 
 <div id="splash" aria-hidden="true">
   <div class="sp-bg"></div>
