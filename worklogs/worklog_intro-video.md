@@ -33,7 +33,22 @@
 
 13. 提交本階段成果（兩筆）：`bda118e`（蛋孵化組：mp4＋8 影格＋報告＋檢查腳本）、`0835730`（提示詞設計組：報告＋腳本＋本 worklog）。
 
+14. 【第三階段・生成】目視確認定稿 2★ 圖（伴伴為紫紅色、金橘角爪、粉紅翼膜、金黃琥珀眼），與階段二規格卡一致。以 `python -u _gen_sophnet_intro_video.py single` 背景送件，成功建立任務 `79OOG9IRuXgemqMoHIKEFb`（status: running）。
+15. 輪詢第 18 次（約 90 秒）時 SophNet 回 **HTTP 503**（短暫故障），腳本因無重試機制崩潰退出。關鍵處置：**不重送**（避免重複計費），直接 curl 查原任務狀態 → `succeeded`，影片 URL 位於 `result.content.video_url`（OSS 預簽名，約 24 小時過期）→ curl 下載 `assets/intro_bban_hide_720p.mp4`（3,812,306 bytes）。
+16. cv2 解碼驗證：1280×720、24fps、123 幀、5.12 秒。8 影格抽樣目視（0.3s→4.8s）：黃昏光束實拍雨林 ✅、蕨葉後躲藏且紫紅尾巴尖＋粉紅翅膀外露＋金黃眼偷看 ✅、噴嚏吹飛蕨葉且木柄捕捉網入鏡 ✅、正面全身（紫紅鱗片／奶油白肚／金橘分節角與背刺／粉紅內耳翼膜／金黃琥珀眼全對）✅、燦笑小尖牙粉舌＋眨眼比讚收尾 ✅——四項新需求（搞笑、玩法、伴伴、真實場景）全過。
+17. 產出 `bban_intro_video_delivery_report.html`（成品播放器、規格與任務 ID、需求對照＋敘事節拍表、8 格影格、提示詞全文、已知限制——含 Happy Horse 浮水印說明與三幕版待跑清單）；舊 `intro_animation_report.html` 加「方向已更新」頂部橫幅（蛋孵版留檔、標註綠色為誤）。
+18. HTTP 驗證：交付報告 200（9,043 B）、提示詞報告 200、舊報告 200、mp4 200（3,812,306 B）、影格 200，全數通過。
+
+19. 【重複生成事故與處置】同一工作樹有並行流程：本 session 在不知情下以背景任務重送了 `single` 提示詞（任務 `ZJbbCbu6yXMrRXtsi3q2t`，+¥4.5 重複花費）。其完成後下載覆蓋了已驗證成品（第二版 3,784,377 bytes；備份指令在覆蓋後才執行，檔名誤標為 takeA 實為 takeB）。處置：**不隱瞞、不掩蓋**——先將誤名備份正名為 `C:/tmp/intro_bban_hide_takeB_720p.mp4`。
+20. 【成品復原】GET 任務 `79OOG9IRuXgemqMoHIKEFb` → 取得全新預簽名 URL → 重新下載原始版至 `C:/tmp/intro_bban_hide_takeA_720p.mp4`（3,812,306 bytes，md5 `8bdae6c4defcf27919ab5dbd5b3752f6`）→ 覆蓋回 `assets/intro_bban_hide_720p.mp4`，cv2 重驗 1280×720／24fps／123 幀／5.12s 通過。
+21. 【A/B 目視比較】兩版皆完成敘事弧；原版（take A）表情更萌、伴伴特徵更貼近 2★ 定稿、破功笑點更清楚 → 維持 take A 為正式交付檔；take B 保留於 `C:/tmp/intro_bban_hide_takeB_720p.mp4` 作為備選（未 commit），交付報告第五節已加註可換用說明。
+22. 最終 HTTP 驗證與提交：交付報告／提示詞報告／舊報告／mp4／影格全數 200 通過；commit `(見下)` 落地全部成品。
+
 ## Final status
 
-- Status: In progress（蛋孵化影片已交付；新「捉迷藏快找」提示詞已設計交付，影片生成待執行）
-- Commit hash: `bda118e`（蛋孵化組）、`0835730`（提示詞設計組）
+- Status: Complete（捉迷藏單鏡版已交付並驗證；三幕分鏡版 s1/s2/s3 提示詞備妥未生成，每支約 ¥4.5，待使用者決定）
+- 成品：`assets/intro_bban_hide_720p.mp4`（5.12s・1280×720・3.8MB・md5 `8bdae6c4…`）；交付報告 `bban_intro_video_delivery_report.html`
+- 前段 commit：`bda118e`（蛋孵化組）、`0835730`（提示詞設計組）、`33d6577`（worklog 紀錄）
+- 本階段 commit：`(見下)`（捉迷藏 mp4、8 影格、交付報告、舊報告橫幅、本 worklog）
+- 累計費用：蛋孵版 ¥4.5 ＋ 捉迷藏版 ¥4.5 ＋ **重複生成 ¥4.5（並行流程事故，已誠實記錄）** ≈ ¥13.5
+- 已知限制：平台 Happy Horse 浮水印（本端點無 watermark 參數）；備選版本 take B 未 commit，置於 `C:/tmp/`
