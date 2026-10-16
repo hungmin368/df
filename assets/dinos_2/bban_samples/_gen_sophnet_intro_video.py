@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 """Generate the game intro animation "Hide-and-Seek BanBan" (gameplay-matching
 hide-and-seek comedy, photoreal rainforest, baby dragon BanBan) via SophNet
-videogenerator/generate + happyhorse-1.0-t2v (probe-confirmed 2026-10-16).
+videogenerator/generate + happyhorse-1.0-r2v (probe-confirmed 2026-10-16).
+
+R2V conversion (2026-10-16): the old happyhorse-1.0-t2v flow re-invented BanBan
+on every segmented call, so each cut looked like a different dragon. Every shot
+now ships the same fixed character reference _intro_bban_ref.jpg (a cleaned
+frame cropped from intro_bban_hide_720p.mp4, watermark removed) as a
+reference_image data URI, plus an identity-binding line in the prompt.
 
 Usage: python _gen_sophnet_intro_video.py [single|1|2|3]
   single (default) = one-shot 5s cut: search -> busted -> sneeze -> net pose
@@ -9,6 +15,8 @@ Usage: python _gen_sophnet_intro_video.py [single|1|2|3]
 Design doc: bban_intro_video_prompts_report.html
 Cost: 720P = ~Y0.9/sec x 5s = ~Y4.5 per run.
 """
+import base64
+import io
 import json
 import subprocess
 import sys
@@ -16,12 +24,24 @@ import time
 import urllib.request
 from pathlib import Path
 
+from PIL import Image
+
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 HERE = Path(__file__).resolve().parent
 KEY = (HERE / "_sophnet_key.txt").read_text(encoding="utf-8").strip()
 BASE = "https://www.sophnet.com/api/open-apis/projects/easyllms/videogenerator/generate"
-MODEL = "happyhorse-1.0-t2v"
+MODEL = "happyhorse-1.0-r2v"
+REF = HERE / "_intro_bban_ref.jpg"
+
+# Identity binding: the reference image is the single source of truth for
+# BanBan's look; the prose card below only reinforces it.
+REFBIND = (
+    "參考圖中的寶寶小龍就是「伴伴」本尊：請嚴格重現參考圖的外觀——"
+    "紫紅色細緻鱗片、奶油白肚皮、頭頂兩支金橘色分節大彎角、背脊小金刺、"
+    "粉色內耳與粉紅翼膜、金黃琥珀色大圓眼、橘色爪子；體型、花色與五官比例"
+    "必須與參考圖完全一致，不得更換顏色或造型。"
+)
 
 # BanBan film spec card (keep in EVERY prompt): chubby baby dragon, amethyst-purple
 # (#AF48DB) fine scales + dark purple spots, creamy white belly (#F8EBEF), two
@@ -87,6 +107,17 @@ def find_urls(obj) -> list[str]:
     return urls
 
 
+def data_uri(path: Path, maxpx: int = 768, quality: int = 86) -> str:
+    im = Image.open(path).convert("RGB")
+    w, h = im.size
+    if max(w, h) > maxpx:
+        s = maxpx / max(w, h)
+        im = im.resize((int(w * s), int(h * s)), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.save(buf, "JPEG", quality=quality)
+    return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+
+
 def main() -> int:
     shot = sys.argv[1] if len(sys.argv) > 1 and sys.argv[1] in SHOTS else "single"
     name = (
@@ -94,12 +125,16 @@ def main() -> int:
         else f"intro_bban_hide_s{shot}_720p.mp4"
     )
     out = HERE.parent.parent / name
+    content = [{"type": "text", "text": REFBIND + "\n\n" + SHOTS[shot]}]
+    content.append(
+        {"type": "image_url", "image_url": data_uri(REF), "role": "reference_image"}
+    )
     body = {
         "model": MODEL,
-        "content": [{"type": "text", "text": SHOTS[shot]}],
+        "content": content,
         "parameters": {"duration": 5, "resolution": "720P", "ratio": "16:9"},
     }
-    print(f"== submit (shot={shot} -> {name}) ==")
+    print(f"== submit (shot={shot} -> {name}, model={MODEL}, ref={REF.name}) ==")
     sub = call("POST", BASE, body)
     print(json.dumps(sub, ensure_ascii=False, indent=2)[:1500])
     if sub.get("status") != 0 or not sub.get("result"):
