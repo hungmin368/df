@@ -31,7 +31,9 @@
 11. 同步改寫 `assets/dinos_2/bban_samples/_gen_sophnet_intro_video.py`：提示詞改為 `SHOTS`（single/1/2/3）＋argv 選擇＋動態輸出檔名（`assets/intro_bban_hide*_720p.mp4`），頭部註解加入角色規格卡與「翠綠色→紫紅色」修正說明。
 12. 驗證：`python -m py_compile` 通過；模組匯入測試（不發任何付費請求）確認 SHOTS 四鍵齊全；`python -m http.server 8899` + curl 報告 200（25,762 bytes）；瀏覽器實際開啟報告，目視排版、色票、表格與複製鈕（自動化環境無剪貼簿權限時，按鈕正確退化為「請按 Ctrl+C」並自動選取文字）。
 
+13. 提交本階段成果（兩筆）：`bda118e`（蛋孵化組：mp4＋8 影格＋報告＋檢查腳本）、`0835730`（提示詞設計組：報告＋腳本＋本 worklog）。
+
 ## Final status
 
-- Status: In progress（提示詞設計完成；影片生成待執行）
-- Commit hash: n/a
+- Status: In progress（蛋孵化影片已交付；新「捉迷藏快找」提示詞已設計交付，影片生成待執行）
+- Commit hash: `bda118e`（蛋孵化組）、`0835730`（提示詞設計組）
