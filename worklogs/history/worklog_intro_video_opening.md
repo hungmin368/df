@@ -26,4 +26,10 @@
 
 ## 最終狀態
 
-（進行中）
+- **已完成**。
+- 交付 commit：`aa4bc3e`（已推送至 `origin/main`）。
+- 改動：`index.html`（＋`#intro-video` 層與 body class）、`css/style.css`（＋開場影片樣式）、`js/main.js`（`startSplash()` 化＋影片控制 IIFE＋`armIntroSafety()`）、`worklogs/worklog_intro_video_opening.md`。
+- `assets/game.mp4` 先前已入庫（2,444,781 B、768×768、6.58s、含音訊），本次直接引用。
+- 驗收：影片自動播放、跳過、播畢接 logo 飛入、首次啟動序章、開聲音鈕、影片載入失敗降級、4×4 開局回歸，全數通過；console 無遊戲錯誤。
+- 提交隔離：其他 session 的未提交修改（故事 v2 UI、AGENTS.md、.gitignore 等）未納入本 commit，仍保留於工作區。
+- 已知限制：真實瀏覽器擋「含聲音自動播放」的分支（→ 靜音播放＋開聲音鈕）以程式碼審查與按鈕行為驗證，未在實機 iOS Safari 測試。
