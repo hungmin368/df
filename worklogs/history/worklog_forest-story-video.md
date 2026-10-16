@@ -33,6 +33,6 @@
 
 ## 最終狀態
 
-- 狀態：✅ 完成——九鏡生成（含 S8 一次重生）、逐鏡驗證、後製拼接、成片驗證、運鏡報告全部通過；commit hash 待回填。
+- 狀態：✅ 完成——九鏡生成（含 S8 一次重生）、逐鏡驗證、後製拼接、成片驗證、運鏡報告全部通過；交付 commit `cc1f824`。
 - 產出：`assets/intro_forest_story_720p.mp4`（49.42s）、`bban_forest_story_camerawork_report.html`、`_forest_story_frames/`（18 張）、生成與後製腳本。
 - 成本：10 次 720P 生成 ≈ ¥45（9 鏡＋S8 重生）；另有一次失敗探針任務誠實記錄（見報告第五節）。
