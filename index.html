@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#fffdf9">
-<title>恐龍快找 DragonFinder v1.9.16 — 恐龍解謎</title>
-<link rel="stylesheet" href="css/fonts.css?v=1.9.16">
-<link rel="stylesheet" href="css/style.css?v=1.9.16">
+<title>恐龍快找 DragonFinder v1.9.17 — 恐龍解謎</title>
+<link rel="stylesheet" href="css/fonts.css?v=1.9.17">
+<link rel="stylesheet" href="css/style.css?v=1.9.17">
 <noscript><style>#splash,#intro-video{ display:none }</style></noscript>
 </head>
 <body class="splash-on intro-video-on">
@@ -25,7 +25,7 @@
 </div>
 
 <header>
-  <div class="logo">⚡ 恐龍快找 <span lang="en">DragonFinder</span><span class="ver-badge">v1.9.16</span></div>
+  <div class="logo">⚡ 恐龍快找 <span lang="en">DragonFinder</span><span class="ver-badge">v1.9.17</span></div>
   <div class="hud">
     <span><span id="round-pre">第 </span><b id="round">1</b><span id="round-post"> 局</span></span>
     <span id="hud-score">分數 <b id="score">0</b></span>
@@ -76,7 +76,7 @@
 <div class="overlay show" id="ov-menu">
   <div class="modal">
     <div class="menu-top">
-      <div id="menu-logo" title="恐龍快找 DragonFinder"><img src="assets/dinos_2/game_logo.png" alt="恐龍快找 DragonFinder"><span class="ver-badge">v1.9.16</span></div>
+      <div id="menu-logo" title="恐龍快找 DragonFinder"><img src="assets/dinos_2/game_logo.png" alt="恐龍快找 DragonFinder"><span class="ver-badge">v1.9.17</span></div>
       <div id="dex-banner">
       <div class="db-book">📖</div>
       <div class="db-mid">
@@ -263,8 +263,18 @@
 
 <div id="story-stage">
   <div id="story-bg" aria-hidden="true"></div>
+  <div id="story-fx" aria-hidden="true"></div>
+  <div class="story-letterbox top" aria-hidden="true"></div>
+  <div class="story-letterbox bottom" aria-hidden="true"></div>
   <button class="btn btn-ghost" id="story-skip">跳過 ▶▶</button>
   <div id="story-text"><div class="st-title"></div><div class="st-body"></div></div>
+</div>
+
+<div id="story-video">
+  <video id="story-vid" playsinline disablepictureinpicture></video>
+  <div class="sv-btns">
+    <button class="btn btn-ghost" id="story-video-skip">跳過 ▶▶</button>
+  </div>
 </div>
 
 <div class="overlay" id="ov-lv" onclick="if(event.target===this)hide('ov-lv')">
@@ -345,9 +355,9 @@
     </div>
   </div>
 </div>
-<script src="js/data.js?v=1.9.16"></script>
-<script src="js/tower.js?v=1.9.16"></script>
-<script src="js/main.js?v=1.9.16"></script>
-<script src="js/tower_comments.js?v=1.9.16"></script>
+<script src="js/data.js?v=1.9.17"></script>
+<script src="js/tower.js?v=1.9.17"></script>
+<script src="js/main.js?v=1.9.17"></script>
+<script src="js/tower_comments.js?v=1.9.17"></script>
 </body>
 </html>

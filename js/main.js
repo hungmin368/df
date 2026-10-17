@@ -781,24 +781,24 @@ function findRandomSafe(){ /* 找「確定沒有恐龍」且還沒標 ✕ 的格
 /* 故事系統 */
 let storySeen={}; try{ storySeen=JSON.parse(LS.get('dinodoku-story')||'{}')||{}; }catch(e){}
 function storySave(){ LS.set('dinodoku-story', JSON.stringify(storySeen)); }
-/* 起源：被星願貝殼帶到異世界、遇見伴伴；十五個區域＝十五章成長之旅，終章回收伏筆 */
+/* 星願燈塔危機：逐區追查熄燈者，揭開伴伴與爺爺圖鑑的秘密，並以理解取代決戰 */
 const STORY = [
-  {lv:0, title:'🌟 序章：星願之夜', text:'夏夜，你在爺爺的閣樓翻開一本泛黃的化石圖鑑，書頁間掉出一枚會發光的貝殼——「星願貝殼」。光芒一閃，房間消失了！你躺在陌生的金色沙灘上，遠方火山轟鳴，天空有巨大的影子掠過。身邊一顆淡藍色的蛋輕輕晃動，「喀」地裂開——一隻圓滾滾的小龍咬住你的衣角，怎麼也不放。你決定叫牠「伴伴」。這場冒險，就從兩個小傢伙的第一步開始。', cast:[1000,301]},
-  {lv:4, title:'第一章：沙灘上的第一課', text:'伴伴帶著你認識這片「起源地」：金色沙灘上到處是神秘的腳印與格子印。慈祥的梁龍媽媽低下長脖子，教你分辨哪一格藏著恐龍；三角龍和劍龍在旁邊搖旗加油。你深呼吸，第一次舉起捕捉器——「喀嚓！」成功的那刻，伴伴開心地繞著你轉圈圈。原來解開謎題，就能交到新朋友！', cast:[1000,1,21,11]},
-  {lv:5, title:'第二章：風的語言', text:'廣闊的幼龍平原上，無齒翼龍正在教雙脊龍「聽風」。牠也拉著你趴進草叢：「噓——風會告訴你，恐龍躲在哪裡。」伴伴學得比誰都認真，尾巴搖得像小風車。始祖鳥撲扇著翅膀掠過頭頂——原來天空記得每一次勇敢的嘗試。你漸漸看得懂了：那些 ✕ 與候選格，就像風留下的線索。', cast:[1000,300,91,81]},
-  {lv:6, title:'第三章：遠方的約定', text:'風神翼龍展開十公尺的翅膀，要飛越整片大陸。「山與雲的盡頭有座龍之巔峰，」牠俯身對你說，「傳說被星選中的旅人點亮峰頂的燈塔，這片大陸就永遠安寧。」南方巨獸龍託牠替自己看看世界盡頭，禽龍們排成一排目送。「我們也去吧！」伴伴輕輕咬了咬你的袖子。於是，你們約定：走遍十五個區域，登上巔峰。', cast:[1000,301,111,41]},
-  {lv:7, title:'第四章：雲朵學校', text:'碎岩丘陵間有一間「雲朵學校」，校長是古靈精怪的悟空翼龍。甲龍學防禦、副櫛龍學吹號角，你和伴伴則學「安靜地觀察」。「每個人都不同，」悟空翼龍眨眨眼，「所以每個人都有自己的一課。」下課鐘響，伴伴居然學會了第一個小技能，惹來整座丘陵的掌聲。往巔峰的路，又近了一步。', cast:[1000,310,51,31]},
-  {lv:8, title:'第五章：霧中的時光水潭', text:'迷霧森林深處，你和伴伴迷了路。跟著點點螢光，你們找到一座會倒映「過去」的水潭——潭底竟是一片五億年前的海洋！奇蝦揮著大鰲當主人，熱情招呼你們參加寒武紀派對。「這片大陸藏著所有時代，」奇蝦眨眨眼，「包括你來的那個地方喔。」回家的線索，好像就藏在時間的縫隙裡。', cast:[1000,315]},
-  {lv:9, title:'第六章：最古老的家族相簿', text:'月光下，海口魚翻開家族相簿：從小小的魚，到長出腳的兩棲類，再到第一個踏上陸地的提塔利克魚。「看，」牠指著自己的鰭，「所有偉大的旅程，都是從一小步開始的。」伴伴若有所思地看看自己的小短腿，又抬頭看看你。你摸摸牠的頭：「我們已經走了好遠了呢。」沼澤的月光，溫柔得像一聲晚安。', cast:[1000,318]},
-  {lv:10, title:'第七章：峽谷地底的遠古之海', text:'誰都沒想到，烈陽峽谷底下竟藏著一片泥盆紀的地下海！鄧氏魚正在和靈活的含肺魚過招。突然，頭頂落石砸下——伴伴毫不猶豫地張開小翅膀護住你，額頭閃起淡淡金光。「這孩子不簡單，」鄧氏魚咬碎一塊礁石，「海洋夠大，勇敢的心也一樣。」那天你才發現：伴伴一直在悄悄長大。', cast:[1000,322]},
-  {lv:11, title:'第八章：做自己最帥', text:'霜牙雪嶺的河流結了薄冰，棘龍王一頭扎進水裡，靈巧地抓起一條大魚。「總有人說我不像霸王龍，」牠甩甩尾巴，「可我是游泳高手——做自己最帥！」食肉牛龍和南方巨獸龍在岸邊看呆了。伴伴也學著一頭扎進雪堆，變成雪球咕嚕咕嚕滾出來，逗得大家哈哈大笑。你在探險手記裡，悄悄寫下兩個字：勇氣。', cast:[1000,324,121,111]},
-  {lv:12, title:'第九章：迷宮盡頭的鏡子', text:'古城遺跡裡有一座淹水的迷宮，滑齒龍當嚮導，上龍跟在後面：「傳說盡頭有寶藏！」你們穿過珊瑚拱門、越過倒塌的石柱，抵達終點時卻都愣住了——牆上只有一面古老的鏡子，映出彼此的笑臉。「寶藏，就是一起走到這裡的夥伴。」滑齒龍輕聲說。鏡子裡的你們，好像又長大了一點。', cast:[1000,280,278]},
-  {lv:13, title:'第十章：三姐妹的祝福', text:'浮在雲海上的神殿前，古神翼龍、妖精翼龍、朝陽翼龍正舉辦飛行大賽：一個擅長特技，一個優雅得像跳舞，一個一口氣飛得最遠。「冠軍是——一起飛完全程的三姐妹！」賽後，三姐妹各送你一根發亮的羽毛：「帶著它去龍之巔峰吧，帝龍大人已經等你很久了。」心臟撲通撲通跳——傳說，就要成真了嗎？', cast:[1000,303,304]},
-  {lv:14, title:'第十一章：星願的真相', text:'龍之巔峰上，帝龍終於現身，風神翼龍、棘龍王、霸王龍齊聚一堂。天空卻忽然暗了下來。「這片大陸的『星願之光』正在變弱，」帝龍嚴肅地說，「唯有旅人一路結下的友誼能重新點亮它。而你身邊的伴伴，正是星願凝聚成的蛋所生。」牠把發光的印記按在你手心：「點亮燈塔吧，孩子——真正的試煉，現在才開始。」', cast:[1000,325,301,324,260]},
-  {lv:15, title:'第十二章：火焰的試煉', text:'熔火龍穴深處，岩漿像金色的河流。超帝王龍守在最熱的火口旁：「想點亮燈塔，先學會不怕失敗。」霸王龍跳了三次才躍過岩漿裂縫，猶他盜龍們在旁打著節拍；你和伴伴也摔得滿身灰，卻笑著爬起來再試一次。「熱的從來不是火，」超帝王龍瞇起眼睛，「是你們的心跳呀。」伴伴背上的小翅膀，被火光映得閃閃發亮。', cast:[1000,272,260,216]},
-  {lv:16, title:'第十三章：千年謎題的答案', text:'流沙之下藏著千年王陵，守陵人敦煌龍迎上來，戈壁龍和鸚鵡嘴龍組成探險隊。石門上刻著謎題：「什麼東西，越分享越多？」大家想了好久——「是快樂！」「是勇氣！」伴伴忽然舉起小爪子：「是朋友！」石門轟然打開，滿室星光灑了出來。原來這個答案，你們早就用一整趟旅程寫好了。', cast:[1000,244,246,248]},
-  {lv:17, title:'第十四章：會唱歌的珍珠', text:'碧海深處，海霸龍的水晶宮為你們敞開：魚龍當嚮導，始鯨講最古老的故事。大廳中央的珍珠輕輕唱起歌，你竟聽見了爺爺閣樓的風鈴聲、還有晚餐的飯菜香……「每顆心都會聽見自己最想念的旋律，」海霸龍說，「想家的旅人，燈塔的頂端，就是回家的門。」伴伴靠著你，尾巴輕輕圈住你的手腕。最後一戰前，好想就這樣靜靜待一會兒。', cast:[1000,286,288,296]},
-  {lv:18, title:'終章：說好的下次見', text:'雲的最上面，蒼穹龍境在晨光裡展開——所有年代的恐龍都在這裡自由飛翔。帝龍與風神翼龍陪著你，把星願燈塔點亮，整片大陸泛起溫柔的光。光芒中，回家的門緩緩浮現。伴伴已經長成閃著金紫光澤的大龍，牠用鼻尖碰碰你的額頭：「只要你記得，我們就一直在一起。」你握緊手心的星願貝殼，揮揮手走進光裡。故事不會結束——明天翻開圖鑑，還要喊一聲：「伴伴，冒險去！」', cast:[1000,325,301,302]}
+  {lv:0, title:'🌟 序章：熄滅的第一盞星', text:'夏夜，你在爺爺閣樓翻開那本從不准碰的化石圖鑑。一枚貝殼從書縫滑落，殼面刻著一座燈塔，和窗外星空中一模一樣。你才碰到它，整個房間便被潮聲吞沒。醒來時，你躺在陌生的金色沙灘，一顆淡藍色的蛋在腳邊裂開，小龍咬住你的衣角。遠方燈塔忽然熄滅一盞，蛋殼上浮出同一個符號。爺爺的圖鑑為何畫著這裡？那道掠過天空的黑影，又為何停下來看著你？', cast:[1000,301]},
+  {lv:4, title:'第一章：沙灘上的黑色腳印', text:'伴伴帶你找到梁龍媽媽。牠請你幫忙尋回走散的小龍，沙灘上的足跡卻被一串焦黑腳印截斷——那不像任何活著的恐龍。「熄掉的燈，連名字也會被忘記。」梁龍媽媽低聲說。你靠線索找到小龍時，捕捉器裡竟映出遠方燈塔的火光。伴伴額上的星紋亮了一瞬；焦黑腳印，正朝幼龍平原延伸。', cast:[1000,1,21,11]},
+  {lv:5, title:'第二章：風中傳來的名字', text:'幼龍平原的風忽然停了。無齒翼龍帶你聽風，卻在風聲裡聽見一個陌生聲音反覆呼喚：「把最後的星火交給我。」雙脊龍循著焦黑腳印找到一枚燒裂的燈塔碎片。伴伴一碰碎片，爪下就浮出一張通往巔峰的古地圖，角落還寫著你的名字。始祖鳥銜走地圖一角，飛向翠風草原；那聲音也跟了過去。', cast:[1000,300,91,81]},
+  {lv:6, title:'第三章：不該存在的地圖', text:'風神翼龍認出地圖上的古老航道，卻發現上面多了一道新裂痕：每熄滅一盞燈，裂痕就吞掉一片土地。「十五盞星燈連著整座大陸，」牠說，「若全熄了，所有恐龍都會從記憶裡消失。」你問牠認不認得爺爺，牠沉默地點頭。伴伴拉住你的手，第一次沒有笑。裂痕的下一個方向，指向碎岩丘陵。', cast:[1000,301,111,41]},
+  {lv:7, title:'第四章：雲朵學校的空白名冊', text:'碎岩丘陵的雲朵學校裡，悟空翼龍發現名冊上有一行被挖空：全班都忘了那位同學的名字，只有伴伴記得牠愛吹口哨。伴伴追著口哨聲跑進山洞，學會了第一個技能，也找到一片冰冷的黑色鱗片。校長認出那是「被遺忘者」的鱗片——傳說牠不是來破壞，而是在尋找失去的家人。山洞深處，傳來了和伴伴一模一樣的心跳聲。', cast:[1000,310,51,31]},
+  {lv:8, title:'第五章：水潭裡的爺爺', text:'迷霧森林的時光水潭映出五億年前的海洋，也映出一個年輕人——那是爺爺！他正和一隻沒有影子的恐龍並肩前行，手裡拿著星願貝殼。「若你看見這段記憶，代表我沒能阻止最後一次熄燈。」話音被水波切碎。奇蝦撈起沉在潭底的圖鑑殘頁，上頭畫著伴伴的蛋，旁邊寫著：「別讓牠獨自點燈。」', cast:[1000,315]},
+  {lv:9, title:'第六章：被剪掉的家族相簿', text:'月光沼澤裡，海口魚把家族相簿翻到最古老的一頁：有一個恐龍孩子，身邊的位置被整頁撕走。每當牠指向那個空白，燈塔碎片就滲出冰冷的霧。海口魚說，古老的年代曾有一場大滅絕，倖存者答應永遠記住離開的同伴。「若大家忘了牠，牠就真的只剩孤單。」伴伴望著空白頁，輕聲問：「那我們能不能找到牠？」', cast:[1000,318]},
+  {lv:10, title:'第七章：海底傳來的求救訊號', text:'烈陽峽谷底下，鄧氏魚聽見地下海傳來三短一長的敲擊——正是爺爺在圖鑑邊緣畫過的求救暗號。落石封住海洞時，伴伴額上星紋亮起，照出壁畫：一群恐龍把星火交給一顆蛋，送進人類世界。鄧氏魚認出壁畫中的身影就是你。訊號最後只剩一句：「找到王陵，別讓孩子替我還債。」', cast:[1000,322]},
+  {lv:11, title:'第八章：雪嶺上的另一個伴伴', text:'霜牙雪嶺暴風雪裡，一隻半透明的小龍出現在你們面前。牠和伴伴長得一模一樣，卻沒有影子。「你們有名字、有朋友，」牠說，「我只有大家忘記我的那一天。」棘龍王擋在牠與燈塔碎片之間，勸你別把牠當敵人。伴伴向前一步，對方卻退進暴雪，留下半枚星紋。牠叫什麼名字？你們得去古城找答案。', cast:[1000,324,121,111]},
+  {lv:12, title:'第九章：鏡子裡缺席的人', text:'古城迷宮的鏡子不映出你們，而映出那隻小龍站在空蕩的聚會裡。滑齒龍找到王族碑文：很久以前，大家為了忘記滅絕的痛苦，把最年幼的守燈龍封進時間之外；牠的名字被磨去，封印也把牠變成了影子。「我們以為忘記就不會痛，」滑齒龍嘆息，「卻讓牠獨自痛了好久。」鏡面裂開，三道光羽飛向雲海神殿。', cast:[1000,280,278]},
+  {lv:13, title:'第十章：三根羽毛與一個謊言', text:'古神翼龍、妖精翼龍、朝陽翼龍用三根光羽照亮封印記錄。她們震驚地發現：當年不是影子龍偷走星火，而是長老們親手關上了通往燈塔的門，後來卻把責任推給牠。三姐妹把羽毛交給你：「巔峰上的帝龍知道全貌，但也守著那扇門。」伴伴忽然想起夢裡有人喊牠「守燈的孩子」。巔峰已在眼前，可伴伴開始害怕自己將被留下。', cast:[1000,303,304]},
+  {lv:14, title:'第十一章：伴伴的身世', text:'龍之巔峰上，帝龍承認伴伴是最後一盞星燈的守護者，也是影子龍唯一尚存的家人。當年爺爺曾來到這裡，設法帶影子龍回來，卻在封印崩裂時把伴伴送往人類世界保護牠。「若點亮燈塔，伴伴的星火會耗盡；若放任熄滅，所有人都將被忘記。」帝龍把選擇交給你。伴伴卻先握住你的手：「我想知道哥哥的名字。」', cast:[1000,325,301,324,260]},
+  {lv:15, title:'第十二章：火焰不會替你選擇', text:'熔火龍穴裡，超帝王龍看守著能穿越封印的火門。只有真正願意付出代價的人才能通過，於是火焰映出最可怕的畫面：伴伴獨自化成燈火，你一個人回到閣樓。你差點放棄，伴伴卻用額頭碰了碰你：「勇敢不是一個人犧牲，是相信朋友會一起想辦法。」超帝王龍讓開道路，火門後傳來爺爺的聲音：「去王陵找我留下的第二種方法。」', cast:[1000,272,260,216]},
+  {lv:16, title:'第十三章：爺爺留下的選擇', text:'流沙王陵深處，你終於讀完爺爺的日記。他當年確實關上封印，卻始終後悔把孤單留給一個孩子。他找出另一種方法：需要所有區域的星火共同回應，而不是由伴伴獨自燃燒。最後一頁寫著影子龍真正的名字——星眠。「若你找到牠，先問牠想不想回家，不要替牠決定。」日記背面還畫著爺爺現在的家，地址就在星願貝殼裡。', cast:[1000,244,246,248]},
+  {lv:17, title:'第十四章：珍珠裡的晚安歌', text:'碧海龍宮的珍珠唱出爺爺哄你入睡的旋律，也讓整座水晶宮看見星眠的記憶：牠不是想毀掉世界，只想讓時間停住，好讓所有人永遠不會再離開。伴伴聽完沒有拔出武器，而是問：「如果我們記得你，你願意和我們一起回家嗎？」海霸龍打開最後一道潮門。門後的星眠沒有回答，只熄掉了最後一盞燈。', cast:[1000,286,288,296]},
+  {lv:18, title:'終章：把名字還給星空', text:'蒼穹龍境失去星光，恐龍們的身影正一個個淡去。星眠站在燈塔頂端，伴伴走向牠，沒有把自己的生命交出去；你則拿出爺爺的日記，喊出那個被世界抹去的名字。各地夥伴接力點亮星火，照見星眠曾被愛過的證據。牠終於哭了，熄滅的星燈一盞盞重燃，伴伴也安然回到你身邊。回家之門開啟時，閣樓裡的爺爺正等著你——星願貝殼又亮起來，星眠第一次有了自己的家。', cast:[1000,325,301,302]}
 ];
 
 function openStory(){
@@ -812,21 +812,73 @@ function openStory(){
   h+='</div>';
   $('game-area').innerHTML=h;
 }
+/* 過關故事影片：有影片資產的章節改播全螢幕無字幕短片，載入或播放失敗回落文字卡 */
+const STORY_VIDEOS={4:'assets/story_lv4_720p.mp4'};
 function playStory(idx, autoPlay=false){
   const s=STORY[idx];
   if(!s) return;
+  if(STORY_VIDEOS[s.lv] && playStoryVideo(s, autoPlay)) return;
+  playStoryText(idx, autoPlay);
+}
+function playStoryVideo(s, autoPlay){
+  const stage=$('story-video'), v=$('story-vid'), skip=$('story-video-skip');
+  if(!stage||!v) return false;
+  if(autoPlay && s.lv && !storySeen[s.lv]){ storySeen[s.lv]=true; storySave(); }
+  let closed=false;
+  const close=fallback=>{
+    if(closed) return; closed=true;
+    try{ v.pause(); }catch(e){}
+    v.onended=null; v.onerror=null;
+    stage.classList.add('sv-out');
+    setTimeout(()=>{ stage.classList.remove('show','sv-out'); v.removeAttribute('src'); v.load(); },420);
+    if(fallback) playStoryText(STORY.indexOf(s), false);
+  };
+  v.onended=()=>close(false);
+  v.onerror=()=>close(true);
+  v.src=STORY_VIDEOS[s.lv];
+  stage.classList.add('show');
+  skip.onclick=e=>{ e.stopPropagation(); close(false); };
+  const p=v.play();
+  if(p&&p.catch) p.catch(()=>{ v.muted=true; const p2=v.play(); if(p2&&p2.catch) p2.catch(()=>close(true)); });
+  return true;
+}
+function playStoryText(idx, autoPlay=false){
+  const s=STORY[idx];
+  if(!s) return;
   const st=$('story-stage');
+  if(window.storyTyping) clearInterval(window.storyTyping);
   st.querySelectorAll('.cast').forEach(e=>e.remove());
   const stt=st.querySelector('.st-title');
   const stb=st.querySelector('.st-body');
   stt.textContent=s.title;
+  const moodByLv={0:'mystery',4:'gold',5:'forest',6:'sky',7:'mystery',8:'water',9:'mystery',10:'fire',11:'snow',12:'mystery',13:'sky',14:'storm',15:'fire',16:'gold',17:'water',18:'storm'};
+  const mood=moodByLv[s.lv]||'gold';
+  st.dataset.mood=mood;
   st.classList.add('show');
-  /* 章節場景背景＋緩慢運鏡（奇數章反向，避免每幕看起來一樣） */
+  /* 動態氣氛粒子：按章節色調生成星塵、雪光或火星 */
+  const fx=$('story-fx');
+  if(fx){
+    fx.replaceChildren();
+    const colors={fire:'#ffad65',water:'#a4efff',snow:'#e8f7ff',forest:'#b8ff9d',mystery:'#d8b6ff',sky:'#ffe8a4',storm:'#fff1b8',gold:'#ffe8a4'};
+    for(let p=0;p<42;p++){
+      const dot=document.createElement('i');
+      dot.className='story-particle';
+      dot.style.setProperty('--x',Math.round(Math.random()*100)+'%');
+      dot.style.setProperty('--y',(48+Math.round(Math.random()*58))+'%');
+      dot.style.setProperty('--size',(4+Math.random()*5).toFixed(1)+'px');
+      dot.style.setProperty('--dur',(4+Math.random()*5).toFixed(1)+'s');
+      dot.style.setProperty('--delay',(-Math.random()*12).toFixed(1)+'s');
+      dot.style.setProperty('--dx',Math.round(Math.random()*90-45)+'px');
+      dot.style.setProperty('--particle',colors[mood]||colors.gold);
+      fx.appendChild(dot);
+    }
+  }
+  /* 章節場景背景＋緩慢運鏡（不同章節交替推近與橫移） */
   const bg=$('story-bg');
   if(bg){
     bg.style.backgroundImage='url(assets/story/s'+(s.lv||0)+'.svg)';
     bg.style.animation='none'; void bg.offsetWidth;
-    bg.style.animation='storyKB 26s ease-in-out infinite alternate';
+    bg.style.animation=(mood==='storm'?'storyStorm 1.3s ease-in-out infinite alternate':'storyKB 9s ease-in-out infinite alternate');
     bg.style.animationDirection=(idx%2)?'alternate-reverse':'normal';
   }
   if(autoPlay && s.lv && !storySeen[s.lv]){ storySeen[s.lv]=true; storySave(); }
@@ -858,11 +910,12 @@ function playStory(idx, autoPlay=false){
       }
     });
     if(i>=s.text.length) clearInterval(iv);
-  },28);
-  st.onclick=()=>{ clearInterval(iv); st.classList.remove('show'); };
+  },25);
+  window.storyTyping=iv;
+  st.onclick=()=>{ clearInterval(iv); window.storyTyping=null; st.classList.remove('show'); };
 }
 $('menu-story').onclick=()=>{ openStory(); show('ov-game'); $('game-title').textContent='🎬 故事'; GAME_BACK_MODE='story'; $('game-again').style.display='none'; SFX.tap(); };
-$('story-skip').onclick=e=>{ e.stopPropagation(); $('story-stage').classList.remove('show'); };
+$('story-skip').onclick=e=>{ e.stopPropagation(); if(window.storyTyping) clearInterval(window.storyTyping); window.storyTyping=null; $('story-stage').classList.remove('show'); };
 
 /* 首次啟動：開場動畫結束後自動播放序章（星願之夜），之後可從故事選單重看 */
 let introPlayed=false;
@@ -3154,6 +3207,7 @@ function startSplash(){
     img.style.transform='translate('+dx+'px,'+dy+'px) scale('+s+')';
     setTimeout(finish, FLY+60);
   }
+  Promise.all([ready(img,900), ready(target,900)]).then(()=>setTimeout(fly, HOLD));
 }
 
 /* ---------- 開場影片：assets/game.mp4 播畢（或跳過／載入失敗）後接 logo 飛入 ---------- */

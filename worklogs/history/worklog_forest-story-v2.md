@@ -27,3 +27,13 @@
 7. 後製 `_forest_story_v2_post.py`：首次執行在 S9 疊字幕步驟遇 x264 `malloc failed`（瞬時記憶體配置失敗，重試即過）；輸出 9 鏡驗證幀 `_forest_story_v2_frames/`（18 張）、字幕 PNG、片尾卡 PNG、`assets/intro_forest_story_v2_720p.mp4`（43.3MB、1186 幀、49.42s、可解碼）。成片時間軸 9 點抽幀總驗證通過（淡入、轉場、字幕、片尾卡）。
 8. 音訊發現與接回：V2 各鏡帶平台生成音訊軌（V1 無；s2 mean -17.3dB／max -3.7dB，s8 mean -14.7dB／max -3.0dB）。ffmpeg 將九鏡音訊依時間序拼接（每鏡 atrim 至 5.125s 對齊視訊、白閃處 0.3s 靜音留白、片尾 afade 3.5s 淡出）後與成片 mux。首次因輸入索引與拼接順序錯誤失敗，修正後成功。
 9. 最終成片：`assets/intro_forest_story_v2_720p.mp4`（44,215,444 B、1280×720、24fps、1186 幀、49.44s、視訊＋AAC 音訊、faststart）。V2 生成成本：9 鏡 × ¥4.5 = ¥40.5，零重跑。
+10. 本地 HTTP 驗證（AGENTS.md 規定）：`python -m http.server 8123` 逐一 curl 報告頁、成片、抽驗幀 s1_a_f36.jpg／s9_b_f88.jpg、原始片段 s7.mp4，全部 200。
+11. 提交：僅暫存本任務路徑（報告、成片、生成／後製腳本、state、18 張驗證幀、worklog），未納入其他 session 的未提交修改。
+
+## 最終狀態
+
+- **已完成**。
+- 交付 commit：`475f104`（已推送至 `origin/main`）。
+- 成片：`assets/intro_forest_story_v2_720p.mp4`（44,215,444 B、49.44s、720P、視訊＋AAC）。
+- 報告：`bban_forest_story_camerawork_report_v2.html`（含影片內嵌、V1→V2 三項驗收對照、逐鏡說明與任務紀錄）。
+- 三項驗收：① 分段連戲（CONT 條款全片一致）② 主角同模型（s7–s9 雙參考圖鎖定伴伴紫水晶色）③ 動作合理無穿幫（ANTI 條款＋18 幀目視 9/9 通過、零重跑）。
