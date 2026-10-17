@@ -17,4 +17,4 @@
 
 - 完成：故事播放升級為瀏覽器即時動畫分鏡，使用既有素材，未增加影片檔。
 - 驗證：JavaScript 語法、差異格式及本機 HTTP 檢查通過。
-- Commit hash：尚未提交。
+- Commit hash：`4b6b4da`（與 story-lv4-video 同批提交並推送至 `origin/main`）。

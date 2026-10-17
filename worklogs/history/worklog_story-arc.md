@@ -16,4 +16,4 @@ ode --check 檢查 js/main.js 語法，通過；以本機 HTTP 伺服器讀取 i
 
 - 完成：故事主線與全部章節文本重寫。
 - 驗證：JavaScript 語法檢查及本機 HTTP 載入成功。
-- Commit hash：尚未提交。
+- Commit hash：`4b6b4da`（與 story-lv4-video 同批提交並推送至 `origin/main`）。

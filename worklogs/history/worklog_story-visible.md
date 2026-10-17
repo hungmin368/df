@@ -14,4 +14,4 @@
 
 - 完成：快取版本更新，動態分鏡的可見度提升。
 - 驗證：JS 語法、差異格式及新版資源 HTTP 載入通過。
-- Commit hash：尚未提交。
+- Commit hash：`4b6b4da`（與 story-lv4-video 同批提交並推送至 `origin/main`）。
