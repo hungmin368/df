@@ -42,7 +42,7 @@
 - A15：主選單第 6 鍵「關於」＋`ov-about` overlay（版本、字型 OFL、AI 揭露、隱私、CHANGELOG 連結）；CSS grid 5→6 欄；開關驗收含截圖。
 - A12：新建 `js/ads.js`（偵測 CrazyGames→GD，無 SDK 降級）；`index.html` 掛載；`newBoard` 接 gameplayStart、4 處結果畫面接 gameplayStop、`res-next` 包 `Ads.break`。驗收：無 SDK 時過關→下一局流程逐點正常（36 格新盤、第 2 局）；注入 CrazyGames stub 後 `__adsLog=[init,loadingStop,gps,gpstop,ad:midgame,break-cb]` 全部正確。
 - 整體迴歸：主選單 6 鍵、關於開關、進 4×4 盤、6×6 過關→下一局、離線重開、SW 快取、廣告雙路徑——全部通過，無遊戲本身的 console 錯誤（僅見 MCP 注入腳本的 evaluate 包裝錯誤與他埠舊錯誤）。
-- 未 commit，等你確認。
+- 已交付：commit `30d6c6c`（上架前置批次連同三份 worklog 一併提交）。
 
 ---
 

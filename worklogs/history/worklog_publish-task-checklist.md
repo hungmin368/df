@@ -47,7 +47,7 @@
 
 ## 最終狀態
 
-- 報告：`publish_task_checklist_report.html`（未 commit，等使用者確認）。
+- 報告：`publish_task_checklist_report.html`。
 - 驗證：HTTP 200 ×3、瀏覽器渲染與計數統計全部通過、伺服器已關閉。
 - 未修改任何遊戲程式碼。
-- commit hash：待提交後回填。
+- commit hash：`30d6c6c`（連同上架前置批次一併提交）。

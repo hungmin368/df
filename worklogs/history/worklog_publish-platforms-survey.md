@@ -43,6 +43,6 @@
 
 ## 最終狀態
 
-- 報告已產出：`game_publish_platforms_report.html`（未 commit，等使用者確認是否要提交）。
+- 報告已產出：`game_publish_platforms_report.html`。
 - 本次為評估與文件產出，**未修改任何遊戲程式碼**，無需遊戲功能迴歸。
-- commit hash：待提交後回填。
+- commit hash：`30d6c6c`（連同上架前置批次一併提交）。
