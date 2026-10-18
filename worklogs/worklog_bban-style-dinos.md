@@ -501,15 +501,16 @@
 ## Final status (Round 29)
 
 - Status: **15 頑固 id 全數收斂並覆蓋，assets/dinos 達成 139/139 全 512×512 Style A**。根因定案：r1–r5 重抽不收斂是因糾偏方向 11/15 標反（依 r4 量測改正後 WIDE 收緊句對真寬 id 即刻見效）；強度校準階梯「方向句→NEUTRAL_SQUARE/JUMP_WIDE/SAUROPOD_GATHER 覆蓋句→MILD_WIDEN 溫和句」逐一收編過沖/不足案例（252 尼日爾龍 SAUROPOD_GATHER 一抽從 2.6 收到 1.11）。r8–r10 三輪 101 抽零 API 失敗，全部 11 閘過閘。驗證全綠：HTTP 200、遊戲 139/139 載入 0 破圖、圖鑑 140/140 渲染、報告 139 圖 0 破圖、git 變更恰為 139 筆 M .webp。總花費 ~US$12.56（314 抽×$0.04）。報告已更新為 139/139、10 輪歷程、0 未收斂。未提交（待使用者審核後整批 commit/push）。
-- Commit hash: n/a（待使用者審核後整批提交）
+- Commit hash: 00a15b5（Deploy 139 Style A dinosaur tiles with the batch pipeline artifacts and reports）
 
 ## Round 30（用戶回報：圖鑑恐龍星級上下都出現 → 移除重複）
 
 220. 用戶附截圖問「圖鑑恐龍星級為何上面跟下面都有？」→ 代碼＋瀏覽器實測診斷出**兩套獨立星級顯示疊在同一卡**：① 底部彩色星為卡片固有 CSS `.dex-cell.sN::after`（style.css:524-528，綠1/藍2/紫3/橙4/金5）＋同色影子橢圓 `::before`；② 頂部金星是全屏圖鑑 `renderDexFull()` 塞進 `.nb` 標籤的「編號＋RARITY_NAMES（⭐×星級）」（main.js:1581、RARITY_NAMES 於 main.js:334）。另以 PIL 放大用戶截圖確認：更上方那排紫色小星＋紫橢圓線其實是**上一行卡片的底部裝飾**（網格間距僅 8px 緊貼造成誤讀），非本卡元素。
 221. 依用戶指示「改」：`renderDexFull()` 的 `.nb` 標籤由 `(dexTab==='all'?dexNum(p)+' ':'')+RARITY_NAMES[rk]` 改為只顯示 `dexNum(p)`（編號；三個分頁統一），底部彩色星與 tooltip 稀有度資訊（`title` 仍用 RARITY_NAMES[rk]）保留；`rk` 變數仍被 title 使用，無殘留死碼。
 222. 驗證（http://127.0.0.1:8903，繞開 8902 舊快取）：三個分頁（全部/常見/遠古王者）卡片標籤皆只剩編號（`000`、`#1`、`#200`…）、5★ 卡底部 `★★★★★` 與影子橢圓正常、tooltip 稀有度保留；截圖目檢頂部無星、僅編號；console 無新錯誤（僅存 8902 舊頁面殘留記錄）。驗畢關閉 8903 伺服器（PID 9896）。
+223. **用戶指示 commit/push**：提交範圍限本任務（其他未完成任務的未追蹤產物不動）。推送前安全檢查：對所有將提交檔案掃描 API 金鑰特徵（AIza/sk-/ghp_/xox）→ 0 命中；`_gemini_key*`/`_sophnet_key.txt` 維持 .gitignore 排除。.gitignore 補「管線中間產物本地保留」規則（`batch/_raw/` 306MB、`trial/_raw/` 23MB、`*.log`、`__pycache__/`、`*_clips/` 121MB 影片剪輯、`*.m4a`），提交前發現 batch 12 份運行 log 混入 → 補規則後 unstage，最終暫存 444 檔、禁入項 0。分三筆提交：00a15b5（美術交付 444 檔：139 張遊戲圖＋dinos_2 管線工具/閘檢 JSON/成品 webp/比對樣本＋本任務 11 份 HTML 報告＋AGENTS.md＋.gitignore＋本 worklog）、e50763d（圖鑑標籤去重一行修）、本筆（回填哈希）。
 
 ## Final status (Round 30)
 
-- Status: 全屏圖鑑卡片頂部的重複星級（⭐ 標籤）已移除，標籤統一只顯示編號；底部 CSS 彩色星與影子、點擊詳情、tooltip 皆不變。瀏覽器三分頁驗證通過、無 console 錯誤。變更僅 `js/main.js` 一行（main.js:1581），未提交（與 Round 28/29 產出同批待使用者審核）。
-- Commit hash: n/a（待使用者審核後整批提交）
+- Status: 全屏圖鑑卡片頂部的重複星級（⭐ 標籤）已移除，標籤統一只顯示編號；底部 CSS 彩色星與影子、點擊詳情、tooltip 皆不變。瀏覽器三分頁驗證通過、無 console 錯誤。變更僅 `js/main.js` 一行（main.js:1581）。
+- Commit hash: e50763d（Show only the number in full dex card labels to drop the duplicate star rating）
