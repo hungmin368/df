@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>風格A × 還原圖轉換 — 鐮刀龍報告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+    background: linear-gradient(135deg, #0f2e1f 0%, #0a1f14 55%, #1f3a0f 100%);
+    color: #eef7f0; line-height: 1.7; padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  h1 {
+    text-align: center; font-size: 28px; margin-bottom: 6px;
+    background: linear-gradient(90deg, #6ee7b7, #fbbf24, #f87171);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { text-align: center; color: #a3c9b2; font-size: 14px; margin-bottom: 28px; }
+  .card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(110,231,183,0.25);
+    border-radius: 16px; padding: 22px 26px; margin-bottom: 24px;
+  }
+  h2 { font-size: 20px; color: #a7f3d0; margin-bottom: 14px; border-left: 4px solid #34d399; padding-left: 10px; }
+  ul.feat { list-style: none; }
+  ul.feat li { padding: 3px 0 3px 24px; position: relative; font-size: 14px; }
+  ul.feat li::before { content: "◆"; position: absolute; left: 4px; color: #fbbf24; font-size: 11px; top: 7px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: start; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 860px) { .row3, .row2 { grid-template-columns: 1fr; } }
+  .fig { text-align: center; }
+  .fig img {
+    width: 100%; max-width: 360px; border-radius: 14px;
+    border: 2px solid rgba(110,231,183,0.4);
+    background: repeating-conic-gradient(#22352a 0% 25%, #1a2b21 0% 50%) 0 0 / 26px 26px;
+  }
+  .fig .cap { font-size: 13px; color: #bfe3cd; margin-top: 8px; }
+  .fig .cap b { color: #fbbf24; }
+  .arrow { display: flex; align-items: center; justify-content: center; font-size: 30px; color: #34d399; }
+  .badges { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  @media (max-width: 760px) { .badges { grid-template-columns: 1fr; } }
+  .badge {
+    background: rgba(0,0,0,0.28); border-radius: 12px; padding: 12px 14px;
+    border: 1px solid rgba(251,191,36,0.35); font-size: 13.5px;
+  }
+  .badge b { color: #fbbf24; }
+  .ok { color: #6ee7b7; font-weight: bold; }
+  .warn { color: #fbbf24; font-weight: bold; }
+  .meta { font-size: 12.5px; color: #9dc4aa; }
+  .meta code { background: rgba(0,0,0,0.35); padding: 1px 5px; border-radius: 4px; }
+  .note {
+    background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.3);
+    border-radius: 10px; padding: 10px 14px; font-size: 13px; color: #fde68a; margin-top: 12px;
+  }
+  .foot { text-align: center; font-size: 12px; color: #7da389; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>風格A × 還原圖轉換 — 鐮刀龍 Therizinosaurus</h1>
+  <div class="sub">網路還原圖外形特色 ＋ 風格A（伴伴家族）→ Gemini 雙參考圖生成｜2026-10-16</div>
+
+  <div class="card">
+    <h2>① 轉換流程</h2>
+    <div class="row3">
+      <div class="fig">
+        <img src="assets/dinos_2/DFD-000_伴伴_2star.png" alt="風格A參考：伴伴二星">
+        <div class="cap"><b>風格A 參考</b>：伴伴二星（材質・五官・色彩語言）</div>
+      </div>
+      <div class="arrow">＋</div>
+      <div class="fig">
+        <img src="assets/dinos_2/bban_samples/_ref_therizinosaurus_photo.jpg" alt="鐮刀龍還原圖">
+        <div class="cap"><b>解剖參考</b>：鐮刀龍還原圖（長頸小頭・紅喉・綠羽身・圓肚・巨鐮爪・羽尾）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>② 生成成果（兩輪）</h2>
+    <div class="row2">
+      <div class="fig">
+        <img src="assets/dinos_2/bban_samples/gemini_styleA_therizinosaurus_c1.png" alt="候選一">
+        <div class="cap"><span class="warn">候選一（淘汰）</span>：風格A到位，但鐮刀爪比例不足、流於一般可愛恐龍</div>
+      </div>
+      <div class="fig">
+        <img src="assets/dinos_2/bban_samples/gemini_styleA_therizinosaurus.png" alt="最終成果">
+        <div class="cap"><b>最終成果</b>：巨鐮爪成為設計主角——一眼即知鐮刀龍</div>
+      </div>
+    </div>
+    <div class="badges">
+      <div class="badge"><b>風格A特徵</b> <span class="ok">高 ✔</span><br>亮面 3D 公仔、超大金琥珀眼＋白高光、開心露小牙笑、乳白腹、金橘爪、細鱗——伴伴家族語言完整</div>
+      <div class="badge"><b>鐮刀爪辨識</b> <span class="ok">高 ✔</span><br>雙手各三根與頭等長的巨大鐮刀爪、亮金橘色——鐮刀龍靈魂特徵主宰整體設計</div>
+      <div class="badge"><b>顏色辨識</b> <span class="ok">高 ✔</span><br>祖母綠身體＋紅橘喉頸（忠於還原圖配色）＋乳白腹——與還原圖對照即認</div>
+      <div class="badge"><b>表情與動作</b> <span class="ok">高 ✔</span><br>大眼開懷笑＋露小白牙；單臂高舉炫爪、另一手護肚、羽尾翹起——自信驕傲感一眼可讀</div>
+    </div>
+    <div class="note">迭代紀錄：候選一爪部比例不足 → 提示詞改為「最突出特徵＝每手三根與頭等長的鐮刀爪」並重生成 → 第二張一次過關。</div>
+  </div>
+
+  <div class="card">
+    <h2>③ 管線資訊</h2>
+    <ul class="feat">
+      <li>雙參考圖輸入：IMAGE 1＝伴伴二星（僅風格）、IMAGE 2＝還原圖（僅解剖，不取其畫風）</li>
+      <li>模型：<code>gemini-2.5-flash-image</code>，共 2 次呼叫（含重生成），成本約 US$0.08</li>
+      <li>腳本：<code>assets/dinos_2/bban_samples/_gen_gemini_styleA_therizinosaurus.py</code></li>
+      <li>輸出：<code>gemini_styleA_therizinosaurus.png</code>（1024×1024 白底；候選一保留為 <code>_c1.png</code>）；遊戲用可再走 rembg → 512 → 200×200 WebP</li>
+      <li>風格A定義見 <code>AGENTS.md</code>「Art style registry」區段</li>
+    </ul>
+  </div>
+
+  <div class="foot">DragonFinder ｜ 風格A × 還原圖轉換報告 ｜ 2026-10-16</div>
+</div>
+</body>
+</html>

@@ -11,3 +11,18 @@ index_backup_*.html
 
 # Single-file release bundles (generated on demand when preparing a release; not kept in the repo)
 dragonfinder_v*.html
+
+# API keys (local only, never commit)
+assets/dinos_2/bban_samples/_gemini_key*.txt
+
+assets/dinos_2/bban_samples/_sophnet_key.txt
+
+# Pipeline intermediates (raw generations and heavy scratch) stay local
+assets/dinos_2/batch/_raw/
+assets/dinos_2/trial/_raw/
+assets/dinos_2/batch/*.log
+assets/dinos_2/trial/*.log
+assets/dinos_2/bban_samples/__pycache__/
+assets/dinos_2/bban_samples/*_clips/
+assets/dinos_2/bban_samples/*.log
+assets/dinos_2/bban_samples/*.m4a

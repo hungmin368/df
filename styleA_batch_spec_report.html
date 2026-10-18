@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>風格A 批量生產規格書（定案版）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+    background: linear-gradient(135deg, #1c1233 0%, #120b20 55%, #0d2718 100%);
+    color: #f3eefc; line-height: 1.7; padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 1140px; margin: 0 auto; }
+  h1 {
+    text-align: center; font-size: 27px; margin-bottom: 6px;
+    background: linear-gradient(90deg, #c084fc, #6ee7b7, #fbbf24);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { text-align: center; color: #b9a6d9; font-size: 14px; margin-bottom: 6px; }
+  .confirm { text-align: center; font-size: 15px; color: #6ee7b7; font-weight: bold; margin-bottom: 26px; }
+  .card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 16px; padding: 22px 26px; margin-bottom: 24px;
+  }
+  h2 { font-size: 19px; color: #e9d5ff; margin-bottom: 12px; border-left: 4px solid #c084fc; padding-left: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 8px 0; }
+  th, td { border: 1px solid rgba(255,255,255,0.15); padding: 7px 10px; text-align: left; vertical-align: top; }
+  th { background: rgba(192,132,252,0.15); color: #e9d5ff; white-space: nowrap; }
+  td code { background: rgba(0,0,0,0.35); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  ul.feat { list-style: none; }
+  ul.feat li { padding: 4px 0 4px 26px; position: relative; font-size: 14px; }
+  ul.feat li::before { content: "◆"; position: absolute; left: 4px; color: #fbbf24; font-size: 11px; top: 9px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 800; padding: 1px 8px; border-radius: 999px; margin-left: 6px; vertical-align: 1px; }
+  .t-user { background: rgba(110,231,183,0.2); color: #6ee7b7; border: 1px solid rgba(110,231,183,0.4); }
+  .t-sug { background: rgba(96,165,250,0.2); color: #93c5fd; border: 1px solid rgba(96,165,250,0.4); }
+  .t-old  { background: rgba(248,113,113,0.15); color: #fca5a5; border: 1px solid rgba(248,113,113,0.35); text-decoration: line-through; }
+  .ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 10px 0; }
+  @media (max-width: 900px) { .ladder { grid-template-columns: 1fr 1fr; } }
+  .rung { background: rgba(0,0,0,0.28); border-radius: 12px; padding: 12px 14px; border-top: 4px solid; font-size: 13px; }
+  .r1 { border-color: #66bb6a; } .r2 { border-color: #42a5f5; } .r3 { border-color: #ffb300; }
+  .r4 { border-color: #ff7043; } .r5 { border-color: #ab47bc; }
+  .rung b { display: block; font-size: 15px; margin-bottom: 4px; }
+  .phase { display: flex; gap: 12px; margin: 12px 0; align-items: stretch; }
+  .pnum { flex: 0 0 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg,#c084fc,#6ee7b7);
+          display: flex; align-items: center; justify-content: center; font-weight: 900; color: #14101f; font-size: 18px; }
+  .pbody { flex: 1; background: rgba(0,0,0,0.22); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px 16px; font-size: 13.5px; }
+  .pbody b { color: #fbbf24; }
+  .cp { color: #6ee7b7; font-weight: 700; }
+  .warn { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.3); border-radius: 10px;
+          padding: 10px 14px; font-size: 13.5px; color: #fde68a; margin-top: 10px; }
+  .meta { font-size: 12.5px; color: #a78cc8; }
+  .meta code { background: rgba(0,0,0,0.35); padding: 1px 5px; border-radius: 4px; }
+  .foot { text-align: center; font-size: 12px; color: #8b76ad; margin-top: 8px; }
+  .num { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>風格A 批量生產規格書（定案版）</h1>
+  <div class="sub">139 張遊戲恐龍圖替換——要素定案 + 還原圖配對實測 + 分批執行計畫｜2026-10-16</div>
+  <div class="confirm">◈ 要素與決策已全數定案（2026-10-16）——尚未生產任何圖片，你喊「開工」才開始 ◈</div>
+
+  <div class="card">
+    <h2>① 要素清單（你的 11 項 + 我的補充）</h2>
+    <table>
+      <tr><th style="width:36px">#</th><th>要素</th><th>規格落實</th><th style="width:74px">來源</th></tr>
+      <tr><td>1</td><td>構圖沿用、姿勢自由</td><td>保留：單一主體置中、<b>底部貼齊</b>（下緣 4–5%）、覆蓋率 20–40%、四周 ≥4% 邊距、全身不裁切。<span class="t-old">正面站姿限制</span> <b>刪除</b>——跳/跑/躺/飛/搏鬥/背面回頭皆可，剪影更活潑（剪影猜謎反而受益）</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>2</td><td>去背乾淨</td><td>純白底生成 → rembg 去背 → 自動邊緣檢查（無白邊、無陰影烙印、無半透明殘渣）＋目視抽查</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>3</td><td>圖內無文字</td><td>不可有文字/編號/浮水印/簽名（圖鑑編號由 UI 疊加）；生成後 OCR 式目視把關</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>4</td><td>更動範圍</td><td>只動 <code>assets/dinos/</code> 139 張；伴伴吉祥物 7 張、game_logo、故事圖、游標一概不動</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>5</td><td>檔名維持</td><td><code>assets/dinos/&lt;id&gt;.webp</code> 原檔名原位置替換 → <code>js/data.js</code> 零改動、localStorage 免遷移</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>6</td><td>物種對應</td><td>每個 id 的物種身份正確（名字見 data.js），外型以其還原圖/物種知識為準</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>7</td><td>還原圖 × 風格A、不重複</td><td>每張還原圖最多使用一次；配對規則見 ④（52 同名精確 → 近緣指派 → 純提示詞）；顏色×表情×外貌隨機混搭，同批不撞臉</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>8</td><td>裝備/武器/配件</td><td>允許添加（矛、斧、護甲、披風、項圈、葉帽…），依星級階梯給予，並服務物種辨識</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>9</td><td>星級稀有感</td><td><b>已定案</b>（照建議案）：階梯見 ②（1★素體 → 5★傳說全套），由遊戲星級驅動，與還原圖自帶星無關</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>10</td><td>花紋/刺青</td><td>皮膚可加斑點/條紋/幾何刺青（3★ 起常態化，低星偶爾出現）</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>11</td><td>5★ 英雄級姿勢</td><td><b>已定案</b>：靈感來源＝英雄電影招牌動作（漫威/DC：金鋼狼爪交叉胸前、奇異博士飛行、神力女超人擋格、貓女蹲伏…）與格鬥遊戲（街頭快打等）；提示詞<b>只描述動作力學、不指名角色</b>，避開 IP 風險；13 式姿勢池見 ②</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>A</td><td>技術規格</td><td><b>512×512</b> RGBA 透明 WebP（2026-10-16 你更新，原 200×200）、品質約 90、單張約 15–40 KB；遊戲 CSS 縮放顯示僅更清晰，<b>零程式改動</b></td><td><span class="t-sug">建議</span></td></tr>
+      <tr><td>B</td><td>剪影可猜</td><td>剪影猜謎（150px 轉黑）需各物種剪影有差異——自由姿勢天然加分；門檻：同批兩兩剪影差異度抽檢</td><td><span class="t-sug">建議</span></td></tr>
+      <tr><td>C</td><td>轉灰可辨識</td><td>圖鑑未收集 grayscale 後仍讀得出形體（避免同色系背景融形）</td><td><span class="t-sug">建議</span></td></tr>
+      <tr><td>D</td><td>風格A一致</td><td>金琥珀大眼、家族語言統一（AGENTS.md 風格A 定義）；物種專屬主色仍須保留；皮膚光澤依 F 調整</td><td><span class="t-sug">建議</span></td></tr>
+      <tr><td>E</td><td>材質大對比</td><td>每隻主體色與家族金色系對比明顯，全批 139 張主色分布均衡（自動統計色相帶）</td><td><span class="t-sug">建議</span></td></tr>
+      <tr><td>F</td><td>皮膚光澤去塑膠感</td><td>有機質緞面光澤：軟式高光、微反射、可見細鱗/羽毛紋理；<b>禁止</b>塑膠/烤漆/乙烯基硬反光（已併入 AGENTS.md 風格A 登記）</td><td><span class="t-user">你</span></td></tr>
+      <tr><td>G</td><td>皮膚不要太光滑</td><td>自然風化細節：<b>污漬、泥點、泥土沾黏、花草/葉片碎片</b>附著在腿/腹/背/尾等部位（數量隨星級遞增——1★ 僅微塵土痕，5★ 戰士感最重）；不得遮蔽物種主色與招牌特徵（已併入 AGENTS.md 風格A 登記）</td><td><span class="t-user">你</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>② 星級稀有度階梯（已核准：照建議案）＋ 5★ 英雄姿勢池</h2>
+    <div class="ladder">
+      <div class="rung r1"><b>1★ 素體</b>小隻、乾淨無配件；單純開心動作</div>
+      <div class="rung r2"><b>2★ 小配件</b>＋1 件簡單配件：領巾/葉帽/貝殼/繃帶</div>
+      <div class="rung r3"><b>3★ 戰士紋身</b>＋花紋或刺青常態化；輕裝（護腕/肩墊/臂環）</div>
+      <div class="rung r4"><b>4★ 金邊武裝</b>＋金邊護甲或武器（矛/斧/錘）；少量特效（氣勢線條）</div>
+      <div class="rung r5"><b>5★ 傳說全套</b>金冠/披風＋神兵＋英雄級招牌姿勢＋微粒光效（原 5★ 金冠+龍翼慣例併入）</div>
+    </div>
+    <p class="meta">配件不得遮住物種招牌特徵（盾角/骨板/帆/鐮爪/長頸）；剪影仍需可辨認物種。</p>
+    <h3 style="margin:14px 0 6px;font-size:15px;color:#93c5fd;">5★ 英雄姿勢池（13 式）——提示詞只用力學描述，靈感來源僅內部對照、不進提示詞</h3>
+    <table>
+      <tr><th style="width:30px">#</th><th>動作力學描述（進提示詞）</th><th style="width:170px">靈感來源（不進提示詞）</th></tr>
+      <tr><td>1</td><td>金屬巨爪交叉於胸前、低頭瞪視鏡頭</td><td>金鋼狼</td></tr>
+      <tr><td>2</td><td>懸浮飛行、披風張揚、單手前伸掌心朝前</td><td>奇異博士／鋼鐵人</td></tr>
+      <tr><td>3</td><td>雙手護腕交叉於胸前擋格、側身低重心</td><td>神力女超人</td></tr>
+      <tr><td>4</td><td>貓科蹲伏、單手撐地、翹尾回眸</td><td>貓女</td></tr>
+      <tr><td>5</td><td>雙手重錘高舉過頭、蓄力下砸</td><td>雷神／浩克</td></tr>
+      <tr><td>6</td><td>單膝跪地撐地、蓄力躍起前撲</td><td>黑豹</td></tr>
+      <tr><td>7</td><td>雙刀交叉於背後、歪頭壞笑</td><td>死侍</td></tr>
+      <tr><td>8</td><td>雙臂抱胸懸浮空中、下巴抬高俯視</td><td>洛基／反派懸浮</td></tr>
+      <tr><td>9</td><td>全套拳向前全力直拳、帶殘影速度線</td><td>街頭快打・艾克索</td></tr>
+      <tr><td>10</td><td>單腿站立迴旋踢、腿帶殘影</td><td>街頭快打・布蕾茲</td></tr>
+      <tr><td>11</td><td>雙掌於腰側集氣、掌間能量球發光</td><td>格鬥遊戲氣功波式</td></tr>
+      <tr><td>12</td><td>盾／前臂朝前的低姿衝刺</td><td>美國隊長</td></tr>
+      <tr><td>13</td><td>鑲寶石巨拳高舉向天、全身泛光怒吼</td><td>薩諾斯</td></tr>
+    </table>
+    <p class="meta">姿勢以「力學描述」寫進提示詞（不寫角色名、不寫服裝道具商標），配件沿用星級階梯之神兵；例如鐮刀龍配 1 式＝自家鐮爪交叉胸前，物種特徵與招牌動作合一。</p>
+  </div>
+
+  <div class="card">
+    <h2>③ 隨機混搭變數池（種子化＝可重現）</h2>
+    <table>
+      <tr><th>變數</th><th>池大小</th><th>範例</th></tr>
+      <tr><td>體色</td><td class="num">~30</td><td>祖母綠/緋紅/靛藍/琥珀橙/薔薇粉/青金/石墨/薄荷…（含深淺變化）</td></tr>
+      <tr><td>花紋/刺青</td><td class="num">~12</td><td>圓斑/虎條紋/閃電紋/星芒/幾何圖騰/漸層鱗…</td></tr>
+      <tr><td>表情</td><td class="num">~8</td><td>大笑/得意/調皮吐舌/威武皺眉/驚喜/酷臉…</td></tr>
+      <tr><td>姿勢</td><td class="num">~15</td><td>跳躍/衝刺/躺地打滾/背面回頭/揮尾/咆嘯/滑行/展翼…（5★ 改用 ② 的 13 式英雄姿勢池）</td></tr>
+      <tr><td>配件</td><td class="num">~18</td><td>領巾/葉帽/護腕/肩墊/矛/斧/盾/披風/項圈/背包…（依星級解鎖）</td></tr>
+      <tr><td>污漬/沾黏</td><td class="num">~6</td><td>腿部泥點/腹部草屑/背部落葉/尾端泥塊/臉側土痕（依星級加重，1★ 僅微塵；要素 G）</td></tr>
+    </table>
+    <ul class="feat">
+      <li>每 id 以固定 seed 抽選 → 生成規格表可預覽、重跑結果一致</li>
+      <li>同批相鄰 id 主色不同（色相帶分散），全批 139 張顏色分布均衡</li>
+      <li>體色不喧賓奪主：物種還原圖的招牌特徵永遠第一優先</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>④ 還原圖配對（實測結果）</h2>
+    <table>
+      <tr><th>層級</th><th>數量</th><th>說明</th></tr>
+      <tr><td>P0 同名精確配對</td><td class="num"><b>52 / 139</b></td><td>中文名完全相同（如 三角龍、劍龍、棘龍、腕龍…），直接使用該還原圖外形特色</td></tr>
+      <tr><td>P1 近緣指派</td><td class="num">~35</td><td>無同名但有同科/同型未使用還原圖（蜥腳類↔蜥腳類、馳龍類↔馴龍類、角龍類↔角龍類…）</td></tr>
+      <tr><td>P2 純提示詞</td><td class="num">~52</td><td>無合適還原圖：<b>海洋爬蟲類約 26 種</b>（蛇頸龍/上龍/滑齒龍/魚龍…）、古鯨 2 種、奇蝦/海口魚/鄧氏魚等、多數 5★ 翼龍與鳥類——由 Gemini 自帶物種知識直接生成（樣板圖佐證）</td></tr>
+    </table>
+    <ul class="feat">
+      <li>來源池 280 張，實際使用約 87 張（P0+P1），<b>每張最多用一次</b>，符合你的不重複要求</li>
+      <li>配對明細已存 <code>assets/dinos_2/bban_samples/_pairing_result.json</code>；開工後第一步即產出完整 139 筆「id→還原圖/生成方式」對照表供你審（與 5 張星級試產同批交付）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⑤ 分批執行計畫（每批設審核關卡，不滿意只重做該批）</h2>
+    <div class="phase"><div class="pnum">1</div><div class="pbody"><b>規格表＋星級試產（開工即做）</b><br>產生 139 筆生成規格表（id／物種／還原圖配對／seed／體色／花紋／表情／姿勢／配件／星級要素）→ 同步試產 <b>5 張＝每個星級各 1 張</b>（1★–5★，跨物種類型挑選，≈US$0.20）→ 規格表＋試產拼圖一次交付審核。<span class="cp">關卡：規格＋方向核准（不滿意只重做試產 5 張，≈US$0.20）</span></div></div>
+    <div class="phase"><div class="pnum">2</div><div class="pbody"><b>批次量產（按星級切 6 批）</b><br>B1 1★前25 → B2 1★後25 → B3 2★26 → B4 3★30 → B5 4★20 → B6 5★13（5★ 最後做，吸收前面批次的調整）→ 每批結尾拼圖＋剪影總覽給你審。<span class="cp">關卡：每批核准，不通過只重做該批</span></div></div>
+    <div class="phase"><div class="pnum">3</div><div class="pbody"><b>換檔上線</b><br>全批核准後：原 139 張備份到 <code>assets/dinos_backup_v1/</code> → 新圖（<b>512×512 RGBA WebP</b>）覆蓋 → <code>python -m http.server</code> 全站驗證（格子動畫/圖鑑灰階/剪影猜謎/抽獎/對話頭像）→ 瀏覽器實測截圖 → 提交推送。<span class="cp">關卡：遊戲實測通過</span></div></div>
+    <h3>每批內部流程（自動化）</h3>
+    <ul class="feat">
+      <li>讀規格表 → 雙參考圖生成（伴伴二星＝風格A ＋ 還原圖＝解剖；P2 純提示）→ <b>自動驗證門</b>：尺寸/RGBA/邊距/覆蓋率/主色帶/無白邊檢查 → 不合格自動重生成（每張上限 2 次，仍敗則標記人工處理）</li>
+      <li>通過門檻 → rembg → 裁切置中底貼 → <b>512×512 RGBA WebP 完工檔</b>（<b>先存暫存區，不碰 assets/dinos/</b>）</li>
+      <li>拼圖總覽 + 剪影總覽各一張供你審核</li>
+    </ul>
+    <h3>成本與時程</h3>
+    <ul class="feat">
+      <li>生成成本：139 × US$0.04 ≈ <b>US$5.6</b>（512 輸出屬後處理，不改變 API 成本）；含 ~30% 重生成預算總抓 <b>US$7–8</b></li>
+      <li>時程：每批約 20–40 分鐘（含 API 速率與驗證）；全部約 3–5 小時，可跨多次對話分批進行（進度記錄在規格表與 worklog）</li>
+    </ul>
+    <div class="warn">回滾保險：換檔前原圖完整備份，一鍵還原；每批未核准前 assets/dinos/ 維持原狀，遊戲全程可玩。</div>
+  </div>
+
+  <div class="card">
+    <h2>⑥ 決策點回覆——全數定案（2026-10-16）</h2>
+    <table>
+      <tr><th>#</th><th>決策點</th><th>你的回覆（已併入本報告）</th></tr>
+      <tr><td>Q1</td><td>星級稀有階梯</td><td><b>照建議案</b> ✔</td></tr>
+      <tr><td>Q2</td><td>分批切法</td><td><b>先每個星級各做 1 張</b>（試產 5 張）→ 核准後按星級切 6 批量產 ✔</td></tr>
+      <tr><td>Q3</td><td>5★ 英雄姿勢</td><td>上網找英雄電影招牌動作（漫威/DC/街頭快打：金鋼狼爪交叉、奇異博士飛行、神力女超人擋格、貓女蹲伏…）→ 提示詞只描述動作力學、不指名角色 ✔（姿勢池 13 式見 ②）</td></tr>
+      <tr><td>追加 1</td><td>皮膚光澤</td><td><b>不要塑膠感</b>——有機質緞面光澤、軟式高光、可見鱗/羽紋理 ✔（要素 F，已併入風格A 登記）</td></tr>
+      <tr><td>追加 2</td><td>輸出解析度</td><td><b>512×512 RGBA</b> 透明 WebP ✔（要素 A 已更新；遊戲零程式改動）</td></tr>
+      <tr><td>追加 3</td><td>皮膚細節</td><td><b>不要太光滑</b>——加污漬、泥土沾黏、花草/葉片碎片 ✔（要素 G，已併入風格A 登記與變數池）</td></tr>
+    </table>
+    <p class="meta"><b>沒有其他待回覆項目</b>——你喊「開工」，我即從「139 筆規格表＋5 張星級試產」開始。</p>
+  </div>
+
+  <div class="foot">DragonFinder ｜ 風格A 批量生產規格書（定案版）｜ 2026-10-16</div>
+</div>
+</body>
+</html>

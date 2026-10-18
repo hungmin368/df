@@ -1,0 +1,4901 @@
+{
+ "base_seed": 20261016,
+ "counts": {
+  "P0": 52,
+  "P1": 47,
+  "P2": 40
+ },
+ "rows": [
+  {
+   "id": 1,
+   "name": "梁龍",
+   "stars": 1,
+   "img": "assets/dinos/1.webp",
+   "method": "P0",
+   "recon": "梁龍_Diplodocus_no220_★★★★☆.jpg",
+   "family": "sauropod",
+   "seed": 20261113,
+   "color_zh": "青綠",
+   "color_en": "viridian teal-green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 3,
+   "name": "馬門溪龍",
+   "stars": 1,
+   "img": "assets/dinos/3.webp",
+   "method": "P0",
+   "recon": "馬門溪龍_Mamenchisaurus_no222_★★★★☆.jpg",
+   "family": "sauropod",
+   "seed": 20261307,
+   "color_zh": "青金石藍",
+   "color_en": "lapis blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "滑行",
+   "pose_en": "skidding slide, dust kicked up",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 5,
+   "name": "圓頂龍",
+   "stars": 1,
+   "img": "assets/dinos/5.webp",
+   "method": "P0",
+   "recon": "圓頂龍_Camarasaurus_no226_★★★★☆.png",
+   "family": "sauropod",
+   "seed": 20261501,
+   "color_zh": "琥珀橙",
+   "color_en": "amber orange",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "滑行",
+   "pose_en": "skidding slide, dust kicked up",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 7,
+   "name": "迷惑龍",
+   "stars": 1,
+   "img": "assets/dinos/7.webp",
+   "method": "P0",
+   "recon": "迷惑龍_Apatosaurus_no224_★★★★☆.jpg",
+   "family": "sauropod",
+   "seed": 20261695,
+   "color_zh": "珊瑚橙",
+   "color_en": "coral orange",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "甩頭轉身",
+   "pose_en": "head-toss turning motion",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 9,
+   "name": "薩爾塔龍",
+   "stars": 1,
+   "img": "assets/dinos/9.webp",
+   "method": "P1(同科:sauropod)",
+   "recon": "鯨龍_Cetiosaurus_no258_★★★★★.jpg",
+   "family": "sauropod",
+   "seed": 20261889,
+   "color_zh": "石墨黑",
+   "color_en": "graphite charcoal",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 11,
+   "name": "劍龍",
+   "stars": 1,
+   "img": "assets/dinos/11.webp",
+   "method": "P0",
+   "recon": "劍龍_Stegosaurus_no231_★★★☆☆.png",
+   "family": "stegosaur",
+   "seed": 20262083,
+   "color_zh": "蜜桃粉",
+   "color_en": "peach pink",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 13,
+   "name": "銳龍",
+   "stars": 1,
+   "img": "assets/dinos/13.webp",
+   "method": "P0",
+   "recon": "銳龍_Dacentrurus_no233_★★★☆☆.png",
+   "family": "stegosaur",
+   "seed": 20262277,
+   "color_zh": "珊瑚橙",
+   "color_en": "coral orange",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 15,
+   "name": "華陽龍",
+   "stars": 1,
+   "img": "assets/dinos/15.webp",
+   "method": "P0",
+   "recon": "華陽龍_Huayangosaurus_no265_★★☆☆☆.png",
+   "family": "stegosaur",
+   "seed": 20262471,
+   "color_zh": "沙棕",
+   "color_en": "sandy tan",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "咆嘯",
+   "pose_en": "standing roar, chest out",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 17,
+   "name": "米拉加亞龍",
+   "stars": 1,
+   "img": "assets/dinos/17.webp",
+   "method": "P0",
+   "recon": "米拉加亞龍_Miragaia_no239_★★★☆☆.png",
+   "family": "stegosaur",
+   "seed": 20262665,
+   "color_zh": "酒紅",
+   "color_en": "deep wine red",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 19,
+   "name": "隱龍",
+   "stars": 1,
+   "img": "assets/dinos/19.webp",
+   "method": "P0",
+   "recon": "隱龍_Yinlong_no251_★★☆☆☆.jpg",
+   "family": "ceratopsian",
+   "seed": 20262859,
+   "color_zh": "青金石藍",
+   "color_en": "lapis blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "咆嘯",
+   "pose_en": "standing roar, chest out",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 21,
+   "name": "三角龍",
+   "stars": 1,
+   "img": "assets/dinos/21.webp",
+   "method": "P0",
+   "recon": "三角龍_Triceratops_no19_★★★☆☆.jpg",
+   "family": "ceratopsian",
+   "seed": 20263053,
+   "color_zh": "芒果黃",
+   "color_en": "mango yellow",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "背面回頭",
+   "pose_en": "back facing camera, looking over the shoulder",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 23,
+   "name": "厚鼻龍",
+   "stars": 1,
+   "img": "assets/dinos/23.webp",
+   "method": "P0",
+   "recon": "厚鼻龍_Pachyrhinosaurus_no64_★★★☆☆.jpg",
+   "family": "ceratopsian",
+   "seed": 20263247,
+   "color_zh": "薰衣草紫",
+   "color_en": "lavender purple",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 25,
+   "name": "戟龍",
+   "stars": 1,
+   "img": "assets/dinos/25.webp",
+   "method": "P0",
+   "recon": "戟龍_Styracosaurus_no85_★★☆☆☆.png",
+   "family": "ceratopsian",
+   "seed": 20263441,
+   "color_zh": "磚紅",
+   "color_en": "brick red",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "甩頭轉身",
+   "pose_en": "head-toss turning motion",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "瑜珈",
+   "fun_en": "holding a low wide cute yoga stretch",
+   "fun_kind": "action"
+  },
+  {
+   "id": 27,
+   "name": "牛角龍",
+   "stars": 1,
+   "img": "assets/dinos/27.webp",
+   "method": "P0",
+   "recon": "牛角龍_Torosaurus_no38_★★★☆☆.jpg",
+   "family": "ceratopsian",
+   "seed": 20263635,
+   "color_zh": "蜜桃粉",
+   "color_en": "peach pink",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "伏地潛行",
+   "pose_en": "low crouching prowl",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 29,
+   "name": "中國角龍",
+   "stars": 1,
+   "img": "assets/dinos/29.webp",
+   "method": "P0",
+   "recon": "中國角龍_Sinoceratops_no54_★★★☆☆.png",
+   "family": "ceratopsian",
+   "seed": 20263829,
+   "color_zh": "橄欖綠",
+   "color_en": "olive green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "展臂飛翔",
+   "pose_en": "arms/wings spread wide as if gliding",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 31,
+   "name": "副櫛龍",
+   "stars": 1,
+   "img": "assets/dinos/31.webp",
+   "method": "P0",
+   "recon": "副櫛龍_Parasaurolophus_no14_★★★☆☆.png",
+   "family": "hadrosaur",
+   "seed": 20264023,
+   "color_zh": "青金石藍",
+   "color_en": "lapis blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "咆嘯",
+   "pose_en": "standing roar, chest out",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 33,
+   "name": "冠龍",
+   "stars": 1,
+   "img": "assets/dinos/33.webp",
+   "method": "P0",
+   "recon": "冠龍_Corythosaurus_no21_★★★☆☆.png",
+   "family": "hadrosaur",
+   "seed": 20264217,
+   "color_zh": "青蘋果綠",
+   "color_en": "fresh apple green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 35,
+   "name": "埃德蒙頓龍",
+   "stars": 1,
+   "img": "assets/dinos/35.webp",
+   "method": "P0",
+   "recon": "埃德蒙頓龍_Edmontosaurus_no10_★★★☆☆.png",
+   "family": "hadrosaur",
+   "seed": 20264411,
+   "color_zh": "薄荷綠",
+   "color_en": "soft mint green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "甩頭轉身",
+   "pose_en": "head-toss turning motion",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 37,
+   "name": "青島龍",
+   "stars": 1,
+   "img": "assets/dinos/37.webp",
+   "method": "P0",
+   "recon": "青島龍_Tsintaosaurus_no33_★★★★☆.png",
+   "family": "hadrosaur",
+   "seed": 20264605,
+   "color_zh": "薰衣草紫",
+   "color_en": "lavender purple",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "開心跳躍",
+   "pose_en": "mid-air happy jump, legs tucked",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 39,
+   "name": "譚氏龍",
+   "stars": 1,
+   "img": "assets/dinos/39.webp",
+   "method": "P1(同科:hadrosaur)",
+   "recon": "原櫛龍_Prosaurolophus_no29_★★★★☆.png",
+   "family": "hadrosaur",
+   "seed": 20264799,
+   "color_zh": "金黃",
+   "color_en": "rich golden yellow",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "咆嘯",
+   "pose_en": "standing roar, chest out",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 41,
+   "name": "禽龍",
+   "stars": 1,
+   "img": "assets/dinos/41.webp",
+   "method": "P0",
+   "recon": "禽龍_Iguanodon_no168_★★★☆☆.png",
+   "family": "ornithopod",
+   "seed": 20264993,
+   "color_zh": "玫瑰粉",
+   "color_en": "rosy pink",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 43,
+   "name": "橡樹龍",
+   "stars": 1,
+   "img": "assets/dinos/43.webp",
+   "method": "P0",
+   "recon": "橡樹龍_Dryosaurus_no245_★☆☆☆☆.jpg",
+   "family": "ornithopod",
+   "seed": 20265187,
+   "color_zh": "緋紅",
+   "color_en": "vivid crimson red",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 45,
+   "name": "萊索托龍",
+   "stars": 1,
+   "img": "assets/dinos/45.webp",
+   "method": "P1(同科:ornithopod)",
+   "recon": "萊索託龍_Lesothosaurus_no284_★★☆☆☆.jpg",
+   "family": "ornithopod",
+   "seed": 20265381,
+   "color_zh": "森林綠",
+   "color_en": "deep forest green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 47,
+   "name": "靈龍",
+   "stars": 1,
+   "img": "assets/dinos/47.webp",
+   "method": "P1(同科:ornithopod)",
+   "recon": "快達龍_Qantassaurus_no201_★★★☆☆.jpg",
+   "family": "ornithopod",
+   "seed": 20265575,
+   "color_zh": "葡萄紫",
+   "color_en": "grape purple",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 49,
+   "name": "鹽都龍",
+   "stars": 1,
+   "img": "assets/dinos/49.webp",
+   "method": "P1(同科:ornithopod)",
+   "recon": "曼特爾龍_Mantellisaurus_no177_★★★☆☆.png",
+   "family": "ornithopod",
+   "seed": 20265769,
+   "color_zh": "天空藍",
+   "color_en": "sky blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "滑行",
+   "pose_en": "skidding slide, dust kicked up",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "瑜珈",
+   "fun_en": "holding a low wide cute yoga stretch",
+   "fun_kind": "action"
+  },
+  {
+   "id": 51,
+   "name": "結節龍",
+   "stars": 1,
+   "img": "assets/dinos/51.webp",
+   "method": "P0",
+   "recon": "結節龍_Nodosaurus_no97_★★★☆☆.jpg",
+   "family": "ankylosaur",
+   "seed": 20265963,
+   "color_zh": "湖水藍",
+   "color_en": "teal lake blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "甩頭轉身",
+   "pose_en": "head-toss turning motion",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 53,
+   "name": "敏迷龍",
+   "stars": 1,
+   "img": "assets/dinos/53.webp",
+   "method": "P0",
+   "recon": "敏迷龍_Minmi_no194_★★☆☆☆.png",
+   "family": "ankylosaur",
+   "seed": 20266157,
+   "color_zh": "玫瑰粉",
+   "color_en": "rosy pink",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 55,
+   "name": "多刺甲龍",
+   "stars": 1,
+   "img": "assets/dinos/55.webp",
+   "method": "P1(同科:ankylosaur)",
+   "recon": "埃德蒙頓甲龍_Edmontonia_no50_★★★☆☆.jpg",
+   "family": "ankylosaur",
+   "seed": 20266351,
+   "color_zh": "銀灰",
+   "color_en": "silver gray",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "衝刺奔跑",
+   "pose_en": "full sprint run, dynamic lean",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 57,
+   "name": "厚甲龍",
+   "stars": 1,
+   "img": "assets/dinos/57.webp",
+   "method": "P1(同科:ankylosaur)",
+   "recon": "包頭龍_Euoplocephalus_no62_★★☆☆☆.png",
+   "family": "ankylosaur",
+   "seed": 20266545,
+   "color_zh": "珊瑚橙",
+   "color_en": "coral orange",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "咆嘯",
+   "pose_en": "standing roar, chest out",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 59,
+   "name": "蜥甲龍",
+   "stars": 1,
+   "img": "assets/dinos/59.webp",
+   "method": "P1(同科:ankylosaur)",
+   "recon": "全裝甲龍_Panoplosaurus_no59_★★★☆☆.jpg",
+   "family": "ankylosaur",
+   "seed": 20266739,
+   "color_zh": "酒紅",
+   "color_en": "deep wine red",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "甩頭轉身",
+   "pose_en": "head-toss turning motion",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 61,
+   "name": "慢龍",
+   "stars": 1,
+   "img": "assets/dinos/61.webp",
+   "method": "P0",
+   "recon": "慢龍_Segnosaurus_no70_★★★☆☆.png",
+   "family": "therizinosaur",
+   "seed": 20266933,
+   "color_zh": "銀灰",
+   "color_en": "silver gray",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 63,
+   "name": "鑄鐮龍",
+   "stars": 1,
+   "img": "assets/dinos/63.webp",
+   "method": "P1(同科:therizinosaur)",
+   "recon": "懶爪龍_Nothronychus_no95_★★★☆☆.png",
+   "family": "therizinosaur",
+   "seed": 20267127,
+   "color_zh": "天空藍",
+   "color_en": "sky blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "飛踢",
+   "fun_en": "flying-kick in mid-air, tail curled tight beside the body",
+   "fun_kind": "action"
+  },
+  {
+   "id": 65,
+   "name": "阿拉善龍",
+   "stars": 1,
+   "img": "assets/dinos/65.webp",
+   "method": "P0",
+   "recon": "阿拉善龍_Alxasaurus_no192_★★☆☆☆.png",
+   "family": "therizinosaur",
+   "seed": 20267321,
+   "color_zh": "銀灰",
+   "color_en": "silver gray",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "開心跳躍",
+   "pose_en": "mid-air happy jump, legs tucked",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 67,
+   "name": "竊蛋龍",
+   "stars": 1,
+   "img": "assets/dinos/67.webp",
+   "method": "P0",
+   "recon": "竊蛋龍_Oviraptor_no126_★☆☆☆☆.png",
+   "family": "oviraptorosaur",
+   "seed": 20267515,
+   "color_zh": "森林綠",
+   "color_en": "deep forest green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "雙手舉高歡呼",
+   "pose_en": "both arms raised cheering",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 69,
+   "name": "似鴯鶓龍",
+   "stars": 1,
+   "img": "assets/dinos/69.webp",
+   "method": "P1(同科:ornithomimid)",
+   "recon": "迦樓羅龍_Garudimimus_no104_★★☆☆☆.png",
+   "family": "ornithomimid",
+   "seed": 20267709,
+   "color_zh": "湖水藍",
+   "color_en": "teal lake blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "瑜珈",
+   "fun_en": "holding a low wide cute yoga stretch",
+   "fun_kind": "action"
+  },
+  {
+   "id": 71,
+   "name": "garudimimus",
+   "stars": 1,
+   "img": "assets/dinos/71.webp",
+   "method": "P1(同科:ornithomimid)",
+   "recon": "似雞龍_Gallimimus_no57_★★☆☆☆.png",
+   "family": "ornithomimid",
+   "seed": 20267903,
+   "color_zh": "祖母綠",
+   "color_en": "emerald green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "開心跳躍",
+   "pose_en": "mid-air happy jump, legs tucked",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 73,
+   "name": "馳龍",
+   "stars": 1,
+   "img": "assets/dinos/73.webp",
+   "method": "P0",
+   "recon": "馳龍_Dromaeosaurus_no130_★★☆☆☆.jpg",
+   "family": "dromaeosaur",
+   "seed": 20268097,
+   "color_zh": "青綠",
+   "color_en": "viridian teal-green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "衝刺奔跑",
+   "pose_en": "full sprint run, dynamic lean",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 75,
+   "name": "蜥鳥龍",
+   "stars": 1,
+   "img": "assets/dinos/75.webp",
+   "method": "P1(同科:dromaeosaur)",
+   "recon": "恐爪龍_Deinonychus_no193_★☆☆☆☆.png",
+   "family": "dromaeosaur",
+   "seed": 20268291,
+   "color_zh": "巧克力棕",
+   "color_en": "chocolate brown",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 77,
+   "name": "中國獵龍",
+   "stars": 1,
+   "img": "assets/dinos/77.webp",
+   "method": "P0",
+   "recon": "中國獵龍_Sinovenator_no207_★★☆☆☆.png",
+   "family": "dromaeosaur",
+   "seed": 20268485,
+   "color_zh": "銀灰",
+   "color_en": "silver gray",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 79,
+   "name": "小盜龍",
+   "stars": 1,
+   "img": "assets/dinos/79.webp",
+   "method": "P0",
+   "recon": "小盜龍_Microraptor_no211_★★☆☆☆.png",
+   "family": "dromaeosaur",
+   "seed": 20268679,
+   "color_zh": "青綠",
+   "color_en": "viridian teal-green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "蹲坐",
+   "pose_en": "sitting crouch, relaxed",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 81,
+   "name": "孔子鳥",
+   "stars": 1,
+   "img": "assets/dinos/81.webp",
+   "method": "P1(同科:bird)",
+   "recon": "始祖鳥_Archaeopteryx_no256_★★☆☆☆.jpg",
+   "family": "bird",
+   "seed": 20268873,
+   "color_zh": "焦糖棕",
+   "color_en": "caramel brown",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 83,
+   "name": "美頜龍",
+   "stars": 1,
+   "img": "assets/dinos/83.webp",
+   "method": "P0",
+   "recon": "美頜龍_Compsognathus_no252_★★☆☆☆.jpg",
+   "family": "basal_theropod",
+   "seed": 20269067,
+   "color_zh": "石墨黑",
+   "color_en": "graphite charcoal",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "蹲坐",
+   "pose_en": "sitting crouch, relaxed",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 85,
+   "name": "嗜鳥龍",
+   "stars": 1,
+   "img": "assets/dinos/85.webp",
+   "method": "P0",
+   "recon": "嗜鳥龍_Ornitholestes_no248_★★☆☆☆.png",
+   "family": "basal_theropod",
+   "seed": 20269261,
+   "color_zh": "沙棕",
+   "color_en": "sandy tan",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "開心跳躍",
+   "pose_en": "mid-air happy jump, legs tucked",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 87,
+   "name": "中華盜龍",
+   "stars": 1,
+   "img": "assets/dinos/87.webp",
+   "method": "P1(同科:carnosaur)",
+   "recon": "鯊齒龍_Carcharodontosaurus_no161_★★★★★.jpg",
+   "family": "carnosaur",
+   "seed": 20269455,
+   "color_zh": "湖水藍",
+   "color_en": "teal lake blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 89,
+   "name": "宣漢龍",
+   "stars": 1,
+   "img": "assets/dinos/89.webp",
+   "method": "P1(同科:basal_theropod)",
+   "recon": "原角鼻龍_Proceratosaurus_no267_★★☆☆☆.jpg",
+   "family": "basal_theropod",
+   "seed": 20269649,
+   "color_zh": "巧克力棕",
+   "color_en": "chocolate brown",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "滑行",
+   "pose_en": "skidding slide, dust kicked up",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 91,
+   "name": "冰脊龍",
+   "stars": 1,
+   "img": "assets/dinos/91.webp",
+   "method": "P0",
+   "recon": "冰脊龍_Cryolophosaurus_no275_★★★☆☆.jpg",
+   "family": "basal_theropod",
+   "seed": 20269843,
+   "color_zh": "青綠",
+   "color_en": "viridian teal-green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "甩頭轉身",
+   "pose_en": "head-toss turning motion",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 93,
+   "name": "惡魔龍",
+   "stars": 1,
+   "img": "assets/dinos/93.webp",
+   "method": "P1(同科:basal_theropod)",
+   "recon": "中國龍_Sinosaurus_no278_★★★☆☆.png",
+   "family": "basal_theropod",
+   "seed": 20270037,
+   "color_zh": "石墨黑",
+   "color_en": "graphite charcoal",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "衝刺奔跑",
+   "pose_en": "full sprint run, dynamic lean",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 95,
+   "name": "十字龍",
+   "stars": 1,
+   "img": "assets/dinos/95.webp",
+   "method": "P1(同科:basal_theropod)",
+   "recon": "南十字龍_Staurikosaurus_no295_★★★☆☆.png",
+   "family": "basal_theropod",
+   "seed": 20270231,
+   "color_zh": "青綠",
+   "color_en": "viridian teal-green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "甩頭轉身",
+   "pose_en": "head-toss turning motion",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 97,
+   "name": "艾雷拉龍",
+   "stars": 1,
+   "img": "assets/dinos/97.webp",
+   "method": "P1(同科:basal_theropod)",
+   "recon": "塔瓦龍_Tawa_no296_★★★☆☆.jpg",
+   "family": "basal_theropod",
+   "seed": 20270425,
+   "color_zh": "石板灰",
+   "color_en": "slate gray",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "蹲坐",
+   "pose_en": "sitting crouch, relaxed",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 99,
+   "name": "槽齒龍",
+   "stars": 1,
+   "img": "assets/dinos/99.webp",
+   "method": "P0",
+   "recon": "槽齒龍_Thecodontosaurus_no294_★★★☆☆.png",
+   "family": "prosauropod",
+   "seed": 20270619,
+   "color_zh": "珊瑚橙",
+   "color_en": "coral orange",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "蹲坐",
+   "pose_en": "sitting crouch, relaxed",
+   "pose_pool": "general",
+   "acc_zh": "無",
+   "acc_en": "no accessory",
+   "stains": [
+    {
+     "zh": "微塵",
+     "en": "a light dusting of fine dirt"
+    }
+   ],
+   "tier_extra": "plain clean look, no accessories, no pattern",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 101,
+   "name": "腫頭龍",
+   "stars": 2,
+   "img": "assets/dinos/101.webp",
+   "method": "P0",
+   "recon": "腫頭龍_Pachycephalosaurus_no98_★★★☆☆.png",
+   "family": "pachy",
+   "seed": 20270813,
+   "color_zh": "靛藍",
+   "color_en": "indigo blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "貝殼項鍊",
+   "acc_en": "a shell necklace",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 103,
+   "name": "平頭龍",
+   "stars": 2,
+   "img": "assets/dinos/103.webp",
+   "method": "P0",
+   "recon": "平頭龍_Homalocephale_no132_★★☆☆☆.jpg",
+   "family": "pachy",
+   "seed": 20271007,
+   "color_zh": "象牙白",
+   "color_en": "warm ivory (never pure white)",
+   "pattern_zh": "心形斑",
+   "pattern_en": "heart-shaped patches",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "紅色領巾",
+   "acc_en": "a small red neckerchief",
+   "stains": [
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 105,
+   "name": "重頭龍",
+   "stars": 2,
+   "img": "assets/dinos/105.webp",
+   "method": "P1(同科:pachy)",
+   "recon": "微腫頭龍_Micropachycephalosaurus_no144_★★☆☆☆.jpg",
+   "family": "pachy",
+   "seed": 20271201,
+   "color_zh": "湖水藍",
+   "color_en": "teal lake blue",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "雙手舉高歡呼",
+   "pose_en": "both arms raised cheering",
+   "pose_pool": "general",
+   "acc_zh": "貝殼項鍊",
+   "acc_en": "a shell necklace",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 107,
+   "name": "小頭龍",
+   "stars": 2,
+   "img": "assets/dinos/107.webp",
+   "method": "P1(同科:pachy)",
+   "recon": "瘤頭龍_Tylocephale_no140_★★☆☆☆.jpg",
+   "family": "pachy",
+   "seed": 20271395,
+   "color_zh": "酒紅",
+   "color_en": "deep wine red",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "衝刺奔跑",
+   "pose_en": "full sprint run, dynamic lean",
+   "pose_pool": "general",
+   "acc_zh": "葉片小帽",
+   "acc_en": "a little leaf cap",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 109,
+   "name": "麝牛龍",
+   "stars": 2,
+   "img": "assets/dinos/109.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "generic",
+   "seed": 20271589,
+   "color_zh": "石墨黑",
+   "color_en": "graphite charcoal",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "展臂飛翔",
+   "pose_en": "arms/wings spread wide as if gliding",
+   "pose_pool": "general",
+   "acc_zh": "紅色領巾",
+   "acc_en": "a small red neckerchief",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 111,
+   "name": "南方巨獸龍",
+   "stars": 2,
+   "img": "assets/dinos/111.webp",
+   "method": "P0",
+   "recon": "南方巨獸龍_Giganotosaurus_no160_★★★★★.jpg",
+   "family": "carnosaur",
+   "seed": 20271783,
+   "color_zh": "玫瑰粉",
+   "color_en": "rosy pink",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "雙手舉高歡呼",
+   "pose_en": "both arms raised cheering",
+   "pose_pool": "general",
+   "acc_zh": "花朵別飾",
+   "acc_en": "a flower pin",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 113,
+   "name": "高棘龍",
+   "stars": 2,
+   "img": "assets/dinos/113.webp",
+   "method": "P0",
+   "recon": "高棘龍_Acrocanthosaurus_no166_★★★★☆.jpg",
+   "family": "carnosaur",
+   "seed": 20271977,
+   "color_zh": "酒紅",
+   "color_en": "deep wine red",
+   "pattern_zh": "漸層鱗",
+   "pattern_en": "gradient scale patterning toward the tail",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "展臂飛翔",
+   "pose_en": "arms/wings spread wide as if gliding",
+   "pose_pool": "general",
+   "acc_zh": "手腕繃帶",
+   "acc_en": "wrist bandages",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 115,
+   "name": "特暴龍",
+   "stars": 2,
+   "img": "assets/dinos/115.webp",
+   "method": "P0",
+   "recon": "特暴龍_Tarbosaurus_no13_★★★★☆.png",
+   "family": "tyrannosaur",
+   "seed": 20272171,
+   "color_zh": "琥珀橙",
+   "color_en": "amber orange",
+   "pattern_zh": "直條紋",
+   "pattern_en": "vertical band stripes",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "伏地潛行",
+   "pose_en": "low crouching prowl",
+   "pose_pool": "general",
+   "acc_zh": "貝殼項鍊",
+   "acc_en": "a shell necklace",
+   "stains": [
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "飛踢",
+   "fun_en": "flying-kick in mid-air, tail curled tight beside the body",
+   "fun_kind": "action"
+  },
+  {
+   "id": 117,
+   "name": "艾伯塔龍",
+   "stars": 2,
+   "img": "assets/dinos/117.webp",
+   "method": "P1(同科:tyrannosaur)",
+   "recon": "獨身龍_Alectrosaurus_no86_★★★☆☆.jpg",
+   "family": "tyrannosaur",
+   "seed": 20272365,
+   "color_zh": "芒果黃",
+   "color_en": "mango yellow",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "葉片小帽",
+   "acc_en": "a little leaf cap",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 119,
+   "name": "虔州龍",
+   "stars": 2,
+   "img": "assets/dinos/119.webp",
+   "method": "P1(同科:tyrannosaur)",
+   "recon": "阿爾伯塔龍_Albertosaurus_no28_★★★☆☆.jpg",
+   "family": "tyrannosaur",
+   "seed": 20272559,
+   "color_zh": "青綠",
+   "color_en": "viridian teal-green",
+   "pattern_zh": "心形斑",
+   "pattern_en": "heart-shaped patches",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "開心跳躍",
+   "pose_en": "mid-air happy jump, legs tucked",
+   "pose_pool": "general",
+   "acc_zh": "小背包",
+   "acc_en": "a tiny backpack",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 121,
+   "name": "食肉牛龍",
+   "stars": 2,
+   "img": "assets/dinos/121.webp",
+   "method": "P0",
+   "recon": "食肉牛龍_Carnotaurus_no40_★★★☆☆.jpg",
+   "family": "abelisaur",
+   "seed": 20272753,
+   "color_zh": "珊瑚橙",
+   "color_en": "coral orange",
+   "pattern_zh": "波浪紋",
+   "pattern_en": "wave patterns",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "貝殼項鍊",
+   "acc_en": "a shell necklace",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 123,
+   "name": "瑪君龍",
+   "stars": 2,
+   "img": "assets/dinos/123.webp",
+   "method": "P0",
+   "recon": "瑪君龍_Majungasaurus_no49_★★★☆☆.jpg",
+   "family": "abelisaur",
+   "seed": 20272947,
+   "color_zh": "梅子紫",
+   "color_en": "plum purple",
+   "pattern_zh": "星芒紋",
+   "pattern_en": "starburst markings",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "伏地潛行",
+   "pose_en": "low crouching prowl",
+   "pose_pool": "general",
+   "acc_zh": "花朵別飾",
+   "acc_en": "a flower pin",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 125,
+   "name": "新獵龍",
+   "stars": 2,
+   "img": "assets/dinos/125.webp",
+   "method": "P1(同科:carnosaur)",
+   "recon": "斑龍_Megalosaurus_no261_★★★☆☆.jpg",
+   "family": "carnosaur",
+   "seed": 20273141,
+   "color_zh": "橄欖綠",
+   "color_en": "olive green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "紅色領巾",
+   "acc_en": "a small red neckerchief",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "瑜珈",
+   "fun_en": "holding a low wide cute yoga stretch",
+   "fun_kind": "action"
+  },
+  {
+   "id": 127,
+   "name": "蠻龍",
+   "stars": 2,
+   "img": "assets/dinos/127.webp",
+   "method": "P0",
+   "recon": "蠻龍_Torvosaurus_no229_★★★★★.png",
+   "family": "carnosaur",
+   "seed": 20273335,
+   "color_zh": "芒果黃",
+   "color_en": "mango yellow",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "開心跳躍",
+   "pose_en": "mid-air happy jump, legs tucked",
+   "pose_pool": "general",
+   "acc_zh": "葉片小帽",
+   "acc_en": "a little leaf cap",
+   "stains": [
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 129,
+   "name": "角鼻龍",
+   "stars": 2,
+   "img": "assets/dinos/129.webp",
+   "method": "P0",
+   "recon": "角鼻龍_Ceratosaurus_no240_★★★☆☆.jpg",
+   "family": "basal_theropod",
+   "seed": 20273529,
+   "color_zh": "蜜桃粉",
+   "color_en": "peach pink",
+   "pattern_zh": "漸層鱗",
+   "pattern_en": "gradient scale patterning toward the tail",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "開心跳躍",
+   "pose_en": "mid-air happy jump, legs tucked",
+   "pose_pool": "general",
+   "acc_zh": "貝殼項鍊",
+   "acc_en": "a shell necklace",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 131,
+   "name": "宣龍",
+   "stars": 2,
+   "img": "assets/dinos/131.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "generic",
+   "seed": 20273723,
+   "color_zh": "青綠",
+   "color_en": "viridian teal-green",
+   "pattern_zh": "星芒紋",
+   "pattern_en": "starburst markings",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "甩頭轉身",
+   "pose_en": "head-toss turning motion",
+   "pose_pool": "general",
+   "acc_zh": "貝殼項鍊",
+   "acc_en": "a shell necklace",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 133,
+   "name": "五彩冠龍",
+   "stars": 2,
+   "img": "assets/dinos/133.webp",
+   "method": "P0",
+   "recon": "五彩冠龍_Guanlong_no244_★★☆☆☆.jpg",
+   "family": "tyrannosaur",
+   "seed": 20273917,
+   "color_zh": "薰衣草紫",
+   "color_en": "lavender purple",
+   "pattern_zh": "幾何刺青",
+   "pattern_en": "geometric tribal tattoos",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "手腕繃帶",
+   "acc_en": "wrist bandages",
+   "stains": [
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "飛踢",
+   "fun_en": "flying-kick in mid-air, tail curled tight beside the body",
+   "fun_kind": "action"
+  },
+  {
+   "id": 135,
+   "name": "樹息龍",
+   "stars": 2,
+   "img": "assets/dinos/135.webp",
+   "method": "P1(同科:bird)",
+   "recon": "攀緣翼龍_Scansoriopteryx_no272_★★★☆☆.png",
+   "family": "bird",
+   "seed": 20274111,
+   "color_zh": "磚紅",
+   "color_en": "brick red",
+   "pattern_zh": "閃電紋",
+   "pattern_en": "lightning-bolt markings",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "背面回頭",
+   "pose_en": "back facing camera, looking over the shoulder",
+   "pose_pool": "general",
+   "acc_zh": "紅色領巾",
+   "acc_en": "a small red neckerchief",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 137,
+   "name": "擅攀鳥龍",
+   "stars": 2,
+   "img": "assets/dinos/137.webp",
+   "method": "P1(同科:bird)",
+   "recon": "原始祖鳥_Protarchaeopteryx_no210_★★★☆☆.png",
+   "family": "bird",
+   "seed": 20274305,
+   "color_zh": "湖水藍",
+   "color_en": "teal lake blue",
+   "pattern_zh": "閃電紋",
+   "pattern_en": "lightning-bolt markings",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "開心跳躍",
+   "pose_en": "mid-air happy jump, legs tucked",
+   "pose_pool": "general",
+   "acc_zh": "貝殼項鍊",
+   "acc_en": "a shell necklace",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 139,
+   "name": "會鳥",
+   "stars": 2,
+   "img": "assets/dinos/139.webp",
+   "method": "P1(同科:bird)",
+   "recon": "奇翼龍_Yi qi_no271_★★★☆☆.jpg",
+   "family": "bird",
+   "seed": 20274499,
+   "color_zh": "檸檬黃",
+   "color_en": "lemon yellow",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "手腕繃帶",
+   "acc_en": "wrist bandages",
+   "stains": [
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 141,
+   "name": "朝陽會鳥",
+   "stars": 2,
+   "img": "assets/dinos/141.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "bird",
+   "seed": 20274693,
+   "color_zh": "焦糖棕",
+   "color_en": "caramel brown",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "手腕繃帶",
+   "acc_en": "wrist bandages",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 143,
+   "name": "義縣鳥",
+   "stars": 2,
+   "img": "assets/dinos/143.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "bird",
+   "seed": 20274887,
+   "color_zh": "薰衣草紫",
+   "color_en": "lavender purple",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "小背包",
+   "acc_en": "a tiny backpack",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 145,
+   "name": "反鳥",
+   "stars": 2,
+   "img": "assets/dinos/145.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "bird",
+   "seed": 20275081,
+   "color_zh": "玫瑰粉",
+   "color_en": "rosy pink",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "小背包",
+   "acc_en": "a tiny backpack",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 147,
+   "name": "魚鳥黃昏鳥",
+   "stars": 2,
+   "img": "assets/dinos/147.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "bird",
+   "seed": 20275275,
+   "color_zh": "石板灰",
+   "color_en": "slate gray",
+   "pattern_zh": "骨甲紋",
+   "pattern_en": "bone-armor etching lines",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "展臂飛翔",
+   "pose_en": "arms/wings spread wide as if gliding",
+   "pose_pool": "general",
+   "acc_zh": "小背包",
+   "acc_en": "a tiny backpack",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 149,
+   "name": "大洋鳥",
+   "stars": 2,
+   "img": "assets/dinos/149.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "bird",
+   "seed": 20275469,
+   "color_zh": "橄欖綠",
+   "color_en": "olive green",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "葉片小帽",
+   "acc_en": "a little leaf cap",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 151,
+   "name": "厚爪龍",
+   "stars": 2,
+   "img": "assets/dinos/151.webp",
+   "method": "P1(同科:therizinosaur)",
+   "recon": "厄利克龍_Erlikosaurus_no63_★★★☆☆.png",
+   "family": "therizinosaur",
+   "seed": 20275663,
+   "color_zh": "緋紅",
+   "color_en": "vivid crimson red",
+   "pattern_zh": "無",
+   "pattern_en": "no skin pattern, clean skin",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "小背包",
+   "acc_en": "a tiny backpack",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "one simple small accessory",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 200,
+   "name": "迅猛龍",
+   "stars": 3,
+   "img": "assets/dinos/200.webp",
+   "method": "P1(同科:dromaeosaur)",
+   "recon": "中國鳥龍_Sinornithosaurus_no205_★★☆☆☆.jpg",
+   "family": "dromaeosaur",
+   "seed": 20280416,
+   "color_zh": "青金石藍",
+   "color_en": "lapis blue",
+   "pattern_zh": "虎條紋",
+   "pattern_en": "tiger stripes",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "皮質護腕",
+   "acc_en": "leather bracers",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 202,
+   "name": "棘龍",
+   "stars": 3,
+   "img": "assets/dinos/202.webp",
+   "method": "P0",
+   "recon": "棘龍_Spinosaurus_no158_★★★★★.png",
+   "family": "spinosaurid",
+   "seed": 20280610,
+   "color_zh": "祖母綠",
+   "color_en": "emerald green",
+   "pattern_zh": "直條紋",
+   "pattern_en": "vertical band stripes",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "臂環",
+   "acc_en": "arm rings",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 204,
+   "name": "似鱷龍",
+   "stars": 3,
+   "img": "assets/dinos/204.webp",
+   "method": "P0",
+   "recon": "似鱷龍_Suchomimus_no167_★★★★☆.png",
+   "family": "spinosaurid",
+   "seed": 20280804,
+   "color_zh": "焦糖棕",
+   "color_en": "caramel brown",
+   "pattern_zh": "潑濺紋",
+   "pattern_en": "paint-splash markings",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "展臂飛翔",
+   "pose_en": "arms/wings spread wide as if gliding",
+   "pose_pool": "general",
+   "acc_zh": "皮質護腕",
+   "acc_en": "leather bracers",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 206,
+   "name": "普魯斯鱷",
+   "stars": 3,
+   "img": "assets/dinos/206.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "croc",
+   "seed": 20280998,
+   "color_zh": "金黃",
+   "color_en": "rich golden yellow",
+   "pattern_zh": "幾何刺青",
+   "pattern_en": "geometric tribal tattoos",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "衝刺奔跑",
+   "pose_en": "full sprint run, dynamic lean",
+   "pose_pool": "general",
+   "acc_zh": "皮質護腕",
+   "acc_en": "leather bracers",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "飛踢",
+   "fun_en": "flying-kick in mid-air, tail curled tight beside the body",
+   "fun_kind": "action"
+  },
+  {
+   "id": 208,
+   "name": "隱面龍",
+   "stars": 3,
+   "img": "assets/dinos/208.webp",
+   "method": "P0",
+   "recon": "隱面龍_Kryptops_no181_★★★☆☆.jpg",
+   "family": "carnosaur",
+   "seed": 20281192,
+   "color_zh": "磚紅",
+   "color_en": "brick red",
+   "pattern_zh": "波浪紋",
+   "pattern_en": "wave patterns",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "雙手舉高歡呼",
+   "pose_en": "both arms raised cheering",
+   "pose_pool": "general",
+   "acc_zh": "臂環",
+   "acc_en": "arm rings",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "飛踢",
+   "fun_en": "flying-kick in mid-air, tail curled tight beside the body",
+   "fun_kind": "action"
+  },
+  {
+   "id": 210,
+   "name": "長頸龍",
+   "stars": 3,
+   "img": "assets/dinos/210.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20281386,
+   "color_zh": "橄欖綠",
+   "color_en": "olive green",
+   "pattern_zh": "波浪紋",
+   "pattern_en": "wave patterns",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "伏地潛行",
+   "pose_en": "low crouching prowl",
+   "pose_pool": "general",
+   "acc_zh": "臂環",
+   "acc_en": "arm rings",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 212,
+   "name": "掘龍",
+   "stars": 3,
+   "img": "assets/dinos/212.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "generic",
+   "seed": 20281580,
+   "color_zh": "檸檬黃",
+   "color_en": "lemon yellow",
+   "pattern_zh": "潑濺紋",
+   "pattern_en": "paint-splash markings",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "雙手舉高歡呼",
+   "pose_en": "both arms raised cheering",
+   "pose_pool": "general",
+   "acc_zh": "皮質護腕",
+   "acc_en": "leather bracers",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 214,
+   "name": "北票鱷",
+   "stars": 3,
+   "img": "assets/dinos/214.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "croc",
+   "seed": 20281774,
+   "color_zh": "青金石藍",
+   "color_en": "lapis blue",
+   "pattern_zh": "骨甲紋",
+   "pattern_en": "bone-armor etching lines",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "衝刺奔跑",
+   "pose_en": "full sprint run, dynamic lean",
+   "pose_pool": "general",
+   "acc_zh": "臂環",
+   "acc_en": "arm rings",
+   "stains": [
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 216,
+   "name": "猶他盜龍",
+   "stars": 3,
+   "img": "assets/dinos/216.webp",
+   "method": "P0",
+   "recon": "猶他盜龍_Utahraptor_no187_★★★☆☆.png",
+   "family": "dromaeosaur",
+   "seed": 20281968,
+   "color_zh": "森林綠",
+   "color_en": "deep forest green",
+   "pattern_zh": "潑濺紋",
+   "pattern_en": "paint-splash markings",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "肩墊",
+   "acc_en": "one shoulder pad",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 218,
+   "name": "南方盜龍",
+   "stars": 3,
+   "img": "assets/dinos/218.webp",
+   "method": "P1(同科:carnosaur)",
+   "recon": "中棘龍_Metriacanthosaurus_no232_★★★☆☆.jpg",
+   "family": "carnosaur",
+   "seed": 20282162,
+   "color_zh": "青蘋果綠",
+   "color_en": "fresh apple green",
+   "pattern_zh": "直條紋",
+   "pattern_en": "vertical band stripes",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "皮質腰帶包",
+   "acc_en": "a leather belt pouch",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 220,
+   "name": "鷲龍",
+   "stars": 3,
+   "img": "assets/dinos/220.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "generic",
+   "seed": 20282356,
+   "color_zh": "銀灰",
+   "color_en": "silver gray",
+   "pattern_zh": "直條紋",
+   "pattern_en": "vertical band stripes",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "皮質護腕",
+   "acc_en": "leather bracers",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 222,
+   "name": "內烏肯盜龍",
+   "stars": 3,
+   "img": "assets/dinos/222.webp",
+   "method": "P1(同科:dromaeosaur)",
+   "recon": "福井盜龍_Fukuiraptor_no191_★★★☆☆.jpg",
+   "family": "dromaeosaur",
+   "seed": 20282550,
+   "color_zh": "焦糖棕",
+   "color_en": "caramel brown",
+   "pattern_zh": "幾何刺青",
+   "pattern_en": "geometric tribal tattoos",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "蹲坐",
+   "pose_en": "sitting crouch, relaxed",
+   "pose_pool": "general",
+   "acc_zh": "肩墊",
+   "acc_en": "one shoulder pad",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 224,
+   "name": "大盜龍",
+   "stars": 3,
+   "img": "assets/dinos/224.webp",
+   "method": "P1(同科:carnosaur)",
+   "recon": "優狹龍_Eustreptospondylus_no264_★★★☆☆.jpg",
+   "family": "carnosaur",
+   "seed": 20282744,
+   "color_zh": "磚紅",
+   "color_en": "brick red",
+   "pattern_zh": "心形斑",
+   "pattern_en": "heart-shaped patches",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "滑行",
+   "pose_en": "skidding slide, dust kicked up",
+   "pose_pool": "general",
+   "acc_zh": "皮質腰帶包",
+   "acc_en": "a leather belt pouch",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 226,
+   "name": "非洲獵龍",
+   "stars": 3,
+   "img": "assets/dinos/226.webp",
+   "method": "P1(同科:carnosaur)",
+   "recon": "永川龍_Yangchuanosaurus_no259_★★★★☆.jpg",
+   "family": "carnosaur",
+   "seed": 20282938,
+   "color_zh": "薰衣草紫",
+   "color_en": "lavender purple",
+   "pattern_zh": "圓斑",
+   "pattern_en": "dappled round spots in a slightly darker shade",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "伏地潛行",
+   "pose_en": "low crouching prowl",
+   "pose_pool": "general",
+   "acc_zh": "肩墊",
+   "acc_en": "one shoulder pad",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 228,
+   "name": "西雅茲龍",
+   "stars": 3,
+   "img": "assets/dinos/228.webp",
+   "method": "P1(同科:spinosaurid)",
+   "recon": "重爪龍_Baryonyx_no174_★★★☆☆.png",
+   "family": "spinosaurid",
+   "seed": 20283132,
+   "color_zh": "森林綠",
+   "color_en": "deep forest green",
+   "pattern_zh": "閃電紋",
+   "pattern_en": "lightning-bolt markings",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "滑行",
+   "pose_en": "skidding slide, dust kicked up",
+   "pose_pool": "general",
+   "acc_zh": "臂環",
+   "acc_en": "arm rings",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 230,
+   "name": "傷龍",
+   "stars": 3,
+   "img": "assets/dinos/230.webp",
+   "method": "P1(同科:tyrannosaur)",
+   "recon": "血腥王龍_Lythronax_no39_★★★☆☆.jpg",
+   "family": "tyrannosaur",
+   "seed": 20283326,
+   "color_zh": "葡萄紫",
+   "color_en": "grape purple",
+   "pattern_zh": "星芒紋",
+   "pattern_en": "starburst markings",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "皮質腰帶包",
+   "acc_en": "a leather belt pouch",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 232,
+   "name": "風盜龍",
+   "stars": 3,
+   "img": "assets/dinos/232.webp",
+   "method": "P1(同科:dromaeosaur)",
+   "recon": "阿達龍_Adasaurus_no134_★★★☆☆.jpg",
+   "family": "dromaeosaur",
+   "seed": 20283520,
+   "color_zh": "酒紅",
+   "color_en": "deep wine red",
+   "pattern_zh": "虎條紋",
+   "pattern_en": "tiger stripes",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "背面回頭",
+   "pose_en": "back facing camera, looking over the shoulder",
+   "pose_pool": "general",
+   "acc_zh": "肩墊",
+   "acc_en": "one shoulder pad",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 234,
+   "name": "天宇盜龍",
+   "stars": 3,
+   "img": "assets/dinos/234.webp",
+   "method": "P1(同科:dromaeosaur)",
+   "recon": "惡靈盜龍_Atrociraptor_no121_★★★☆☆.jpg",
+   "family": "dromaeosaur",
+   "seed": 20283714,
+   "color_zh": "銀灰",
+   "color_en": "silver gray",
+   "pattern_zh": "幾何刺青",
+   "pattern_en": "geometric tribal tattoos",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "咆嘯",
+   "pose_en": "standing roar, chest out",
+   "pose_pool": "general",
+   "acc_zh": "臂環",
+   "acc_en": "arm rings",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 236,
+   "name": "鄖縣龍",
+   "stars": 3,
+   "img": "assets/dinos/236.webp",
+   "method": "P1(同科:sauropod)",
+   "recon": "南極龍_Antarctosaurus_no4_★★★★★.png",
+   "family": "sauropod",
+   "seed": 20283908,
+   "color_zh": "石板灰",
+   "color_en": "slate gray",
+   "pattern_zh": "虎條紋",
+   "pattern_en": "tiger stripes",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "展臂飛翔",
+   "pose_en": "arms/wings spread wide as if gliding",
+   "pose_pool": "general",
+   "acc_zh": "臂環",
+   "acc_en": "arm rings",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 238,
+   "name": "永川盜龍",
+   "stars": 3,
+   "img": "assets/dinos/238.webp",
+   "method": "P1(同科:carnosaur)",
+   "recon": "食蜥王龍_Saurophaganax_no228_★★★★★.jpg",
+   "family": "carnosaur",
+   "seed": 20284102,
+   "color_zh": "象牙白",
+   "color_en": "warm ivory (never pure white)",
+   "pattern_zh": "骨甲紋",
+   "pattern_en": "bone-armor etching lines",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "皮質腰帶包",
+   "acc_en": "a leather belt pouch",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "飛踢",
+   "fun_en": "flying-kick in mid-air, tail curled tight beside the body",
+   "fun_kind": "action"
+  },
+  {
+   "id": 240,
+   "name": "黑龍江龍",
+   "stars": 3,
+   "img": "assets/dinos/240.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "generic",
+   "seed": 20284296,
+   "color_zh": "巧克力棕",
+   "color_en": "chocolate brown",
+   "pattern_zh": "虎條紋",
+   "pattern_en": "tiger stripes",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "臂環",
+   "acc_en": "arm rings",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 242,
+   "name": "渝龍",
+   "stars": 3,
+   "img": "assets/dinos/242.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "generic",
+   "seed": 20284490,
+   "color_zh": "薰衣草紫",
+   "color_en": "lavender purple",
+   "pattern_zh": "虎條紋",
+   "pattern_en": "tiger stripes",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "臂環",
+   "acc_en": "arm rings",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 244,
+   "name": "敦煌龍",
+   "stars": 3,
+   "img": "assets/dinos/244.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "generic",
+   "seed": 20284684,
+   "color_zh": "珊瑚橙",
+   "color_en": "coral orange",
+   "pattern_zh": "直條紋",
+   "pattern_en": "vertical band stripes",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "皮質腰帶包",
+   "acc_en": "a leather belt pouch",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 246,
+   "name": "戈壁龍",
+   "stars": 3,
+   "img": "assets/dinos/246.webp",
+   "method": "P1(同科:ankylosaur)",
+   "recon": "遼寧龍_Liaoningosaurus_no215_★★★☆☆.jpg",
+   "family": "ankylosaur",
+   "seed": 20284878,
+   "color_zh": "青綠",
+   "color_en": "viridian teal-green",
+   "pattern_zh": "漸層鱗",
+   "pattern_en": "gradient scale patterning toward the tail",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "皮質護腕",
+   "acc_en": "leather bracers",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 248,
+   "name": "鸚鵡嘴龍",
+   "stars": 3,
+   "img": "assets/dinos/248.webp",
+   "method": "P0",
+   "recon": "鸚鵡嘴龍_Psittacosaurus_no203_★☆☆☆☆.png",
+   "family": "ceratopsian",
+   "seed": 20285072,
+   "color_zh": "焦糖棕",
+   "color_en": "caramel brown",
+   "pattern_zh": "心形斑",
+   "pattern_en": "heart-shaped patches",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "開心跳躍",
+   "pose_en": "mid-air happy jump, legs tucked",
+   "pose_pool": "general",
+   "acc_zh": "皮質護腕",
+   "acc_en": "leather bracers",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 250,
+   "name": "古角龍",
+   "stars": 3,
+   "img": "assets/dinos/250.webp",
+   "method": "P0",
+   "recon": "古角龍_Archaeoceratops_no209_★★☆☆☆.jpg",
+   "family": "ceratopsian",
+   "seed": 20285266,
+   "color_zh": "青蘋果綠",
+   "color_en": "fresh apple green",
+   "pattern_zh": "漸層鱗",
+   "pattern_en": "gradient scale patterning toward the tail",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "甩頭轉身",
+   "pose_en": "head-toss turning motion",
+   "pose_pool": "general",
+   "acc_zh": "皮質腰帶包",
+   "acc_en": "a leather belt pouch",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 252,
+   "name": "尼日爾龍",
+   "stars": 3,
+   "img": "assets/dinos/252.webp",
+   "method": "P0",
+   "recon": "尼日爾龍_Nigersaurus_no170_★★★★★.png",
+   "family": "sauropod",
+   "seed": 20285460,
+   "color_zh": "檸檬黃",
+   "color_en": "lemon yellow",
+   "pattern_zh": "幾何刺青",
+   "pattern_en": "geometric tribal tattoos",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "皮質腰帶包",
+   "acc_en": "a leather belt pouch",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 254,
+   "name": "歐羅巴龍",
+   "stars": 3,
+   "img": "assets/dinos/254.webp",
+   "method": "P1(同科:sauropod)",
+   "recon": "塔斯塔文斯龍_Tastavinsaurus_no156_★★★★★.jpg",
+   "family": "sauropod",
+   "seed": 20285654,
+   "color_zh": "蜜桃粉",
+   "color_en": "peach pink",
+   "pattern_zh": "骨甲紋",
+   "pattern_en": "bone-armor etching lines",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "咆嘯",
+   "pose_en": "standing roar, chest out",
+   "pose_pool": "general",
+   "acc_zh": "皮質腰帶包",
+   "acc_en": "a leather belt pouch",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 256,
+   "name": "肋空鳥龍",
+   "stars": 3,
+   "img": "assets/dinos/256.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "generic",
+   "seed": 20285848,
+   "color_zh": "薄荷綠",
+   "color_en": "soft mint green",
+   "pattern_zh": "波浪紋",
+   "pattern_en": "wave patterns",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "蹲坐",
+   "pose_en": "sitting crouch, relaxed",
+   "pose_pool": "general",
+   "acc_zh": "肩墊",
+   "acc_en": "one shoulder pad",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 258,
+   "name": "奧氏龍",
+   "stars": 3,
+   "img": "assets/dinos/258.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "generic",
+   "seed": 20286042,
+   "color_zh": "森林綠",
+   "color_en": "deep forest green",
+   "pattern_zh": "波浪紋",
+   "pattern_en": "wave patterns",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "雙手舉高歡呼",
+   "pose_en": "both arms raised cheering",
+   "pose_pool": "general",
+   "acc_zh": "肩墊",
+   "acc_en": "one shoulder pad",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "skin pattern or tattoo + light leather gear",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 260,
+   "name": "霸王龍",
+   "stars": 4,
+   "img": "assets/dinos/260.webp",
+   "method": "P0",
+   "recon": "霸王龍_Tyrannosaurus rex_no8_★★★★☆.jpg",
+   "family": "tyrannosaur",
+   "seed": 20286236,
+   "color_zh": "青蘋果綠",
+   "color_en": "fresh apple green",
+   "pattern_zh": "骨甲紋",
+   "pattern_en": "bone-armor etching lines",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "躺地打滾",
+   "pose_en": "rolling on its back, belly up, playful",
+   "pose_pool": "general",
+   "acc_zh": "戰斧",
+   "acc_en": "a battle axe",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 262,
+   "name": "三角龍王",
+   "stars": 4,
+   "img": "assets/dinos/262.webp",
+   "method": "P1(同科:ceratopsian)",
+   "recon": "科斯莫角龍_Kosmoceratops_no96_★★★☆☆.jpg",
+   "family": "ceratopsian",
+   "seed": 20286430,
+   "color_zh": "天空藍",
+   "color_en": "sky blue",
+   "pattern_zh": "虎條紋",
+   "pattern_en": "tiger stripes",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "金邊胸甲",
+   "acc_en": "a gold-trimmed chest armor",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 264,
+   "name": "泰坦巨龍",
+   "stars": 4,
+   "img": "assets/dinos/264.webp",
+   "method": "P1(同科:sauropod)",
+   "recon": "阿拉莫龍_Alamosaurus_no2_★★★★★.jpg",
+   "family": "sauropod",
+   "seed": 20286624,
+   "color_zh": "象牙白",
+   "color_en": "warm ivory (never pure white)",
+   "pattern_zh": "星芒紋",
+   "pattern_en": "starburst markings",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "金邊盾牌",
+   "acc_en": "a gold-rimmed shield",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 266,
+   "name": "潮汐龍",
+   "stars": 4,
+   "img": "assets/dinos/266.webp",
+   "method": "P1(同科:sauropod)",
+   "recon": "丘布特龍_Chubutisaurus_no155_★★★★★.jpg",
+   "family": "sauropod",
+   "seed": 20286818,
+   "color_zh": "珊瑚橙",
+   "color_en": "coral orange",
+   "pattern_zh": "波浪紋",
+   "pattern_en": "wave patterns",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "伸懶腰",
+   "pose_en": "lazy stretch with a yawn",
+   "pose_pool": "general",
+   "acc_zh": "釘錘",
+   "acc_en": "a spiked mace",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "飛踢",
+   "fun_en": "flying-kick in mid-air, tail curled tight beside the body",
+   "fun_kind": "action"
+  },
+  {
+   "id": 268,
+   "name": "阿根廷龍",
+   "stars": 4,
+   "img": "assets/dinos/268.webp",
+   "method": "P0",
+   "recon": "阿根廷龍_Argentinosaurus_no151_★★★★★.png",
+   "family": "sauropod",
+   "seed": 20287012,
+   "color_zh": "焦糖棕",
+   "color_en": "caramel brown",
+   "pattern_zh": "星芒紋",
+   "pattern_en": "starburst markings",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "雙手舉高歡呼",
+   "pose_en": "both arms raised cheering",
+   "pose_pool": "general",
+   "acc_zh": "戰斧",
+   "acc_en": "a battle axe",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 270,
+   "name": "易碎雙腔龍",
+   "stars": 4,
+   "img": "assets/dinos/270.webp",
+   "method": "P1(同科:sauropod)",
+   "recon": "雪松龍_Cedarosaurus_no165_★★★★☆.png",
+   "family": "sauropod",
+   "seed": 20287206,
+   "color_zh": "銀灰",
+   "color_en": "silver gray",
+   "pattern_zh": "潑濺紋",
+   "pattern_en": "paint-splash markings",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "金邊盾牌",
+   "acc_en": "a gold-rimmed shield",
+   "stains": [
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    },
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 272,
+   "name": "超帝王龍",
+   "stars": 4,
+   "img": "assets/dinos/272.webp",
+   "method": "P1(同科:tyrannosaur)",
+   "recon": "矮暴龍_Nanotyrannus_no92_★★★☆☆.jpg",
+   "family": "tyrannosaur",
+   "seed": 20287400,
+   "color_zh": "玫瑰粉",
+   "color_en": "rosy pink",
+   "pattern_zh": "閃電紋",
+   "pattern_en": "lightning-bolt markings",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "蹲坐",
+   "pose_en": "sitting crouch, relaxed",
+   "pose_pool": "general",
+   "acc_zh": "長矛",
+   "acc_en": "a spear",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 274,
+   "name": "長生天龍",
+   "stars": 4,
+   "img": "assets/dinos/274.webp",
+   "method": "P1(同科:sauropod)",
+   "recon": "伊西斯龍_Isisaurus_no3_★★★★★.png",
+   "family": "sauropod",
+   "seed": 20287594,
+   "color_zh": "緋紅",
+   "color_en": "vivid crimson red",
+   "pattern_zh": "星芒紋",
+   "pattern_en": "starburst markings",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "戰斧",
+   "acc_en": "a battle axe",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact low-slung pose for an elongated body: the neck stretches FORWARD horizontally at shoulder height, gently curved, never pointing upward, with the head kept low just above the back line and turned slightly toward the body side; the tail is coiled in a tight curl flat against the side of the body, tip near the front feet, never extending behind the haunches; the whole creature hugs the ground like a wide low-slung animal; overall silhouette close to 1:1 length-to-height, never longer than 1.2:1 and never narrow-tall",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 276,
+   "name": "蛇頸龍",
+   "stars": 4,
+   "img": "assets/dinos/276.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20287788,
+   "color_zh": "石墨黑",
+   "color_en": "graphite charcoal",
+   "pattern_zh": "閃電紋",
+   "pattern_en": "lightning-bolt markings",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "雙手舉高歡呼",
+   "pose_en": "both arms raised cheering",
+   "pose_pool": "general",
+   "acc_zh": "釘錘",
+   "acc_en": "a spiked mace",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "吃食物",
+   "fun_en": "munching a snack with head bowed down, sitting flat on the ground in a wide squat, legs sprawled wide, tail lying limp and flat on the ground, cheeks stuffed full, body low and round",
+   "fun_kind": "action"
+  },
+  {
+   "id": 278,
+   "name": "上龍",
+   "stars": 4,
+   "img": "assets/dinos/278.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20287982,
+   "color_zh": "緋紅",
+   "color_en": "vivid crimson red",
+   "pattern_zh": "心形斑",
+   "pattern_en": "heart-shaped patches",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "雙手舉高歡呼",
+   "pose_en": "both arms raised cheering",
+   "pose_pool": "general",
+   "acc_zh": "釘錘",
+   "acc_en": "a spiked mace",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 280,
+   "name": "滑齒龍",
+   "stars": 4,
+   "img": "assets/dinos/280.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20288176,
+   "color_zh": "青金石藍",
+   "color_en": "lapis blue",
+   "pattern_zh": "潑濺紋",
+   "pattern_en": "paint-splash markings",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "長矛",
+   "acc_en": "a spear",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 282,
+   "name": "海王龍",
+   "stars": 4,
+   "img": "assets/dinos/282.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20288370,
+   "color_zh": "青蘋果綠",
+   "color_en": "fresh apple green",
+   "pattern_zh": "潑濺紋",
+   "pattern_en": "paint-splash markings",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "倒退威嚇",
+   "pose_en": "mock-charge stance, arms spread",
+   "pose_pool": "general",
+   "acc_zh": "長矛",
+   "acc_en": "a spear",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 284,
+   "name": "浮龍",
+   "stars": 4,
+   "img": "assets/dinos/284.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20288564,
+   "color_zh": "蜜桃粉",
+   "color_en": "peach pink",
+   "pattern_zh": "虎條紋",
+   "pattern_en": "tiger stripes",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "指向遠方",
+   "pose_en": "dramatically pointing forward with one hand",
+   "pose_pool": "general",
+   "acc_zh": "金邊胸甲",
+   "acc_en": "a gold-trimmed chest armor",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "唱歌",
+   "fun_en": "singing passionately with mouth wide open, head kept low, body rounding into a wide low compact pose",
+   "fun_kind": "action"
+  },
+  {
+   "id": 286,
+   "name": "海霸龍",
+   "stars": 4,
+   "img": "assets/dinos/286.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20288758,
+   "color_zh": "石板灰",
+   "color_en": "slate gray",
+   "pattern_zh": "漸層鱗",
+   "pattern_en": "gradient scale patterning toward the tail",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "咆嘯",
+   "pose_en": "standing roar, chest out",
+   "pose_pool": "general",
+   "acc_zh": "金邊盾牌",
+   "acc_en": "a gold-rimmed shield",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "飛踢",
+   "fun_en": "flying-kick in mid-air, tail curled tight beside the body",
+   "fun_kind": "action"
+  },
+  {
+   "id": 288,
+   "name": "魚龍",
+   "stars": 4,
+   "img": "assets/dinos/288.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20288952,
+   "color_zh": "湖水藍",
+   "color_en": "teal lake blue",
+   "pattern_zh": "骨甲紋",
+   "pattern_en": "bone-armor etching lines",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "金邊胸甲",
+   "acc_en": "a gold-trimmed chest armor",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 290,
+   "name": "沙斯特魚龍",
+   "stars": 4,
+   "img": "assets/dinos/290.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20289146,
+   "color_zh": "金黃",
+   "color_en": "rich golden yellow",
+   "pattern_zh": "骨甲紋",
+   "pattern_en": "bone-armor etching lines",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "蹲坐",
+   "pose_en": "sitting crouch, relaxed",
+   "pose_pool": "general",
+   "acc_zh": "金邊胸甲",
+   "acc_en": "a gold-trimmed chest armor",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 292,
+   "name": "西藏魚龍",
+   "stars": 4,
+   "img": "assets/dinos/292.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20289340,
+   "color_zh": "檸檬黃",
+   "color_en": "lemon yellow",
+   "pattern_zh": "直條紋",
+   "pattern_en": "vertical band stripes",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "蹲坐",
+   "pose_en": "sitting crouch, relaxed",
+   "pose_pool": "general",
+   "acc_zh": "長矛",
+   "acc_en": "a spear",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "睡覺",
+   "fun_en": "curled up in a round ball, fast asleep with tiny zzz bubbles",
+   "fun_kind": "action"
+  },
+  {
+   "id": 294,
+   "name": "混魚龍",
+   "stars": 4,
+   "img": "assets/dinos/294.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20289534,
+   "color_zh": "石墨黑",
+   "color_en": "graphite charcoal",
+   "pattern_zh": "圓斑",
+   "pattern_en": "dappled round spots in a slightly darker shade",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "揮尾",
+   "pose_en": "whipping tail flourish",
+   "pose_pool": "general",
+   "acc_zh": "金邊盾牌",
+   "acc_en": "a gold-rimmed shield",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "飛踢",
+   "fun_en": "flying-kick in mid-air, tail curled tight beside the body",
+   "fun_kind": "action"
+  },
+  {
+   "id": 296,
+   "name": "始鯨",
+   "stars": 4,
+   "img": "assets/dinos/296.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20289728,
+   "color_zh": "珊瑚橙",
+   "color_en": "coral orange",
+   "pattern_zh": "星芒紋",
+   "pattern_en": "starburst markings",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "背面回頭",
+   "pose_en": "back facing camera, looking over the shoulder",
+   "pose_pool": "general",
+   "acc_zh": "長矛",
+   "acc_en": "a spear",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 298,
+   "name": "械齒鯨",
+   "stars": 4,
+   "img": "assets/dinos/298.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "marine",
+   "seed": 20289922,
+   "color_zh": "蜜桃粉",
+   "color_en": "peach pink",
+   "pattern_zh": "波浪紋",
+   "pattern_en": "wave patterns",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "展臂飛翔",
+   "pose_en": "arms/wings spread wide as if gliding",
+   "pose_pool": "general",
+   "acc_zh": "釘錘",
+   "acc_en": "a spiked mace",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "gold-trimmed armor or weapon + subtle motion effect lines",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "踢腿",
+   "fun_en": "kicking one knee up high toward the chest in a tight compact kick, standing low on the other leg, tail coiled in a tight curl flat against the body side, never stretching behind",
+   "fun_kind": "action"
+  },
+  {
+   "id": 300,
+   "name": "無齒翼龍",
+   "stars": 5,
+   "img": "assets/dinos/300.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "pterosaur",
+   "seed": 20290116,
+   "color_zh": "巧克力棕",
+   "color_en": "chocolate brown",
+   "pattern_zh": "幾何刺青",
+   "pattern_en": "geometric tribal tattoos",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "英雄姿勢2",
+   "pose_en": "levitating in mid-flight, cape billowing, one palm thrust toward the camera",
+   "pose_pool": "hero2",
+   "acc_zh": "神秘法杖",
+   "acc_en": "a mystic staff with a glowing crystal",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 301,
+   "name": "風神翼龍",
+   "stars": 5,
+   "img": "assets/dinos/301.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "pterosaur",
+   "seed": 20290213,
+   "color_zh": "焦糖棕",
+   "color_en": "caramel brown",
+   "pattern_zh": "虎條紋",
+   "pattern_en": "tiger stripes",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "英雄姿勢8",
+   "pose_en": "arms crossed while hovering, chin raised, looking down at the viewer",
+   "pose_pool": "hero8",
+   "acc_zh": "巨戰鎚",
+   "acc_en": "a giant warhammer",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 302,
+   "name": "哈特茲哥翼龍",
+   "stars": 5,
+   "img": "assets/dinos/302.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "pterosaur",
+   "seed": 20290310,
+   "color_zh": "天空藍",
+   "color_en": "sky blue",
+   "pattern_zh": "幾何刺青",
+   "pattern_en": "geometric tribal tattoos",
+   "expr_zh": "得意",
+   "expr_en": "confident smirk",
+   "pose_zh": "英雄姿勢8",
+   "pose_en": "arms crossed while hovering, chin raised, looking down at the viewer",
+   "pose_pool": "hero8",
+   "acc_zh": "神秘法杖",
+   "acc_en": "a mystic staff with a glowing crystal",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 303,
+   "name": "古神翼龍",
+   "stars": 5,
+   "img": "assets/dinos/303.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "pterosaur",
+   "seed": 20290407,
+   "color_zh": "梅子紫",
+   "color_en": "plum purple",
+   "pattern_zh": "幾何刺青",
+   "pattern_en": "geometric tribal tattoos",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "英雄姿勢8",
+   "pose_en": "arms crossed while hovering, chin raised, looking down at the viewer",
+   "pose_pool": "hero8",
+   "acc_zh": "巨戰鎚",
+   "acc_en": "a giant warhammer",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 304,
+   "name": "妖精翼龍",
+   "stars": 5,
+   "img": "assets/dinos/304.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "pterosaur",
+   "seed": 20290504,
+   "color_zh": "湖水藍",
+   "color_en": "teal lake blue",
+   "pattern_zh": "潑濺紋",
+   "pattern_en": "paint-splash markings",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "英雄姿勢2",
+   "pose_en": "levitating in mid-flight, cape billowing, one palm thrust toward the camera",
+   "pose_pool": "hero2",
+   "acc_zh": "神秘法杖",
+   "acc_en": "a mystic staff with a glowing crystal",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 306,
+   "name": "中國翼龍",
+   "stars": 5,
+   "img": "assets/dinos/306.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "pterosaur",
+   "seed": 20290698,
+   "color_zh": "梅子紫",
+   "color_en": "plum purple",
+   "pattern_zh": "虎條紋",
+   "pattern_en": "tiger stripes",
+   "expr_zh": "酷瞇眼",
+   "expr_en": "cool squint",
+   "pose_zh": "英雄姿勢8",
+   "pose_en": "arms crossed while hovering, chin raised, looking down at the viewer",
+   "pose_pool": "hero8",
+   "acc_zh": "神秘法杖",
+   "acc_en": "a mystic staff with a glowing crystal",
+   "stains": [
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 308,
+   "name": "喙嘴龍",
+   "stars": 5,
+   "img": "assets/dinos/308.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "pterosaur",
+   "seed": 20290892,
+   "color_zh": "祖母綠",
+   "color_en": "emerald green",
+   "pattern_zh": "閃電紋",
+   "pattern_en": "lightning-bolt markings",
+   "expr_zh": "甜笑",
+   "expr_en": "closed sweet smile",
+   "pose_zh": "英雄姿勢10",
+   "pose_en": "single-leg spinning kick with a motion trail on the leg",
+   "pose_pool": "hero10",
+   "acc_zh": "巨戰鎚",
+   "acc_en": "a giant warhammer",
+   "stains": [
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 310,
+   "name": "悟空翼龍",
+   "stars": 5,
+   "img": "assets/dinos/310.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "pterosaur",
+   "seed": 20291086,
+   "color_zh": "蜜桃粉",
+   "color_en": "peach pink",
+   "pattern_zh": "波浪紋",
+   "pattern_en": "wave patterns",
+   "expr_zh": "咆嘯氣勢",
+   "expr_en": "playful show-off roar",
+   "pose_zh": "英雄姿勢8",
+   "pose_en": "arms crossed while hovering, chin raised, looking down at the viewer",
+   "pose_pool": "hero8",
+   "acc_zh": "巨戰鎚",
+   "acc_en": "a giant warhammer",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "勇敢",
+   "fun_en": "bravely with chest puffed out",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 315,
+   "name": "奇蝦",
+   "stars": 5,
+   "img": "assets/dinos/315.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "oddity",
+   "seed": 20291571,
+   "color_zh": "象牙白",
+   "color_en": "warm ivory (never pure white)",
+   "pattern_zh": "幾何刺青",
+   "pattern_en": "geometric tribal tattoos",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "英雄姿勢5",
+   "pose_en": "two-handed heavy hammer raised overhead, about to slam down",
+   "pose_pool": "hero5",
+   "acc_zh": "巨戰鎚",
+   "acc_en": "a giant warhammer",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "膽小",
+   "fun_en": "timidly with jittery wide eyes",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 318,
+   "name": "海口魚",
+   "stars": 5,
+   "img": "assets/dinos/318.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "oddity",
+   "seed": 20291862,
+   "color_zh": "薰衣草紫",
+   "color_en": "lavender purple",
+   "pattern_zh": "圓斑",
+   "pattern_en": "dappled round spots in a slightly darker shade",
+   "expr_zh": "驚喜",
+   "expr_en": "wide-eyed delighted surprise",
+   "pose_zh": "英雄姿勢12",
+   "pose_en": "shield-first low charging stance",
+   "pose_pool": "hero12",
+   "acc_zh": "傳說大劍",
+   "acc_en": "a legendary oversized greatsword",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "搞笑",
+   "fun_en": "in a comical slapstick way",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 322,
+   "name": "鄧氏魚",
+   "stars": 5,
+   "img": "assets/dinos/322.webp",
+   "method": "P2",
+   "recon": null,
+   "family": "oddity",
+   "seed": 20292250,
+   "color_zh": "青蘋果綠",
+   "color_en": "fresh apple green",
+   "pattern_zh": "閃電紋",
+   "pattern_en": "lightning-bolt markings",
+   "expr_zh": "開懷大笑",
+   "expr_en": "beaming open-mouth laugh",
+   "pose_zh": "英雄姿勢2",
+   "pose_en": "levitating in mid-flight, cape billowing, one palm thrust toward the camera",
+   "pose_pool": "hero2",
+   "acc_zh": "巨戰鎚",
+   "acc_en": "a giant warhammer",
+   "stains": [
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "粗暴",
+   "fun_en": "rowdily and roughly",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 324,
+   "name": "棘龍王",
+   "stars": 5,
+   "img": "assets/dinos/324.webp",
+   "method": "P1(同科:spinosaurid)",
+   "recon": "激龍_Irritator_no175_★★★☆☆.png",
+   "family": "spinosaurid",
+   "seed": 20292444,
+   "color_zh": "森林綠",
+   "color_en": "deep forest green",
+   "pattern_zh": "漸層鱗",
+   "pattern_en": "gradient scale patterning toward the tail",
+   "expr_zh": "威武皺眉",
+   "expr_en": "cute-but-fierce determined frown",
+   "pose_zh": "英雄姿勢13",
+   "pose_en": "gem-studded fist raised skyward, whole body glowing, roaring",
+   "pose_pool": "hero13",
+   "acc_zh": "傳說大劍",
+   "acc_en": "a legendary oversized greatsword",
+   "stains": [
+    {
+     "zh": "背部落葉",
+     "en": "a couple of dry leaves resting on the back"
+    },
+    {
+     "zh": "臉側土痕",
+     "en": "a subtle dirt smudge on one cheek"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": true,
+   "body_note_en": "compact gathered pose for an elongated body: the tail is coiled in a tight spiral flat against the hip, tip near the front feet, never extending behind the haunches; the neck rises into a gentle S-curve with the head lifted slightly, snout angled gently upward; seen from a slight three-quarter angle with the legs planted wide apart so the body reads wide and chunky; overall silhouette close to 1:1 length-to-height, always between 1:1.2 and 1.2:1, never narrow-tall and never long-flat",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  },
+  {
+   "id": 325,
+   "name": "帝龍",
+   "stars": 5,
+   "img": "assets/dinos/325.webp",
+   "method": "P0",
+   "recon": "帝龍_Dilong_no204_★★☆☆☆.png",
+   "family": "tyrannosaur",
+   "seed": 20292541,
+   "color_zh": "巧克力棕",
+   "color_en": "chocolate brown",
+   "pattern_zh": "漸層鱗",
+   "pattern_en": "gradient scale patterning toward the tail",
+   "expr_zh": "調皮吐舌",
+   "expr_en": "playful tongue out",
+   "pose_zh": "英雄姿勢10",
+   "pose_en": "single-leg spinning kick with a motion trail on the leg",
+   "pose_pool": "hero10",
+   "acc_zh": "巨戰鎚",
+   "acc_en": "a giant warhammer",
+   "stains": [
+    {
+     "zh": "尾端泥塊",
+     "en": "a small mud clump on the tail tip"
+    },
+    {
+     "zh": "腿部泥點",
+     "en": "muddy speckles on the legs"
+    },
+    {
+     "zh": "腹部草屑",
+     "en": "a few grass bits stuck on the belly"
+    }
+   ],
+   "tier_extra": "legendary hero: golden crown + flowing cape + legendary weapon + heroic signature pose + subtle golden particle glow",
+   "body_compact": false,
+   "body_note_en": "",
+   "fun_zh": "害羞",
+   "fun_en": "shyly with pink blushing cheeks",
+   "fun_kind": "mood"
+  }
+ ]
+}

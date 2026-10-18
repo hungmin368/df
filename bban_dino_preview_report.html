@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恐龍快找 DragonFinder — 伴伴家族四色恐龍 樣本預覽（v4）</title>
+<style>
+  :root{
+    --bg:#fffdf9; --ink:#3b3228; --muted:#8a7d6d; --line:#e8dfd2;
+    --purple:#7c3aed; --purple-bg:#f5f0ff;
+    --amber:#b45309; --amber-bg:#fff7e8;
+    --gold:#d97706;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    line-height:1.65;}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 80px;}
+  header.hero{background:linear-gradient(135deg,#7c3aed,#0ea5e9 45%,#f59e0b 80%,#84cc16);
+    color:#fff;border-radius:18px;padding:34px 30px;margin-bottom:26px;
+    box-shadow:0 10px 30px rgba(124,58,237,.25);}
+  header.hero h1{margin:0 0 8px;font-size:1.7rem;letter-spacing:.5px;}
+  header.hero p{margin:4px 0;opacity:.95;}
+  header.hero .meta{font-size:.85rem;opacity:.85;margin-top:12px;}
+  h2{font-size:1.25rem;color:var(--purple);border-bottom:2px solid var(--line);
+    padding-bottom:8px;margin:42px 0 14px;}
+  .note{background:var(--amber-bg);border:1px solid #fde68a;border-radius:10px;padding:12px 16px;margin:14px 0;}
+  .note b{color:var(--amber);}
+  .note.leo{background:var(--purple-bg);border-color:#ddd6fe;}
+  .note.leo b{color:var(--purple);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin:16px 0;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;
+    box-shadow:0 4px 14px rgba(59,50,40,.06);}
+  .card h3{margin:0 0 2px;font-size:1.1rem;color:var(--ink);}
+  .stars{color:var(--gold);font-size:.95rem;letter-spacing:2px;}
+  .stars .dim{color:#d8cfc2;}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+  .pane{border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;
+    background:
+      linear-gradient(45deg,#f6f1e7 25%,transparent 25%,transparent 75%,#f6f1e7 75%),
+      linear-gradient(45deg,#f6f1e7 25%,#fdfaf3 25%,#fdfaf3 75%,#f6f1e7 75%);
+    background-size:16px 16px;background-position:0 0,8px 8px;}
+  .pane img{width:160px;height:160px;image-rendering:auto;}
+  .pane .tag{display:inline-block;margin-top:6px;font-size:.8rem;color:var(--muted);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:1px 10px;}
+  .badge{margin-top:10px;display:inline-block;font-size:.82rem;color:var(--purple);
+    background:var(--purple-bg);border:1px solid #ddd6fe;border-radius:999px;padding:2px 12px;}
+  .badge.blue{color:#0369a1;background:#e0f2fe;border-color:#bae6fd;}
+  .badge.green{color:#15803d;background:#dcfce7;border-color:#bbf7d0;}
+  .badge.orange{color:#c2410c;background:#ffedd5;border-color:#fed7aa;}
+  .feats{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;}
+  .feat{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);
+    border-radius:999px;padding:5px 14px 5px 6px;font-size:.9rem;}
+  .chip{width:22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.12);}
+  footer{margin-top:50px;color:var(--muted);font-size:.85rem;text-align:center;}
+  code{background:#f5efe6;border-radius:4px;padding:1px 6px;font-size:.88em;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>🐉 恐龍快找 DragonFinder — 伴伴家族・四色高辨識度恐龍（v4）</h1>
+  <p>依伴伴原始提示詞改編：家族特徵一致（金色大眼、亮黃橘角、微笑露小牙、乳白腹部、白底），
+     四種恐龍體色互異 — 紫三角龍・綠劍龍・橘霸王龍・藍無齒翼龍，一眼即辨</p>
+  <p class="meta">日期：2026-10-15 ｜ 狀態：v4 樣本審核中（尚未替換遊戲內圖片）</p>
+</header>
+
+<div class="note">
+  <b>本頁為 v4「四色差異化」樣本。</b>依使用者提供之伴伴提示詞（3D 渲染、可愛龍寶寶、金色大眼、
+  亮黃橘色的角、開朗微笑露小牙、細緻鱗片、乳白腹部、動態姿勢、乾淨白底、高解析數位藝術）
+  改編為四種恐龍各自提示詞，保留家族特徵、每種指定不同體色與輪廓特徵。
+  生成後以「去背後主體像素」做色系質檢（背景天空不再影響判定），通過後 rembg 去背 →
+  裁切置中 → 200×200 透明 WebP（10–14 KB）。確認風格後才批量重繪 <code>assets/dinos/</code> 全部 139 張。
+</div>
+
+<div class="note leo">
+  <b>Leonardo.Ai 說明：</b>受控瀏覽器無 Leonardo 登入工作階段（使用者登入在另一瀏覽器），
+  且 Leonardo 免費方案無 API 存取。本輪以 pollinations.ai（flux 模型）完成生成；
+  提示詞包 <code>_leonardo_prompts.md</code> 已備妥，日後於受控瀏覽器登入或取得 API key
+  即可生成 Leonardo 對照版。
+</div>
+
+<h2>伴伴家族特徵（四色共享）</h2>
+<div class="feats">
+  <span class="feat"><span class="chip" style="background:#F59E0B"></span>金色大眼睛</span>
+  <span class="feat"><span class="chip" style="background:linear-gradient(135deg,#FCD34D,#D97706)"></span>亮黃橘色的角・骨板・頭冠</span>
+  <span class="feat"><span class="chip" style="background:#FDEACB"></span>乳白色腹部</span>
+  <span class="feat"><span class="chip" style="background:#fff;border-color:#ccc"></span>乾淨白底</span>
+  <span class="feat"><span class="chip" style="background:#A855F7"></span>三角龍＝紫</span>
+  <span class="feat"><span class="chip" style="background:#84CC16"></span>劍龍＝綠</span>
+  <span class="feat"><span class="chip" style="background:#FB923C"></span>霸王龍＝橘</span>
+  <span class="feat"><span class="chip" style="background:#38BDF8"></span>無齒翼龍＝藍</span>
+</div>
+
+<h2>原始圖 vs 伴伴家族四色版</h2>
+<div class="grid">
+
+  <div class="card">
+    <h3>三角龍 <small style="color:var(--muted)">#21</small></h3>
+    <div class="stars">★<span class="dim">★★★★</span></div>
+    <div class="compare">
+      <div class="pane"><img src="assets/dinos/21.webp" alt="原始三角龍"><span class="tag">原始</span></div>
+      <div class="pane"><img src="assets/dinos_2/bban_samples/v4_triceratops_s10012.webp" alt="伴伴版三角龍（紫）"><span class="tag">伴伴版・紫</span></div>
+    </div>
+    <span class="badge">紫色質檢 ✓ 去背主體 76% 紫色系 ｜ 三支橘角＋四足行走</span>
+  </div>
+
+  <div class="card">
+    <h3>劍龍 <small style="color:var(--muted)">#11</small></h3>
+    <div class="stars">★<span class="dim">★★★★</span></div>
+    <div class="compare">
+      <div class="pane"><img src="assets/dinos/11.webp" alt="原始劍龍"><span class="tag">原始</span></div>
+      <div class="pane"><img src="assets/dinos_2/bban_samples/v4_stegosaurus_s10104.webp" alt="伴伴版劍龍（綠）"><span class="tag">伴伴版・綠</span></div>
+    </div>
+    <span class="badge green">綠色質檢 ✓ 39% 綠色系 ｜ 一排黃色背板＋四足側身</span>
+  </div>
+
+  <div class="card">
+    <h3>霸王龍 <small style="color:var(--muted)">#260</small></h3>
+    <div class="stars">★★★★<span class="dim">★</span></div>
+    <div class="compare">
+      <div class="pane"><img src="assets/dinos/260.webp" alt="原始霸王龍"><span class="tag">原始</span></div>
+      <div class="pane"><img src="assets/dinos_2/bban_samples/v4_trex_s10201.webp" alt="伴伴版霸王龍（橘）"><span class="tag">伴伴版・橘</span></div>
+    </div>
+    <span class="badge orange">橘色質檢 ✓ 30% 橘色系 ｜ 大頭・小手・後腿站立・露齒笑</span>
+  </div>
+
+  <div class="card">
+    <h3>無齒翼龍 <small style="color:var(--muted)">#300</small></h3>
+    <div class="stars">★★★★★</div>
+    <div class="compare">
+      <div class="pane"><img src="assets/dinos/300.webp" alt="原始無齒翼龍"><span class="tag">原始</span></div>
+      <div class="pane"><img src="assets/dinos_2/bban_samples/v4_ptero_s10311.webp" alt="伴伴版無齒翼龍（藍）"><span class="tag">伴伴版・藍</span></div>
+    </div>
+    <span class="badge blue">藍色質檢 ✓ 去背主體 88% 藍色系 ｜ 展翅飛行＋頭冠＋金眼</span>
+  </div>
+
+</div>
+
+<h2>生成與後處理流程（v4）</h2>
+<div class="note">
+  <code>_gen_v4.py</code>／<code>_gen_v4b.py</code>（pollinations.ai flux，768×768，伴伴家族提示詞＋各物種體色）
+  → <b>去背式色系質檢</b>（rembg 先去背、僅量測主體像素：目標色系 &gt;20%、主體覆蓋 &gt;10%、
+  色彩占比 ≥15%，杜絕背景藍天誤判）→ 目視複審（物種輪廓特徵須一眼可辨）
+  → <code>_post_v3.py</code>（rembg 去背 → 裁切置中 → 512 主圖 → 200×200 WebP）。
+  三角龍經 v4b／v4c／v4d 三輪迭代後定案 s10012（三支橘角＋四足紫身，最接近三角龍輪廓）。
+  備用候選：霸王龍 s10202、無齒翼龍 s10313 已保留於樣本資料夾。
+</div>
+
+<footer>
+  恐龍快找 DragonFinder ｜ 伴伴家族四色恐龍樣本（v4）<br>
+  生成引擎：pollinations.ai（flux）｜ 樣本資料夾：<code>assets/dinos_2/bban_samples/</code>
+</footer>
+</div>
+</body>
+</html>

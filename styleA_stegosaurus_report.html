@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>風格A 新恐龍試做・青金石藍劍龍（3★）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+    background: linear-gradient(135deg, #131a2e 0%, #0f141f 55%, #14231c 100%);
+    color: #eef2fb; line-height: 1.75; padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; }
+  h1 {
+    text-align: center; font-size: 26px; margin-bottom: 6px;
+    background: linear-gradient(90deg, #7dd3fc, #c084fc, #fbbf24);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { text-align: center; color: #94a3c8; font-size: 14px; margin-bottom: 4px; }
+  .note { text-align: center; font-size: 13px; color: #fbbf24; margin-bottom: 24px; }
+  .card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(125,211,252,0.22);
+    border-radius: 16px; padding: 22px 26px; margin-bottom: 22px;
+  }
+  h2 { font-size: 18px; color: #bae6fd; margin-bottom: 12px; border-left: 4px solid #7dd3fc; padding-left: 10px; }
+  .imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 820px) { .imgs { grid-template-columns: 1fr; } }
+  figure { background: #fff; border-radius: 12px; overflow: hidden; }
+  figure img { width: 100%; display: block; }
+  figcaption { font-size: 12.5px; color: #475569; padding: 6px 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 8px 0; }
+  th, td { border: 1px solid rgba(255,255,255,0.14); padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: rgba(125,211,252,0.14); color: #bae6fd; white-space: nowrap; }
+  td.ok { color: #6ee7b7; font-weight: 700; white-space: nowrap; }
+  td.warn { color: #fde68a; font-weight: 700; white-space: nowrap; }
+  code { background: rgba(0,0,0,0.4); padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+  ul { padding-left: 22px; font-size: 13.5px; }
+  li { margin: 3px 0; }
+  .foot { text-align: center; font-size: 12px; color: #7c8db5; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>風格A 新恐龍試做・青金石藍劍龍（3★）</h1>
+  <div class="sub">參考《風格A 批量生產規格書（定案版）》試產 ｜ 雙管線對照：Gemini 雙參考 × SophNet Z-Image-Turbo ｜ 2026-10-16 ｜ 任務 ID：stylea-new-dino</div>
+  <div class="note">✔ SophNet ImageGenerator 已打通：完整 API secret（86 字元）通過認證；task 端點全部模型未部署（NO_AVAILABLE_DEPLOYMENT），改走控制台同步端點 <code>/image-edit</code>＋<code>Z-Image-Turbo</code>（¥0.25/張）成功出圖。</div>
+
+  <div class="card">
+    <h2>① 雙管線成品對照（同一份風格A提示詞）</h2>
+    <table>
+      <tr><th style="width:110px">管線</th><th>原始生成</th><th>完工磚 512×512 RGBA</th></tr>
+      <tr>
+        <td><b>Gemini</b><br>雙參考<br><span style="font-size:12px;color:#94a3c8">gemini-2.5-flash-image</span></td>
+        <td><img src="assets/dinos_2/bban_samples/gemini_styleA_stegosaurus.png" alt="Gemini 原始生成" style="width:100%;border-radius:8px"></td>
+        <td><img src="assets/dinos_2/bban_samples/gemini_styleA_stegosaurus_512.png" alt="Gemini 完工磚" style="width:100%;border-radius:8px"></td>
+      </tr>
+      <tr>
+        <td><b>SophNet</b><br>純提示詞<br><span style="font-size:12px;color:#94a3c8">Z-Image-Turbo・/image-edit</span></td>
+        <td><img src="assets/dinos_2/bban_samples/sophnet_styleA_stegosaurus.png" alt="SophNet 原始生成" style="width:100%;border-radius:8px"></td>
+        <td><img src="assets/dinos_2/bban_samples/sophnet_styleA_stegosaurus_512.png" alt="SophNet 完工磚" style="width:100%;border-radius:8px"></td>
+      </tr>
+    </table>
+    <p style="font-size:12.5px;color:#94a3c8">兩版均為 1024 級白底原始圖 → rembg → 修剪 → 底部貼齊 → 512×512 RGBA WebP q90（各 51 KB）。</p>
+  </div>
+
+  <div class="card">
+    <h2>② 規格書要素對照（兩版共檢）</h2>
+    <table>
+      <tr><th>要素</th><th>落實</th><th style="width:64px">結果</th></tr>
+      <tr><td>家族特徵（風格A）</td><td>兩版皆達：金琥珀大眼＋白色高光、開口笑小白牙粉舌、奶油白肚、黃橙色背板/尾棘、緞面光澤（要素F：非塑膠/乙烯基硬反光）、可見細鱗紋理</td><td class="ok">✔</td></tr>
+      <tr><td>物種對應（要素6）</td><td>劍龍雙排風箏形背板均為視覺主角且全數露出、剪影一眼可辨；青金石藍主色與家族金色系對比（要素E）</td><td class="ok">✔</td></tr>
+      <tr><td>星級階梯（要素9）</td><td>3★ 編織草環臂飾（不遮背板）＋泥漬/草葉沾黏（要素G）兩版皆有</td><td class="ok">✔</td></tr>
+      <tr><td>去背乾淨（要素2）</td><td>純白殘留不透明像素 Gemini 0.03%／SophNet 0.02%（僅眼部高光）→ 無白邊</td><td class="ok">✔</td></tr>
+      <tr><td>圖內無文字（要素3）</td><td>兩版皆無文字／浮水印／簽名</td><td class="ok">✔</td></tr>
+      <tr><td>兩版差異</td><td>姿勢：Gemini 騰空跳躍（更貼提示詞）／SophNet 站立抬腿（穩重）。尾棘：Gemini 有尾端棘刺叢／SophNet 尾端平滑（沿尾小棘板有）。體色：Gemini 較貼青金石靛藍／SophNet 偏天青藍</td><td class="warn">差異</td></tr>
+      <tr><td>技術規格（要素A）</td><td>512×512 RGBA WebP q90＝51 KB×2（規格帶 15–40 KB 為約值；降品質會損光澤，保留 q90）</td><td class="warn">約略</td></tr>
+      <tr><td>構圖（要素1）</td><td>底部貼齊（兩版下緣皆約 3.5%，算法以修剪後邊長取 4% 邊距所致）、水平置中；原始生成邊距充足</td><td class="warn">約略</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>③ 生成參數（雙管線）</h2>
+    <ul>
+      <li><b>Gemini</b>：<code>gemini-2.5-flash-image</code>；參考圖＝<code>DFD-000_伴伴_2star.png</code>（壓白底）＋<code>劍龍_Stegosaurus_no231_★★★☆☆.png</code>（解剖）；腳本 <code>_gen_gemini_styleA_stegosaurus.py</code>；後處理 <code>_post_styleA_stegosaurus.py</code></li>
+      <li><b>SophNet</b>：<code>POST /api/open-apis/projects/easyllms/image-edit</code>（同步、非 task 輪詢），模型 <code>Z-Image-Turbo</code>（qwen-image 系列當日全部未部署），size 1024×1024、watermark off；負面提示詞內嵌提示中；腳本 <code>_gen_sophnet_styleA_stegosaurus.py</code>（task 版待命）；後處理 <code>_post_sophnet_stegosaurus.py</code></li>
+      <li>完工檔：<code>gemini_styleA_stegosaurus_512.webp</code>、<code>sophnet_styleA_stegosaurus_512.webp</code>（皆遊戲磚規格）</li>
+    </ul>
+  </div>
+
+  <div class="foot">DragonFinder ｜ 風格A 新恐龍試做報告 ｜ 2026-10-16</div>
+</div>
+</body>
+</html>
