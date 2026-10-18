@@ -1057,6 +1057,7 @@ function newRun(N){
 const TUT_BOARDS = { 4:'0001201122332333', 5:'0000020001222314233142311' };
 
 function newBoard(){
+  if(window.Ads) Ads.gameplayStart();
   const N = G.N;
   if(G.tutorial && TUT_BOARDS[N]){ /* 第一次教學：固定盤面，每次進入都相同 */
     const ro=towerDecode(N, TUT_BOARDS[N]);
@@ -1514,6 +1515,7 @@ function timeoutRound(){
   $('res-next').textContent = towerFail ? '重新挑戰' : '再挑戰一局';
   if(!towerFail) setupResSel();
   resTowerUI(towerFail);
+  if(window.Ads) Ads.gameplayStop();
   show('ov-result');
   chestStripAnimate(chests.list, null);
 }
@@ -1544,7 +1546,7 @@ function renderDex(){
     const d=document.createElement('div');
     d.className='dex-cell p3d s'+(p.stars||1)+(dexGot.has(p.id)?' got':'');
     d.id='dex-'+p.id;
-    d.innerHTML='<span class="nb">'+dexNum(p)+'</span><img src="'+p.img+'" alt="'+p.name+'">';
+    d.innerHTML='<span class="nb">'+dexNum(p)+'</span><img src="'+p.img+'" alt="'+p.name+'" loading="lazy" decoding="async">';
     d.title = dexGot.has(p.id) ? p.name : '未捕獲';
     d.addEventListener('click', ()=>showDexDetail(p));
     grid.appendChild(d);
@@ -1578,7 +1580,7 @@ function renderDexFull(){
     d.className='dex-cell p3d s'+(p.stars||1)+(dexGot.has(p.id)?' got':'');
     d.id='df-'+p.id;
     const rk=rarityOf(p.id);
-    d.innerHTML='<span class="nb">'+dexNum(p)+'</span><img src="'+p.img+'" alt="'+p.name+'">';
+    d.innerHTML='<span class="nb">'+dexNum(p)+'</span><img src="'+p.img+'" alt="'+p.name+'" loading="lazy" decoding="async">';
     d.title=(dexGot.has(p.id)?RARITY_NAMES[rk]+' · '+p.name:'未捕獲 · '+RARITY_NAMES[rk]);
     d.addEventListener('click', ()=>showDexDetail(p));
     grid.appendChild(d);
@@ -2437,6 +2439,7 @@ function winRound(){
     if(G.tutorial==='demo'){ PROG.tut4=true; progSave(); progUnlock(5); G.nextMode='guided5'; $('res-next').textContent='去 5×5 引導 ▶'; }
     else { PROG.tut5=true; progSave(); progUnlock(6); G.nextMode='size6'; $('res-next').textContent='去 6×6 挑戰 ▶'; }
     $('res-lv').style.display='none';
+    if(window.Ads) Ads.gameplayStop();
     show('ov-result');
     chestStripAnimate([], null);
     return;
@@ -2474,6 +2477,7 @@ function winRound(){
   $('res-next').textContent = towerWin ? '下一關 ▶' : '下一局 ▶';
   resTowerUI(towerWin);
   if(!towerWin) setupResSel();
+  if(window.Ads) Ads.gameplayStop();
   show('ov-result');
   chestStripAnimate(chests.list, G.caughtMons);
 }
@@ -2510,6 +2514,7 @@ function failRound(){
   $('res-next').textContent = towerFail ? '重新挑戰' : '再挑戰一局';
   if(!towerFail) setupResSel();
   resTowerUI(towerFail);
+  if(window.Ads) Ads.gameplayStop();
   show('ov-result');
   chestStripAnimate(chests.list, null);
 }
@@ -2517,6 +2522,7 @@ function failRound(){
 function row(a,b,c,cls){ return '<div class="row"><span>'+a+'（'+b+'）</span><span class="'+cls+'">'+c+'</span></div>'; }
 
 $('res-next').onclick = ()=>{
+  Ads.break(()=>{
   hide('ov-result');
   if(G.nextMode==='guided5'){ newRun(5); return; }
   if(G.nextMode==='size6'){ newRun(6); return; }
@@ -2533,6 +2539,7 @@ $('res-next').onclick = ()=>{
   if(G.lastFail){ G.round=1; } else { G.round++; }
   newBoard();
   startBuddyTimers();
+  });
 };
 $('res-menu').onclick = ()=>{ hide('ov-result'); TOWER.level=0; openMenu(); };
 $('res-reward').onclick = ()=>{ hide('ov-result'); econRender(); show('ov-reward'); SFX.tap(); };
@@ -3138,6 +3145,8 @@ function openMenu(){
 $('btn-help').onclick = ()=>show('ov-help');
 $('menu-help').onclick = ()=>show('ov-help');
 $('help-ok').onclick = ()=>hide('ov-help');
+$('menu-about').onclick = ()=>{ SFX.tap(); show('ov-about'); };
+$('about-ok').onclick = ()=>{ SFX.tap(); hide('ov-about'); };
 $('menu-exit').onclick = ()=>{ SFX.tap(); show('ov-exit'); };
 $('exit-no').onclick = ()=>hide('ov-exit');
 $('exit-yes').onclick = ()=>{

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恐龍快找 DragonFinder — 上架平台評估報告</title>
+<style>
+  :root{
+    --bg:#fffdf9; --ink:#3b3228; --muted:#8a7d6d; --line:#e8dfd2;
+    --amber:#b45309; --amber-bg:#fff7e8;
+    --green:#15803d; --green-bg:#ecfdf3;
+    --red:#b91c1c; --red-bg:#fef2f2;
+    --blue:#1d4ed8; --blue-bg:#eff6ff;
+    --gray-bg:#f6f5f3;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    line-height:1.7;}
+  .wrap{max-width:1120px;margin:0 auto;padding:24px 18px 80px;}
+  header.hero{background:linear-gradient(135deg,#78350f,#b45309 55%,#f59e0b);
+    color:#fff;border-radius:18px;padding:34px 30px;margin-bottom:26px;
+    box-shadow:0 10px 30px rgba(180,83,9,.25);}
+  header.hero h1{margin:0 0 10px;font-size:1.75rem;letter-spacing:.5px;}
+  header.hero p{margin:5px 0;opacity:.96;}
+  header.hero .meta{font-size:.85rem;opacity:.85;margin-top:14px;border-top:1px solid rgba(255,255,255,.3);padding-top:10px;}
+  h2{font-size:1.3rem;color:var(--amber);border-bottom:2px solid var(--line);
+    padding-bottom:8px;margin:44px 0 14px;}
+  h3{font-size:1.08rem;margin:24px 0 8px;color:#78350f;}
+  h4{font-size:.98rem;margin:16px 0 6px;}
+  p{margin:8px 0;}
+  ul,ol{margin:8px 0 8px 4px;padding-left:22px;}
+  li{margin:5px 0;}
+  code{background:var(--gray-bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:.9em;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .card b{display:block;margin-bottom:5px;color:var(--amber);}
+  .note{background:var(--amber-bg);border:1px solid #fde68a;border-left:5px solid var(--amber);
+    border-radius:10px;padding:12px 16px;margin:14px 0;}
+  .good{background:var(--green-bg);border:1px solid #bbf7d0;border-left:5px solid var(--green);
+    border-radius:10px;padding:12px 16px;margin:14px 0;}
+  .risk{background:var(--red-bg);border:1px solid #fecaca;border-left:5px solid var(--red);
+    border-radius:10px;padding:12px 16px;margin:14px 0;}
+  .note b,.good b,.risk b{display:block;margin-bottom:4px;}
+  .good b{color:var(--green);} .risk b{color:var(--red);} .note b{color:var(--amber);}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:14px 0;background:#fff;}
+  table{border-collapse:collapse;width:100%;min-width:820px;font-size:.93rem;}
+  th{background:var(--amber-bg);color:var(--amber);text-align:left;
+    padding:10px 12px;border-bottom:2px solid #fde68a;white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:#fffaf2;}
+  td.name{font-weight:700;white-space:nowrap;}
+  .badge{display:inline-block;border-radius:999px;padding:1px 11px;font-size:.82rem;font-weight:700;white-space:nowrap;}
+  .b-go{background:var(--green-bg);color:var(--green);border:1px solid #bbf7d0;}
+  .b-mid{background:var(--amber-bg);color:var(--amber);border:1px solid #fde68a;}
+  .b-no{background:var(--red-bg);color:var(--red);border:1px solid #fecaca;}
+  .b-info{background:var(--blue-bg);color:var(--blue);border:1px solid #bfdbfe;}
+  .tier{background:#78350f;color:#fff;font-size:.92rem;padding:6px 13px;letter-spacing:1px;border-radius:8px 8px 0 0;display:inline-block;}
+  .stars{font-weight:700;color:var(--amber);letter-spacing:1px;white-space:nowrap;}
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:.85rem;color:var(--muted);}
+  a{color:var(--blue);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>⚡ 恐龍快找 DragonFinder — 上架平台評估報告</h1>
+  <p>題目：如果想把遊戲上架，哪些平台合適？</p>
+  <p>結論：先走「零移植成本」的網頁平台（itch.io → CrazyGames → GitHub Pages/PWA），有數據後再談 Poki；原生商店只建議先做 Google Play；中國大陸渠道本階段不建議。</p>
+  <div class="meta">
+    版本：v1.9.17　|　產出日期：2026-10-17　|　前份相關報告：<code>appstore_publish_report.html</code>（Google Play / App Store 準備清單，本報告不重複其 44 項細項，只做「平台選擇」決策）
+  </div>
+</header>
+
+<h2>一、一句話結論</h2>
+<div class="good">
+  <b>最合適的路徑</b>
+  本作是<strong>純靜態 HTML/CSS/JS、無建置步驟、總載入約 25MB、進度存 localStorage</strong> 的網頁遊戲，
+  所以「網頁遊戲平台」的移植成本是 <strong>0</strong>，而「原生商店」需要包裝、費用與審核，「中國小遊戲/安卓渠道」需要<strong>重寫渲染層＋版號資質</strong>。
+  因此優先順序是：<strong>itch.io（今天就可上）→ CrazyGames / GameDistribution（接 SDK 換流量）→ GitHub Pages 補 PWA（可安裝、也是 Play 上架前提）→ Google Play（US$25）</strong>；
+  App Store 只在有 Mac 且願意為審核做原生化增強時才做；Steam、微信/抖音小遊戲、中國安卓商店本階段不建議。
+</div>
+
+<h2>二、現況盤點（決策依據的技術事實）</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>項目</th><th>現況</th><th>對上架的意義</th></tr>
+  <tr><td class="name">技術棧</td><td>單頁靜態網頁：<code>index.html</code> + <code>css/</code> + <code>js/</code>，<strong>無任何相依套件、無建置步驟</strong></td><td>網頁平台可直接打包上傳；原生商店可用 WebView 包裝</td></tr>
+  <tr><td class="name">UI 渲染方式</td><td><strong>DOM + CSS</strong>（非 canvas / WebGL），含影片、字型、CSS 動畫</td><td>瀏覽器 iframe 與 WebView 都能跑；<strong>但微信/抖音小遊戲沒有 DOM，等於要重寫</strong></td></tr>
+  <tr><td class="name">實際出貨體積</td><td>約 <strong>25MB</strong>：恐龍圖 4.7MB（139 張 webp）、地圖 3MB、字型 0.66MB、<code>game.mp4</code> 2.4MB、<code>story_lv4_720p.mp4</code> 13MB、JS/CSS 約 0.7MB</td><td>遠低於所有平台的體積上限；但 13MB 劇情影片是<strong>首次載入時間</strong>的最大變數</td></tr>
+  <tr><td class="name">存檔</td><td>瀏覽器 <code>localStorage</code>（<code>dinodoku-*</code>），無伺服器、無帳號</td><td>隱私政策容易寫（不蒐集個資）；但換裝置不同步，是商店評論的常見扣分點</td></tr>
+  <tr><td class="name">目前发布狀態</td><td>已上線 GitHub Pages：<code>https://hungmin368.github.io/df/</code></td><td>「已經有一个可公開遊玩的網址」= 所有網頁平台的投稿門檻都满足了</td></tr>
+  <tr><td class="name">PWA 就緒度</td><td><strong>沒有</strong> <code>manifest.json</code>、<strong>沒有</strong> service worker</td><td>目前手機不能「安裝到主畫面」；<strong>也是 TWA 方式上 Google Play 的前提</strong></td></tr>
+  <tr><td class="name">語言</td><td>玩家介面<strong>只有繁體中文</strong>（另有 <code>english_mode_assessment_report.html</code> 評估過英文模式）</td><td>繁中利基市場很精準；但 Poki / CrazyGames 的流量以歐美英語為主，<strong>沒有英文會明顯压低留存與分成收入</strong></td></tr>
+  <tr><td class="name">字型授權</td><td><code>Huninn.woff2</code>（jf open 粉圓）與 <code>Iansui.woff2</code>（粉圓）皆為 justfont 開源字型，可商用與重散布</td><td>不是阻礙；但重散布時<strong>需在包內附上授權文字（OFL 類）</strong></td></tr>
+  <tr><td class="name">素材來源</td><td>AI 生成（Gemini 圖像模型）+ 自行後製；详见 <code>appstore_publish_report.html</code> 的「素材來源盤點」</td><td>各商店對 AI 生成素材的揭露要求不同，<strong>Google Play 與 Steam 都要求在表單中揭露</strong></td></tr>
+</table>
+</div>
+
+<h2>三、平台總表（三梯隊）</h2>
+
+<div class="tier">第一梯隊 — 零／低移植成本，建议立刻做</div>
+<div class="tbl-wrap">
+<table>
+  <tr><th>平台</th><th>移植成本</th><th>費用</th><th>分成／收入</th><th>審核</th><th>流量</th><th>適合度</th><th>關鍵限制</th></tr>
+  <tr>
+    <td class="name">itch.io</td>
+    <td>零（上傳 zip，瀏覽器直接玩）</td><td>免費</td>
+    <td>分成比例自己設（可 0%），支援打賞／自訂定價</td>
+    <td>自助，几乎即时</td><td>小～中（獨立遊戲社群）</td>
+    <td class="stars">★★★★★</td>
+    <td>自然流量有限；適合当「官方可玩頁 + 作品集 + 收反馈」</td>
+  </tr>
+  <tr>
+    <td class="name">GitHub Pages<br>（已上線）+ PWA</td>
+    <td>低（补 manifest + service worker + 圖標）</td><td>免費</td>
+    <td>無（自有渠道）</td><td>無</td><td>靠自己導流</td>
+    <td class="stars">★★★★★</td>
+    <td>补 PWA 後手機可「安裝到主畫面」，也是 TWA 上 Play 的前提</td>
+  </tr>
+  <tr>
+    <td class="name">CrazyGames</td>
+    <td>低～中（接官方 SDK：載入完成、廣告、遊戲開始/結束事件）</td><td>免費</td>
+    <td>廣告收入分成（開發者約五成上下，依合約）</td>
+    <td>人工審核，重視品質與載入速度</td><td><strong>大</strong></td>
+    <td class="stars">★★★★☆</td>
+    <td>要用它的廣告就必須接 SDK；對首次載入時間敏感</td>
+  </tr>
+  <tr>
+    <td class="name">GameDistribution /<br>GameMonetize / GamePix</td>
+    <td>低（接 SDK）</td><td>免費</td>
+    <td>約 <strong>45%</strong> 廣告分成</td>
+    <td>門檻低</td><td>聚合到上千個小遊戲站，單站小、總量可觀</td>
+    <td class="stars">★★★★☆</td>
+    <td>非獨家、可同時上多家；單價低，屬於「量」的生意</td>
+  </tr>
+  <tr>
+    <td class="name">Newgrounds</td>
+    <td>零</td><td>免費</td><td>廣告分成（小額）</td>
+    <td>社群審核</td><td>中（歐美獨立社群）</td>
+    <td class="stars">★★★☆☆</td>
+    <td>適合曝光與收反馈；對繁中介面較不友善</td>
+  </tr>
+</table>
+</div>
+
+<div class="tier">第二梯隊 — 原生商店：需要包裝、費用與審核</div>
+<div class="tbl-wrap">
+<table>
+  <tr><th>平台</th><th>移植成本</th><th>費用</th><th>審核難點</th><th>流量</th><th>適合度</th><th>關鍵限制</th></tr>
+  <tr>
+    <td class="name">Google Play</td>
+    <td>中（Capacitor 包裝，或先做 PWA 再走 TWA / Bubblewrap）</td>
+    <td><strong>US$25 一次性</strong></td>
+    <td>個人帳號（2023-11-13 之後建立）必須先跑<strong>封閉測試：12 名測試者、連續 14 天</strong>，才能解鎖正式上架</td>
+    <td>大（但需要 ASO 與買量）</td>
+    <td class="stars">★★★★☆</td>
+    <td>WebView 內<strong>不能用 AdSense</strong>，廣告要接 AdMob；需內容分級、隱私政策、AI 素材揭露</td>
+  </tr>
+  <tr>
+    <td class="name">Microsoft Store</td>
+    <td>低～中（PWA 上架，或 Tauri / Electron 包）</td>
+    <td><strong>個人開發者註冊已免費</strong>（原本 US$19）</td>
+    <td>相對寬鬆</td><td>小</td>
+    <td class="stars">★★★☆☆</td>
+    <td>成本幾乎為零，適合「順手多一個渠道」，但別期待流量</td>
+  </tr>
+  <tr>
+    <td class="name">Apple App Store</td>
+    <td>中高（Capacitor + <strong>必須有 Mac 與 Xcode</strong> 才能簽章上傳）</td>
+    <td><strong>US$99／年</strong></td>
+    <td><strong>Guideline 4.2「最低功能性」</strong>：純 WebView 套殼很容易被判定為「只是網站」而拒審</td>
+    <td>大，且付费意愿高</td>
+    <td class="stars">★★☆☆☆</td>
+    <td>要嘛加原生能力（離線包、原圖通知、Game Center、原生導覽列），要嘛先不做</td>
+  </tr>
+  <tr>
+    <td class="name">Amazon Appstore</td>
+    <td>中（同 Android 包重簽）</td><td>免費</td>
+    <td>寬鬆</td><td>小（Fire 裝置為主）</td>
+    <td class="stars">★★☆☆☆</td>
+    <td>做完 Google Play 後順手上，邊際成本低</td>
+  </tr>
+  <tr>
+    <td class="name">Steam</td>
+    <td>中高（Tauri / Electron 打包 + Steamworks 整合：成就、雲存檔）</td>
+    <td><strong>US$100／款</strong>（營收達門檻可退還）</td>
+    <td>審核不難，但玩家期待高</td><td>大，但對「網頁小遊戲」轉換差</td>
+    <td class="stars">★☆☆☆☆</td>
+    <td>Steam 玩家對純網頁包裝、無原生成就/雲存檔的作品普遍給負評；<strong>不建議現階段投入</strong></td>
+  </tr>
+</table>
+</div>
+
+<div class="tier">第三梯隊 — 中國大陸渠道：資質與重寫雙重門檻，本階段不建議</div>
+<div class="tbl-wrap">
+<table>
+  <tr><th>平台</th><th>移植成本</th><th>資質要求</th><th>適合度</th><th>為什麼不建議</th></tr>
+  <tr>
+    <td class="name">微信小遊戲</td>
+    <td><strong>高（重寫）</strong></td>
+    <td>需<strong>軟件著作權（軟著）</strong>；若要開<strong>虛擬支付／IAP，還必須有版號</strong>，官方文件未免除個人主體的這兩項要求</td>
+    <td class="stars">★☆☆☆☆</td>
+    <td>①小遊戲環境<strong>沒有 DOM</strong>，本作的 DOM+CSS 介面要改成 canvas 渲染，等於重做整個 UI 層；②版號對個人幾乎不可得。若只做廣告變現、不做 IAP，有「免版號」的個人主體路線，但政策需逐次向官方確認</td>
+  </tr>
+  <tr>
+    <td class="name">抖音小遊戲</td>
+    <td>高（重寫）</td><td>軟著 +（變現時）版號</td>
+    <td class="stars">★☆☆☆☆</td><td>同上</td>
+  </tr>
+  <tr>
+    <td class="name">華為 / 小米 / OPPO / vivo / 應用寶</td>
+    <td>中（Android 包重簽）</td>
+    <td><strong>遊戲類目普遍要求版號 + 軟著</strong></td>
+    <td class="stars">★☆☆☆☆</td>
+    <td>個人開發者拿不到版號；把遊戲偽裝成「工具類應用」上架有被下架與封號的風險，不建議</td>
+  </tr>
+</table>
+</div>
+
+<h2>四、重點平台詳評</h2>
+
+<h3>itch.io — 今天就該上，成本為零</h3>
+<p>自助上傳、不需 SDK、可設定「瀏覽器內直接遊玩」。把專案壓成 zip（只放 <code>index.html</code>、<code>css/</code>、<code>js/</code>、<code>assets/</code> 中實際被引用的檔案，<strong>不要把 <code>assets/dinos_2/</code> 那 461MB 素材工作區放進去</strong>）即可。</p>
+<ul>
+  <li>價值：一個比 GitHub Pages 更像「產品頁」的公開網址，可放截圖、說明、更新日誌，並開啟留言收反馈。</li>
+  <li>定價：可選免費 + 打賞，或自訂分成比例（含 0%）。繁中利基遊戲在這裡通常量不大，但零成本。</li>
+  <li>注意：<code>file://</code> 與跨域限制不同，上傳前用靜態伺服器完整跑一輪（影片、字型、恐龍圖、存檔）。</li>
+</ul>
+
+<h3>CrazyGames — 性價比最高的流量來源</h3>
+<p>接受 HTML5／JS 遊戲，流量在網頁遊戲平台中属第一梯隊。要吃到廣告分成就得接官方 SDK，並在程式中打出幾個事件：<em>載入完成</em>、<em>請求廣告（關卡間）</em>、<em>gameplayStart / gameplayStop</em>（讓它在遊玩中不要播廣告、並正確計時）。</p>
+<ul>
+  <li>本作的接法：在關卡／塔關結算畫面之間插入「商業廣告」節點，是最自然的置入位置。</li>
+  <li>審核看重的點：載入速度、可玩性、行動端操作。<strong>13MB 的 <code>story_lv4_720p.mp4</code> 建議改成延後載入或可略過</strong>，否則首次載入會被扣分。</li>
+  <li>語言：平台流量以英語為主，<strong>沒有英文版會明顯压低平均遊玩時長</strong>，也就压低廣告收入。</li>
+</ul>
+
+<h3>Poki — 流量最大，但代價是合約</h3>
+<p>Poki 提供兩種合作型態：<strong>網頁獨家（web-exclusive，約 5 年合約）</strong>與<strong>非獨家</strong>，兩者都是收入分成，且<strong>必須整合 Poki SDK</strong>。</p>
+<div class="note">
+  <b>決策提醒</b>
+  獨家條款會擋掉你自己網站與其他平台的收入。建議：<strong>先用 CrazyGames / GameDistribution 的非獨家渠道跑出真實數據（留存、平均遊玩時長）</strong>，
+  等手上有了數字，再評估 Poki 的獨家條件值不值得。不要在沒有數據時就簽長期獨家。
+</div>
+
+<h3>GitHub Pages + PWA — 你已經有的一半</h3>
+<p>目前缺三樣東西就能變成可安裝的 PWA：</p>
+<ol>
+  <li><code>manifest.webmanifest</code>（名稱、短名、<code>display: standalone</code>、主題色、各尺寸圖標 — 已有 <code>app_icon.png</code> 可切）</li>
+  <li>Service worker（把 <code>index.html</code>、<code>css/</code>、<code>js/</code>、<code>assets/dinos/</code>、字型做成<strong>預快取離線包</strong>；兩段影片用「執行期快取」或干脆不快取）</li>
+  <li>HTTPS（GitHub Pages 已具備）</li>
+</ol>
+<p>好處是雙重的：手機用戶可以「安裝到主畫面」得到近似原生 App 的體驗；而且<strong>TWA（Trusted Web Activity）是上 Google Play 成本最低的路線</strong>，前提就是先有合格的 PWA。</p>
+
+<h3>Google Play — 原生商店裡唯一建議先做的</h3>
+<ul>
+  <li>費用只有 US$25 一次性，且 Android 的 WebView 對 DOM 遊戲支援良好，Capacitor 或 TWA 都能包裝。</li>
+  <li><strong>時程瓶頸是測試要求，不是技術</strong>：個人帳號需先建立封閉測試軌道，湊到 <strong>12 名測試者並持續 14 天</strong>，才能申請正式版。請把這 14 天排進時程，別以為打包完就能上。</li>
+  <li>廣告：WebView 內不能放 AdSense，要接 AdMob（Capacitor 有官方插件）。</li>
+  <li>文件：隱私政策網址（本作不蒐集個資，內容可以很短，但必須有）、內容分級問卷、AI 生成素材揭露。</li>
+  <li>細項工作請照 <code>appstore_publish_report.html</code> 的 01–44 清單執行，本報告不重複。</li>
+</ul>
+
+<h3>Apple App Store — 建議晚一點，或先不做</h3>
+<div class="risk">
+  <b>最大風險：Guideline 4.2（最低功能性）</b>
+  把靜態網頁用 Capacitor／WebView 套殼送上 App Store，<strong>被判定為「只是把網站包起來」而拒審的機率很高</strong>。
+  另外還需要 Mac + Xcode 才能簽章，以及 US$99／年。
+  若要上，先補：完整離線包、原生啟動畫面與圖標規範、至少一項「只有原生才有」的能力（例如原生通知、Game Center、或把 UI 改成原生導覽）。
+</div>
+
+<h2>五、不分平台都要先做的共同前置工作</h2>
+<div class="cards">
+  <div class="card"><b>1. 出货包瘦身</b>只包實際被引用的檔案。<code>assets/dinos_2/</code>（461MB，含生成中間檔與 log）、<code>js/*.bak*</code>、<code>tmp_*.mjs</code>、各 <code>*_report.html</code> 一律排除。</div>
+  <div class="card"><b>2. 載入效能</b>13MB 劇情影片延後載入或可略過；<code>map.png</code>（3MB）考慮切片或降解析；139 張恐龍圖改 lazy-load。</div>
+  <div class="card"><b>3. PWA 三件套</b>manifest + service worker + 多尺寸圖標（192/512、maskable）。</div>
+  <div class="card"><b>4. 隱私政策 / 服務條款</b>兩個公開網址。內容重點：無帳號、無伺服器、進度只存本機 localStorage、廣告由第三方平台 SDK 提供。</div>
+  <div class="card"><b>5. 授權文件</b>字型（jf open 粉圓 / 粉圓）的 OFL 授權文字放進出貨包；AI 素材的生成與後製說明留檔，商店表單會問。</div>
+  <div class="card"><b>6. 商店素材</b>圖標（512）、各平台尺寸截圖（手機 + 桌面）、一段 15–30 秒影片、簡短與完整描述。</div>
+  <div class="card"><b>7. 語言策略</b>決定是否做英文介面。若目標是國際網頁平台，英文模式的優先級應該提高（已有 <code>english_mode_assessment_report.html</code>）。</div>
+  <div class="card"><b>8. 廣告節點設計</b>先規劃「關卡間插頁廣告」的位置，這決定了 SDK 要插在哪幾行，也決定收入。</div>
+</div>
+
+<h2>六、建議啟動順序</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>階段</th><th>動作</th><th>預估投入</th><th>現金成本</th></tr>
+  <tr><td>1</td><td>本周</td><td>出货包瘦身 + 用靜態伺服器跑完整迴歸（影片／字型／存檔／手機版）</td><td>0.5–1 天</td><td>0</td></tr>
+  <tr><td>2</td><td>本周</td><td>補 PWA（manifest + service worker + 圖標），GitHub Pages 驗證可安裝、可離線</td><td>1 天</td><td>0</td></tr>
+  <tr><td>3</td><td>本周</td><td>上架 itch.io（含截圖、說明、更新日誌），並在页面導回官方網址</td><td>0.5 天</td><td>0</td></tr>
+  <tr><td>4</td><td>第 2 週</td><td>投 CrazyGames 與 GameDistribution／GameMonetize（非獨家），接 SDK 與廣告節點</td><td>2–3 天</td><td>0</td></tr>
+  <tr><td>5</td><td>第 2–3 週</td><td>寫好隱私政策／服務條款、內容分級、AI 素材揭露</td><td>0.5 天</td><td>0</td></tr>
+  <tr><td>6</td><td>第 3 週起</td><td>Capacitor 或 TWA 打包 → Google Play 封閉測試（12 人 × 14 天）→ 正式版</td><td>2 天工作 + <strong>14 天等待</strong></td><td>US$25</td></tr>
+  <tr><td>7</td><td>看數據再定</td><td>有留存數據後，評估 Poki（注意獨家條款）與英文介面</td><td>—</td><td>0</td></tr>
+  <tr><td>8</td><td>看數據再定</td><td>Microsoft Store（PWA 上架，註冊免費）、Amazon Appstore（沿用 Android 包）</td><td>0.5 天</td><td>0</td></tr>
+  <tr><td>—</td><td>暫緩</td><td>Apple App Store（需 Mac + 原生化改造 + US$99/年）、Steam（US$100 + 期待落差）、微信/抖音小遊戲與中國安卓商店（重寫 + 版號）</td><td>—</td><td>—</td></tr>
+</table>
+</div>
+
+<h2>七、風險與注意事項</h2>
+<div class="risk">
+  <b>三個最容易踩的坑</b>
+  <ol style="margin-bottom:0">
+    <li><strong>把素材工作區一起出貨。</strong><code>assets/dinos_2/</code> 有 461MB（含生成中間檔、13MB 的 log、影片片段），一旦打包會讓上傳體積暴增 20 倍。出貨包只要約 25MB。</li>
+    <li><strong>低估 Google Play 的 14 天。</strong>個人帳號的封閉測試要求是<strong>日曆時間</strong>，不是工時，排程時要提前兩週啟動。</li>
+    <li><strong>太早簽 Poki 獨家。</strong>獨家會關掉自己網站與其他平台的收入；先拿非獨家渠道的數據，再談條件。</li>
+  </ol>
+</div>
+<div class="note">
+  <b>政策會變，上架前務必複查</b>
+  本報告的費用與規則以 2026-10 查詢到的公開資料為準（Google Play 個人帳號 12 人 × 14 天、Microsoft Store 個人註冊免費、微信小遊戲 IAP 需版號 + 軟著）。
+  這些門檻各家常在調整，<strong>正式送審前請到各平台官方開發者文件再確認一次</strong>。
+</div>
+
+<h2>八、參考來源</h2>
+<ul>
+  <li><a href="https://www.bountyboard.gg/blog/how-to-submit-an-html5-game-to-web-platforms">How to Submit an HTML5 Game to Web Game Platforms — Bounty Board</a></li>
+  <li><a href="https://www.bountyboard.gg/blog/best-web-game-platforms-for-indie-developers">Best Web Game Platforms for Indie Developers — Bounty Board</a></li>
+  <li><a href="https://developers.poki.com/guide/revenue-deal-types">How we partner with you — Poki Documentation（獨家／非獨家方案）</a></li>
+  <li><a href="https://developer.crazygames.com/">CrazyGames Developer Portal</a></li>
+  <li><a href="https://gamedistribution.com/">GameDistribution</a></li>
+  <li><a href="https://www.testerscommunity.com/blog/google-play-12-testers-policy">Google Play 12 Testers Policy Explained (2026)</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/apps/publish/whats-new-individual-developer">Free developer registration for individual developers — Microsoft Learn</a></li>
+  <li><a href="https://developers.weixin.qq.com/minigame/introduction/guide/zzsh-iap.html">小遊戲接入指南／資質審核-IAP — 微信開放社區</a></li>
+  <li><a href="https://zhuanlan.zhihu.com/p/2078517342133281890">免版號！Unity 微信小遊戲個人主體接入發布全流程（政策需再向官方確認）</a></li>
+  <li><a href="https://github.com/justfont/open-huninn-font">justfont/open-huninn-font（jf open 粉圓，開源可商用）</a></li>
+  <li><a href="https://justfont.com/huninn/">open 粉圓 — justfont</a></li>
+</ul>
+
+<footer>
+  恐龍快找 DragonFinder v1.9.17　|　上架平台評估報告　|　產出日期 2026-10-17　|
+  相關文件：<code>appstore_publish_report.html</code>（Google Play / App Store 準備清單）、<code>english_mode_assessment_report.html</code>（英文模式評估）、<code>AGENTS.md</code>（專案規範）
+</footer>
+
+</div>
+</body>
+</html>

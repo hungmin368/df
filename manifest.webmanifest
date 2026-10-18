@@ -1,0 +1,17 @@
+{
+  "name": "恐龍快找 DragonFinder",
+  "short_name": "恐龍快找",
+  "description": "在彩色領地中推理隱藏物的位置，捕捉恐龍、收集圖鑑、挑戰龍塔的恐龍解謎遊戲。",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fffdf9",
+  "theme_color": "#fffdf9",
+  "lang": "zh-Hant",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

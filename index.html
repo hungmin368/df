@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#fffdf9">
+<meta name="description" content="在彩色領地中推理隱藏物的位置，用捕捉器找出恐龍——收集 139 隻恐龍圖鑑、解鎖區域故事、挑戰 2000 層龍塔的恐龍解謎遊戲。">
+<meta property="og:title" content="恐龍快找 DragonFinder — 恐龍解謎">
+<meta property="og:description" content="在彩色領地中推理隱藏物的位置，捕捉恐龍、收集圖鑑、挑戰龍塔的恐龍解謎遊戲。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hungmin368.github.io/df/">
+<meta property="og:image" content="https://hungmin368.github.io/df/app_icon.png">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <title>恐龍快找 DragonFinder v1.9.17 — 恐龍解謎</title>
 <link rel="stylesheet" href="css/fonts.css?v=1.9.17">
 <link rel="stylesheet" href="css/style.css?v=1.9.17">
@@ -12,7 +23,7 @@
 <body class="splash-on intro-video-on">
 
 <div id="intro-video">
-  <video id="intro-vid" src="assets/game.mp4" preload="auto" playsinline disablepictureinpicture></video>
+  <video id="intro-vid" src="assets/game.mp4" preload="metadata" playsinline disablepictureinpicture></video>
   <div class="iv-btns">
     <button class="btn btn-ghost" id="intro-sound" style="display:none">🔇 開啟聲音</button>
     <button class="btn btn-ghost" id="intro-skip">跳過 ▶▶</button>
@@ -122,6 +133,7 @@
       <button class="mnav" id="menu-record"><span class="mnav-ic">🏆</span><span class="mnav-tx">戰績</span></button>
       <button class="mnav" id="menu-story"><span class="mnav-ic">🎬</span><span class="mnav-tx">故事</span></button>
       <button class="mnav" id="menu-help"><span class="mnav-ic">❓</span><span class="mnav-tx">玩法</span></button>
+      <button class="mnav" id="menu-about"><span class="mnav-ic">ℹ️</span><span class="mnav-tx">關於</span></button>
       <button class="mnav" id="menu-exit"><span class="mnav-ic">🚪</span><span class="mnav-tx">退出</span></button>
     </div>
 
@@ -172,6 +184,21 @@
       <b>🐉 伴伴（No.000）</b>：遊戲一開始就陪伴你的特殊夥伴，固定為隨行、不會在野外出沒，友好度從 50% 開始。收集 🧪 <b>進化藥水</b>可讓牠進化（2★→🧪×3、3★→🧪×5、4★→🧪×8、5★→🧪×12，最高 5★）：新恐龍加入圖鑑、獎勵小遊戲與寶箱都能獲得藥水。伴伴<b>沒有天生技能</b>；3★ 開啟 2 個空白技能槽、4★ 3 個、5★ 4 個，一樣用 🌌 激發。圖鑑中伴伴永遠在 No.000，星數越高，圖鑑資料越豐富。其它恐龍不可進化。
     </div>
     <div class="btns"><button class="btn btn-primary" id="help-ok">了解了！</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-about" onclick="if(event.target===this)hide('ov-about')">
+  <div class="modal" style="max-width:420px">
+    <h2>ℹ️ 關於</h2>
+    <div class="rules" style="font-size:13px">
+      <b>恐龍快找 DragonFinder</b>　v1.9.17<br>
+      在彩色領地中推理隱藏物的位置，捕捉恐龍、收集圖鑑的解謎遊戲。<br><br>
+      <b>📝 字型授權</b>：本作使用 justfont 開源字型「jf open 粉圓」與「粉圓」（SIL Open Font License），可自由使用與重散布。<br>
+      <b>🎨 美術來源</b>：恐龍圖像與影片由 AI 生成，並經人工挑選與修整。<br>
+      <b>🔏 隱私</b>：不需帳號、無伺服器，遊戲進度只保存在你的裝置上。<br>
+      <b>📋 更新日誌</b>：<a href="https://hungmin368.github.io/df/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a>
+    </div>
+    <div class="btns"><button class="btn btn-primary" id="about-ok">關閉</button></div>
   </div>
 </div>
 
@@ -357,7 +384,15 @@
 </div>
 <script src="js/data.js?v=1.9.17"></script>
 <script src="js/tower.js?v=1.9.17"></script>
+<script src="js/ads.js?v=1.9.17"></script>
 <script src="js/main.js?v=1.9.17"></script>
 <script src="js/tower_comments.js?v=1.9.17"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
 </body>
 </html>

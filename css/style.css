@@ -1171,7 +1171,7 @@ border-radius:7px; box-shadow:0 4px 10px rgba(140,95,35,.4), inset 0 1px 0 rgba(
 
 /* ---------- 主選單：三欄面板 + 底部導航 ---------- */
 .menu-panels{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:14px; align-items:stretch; }
-.menu-nav{ z-index:6; display:grid; grid-template-columns:repeat(5,1fr); gap:6px;
+.menu-nav{ z-index:6; display:grid; grid-template-columns:repeat(6,1fr); gap:6px;
 margin:10px -4px 0; padding:6px 4px 6px;
 background:linear-gradient(180deg,#fffdf6,#f6ead0); border:2px solid #e6d3a8; border-radius:14px;
 box-shadow:0 -6px 18px rgba(90,66,30,.14); }
