@@ -1578,7 +1578,7 @@ function renderDexFull(){
     d.className='dex-cell p3d s'+(p.stars||1)+(dexGot.has(p.id)?' got':'');
     d.id='df-'+p.id;
     const rk=rarityOf(p.id);
-    d.innerHTML='<span class="nb">'+(dexTab==='all'?dexNum(p)+' ':'')+RARITY_NAMES[rk]+'</span><img src="'+p.img+'" alt="'+p.name+'">';
+    d.innerHTML='<span class="nb">'+dexNum(p)+'</span><img src="'+p.img+'" alt="'+p.name+'">';
     d.title=(dexGot.has(p.id)?RARITY_NAMES[rk]+' · '+p.name:'未捕獲 · '+RARITY_NAMES[rk]);
     d.addEventListener('click', ()=>showDexDetail(p));
     grid.appendChild(d);
