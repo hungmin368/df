@@ -2,25 +2,28 @@
    策略：核心檔預快取（安裝時從 index.html 與 data.js 動態收集資產清單）；
    導覽 network-first（離線回退快取），其餘 GET stale-while-revalidate，
    影片（mp4）同 SWR 但跳過 Range 請求以免影響播放定位。 */
-const VERSION = 'v1.9.17';
+const VERSION = 'v1.9.18';
 const CACHE = 'df-' + VERSION;
 
 const CORE = [
   './',
   'index.html',
   'manifest.webmanifest',
-  'css/fonts.css?v=1.9.17',
-  'css/style.css?v=1.9.17',
-  'js/data.js?v=1.9.17',
-  'js/tower.js?v=1.9.17',
-  'js/main.js?v=1.9.17',
-  'js/tower_comments.js?v=1.9.17',
-  'js/ads.js?v=1.9.17',
+  'css/fonts.css?v=1.9.18',
+  'css/style.css?v=1.9.18',
+  'js/data.js?v=1.9.18',
+  'js/tower.js?v=1.9.18',
+  'js/main.js?v=1.9.18',
+  'js/tower_comments.js?v=1.9.18',
+  'js/ads.js?v=1.9.18',
   'assets/fonts/Huninn.woff2',
   'assets/fonts/Iansui.woff2',
   'assets/cursor.png',
   'assets/map.png',
   'assets/dinos_2/game_logo.png',
+  'assets/chests/iron.webp',
+  'assets/chests/gold.webp',
+  'assets/chests/plat.webp',
   'CHANGELOG.md'
 ];
 
@@ -28,7 +31,7 @@ const CORE = [
 async function collectAssets() {
   const found = new Set(CORE);
   const re = /assets\/[A-Za-z0-9_\-./]+?\.(?:webp|png|jpg|svg|woff2)/g;
-  for (const url of ['index.html', 'js/data.js?v=1.9.17', 'css/style.css?v=1.9.17']) {
+  for (const url of ['index.html', 'js/data.js?v=1.9.18', 'css/style.css?v=1.9.18']) {
     try {
       const t = await (await fetch(url, { cache: 'no-cache' })).text();
       for (const m of t.match(re) || []) found.add(m);

@@ -1210,9 +1210,9 @@ function renderBoard(){
     d.className='cell'+(G.cells[i].poke?(' st'+(G.cells[i].poke.stars||1)):'')+(G.cells[i].keyChest?' keyc':'');
     d.style.background = G.colors[G.cells[i].region];
     d.innerHTML = '<span class="mk">✕</span>'
-      +(G.cells[i].chest?'<span class="chesthide">'+chestSvgFor(G.cells[i].chest)+'</span>':'')
+      +(G.cells[i].chest?'<span class="chesthide">'+chestIconFor(G.cells[i].chest)+'</span>':'')
       +(G.cells[i].stone?'<span class="stonehide">🪨</span>':'')
-      +(G.cells[i].keyChest?'<span class="chestshow" title="關鍵寶箱：過關才能開啟">'+chestSvgFor(G.cells[i].chestTier)+'</span>':'')
+      +(G.cells[i].keyChest?'<span class="chestshow" title="關鍵寶箱：過關才能開啟">'+chestIconFor(G.cells[i].chestTier)+'</span>':'')
       +'<span class="catface"><span class="p3d"><img alt="" draggable="false"></span></span>';
     const im=d.querySelector('.catface img');
     if(G.cells[i].poke) im.src = G.cells[i].poke.img;
@@ -2222,27 +2222,10 @@ fragSave();
 function fragOf(id){ return FRAG[id]||0; }
 function ri(a,b){ return a+Math.floor(Math.random()*(b-a+1)); }
 
-/* 透背寶箱：背板半透明，看得到底下格線與盤面色塊 */
-function chestSvgFor(tier){
-  const C = {
-    iron: {bd:'#8d99a6', dk:'#57616c', lt:'#c2ccd6', gl:'rgba(194,204,214,.36)'},
-    gold: {bd:'#eab234', dk:'#9c6d0e', lt:'#ffe08a', gl:'rgba(255,224,138,.38)'},
-    plat: {bd:'#c9d6e2', dk:'#8296a9', lt:'#f2f7fc', gl:'rgba(242,247,252,.46)'},
-  }[tier] || {bd:'#8d99a6', dk:'#57616c', lt:'#c2ccd6', gl:'rgba(194,204,214,.36)'};
-  const spark = tier==='plat' ? '<path d="M14 6 l1.6 3.2 3.2 1.6 -3.2 1.6 -1.6 3.2 -1.6-3.2 -3.2-1.6 3.2-1.6 z" fill="#fff" opacity=".9"/><path d="M51 9 l1.2 2.4 2.4 1.2 -2.4 1.2 -1.2 2.4 -1.2-2.4 -2.4-1.2 2.4-1.2 z" fill="#fff" opacity=".75"/>' : '';
-  return '<svg viewBox="0 0 64 56" aria-hidden="true">'
-    +'<ellipse cx="32" cy="52" rx="23" ry="3.6" fill="rgba(0,0,0,.18)"/>'
-    +'<rect x="9" y="24" width="46" height="22" rx="5" fill="'+C.gl+'" stroke="'+C.lt+'" stroke-width="1.6"/>'
-    +'<path d="M20.3 24v22M32 24v22M43.7 24v22M9 35h46" stroke="rgba(255,255,255,.55)" stroke-width="1.2" fill="none"/>'
-    +'<rect x="5" y="22" width="6" height="26" rx="2.5" fill="'+C.bd+'" stroke="'+C.dk+'" stroke-width="1.2"/>'
-    +'<rect x="53" y="22" width="6" height="26" rx="2.5" fill="'+C.bd+'" stroke="'+C.dk+'" stroke-width="1.2"/>'
-    +'<rect x="5" y="42" width="54" height="7.5" rx="3" fill="'+C.bd+'" stroke="'+C.dk+'" stroke-width="1.2"/>'
-    +'<path d="M6 27 Q6 12 32 12 Q58 12 58 27 Z" fill="'+C.bd+'" stroke="'+C.dk+'" stroke-width="1.4"/>'
-    +'<rect x="5" y="23.5" width="54" height="5" rx="2.5" fill="'+C.dk+'"/>'
-    +'<rect x="28" y="20" width="8" height="10" rx="2" fill="'+C.lt+'" stroke="'+C.dk+'" stroke-width="1.2"/>'
-    +'<circle cx="32" cy="26.5" r="1.6" fill="'+C.dk+'"/>'
-    +spark
-    +'</svg>';
+/* 三階寶箱：Gemini 生成的 3D 玩具質感圖示（鐵箱／黃金寶箱／白金寶箱） */
+function chestIconFor(tier){
+  const t = tier==='gold' || tier==='plat' ? tier : 'iron';
+  return '<img class="chest-img t-'+t+'" src="assets/chests/'+t+'.webp" alt="" draggable="false">';
 }
 
 /* 結算時逐箱抽獎並立刻套用獎勵（之後的動畫只是揭示，避免玩家跳過漏領） */
@@ -2318,8 +2301,9 @@ function chestStripAnimate(list, caught){
   if(!list.length){ if(!(caught&&caught.length)) box.style.display='none'; return; }
   list.forEach((it,k)=>{
     const card = document.createElement('div');
-    card.className = 'chest-card';
-    card.innerHTML = '<div class="chest-ico">'+chestSvgFor(it.tier)+'</div>'
+    card.className = 'chest-card t-'+it.tier;
+    card.innerHTML = '<div class="chest-ico">'+chestIconFor(it.tier)+'</div>'
+      +'<div class="chest-tier">'+CHEST_DEFS[it.tier].n+'</div>'
       +'<div class="chest-prize"><span class="pz-ico">'+it.evt.icon+'</span> <span class="pz-tx '+it.evt.cls+'">'+it.evt.text+'</span></div>';
     box.appendChild(card);
     setTimeout(()=>{ card.classList.add('open'); SFX.bonus(); }, 450+k*620);

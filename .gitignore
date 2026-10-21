@@ -26,3 +26,7 @@ assets/dinos_2/bban_samples/__pycache__/
 assets/dinos_2/bban_samples/*_clips/
 assets/dinos_2/bban_samples/*.log
 assets/dinos_2/bban_samples/*.m4a
+
+# Chest art pipeline intermediates (raw generations / cutouts / masters)
+assets/chests/_raw/
+assets/chests/_master/

@@ -21,6 +21,12 @@ This file provides guidance to the AI agent when working with code in this repos
 - Fun extras (user addition 2026-10-16): each spec row draws one random fun element (`fun_zh/fun_en/fun_kind`) — action kinds (睡覺/吃食物/唱歌/踢腿/飛踢/瑜珈) REPLACE the base pose, mood kinds (搞笑/害羞/膽小/勇敢/粗暴) modify how the pose is performed; 5★ rows draw moods only so the 13-pose hero pool stays intact. Worded to keep the square envelope (squat/sit/curl).
 - Approved Style A example: `assets/dinos_2/bban_samples/gemini_carnotaurus_red.png`. Generation recipe: Gemini image model (`gemini-2.5-flash-image`) with the 伴伴 2-star image flattened to white as the style reference, prompt template in `assets/dinos_2/bban_samples/_gen_gemini_2star_style.py`; post-chain rembg → trim/center → 512×512 RGBA WebP for game tiles (user update 2026-10-16, was 200×200).
 
+## Treasure chest art
+
+- The three chest tiers (iron 鐵箱／gold 黃金寶箱／plat 白金寶箱) are Gemini-generated 3D toy-style images at `assets/chests/<tier>.webp` (256×256 RGBA, transparent), rendered by `chestIconFor()` in `js/main.js`; do not revert them to inline SVG (user decision 2026-10-21).
+- Chest style: same soft satin 3D toy family as Style A (style reference `assets/dinos_2/DFD-000_伴伴_2star.png`); a single CLOSED chest, chunky and squashed (wider than tall), rounded edges, no face/character. Tier language — iron = slate-blue iron plates + walnut wood + plain brass latch; gold = saturated honey-gold + red-brown wood + star gem + filigree; plat = platinum white + ice-blue crystal cluster + aquamarine gem + faint icy glow. Rarity must stay readable at ~50px in board cells.
+- Pipeline: `assets/chests/_gen_chests.py` (Gemini; gold/plat chain the previous tier image as a design-language reference) → `assets/chests/_post_chests.py` (rembg → trim/center with 6% margin → 512 master + 256 WebP q92). Raw/cutout/master intermediates live in `assets/chests/_raw/` and `_master/` (gitignored).
+
 ## HTML reports
 
 - When the user asks for a report (報告), deliver it as a standalone HTML file named `<topic>_report.html` in the repository root (existing convention: `appstore_publish_report.html`); the file should be self-contained and styled for readability.

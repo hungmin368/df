@@ -32,6 +32,9 @@ SINGLE_ASSETS = [
     "assets/game.mp4",
     "assets/story_lv4_720p.mp4",
     "assets/dinos_2/game_logo.png",
+    "assets/chests/iron.webp",
+    "assets/chests/gold.webp",
+    "assets/chests/plat.webp",
 ]
 JS_FILES = ["data.js", "tower.js", "main.js", "tower_comments.js", "ads.js"]
 
