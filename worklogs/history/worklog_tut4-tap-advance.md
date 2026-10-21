@@ -42,4 +42,4 @@
 
 ## 最終狀態
 
-- 完成並驗證通過，交付 commit：見下。
+- 完成並驗證通過，交付 commit：`1843d90`（Advance the 4x4 demo tutorial only when the player taps the screen）。
