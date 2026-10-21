@@ -81,7 +81,7 @@
 
 - `node --check js/main.js` 語法通過。
 - `grep chestSvgFor js/main.js` 已無任何引用。
-- `python build_dist.py` 執行成功：201 檔、28.4 MB、資產引用檢查 `[OK]`，三張寶箱 WebP 皆複製到 `dist/assets/chests/`。
+- `python build_dist.py` 於工作區執行成功：201 檔、28.4 MB、資產引用檢查 `[OK]`，三張寶箱 WebP 皆複製到 `dist/assets/chests/`（工作區同時含其他進行中工作如 privacy.html／haptics.js／iOS 圖示，故檔數較大；提交內容本身的出貨驗證見下方）。
 - `python -m http.server 8765` 起服務，以下皆 HTTP 200：`index.html`、`css/style.css?v=1.9.18`、`js/main.js?v=1.9.18`、三張寶箱 WebP、`sw.js`。
 - 瀏覽器實測：
   - 版本徽章顯示 `v1.9.18`。
@@ -91,15 +91,22 @@
   - 過關結算卡片顯示「鐵箱」「黃金寶箱」「白金寶箱」稀有度標籤與對應底色、光暈，彈開動畫正常。
   - 主控台無遊戲程式錯誤（先前紀錄的錯誤皆為測試注入腳本自身造成，非遊戲程式）。
 - 驗證用臨時預覽頁 `tmp_chest_preview.html` 已刪除。
+- 提交後另以「commit 抽出的暫存副本」（port 8766）驗證提交內容本身：
+  - `python build_dist.py`：181 檔、25.1 MB、`[OK]`；`dist/assets/chests/` 三張 WebP 齊全、`dist/js/` 只有原本 5 支腳本（未混入 haptics.js）、`dist/index.html` 有 7 處 `v=1.9.18`。
+  - HTTP 200：`index.html`、`css/style.css?v=1.9.18`、`js/main.js?v=1.9.18`、三張寶箱 WebP、`sw.js`。
+  - 瀏覽器實測：版本徽章 `v1.9.18`；Service worker 由 `127.0.0.1:8766/sw.js` 控制、快取 `df-v1.9.18` 內含三張寶箱圖；三張圖載入 256×256；以 `renderBoard()` 實際渲染出 `.chesthide`（iron／gold／plat）與 `.chestshow` 關鍵寶箱，挖到的黃金寶箱與帶冰藍光暈的白金關鍵寶箱在盤面上正確顯示；`chestStripAnimate()` 產生的卡片 class／稀有度標籤／圖片皆正確（鐵箱／黃金寶箱／白金寶箱）；教學點擊推進元素 `#tut-tap` 仍在、`haptics.js` 未載入（屬其他未提交工作）；主控台無遊戲程式錯誤。
+  - 驗證完成後已關閉 8765／8766 兩個本機伺服器並刪除暫存副本與暫存腳本。
 
 ### 8. 提交
 
 - 工作區同時存在其他未完成工作的變更（iOS 上架準備、關於頁精簡、觸覺回饋等），為避免混入，採分離式提交：只把寶箱相關內容寫入 git index，其他工作保留在工作區。
-- 交付 commit：提交後回填。
+- 分離式提交作法：`sw.js`／`CHANGELOG.md`／`AGENTS.md`／寶箱 WebP／兩支管線腳本／本 worklog 整檔加入；`index.html`／`css/style.css`／`js/main.js`／`.gitignore`／`build_dist.py` 以 `git show HEAD:` 內容為基底做精確替換後 `git hash-object`／`git update-index` 寫入（`index.html` 依原 blob 保留 CRLF 行尾）。staged diff 已逐檔檢查：`index.html` 只有 11 行版本號更新，並以 grep 驗證未混入 haptics／Capacitor／viewport-fit／關於頁精簡／privacy.html、css 未混入 safe-area／dvh、js 未混入 Hap 呼叫、`.gitignore` 未混入 node_modules／dist、`build_dist.py` 未混入 privacy.html／haptics.js。
+- 提交前對 staged js blob 跑 `node --check` 通過。
+- 交付 commit：`e881e39`（Redesign the three chest tiers with Gemini toy-style art）。
 
 ## 最終狀態
 
 - 新增：`assets/chests/iron.webp`、`gold.webp`、`plat.webp`、`_gen_chests.py`、`_post_chests.py`。
 - 修改：`js/main.js`、`css/style.css`、`index.html`、`sw.js`、`build_dist.py`、`.gitignore`、`CHANGELOG.md`、`AGENTS.md`。
-- 驗證：語法檢查、出貨打包、HTTP 200、Service worker 快取、瀏覽器盤面與結算卡片實測皆通過。
-- 交付 commit：待回填。
+- 驗證：語法檢查、出貨打包、HTTP 200、Service worker 快取、瀏覽器盤面與結算卡片實測皆通過（工作區與提交內容副本各驗一次）。
+- 交付 commit：`e881e39`（Redesign the three chest tiers with Gemini toy-style art）。
