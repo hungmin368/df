@@ -2583,6 +2583,7 @@ function tutShow(html, btnLabel){
 function tutHide(){
   $('dlg').classList.remove('tut');
   $('dlg-tut').classList.remove('show');
+  $('tut-tap').classList.remove('show');
   const t=$('dlg-text'); if(t){ delete t.dataset.lock; delete t.dataset.tut; }
   clearExpect();
   doBuddyChat('準備好了！我們一起找恐龍吧！');
@@ -2649,6 +2650,22 @@ function waitBall(on){
     tutFocus(true);
   });
 }
+let tutTapWaiters=[], tutTapPending=false; /* 示範教學點畫面推進 */
+async function waitTap(){
+  const cue=$('tut-tap');
+  await new Promise(res=>{
+    if(tutTapPending){ tutTapPending=false; res(); return; }
+    tutTapWaiters.push(res);
+    cue.classList.add('show');
+  });
+  cue.classList.remove('show');
+}
+document.addEventListener('pointerdown', ()=>{ /* 示範期間點任意處＝進行下一步；動畫中先點會記住一次 */
+  if(!(G && G.tutorial==='demo' && G.state==='demo')) return;
+  SFX.tap();
+  const w=tutTapWaiters; tutTapWaiters=[];
+  if(w.length) w.forEach(r=>r()); else tutTapPending=true;
+}, true);
 function demoMark(i){ /* 自動 ✕ */
   const c=G.cells[i];
   if(c.mark==='x'||c.revealed) return;
@@ -2703,56 +2720,56 @@ function whyReveal(s){const N=G.N,r=(s/N)|0,c=s%N,rg=G.cells[s].region;const ban
   const ok=()=>tk===demoToken && G && G.tutorial==='demo' && G.state!=='done';
   G.state='demo';
   const N=G.N;
-  const D=2000; /* 每個主步驟間隔 2 秒 */
+  tutTapPending=false; tutTapWaiters=[]; /* 每次進展示範重置點擊緩衝 */
   await sleep(600); if(!ok()) return;
   tutShow('歡迎來到恐龍快找 🎬 我先示範一局，你看著！');
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   tutShow('盤面分成 <b>'+N+' 個顏色區塊</b>，每區剛好藏 <b>1 隻</b>恐龍');
   for(let rg=0; rg<N; rg++){
     tutClearRings();
     const cells=[]; G.cells.forEach((c,i)=>{ if(c.region===rg) cells.push(i); });
     tutRing(cells);
-    await sleep(D); if(!ok()) return;
+    await waitTap(); if(!ok()) return;
   }
   tutClearRings();
   tutShow('每條<b>橫列</b>也各剛好 1 隻');
   tutRing([...Array(N).keys()]);
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   tutClearRings();
   tutShow('每條<b>直欄</b>也一樣');
   tutRing([...Array(N).keys()].map(r=>r*N));
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   tutClearRings();
   tutShow('而且恐龍<b>絕不互相接觸</b>——連斜角都不行！');
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
 
   /* 固定盤秘訣教學（TUT_BOARDS[4]：A=(0,0..2),(1,1)、B=(0,3),(1,2),(1,3)、C 含 (1,0)，解=[1,3,0,2]） */
   const stars=[...G.cats].sort((a,b)=>a-b);
   const s1=stars[0];
   tutShow('💡 <b>秘訣一</b>：第 1、2 列共有 3 種顏色，其中 <b>A、B 兩色完全沒延伸到行外</b>——這兩列的 2 隻名額就是 A、B 的！所以 <b>C 色在這兩列的格子</b>確定沒有恐龍 → ✕');
   tutRing([4]); tutFocus(true);
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   demoMark(4);
   await sleep(900); if(!ok()) return;
   tutShow('💡 <b>秘訣二</b>：<b>B 色是 L 形 3 格</b>——無論恐龍在哪格，同時貼著這 3 格的「L 缺口」都緊鄰牠 → ✕');
   tutClearRings(); tutRing([3,6,7]);
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   tutClearRings(); tutRing([2]);
   await sleep(900); if(!ok()) return;
   demoMark(2);
   await sleep(900); if(!ok()) return;
   tutShow('秘訣排除了 2 格！但每條線都還剩 <b>至少 3 格</b>——還沒有 100% 確定的格子。這時就<b>勇敢先試一格</b>：發光這格若抓到，列＋欄＋周圍八格＋色塊能一口氣確定 <b>8 格</b>（正好半個盤面），收穫非常大！');
   tutClearRings(); tutRing(s1);
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   tutShow('按下<b>捕捉器</b>丟球——就算沒中也有容錯，抓到第一隻就能用秘訣排除一大片！');
   setBallMode(true);
   SFX.ball();
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   tutClearRings(); tutRing(s1);
   doBall(s1);
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   tutShow('🦖 捕獲成功！還會登錄到圖鑑！');
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   await demoEliminate(s1, 420); if(!ok()) return;
   await sleep(600); if(!ok()) return;
 
@@ -2762,9 +2779,9 @@ function whyReveal(s){const N=G.N,r=(s/N)|0,c=s%N,rg=G.cells[s].region;const ban
   if(!G.ballMode) setBallMode(true);
   const s2=stars[1];
   tutClearRings(); tutRing(s2);
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   doBall(s2);
-  await sleep(D); if(!ok()) return;
+  await waitTap(); if(!ok()) return;
   await demoEliminate(s2, 300); if(!ok()) return;
   await sleep(600); if(!ok()) return;
 
@@ -2773,9 +2790,9 @@ function whyReveal(s){const N=G.N,r=(s/N)|0,c=s%N,rg=G.cells[s].region;const ban
     tutShow(f ? '<b>'+f.why+'</b>只剩一個候選格 → 丟球！' : '如法炮製——這格有一隻（'+whyReveal(stars[k])+'）丟球！');
     if(!G.ballMode) setBallMode(true);
     tutClearRings(); tutRing(stars[k]);
-    await sleep(D); if(!ok()) return;
+    await waitTap(); if(!ok()) return;
     doBall(stars[k]);
-    await sleep(D); if(!ok()) return;
+    await waitTap(); if(!ok()) return;
     if(k<stars.length-1){ await demoEliminate(stars[k], 240); if(!ok()) return; }
   }
   tutHide();
