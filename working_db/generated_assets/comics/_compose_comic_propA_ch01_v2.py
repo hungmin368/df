@@ -104,6 +104,28 @@ BUBBLES_BY_PREFIX = {
                dict(kind="round", x=(0.70, 0.99), y0=0.03, tail=(0.52, 0.42),
                     text="分你一半！")],
     },
+    "v6": {
+        # v6 攝影寫真版（Gemini 重跑、P1 連鎖參考鎖角色）。硬規則同 v5：泡身與尾尖不可蓋臉。
+        # v6-P2：男孩蹲在右（臉 x0.42-0.68,y0.10-0.35）、龍A居中低頭嗅（臉 y0.60-0.80）→ 泡貼左上天空，尾垂落雙角間（不觸臉）
+        "P2": [dict(kind="round", x=(0.02, 0.40), y0=0.04, tail=(0.35, 0.57),
+                    text="（嗅嗅……）／亮晶晶的味道！")],
+        # v6-P3：男孩在左（臉 y0.10-0.30）、薩爾塔居中（頭 y0.20-0.42）、龍A右下（嘴 y0.70）→ 泡貼右上天空，尾垂直落下指龍A嘴
+        "P3": [dict(kind="round", x=(0.60, 0.98), y0=0.03, tail=(0.78, 0.70),
+                    text="撿到～／亮晶晶的寶物！")],
+        # v6-P4：男孩居中（臉 y0.10-0.34）、龍A左（臉 y0.45-0.75）、薩爾塔右（嘴 y0.58）→ 「喂——」爆裂泡壓男孩膝、直尾入口；項鍊泡壓右下沙地尾指薩爾塔嘴
+        "P4": [dict(kind="burst", x=(0.37, 0.63), y0=0.68, tail=(0.48, 0.32),
+                    text="喂——那是我們／先發現的！"),
+               dict(kind="round", x=(0.70, 0.98), y0=0.76, tail=(0.645, 0.60),
+                    text="最漂亮的項鍊～")],
+        # v6-P5：男孩中跪（臉 y0.10-0.32）、龍A左（臉 y0.50-0.72）、薩爾塔右、沙堡最右 → 泡壓左下沙地（蓋沙不蓋臉），尾斜上指男孩嘴；寬至 x0.34 讓驚嘆號不換行
+        "P5": [dict(kind="round", x=(0.02, 0.34), y0=0.74, tail=(0.45, 0.33),
+                    text="寶貝一定藏在／最氣派的沙堡裡！")],
+        # v6-P6：男孩側臉滿右半（臉 x0.38-0.68）、龍A肩上（嘴 y0.60）、碎片在手（x0.20-0.42,y0.68-0.90）→ 爆裂泡貼左上天空尾指龍A；分你一半泡貼右側下方（避耳）尾指男孩嘴
+        "P6": [dict(kind="burst", x=(0.02, 0.36), y0=0.03, tail=(0.45, 0.62),
+                    text="耶——挖到了！"),
+               dict(kind="round", x=(0.72, 0.995), y0=0.28, tail=(0.53, 0.52),
+                    text="分你一半！")],
+    },
 }
 CAPTIONS = {
     "P1": dict(x=(0.03, 0.42), y0=0.06, text="傳說中，第一支尋龍探險隊的補給箱，／就沉睡在這片金沙灘——"),
@@ -116,6 +138,12 @@ CAPTIONS_BY_PREFIX = {
         "P6": dict(x=(0.06, 0.94), y0=0.62, text="碎片背面刻著——隊規第一條：／「永遠，把恐龍當朋友。」", plaque=True),
         # v5.1-P1：男孩頭 x0.17-0.29(y0.13起)、伴伴鼻 x0.55起 → 頂帶淨空只有中央 x0.32-0.54（純天空）→ 旁白牌移到中央上空，不蓋帽不切角
         "P1": dict(x=(0.32, 0.54), y0=0.03, text="傳說中，第一支尋龍探險隊的補給箱，／就沉睡在這片金沙灘——"),
+    },
+    # v6-P1：新構圖男孩居中（帽頂 y0.21 易被横幅上緣切）→ 裁切帶上移（vy=0.40）；旁白牌改貼左上空（x0.05-0.42 純海天，避開男孩與海鳥區的臉——無臉）
+    "v6": {
+        "P1": dict(x=(0.05, 0.42), y0=0.04, text="傳說中，第一支尋龍探險隊的補給箱，／就沉睡在這片金沙灘——"),
+        # v6-P6：男孩側臉滿右半、碎片在手（x0.20-0.42,y0.68-0.90）→ 銘牌移到右下男孩下半身（蓋背心下緣/沙，不蓋碎片不蓋臉）
+        "P6": dict(x=(0.46, 0.97), y0=0.80, text="碎片背面刻著——隊規第一條：／「永遠，把恐龍當朋友。」", plaque=True),
     },
 }
 
@@ -135,11 +163,11 @@ def wrap(text, f, max_w, draw):
         lines.append(cur)
     return lines
 
-def cover_crop(im, tw, th):
+def cover_crop(im, tw, th, vy=0.5):
     s = max(tw / im.width, th / im.height)
     im2 = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
     x = (im2.width - tw) // 2
-    y = (im2.height - th) // 2
+    y = int((im2.height - th) * vy)
     return im2.crop((x, y, x + tw, y + th))
 
 def strip_dark_frame(im, thr=60):
@@ -321,7 +349,8 @@ def main():
     # P2/P3 先貼：斜格旋轉畫布的紙色角會向上溢出，P1 最後貼可蓋回淨空（P1 與 P2/P3 無重疊）
     paste_tilted(page, load(2), P2, -2.2)
     paste_parallelogram(page, load(3), P3, P3_SLANT)
-    paste_plain = cover_crop(load(1), P1[2] - P1[0], P1[3] - P1[1])
+    paste_plain = cover_crop(load(1), P1[2] - P1[0], P1[3] - P1[1],
+                             vy=0.40 if PREFIX == "v6" else 0.5)
     page.paste(paste_plain, (P1[0], P1[1]))
     d.rectangle((P1[0], P1[1], P1[2], P1[3]), outline=INK, width=9)
     p4 = cover_crop(load(4), P4[2] - P4[0], P4[3] - P4[1])

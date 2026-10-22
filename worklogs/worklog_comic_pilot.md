@@ -286,3 +286,49 @@
     - commit＋push 至 main；交付 commit：`8ae154c`。
     - 暫存清理：z_*.png 除錯裁圖與 P1 兩版棄圖已刪（_raw 仍 gitignore；r1 備份留 _raw/_v5r1_backup/）。
 
+
+## 第 10 輪：恐龍臉型體型跨格一致性（用戶回饋：「恐龍的臉型體型還是不連貫」）
+
+39. 根因再診斷＋機制探測（進行中）
+    - 審視 v5.1：量化 LOCK 固定了顏色/斑點/角刺數量，但「頭身比、臉型」仍漂移——
+      P1/P5 的龍 A 偏寫實修長吻部，P2/P4/P6 偏 Q 版大頭；薩爾塔頸長比 P3/P4 vs P5/P6 仍不同。
+      判定純文字鎖定已到極限，改用「參考圖驅動生成」。
+    - 盤點可用模型：Gemini 仍 402 無額度；SophNet catalog 探測確認支援
+      `Wan2.6-Edit`（Wan 同族，理論上保油畫風）、`Qwen-Image`（T2I）、`Qwen-Image-Edit`。
+      Edit 模型請求形態：`input.images=[公開URL]`＋裸 input（帶 parameters 會 500/20031）。
+    - 參考圖 URL（已驗證 HTTP 200）：伴伴 2star 遊戲官方圖、薩爾塔龍寶寶 9.webp（GitHub Pages）。
+    - 探測腳本 `_probe_r10_p2.py`：同一 P2 場景跑三候選——
+      ① Wan2.6-Edit＋[伴伴,薩爾塔] 雙參考；② Qwen-Image T2I＋量化 LOCK；③ Qwen-Image＋參考圖。
+    - 結果：待探測腳本執行完畢後判定。
+
+40. 用戶改道（第 11 輪：v6 攝影寫真）＋SophNet 參考圖探測結論（完成）
+    - 探測結果：`Wan2.6-Edit`/`Qwen-Image-Edit`/`Edit-2509` 皆 20030（未佈署，catalog 已變）；
+      `Qwen-Image` T2I 可用但雙參考圖建立逾時（伺服器抓 github.io 圖慢）、
+      單參考圖可建；其輸出偏 3D 卡通渲染且會自創第三角色，非油畫。
+    - 用戶指示：改用 Gemini、風格改「變體 photo：攝影寫真」（85mm 人像鏡、真實男孩、
+      恐龍＝收藏級玩具立於真實沙灘；沿用 _gen_kid_style_variants.py photo 文案），重作 6 格。
+    - 新腳本 `_gen_comic_propA_ch01_v6_photo_gemini.py`：photo 文案＋第 9 輪 canonical LOCK
+      （深紫斑點等量化特徵）＋伴伴2star/薩爾塔9.webp 參考圖每格內嵌；
+      P1 完成後縮圖作第三張連鎖參考餵 P2–P6 強化同男孩同龍。
+    - P2 探針：待結果判定 Gemini 額度是否恢復（此前 402）。
+    - P2 探針結果：Gemini 額度已恢復（gemini-2.5-flash-image 直出，2.2MB）；畫面與用戶附件範例一致
+      （真實男孩＋紫玩具龍嗅彩虹六邊形碎片）。
+
+41. v6 六格生成＋一致性修正（完成）
+    - P1/P3/P4/P5/P6 依序生成（全部 gemini-2.5-flash-image 首發命中）；P2–P6 內嵌第三張參考＝P1 縮圖。
+    - 逐格目視：龍A六格一致（紫身、雙金角、粉橙翼、深紫斑、奶油肚）；男孩同臉同裝。
+    - 問題①：龍B（薩爾塔）LOCK 描述與參考圖（9.webp 灰藍捲尾）不合模——P3/P4 長頸+誤加蝠翼、
+      P5 回到捲尾造型 → 修正 LOCK（石板藍長頸、橙刺、粉耳、明確 NO wings/horns）重跑 P3/P4/P5。
+    - 問題②：P3 重跑仍帶蝠翼 → 再重跑一次移除，三格龍B統一為無翼長頸。
+    - 問題③：P1 初版構圖偏滿版，横幅裁切把男孩頭與龍A下半身切掉 → prompt 加「人物置垂直中帶」
+      約束重跑 P1。
+    - 成本：本輪共 10 次生成（6＋P3/P4/P5 修正＋P3 二次＋P1 構圖）≈ NT$10 內。
+
+42. v6 組版＋驗收＋報告（完成）
+    - 合成器新增 v6 prefix：BUBBLES_BY_PREFIX/CAPTIONS_BY_PREFIX 依新構圖逐格校準（每格註解臉區座標）；
+      cover_crop 加 vy 參數，v6 P1 裁切帶上移 vy=0.40 保住帽頂。
+    - 組版第一版：P1 旁白牌壓男孩帽（新構圖男孩居中）→ 牌移到左上空 x0.05-0.42；
+      P5 泡寬不足致驚嘆號孤行 → 寬度改 x0.34。重組後整頁目視：六格氣泡（含尾尖）零臉部重疊。
+    - 報告 `_build_v6_report.py` → `working_db/reports/comic_v6_photo_report.html`（867KB 自足內嵌）：
+      v5.1↔v6 整頁 before/after、六格分格圖、特徵對照表、氣泡避臉表；本地伺服器＋瀏覽器截圖驗證通過。
+    - commit＋push 至 main；交付 commit：待補記。
