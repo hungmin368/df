@@ -5,6 +5,9 @@
 - 風格：男孩與場景為傳統油畫寫實（可見筆觸），兩隻恐龍維持 3D 玩具光澤跳出畫面。
 - 角色鎖定：無參考圖可餵（Edit 模型會毀風格）→ 伴伴／薩爾塔皆改文字鎖定
   （2026-10-22 四變體測試已驗證 Wan 文字鎖定 4/4 命中）。
+- v5.1（2026-10-22 第 9 輪）：LOCK 升級為量化 CHARACTER SHEET（角數、刺列、翅膜深紫點、
+  薩爾塔頸長＝軀幹長、頭寬＝1/4 軀幹、男孩 10 歲同臉同裝）並置於提示詞末尾加權重；
+  全格固定 seed=7（被拒自動降級）。
 - 尺寸：先試 ratio 對應 size 參數，被拒（500 20031）即降級裸 input（方形，構圖指令
   已要求角色置於中央水平帶，配合組版 cover_crop 中央裁切）。
 
@@ -27,11 +30,14 @@ RAW.mkdir(exist_ok=True)
 
 MODEL = "Wan2.6-T2I"
 RATIO_SIZE = {"21:9": "1792*768", "16:9": "1664*936", "3:2": "1536*1024"}
+SEED = 7  # 全格固定種子，助跨格特徵收斂（被拒則自動降級）
 
 KID = ("a realistic human boy painted in rich traditional media: oil-paint skin with visible brushwork "
-       "texture, realistic human proportions and anatomy, naturally imperfect features, warm painterly "
-       "light on his khaki safari hat, cream sleeveless vest, orange T-shirt, brown shorts, sturdy "
-       "little boots and small green backpack")
+       "texture, realistic human proportions and anatomy, EXACTLY 10 years old (not younger), the SAME "
+       "face in every panel: softly oval face with a rounded chin, short dark-brown hair with straight "
+       "bangs under the hat, big dark-brown eyes, small nose, warm bright smile; wearing the SAME outfit "
+       "in every panel: a khaki safari hat with a dark band, a cream sleeveless explorer vest over an "
+       "orange T-shirt, brown shorts, white socks, sturdy brown boots and a small green backpack")
 
 STYLE = ("Premium illustrated storybook panel painted in rich traditional oil-paint style: the human boy "
          "is painted realistically in expressive oil-paint with visible brush strokes; the two baby "
@@ -42,32 +48,42 @@ STYLE = ("Premium illustrated storybook panel painted in rich traditional oil-pa
          "NO panel borders. ")
 
 LOCK = (
-    "CHARACTER LOCK (strict, from text descriptions): "
-    "Dragon A = a chubby VIVID PURPLE baby dragon with slightly darker purple round spots on "
-    "head/back/haunches, very large round GOLDEN-AMBER eyes with big white specular highlights, TWO thick "
-    "golden-yellow segmented horns on the head plus smaller golden cone spikes along the neck, back and "
-    "tail, large purple bat-style wings whose membranes gradient from magenta-pink at the leading edge to "
-    "warm orange at the trailing edge, dotted with round magenta spots, big PINK inner ears, cream-ivory "
-    "belly plates, chunky golden-yellow claws, and a cheerful open smile showing tiny white fangs and a "
-    "pink tongue; a reptile with a round snout and nostrils - NO human face, NO human ears, NO cheeks. "
-    "Keep Dragon A exactly this design in every panel - identical colors, markings, proportions and face; "
-    "only pose and expression may change. "
-    "Dragon B = a chubby SLATE-GRAY baby long-necked sauropod dinosaur whose tail curls into a tight "
-    "spiral resting against its hip, big round golden-amber eyes with white highlights, small "
-    "golden-yellow cone spikes on the head and along the neck ridge and back, one big PINK inner ear, a "
-    "soft cream-tan underside, tiny golden claws and a gentle smile; when Dragon B stands or holds "
-    "something the spiral tail stays visible against its hip. "
-    "Keep Dragon B exactly this design in every panel. Never recolor or redesign either dragon."
+    "CHARACTER SHEET (binding, identical in every panel - same colors, same proportions, same "
+    "head-to-body ratio, same outfit; ONLY pose, expression and camera angle may change): "
+    "Dragon A = a chubby baby dragon whose head is as wide as its shoulders, on a VIVID PURPLE body "
+    "with slightly darker purple round spots on head, back and haunches; EXACTLY ONE pair of thick "
+    "golden-yellow segmented horns on the head (two horns, no more) plus ONE single row of small golden "
+    "cone spikes running from the brow along the neck, back and tail; very large round GOLDEN-AMBER eyes "
+    "with big white specular highlights; large purple bat-style wings whose membranes gradient from "
+    "magenta-pink at the leading edge to warm orange at the trailing edge and carry ROUND DARK-PURPLE "
+    "spots (never pink, never red); ONE pair of big PINK inner ears; cream-ivory belly plates; chunky "
+    "golden-yellow claws; a cheerful open smile with tiny white fangs and a pink tongue; a reptile with "
+    "a round snout and nostrils - NO human face, NO human ears, NO cheeks. "
+    "Dragon B = a chubby SLATE-GRAY baby sauropod with a neck EXACTLY as long as its torso, held in a "
+    "gentle curve, and a SMALL head whose width is only one quarter of the torso width; big round "
+    "golden-amber eyes with white highlights; ONE single row of small golden-yellow cone spikes from "
+    "the crown down the neck ridge and along the back; ONE pair of big PINK inner ears; a soft cream-tan "
+    "underside; short stubby legs with tiny golden claws; the tail tip curls into ONE tight spiral that "
+    "rests against the hip; a gentle smile. "
+    "Render both dragons and the boy EXACTLY to this sheet in every panel - never recolor, never "
+    "redesign, never change proportions."
 )
 
 PANELS = [
     dict(id=1, ratio="21:9", prompt=(
-        f"Ultra-wide establishing shot of a golden tropical beach at bright morning. {KID} walks along the "
+        f"Ultra-wide establishing shot of a golden tropical beach at bright morning. ONLY TWO characters "
+        f"appear in this panel - the boy and Dragon A - absolutely no other dragons, no sauropod, no "
+        f"Dragon B, no other characters anywhere in the frame. {KID} walks along the "
         f"shoreline toward an old shipwrecked wooden supply crate half-buried in the sand, reinforced with "
         f"iron straps and faded rainbow paint, a faint mysterious glint on its lid. Dragon A trots happily "
         f"beside the kid, tail up. Turquoise waves, palm trees, seabirds. Three-quarter back view, strong "
-        f"sense of adventure. Keep both characters and the crate fully inside the central horizontal band "
-        f"of the frame.")),
+        f"sense of adventure. IMPORTANT compositional constraint: the boy, Dragon A and the supply crate "
+        f"must ALL sit in the LOWER-CENTER of the frame (a wide horizontal band across the lower-middle, "
+        f"just around and below the sea-sand horizon line) - the boy left-of-center, the crate between him "
+        f"and Dragon A, Dragon A right-of-center, all clearly below the vertical midpoint of the image; "
+        f"the ENTIRE upper third of the frame must be only empty blue sky with soft clouds and distant "
+        f"tiny seabirds - absolutely no characters, no crate, no palm crowns in the upper third; only "
+        f"empty golden sand fills the narrow strip below the characters' feet.")),
     dict(id=2, ratio="3:2", prompt=(
         f"Close-up discovery beat. ONLY TWO characters appear in this panel - the boy and Dragon A - "
         f"absolutely no other dragons, no other characters, no photobombers anywhere in the frame. "
@@ -79,9 +95,9 @@ PANELS = [
     dict(id=3, ratio="16:9", prompt=(
         f"Dramatic low-angle beat on the beach. ONLY ONE character appears in this panel - Dragon B "
         f"completely alone, no other dragons, no other characters, no boy, nothing else alive in the frame. "
-        f"Dragon B is a LONG-NECKED sauropod baby: its long slender neck is stretched UPWARD and held high "
-        f"with the small head raised high above its back, not short, not tucked down. It stands proudly on "
-        f"a driftwood log, holding the RAINBOW-COLORED HEXAGONAL crystal shard up between its tiny front "
+        f"Dragon B stands tall and proud on a driftwood log, its neck (exactly as long as its torso) "
+        f"stretched upward and held high so the small head is raised high above its back, not tucked down. "
+        f"It holds the RAINBOW-COLORED HEXAGONAL crystal shard up between its tiny front "
         f"paws like a trophy, chin raised, smug delighted smile, its spiral-coiled tail visible against its "
         f"hip. Sunbeams and sparkle effects around the shard, sand dunes and turquoise sea behind, "
         f"shonen-style heroic framing.")),
@@ -94,7 +110,9 @@ PANELS = [
         f"central horizontal band of the frame.")),
     dict(id=5, ratio="16:9", prompt=(
         f"Determination beat. {KID} kneels drawing a big circle-and-arrow plan in the sand with a stick, "
-        f"confident grin, pointing at a BIG impressive sandcastle nearby; Dragon A leans in on one side "
+        f"confident grin, pointing at a BIG impressive multi-towered SANDCASTLE with towers, arches and a "
+        f"small flag that stands prominently in the mid-ground right beside them (the sandcastle is a key "
+        f"story element and must be clearly visible, not omitted); Dragon A leans in on one side "
         f"with a pumped fist, Dragon B leans in from the other side, both fired up with tiny flame-like "
         f"determination sparks in their eyes; the faint glow of a rainbow crystal tip pokes out of a sand "
         f"mound beside the sandcastle. Warm mid-morning light, dynamic shonen framing.")),
@@ -111,7 +129,7 @@ PANELS = [
 ]
 
 NEGATIVE = ("文字, 數字, 浮水印, 簽名, 對話泡泡, 漫畫分格邊框, 模糊, 低解析度, 變形, 多餘的肢體, "
-            "拟人化恐龙, 恐龙人脸, 恐龙长出人类耳朵, 塑膠感, 硬塑料光澤")
+            "拟人化恐龙, 恐龙人脸, 恐龙长出人类耳朵, 塑膠感, 硬塑料光澤, 多餘的角, 變色的身體")
 
 HDRS = {
     "Content-Type": "application/json",
@@ -169,11 +187,15 @@ def gen(p) -> bool:
     if out.exists() and out.stat().st_size > 10000:
         print(f"p{pid}: exists, skip")
         return True
-    prompt = f"{STYLE} {LOCK} {p['prompt']}"
+    prompt = f"{STYLE} {p['prompt']} {LOCK}"
     size = RATIO_SIZE.get(p["ratio"])
     inp = {"prompt": prompt, "negative_prompt": NEGATIVE}
-    # 先試帶 size 參數（21:9/16:9/3:2），被拒即降級裸 input（方形輸出）
-    body_shapes = [{"model": MODEL, "input": dict(inp), "parameters": {"size": size}}] if size else []
+    # 依序嘗試：size+seed（固定種子助跨格收斂）→ size → 裸 input
+    body_shapes = []
+    if size:
+        body_shapes.append({"model": MODEL, "input": dict(inp),
+                            "parameters": {"size": size, "seed": SEED}})
+        body_shapes.append({"model": MODEL, "input": dict(inp), "parameters": {"size": size}})
     body_shapes.append({"model": MODEL, "input": dict(inp)})
 
     task_id = None
@@ -192,7 +214,8 @@ def gen(p) -> bool:
             tid = find_task_id(created)
             if tid and not created.get("error"):
                 task_id = tid
-                print(f"p{pid}: task {tid} created (size={bool(body.get('parameters'))})")
+                pm = body.get("parameters") or {}
+                print(f"p{pid}: task {tid} created (size={bool(pm.get('size'))}, seed={pm.get('seed')})")
                 break
             print(f"p{pid}: {json.dumps(created, ensure_ascii=False)[:200]}")
         if task_id:
