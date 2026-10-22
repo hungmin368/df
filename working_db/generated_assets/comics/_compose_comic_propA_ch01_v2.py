@@ -81,11 +81,38 @@ BUBBLES_BY_PREFIX = {
         # v3-P5 尾尖從沙堡改指男孩
         "P5": [dict(kind="round", x=(0.42, 0.97), y0=0.05, tail=(0.31, 0.37),
                     text="寶貝一定藏在／最氣派的沙堡裡！")],
-    }
+    },
+    "v5": {
+        # v5 硬規則：對話框（含尾）不可重疊任何角色臉；以下依各格臉位校準
+        # v5-P2：男孩臉在右上(x0.62-0.85,y0.08-0.35)、伴伴大頭中央(y0.42起) → 泡貼左上空檔，尾從左上落到伴伴雙眼間
+        "P2": [dict(kind="round", x=(0.02, 0.48), y0=0.03, tail=(0.63, 0.58),
+                    text="（嗅嗅……）／亮晶晶的味道！")],
+        # v5-P3：薩爾塔單獨、頭在上半(x0.37-0.55,y0.04-0.22)、碎片在其右 → 泡放右側中段天空，尾從下巴下方繞指頭側
+        "P3": [dict(kind="round", x=(0.62, 0.98), y0=0.30, tail=(0.47, 0.16),
+                    text="撿到～／亮晶晶的寶物！")],
+        # v5-P4：伴伴大頭在左(x0.24-0.46)、男孩中、薩爾塔頭頂高在右(y0.07起)、項鍊在胸前 → 爆裂泡左上尾指伴伴額頭，項鍊泡壓右下角落尾指薩爾塔嘴
+        "P4": [dict(kind="burst", x=(0.02, 0.28), y0=0.04, tail=(0.33, 0.16),
+                    text="喂——那是我們／先發現的！"),
+               dict(kind="round", x=(0.82, 0.995), y0=0.66, tail=(0.755, 0.30),
+                    text="最漂亮的項鍊～")],
+        # v5-P5：三張臉橫跨上方(伴伴/男孩/薩爾塔)、沙堡在右、計畫圖在下方中央 → 泡塞左下角（蓋腳蓋沙不蓋臉、不壓計畫圖），尾從下巴下方斜指男孩嘴
+        "P5": [dict(kind="round", x=(0.01, 0.36), y0=0.72, tail=(0.545, 0.50),
+                    text="寶貝一定藏在／最氣派的沙堡裡！")],
+        # v5-P6：三人全身、三張臉佔滿上半至中段 → 歡呼爆裂泡貼左上天空尾指躍空伴伴，分你一半泡放右上天空尾指男孩
+        "P6": [dict(kind="burst", x=(0.00, 0.26), y0=0.00, tail=(0.36, 0.40),
+                    text="耶——挖到了！"),
+               dict(kind="round", x=(0.70, 0.99), y0=0.03, tail=(0.575, 0.42),
+                    text="分你一半！")],
+    },
 }
 CAPTIONS = {
     "P1": dict(x=(0.03, 0.42), y0=0.06, text="傳說中，第一支尋龍探險隊的補給箱，／就沉睡在這片金沙灘——"),
     "P6": dict(x=(0.06, 0.94), y0=0.80, text="碎片背面刻著——隊規第一條：／「永遠，把恐龍當朋友。」", plaque=True),
+}
+# 各版本構圖不同時，依 prefix 覆寫旁白銘牌（未列者沿用 CAPTIONS）
+CAPTIONS_BY_PREFIX = {
+    # v5-P6 三人全身構圖，三張臉延伸到 y0.60 → 銘牌壓在下半身（腿/沙地）
+    "v5": {"P6": dict(x=(0.06, 0.94), y0=0.62, text="碎片背面刻著——隊規第一條：／「永遠，把恐龍當朋友。」", plaque=True)},
 }
 
 def font(path, size):
@@ -304,11 +331,12 @@ def main():
     d.line([(P6[0], P6[1]), (P6[0], P6[3])], fill=INK, width=9)
 
     bubbles = {**BUBBLES, **BUBBLES_BY_PREFIX.get(PREFIX, {})}
+    captions = {**CAPTIONS, **CAPTIONS_BY_PREFIX.get(PREFIX, {})}
     for key, box in (("P2", P2), ("P3", P3), ("P4", P4), ("P5", P5), ("P6", P6)):
         for spec in bubbles.get(key, []):
             draw_bubble(page, box, spec)
-    draw_caption(page, P1, CAPTIONS["P1"])
-    draw_caption(page, P6, CAPTIONS["P6"])
+    draw_caption(page, P1, captions["P1"])
+    draw_caption(page, P6, captions["P6"])
 
     f_f = font(FONT_RG, 21)
     foot = "恐龍快找 DragonFinder・故事試刊彩虹羅盤篇 · 2026-10-22"
