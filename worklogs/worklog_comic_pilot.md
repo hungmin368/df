@@ -332,3 +332,105 @@
     - 報告 `_build_v6_report.py` → `working_db/reports/comic_v6_photo_report.html`（867KB 自足內嵌）：
       v5.1↔v6 整頁 before/after、六格分格圖、特徵對照表、氣泡避臉表；本地伺服器＋瀏覽器截圖驗證通過。
     - commit＋push 至 main；交付 commit：`e68e7dc`。
+
+43. 第 12 輪：用戶結構性回饋與解法立項（完成）
+    - 用戶回饋：「跨格不一致、角色臉部被切，重複繪圖同樣問題仍在」——指出逐格 T2I 重抽
+      必然再犯，要求先給解決方法。
+    - 根因分析：① T2I 每格重新詮釋角色，文字鎖定無法像素級一致；
+      ② 版面格位長寬比極端（P4 約 4.5:1）對 4:3 出圖強制 cover 裁切，臉部必被切。
+    - 提出三方案：A 角色定裝＋去背合成（同一張定裝照裁切複用，構圖權回到 PIL，
+      結構上保證一致且不切臉）／B 整頁單圖生成＋補字／C 漫畫 LoRA 微調。
+      建議 A；用戶批准，指示給實施計畫。
+    - 計畫四階段：① 角色定裝（審核制）② 背景板 ③ PIL 合成＋接觸影 ④ 整頁驗收＋報告。
+    - 用戶硬性關卡：「角色定裝要先給我審核，我說可以才可以進行下一步」。
+
+44. 第 12 輪 Phase 1 定裝生成（部分完成，待用戶審核）
+    - 新腳本 `_gen_masters_v7.py`：男孩/龍A/龍B 白棚定裝（鎖定文案＋「與參考圖1同一角色」
+      連鎖），姿態版以站姿為參考連鎖生成；已出：boy_stand、da_stand、db_stand。
+    - da_stand 目視：紫玩具龍（金雙角、粉橙翼、奶油肚、金爪）一致，唯鼻尖多一根小角
+      （與鎖定文案「雙角」不符）→ 已附註請用戶裁決保留/重出。
+    - 用戶回饋：「男孩臉型我不喜歡，多作幾個給我選，要智慧勇氣有主角光環感」
+      → boy_stand 否決；新腳本 `_gen_boy_variants_v7.py` 同裝四款候選：
+      boy_v1 聰明參謀型 / boy_v2 無畏勇者型 / boy_v3 溫柔主角型 / boy_v4 靈動調皮型，
+      全部 gemini-2.5-flash-image 直出（2:3 白棚）。
+    - 交付審核對照頁 `_review_boy_variants.html`（四款並列＋氣質說明）。
+    - 待辦：用戶選定 boy_vN 後，須把 `_gen_masters_v7.py` 男孩連鎖參考從 boy_stand 改指
+      選定版，再生成 boy_crouch/boy_kneel/boy_side；龍A 三姿態、龍B 倚靠版連鎖生成；
+      `_cut_masters_v7.py`（rembg 去背→裁 bbox→RGBA）尚未執行；全員定裝須再次送審。
+    - 續：不依賴男孩人選的龍類定裝先補完——`_gen_masters_v7.py da_sniff da_cheer da_sit db_lean`
+      （argv 名單過濾，避開男孩鏈）四張全部 gemini-2.5-flash-image 直出。
+    - 目視：龍A三姿態與錨點一致（紫身深紫斑、雙金角＋額心小錐、粉橙翼、奶油肚、金爪）；
+      小錐偏差連鎖遺傳到三姿態（併入用戶裁決項目）；龍B db_lean 石板藍長頸前彎、橙刺、
+      粉耳、奶油肚、無翼，與 db_stand 一致。
+    - 建立送審頁 `_review_masters_v7.html`（四區：男孩四選一／龍A四姿態／龍B兩姿態／否決對照），
+      去背剪材以 `_cut_masters_v7.py`（rembg→bbox→RGBA）批次凍結，供整批送審。
+    - 用戶審核回饋：「恐龍太橡膠感了」——定裝呈現軟膠/霧面質感，偏離收藏玩具亮面硬膠目標。
+    - 處置：`_gen_masters_v7.py` 新增 MATERIAL 鎖定（PREMIUM COLLECTIBLE DESIGNER VINYL、
+      HARD HIGH-GLOSS CLEARCOAT、銳利高光＋長條柔箱反射、關節細縫；明確 NOT rubber/matte/
+      satin/squishy），DB_LOCK 去除 satin 字眼；刪除舊龍類六張（原始＋剪材），
+      重出 da_stand/da_sniff/da_cheer/da_sit/db_stand/db_lean，錨點先行、姿態連鎖沿用。
+    - 註記：早前 `_cut_masters_v7.py` 批次在 db_stand 剪材前中斷（未寫入即結束），
+      無殘留檔案；舊剪材已隨刪除清乾淨。男孩四款剪材已完成且不受影響。
+    - 用戶附圖指示：「用這圖片試做主角定裝，我再決定要不要取代原本的小朋友主角」
+      ——附圖為成年探險家（橄欖綠夾克、背包＋睡袋卷、手持野外日誌，神廟遺跡背景）。
+    - 處置：參考圖存至 `_raw/_masters/_refs/man_ref.png`；新腳本 `_gen_man_masters_v7.py`
+      以附圖為錨點參考生成 man_stand，蹲／跪／側身捧物三姿態連鎖（與男孩組同款分工，
+      供直接對位替換）；真人寫真鎖定（85mm 雜誌級），非玩具材質。
+    - 待辦：完成後與男孩四款並列送審，由用戶二選一主角。
+    - man 四張直出（gemini-2.5-flash-image）。目視：man_stand/man_crouch/man_side 與附圖
+      高保真（髮型、鬍渣、橄欖綠夾克、背包睡袋卷＋地圖筒＋繩圈、腰帶羅盤）；
+      白底殘留仿浮水印字樣（TigerYang/192.168...，位於背景區，去背可去除，待驗證）。
+    - 問題：man_kneel 初版違背白棚約束，地面畫成沙地（rembg 會連沙保留）
+      → prompt 強化「地面同為白棚、NO sand/dirt/scenery」重出。
+    - 去背 man_stand/man_crouch/man_side 執行中。
+    - 用戶再次回饋：「恐龍太玩具感了」——亮面硬膠仍屬玩具範疇；指示先做幾個不同皮膚質感的
+      同一動作恐龍，確定皮膚後再定裝動作圖。
+    - 處置：新腳本 `_gen_skin_variants_v7.py`——以亮面版 da_stand 為造型/姿態參考，
+      真實生物渲染（明確 NO plastic/vinyl/seams），四質感候選：da_skin_v1 爬蟲鱗片
+      （乾燥顆粒鱗）、da_skin_v2 絨毛（幼獸短絨）、da_skin_v3 濕亮兩棲（濕皮水珠）、
+      da_skin_v4 細絨羽毛（絨羽覆體）。選定後同款文字重出 da/db 全套定裝動作。
+    - 併行：成年探險家 man 四姿態定裝已直出（man_kneel 白棚重出完成），去背進行中。
+    - 用戶附「變體 gamecg：3A 遊戲 CG」參考圖（Pixar 級 CG 鱗片恐龍＋男孩海灘構圖），
+      指示「用這恐龍皮膚試一張圖」。
+    - 處置：參考圖存 `_refs/gamecg_ref.png`；`_trial_gamecg_skin.py` 單張試驗
+      （男孩蹲下＋紫鱗龍嗅彩虹碎片、3A CG/PBR/統一晨光），gemini-2.5-flash-image 直出
+      → `_raw/_trials/gamecg_skin_trial1.png`（4:3, 2.5MB）。目視：符合參考風格
+      （細緻顆粒鱗片、金角漸層翼、男孩與龍共用暖光）。
+    - 含義：皮膚質感四候選（da_skin_v1–v4）就此由用戶參考圖取代；若核准，
+      定裝全套（男孩/龍A/龍B）改以 3A-CG 風格重出，方法A（定裝＋去背合成）不變。
+    - 準備（不依賴用戶裁決）：送審頁升級第 3 版——併入成年探險家四姿態（去背完成）、
+      3A-CG 試驗圖待核准區、皮膚質感歷程對照；決策清單改為兩項（CG 皮膚核准與主角二選一）。
+    - 預寫 `_gen_masters_cg_v7.py`：3A-CG 版定裝產線（PROTAGONIST=boy/man 一鍵切換、
+      BOY_VIBE 對應 A-1..A-4 氣質；龍A 參考 gamecg_ref、龍B 借 db_stand 造型），
+      用戶一核准即可全速重出全套 CG 定裝。
+    - 狀態：等候用戶回覆兩項裁決；未核准前不生成、不進背景/合成（遵循審核關卡）。
+    - 用戶裁決（兩項）：① 3A-CG 皮膚核准，恐龍定裝須參考遊戲中「伴伴」圖；② 主角＝成年探險家。
+    - 伴伴特徵確認（game_db/assets/dinos_2/DFD-000_伴伴_2star.png）：亮紫身深紫斑、金琥珀大眼、
+      雙金角＋鼻尖金角、頸背尾金錐刺一排、粉紅大內耳、翼膜粉橙漸層帶斑、奶油肚與下顎、
+      金爪、笑露小白牙粉舌、細緻鱗紋、Q 版比例。複製至 `_refs/banban_ref.png`。
+    - `_gen_masters_cg_v7.py` 定案：PROTAGONIST="man"、DA_CG 重寫為伴伴特徵（鼻尖金角列為正典）、
+      龍A錨參考改 banban_ref；全速重出 cg_da×4 / cg_db×2 / cg_man×4 共 10 張。
+    - CG 十張直出。目視驗收：cg_da 四姿態全部忠於伴伴設計（細鱗、金雙角＋鼻角、漸層翼、
+      奶油肚、Q 版比例）✓；cg_man 四姿態裝備/臉型連鎖一致 ✓
+      （cg_man_kneel 手下一小塊土，去背時留意）。
+    - 問題：cg_db 兩張被舊亮面膠參考圖帶回「塑膠玩具感＋關節縫線」，且 db_lean 頸部
+      未俯低 → 修正：參考改 cg_da_stand（僅借 CG 質感）、DB_CG 加反玩具條款、
+      db_lean 姿態文字強制「頸下彎至膝高」；重出中。
+    - cg_db 重出驗收：cg_db_stand / cg_db_lean 改參考 cg_da_stand ＋ 反玩具條款後直出 OK，
+      頸部已下彎、CG 細鱗質感統一 ✓。十張 CG 定裝全部到齊。
+    - 去背：`_cut_masters_v7.py` 完成全部 10 張（cg_da×4、cg_db×2、cg_man×4），
+      `_raw/_masters/` 已齊（lean 751×931、stand 763×980 等）。
+24. 全篇漫畫分鏡腳本報告（完成，2026-10-23）
+    - 用戶指示：「將故事由序章到終章的每一個漫畫劇情詳細寫出來並帶有對話，登場的角色
+      也都要說明，每一篇漫畫大約5張漫畫（每張6格），漫畫格可以像電影分鏡，做成一個html報告」。
+    - 結構定案：方案A 骨架 × 成年主角雷恩；9 篇（序章＋七篇＋終章）× 5 頁 × 6 格＝270 格；
+      15 遊戲章節併入 7 中篇（平原+草原+丘陵／森林+沼澤／峽谷+雪嶺／遺跡+神殿／巔峰+龍穴／王陵+海宮）。
+    - 產出 `working_db/reports/comic_full_storyboard_report.html`（單檔、繁中）：
+      分鏡標記圖例、全篇總覽表（碎片進度 0→15/15）、目錄、角色圖鑑
+      （雷恩/伴伴/薩爾塔附 CG 去背定裝圖；格雷/雷鐸文字卡）、篇章嘉賓速查表、
+      每格「鏡位＋畫面＋對話/旁白」、每篇末鉤子、附錄（隊規三條出處、名場面 9 則、
+      視覺母題與羅盤三拍子儀式、Method A 落地銜接說明）。
+    - 第一篇沿用試閱章定案對白（嗅嗅/撿到/先發現/最氣派沙堡/挖到了/分你一半/隊規第一條）。
+    - 驗證：python 結構檢查（270 panel、9 issue、9 hook、3 圖引用、閉合標籤）✓；
+      本地 http.server 200；瀏覽器開啟無本頁 console 錯誤，
+      3 張角色圖全部載入（naturalWidth>0）✓；抽檢第六篇與文末附錄截圖排版正確 ✓。
