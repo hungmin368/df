@@ -2,7 +2,7 @@
 
 - 任務：用戶選定方案 A《彩虹羅盤與失落的探險隊》，先製作「第 1 話・沙灘上的第一片彩虹」彩色漫畫試刊一頁（6 格），驗證 AI 生成彩色漫畫的可行性與畫風一致性。
 - 日期：2026-10-22
-- 狀態：v3 正式版已交付（寫實背景＋3D 立體感，正式模型 gemini-2.5-flash-image）；
+- 狀態：v3 正式版已交付（commit `62c75ba`；寫實背景＋3D 立體感，正式模型 gemini-2.5-flash-image）；
   三模型比較報告與 v3 預覽見 `working_db/reports/comic_model_compare_report.html`（圖片已內嵌）；
   待用戶驗收後再決定後續話數與是否導入遊戲（v1 commit `5c4004d`、v2 commit `31b9e6c` 為舊版留存）
 
