@@ -41,3 +41,6 @@ working_db/generated_assets/dinos_2/bban_samples/*.m4a
 working_db/generated_assets/chests/_raw/
 working_db/generated_assets/chests/_master/
 working_db/generated_assets/dinos_2/bban_samples/_kids_pair_crop.jpg
+
+# Comic pilot pipeline intermediates (raw panel generations stay local)
+working_db/generated_assets/comics/_raw/
