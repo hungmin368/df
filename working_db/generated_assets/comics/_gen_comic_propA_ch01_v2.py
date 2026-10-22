@@ -123,16 +123,33 @@ def call(model, prompt, ref_keys, ratio):
     return (base64.b64decode(img) if img else None), ("no image part" if not img else "ok")
 
 ok_all = True
-only = sys.argv[1:] or [str(p["id"]) for p in PANELS]
+args = sys.argv[1:]
+prefix = "v2"
+model_filter = None
+only = []
+i = 0
+while i < len(args):
+    if args[i] == "--model":
+        model_filter = args[i + 1]
+        i += 2
+    elif args[i] == "--prefix":
+        prefix = args[i + 1]
+        i += 2
+    else:
+        only.append(args[i])
+        i += 1
+if not only:
+    only = [str(p["id"]) for p in PANELS]
+models = [model_filter] if model_filter else MODELS
 for p in PANELS:
     if str(p["id"]) not in only:
         continue
-    out = RAW / f"propA_ch01_v2_p{p['id']}.png"
+    out = RAW / f"propA_ch01_{prefix}_p{p['id']}.png"
     if out.exists() and out.stat().st_size > 10000:
         print(f"p{p['id']}: exists, skip")
         continue
     got = None
-    for model in MODELS:
+    for model in models:
         for ratio in (p["ratio"], "16:9", "4:3", None):
             img, msg = call(model, p["prompt"], p["refs"], ratio)
             if img:

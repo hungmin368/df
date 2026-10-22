@@ -10,12 +10,27 @@
 - 少年風對話泡：圓角泡（粗框尖尾）＋爆裂泡（鋸齒），文字一律後製
 """
 import math
+import sys
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = Path(__file__).parent
 RAW = HERE / "_raw"
-OUT = HERE / "propA_ch01_page1_v2.png"
+
+PREFIX = "v2"
+SUFFIX = ""
+_args = sys.argv[1:]
+_i = 0
+while _i < len(_args):
+    if _args[_i] == "--prefix":
+        PREFIX = _args[_i + 1]
+        _i += 2
+    elif _args[_i] == "--suffix":
+        SUFFIX = _args[_i + 1]
+        _i += 2
+    else:
+        _i += 1
+OUT = HERE / f"propA_ch01_page1_v2{SUFFIX}.png"
 
 FONT_BD = "C:/Windows/Fonts/msjhbd.ttc"
 FONT_RG = "C:/Windows/Fonts/msjh.ttc"
@@ -256,7 +271,7 @@ def main():
     d.text((badge_c[0] - d.textlength("vol.0", font=f_b) / 2, badge_c[1] + 2), "vol.0", font=f_b, fill=(255, 245, 230))
 
     def load(n):
-        im = Image.open(RAW / f"propA_ch01_v2_p{n}.png").convert("RGB")
+        im = Image.open(RAW / f"propA_ch01_{PREFIX}_p{n}.png").convert("RGB")
         return strip_dark_frame(im) if n == 1 else im
 
     paste_plain = cover_crop(load(1), P1[2] - P1[0], P1[3] - P1[1])

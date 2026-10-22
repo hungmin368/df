@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>彩虹羅盤漫畫・三模型比較報告</title>
+<style>
+  :root{
+    --ink:#2a2622; --paper:#fffdf8; --navy:#1e2a58; --gold:#c8952a;
+    --red:#c0392b; --line:#e3dccb; --soft:#f6f1e6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font-family:"Microsoft JhengHei","PingFang TC",sans-serif;line-height:1.75}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+  header{border-bottom:4px solid var(--navy);padding-bottom:18px;margin-bottom:30px}
+  h1{margin:0 0 6px;font-size:30px;color:var(--navy)}
+  .sub{color:#7a715f;font-size:14px}
+  h2{font-size:22px;color:var(--navy);border-left:6px solid var(--gold);
+     padding-left:12px;margin:44px 0 14px}
+  h3{font-size:17px;margin:22px 0 8px;color:var(--ink)}
+  p,li{font-size:15px}
+  table{border-collapse:collapse;width:100%;margin:14px 0;background:#fff;font-size:14px}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:nth-child(even) td{background:var(--soft)}
+  .good{color:#1a7f37;font-weight:700}
+  .warn{color:#b26a00;font-weight:700}
+  .bad{color:#c0392b;font-weight:700}
+  .pages{display:flex;gap:14px;flex-wrap:wrap}
+  .pages figure{flex:1 1 300px;margin:0;text-align:center}
+  .pages img{width:100%;border:2px solid var(--navy);border-radius:6px;display:block}
+  .pages figcaption{font-size:14px;font-weight:700;margin-top:8px;color:var(--navy)}
+  .triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0 4px}
+  .triptych figure{margin:0;border:1px solid var(--line);border-radius:8px;
+                   background:#fff;overflow:hidden}
+  .triptych img{width:100%;display:block}
+  .triptych figcaption{font-size:12.5px;padding:8px 10px;background:var(--soft);
+                       border-top:1px solid var(--line)}
+  .triptych b{color:var(--navy)}
+  .note{background:var(--soft);border-left:5px solid var(--gold);
+        padding:12px 16px;margin:14px 0;font-size:14.5px;border-radius:0 8px 8px 0}
+  .verdict{background:#fdf6e3;border:2px solid var(--gold);border-radius:10px;
+           padding:16px 20px;margin-top:16px}
+  .tag{display:inline-block;background:var(--navy);color:#fff;border-radius:12px;
+       padding:1px 10px;font-size:12px;margin-right:6px;vertical-align:middle}
+  code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:13px}
+  footer{margin-top:56px;padding-top:14px;border-top:2px solid var(--line);
+         color:#8a8172;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>彩虹羅盤與失落的探險隊・三模型漫畫比較報告</h1>
+  <div class="sub">提案 A 第 1 話「沙灘上的第一片彩虹」試刊頁｜相同提示詞 × 三種 Gemini 圖像模型｜2026-10-22</div>
+</header>
+
+<h2>一、比較目的與方法</h2>
+<p>第 1 話試刊頁 v2（角色對齊遊戲美術＋少年漫畫風＋動態版面）已採用
+<code>gemini-2.5-flash-image</code> 生成。為評估是否有更佳的模型選擇，
+本次將<b>完全相同的六格提示詞、相同的遊戲美術參考圖、相同的長寬比</b>，
+原封不動地餵給另外兩個 Gemini 圖像模型，比較三者的輸出差異。唯一變因是模型本身。</p>
+
+<table>
+  <tr><th>代號</th><th>模型</th><th>定位</th></tr>
+  <tr><td><b>v2（基準）</b></td><td>gemini-2.5-flash-image</td><td>現行試刊頁採用版本</td></tr>
+  <tr><td><b>m31</b></td><td>gemini-3.1-flash-image</td><td>較新世代 flash 影像模型</td></tr>
+  <tr><td><b>mnb</b></td><td>gemini-nano-banana-2.1</td><td>nano-banana 系列新版</td></tr>
+</table>
+
+<div class="note">
+生成條件（三組完全相同）：伴伴參考圖 <code>game_db/assets/dinos_2/DFD-000_伴伴_2star.png</code>、
+薩爾塔參考圖 <code>game_db/assets/dinos/9.webp</code> 以<b>內容參考</b>方式傳入，
+搭配相同的 CHARACTER LOCK（紫色幼龍／石板灰捲尾蜥腳類）與少年漫畫風格前綴；
+六格長寬比分別為 21:9、3:2、16:9、21:9、16:9、3:2。
+組版（氣泡、對白框、標題、銘牌）使用同一套排版腳本，僅替換底圖。
+</div>
+
+<h2>二、三版完整漫畫頁</h2>
+<p>點擊圖片可開啟原始解析度（1826×2236）。</p>
+<div class="pages">
+  <figure>
+    <a href="../generated_assets/comics/propA_ch01_page1_v2.png"><img src="../generated_assets/comics/propA_ch01_page1_v2.png" alt="v2 完整頁"></a>
+    <figcaption>v2・gemini-2.5-flash-image（基準）</figcaption>
+  </figure>
+  <figure>
+    <a href="../generated_assets/comics/propA_ch01_page1_v2_m31.png"><img src="../generated_assets/comics/propA_ch01_page1_v2_m31.png" alt="m31 完整頁"></a>
+    <figcaption>m31・gemini-3.1-flash-image</figcaption>
+  </figure>
+  <figure>
+    <a href="../generated_assets/comics/propA_ch01_page1_v2_mnb.png"><img src="../generated_assets/comics/propA_ch01_page1_v2_mnb.png" alt="mnb 完整頁"></a>
+    <figcaption>mnb・gemini-nano-banana-2.1</figcaption>
+  </figure>
+</div>
+
+<h2>三、逐格比較</h2>
+
+<h3><span class="tag">P1</span>開場：金沙灘上的補給箱（21:9 跨格）</h3>
+<div class="triptych">
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_p1.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_p1.png" alt="v2 P1"></a>
+  <figcaption><b>v2</b>：沙灘＋補給箱＋男孩＋伴伴齊聚，構圖最符合劇本指定全員登場；速度線與墨線最有少年漫感。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_m31_p1.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_m31_p1.png" alt="m31 P1"></a>
+  <figcaption><b>m31</b>：同樣是沙灘＋木箱＋男孩＋伴伴，動勢自然、光影乾淨；箱上彩虹光弱一些。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p1.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p1.png" alt="mnb P1"></a>
+  <figcaption><b>mnb</b>：沙灘＋彩虹發光補給箱＋男孩＋伴伴，箱子的彩虹光最搶眼、色彩最濃；墨線偏西方卡通。</figcaption></figure>
+</div>
+
+<h3><span class="tag">P2</span>伴伴嗅到亮晶晶的味道（3:2）</h3>
+<div class="triptych">
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_p2.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_p2.png" alt="v2 P2"></a>
+  <figcaption><b>v2</b>：只有伴伴埋頭嗅碎片，<span class="good">場景（海邊沙灘）與出場數完全照劇本</span>。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_m31_p2.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_m31_p2.png" alt="m31 P2"></a>
+  <figcaption><b>m31</b>：伴伴姿態可愛，但<span class="bad">背景變成沙漠、多了男孩與薩爾塔</span>，違反單人出場指定。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p2.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p2.png" alt="mnb P2"></a>
+  <figcaption><b>mnb</b>：<span class="warn">多了一隻薩爾塔、場景偏乾草原</span>；伴伴趴地嗅探的表情最生動。</figcaption></figure>
+</div>
+
+<h3><span class="tag">P3</span>薩爾塔撿到碎片（16:9）</h3>
+<div class="triptych">
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_p3.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_p3.png" alt="v2 P3"></a>
+  <figcaption><b>v2</b>：只有薩爾塔站上漂流木高舉碎片，<span class="good">完全照劇本</span>；浪花與集線演出到位。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_m31_p3.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_m31_p3.png" alt="m31 P3"></a>
+  <figcaption><b>m31</b>：薩爾塔構圖正確，但<span class="warn">畫面左側多了一隻旁觀的伴伴</span>。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p3.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p3.png" alt="mnb P3"></a>
+  <figcaption><b>mnb</b>：<span class="warn">同樣多了伴伴</span>，但互動構圖（回頭相望）戲劇張力反而更好。</figcaption></figure>
+</div>
+
+<h3><span class="tag">P4</span>碰撞：全員驚呼（21:9 跨格）</h3>
+<div class="triptych">
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_p4.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_p4.png" alt="v2 P4"></a>
+  <figcaption><b>v2</b>：沙灘場景正確；男孩下巴掉地＋放射狀集線、薩爾塔戴海藻項鍊、伴伴暴衝，三要素全中。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_m31_p4.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_m31_p4.png" alt="m31 P4"></a>
+  <figcaption><b>m31</b>：角色演出到位（項鍊碎片正確變身為水晶），但<span class="bad">背景變成叢林遺跡</span>而非沙灘。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p4.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p4.png" alt="mnb P4"></a>
+  <figcaption><b>mnb</b>：演出到位（薩爾塔眨眼臭美、伴伴驚跳），但<span class="bad">背景變成森林</span>；表情最誇張可愛。</figcaption></figure>
+</div>
+
+<h3><span class="tag">P5</span>沙堡藏寶計畫（16:9）</h3>
+<div class="triptych">
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_p5.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_p5.png" alt="v2 P5"></a>
+  <figcaption><b>v2</b>：男孩畫 X、伴伴指揮、薩爾塔在旁，<span class="good">水晶尖端插在沙堡旁</span>，全照劇本。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_m31_p5.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_m31_p5.png" alt="m31 P5"></a>
+  <figcaption><b>m31</b>：沙堡＋X 計畫正確；<span class="warn">水晶插在遠處沙丘</span>而非沙堡旁（組版頁中可見於沙堡底座，屬可接受範圍）。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p5.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p5.png" alt="mnb P5"></a>
+  <figcaption><b>mnb</b>：沙堡、X 記號、水晶位置全對，薩爾塔盯著水晶的表情加分。</figcaption></figure>
+</div>
+
+<h3><span class="tag">P6</span>結尾：彩虹碎片與隊規第一條（3:2）</h3>
+<div class="triptych">
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_p6.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_p6.png" alt="v2 P6"></a>
+  <figcaption><b>v2</b>：六角彩虹碎片高舉、彩虹＋速度線爆發、三員到齊，<span class="good">完美收尾</span>。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_m31_p6.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_m31_p6.png" alt="m31 P6"></a>
+  <figcaption><b>m31</b>：同樣完美達標，碎片形狀與彩虹光都正確。</figcaption></figure>
+  <figure><a href="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p6.png"><img src="../generated_assets/comics/_raw/propA_ch01_v2_mnb_p6.png" alt="mnb P6"></a>
+  <figcaption><b>mnb</b>：夕陽＋彩虹構圖最有電影感，三員表情到位，<span class="good">收尾最華麗</span>。</figcaption></figure>
+</div>
+
+<h2>四、綜合評分</h2>
+<table>
+  <tr><th>評分項目</th><th>v2・2.5-flash</th><th>m31・3.1-flash</th><th>mnb・nano-banana</th></tr>
+  <tr><td>角色一致性（與遊戲美術）</td><td class="good">優</td><td class="good">優</td><td class="good">優</td></tr>
+  <tr><td>場景遵循（沙灘／地圖連結）</td><td class="good">6/6 格正確</td><td class="warn">4/6（P2 沙漠、P4 叢林）</td><td class="warn">4/6（P2 草原、P4 森林）</td></tr>
+  <tr><td>出場角色數遵循</td><td class="good">6/6 格正確</td><td class="warn">4/6（P2、P3 多餘角色）</td><td class="warn">4/6（P2、P3 多餘角色）</td></tr>
+  <tr><td>少年漫畫風格（墨線・集線）</td><td class="good">最強</td><td>中等（偏賽璐璐動畫）</td><td class="warn">偏西方卡通</td></tr>
+  <tr><td>色彩豐富度・光影</td><td>良好</td><td>良好（乾淨明亮）</td><td class="good">最佳（濃郁）</td></tr>
+  <tr><td>構圖戲劇性</td><td class="good">優</td><td>良好</td><td class="good">優（P3/P6 互動最佳）</td></tr>
+  <tr><td>長寬比遵循（一次到位）</td><td class="good">6/6</td><td class="good">6/6</td><td class="good">6/6</td></tr>
+</table>
+
+<h2>五、結論與建議</h2>
+<div class="verdict">
+<p><b>建議維持 <code>gemini-2.5-flash-image</code> 為正式製作模型（v2 版本）。</b>
+理由：它是唯一在「場景遵循」與「出場角色數」兩項都拿滿分的模型——這正是
+「每段劇情要跟地圖作連結」的關鍵：沙灘場景錯成沙漠或叢林，會切斷劇情與遊戲地圖的連結。
+同時它的墨線與集線最貼近日本少年漫畫的視覺語言。</p>
+<p><b>nano-banana-2.1（mnb）</b>色彩最濃、角色互動最有戲，適合作為「氣氛特寫格」的備援，
+但正式採用前需逐格檢查場景與角色數。<b>3.1-flash（m31）</b>角色忠誠度好、畫面乾淨，
+但場景遵循最弱，暫不建議用於本企劃。</p>
+<p>三個模型都證實了「遊戲美術當內容參考＋CHARACTER LOCK」的手法有效——
+即使換模型，伴伴的紫色／金角／粉翅與薩爾塔的石板灰捲尾都沒有走樣。</p>
+</div>
+
+<footer>
+恐龍快找 DragonFinder・故事試刊企劃｜比較基準：propA_ch01 v2 試刊頁（commit 31b9e6c）｜
+生成與組版腳本：working_db/generated_assets/comics/_gen_comic_propA_ch01_v2.py、_compose_comic_propA_ch01_v2.py
+</footer>
+
+</div>
+</body>
+</html>
