@@ -70,6 +70,19 @@ BUBBLES = {
            dict(kind="round", x=(0.68, 0.99), y0=0.20, tail=(0.65, 0.36),
                 text="分你一半！")],
 }
+# 各版本底圖構圖不同時，依 prefix 覆寫氣泡位置（未列者沿用 BUBBLES）
+BUBBLES_BY_PREFIX = {
+    "v3": {
+        # v3-P4 構圖：薩爾塔左、男孩中、伴伴右（v2 為男孩左）
+        "P4": [dict(kind="round", x=(0.02, 0.32), y0=0.10, tail=(0.295, 0.22),
+                    text="最漂亮的項鍊～"),
+               dict(kind="burst", x=(0.33, 0.62), y0=0.02, tail=(0.585, 0.30),
+                    text="喂——那是我們／先發現的！")],
+        # v3-P5 尾尖從沙堡改指男孩
+        "P5": [dict(kind="round", x=(0.42, 0.97), y0=0.05, tail=(0.31, 0.37),
+                    text="寶貝一定藏在／最氣派的沙堡裡！")],
+    }
+}
 CAPTIONS = {
     "P1": dict(x=(0.03, 0.42), y0=0.06, text="傳說中，第一支尋龍探險隊的補給箱，／就沉睡在這片金沙灘——"),
     "P6": dict(x=(0.06, 0.94), y0=0.80, text="碎片背面刻著——隊規第一條：／「永遠，把恐龍當朋友。」", plaque=True),
@@ -290,8 +303,9 @@ def main():
     d.line([(P6[0], P6[1]), (P6[2], P6[1])], fill=INK, width=9)
     d.line([(P6[0], P6[1]), (P6[0], P6[3])], fill=INK, width=9)
 
+    bubbles = {**BUBBLES, **BUBBLES_BY_PREFIX.get(PREFIX, {})}
     for key, box in (("P2", P2), ("P3", P3), ("P4", P4), ("P5", P5), ("P6", P6)):
-        for spec in BUBBLES.get(key, []):
+        for spec in bubbles.get(key, []):
             draw_bubble(page, box, spec)
     draw_caption(page, P1, CAPTIONS["P1"])
     draw_caption(page, P6, CAPTIONS["P6"])

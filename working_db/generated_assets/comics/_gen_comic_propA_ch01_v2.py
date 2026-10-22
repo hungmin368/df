@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-"""方案A第1話 v2：日本少年漫畫風 6 格（Gemini；遊戲角色圖作嚴格內容參照）
+"""方案A第1話 v3：少年漫畫分格＋寫實背景＋3D 立體感（正式模型 gemini-2.5-flash-image）
 
-v2 與 v1 差異：
-- 角色必須與遊戲圖一致：伴伴＝紫色寶寶龍（2星立姿圖），薩爾塔寶寶＝石板灰螺旋捲尾（9.webp）。
-- 畫風改為日本少年漫畫風（彩色、粗墨線、速度線）。
-- 各格指定寬高比（跨格用 21:9），合成時再依版面 cover-crop。
+v3 與 v2 差異（用戶 2026-10-22 指示）：
+- 正式製作模型維持 gemini-2.5-flash-image。
+- 背景寫實：真實沙粒／海水／棕櫚／天空質感。
+- 整體 3D 立體感：角色維持遊戲美術的 3D 玩具體積感、方向光＋投射陰影＋AO、
+  大氣透視與景深，讀起來像 3D CG 動畫電影劇照。
+- 角色鎖定與六格分鏡不變；舊版 v2/m31/mnb 底圖留在 _raw/。
 """
 import base64, io, json, sys, time, urllib.request, urllib.error
 from pathlib import Path
@@ -24,9 +26,15 @@ MODELS = ["gemini-2.5-flash-image", "gemini-3.1-flash-image", "gemini-nano-banan
 KID = ("a cheerful 10-year-old explorer kid with short dark-brown hair, wearing a khaki safari hat, "
        "cream sleeveless vest over an orange T-shirt, brown shorts, sturdy little boots and a small green backpack")
 
-STYLE = ("Full-color Japanese SHONEN MANGA panel illustration: bold clean black ink outlines, dynamic anime-manga "
-         "linework, vivid saturated cel-shaded colors, dramatic perspective and energetic composition, subtle manga "
-         "speed-line accents in the background where natural. High detail. "
+STYLE = ("Full-color Japanese SHONEN MANGA panel illustration that looks like a still from a modern 3D CG animated "
+         "film. Characters keep clean bold outlines but are shaded with dimensional 3D-toy volume: soft rounded "
+         "forms, gloss-free satin material feel, realistic directional sunlight, strong cast shadows on the ground, "
+         "ambient occlusion where characters and props touch the sand. Backgrounds are PHOTO-REALISTIC and "
+         "hyper-detailed: real wet sand with grains, shells and footprints, realistic transparent turquoise sea "
+         "water with foam and sparkling sun reflections, real palm leaves, driftwood and rock textures, volumetric "
+         "sunbeams, a deep sky with soft realistic clouds. Strong atmospheric perspective and gentle depth of field "
+         "so every panel reads fully three-dimensional. Vivid saturated colors, dynamic manga composition, subtle "
+         "speed-line accents only during action beats. High detail. "
          "Absolutely NO text, NO speech bubbles, NO letters, NO sound-effect lettering, NO watermark, NO panel borders. "
          "Landscape composition.")
 
@@ -35,9 +43,11 @@ LOCK = (
     "Dragon A = the baby dragon shown in reference image 1: a chubby VIVID PURPLE baby dragon with slightly darker "
     "purple round spots on head/back/haunches, very large round GOLDEN-AMBER eyes with big white specular highlights, "
     "TWO thick golden-yellow segmented horns on the head plus smaller golden cone spikes along the neck, back and "
-    "tail, large purple bat-style wings with bright PINK-MAGENTA membranes dotted with round purple spots, big PINK "
+    "tail, large purple bat-style wings whose membranes gradient from magenta-pink at the leading edge to warm "
+    "orange at the trailing edge, dotted with round magenta spots (exactly as reference image 1), big PINK "
     "inner ears, cream-ivory belly plates, chunky golden-yellow claws, and a cheerful open smile showing tiny white "
-    "fangs and a pink tongue. Reproduce Dragon A with EXACTLY this design - identical colors, markings, proportions "
+    "fangs and a pink tongue. Reproduce Dragon A with EXACTLY this "
+    "design - identical colors, markings, proportions "
     "and face as reference image 1; only pose and expression may change. "
     "Dragon B = the baby sauropod shown in reference image 2: a chubby SLATE-GRAY baby long-necked dinosaur whose "
     "tail curls into a tight spiral resting against its hip, with big round golden-amber eyes, small golden-yellow "
@@ -79,7 +89,8 @@ PANELS = [
         f"Triumphant shonen finale. {KID} hoists a blazing HEXAGONAL rainbow crystal shard - a broken piece of the "
         f"rainbow compass, NOT a round compass, no dial, no needle - high overhead in both hands, classic hero pose, "
         f"rainbow light rays bursting from it. Dragon A - the VIVID PURPLE baby dragon, exactly as reference image 1 "
-        f"with purple body, golden horns and PINK-MAGENTA wing membranes (never orange) - leaps mid-air beside the "
+        f"with purple body, golden horns and magenta-to-orange gradient wing membranes exactly like the reference - "
+        f"leaps mid-air beside the "
         f"kid cheering with both golden claws raised. Dragon B - the SLATE-GRAY sauropod baby with spiral-coiled "
         f"tail, exactly as reference image 2 - bounces joyfully on the sand wearing its seaweed necklace. All three "
         f"characters clearly visible. A big vivid rainbow arcs across the golden sunset sky above the sea, sparkles "
