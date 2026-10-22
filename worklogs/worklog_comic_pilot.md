@@ -123,5 +123,82 @@
     - v3 整頁內嵌＋翅膜核對備註；重跑 inliner 後 22/22 圖 0 破圖（4.0 MB）。
 
 23. 提交推送（完成）
-    - commit：生成／組版腳本更新、v3 成品頁、報告更新、工作日誌；push 至 main。
+    - commit：生成／組版腳本更新、v3 成品頁、報告更新、工作日誌；push 至 main（`62c75ba`＋`341d65a`）。
+
+## 第 6 輪：寫實真人男孩試產（用戶要求先看單格效果）
+
+24. 混搭風格指令撰寫＋生成（完成，成果遭用戶否決）
+    - 用戶問「人類角色能更寫實像真人嗎」，評估可行後先試產 P2/P4 兩格。
+    - `_gen_comic_propA_ch01_v2.py`：KID 改為 PHOTO-REALISTIC 真人男孩（真實膚質／髮絲／人體比例）；
+      STYLE 改為 hybrid live-action/3D-CG 混搭（真人實拍男孩＋3D 玩具恐龍，背景維持寫實）。
+      恐龍 CHARACTER LOCK 不變。
+    - 首跑 `--model gemini-2.5-flash-image --prefix v4 2 4` 遇 HTTP 402（預付額度耗盡）；用戶儲值後
+      重跑成功，產出 `propA_ch01_v4_p2.png`／`propA_ch01_v4_p4.png`（各 ~2.6 MB）。
+    - **用戶看過後否決**：「這版人類角色真實版太差我不喜歡」——v4 混搭寫實路線不採用，v4 分鏡圖
+      保留於 `_raw/`（gitignored）僅作紀錄；生產線維持 v3。
+
+## 第 7 輪：四種寫實人類風格變體（改用 SophNet ImageGenerator）
+
+25. 變體測試計畫（完成）
+    - 用戶指示：生成「幾個不同的真實人類模型」供挑選，且 Gemini 額度再次耗盡 → 改走 SophNet
+      ImageGenerator（repo 自家筆記 `working_db/docs/Imagegen_usage.md`）。
+    - 設計四種真人渲染流派，同一格 P2 分鏡對照：film 電影實拍／photo 攝影寫真／gamecg 3A 遊戲
+      CG／paint 寫實油畫插畫。恐龍維持 CHARACTER LOCK（爬蟲臉條款＋反擬人負向詞，但不含「人臉」
+      以免誤傷畫面中真正的真人男孩）。
+    - 先建 Gemini 版 `_gen_kid_style_variants.py`（同四變體），再建 SophNet 版
+      `_gen_kidstyle_sophnet.py`（任務端點非同步、參考圖餵公網 URL）。
+
+26. SophNet 模型可用性探針（完成，2026-10-22）
+    - 舊同步路由 `/image-edit` 全模型 20204（路由已死）→ 生圖與編輯一律走任務端點
+      `POST .../imagegenerator/task`＋輪詢 `GET .../task/{id}`。
+    - `Qwen-Image-Edit`／`Z-Image-Turbo-Edit` 帶 images → 20030（不在型錄；空 input 的 10012 只是
+      名稱預檢，不能證明已部署）。qwen-image 系與 Z-Image-Turbo → 20011 未部署。
+    - 依官方文件補測：**`Wan2.6-T2I` 可用**（純文生圖，task 建立成功）；**`Qwen-Image-Edit-2509`**
+      為編輯模型（空 input 回 10012「必須傳入至少 1 張參考圖片」）。
+    - 誤建兩個空 prompt 探針任務（`2O1ncf...`／`2DWoP...`），輪詢確認皆已伺服器端失敗
+      （20037 空 input），無垃圾產出；探針成本 ≤ 約 ¥0.5，如實記錄。
+    - `_gen_kidstyle_sophnet.py` MODELS 定為 `[Qwen-Image-Edit-2509(帶參考圖), Wan2.6-T2I(純文字)]`，
+      純文字模式改用無參考圖字樣的 DRAGON_DESC（跨後端提示詞需改寫，Imagegen_usage.md 教訓 8）。
+
+27. 首跑除錯與模型策略調整（完成）
+    - 首跑兩個坑：① Edit-2509 帶 `parameters`（size/seed/watermark）create 回 HTTP 500
+      `20031 图片生成任务创建失败`——編輯模型不吃參數，裸 input 才建立成功；② create 回應實為
+      `{"output":{"taskId","taskStatus"}}`（非文件舊版的 `result` 包裝），腳本原以
+      `created.get("result")` 判成功 → 已建立的任務被誤判失敗、還會續建重複任務燒錢 → 立即
+      taskkill 停跑（當機 kill 前有一次 in-flight create，可能多一張 ~¥0.25 的孤兒任務，
+      無法回收 ID，如實記錄）。
+    - 修補：新增 `find_task_id()`（相容 output/result 包裝）、成功即 break、poll 改讀
+      `st["output"]`＋`extract_url(st)`、網路例外全捕（URLError/TimeoutError/OSError）＋
+      create 180 秒逾時＋2 輪重試、以 `python -u` 跑即時看進度。
+    - 用任務 ID 直接輪詢救回被誤棄的 film 任務（`4SwI60F93brmduBLTEB2fl` SUCCEEDED）→
+      `kidstyle_film_p2_sophnet_edit2509.png`（1.7 MB）。目視：分鏡要素全中（男孩蹲看／紫龍嗅
+      彩虹水晶／海灘），但 **Edit-2509 把「100% 實拍」指令整個無視，輸出統一 3D 卡通風**——
+      恐龍鎖定成功（參考圖生效）但人類寫實化失敗。
+    - 策略調整：改讓純文生圖 `Wan2.6-T2I` 優先（風格彈性大）。先以 photo 變體探針：
+      task 建立一次成功、約 1 分鐘 SUCCEEDED 下載（2.5 MB）。目視：男孩有明顯攝影感
+      （奶油散景／真實陰影／膚質細節），恐龍文字鎖定奏效（紫身紫點／金角金爪／橘漸層翅膜
+      全對，僅年齡偏小 5–7 歲 vs 指定 10 歲）。→ 以 Wan 補齊 film/gamecg/paint，
+      四變體同後端公平對照；Edit-2509 版 film 保留為報告對照卡。
+
+28. 四變體全數完成（完成）
+    - Wan2.6-T2I 依序跑完 film／gamecg／paint（各 1 次建立、約 1 分鐘 SUCCEEDED 下載，
+      2.2–2.5 MB）；連同 photo 共四張，後端一致。
+    - 目視結論：四變體風格有明確差異且恐龍設計四張全部一致命中（紫身紫點／金角金爪／
+      粉紫→暖橘漸層翅膜＋紫點／粉內耳／奶油肚）。人類寫實度：photo 最有照片感（散景／真實
+      陰影／膚質）、paint 忠實油畫筆觸、gamecg 為 Pixar 級 CG、film 偏動畫電影感（非真底片實拍，
+      如實呈報）。
+
+29. 選擇報告建置＋驗證（完成）
+    - `_build_kidstyle_report.py` → `working_db/reports/kid_style_variants_report.html`
+      （自足單檔 0.9 MB、6 張圖 base64 內嵌：v4 否決對照＋Edit-2509 後端對照＋四變體，
+      描述含「意圖 vs 實測觀察」如實對照）。
+    - 驗證：`python -m http.server 8000` + 瀏覽器實測——6/6 圖載入（naturalWidth>0）、
+      6 個區塊齊全、深色主題可讀；curl 200（860 KB）。主控台錯誤均為其他頁面殘留，與本報告無關。
+
+30. 提交推送（完成）
+    - commit：`_gen_kidstyle_sophnet.py`（修正版）、`_gen_kid_style_variants.py`（Gemini 備援版）、
+      `_build_kidstyle_report.py`、報告 HTML、工作日誌；push 至 main。
+    - 成本如實申報：本輪 SophNet 花費≈探針空任務 2（伺服器端失敗，≤¥0.5）＋film Edit-2509
+      1 張（已救回）＋疑似孤兒任務 1（kill 前在途，~¥0.25）＋Wan2.6-T2I 4 張（~¥1–2）≈
+      總計 ~¥2–3。四變體成品因 `_raw/` gitignore 僅內嵌於報告中交付。
 

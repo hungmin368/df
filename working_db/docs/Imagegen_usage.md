@@ -158,3 +158,35 @@ raw → **rembg 去背** → alpha-bbox 裁剪 → 方形畫布（水平置中�
 8. **跨後端提示詞≠同語義**：SophNet 版需移除參考圖字樣並改寫（`_gen_compare_backends.sophnet_prompt()` 的 4 處替換是現成範本，斷言 0 個 IMAGE 引用）；比較實驗務必同 spec 列＋每後端各抽 2 張留誤差餘裕。
 9. **後製縮圖陷阱**：`_thumb_*_raw.png` 會被 `*_raw.png` glob 吃進後製鍊產生垃圾輸出＋假報告列——縮圖換命名或放別的目錄。
 10. **參考圖供給**：本機檔案不能直接上傳 SophNet，用公網 URL（GitHub Pages 已驗證，percent-encoded 中文檔名 OK）；raw 圖下載要快（OSS 預簽名會過期）。
+
+## 10. 2026-10-22 追加實測（API 已改版；漫畫人類角色變體測試）
+
+### 路由與回應格式（與本文件 1.3 節不同，以此為準）
+- **`/image-edit` 同步路由已死**：全模型 `20204 资源不存在`。生圖與編輯一律走任務端點
+  `POST {BASE}/imagegenerator/task`＋輪詢 `GET {BASE}/imagegenerator/task/{taskId}`。
+- **回應改包在 `output`**：create 回 `{"requestId", "output":{"taskId","taskStatus":"PENDING"}}`
+  （舊文件的 `result` 包裝已不存在）；poll 的 URL 在 `output.results[].url`，
+  失敗時整包回 `{"status":20037,...}`（HTTP 400/500，需先 `e.read()` 再解）。
+  判斷「建立成功」要看 `output.taskId` 是否存在，別再比對 `result` 鍵。
+
+### 模型可用性（2026-10-22 實況，又全變了）
+- `Qwen-Image-Edit`／`Z-Image-Turbo-Edit`：**20030 不在型錄**（空 input 的 10012 只是名稱預檢，
+  不能證明已部署）；`qwen-image` 系與 `Z-Image-Turbo`：20011 未部署。
+- **`Wan2.6-T2I`（純文生圖）可用**：裸 input（prompt＋negative_prompt）約 1 分鐘 SUCCEEDED。
+- **`Qwen-Image-Edit-2509`（編輯模型）可用但帶參數即死**：`input.images` 必帶（否則 10012
+  「必须传入至少1张参考图片」）；一旦附 `parameters`（size/seed/watermark）create 直接
+  HTTP 500 `20031 图片生成任务创建失败` → 只能送 `{model, input}` 兩層。
+- 空任務會計費：探針留下的空 input 任務輪詢回 20037 失敗，錢照燒（~¥0.25/個）。
+
+### 風格能力實測（人類寫實化測試，P2 同格四流派）
+- **Edit-2509 會把整格統一 3D 卡通化**：「100% photorealistic live-action」指令完全被無視；
+  參考圖鎖恐龍有效，但要「真人質感」別用它。
+- **Wan2.6-T2I 對攝影流派指令有感**：photo（85mm 人像）有散景／真實陰影／膚質；
+  paint（油畫）有全畫面筆觸；gamecg（3A CG）成 Pixar 級；film（電影實拍）只到動畫電影感，
+  不到真底片——寫實度上限：photo > paint ≈ gamecg > film。
+- 恐龍文字鎖定（無參考圖）在 Wan2.6-T2I 上四張全命中（紫身紫點／金角金爪／粉紫→暖橘漸層
+  翅膜＋紫點／粉內耳／奶油肚），僅男孩年齡偏小（5–7 歲 vs 指定 10 歲）。
+- 現成腳本：`working_db/generated_assets/comics/_gen_kidstyle_sophnet.py`
+  （含 output 包裝解析、網路例外全捕、create 180 秒逾時＋重試）；成果報告見
+  `working_db/reports/kid_style_variants_report.html`。
+
