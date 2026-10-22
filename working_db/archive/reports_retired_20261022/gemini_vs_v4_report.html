@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gemini 版 vs pollinations v4 版 — 三角龍對比</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #eee; min-height: 100vh; padding: 32px 20px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 { font-size: 26px; margin-bottom: 6px; }
+  .sub { color: #9fb3d1; font-size: 14px; margin-bottom: 28px; line-height: 1.7; }
+  .cards { display: flex; gap: 20px; flex-wrap: wrap; }
+  .card {
+    flex: 1 1 280px; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 16px;
+    padding: 18px; display: flex; flex-direction: column; align-items: center;
+  }
+  .card h2 { font-size: 17px; margin-bottom: 4px; align-self: flex-start; }
+  .tag {
+    align-self: flex-start; font-size: 12px; padding: 2px 10px; border-radius: 999px;
+    margin-bottom: 12px; font-weight: bold;
+  }
+  .tag.old  { background: #4a4a6a; color: #cfcfe8; }
+  .tag.v4   { background: #2e7d32; color: #e8f5e9; }
+  .tag.gem  { background: #7b1fa2; color: #f3e5f5; }
+  .tile {
+    width: 200px; height: 200px; border-radius: 12px;
+    background:
+      linear-gradient(45deg, #cfcfcf 25%, transparent 25%, transparent 75%, #cfcfcf 75%),
+      linear-gradient(45deg, #cfcfcf 25%, #fff 25%, #fff 75%, #cfcfcf 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+  }
+  .tile img { width: 200px; height: 200px; image-rendering: auto; }
+  .card ul { align-self: stretch; font-size: 13px; color: #c9d6ea; line-height: 1.8; list-style: none; }
+  .card ul li::before { content: "・"; color: #7f9fd4; }
+  .verdict {
+    margin-top: 26px; background: rgba(123,31,162,0.15);
+    border: 1px solid rgba(123,31,162,0.45); border-radius: 16px; padding: 20px 22px;
+  }
+  .verdict h2 { font-size: 18px; margin-bottom: 10px; color: #e1bee7; }
+  .verdict p, .verdict li { font-size: 14px; line-height: 1.9; color: #d7e0f0; }
+  .verdict ul { padding-left: 22px; }
+  .cost { margin-top: 26px; font-size: 13px; color: #9fb3d1; line-height: 1.8;
+    border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 16px; }
+  b.g { color: #ce93d8; } b.v { color: #a5d6a7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>三角龍：Gemini 版 vs pollinations v4 版 並排對比</h1>
+  <p class="sub">
+    同一物種（三角龍，遊戲 id 21）、同樣參考「伴伴家族」風格特徵（亮面膠娃質感、金色大眼、微笑小牙、乳白腹部、白底）。
+    兩條管線各自獨立生成，未互相參考。日期：2026-10-16。
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h2>① 遊戲目前圖（原 tile）</h2>
+      <span class="tag old">assets/dinos/21.webp</span>
+      <div class="tile"><img src="../../game_db/assets/dinos/21.webp" alt="遊戲原圖"></div>
+      <ul>
+        <li>現有遊戲美術：黃色 Q 版卡通造型</li>
+        <li>作為對照的基準</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>② pollinations v4 版</h2>
+      <span class="tag v4">flux 免費端點</span>
+      <div class="tile"><img src="../generated_assets/dinos_2/bban_samples/v4_triceratops_s10012.webp" alt="v4 pollinations 三角龍"></div>
+      <ul>
+        <li>文字 prompt 生成（無參考圖）</li>
+        <li>紫色身體、三隻橘角、四足步姿 ✓</li>
+        <li><b>沒有頸盾褶邊</b>——flux 反覆嘗試仍畫不出三角龍的定義特徵</li>
+        <li>當時是 6 輪生成中唯一合格的候選</li>
+        <li>費用：免費</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>③ Gemini 版</h2>
+      <span class="tag gem">gemini-2.5-flash-image</span>
+      <div class="tile"><img src="../generated_assets/dinos_2/bban_samples/gemini_triceratops_purple.webp" alt="Gemini 三角龍"></div>
+      <ul>
+        <li>一張伴伴風霸王龍參考圖 + 解剖式 prompt</li>
+        <li>紫色身體、<b>完整頸盾褶邊＋三隻金角＋鸚鵡嘴喙</b> ✓</li>
+        <li>物種一眼可辨，家族風格完整轉移</li>
+        <li>一次生成即合格</li>
+        <li>費用：約 US$0.04</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <h2>初步結論</h2>
+    <ul>
+      <li><b class="g">物種辨識度：Gemini 明顯勝出。</b>三角龍的定義特徵是「頸盾＋三角」，pollinations 版缺了頸盾，本質上是一隻可愛的紫色小龍；Gemini 版兩者齊全，且保留伴伴家族的可愛表情與膠娃質感。</li>
+      <li><b class="v">成本：pollinations 免費；Gemini 約 US$0.04/張</b>（139 張估計 US$5.5–7，依模型與重試次數）。</li>
+      <li>顏色：依你的指示「顏色不用一樣」，本對比仍沿用紫色以便聚焦風格與解剖差異；正式批量時可再決定每種物種的配色策略（全家族同色 / 物種差異色）。</li>
+    </ul>
+  </div>
+
+  <p class="cost">
+    管線備註：Gemini 版後製沿用已驗證流程（rembg 去背 → trim/center → 512 master → 200×200 WebP，11 KB，符合現有 tile 規格 7–21 KB）。<br>
+    若確認走 Gemini 批量：同一份「解剖式 prompt 模板＋伴伴風參考圖」即可套用到全部 139 種；金鑰已就緒（計費已開通）。
+  </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>圖像生成 MCP 工具調查報告</title>
+<style>
+  :root {
+    --purple: #A855F7;
+    --purple-dark: #6B21A8;
+    --purple-deep: #3B0764;
+    --gold: #FBBF24;
+    --cream: #FFF7ED;
+    --pink: #F9A8D4;
+    --ink: #2E1065;
+    --muted: #6B7280;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+    margin: 0;
+    background: linear-gradient(160deg, #FAF5FF 0%, #EFF6FF 100%);
+    color: var(--ink);
+    line-height: 1.75;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 24px 64px; }
+  header.hero {
+    background: linear-gradient(135deg, var(--purple-deep), var(--purple) 60%, #C084FC);
+    color: #fff; border-radius: 20px; padding: 36px 40px; margin-bottom: 28px;
+    box-shadow: 0 10px 30px rgba(107, 33, 168, .25);
+  }
+  header.hero h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: 1px; }
+  header.hero p { margin: 4px 0; opacity: .92; }
+  .badge {
+    display: inline-block; background: var(--gold); color: var(--purple-deep);
+    font-weight: 700; border-radius: 999px; padding: 2px 14px; font-size: 13px; margin-right: 8px;
+  }
+  h2 {
+    font-size: 22px; margin: 40px 0 14px; padding-left: 14px;
+    border-left: 6px solid var(--purple);
+  }
+  h3 { font-size: 17px; margin: 22px 0 8px; color: var(--purple-dark); }
+  .card {
+    background: #fff; border-radius: 14px; padding: 22px 26px; margin: 14px 0;
+    box-shadow: 0 2px 10px rgba(59, 7, 100, .07);
+  }
+  .tldr {
+    background: linear-gradient(135deg, #FFF7ED, #FEF3C7);
+    border: 2px solid var(--gold);
+  }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(59,7,100,.07); font-size: 14.5px; }
+  th { background: var(--purple-dark); color: #fff; padding: 10px 12px; text-align: left; white-space: nowrap; }
+  td { padding: 10px 12px; border-bottom: 1px solid #F3E8FF; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #FBF5FF; }
+  .rank1 { background: #FEF9C3 !important; font-weight: 700; }
+  .pill { display: inline-block; border-radius: 999px; padding: 1px 10px; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .pill-good { background: #DCFCE7; color: #166534; }
+  .pill-mid { background: #FEF3C7; color: #92400E; }
+  .pill-bad { background: #FEE2E2; color: #991B1B; }
+  code {
+    background: #F3E8FF; color: var(--purple-deep); border-radius: 5px;
+    padding: 1px 7px; font-family: Consolas, monospace; font-size: .92em;
+  }
+  pre {
+    background: #2E1065; color: #E9D5FF; border-radius: 12px; padding: 18px 22px;
+    overflow-x: auto; font-family: Consolas, monospace; font-size: 13.5px; line-height: 1.6;
+  }
+  pre .c { color: #FBBF24; }
+  .warn {
+    background: #FEF2F2; border-left: 5px solid #EF4444; border-radius: 8px;
+    padding: 12px 18px; margin: 12px 0;
+  }
+  .note {
+    background: #EFF6FF; border-left: 5px solid #3B82F6; border-radius: 8px;
+    padding: 12px 18px; margin: 12px 0;
+  }
+  .tool-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+  .tool-head h3 { margin: 0; }
+  .stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; }
+  ul { margin: 8px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  a { color: var(--purple-dark); }
+  footer { margin-top: 48px; text-align: center; color: var(--muted); font-size: 13px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } table { font-size: 13px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>🦖 圖像生成 MCP 工具調查報告</h1>
+  <p><span class="badge">2026-10-15</span><span class="badge">任務 ID：image-gen-mcp-search</span></p>
+  <p>目標：找到可加入 AI 助手工具組的圖像生成 MCP 伺服器，用於批量製作「伴伴風格」恐龍遊戲圖（139 張 200×200 WebP）。</p>
+</header>
+
+<div class="card tldr">
+  <h3 style="margin-top:0">⚡ 結論速覽</h3>
+  <ul>
+    <li><strong>本機 GPU 只有 MX550（2 GB）</strong>，跑不動 FLUX / SDXL 本機生成 → <strong>本機 ComfyUI / Stable Diffusion MCP 路線排除</strong>。</li>
+    <li><strong>首選：Gemini nano banana 系列 MCP</strong>（<code>Junhan2/gemini-nanobanana-mcp</code> 或多後端的 <code>shinpr/mcp-image</code>）——獨有<strong>參考圖風格一致性</strong>能力，可拿現有伴伴樣本當風格錨點，直接解決 v4「顏色不穩、物種辨識度不足」兩大痛點。</li>
+    <li><strong>次選：fal.ai 官方 MCP</strong>——OAuth 免設定 API key（<code>https://mcp.fal.ai/mcp-relay</code>），FLUX 生態，按量計費。</li>
+    <li>⚠️ 注意：Gemini API <strong>免費層不含圖像模型</strong>（官方定價頁），圖像生成為付費 $0.0336–$0.15/張；139 張約 <strong>$4.7–$21 美金</strong>。</li>
+    <li>現有 pollinations/flux 免費管線仍可並行使用，作為零成本備援。</li>
+  </ul>
+</div>
+
+<h2>一、本機環境檢測</h2>
+<div class="card">
+  <table>
+    <tr><th>項目</th><th>結果</th><th>影響</th></tr>
+    <tr><td>GPU</td><td>NVIDIA GeForce MX550，2 GB VRAM</td><td>FLUX 需 12 GB+、SDXL 需 8 GB+，本機生成不可行</td></tr>
+    <tr><td>既有本機服務</td><td>SD / ComfyUI 埠（7860 / 8188 等）皆未啟用</td><td>無现成服務可接</td></tr>
+    <tr><td>既有生成管線</td><td>pollinations.ai（flux）Python 腳本 + rembg 去背 + 色域把關</td><td>免費可用但有 402 限流、色彩/解剖不穩定</td></tr>
+    <tr><td>Leonardo.Ai</td><td>受控瀏覽器無法沿用你的登入；免費方案無 API</td><td>MCP 之外的既有封鎖點，本次不重複調查</td></tr>
+  </table>
+  <div class="note">結論：<strong>可行的 MCP 都是「雲端 API 型」</strong>——MCP 伺服器本身跑在本機，生成請求轉發到雲端模型。</div>
+</div>
+
+<h2>二、調查到的圖像生成 MCP 工具總表</h2>
+<table>
+  <tr>
+    <th>排名</th><th>MCP 工具</th><th>後端模型</th><th>需求</th><th>費用</th><th>風格一致性（參考圖）</th><th>伴伴適配</th>
+  </tr>
+  <tr class="rank1">
+    <td>🥇 1</td>
+    <td><a href="https://github.com/Junhan2/gemini-nanobanana-mcp">gemini-nanobanana-mcp</a></td>
+    <td>Gemini 2.5 Flash Image（nano banana）</td>
+    <td>Google AI Studio API key</td>
+    <td>付費 $0.034–0.15/張（免費層不含圖像）</td>
+    <td><span class="pill pill-good">✅ 編輯/合成/風格轉換</span></td>
+    <td><span class="stars">★★★★★</span></td>
+  </tr>
+  <tr>
+    <td>🥈 2</td>
+    <td><a href="https://github.com/shinpr/mcp-image">mcp-image（shinpr）</a></td>
+    <td>Gemini / OpenAI / Seedream 多選</td>
+    <td>對應供應商 API key</td>
+    <td>依所選後端計費</td>
+    <td><span class="pill pill-good">✅ 參考圖 + 自動 prompt 優化</span></td>
+    <td><span class="stars">★★★★☆</span></td>
+  </tr>
+  <tr>
+    <td>🥉 3</td>
+    <td><a href="https://fal.ai/docs/documentation/setting-up/mcp">fal.ai 官方 MCP</a></td>
+    <td>FLUX 等目錄模型（<code>run_model</code>）</td>
+    <td>OAuth 連線即可，免 key</td>
+    <td>連線免費；生成扣 credits（按量）</td>
+    <td><span class="pill pill-mid">△ 依模型而定</span></td>
+    <td><span class="stars">★★★★☆</span></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><a href="https://github.com/GongRzhe/Image-Generation-MCP-Server">Image-Generation-MCP-Server（GongRzhe）</a></td>
+    <td>Replicate FLUX</td>
+    <td>REPLICATE_API_TOKEN</td>
+    <td>按量計費（FLUX 每張約幾美分）</td>
+    <td><span class="pill pill-mid">△ 無原生參考圖</span></td>
+    <td><span class="stars">★★★☆☆</span></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><a href="https://github.com/SureScaleAI/openai-gpt-image-mcp">openai-gpt-image-mcp</a></td>
+    <td>OpenAI gpt-image-1</td>
+    <td>OpenAI API key</td>
+    <td>約 $0.03–0.19/張</td>
+    <td><span class="pill pill-good">✅ edit-image 可吃參考圖</span></td>
+    <td><span class="stars">★★★☆☆</span></td>
+  </tr>
+  <tr>
+    <td>—</td>
+    <td><a href="https://github.com/joenorton/comfyui-mcp-server">comfyui-mcp-server</a> 等本機系</td>
+    <td>本機 ComfyUI / SD</td>
+    <td>需要 8 GB+ VRAM GPU</td>
+    <td>免費</td>
+    <td><span class="pill pill-good">✅ LoRA/ControlNet 最強</span></td>
+    <td><span class="pill pill-bad">❌ GPU 不足，排除</span></td>
+  </tr>
+</table>
+
+<h2>三、重點工具詳解</h2>
+
+<div class="card">
+  <div class="tool-head"><h3>🥇 gemini-nanobanana-mcp</h3><span class="stars">★★★★★</span><span class="pill pill-good">首選</span></div>
+  <ul>
+    <li><strong>來源</strong>：<a href="https://github.com/Junhan2/gemini-nanobanana-mcp">github.com/Junhan2/gemini-nanobanana-mcp</a>（同類型另有 <a href="https://github.com/shinpr/mcp-image">shinpr/mcp-image</a> 多後端版）</li>
+    <li><strong>能力</strong>：文字生圖、<strong>圖片編輯、多圖合成、風格轉換（吃參考圖）</strong>；環境變數 <code>GEMINI_API_KEY</code>、<code>AUTO_SAVE</code> 等。</li>
+    <li><strong>key 取得</strong>：<a href="https://aistudio.google.com/models/nano-banana">Google AI Studio</a> 免費申請（API key 本身免費）。</li>
+    <li><strong>為什麼最適合伴伴恐龍</strong>：v4 的兩大痛點是「flux 對指定顏色不聽話」與「物種特徵被淹沒」。nano banana 可以<strong>直接拿已核准的 4 張伴伴樣本當參考圖</strong>要求「照這個風格畫一隻劍龍」，風格錨定能力遠高於純文字 prompt。</li>
+  </ul>
+  <div class="warn">⚠️ 官方定價頁確認：<strong>免費層不含圖像模型</strong>，圖像生成需綁定付費帳號，$0.0336–$0.15/張。請先在 AI Studio 確認你的帳號額度後再批量生成。</div>
+</div>
+
+<div class="card">
+  <div class="tool-head"><h3>🥈 fal.ai 官方 MCP</h3><span class="stars">★★★★☆</span><span class="pill pill-mid">最易接入</span></div>
+  <ul>
+    <li><strong>來源</strong>：<a href="https://fal.ai/docs/documentation/setting-up/mcp">fal.ai 官方文件</a></li>
+    <li><strong>接入方式</strong>：MCP 位址 <code>https://mcp.fal.ai/mcp-relay</code>，<strong>OAuth 瀏覽器授權即可，不用設定 API key</strong>——四個候選中接入成本最低。</li>
+    <li><strong>能力</strong>：<code>search_models</code>（搜尋目錄模型）+ <code>run_model</code>（執行），支援 <code>flux/dev</code> 等生圖模型。</li>
+    <li><strong>費用</strong>：連線免費，每次模型呼叫扣 credits（需儲值）。</li>
+    <li><strong>注意</strong>：走 FLUX 文字生圖，風格錨定仍靠 prompt（可用 fal 上的 image-to-image / IP-Adapter 類模型補強）。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="tool-head"><h3>🥉 Image-Generation-MCP-Server（Replicate FLUX）</h3><span class="stars">★★★☆☆</span></div>
+  <ul>
+    <li><strong>來源</strong>：<a href="https://github.com/GongRzhe/Image-Generation-MCP-Server">github.com/GongRzhe/Image-Generation-MCP-Server</a></li>
+    <li><strong>能力</strong>：單一 <code>generate_image</code> 工具，後端 Replicate FLUX；環境變數 <code>REPLICATE_API_TOKEN</code>。</li>
+    <li><strong>優勢</strong>：專案既有 <code>_gen_v4.py</code> 的 prompt 資產（解剖學排序、切圖色域把關）可直接沿用；FLUX schnell 檔次每張成本極低。</li>
+    <li><strong>劣勢</strong>：與 pollinations 免費管線同為 FLUX 文字生圖，<strong>解決不了現有的色彩/辨識度不穩問題</strong>，只是多了限流餘裕。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="tool-head"><h3>4. openai-gpt-image-mcp</h3><span class="stars">★★★☆☆</span></div>
+  <ul>
+    <li><strong>來源</strong>：<a href="https://github.com/SureScaleAI/openai-gpt-image-mcp">github.com/SureScaleAI/openai-gpt-image-mcp</a></li>
+    <li><strong>能力</strong>：<code>create-image</code> / <code>edit-image</code>；gpt-image 系列以 <strong>prompt 遵循度最高</strong>著稱，指定顏色/構圖最聽話。</li>
+    <li><strong>費用</strong>：約 $0.03–0.19/張（依品質檔位），139 張約 $4–26。</li>
+    <li><strong>定位</strong>：若 nano banana 參考圖路線仍不穩，gpt-image 的「指令服從」是第二道保險。</li>
+  </ul>
+</div>
+
+<h2>四、對「伴伴風格恐龍」的適配分析</h2>
+<div class="card">
+  <h3>現有管線的痛點（來自 worklog_bban-style-dinos Rounds 2–7）</h3>
+  <table>
+    <tr><th>痛點</th><th>現況</th><th>哪個 MCP 能解</th></tr>
+    <tr><td>指定體色不聽話（紫/綠/橘/藍常跑色）</td><td>flux 需要 seed 重試 + 色域把關腳本</td><td>nano banana 參考圖錨定、gpt-image 指令服從</td></tr>
+    <tr><td>物種辨識度（三角龍頭盾、劍龍骨板）常丟失</td><td>v3→v4d 跑了 7 輪才定案 4 張</td><td>nano banana：拿核准樣本當參考圖直接編輯</td></tr>
+    <tr><td>免費 API 限流（HTTP 402）拖慢批量</td><td>每個 seed 首次請求幾乎必 402</td><td>付費 API（fal / Replicate / Gemini / OpenAI）皆有穩定配額</td></tr>
+    <tr><td>139 張批量的一致性</td><td>每張獨立 seed，風格漂移</td><td>nano banana 參考圖是唯一能「家族化」的方案</td></tr>
+  </table>
+  <h3>建議的生成流程（接入 MCP 後）</h3>
+  <ul>
+    <li>1️⃣ 用已核准的 v4 四張樣本（紫三角龍・綠劍龍・橘霸王龍・藍無齒翼龍）作為<strong>風格參考圖</strong>。</li>
+    <li>2️⃣ 逐物種生成：prompt 維持「物種輪廓特徵優先、伴伴材質詞放最後」的既得經驗。</li>
+    <li>3️⃣ 沿用既有後處理管線：<code>rembg</code> 去背 → 裁切置中 → 512 主檔 → 200×200 WebP。</li>
+    <li>4️⃣ 保留色域把關腳本做自動驗收（每物種色帶檢查）。</li>
+  </ul>
+</div>
+
+<h2>五、接入步驟建議</h2>
+<div class="card">
+  <ol>
+    <li>申請 <a href="https://aistudio.google.com/models/nano-banana">Google AI Studio API key</a>（或 fal.ai 帳號走 OAuth）。</li>
+    <li>在 SophCode 的 MCP / 工具設定中新增該 MCP 伺服器（以下為社群通用 JSON 格式，實際欄位位置以 SophCode 設定介面為準）：</li>
+  </ol>
+<pre>
+{
+  <span class="c">"mcpServers"</span>: {
+    <span class="c">"gemini-nanobanana"</span>: {
+      "command": "npx",
+      "args": ["-y", "github:Junhan2/gemini-nanobanana-mcp"],
+      "env": { "GEMINI_API_KEY": "你的_AI_STUDIO_KEY" }
+    }
+  }
+}
+</pre>
+  <ol start="3">
+    <li>重啟對話後，我會看到新的生成工具；先以 4 張樣本當參考圖試生成 1 張驗證風格，再談批量。</li>
+    <li>批量前先算成本：139 張 × $0.034 ≈ <strong>$4.7 美金</strong>（最低檔），建議分批（每批 10–20 張）驗收。</li>
+  </ol>
+  <div class="note">💡 過渡方案：不裝 MCP 也可以——我現在就能用 Bash 呼叫 Gemini / fal / Replicate 的 REST API（就像先前的 <code>_gen_leonardo.py</code>）。MCP 的價值是把工具「常駐化」，之後每次對話都能直接用。</div>
+</div>
+
+<h2>六、資料來源</h2>
+<div class="card">
+  <ul>
+    <li><a href="https://www.wireflow.ai/blog/best-ai-image-generation-mcp-tools-in-2026">Best AI Image Generation MCP Tools in 2026 — Wireflow</a></li>
+    <li><a href="https://agentbrush.dev/blog/best-image-generation-mcp-servers">Best Image-Generation MCP Servers (2026, Ranked) — AgentBrush</a></li>
+    <li><a href="https://fal.ai/docs/documentation/setting-up/mcp">fal.ai MCP 官方文件</a></li>
+    <li><a href="https://github.com/Junhan2/gemini-nanobanana-mcp">Junhan2/gemini-nanobanana-mcp（GitHub）</a></li>
+    <li><a href="https://github.com/shinpr/mcp-image">shinpr/mcp-image（GitHub）</a></li>
+    <li><a href="https://github.com/GongRzhe/Image-Generation-MCP-Server">GongRzhe/Image-Generation-MCP-Server（GitHub）</a></li>
+    <li><a href="https://github.com/SureScaleAI/openai-gpt-image-mcp">SureScaleAI/openai-gpt-image-mcp（GitHub）</a></li>
+    <li><a href="https://github.com/joenorton/comfyui-mcp-server">joenorton/comfyui-mcp-server（GitHub）</a> ｜ <a href="https://github.com/shawnrushefsky/comfyui-mcp">shawnrushefsky/comfyui-mcp</a> ｜ <a href="https://github.com/artokun/comfyui-mcp">artokun/comfyui-mcp</a></li>
+    <li><a href="https://ai.google.dev/gemini-api/docs/pricing">Gemini API 官方定價</a> ｜ <a href="https://ai.google.dev/gemini-api/docs/rate-limits">Gemini API 速率限制</a></li>
+    <li><a href="https://ai.google.dev/gemini-api/docs/image-generation">Gemini 圖像生成（nano banana）官方文件</a></li>
+  </ul>
+</div>
+
+<footer>Dragonfinder · 圖像生成 MCP 工具調查報告 · 2026-10-15 · 由 SophCode 調查產出</footer>
+</div>
+</body>
+</html>

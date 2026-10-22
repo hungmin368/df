@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隨行系統驗證（自動排除與進階秘訣） — 恐龍快找 DragonFinder</title>
+<style>
+
+:root{
+  --page-bg:#0b1020; --panel:#111a2e; --line:rgba(148,163,184,.24);
+  --text:#e8eefc; --muted:#9fb0d0; --accent:#7dd3fc; --accent2:#c084fc;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#172554 0%,transparent 60%),var(--page-bg);
+  color:var(--text);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;line-height:1.7}
+.page-head{max-width:1220px;margin:0 auto;padding:44px 20px 10px}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 8px}
+.page-head h1{margin:0 0 10px;font-size:30px;line-height:1.3;background:linear-gradient(90deg,#7dd3fc,#c084fc,#fbbf24);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.page-head .subtitle{margin:0 0 8px;color:#cbd5e1;font-size:14.5px}
+.page-head .note{margin:0 0 14px;color:#fbbf24;font-size:13.5px}
+.page-head .meta{margin:0;color:var(--muted);font-size:12.5px}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;margin:20px 0 6px}
+.toc a{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.04);
+  color:#dbeafe;text-decoration:none;font-size:13px}
+.toc a:hover{border-color:var(--accent);background:rgba(125,211,252,.10)}
+main{max-width:1220px;margin:0 auto;padding:8px 20px 50px}
+.src-block{margin:26px 0;border:1px solid var(--line);border-radius:16px;background:#0f172a;
+  box-shadow:0 18px 50px rgba(0,0,0,.28);scroll-margin-top:14px}
+.src{border-radius:0 0 15px 15px;overflow:hidden}
+.src-meta{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  padding:9px 14px;background:#101a30;border-bottom:1px solid var(--line);color:#cbd5e1;font-size:12px;
+  border-radius:15px 15px 0 0}
+.src-badge{display:inline-block;padding:2px 8px;border-radius:999px;background:rgba(125,211,252,.16);
+  color:#bae6fd;font-weight:700;letter-spacing:.04em}
+.src-meta code{color:#fde68a;background:rgba(0,0,0,.35);padding:1px 6px;border-radius:4px}
+.foot{max-width:1220px;margin:0 auto;padding:0 20px 50px;color:var(--muted);font-size:12px;text-align:center}
+@media print{.toc{display:none}.src{break-inside:auto;box-shadow:none}.src-meta{position:static}}
+
+
+  #src-1-body{ --ink:#2b2620; --sub:#7a6f63; --line:#e6ddcf; --bg:#fbf8f2; --card:#fffdf9; --ok:#1f7a46; --warn:#b3541e; --accent:#b8860b; }
+  #src-1-body *{ box-sizing:border-box; }
+  #src-1-body{ margin:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif; line-height:1.7; }
+  #src-1-body .wrap{ max-width:980px; margin:0 auto; padding:32px 20px 64px; }
+  #src-1-body header{ border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  #src-1-body h1{ font-size:26px; margin:0 0 6px; }
+  #src-1-body .meta{ color:var(--sub); font-size:13.5px; }
+  #src-1-body h2{ font-size:19px; margin:34px 0 10px; border-left:5px solid var(--accent); padding-left:10px; }
+  #src-1-body .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:14px 0; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  #src-1-body table{ width:100%; border-collapse:collapse; font-size:14px; margin:8px 0; }
+  #src-1-body th, #src-1-body td{ border:1px solid var(--line); padding:7px 10px; text-align:center; }
+  #src-1-body th{ background:#f4ecdd; font-weight:700; }
+  #src-1-body td.l, #src-1-body th.l{ text-align:left; }
+  #src-1-body .ok{ color:var(--ok); font-weight:700; }
+  #src-1-body .warn{ color:var(--warn); font-weight:700; }
+  #src-1-body .pill{ display:inline-block; background:#f4ecdd; border:1px solid var(--line); border-radius:999px; padding:2px 12px; font-size:12.5px; margin:2px 4px 2px 0; }
+  #src-1-body .note{ background:#fff6e6; border:1px solid #f0dcb4; border-radius:12px; padding:12px 16px; font-size:14px; }
+  #src-1-body ul{ margin:6px 0; padding-left:22px; }
+  #src-1-body code{ background:#f1ece2; border-radius:5px; padding:1px 6px; font-size:13px; }
+  #src-1-body .big{ font-size:15px; }
+  #src-1-body .chg{ background:#eef7ef; border:1px solid #cfe6d2; }
+  #src-1-body .bad{ background:#fdeeee; border:1px solid #eec9c9; }
+
+#src-1-body img{max-width:100%;height:auto}
+#src-1-body table{max-width:100%}
+#src-1-body header code,#src-1-body .hero code,#src-1-body .meta code{color:#7c2d12;background:#fef3c7}
+
+
+  #src-2-body{ --ink:#2b2620; --sub:#7a6f63; --line:#e6ddcf; --bg:#fbf8f2; --card:#fffdf9; --ok:#1f7a46; --warn:#b3541e; --accent:#b8860b; }
+  #src-2-body *{ box-sizing:border-box; }
+  #src-2-body{ margin:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif; line-height:1.7; }
+  #src-2-body .wrap{ max-width:980px; margin:0 auto; padding:32px 20px 64px; }
+  #src-2-body header{ border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  #src-2-body h1{ font-size:26px; margin:0 0 6px; }
+  #src-2-body .meta{ color:var(--sub); font-size:13.5px; }
+  #src-2-body h2{ font-size:19px; margin:34px 0 10px; border-left:5px solid var(--accent); padding-left:10px; }
+  #src-2-body .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:14px 0; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  #src-2-body table{ width:100%; border-collapse:collapse; font-size:14px; margin:8px 0; }
+  #src-2-body th, #src-2-body td{ border:1px solid var(--line); padding:7px 10px; text-align:center; }
+  #src-2-body th{ background:#f4ecdd; font-weight:700; }
+  #src-2-body td.l, #src-2-body th.l{ text-align:left; }
+  #src-2-body .ok{ color:var(--ok); font-weight:700; }
+  #src-2-body .warn{ color:var(--warn); font-weight:700; }
+  #src-2-body .pill{ display:inline-block; background:#f4ecdd; border:1px solid var(--line); border-radius:999px; padding:2px 12px; font-size:12.5px; margin:2px 4px 2px 0; }
+  #src-2-body .note{ background:#fff6e6; border:1px solid #f0dcb4; border-radius:12px; padding:12px 16px; font-size:14px; }
+  #src-2-body ul{ margin:6px 0; padding-left:22px; }
+  #src-2-body code{ background:#f1ece2; border-radius:5px; padding:1px 6px; font-size:13px; }
+  #src-2-body .big{ font-size:15px; }
+  #src-2-body .chg{ background:#eef7ef; border:1px solid #cfe6d2; }
+
+#src-2-body img{max-width:100%;height:auto}
+#src-2-body table{max-width:100%}
+#src-2-body header code,#src-2-body .hero code,#src-2-body .meta code{color:#7c2d12;background:#fef3c7}
+
+</style>
+</head>
+<body>
+<header class="page-head">
+  <p class="kicker">DragonFinder Report Library</p>
+  <h1>隨行系統驗證（自動排除與進階秘訣）</h1>
+  <p class="subtitle">整併自《隨行羈絆自動排除驗證報告》與《隨行閒聊進階秘訣驗證報告》</p>
+  <p class="note">兩份報告皆為 2026-10-13 的實機驗證紀錄。</p>
+  <p class="meta">整併日期：2026-10-22 ・ 來源 2 份 ・ 本報告保留原始內容與圖表，僅整併版面。</p>
+  <nav class="toc">
+<a href="#src-1">1. 隨行羈絆自動排除驗證報告</a>
+<a href="#src-2">2. 隨行閒聊進階秘訣驗證報告</a>
+  </nav>
+</header>
+<main>
+<div class="src-block" id="src-1">
+<div class="src-meta"><span class="src-badge">來源 1</span><span>原報告：<code>buddy_auto_exclude_report.html</code></span><span>原日期：2026-10-13</span></div>
+<section class="src" id="src-1-body">
+
+<div class="wrap">
+<header>
+  <h1>隨行羈絆自動排除驗證報告</h1>
+  <div class="meta">尋龍高手 DragonFinder v1.9.13 ・ 日期：2026-10-13 ・ Task ID：buddy-auto-exclude</div>
+</header>
+
+<h2>一、需求與變更</h2>
+<div class="card chg">
+  <p class="big">友好度 100% 的自動排除：<s>僅<b>捕獲恐龍</b>時觸發</s> → <b>捕獲任一「隱藏物」都觸發</b>（🦕 恐龍／🧰 寶箱／🪨 石頭）。</p>
+  <p>排除範圍維持原本口徑：<b>同一橫列</b> ＋ <b>同一直欄</b> ＋ <b>周圍八格（含斜角）</b>全部自動打 ✕。</p>
+  <p>實作方式：把原本內嵌在 <code>doBall()</code> 恐龍分支的滿好感區塊抽成共用函式 <code>buddyAutoExclude(i, animMs)</code>，命中解格後由三種類型共同呼叫。</p>
+  <p><b>觸發來源</b>：捕捉器命中隱藏物，以及隨行技能<b>「星願爆發」</b>（<code>reveal</code>）揭示隱藏物——後者同樣會 <code>G.found++</code>，口徑上等同「捕獲到隱藏物」，故一併觸發（延遲 700ms）。</p>
+  <p><b>刻意未納入</b>：開局關鍵寶箱格自動揭示（發生於渲染前、玩家尚未操作，開局就自動標記一片會造成困擾）、工程模式 <code>dev-win</code>（非玩家功能，直接結束該局）。</p>
+</div>
+
+<h2>二、觸發條件與時序</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">條件</th><th class="l">行為</th></tr>
+    <tr><td class="l">觸發來源</td><td class="l">① 捕捉器命中任一隱藏物（🦕／🧰／🪨）　② 隨行技能「星願爆發」揭示隱藏物</td></tr>
+    <tr><td class="l">隨行寵物友好度 <b>= 100%</b></td><td class="l">觸發自動排除；伴伴對話框提示「滿滿的羈絆！這行、這列和周圍我都幫你排除了 ✕」</td></tr>
+    <tr><td class="l">友好度 <b>&lt; 100%</b></td><td class="l">完全不自動標記（僅原本的命中效果）</td></tr>
+    <tr><td class="l">教學盤（4×4 示範／5×5 引導）</td><td class="l">不自動標記，避免干擾教學腳本</td></tr>
+    <tr><td class="l">起始延遲 <code>animMs</code></td><td class="l">恐龍 2200ms（五星 4200ms，等召喚動畫）；寶箱／石頭／星願爆發 700ms</td></tr>
+    <tr><td class="l">逐格節奏</td><td class="l">每格間隔 200ms，玩家可隨時繼續操作</td></tr>
+    <tr><td class="l">跳過的格子</td><td class="l">已標 ✕、已揭示、關鍵寶箱鎖定格（<code>fixed</code>）、<b>以及任何尚未找到的隱藏物格</b>（<code>catUnion</code>）</td></tr>
+  </table>
+</div>
+
+<h2>三、實機驗證（瀏覽器真實點擊）</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">盤面</th><th>隱藏物</th><th>座標</th><th>友好度</th><th>應標格數</th><th>實標格數</th><th>誤標隱藏物</th><th>結果</th></tr>
+    <tr><td class="l">地圖 6×6</td><td>🪨 石頭</td><td>r1c1</td><td>100%</td><td>11</td><td>11</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（10×10）</td><td>🧰 鐵箱</td><td>r1c2</td><td>100%</td><td>20</td><td>20</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（10×10）</td><td>🦕 恐龍（五彩冠龍 2★）</td><td>r9c1</td><td>100%</td><td>19</td><td>19</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（10×10）</td><td>🪨 石頭</td><td>r3c10</td><td>100%</td><td>20</td><td>20</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（加保護後複驗）</td><td>🧰 白金寶箱</td><td>r2c5</td><td>100%</td><td>22</td><td>22</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（加保護後複驗）</td><td>🪨 石頭</td><td>r4c7</td><td>100%</td><td>22</td><td>22</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">多解盤 18×18</td><td>🦕 恐龍</td><td>r17c10</td><td>100%</td><td>36（38 − 2 個並集隱藏物）</td><td>36</td><td>0</td><td class="ok">✓</td></tr>
+    <tr><td class="l">龍塔 233（星願爆發技能）</td><td>🦕 恐龍（技能揭示）</td><td>r4c7</td><td>100%</td><td>22</td><td>22</td><td>0</td><td class="ok">✓</td></tr>
+  </table>
+  <p>「實標格數」同時比對 <b>遊戲內部模型</b>（<code>cells[].mark</code>）與 <b>畫面 DOM</b>（<code>.cell.x</code>），兩者完全一致；命中效果亦正常（<code>found</code> 遞增、<code>balls</code> 扣 1、<code>G.chests</code> 收到寶箱、格子 class 為 <code>cat</code>／<code>chestgot</code>／<code>stonegot</code>）。</p>
+</div>
+
+<h2>四、過程中發現並修正的缺陷：多解盤誤標</h2>
+<div class="card bad">
+  <p class="big"><b>問題</b>：N≥15 的盤面是「多解盤」——<code>G.catUnion</code> 存的是<b>最多 4 組可行解的並集</b>，所以同一列／同一欄／相鄰格可能各自還有<b>另一個也算數的隱藏物</b>。</p>
+  <p>實測 18×18：並集共 20 格，第 13 列與第 14 列各有 2 個隱藏物、第 10 欄與第 13 欄各有 2 個、另有 2 對相鄰。若照原邏輯整行整列標 ✕，會把「這裡沒有隱藏物」的 ✕ 打在<b>還沒找到的隱藏物</b>上，誤導玩家（此缺陷在舊版「僅恐龍觸發」時同樣存在）。</p>
+  <p><b>修正</b>：自動排除的候選過濾 <code>free()</code> 加入 <code>!catUnion.has(j)</code>，任何尚未找到的隱藏物一律跳過；同時補上 <code>!fixed</code>，避免動到關鍵寶箱鎖定格（玩家本身也不可翻該格）。</p>
+  <p><b>驗證</b>：18×18 捕捉 r17c10 恐龍 → 同行/同列/周圍 38 格中，2 格並集隱藏物（r17c16、r18c10）正確跳過，其餘 36 格全數標 ✕，被誤標的隱藏物 <b>0 個</b>。唯一解盤（≤14 與龍塔預生成盤）行為完全不變，因為那些盤面本來就不會有第二個隱藏物落在同行/同列/相鄰。</p>
+</div>
+
+<h2>五、負向與邊界案例</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">案例</th><th class="l">觀察</th><th>結果</th></tr>
+    <tr><td class="l">友好度 99%（龍塔 233，捕捉石頭 r1c2）</td><td class="l"><code>found</code> 0→1、<code>stoneGot=true</code>、balls 13→12，自動標記 <b>0 格</b></td><td class="ok">✓ 未達 100% 不觸發</td></tr>
+    <tr><td class="l">友好度 99%（發動星願爆發技能）</td><td class="l"><code>found</code> 1→2、技能正常揭示，自動標記數維持 <b>22 格</b>（未新增）</td><td class="ok">✓ 技能同樣需滿 100%</td></tr>
+    <tr><td class="l">教學盤 + 友好度 100%</td><td class="l">捕捉恐龍後 <code>found</code> 1→2，自動標記 <b>0 格</b></td><td class="ok">✓ 教學不受干擾</td></tr>
+    <tr><td class="l">捕捉落空（非隱藏物格）</td><td class="l">只標該格 ✕（原有行為），不觸發羈絆排除</td><td class="ok">✓</td></tr>
+    <tr><td class="l">新發現恐龍彈窗期間</td><td class="l">彈窗顯示中，延遲標記仍依序完成，狀態檢查 <code>state==='marking'</code> 生效</td><td class="ok">✓</td></tr>
+    <tr><td class="l">整局結束（找齊 N 個隱藏物）</td><td class="l">龍塔 233 結算「🎯 找到隱藏物（10 / 10）」、💠 白金寶箱＋🗝️ 鐵箱×2 獎勵、龍塔進度 233</td><td class="ok">✓ 過關流程未受影響</td></tr>
+  </table>
+</div>
+
+<h2>六、其他檢查</h2>
+<div class="card">
+  <ul>
+    <li>語法：<code>node --check js/main.js</code> <span class="ok">通過</span>。</li>
+    <li>資源：<code>index.html</code>、<code>js/data.js</code>、<code>js/tower.js</code>、<code>js/main.js</code>、<code>css/style.css</code>、<code>css/fonts.css</code> 全部 <span class="ok">HTTP 200</span>（版本已提升為 <code>?v=1.9.13</code> 防快取）。</li>
+    <li>Console：本次驗證的三個 origin <span class="ok">無應用程式錯誤</span>（唯一一則 <code>G.catUnion is not iterable</code> 是驗證腳本在同步迴圈中連續呼叫 <code>newRun</code> 造成的除錯競態，非產品缺陷）。</li>
+    <li>文案：玩法說明「♥ 友好度」已補上羈絆加成說明，於說明視窗實際渲染確認。</li>
+  </ul>
+</div>
+
+<h2>七、結論</h2>
+<div class="card">
+  <ul>
+    <li>需求已實現：<span class="ok">只要捕捉到隱藏物（恐龍／寶箱／石頭）且隨行寵物友好度達 100%，就會自動把同行、同列與周圍八格標 ✕</span>；隨行技能「星願爆發」揭示隱藏物時亦同。</li>
+    <li>安全性：唯一解盤上這些格子<b>必然</b>沒有隱藏物（每行/每列/每色區恰 1 個＋不相鄰），自動標記不會誤傷；多解盤已額外加入保護，不會把 ✕ 打在尚未找到的隱藏物上。</li>
+    <li>時機：寶箱／石頭 700ms 後開始、恐龍等召喚動畫（2.2s／五星 4.2s）後開始，每格 200ms；18×18 大盤約 36 格需 8~9 秒跑完，期間不阻擋操作。</li>
+    <li>尚未提交：工作樹混有前幾次工作階段的未提交變更，待確認提交範圍後回填 commit hash。</li>
+  </ul>
+</div>
+
+</div>
+
+</section>
+</div>
+
+<div class="src-block" id="src-2">
+<div class="src-meta"><span class="src-badge">來源 2</span><span>原報告：<code>buddy_tips_report.html</code></span><span>原日期：2026-10-13</span></div>
+<section class="src" id="src-2-body">
+
+<div class="wrap">
+<header>
+  <h1>隨行閒聊進階秘訣驗證報告</h1>
+  <div class="meta">尋龍高手 DragonFinder v1.9.14 ・ 日期：2026-10-13 ・ Task ID：buddy-tips-advanced</div>
+</header>
+
+<h2>一、需求與結論</h2>
+<div class="card chg">
+  <p class="big">使用者提出 5 條「顏色計數／相鄰接觸」解謎秘訣，要求驗證正確性，修飾後加入隨行夥伴閒聊提示（<code>BUDDY_TALK</code>）。</p>
+  <p><b>結論：5 條全部正確 ✓</b>，已修飾為「💡 進階：」格式加入 <code>js/main.js</code> 的 <code>BUDDY_TALK</code> 陣列（提示總數 67 → 72），於遊戲中由 <code>pickTalk()</code> 隨機抽用。</p>
+  <p>遊戲規則依據：<b>每個顏色區塊、每行、每列各恰 1 個隱藏物</b>（🦕 恐龍／🧰 寶箱／🪨 石頭），且<b>隱藏物之間連斜角（八鄰接）都不得相鄰</b>（玩法說明「高冷法則」、<code>buddyAutoExclude</code> 的排除邏輯）。</p>
+</div>
+
+<h2>二、逐條驗證</h2>
+<div class="card">
+  <table>
+    <tr><th style="width:34%">原始秘訣</th><th>判定</th><th class="l">推演依據</th></tr>
+    <tr>
+      <td class="l">① N 排格子內部有 N+M 個顏色，N 顏色只在 N 排格子內，那麼多出的 M 顏色都可以清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">N 行恰有 N 個隱藏物；N 個不出行外的顏色各貢獻 1 個、全在行內，行內名額用滿 → 行內屬於其他 M 色的格子必無隱藏物。（精確說法：可 ✕ 的是「這 N 行內」屬於 M 色的格子）</td>
+    </tr>
+    <tr>
+      <td class="l">② N 排格子內只有 N 個顏色，溢出 N 排格子同顏色的都可以清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">行內 N 個隱藏物顏色互異、只有 N 色可用 → 每色各 1 個都在這幾行 → 這些顏色<b>行外</b>的格子可 ✕。</td>
+    </tr>
+    <tr>
+      <td class="l">③ 同顏色 2 連續格子，沒有其他格子同顏色，那同時接觸這 2 格子的周圍格子都可以清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">隱藏物必在其中一格 → 同時貼著（連斜角）這 2 格的格子，無論實際藏哪格都與之相鄰 → 可 ✕。（驗證中推廣：兩格<b>不一定要相鄰</b>也成立）</td>
+    </tr>
+    <tr>
+      <td class="l">④ 同顏色的 L 形連續格子，盤面其他區域沒同顏色，可以找出 L 形包圍同時接觸的格子做清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">L 形 3 格必在 2×2 範圍內 → 同時貼著 3 格的格子＝2×2 的<b>缺口格</b>（唯一），無論藏哪格都相鄰 → 可 ✕。</td>
+    </tr>
+    <tr>
+      <td class="l">⑤ 同顏色 3 連續格子成直線，盤面其他區域沒同顏色，可以找出相鄰同時接觸 3 連續格子做清除</td>
+      <td class="ok">✓ 正確</td>
+      <td class="l">直線 3 格 → 同時貼著 3 格的格子＝<b>中間格兩側</b>那 2 格（斜貼兩端、正貼中間）→ 可 ✕。</td>
+    </tr>
+  </table>
+  <p class="note">①②為「計數法」：祕訣①的「多出 M 顏色可清除」指其<b>行內</b>格子；③④⑤為「共同接觸法」：與所有可能藏匿位置同時相鄰的格子必可排除。①②對「列」同樣成立。</p>
+</div>
+
+<h2>三、遊戲內最終文案（BUDDY_TALK）</h2>
+<div class="card">
+  <ul>
+    <li>💡 進階：N 行裡若有 N 種顏色完全沒延伸到行外，這幾行剩下的格子都能打 ✕！（列也適用）</li>
+    <li>💡 進階：N 行裡剛好只有 N 種顏色，這些顏色就各藏一個在這幾行——行外同色的格子都能打 ✕！（列也適用）</li>
+    <li>💡 進階：一種顏色只剩 2 格——無論藏在哪格，同時貼著這 2 格的格子（連斜角）都能打 ✕！</li>
+    <li>💡 進階：一種顏色是 L 形 3 格，同時貼著這 3 格的格子（L 的缺口）能打 ✕！</li>
+    <li>💡 進階：一種顏色排成直線 3 格，同時貼著這 3 格的格子（中間格的兩側）能打 ✕！</li>
+  </ul>
+  <p>文案沿用既有提示風格（💡 開頭、✕ 標記用語、結尾驚嘆號），並以「進階：」前綴與基礎提示區隔。</p>
+</div>
+
+<h2>四、驗證與版控</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">項目</th><th class="l">結果</th></tr>
+    <tr><td class="l">語法檢查</td><td class="l"><code>node --check js/main.js</code> 通過；「進階：」出現 5 次</td></tr>
+    <tr><td class="l">瀏覽器實機</td><td class="l">新 origin（:8975）載入正常、console 無錯誤；<code>BUDDY_TALK</code> 共 72 條；<code>doBuddyChat()</code> 渲染新提示至 #dlg-text（DOM＋截圖確認伴伴對話卡顯示正常）</td></tr>
+    <tr><td class="l">HTTP 檢查</td><td class="l">index.html／js/main.js／js/data.js／js/tower.js／css/style.css 全部 200</td></tr>
+    <tr><td class="l">提交</td><td class="l">手術式提交（僅 <code>BUDDY_TALK</code> 單行 hunk＋worklog）：6f90267 → 0a9989a（hash 回填）→ fc3309b（worklog 封存），已推送 origin/main；工作樹中其他暫存／未提交變更未動</td></tr>
+  </table>
+</div>
+</div>
+
+</section>
+</div>
+
+</main>
+<div class="foot">恐龍快找 DragonFinder ・ 報告整併（2026-10-22）</div>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恐龍快找 — dragonfinder 根目錄結構說明</title>
+<style>
+  :root {
+    --bg: #f7f4ee;
+    --card: #ffffff;
+    --ink: #2f2a24;
+    --muted: #6b6258;
+    --line: #e4ddd2;
+    --accent: #a5652a;
+    --accent-soft: #f6e8d6;
+    --code-bg: #f3eee6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 32px 20px 56px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+    line-height: 1.7;
+  }
+  main { max-width: 1080px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, #fffaf3, #f2e3ce);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 26px 30px;
+    margin-bottom: 22px;
+  }
+  h1 { margin: 0 0 8px; font-size: 1.6rem; letter-spacing: .02em; }
+  .sub { color: var(--muted); font-size: .95rem; }
+  h2 {
+    margin: 34px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-soft);
+    font-size: 1.22rem;
+  }
+  h3 { margin: 22px 0 8px; font-size: 1.02rem; color: #4a4036; }
+  p { margin: 8px 0; }
+  code {
+    background: var(--code-bg);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-family: Consolas, "Cascadia Mono", monospace;
+    font-size: .92em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 10px 0 18px;
+    font-size: .94rem;
+  }
+  th, td { padding: 10px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  th { background: #f0e8dc; color: #4d4236; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { white-space: nowrap; font-weight: 600; }
+  .tag {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 1px 9px;
+    font-size: .78rem;
+    font-weight: 500;
+    background: var(--accent-soft);
+    color: #7c4a19;
+    white-space: nowrap;
+  }
+  .note {
+    background: var(--card);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 14px 0;
+    color: #4a4036;
+  }
+  .tree {
+    background: #2f2a24;
+    color: #f2ece2;
+    border-radius: 12px;
+    padding: 18px 22px;
+    overflow-x: auto;
+    font-family: Consolas, "Cascadia Mono", monospace;
+    font-size: .9rem;
+    line-height: 1.65;
+  }
+  .muted { color: var(--muted); }
+  footer { margin-top: 34px; text-align: center; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>dragonfinder 根目錄結構說明</h1>
+  <div class="sub">盤點日期：2026-10-22　｜　範圍：<code>C:\MY_AI_JOBS\dragonfinder</code> 根層的檔案與子目錄</div>
+</header>
+
+<h2>總覽</h2>
+<p>根層目前有 <strong>8 個檔案</strong>與 <strong>7 個目錄</strong>。核心原則是：<strong>遊戲本體只放 <code>game_db/</code></strong>，任務產物放 <code>working_db/</code>，其餘為治理文件、工具、平台專案與 Git／npm 產物。</p>
+
+<div class="tree">dragonfinder/
+├─ game_db/                 遊戲本體（190 檔，唯一出貨來源）
+├─ working_db/              任務產物（749 MB，分類存放）
+├─ tools/                   維護腳本（3 支）
+├─ ios/                     Capacitor iOS 原生專案
+├─ worklogs/                未完成任務的工作紀錄
+├─ node_modules/            npm 依賴（不進版控）
+├─ .git/                    Git 版本庫資料
+├─ index.html               GitHub Pages 導向頁
+├─ AGENTS.md                開發與協作規範
+├─ README.md                專案入口說明
+├─ CHANGELOG.md             版本更新日誌
+├─ .gitignore               Git 忽略規則
+├─ capacitor.config.json    Capacitor 設定
+├─ package.json             npm 指令與依賴
+└─ package-lock.json        npm 依賴鎖定</div>
+
+<h2>根層目錄</h2>
+<table>
+  <tr><th>目錄</th><th>大小／檔案數</th><th>用途</th></tr>
+  <tr>
+    <td>game_db/</td>
+    <td>39 MB<br>190 檔</td>
+    <td>遊戲唯一執行來源。包含 <code>index.html</code>、<code>privacy.html</code>、manifest、service worker、CSS、JS 與所有實際載入的素材。遊戲功能修改直接在此目錄進行。</td>
+  </tr>
+  <tr>
+    <td>working_db/</td>
+    <td>749 MB<br>1,110 檔</td>
+    <td>任務產物與開發素材，不直接出貨。依用途分為 reports、generated_assets、store、builds、docs、archive。新生成但游戏未使用的檔案先放這裡，經指示才移入 <code>game_db/</code>。</td>
+  </tr>
+  <tr>
+    <td>tools/</td>
+    <td>16 KB<br>3 檔</td>
+    <td>倉庫維護腳本：建置出貨包、產生 iOS 圖示／啟動畫面、拍攝 App Store 截圖。</td>
+  </tr>
+  <tr>
+    <td>ios/</td>
+    <td>45 MB</td>
+    <td>Capacitor iOS 原生專案（Xcode workspace、App 設定、SPM 套件與複製後的 web 資產）。<code>npm run sync</code> 會把 <code>game_db/</code> 複製到 <code>ios/App/App/public/</code>。</td>
+  </tr>
+  <tr>
+    <td>worklogs/</td>
+    <td>4 KB</td>
+    <td>任務工作紀錄。<code>worklogs/</code> 只保留尚未完成的任務；任務完成後刪除其日誌，不保留 <code>history/</code> 歸檔（歷史見 git commit log）。</td>
+  </tr>
+  <tr>
+    <td>node_modules/</td>
+    <td>28 MB</td>
+    <td><code>npm install</code> 安裝的依賴（Capacitor、Playwright 等）。可重建、已被 gitignore，不屬於遊戲或報告內容。</td>
+  </tr>
+  <tr>
+    <td>.git/</td>
+    <td>225 MB</td>
+    <td>Git 版本庫本體（commit、分支、reflog、物件資料）。不可手動修改或刪除。</td>
+  </tr>
+</table>
+
+<h2>根層檔案</h2>
+<table>
+  <tr><th>檔案</th><th>用途</th></tr>
+  <tr>
+    <td>index.html</td>
+    <td>GitHub Pages 入口頁，只負責把 <code>/df/</code> 導向 <code>/df/game_db/</code>，並保留 query 與 hash。遊戲邏輯不在這裡。</td>
+  </tr>
+  <tr>
+    <td>AGENTS.md</td>
+    <td>AI 協作與開發規範：目錄規則、game_db／working_db 分工、風格A 美術規範、寶箱美術、報告慣例、Git 流程與 worklog 規則。</td>
+  </tr>
+  <tr>
+    <td>README.md</td>
+    <td>專案入口說明：目錄結構、本機開啟方式、建置與 iOS 指令、開發慣例摘要。</td>
+  </tr>
+  <tr>
+    <td>CHANGELOG.md</td>
+    <td>版本更新日誌；目前含 v1.9.18 與本次目錄重構的 Unreleased 條目。</td>
+  </tr>
+  <tr>
+    <td>.gitignore</td>
+    <td>忽略建置輸出、備份、API 金鑰、生成管線中間檔、Python 快取與 <code>node_modules/</code>。</td>
+  </tr>
+  <tr>
+    <td>capacitor.config.json</td>
+    <td>Capacitor 設定：appId、appName、<code>webDir: "game_db"</code>、iOS scheme 與背景色。</td>
+  </tr>
+  <tr>
+    <td>package.json</td>
+    <td>npm 專案設定。<code>build</code> 執行 <code>python tools/build_dist.py</code>；<code>sync</code> 執行 <code>npx cap sync ios</code>。</td>
+  </tr>
+  <tr>
+    <td>package-lock.json</td>
+    <td>鎖定 npm 依賴版本，確保不同環境安裝結果一致。</td>
+  </tr>
+</table>
+
+<h2>game_db/ 內部結構</h2>
+<table>
+  <tr><th>項目</th><th>檔案數</th><th>用途</th></tr>
+  <tr><td>index.html</td><td>1</td><td>遊戲主頁面，載入 CSS、JS、manifest 並註冊 service worker。</td></tr>
+  <tr><td>privacy.html</td><td>1</td><td>隱私政策頁，遊戲內「關於」可連入。</td></tr>
+  <tr><td>manifest.webmanifest</td><td>1</td><td>PWA 名稱、圖示、啟動網址與顯示模式。</td></tr>
+  <tr><td>sw.js</td><td>1</td><td>Service worker：核心檔預快取、導覽 network-first、其餘 stale-while-revalidate。</td></tr>
+  <tr><td>css/</td><td>2</td><td><code>fonts.css</code> 字型宣告、<code>style.css</code> 主樣式。</td></tr>
+  <tr><td>js/</td><td>6</td><td><code>data.js</code>（139 隻恐龍資料）、<code>main.js</code>（主程式）、<code>tower.js</code>、<code>tower_comments.js</code>、<code>ads.js</code>、<code>haptics.js</code>。</td></tr>
+  <tr><td>assets/</td><td>178</td><td>所有遊戲素材，細分如下。</td></tr>
+</table>
+<table>
+  <tr><th>game_db/assets/</th><th>檔案數</th><th>用途</th></tr>
+  <tr><td>dinos/</td><td>139</td><td>139 隻恐龍的 512×512 WebP 圖鑑磚，以 id 命名。</td></tr>
+  <tr><td>dinos_2/</td><td>8</td><td>遊戲 logo 與伴伴 1★～5★、win、fail 共 7 張角色圖。</td></tr>
+  <tr><td>chests/</td><td>3</td><td>鐵箱、黃金寶箱、白金寶箱三階圖示。</td></tr>
+  <tr><td>fonts/</td><td>2</td><td>Huninn、Iansui 兩個 WOFF2 字型。</td></tr>
+  <tr><td>icons/</td><td>6</td><td>favicon、apple-touch-icon、PWA 192／512／maskable 圖示。</td></tr>
+  <tr><td>story/</td><td>16</td><td><code>s0.svg</code> 與 <code>s4.svg</code>～<code>s18.svg</code> 的區域故事插圖。</td></tr>
+  <tr><td>（根層檔案）</td><td>4</td><td><code>cursor.png</code> 捕捉游標、<code>map.png</code> 探索地圖、<code>game.mp4</code> 開場影片、<code>story_lv4_720p.mp4</code> 4×4 過關故事影片。</td></tr>
+</table>
+
+<h2>working_db/ 內部結構</h2>
+<table>
+  <tr><th>子目錄</th><th>檔案數</th><th>用途</th></tr>
+  <tr><td>reports/</td><td>16</td><td>現行 HTML 報告；新報告一律直接產出到此目錄。淘汰與已整併的來源報告封存在 <code>archive/reports_retired_20261022/</code>。</td></tr>
+  <tr><td>generated_assets/</td><td>840</td><td>生成素材與管線，細分 dinos_2（803）、icons（19）、chests（12）、videos（5）、images（1）。</td></tr>
+  <tr><td>store/</td><td>12</td><td>App Store 審查截圖：iPad 13、iPhone 6.5、iPhone 6.9 各 4 張。</td></tr>
+  <tr><td>builds/</td><td>190</td><td><code>build_dist.py</code> 的輸出；<code>builds/dist/</code> 是 <code>game_db/</code> 的完整副本，供選擇性出貨檢查。</td></tr>
+  <tr><td>docs/</td><td>7</td><td>設計文件：4 份 DragonFinder txt、Imagegen 使用筆記、指令範例與任務交付指南 HTML。</td></tr>
+  <tr><td>archive/</td><td>45</td><td>歷史備份、退役腳本，以及 <code>reports_retired_20261022/</code> 的 34 份淘汰／已整併報告。</td></tr>
+</table>
+
+<h2>tools/ 腳本</h2>
+<table>
+  <tr><th>腳本</th><th>用途</th></tr>
+  <tr><td>build_dist.py</td><td>把 <code>game_db/</code> 完整複製到 <code>working_db/builds/dist/</code>，並核對 index、CSS、JS、manifest 的執行期引用。</td></tr>
+  <tr><td>build_ios_icons.py</td><td>從 <code>working_db/generated_assets/icons/app_icon.png</code> 產生 iOS AppIcon 與啟動畫面，輸出到同一分類目錄。</td></tr>
+  <tr><td>shoot_ios_screenshots.py</td><td>用 Playwright 啟動 Chrome，對 <code>/game_db/index.html</code> 拍攝三種裝置的 App Store 截圖到 <code>working_db/store/ios/screenshots/</code>。</td></tr>
+</table>
+
+<h2>ios/ 內部結構</h2>
+<table>
+  <tr><th>項目</th><th>用途</th></tr>
+  <tr><td>App/App.xcodeproj</td><td>Xcode 專案檔。</td></tr>
+  <tr><td>App/App/</td><td>iOS App 設定、原生程式與 <code>public/</code>（由 <code>game_db/</code> 複製而來的 web 資產）。</td></tr>
+  <tr><td>App/CapApp-SPM/</td><td>Capacitor 的 Swift Package Manager 設定。</td></tr>
+  <tr><td>capacitor-cordova-ios-plugins/</td><td>Capacitor／Cordova 外掛的 iOS 資源與來源。</td></tr>
+  <tr><td>debug.xcconfig</td><td>Xcode 建置設定。</td></tr>
+</table>
+
+<h2>檔案流向與放置規則</h2>
+<div class="note">
+  <strong>遊戲要用的</strong> → <code>game_db/</code>（維持內部相對路徑）。<br>
+  <strong>任務生成、遊戲尚未使用</strong> → <code>working_db/generated_assets/</code> 對應分類。<br>
+  <strong>報告</strong> → <code>working_db/reports/</code>。<br>
+  <strong>上架素材</strong> → <code>working_db/store/</code>。<br>
+  <strong>建置輸出</strong> → <code>working_db/builds/</code>。<br>
+  只有使用者明確指示「放進遊戲」時，才把檔案從 <code>working_db/</code> 移到 <code>game_db/</code>。
+</div>
+
+<h2>不需要進版控的項目</h2>
+<ul>
+  <li><code>node_modules/</code>：可由 <code>npm install</code> 重建。</li>
+  <li><code>working_db/builds/dist/</code>：可由 <code>python tools/build_dist.py</code> 重建。</li>
+  <li><code>working_db/generated_assets/**/_raw/</code>、<code>_master/</code>、API 金鑰、剪輯中間檔與 Python 快取：已在 <code>.gitignore</code> 排除。</li>
+  <li><code>.git/</code>：版本庫資料，不可刪除。</li>
+</ul>
+
+<footer>恐龍快找 DragonFinder ｜ 根目錄結構說明 ｜ 2026-10-22</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DragonFinder 多語模式工程評估報告（英文／繁中／簡中）</title>
+<style>
+  :root{
+    --ink:#3d3229; --sub:#7a6a58; --bg:#faf6ef; --card:#fffdf8; --line:#e8dcc8;
+    --accent:#b3541e; --accent2:#1f6f8b; --ok:#3f7d4e; --warn:#a86a12;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;
+       line-height:1.75;font-size:15.5px}
+  .wrap{max-width:980px;margin:0 auto;padding:36px 22px 70px}
+  header.top{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px}
+  h1{font-size:27px;margin:0 0 6px}
+  .meta{color:var(--sub);font-size:13.5px}
+  h2{font-size:20px;margin:42px 0 14px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:16.5px;margin:24px 0 8px;color:var(--accent2)}
+  table{width:100%;border-collapse:collapse;background:var(--card);margin:14px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+  th{background:#f3ead9;white-space:nowrap}
+  td.num,th.num{text-align:right;white-space:nowrap}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0}
+  .good{border-left:5px solid var(--ok)}
+  .risk{border-left:5px solid var(--warn)}
+  .tag{display:inline-block;background:#f3ead9;border:1px solid var(--line);border-radius:99px;
+       padding:1px 11px;font-size:12.5px;margin:2px 4px 2px 0;white-space:nowrap}
+  .tag.hot{background:#fbe3d6;border-color:#e8b49e;color:var(--accent)}
+  code{background:#f1ece2;border-radius:5px;padding:1px 6px;font-size:13px;
+       font-family:Consolas,Menlo,monospace}
+  .foot{color:var(--sub);font-size:12.5px;margin-top:46px;border-top:1px dashed var(--line);padding-top:14px}
+  ul{margin:8px 0;padding-left:22px}
+  li{margin:4px 0}
+  .big{font-size:17px;font-weight:700}
+  .hl{color:var(--accent);font-weight:700}
+  .hl2{color:var(--accent2);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>🐉 DragonFinder（尋龍高手）多語模式工程評估</h1>
+  <div class="meta">評估日期：2026-09-28　·　評估版本：v1.9.10（index.html 主線）　·　性質：純評估，未修改任何程式碼　·　範圍：英文模式＋三語（繁中／簡中／英文）漸進架構</div>
+</header>
+
+<div class="card">
+  <div class="big">結論摘要</div>
+  <p>本遊戲<b>可以</b>以合理的成本支援英文模式，總工作量估計 <span class="hl">7.5～10 個人日</span>。
+  工程上沒有技術障礙：專案零依賴、無框架，採用「自製輕量字典 + <code>data-i18n</code> 標記」即可，不需引入任何外部 i18n 函式庫。
+  真正的成本集中在<b>兩件事</b>：</p>
+  <ul>
+    <li><span class="hl">字串抽取</span>：約 <b>250～300 個動態字串</b>散落在 <code>js/main.js</code>（456 行含中文）的字串拼接中，抽取工作機械但量大、需完整回歸。</li>
+    <li><span class="hl">內容翻譯</span>：16 章故事約 4,000+ 字的敘事文本、約 100 句伴伴對話、140 隻恐龍命名，是需要品質把關的內容工程。</li>
+  </ul>
+  <p>另外有 8 個需要決策的議題（恐龍命名策略、故事翻譯品質、切換方式、Logo 素材、字型涵蓋、AGENTS.md 規則修訂、首次偵測預設方向、簡中字型），詳見<a href="#decisions">決策點</a>。</p>
+  <p><b>延伸評估（同日追加）</b>：可採「<a href="#trilang">三語漸進架構</a>」——前期先建語言無關骨架（約 <b>4.5～6 人日</b>，繁中全量可用、含首次啟動語言偵測），簡中與英文於開發後期逐批補建（三語合計約 <b>9.5～13 人日</b>）。</p>
+</div>
+
+<h2>一、現況盤點：中文文字分佈</h2>
+
+<table>
+  <tr><th>檔案／資產</th><th>規模</th><th class="num">中文字數</th><th>性質與影響</th></tr>
+  <tr><td><code>js/main.js</code></td><td>3,155 行</td><td class="num">8,252</td><td>最大宗。動態 UI 字串（結算／生成失敗／圖鑑詳情）、對話系統、16 章故事全文、技能庫、區域名、小遊戲文案、6 處 <code>confirm/alert</code></td></tr>
+  <tr><td><code>index.html</code></td><td>346 行</td><td class="num">1,133</td><td>靜態 UI：標題、HUD、按鈕、玩法說明彈窗（3 大段規則文本）、獎勵中心、圖鑑分頁、開發者模式</td></tr>
+  <tr><td><code>js/data.js</code></td><td>140 筆恐龍</td><td class="num">458</td><td>DINOS 76 筆 + LEGENDS 64 筆，<code>name</code> 欄位為單一中文欄位</td></tr>
+  <tr><td><code>css/style.css</code></td><td>1,236 行</td><td class="num">509</td><td><b>全部是註解</b>，<code>content:</code> 屬性無中文 → CSS 無需在地化</td></tr>
+  <tr><td><code>js/tower.js</code></td><td>2000 關題庫</td><td class="num">33</td><td>僅註解。盤面為 base36 編碼字串，無任何文字內容 → 題庫無需在地化</td></tr>
+  <tr><td><code>assets/story/*.svg</code></td><td>19 張場景圖</td><td class="num">0</td><td>純美術場景，無文字 → 無需處理</td></tr>
+  <tr><td><code>assets/dinos_2/game_logo.png</code></td><td>品牌 Logo</td><td class="num">—</td><td>圖內含美術化中文標題「相揪尋龍」＋英文「DragonFinder」（雙語並存）</td></tr>
+  <tr><td><code>assets/fonts/*.woff2</code></td><td>Huninn 240KB＋Iansui 420KB</td><td class="num">—</td><td>子集化內嵌字型（100% 離線），子集範圍僅涵蓋「目前用到的字」→ 新增字串需重新驗證／子集化</td></tr>
+</table>
+
+<h3>main.js 內容資產明細（需翻譯的清單）</h3>
+<table>
+  <tr><th>資產</th><th>位置</th><th class="num">數量</th><th>說明</th></tr>
+  <tr><td>故事 <code>STORY</code></td><td>main.js:783</td><td class="num">16 章</td><td>每章約 200～300 字敘事文本，含標題；文學性內容，翻譯品質門檻最高</td></tr>
+  <tr><td>伴伴閒聊 <code>BUDDY_TALK</code></td><td>main.js:579</td><td class="num">67 句</td><td>60 句閒聊＋7 句玩法提示</td></tr>
+  <tr><td>伴伴八卦 <code>BUDDY_GOSSIP</code></td><td>main.js:667</td><td class="num">12 句</td><td>含 <code>{name}</code> 佔位符的模板句</td></tr>
+  <tr><td>選單對話 <code>BUDDY_MENU_TALK</code></td><td>main.js:673</td><td class="num">8 句</td><td>主選單情境台詞（另有意動態組合的情報句）</td></tr>
+  <tr><td>技能台詞 <code>BUDDY_SKILL_TALK</code></td><td>main.js:586</td><td class="num">9 句</td><td>技能發動台詞</td></tr>
+  <tr><td>技能庫 <code>SKILLS</code></td><td>main.js:493</td><td class="num">10 項</td><td>名稱＋描述（含「一星／二星…」階級名稱）</td></tr>
+  <tr><td>區域 <code>REGION_META</code></td><td>main.js:396</td><td class="num">15 區</td><td>地圖區域名（顯示於地圖標籤、情報、故事列表）</td></tr>
+  <tr><td>小遊戲 <code>G_TITLES</code> 等</td><td>main.js:1801＋</td><td class="num">6 套</td><td>刮刮樂／拉霸／翻牌／輪盤／剪影／尋寶，各有標題＋進行中＋結算文案</td></tr>
+  <tr><td>恐龍名 <code>DINOS/LEGENDS</code></td><td>data.js</td><td class="num">140 筆</td><td>單一 <code>name</code> 欄位（id 71 已用拉丁名 <code>garudimimus</code>，證明英名顯示可行）</td></tr>
+</table>
+
+<h2>二、技術特性（決定工程做法）</h2>
+<div class="card good">
+  <div class="big">有利因素（降低工程風險）</div>
+  <ul>
+    <li><b>零依賴、無框架</b>：三個 plain <code>&lt;script&gt;</code>＋全域變數。自製 <code>t(key)</code> 字典函式即可，不必引入 i18next 等函式庫，符合專案精神。</li>
+    <li><b>存檔無語言耦合</b>：17 個 <code>dinodoku-*</code> localStorage 鍵全存 ID／數字／布林，無任何中文內容 → 切換語言<b>不影響玩家存檔</b>，不需遷移。</li>
+    <li><b>題庫與美術免處理</b>：2000 關 tower 題目、19 張故事場景 SVG、CSS 皆無文字內容。</li>
+    <li><b>地圖文字是動態的</b>：區域標籤由 <code>regionLabel()</code> 即時組合（emoji＋名＋N×N），不是燒在地圖圖片上。</li>
+    <li><b>名稱顯示單點收斂</b>：所有恐龍名都讀 <code>name</code> 欄位 → 資料加一個 <code>name_en</code> 欄位、一個取值函式即可全覆蓋。</li>
+    <li><b>時間格式語言中性</b>：<code>fmtSec()</code> 輸出 <code>6:00</code> 形式，無需處理。</li>
+  </ul>
+</div>
+<div class="card risk">
+  <div class="big">不利因素（主要成本來源）</div>
+  <ul>
+    <li><b>字串散落且內嵌於 HTML 拼接</b>：main.js 有 49 處 <code>innerHTML</code>、72 處 <code>textContent</code>，中文字串直接寫在拼接模板裡（如 <code>'🗺️ &lt;b&gt;出沒區域：&lt;/b&gt;'+…</code>），抽取時要逐處改寫為 key，且部分句子含 HTML 標籤與變數。</li>
+    <li><b>內嵌字型是子集化的</b>：Huninn／Iansui 僅涵蓋現有字元。新增<b>任何</b>新字串（中英文皆然）都可能缺字；英文模式需確認 Latin 涵蓋範圍，必要時重新子集化（需原字型與子集工具流程）。</li>
+    <li><b>英文比中文長</b>：按鈕（「清除」「提示」）、HUD（「第 N 局」「分數」）、地圖區域標籤（錨點座標固定）、對話框等固定尺寸元素可能溢出，需逐項排版回歸。</li>
+    <li><b>6 處系統對話框</b>（<code>confirm/alert</code>）也是玩家可見文字。</li>
+    <li><b>單檔打包</b>：<code>build_single_file.mjs</code> 以逐檔 replace 內嵌，新增字典檔必須同步調整打包腳本與 <code>index.html</code> 的 script 標籤。</li>
+    <li><b>治理規則</b>：AGENTS.md 明訂「玩家可見 UI 文字保持繁體中文」，新增英文模式需同步修訂此規則。</li>
+  </ul>
+</div>
+
+<h2 id="work">三、工程項目拆解與估時</h2>
+<p class="meta">下表為「新增英文一語」的基準估計；三語（繁中／簡中／英文）漸進架構的差異與總量見<a href="#trilang">第五節</a>。</p>
+<table>
+  <tr><th>#</th><th>工作項</th><th>內容</th><th class="num">估時（人日）</th><th>風險</th></tr>
+  <tr>
+    <td>W1</td><td>i18n 基礎架構</td>
+    <td>新增 <code>js/i18n.js</code>：zh/en 字典、<code>t(key, params)</code>、語言狀態（新 localStorage 鍵 <code>dinodoku-lang</code>）、<code>data-i18n</code> 靜態替換器、<code>&lt;html lang&gt;</code>/<code>&lt;title&gt;</code> 動態切換；載入順序插在 data.js 之前</td>
+    <td class="num">1</td><td>低</td>
+  </tr>
+  <tr>
+    <td>W2</td><td>語言切換 UI</td>
+    <td>主選單（或 HUD）加 🌐 切換鈕；切換＝寫偏好後 <code>location.reload()</code>（最穩作法，避開進行中局面的即時重繪邊界）</td>
+    <td class="num">0.5</td><td>低</td>
+  </tr>
+  <tr>
+    <td>W3</td><td>index.html 靜態字串標記化</td>
+    <td>約 110 處靜態文字（含 3 大段玩法說明約 1,000 字、獎勵中心、圖鑑分頁、開發者模式）加 <code>data-i18n</code> 屬性並入字典</td>
+    <td class="num">0.5～1</td><td>低</td>
+  </tr>
+  <tr>
+    <td>W4</td><td>main.js 動態字串抽取</td>
+    <td>估 250～300 個字串 key：49 處 innerHTML、72 處 textContent、6 處 confirm/alert，含含變數的模板句改寫成 <code>t()</code> 參數化；改完需全流程回歸（本項是<b>最大單一工程</b>）</td>
+    <td class="num">2～3</td><td class="hl2">中</td>
+  </tr>
+  <tr>
+    <td>W5</td><td>恐龍名雙語化</td>
+    <td>data.js 加 <code>name_en</code> 欄位（140 筆）；恐龍有國際通用的拉丁學名／英文名可對照（梁龍→Diplodocus、霸王龍→Tyrannosaurus…），另需命名策略決策（見決策點 D1）</td>
+    <td class="num">0.5～1</td><td>低</td>
+  </tr>
+  <tr>
+    <td>W6</td><td>內容翻譯</td>
+    <td>16 章故事（約 4,000+ 字敘事，建議機翻初稿＋人工潤稿）＋伴伴對話約 100 句＋技能 10 項＋區域 15 個＋6 套小遊戲文案＋規則說明</td>
+    <td class="num">2.5～3.5</td><td class="hl2">中（品質門檻）</td>
+  </tr>
+  <tr>
+    <td>W7</td><td>字型與排版回歸</td>
+    <td>驗證現有字型子集的 Latin 涵蓋（缺字則重新子集化）；逐項檢查英文化後按鈕／HUD／地圖標籤／對話框／彈窗的寬度溢出並修正 CSS</td>
+    <td class="num">1</td><td class="hl2">中</td>
+  </tr>
+  <tr>
+    <td>W8</td><td>打包與全流程驗證</td>
+    <td><code>build_single_file.mjs</code> 增加字典內嵌規則；兩種語言各跑一輪完整流程（新局／教學／小遊戲／圖遊戲／圖鑑／故事／龍塔／存檔相容），本地 http.server 驗證後部署 GitHub Pages</td>
+    <td class="num">0.5～1</td><td>低</td>
+  </tr>
+  <tr><td colspan="3" style="text-align:right;font-weight:700">合計</td><td class="num"><b>7.5～10</b></td><td></td></tr>
+</table>
+
+<h3>建議分階段實施（每階段可獨立驗收）</h3>
+<table>
+  <tr><th>階段</th><th>範圍</th><th class="num">估時</th><th>驗收標準</th></tr>
+  <tr><td>Phase 1<br>架構骨架</td><td>W1＋W2＋W3</td><td class="num">2～2.5</td><td>切換鈕可用；靜態 UI（選單／說明／按鈕）完整雙語；動態面板暫時維持中文</td></tr>
+  <tr><td>Phase 2<br>遊戲字串</td><td>W4</td><td class="num">2～3</td><td>所有遊戲內動態訊息（結算／對話／圖鑑／小遊戲）雙語；中文模式零回歸</td></tr>
+  <tr><td>Phase 3<br>內容雙語</td><td>W5＋W6</td><td class="num">3～4.5</td><td>140 恐龍名、16 章故事、全部對話雙語；文字品質過稿</td></tr>
+  <tr><td>Phase 4<br>品質收尾</td><td>W7＋W8</td><td class="num">1.5～2</td><td>字型無缺字、兩語排版無溢出、單檔版重建通過、Pages 部署驗證</td></tr>
+</table>
+
+<h2 id="decisions">四、決策點（實作前需拍板）</h2>
+<table>
+  <tr><th>#</th><th>議題</th><th>選項與建議</th></tr>
+  <tr><td>D1</td><td>恐龍英文名策略</td><td><b>(a) 拉丁學名</b>（Diplodocus、Tyrannosaurus）— 國際通用、恐龍迷熟悉、有現成對照表，建議採用；<b>(b) 中文直譯</b>（如 Plate Dragon）— 品牌感較強但需自創 140 個名字</td></tr>
+  <tr><td>D2</td><td>故事翻譯品質</td><td>16 章約 4,000+ 字的兒童文學敘事。建議機翻初稿＋人工潤稿；若直接交給 AI 翻譯需逐章人工審讀（影響 W6 估時 ±1 人日）</td></tr>
+  <tr><td>D3</td><td>切換語言的方式</td><td><b>(a) 選單切換＋reload</b>（建議）— 簡單可靠；<b>(b) 遊戲中即時熱切換</b> — 需處理進行中局面與所有已渲染面板的重繪，複雜度高，不建議首版做</td></tr>
+  <tr><td>D4</td><td>Logo 素材</td><td>現有 logo 內含中文「相揪尋龍」＋英文「DragonFinder」雙語並存，英文模式<b>可直接沿用</b>；若要純英版需美術產出新素材（非程式工）</td></tr>
+  <tr><td>D5</td><td>英文字型</td><td>沿用 Iansui／Huninn 的 Latin 字形（需先驗證子集涵蓋，必要時重切）或英文模式改用系統字型（零成本但風格不一致）</td></tr>
+  <tr><td>D6</td><td>治理規則</td><td>AGENTS.md「玩家可見 UI 文字保持繁體中文」需修訂為「依語言設定（預設繁中）」，否則後續維護會與規則衝突</td></tr>
+  <tr><td>D7</td><td>首次啟動偵測預設方向</td><td>建議：<code>zh-TW/HK</code> → 繁中、<code>zh-CN/SG</code> → 簡中、其餘 → 英文；若客群以華語為主，可反轉為「預設繁中、僅明確 <code>en</code> 才英文」。兩種方向實作成本相同，動工前定案即可</td></tr>
+  <tr><td>D8</td><td>簡中字型</td><td><b>(a) 另切簡體子集</b>（風格一致；需原字型與子集化流程，約 +0.5 人日）；<b>(b) 簡中模式 fallback 系統字型</b>（零成本，但跨平台風格不一致）</td></tr>
+</table>
+
+<h2 id="trilang">五、三語漸進架構方案（繁中先行、簡中／英文後期建構）</h2>
+
+<div class="card good">
+  <div class="big">結論：可行，且建議採用</div>
+  <p>「前期把骨架設計成語言無關、開發後期再一次補建簡中與英文」不僅可行，還比「先做雙語再擴充」更省：骨架只建一次，之後加語言＝填字典＋一輪回歸，<b>不再改程式碼</b>。前期投入＝Phase 1＋2（約 4.5～6 人日）即可交付「繁中全量、骨架三語就緒」的版本，簡中、英文何時補、補哪個，由發布計畫決定。</p>
+</div>
+
+<h3>5.1 骨架設計（前期一次到位）</h3>
+<ul>
+  <li><b>三份對稱字典＋fallback 鏈</b>：字典以語言碼為鍵（<code>zh-Hant</code>／<code>zh-Hans</code>／<code>en</code>），<code>t(key)</code> 依「當前語言 → zh-Hant」退回。任何語言缺 key 都退回繁中，做到<b>骨架先上、字典後補、隨時可出貨</b>。</li>
+  <li><b>恐龍名同構</b>：data.js 名稱欄位一次改為 <code>name_zh_Hant</code>／<code>name_zh_Hans</code>／<code>name_en</code>，讀取函式（如 <code>nameOf(id)</code>）一次寫好；後期加語言只補欄位值。</li>
+  <li><b>首次啟動語言偵測</b>：以 <code>navigator.language</code>（瀏覽器 UI 語言）為偵測來源；<b>不用 IP 地理位置偵測</b>——那需要外部 API，違反本專案零依賴、完全離線原則，且瀏覽器語言本來就是玩家自設偏好，比 IP 更準。僅在 <code>dinodoku-lang</code> 鍵不存在時偵測一次並存檔，之後以手動切換為準，自動偵測<b>不覆蓋玩家偏好</b>：</li>
+</ul>
+<pre style="background:#f1ece2;border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:13px"><code>const saved = localStorage.getItem('dinodoku-lang');
+const s = (navigator.language || '').toLowerCase();
+let lang = 'en';                                    /* 預設英文（方向可依客群反轉，見 D7） */
+if (s.startsWith('zh')) lang = /cn|sg|hans/.test(s) ? 'zh-Hans' : 'zh-Hant';
+if (!saved) { try { localStorage.setItem('dinodoku-lang', lang); } catch(e){} }</code></pre>
+<ul>
+  <li><b>切換機制</b>：選單 🌐 鈕（繁／簡／EN 三選一）寫入偏好後 <code>location.reload()</code>，三語共用同一套機制。</li>
+  <li><b>已知邊界</b>：瀏覽器設成英文但偏好中文的海外玩家會被誤判 → 手動切換鈕（W2）仍是必要入口，自動偵測只決定初始預設。</li>
+</ul>
+
+<h3>5.2 後期填充（各語言可獨立出貨）</h3>
+<table>
+  <tr><th>語言</th><th>工作內容</th><th class="num">估時（人日）</th><th>備註</th></tr>
+  <tr><td>zh-Hant</td><td>骨架完成即全量可用（現有文本即繁中來源）</td><td class="num">0</td><td>基準語言</td></tr>
+  <tr><td>zh-Hans</td><td>字級轉換產初稿（OpenCC 類工具，覆蓋率 90%+）＋用語校訂（軟體／软件、螢幕／屏幕等台灣用語差異）＋故事語感審讀＋簡體字型子集</td><td class="num">1～1.5</td><td>成本遠低於翻譯</td></tr>
+  <tr><td>en</td><td>16 章故事＋對話約 100 句＋140 恐龍名（建議拉丁學名，見 D1）＋全部文案翻譯＋Latin 字型驗證</td><td class="num">3～4.5</td><td>品質門檻最高</td></tr>
+</table>
+
+<h3>5.3 字型策略（唯一需提前驗證的技術點）</h3>
+<table>
+  <tr><th>語言</th><th>字型現況</th><th>所需動作</th></tr>
+  <tr><td>zh-Hant</td><td>Huninn／Iansui 子集化內嵌，僅涵蓋現有繁體字碼位</td><td>字典化新增字串時重切子集</td></tr>
+  <tr><td>zh-Hans</td><td><b>簡體是完全不同的 Unicode 碼位，現有子集不涵蓋</b></td><td>另切簡體子集或 fallback 系統字型（見 D8）</td></tr>
+  <tr><td>en</td><td>Latin 涵蓋範圍未驗證</td><td>先驗證；不足則重切或系統字型</td></tr>
+</table>
+<p>建議三語的字型涵蓋驗證（繁中現有字元／簡中碼位／Latin）在動工前一次做完（合計一天內）：字型是唯一可能回頭改架構的變數，也會影響 <code>build_single_file.mjs</code> 的打包規則（多份字型檔內嵌）。</p>
+
+<h3>5.4 三語方案總估時</h3>
+<table>
+  <tr><th>階段</th><th>內容</th><th class="num">估時（人日）</th></tr>
+  <tr><td>前期骨架</td><td>Phase 1＋2（多語字典結構＋首次偵測＋切換 UI＋全部字串抽取）＋三語字型驗證；交付「繁中全量、骨架三語就緒」</td><td class="num">4.5～6</td></tr>
+  <tr><td>後期：zh-Hans</td><td>轉換＋校訂＋簡體字型＋一輪回歸</td><td class="num">1.5～2</td></tr>
+  <tr><td>後期：en</td><td>全量翻譯＋Latin 字型＋一輪回歸</td><td class="num">3.5～5</td></tr>
+  <tr><td colspan="2" style="text-align:right;font-weight:700">合計（vs 純英文 7.5～10；差額主要是簡中與多輪回歸）</td><td class="num"><b>9.5～13</b></td></tr>
+</table>
+<p>各階段可獨立驗收、獨立出貨：骨架期後任何時點都能只帶繁中上線，簡中、英文互不阻塞。</p>
+
+<h2>六、結論</h2>
+<div class="card">
+<p>英文模式對 DragonFinder 是<b>可行且邊界清楚</b>的工程：架構一天可立起來，難度不在技術而在<b>字串抽取的完整度</b>與<b>敘事內容的翻譯品質</b>。估算總量 7.5～10 人日，分四個可獨立驗收的階段推進；其中 Phase 1＋2（約 4～5.5 人日）完成後即可交付「UI 完整雙語、內容暫緩」的可用版本，故事與對話的翻譯可以之後逐批補上，不阻塞上架。</p>
+<p>唯一建議先做的前置動作：先做<b>字型 Latin 涵蓋驗證</b>（半天內可確認），因為它是唯一可能在期中才爆出的技術風險；其餘項目風險皆可控。</p>
+<p>若採三語漸進架構（第五節）：前期 4.5～6 人日建立語言無關骨架（含首次啟動語言偵測，繁中全量可用），簡中與英文後期逐批補建，三語合計約 9.5～13 人日；各語言可獨立出貨、互不阻塞，且骨架完成後加語言不再需要改程式碼。</p>
+</div>
+
+<div class="foot">
+  本報告為純評估文件，未修改任何應用程式碼。資料來源：v1.9.10 工作區（index.html／js/main.js／js/data.js／js/tower.js／css/style.css／assets/）實際掃描與抽樣解讀，2026-09-28 產出；同日修訂追加首次啟動語言偵測與三語漸進架構方案。
+</div>
+
+</div>
+</body>
+</html>

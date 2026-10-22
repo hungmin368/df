@@ -1,11 +1,18 @@
 # 更新日誌 CHANGELOG
 
 本檔自 **v1.9.17** 起建立，之後每次出貨（含上架平台包）皆需同步新增一筆，並與 `index.html` 的 `ver-badge` 版本號一致。
-v1.9.17 之前的完整歷史請見 git commit log 與 `worklogs/history/` 的歸檔工作紀錄。
+v1.9.17 之前的完整歷史請見 git commit log。
 
 格式：`- [版本] - 日期：摘要（細項）`
 
 ---
+
+## [Unreleased] - 2026-10-22
+
+- 專案目錄重構：遊戲本體集中到 `game_db/`（維持原有子目錄與相對連結），任務產物集中到 `working_db/`（reports、generated_assets、store、builds、docs、archive）。
+- 根目錄 `index.html` 改為 GitHub Pages 導向頁，轉往 `game_db/`。
+- Capacitor `webDir` 改指向 `game_db`；`build_dist.py` 改以 `game_db` 為來源輸出到 `working_db/builds/dist/`。
+- 報告輸出路徑改為 `working_db/reports/`，生成腳本與文件路徑同步更新。
 
 ## [1.9.18] - 2026-10-21
 

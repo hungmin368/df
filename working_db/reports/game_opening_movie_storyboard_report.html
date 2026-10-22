@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《恐龍快找》遊戲開場電影 · 分鏡腳本（導演版）</title>
+<style>
+  body{ font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    background:linear-gradient(160deg,#fffdf9 0%,#f9f2e3 100%); color:#43382c; margin:0; padding:28px 18px 60px; line-height:1.8; }
+  .wrap{ max-width:920px; margin:0 auto; }
+  h1{ font-size:25px; color:#c2410c; margin:0 0 2px; }
+  .sub{ color:#a39483; font-size:13px; margin-bottom:20px; }
+  h2{ font-size:19px; color:#2e7d5b; border-bottom:2.5px solid #ffd9a8; padding-bottom:4px; margin:34px 0 10px; }
+  h3{ font-size:15.5px; color:#8a5c1e; margin:20px 0 6px; }
+  table{ border-collapse:collapse; width:100%; font-size:13.5px; background:#fff; }
+  th,td{ border:1.5px solid #eee2cc; padding:7px 10px; text-align:left; vertical-align:top; }
+  th{ background:#fff3df; color:#6b4423; white-space:nowrap; }
+  code{ background:#f7efe2; border-radius:5px; padding:1px 6px; font-size:12.5px; }
+  pre{ background:#2d2a33; color:#f0ead9; border-radius:12px; padding:16px 18px; font-size:13px; overflow:auto; line-height:1.7; white-space:pre-wrap; word-break:break-word; }
+  pre code{ background:none; padding:0; color:inherit; }
+  .copy{ position:relative; }
+  .copybtn{ position:absolute; top:8px; right:8px; font-size:12px; border:1.5px solid #ff9d5c; background:#fff;
+    border-radius:999px; padding:3px 12px; cursor:pointer; color:#c2410c; font-family:inherit; }
+  .copybtn:hover{ background:#ffe3d3; }
+  .note{ background:#fdf3e3; border-left:4px solid #ff9d5c; padding:10px 14px; border-radius:0 10px 10px 0; font-size:13.5px; margin:12px 0; }
+  .shot{ background:#fffdf5; border:2px solid #f0e2c8; border-radius:12px; padding:14px 18px; margin:14px 0; }
+  .shot h3{ margin-top:0; }
+  .meta{ color:#8a7d6f; font-size:12.5px; margin:4px 0 8px; }
+  .tag{ display:inline-block; background:#ffe9d2; color:#a3541c; border-radius:999px; padding:1px 10px; font-size:12px; margin-right:6px; }
+  .act{ background:#eef7f0; border:1.5px solid #bfe0c8; border-radius:12px; padding:12px 16px; margin:10px 0; font-size:14px; }
+  .act b{ color:#2e7d5b; }
+  .curve{ font-size:13px; color:#6b4423; background:#fff; border:1.5px dashed #e3cfa4; border-radius:10px; padding:10px 14px; margin:10px 0; }
+  .todo{ color:#d64545; font-weight:700; }
+  .ok{ color:#1f7a46; font-weight:700; }
+  ul{ margin:6px 0 6px 0; padding-left:22px; font-size:14px; }
+  li{ margin:3px 0; }
+  .small{ font-size:12.5px; color:#8a7d6f; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>🎬《恐龍快找》遊戲開場電影 · 分鏡腳本（導演版）</h1>
+<div class="sub">恐龍快找 DragonFinder · 2026-10-21 · 目標產線：SophNet <code>happyhorse-1.0-r2v</code>（參考圖綁定）＋ ffmpeg 後製 · 本片為開場電影第三版（V3），取代森林物語 V2 成為新開場</div>
+
+<h2>〇、導演闡述：故事為什麼這樣重構</h2>
+<p>原始構想：兩個小朋友迷路闖進異世界 → 從暴龍口中救下未孵化的蛋 → 逃跑至絕境 → 相擁時蛋發光破裂 → 伴伴破殼而出、手持圖鑑 → 圖鑑如黑洞吸走暴龍 → 平靜後伴伴學步前行 → 回頭說「我們一起來恐龍快找吧」。骨架已經很好，導演版做了五個強化：</p>
+<ul>
+  <li><b>開場補「迷失」：</b>加了「人間公園迷路 → 穿過濃霧結界跌入異世界」兩鏡。觀眾和主角同步進入異世界，後面的一切都有「我們一起迷失」的代入感，也解釋了兩個凡人小孩為什麼會出現在有暴龍的世界。</li>
+  <li><b>救蛋動機單純化：</b>弟弟先被蛋的微光吸引、暴龍準備吞蛋，哥哥聲東擊西、弟弟抱蛋就跑——一個乾淨利落的英雄時刻，兒童觀眾一眼就懂「守護弱小」。</li>
+  <li><b>絕境相擁＝魔法開關：</b>原構想「兩人抱在一起時蛋冒白光」是全片情感最高點。劇本把它寫成觸發邏輯：因為兩人不顧一切護住蛋，蛋才以白光回應——愛與守護觸發孵化，比「蛋突然發光」更有道理，也更有張力。</li>
+  <li><b>圖鑑＝黑洞，呼應遊戲核心玩法：</b>電影裡把暴龍收進圖鑑，正是玩家在遊戲裡每分每秒做的事。電影是玩法的預告，開場演完，玩家已經學會遊戲規則。</li>
+  <li><b>喜劇節拍收場：</b>吸走暴龍後不急着收尾，讓伴伴手腳並用爬出蛋殼、蹣跚學步差點跌倒——緊張之後給一口喘息的笑點，再由牠回頭招手、喊出遊戲標題，觀眾帶著笑容進入標題畫面。</li>
+</ul>
+<div class="curve">張力曲線：日常（S1）→ 不安（S2）→ 窺見危機（S3）→ 爆發行動（S4）→ 追逐升溫（S5–S6）→ 絕望谷底（S7 前半）→ 神蹟反轉（S7 尾–S8）→ 魔法高潮（S9）→ 溫暖舒緩（S10）→ 歡呼收尾（S11）→ 標題卡</div>
+
+<h2>一、固定角色模型卡（全片鎖定，每鏡提示詞必帶）</h2>
+<p class="small">以下五張卡是 r2v 的「身分錨」。照片／圖片以 <code>reference_image</code> 傳入，文字卡寫進每支提示詞加固。任何一鏡都不得更改卡上設定。</p>
+
+<h3>① 伴伴（本尊）— 本電影唯一的龍</h3>
+<table>
+  <tr><th>鎖定來源</th><td>用戶指定圖 <code>assets/dinos_2/DFD-000_伴伴_1star.png</code>（1★ 破殼圖，即本電影「剛出生」造型；與本次附件逐位元一致）</td></tr>
+  <tr><th>電影參考圖</th><td><code>assets/dinos_2/bban_samples/_movie_bban_ref.jpg</code>（已由原圖去背轉白底、裁邊、1011×1024，直接當 r2v 第二參考圖）</td></tr>
+  <tr><th>外觀鎖定</th><td>紫水晶色細緻鱗片帶深紫色斑點；奶油白肚皮；頭頂一對金橘色分節大彎角＋鼻頭小角；背脊到尾巴一排金橘色小刺；粉色內耳；粉紅翼膜帶紫色斑點；金黃琥珀色大圓眼（白高光）；白色小尖牙與粉紅舌頭；橘色小爪；圓滾滾 Q 版寶寶體型</td></tr>
+  <tr><th>本片片尾狀態</th><td>剛出生的寶寶：站不穩、步伐蹣跚、翅膀張開保持平衡、表情呆萌認真</td></tr>
+</table>
+
+<h3>② 兩位小朋友（真人模型）— 2026-10-21 更新版</h3>
+<table>
+  <tr><th>鎖定來源</th><td>使用者本次提供的 4 張相片：<code>attachments-fd659579-...\0-image.png</code>（A寶單人）、<code>1-3d6b6ecb....jpg</code>（B寶單人）、<code>2-528440c1....jpg</code>（故宮龍藏經雙人全身）、<code>3-678707c0....jpg</code>（全家福）。取代森林物語 V2 的舊照片（白T／橘T 造型作廢）</td></tr>
+  <tr><th>電影參考圖</th><td><code>C:\Users\hungm\AppData\Roaming\@sophclaw\desktop\attachments\1b2e6e21-f6fd-4a81-8015-faa01ea03538\_movie_kids_ref.jpg</code>（以龍藏經雙人照裁切＋rembg 去背白底、906×1024；小朋友照片含隱私，沿用 V2 慣例<b>不進公開 repo</b>，只存本機 AppData）</td></tr>
+  <tr><th>哥哥 A寶</th><td>九歲、短黑髮側分、單眼皮笑眼、眉毛較濃、無眼鏡；米白底深褐細條紋短袖T恤（左胸棕色小皮標）、黑色頭戴式有線耳機掛在脖子上、淺綠色短褲、黑色洞洞鞋；勇敢、保護弟弟</td></tr>
+  <tr><th>弟弟 B寶</th><td>七歲、齊瀏海短黑髮、圓大眼、金色細框圓眼鏡；同款米白細條紋短袖T恤、黑色耳機掛頸、卡其色束口長褲、黑色洞洞鞋；膽小但關鍵時刻果敢（抱蛋的是他）</td></tr>
+  <tr><th>導演設計</th><td>頸上的黑色耳機是「現代小孩誤闖異世界」的身份標記，<b>全片不摘除</b>；條紋T恤＋洞洞鞋跑原始森林追逐戲，反差感正是本片造型靈魂</td></tr>
+</table>
+
+<h3>③ 暴龍（反派）與 ④ 恐龍蛋</h3>
+<table>
+  <tr><th>暴龍</th><td>深棕綠色鱗片、金黃色眼睛、滿口利牙的寫實巨獸（沿用 V2 連戲規範）。注意：遊戲圖鑑裡的雷克斯是紫色 Q 版造型，<b>電影版刻意改為寫實深棕綠</b>，威脅感才成立；兩者並不衝突，電影是「異世界親眼所見」的詮釋</td></tr>
+  <tr><th>恐龍蛋</th><td>米白色蛋殼帶圓形紫色斑點、殼面會微微透光（與伴伴 1★ 圖的蛋殼花紋一致，全片只有這一顆）</td></tr>
+</table>
+
+<h3>⑤ 圖鑑（本片新設計道具，S8 起登場，之後每鏡連戲）</h3>
+<table>
+  <tr><th>平時樣貌</th><td>厚重的深紫絨面古書，琥珀金色金屬邊框與護角，封面中央鑲一顆立體<b>金黃色星星寶石</b>；書頁泛微光，翻動時浮現發光恐龍剪影與星塵</td></tr>
+  <tr><th>發動捕捉</th><td>星星寶石中心張開成旋轉的黑色漩渦（像黑洞），周圍環繞金色星塵軌跡；只吸「目標與鬆散雜物」，地面岩石不動、被光罩住的夥伴毫髮無傷</td></tr>
+</table>
+
+<h2>二、三幕劇本大綱</h2>
+<div class="act"><b>第一幕 · 迷失異世界（S1–S2）：</b>黃昏公園，兄弟倆抄近路走進濃霧，穿過發光巨蕨結界，跌進雙月高掛的原始森林。好奇很快變成不安。</div>
+<div class="act"><b>第二幕 · 救蛋與逃亡（S3–S6）：</b>循著微光，兩人窺見暴龍正要吃掉一顆發光的蛋。A寶跳出大喊聲東擊西，B寶趁機抱蛋狂奔；暴龍暴怒追擊、撞斷小樹。兄弟被斷崖擋住去路，暴龍步步逼近、張口巨吼。</div>
+<div class="act"><b>第三幕 · 白光中的誕生（S7–S11）：</b>退無可退，兩人緊緊相擁護住蛋——蛋綻放白光、越來越亮，滿屏白。光退，蛋殼破裂，伴伴抱著圖鑑出生，對暴龍打哈欠。伴伴舉起圖鑑，星星寶石張開成黑洞漩渦，把暴龍整隻吸入書中。森林歸於平靜，伴伴手腳並用爬出蛋殼、蹣跚學步，回頭對兩兄弟燦笑招手——「我們一起來恐龍快找吧！」兄弟倆開心地跟上。</div>
+
+<h2>三、分鏡總表（11 鏡 × 5 秒 ≈ 55 秒 + 轉場 + 尾卡 ≈ 58 秒）</h2>
+<table>
+  <tr><th>鏡</th><th>秒</th><th>景別</th><th>運鏡</th><th>內容</th><th>聲音設計</th><th>參考圖</th></tr>
+  <tr><td>S1</td><td>5</td><td>中景</td><td>手持跟拍</td><td>黃昏公園，兄弟確認迷路，濃霧吞沒前方步道</td><td>公園環境音、遠處鳥鳴、風聲漸強</td><td>小朋友</td></tr>
+  <tr><td>S2</td><td>5</td><td>中→大遠</td><td>跟進穿越＋環視</td><td>穿過發光蕨葉結界，霧散見異世界：巨木、巨蕨、雙月</td><td>神秘 whoosh、空靈合唱 pad、異世界低鳴</td><td>小朋友</td></tr>
+  <tr><td>S3</td><td>5</td><td>窺視視角</td><td>穿過前景蕨葉 dolly-in</td><td>空地：紫斑蛋立於苔蘚微透光，暴龍低頭張口逼近</td><td>低頻恐懼 drone、暴龍低吼、心跳聲起</td><td>小朋友</td></tr>
+  <tr><td>S4</td><td>5</td><td>中→特寫</td><td>whip pan＋低角度跟衝</td><td>A寶跳出大喊聲東擊西；暴龍轉頭；B寶低身衝出抱起蛋就跑</td><td>大喊、暴龍怒吼、腳步與心跳</td><td>小朋友</td></tr>
+  <tr><td>S5</td><td>5</td><td>橫移全景</td><td>一鏡到底感橫移跟拍</td><td>巨樹間狂奔，B寶護蛋、A寶回頭拉手；暴龍撞樹追擊</td><td>追逐打擊樂、撞樹聲、喘息</td><td>小朋友</td></tr>
+  <tr><td>S6</td><td>5</td><td>大遠→仰拍特寫</td><td>低角度緩慢推近</td><td>斷崖絕路；暴龍躍出落地、逆光剪影、張口巨吼</td><td>巨吼聲波、碎石滾落、音樂戛然而止</td><td>小朋友</td></tr>
+  <tr><td>S7</td><td>5</td><td>中→特寫</td><td>環繞半圈→急推蛋</td><td>背貼岩壁兄弟相擁護蛋；蛋白光暴漲→滿屏白</td><td>心跳一下→上升 shimmer→白噪音轟鳴</td><td>小朋友</td></tr>
+  <tr><td>S8</td><td>5</td><td>特寫</td><td>微距推近</td><td>白光退、殼裂，伴伴抱圖鑑出生，對暴龍打哈欠；暴龍愣住</td><td>魔法碎光聲、寶寶哈欠、暴龍困惑低鳴</td><td>＋伴伴</td></tr>
+  <tr><td>S9</td><td>5</td><td>廣角</td><td>環繞（swirl）</td><td>伴伴舉圖鑑→星星張開黑洞漩渦→暴龍扒地被整隻吸入</td><td>低頻吸力轟鳴、風暴、驟然安靜</td><td>＋伴伴</td></tr>
+  <tr><td>S10</td><td>5</td><td>低角度中景</td><td>跟拍</td><td>平靜；伴伴爬出蛋殼、蹣跚學步、翅膀平衡差點跌倒</td><td>溫暖弦樂、觀眾式會心一笑的輕音效</td><td>＋伴伴</td></tr>
+  <tr><td>S11</td><td>5</td><td>中→遠</td><td>dolly-out 拉背</td><td>伴伴回頭燦笑招手（字卡：我們一起來恐龍快找吧）；兄弟跟上</td><td>主題旋律揚起、光點音效</td><td>＋伴伴</td></tr>
+  <tr><td>尾卡</td><td>2–3</td><td>—</td><td>—</td><td colspan="2">後製：遊戲 logo＋片名字卡（沿用 V2 尾卡模板）</td><td>—</td></tr>
+</table>
+<p class="small">後製轉場：S7 末尾已白光滿屏，S7→S8 直接切在白峰上或加 0.3s 白閃（沿用 V2 做法）；S11 尾巴燒字幕「我們一起來恐龍快找吧」。</p>
+
+<h2>四、逐鏡生成提示詞（可直接貼上 r2v）</h2>
+<p class="small">每支提示詞都已內建：風格卡、角色卡、連戲卡、防翻車卡、無字幕尾卡。參考圖組態：S1–S7 傳「<code>_movie_kids_ref.jpg</code>」（小朋友固定參考圖）一張；S8–S11 傳「<code>_movie_kids_ref.jpg</code>＋<code>_movie_bban_ref.jpg</code>」兩張（若 endpoint 拒收雙參考，回退小朋友參考圖單張，並把伴伴外觀卡文字貼進提示詞——下方已含）。</p>
+
+<div class="shot">
+<h3>S1 · 黃昏公園，確認迷路</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實都會公園，黃昏金色斜陽拖出長長人影，手持鏡頭微晃，淺景深、背景柔焦，溫暖電影調色。
+
+黃昏的公園步道，哥哥 A寶（九歲、短黑髮側分、單眼皮笑眼、無眼鏡、米白細條紋短袖T恤、黑色耳機掛頸、淺綠短褲、黑色洞洞鞋）舉著手機四處張望，皺眉搖頭；弟弟 B寶（七歲、齊瀏海短黑髮、圓大眼、金色細框圓眼鏡、同款條紋T恤、黑色耳機掛頸、卡其束口長褲、黑色洞洞鞋）緊緊抓著哥哥的衣角，緊張地左右看。前方步道被詭異濃霧整條吞沒，A寶指向霧中，B寶搖頭往後退半步。微風吹動樹葉，氣氛由悠閒轉為不安，兩人對看一眼。
+
+動作自然合理：每個人物都只有雙手雙腳、五根手指、臉部與肢體不變形、無重影無複製人。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S2 · 穿過結界，闖入異世界</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實原始森林，黃昏金色光束穿過高大樹冠，實拍級蕨葉、苔蘚岩石與落葉泥土，空氣中漂浮微塵與光斑，淺景深、背景柔焦、手持鏡頭微晃，溫暖電影調色。
+
+兩兄弟牽著手小心走進濃霧，穿過一道由巨大發光蕨葉構成的無形結界——霧氣散開的瞬間，眼前的世界完全變了：參天巨木高聳入雲、比自己還高的巨大蕨類、空氣中漂浮金色光塵，黃昏天空掛著兩顆淡淡的月亮。兩人瞪大眼睛、慢慢轉頭環顧四周，B寶張大嘴驚嘆，A寶本能地把弟弟護在身後。鏡頭跟著兩人穿過結界後緩慢環視（orbit）。
+
+主角為參考圖片中的兩兄弟（容貌、髮型、眼鏡與服裝嚴格參照參考圖）：哥哥 A寶（九歲、短黑髮側分、單眼皮笑眼、無眼鏡、米白底深褐細條紋短袖T恤、黑色頭戴式有線耳機掛在脖子上、淺綠色短褲、黑色洞洞鞋），弟弟 B寶（七歲、齊瀏海短黑髮、圓大眼、金色細框圓眼鏡、同款條紋T恤、黑色耳機掛頸、卡其色束口長褲、黑色洞洞鞋）。兩人脖子上的黑色耳機全片不摘除。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S3 · 循光窺見：暴龍與蛋</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實熱帶雨林，黃昏金色光束穿過高大樹冠，實拍級蕨葉、苔蘚岩石與落葉泥土，空氣中漂浮微塵與光斑，淺景深、背景柔焦，手持鏡頭。
+
+前景的巨大蕨葉後面躲著兩個亞洲小男孩，屏住呼吸偷偷往外看：哥哥 A寶（九歲、短黑髮側分、無眼鏡、米白細條紋T恤、頸掛黑耳機、淺綠短褲），弟弟 B寶（七歲、齊瀏海、金色圓框眼鏡、同款條紋T恤、頸掛黑耳機、卡其束口長褲）。
+
+前方空地中央，一顆米白色蛋殼帶圓形紫色斑點的巨大恐龍蛋立在苔蘚上、殼面微微透光；一隻深棕綠色鱗片、金黃色眼睛、滿口利牙的寫實巨獸暴龍（T-Rex）低著頭，張開長滿利牙的大嘴，慢慢逼近這顆蛋，低吼震動空氣。鏡頭穿過前景蕨葉緩慢向前推近（dolly-in）。
+
+全片連戲規範：兩兄弟服裝髮型眼鏡與頸上黑耳機前後完全一致；暴龍固定為深棕綠色鱗片、金黃色眼睛；蛋固定為米白色蛋殼帶圓形紫色斑點。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人；恐龍蛋全片只有一顆。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S4 · 聲東擊西，抱蛋就跑</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實熱帶雨林，黃昏金色光束，手持鏡頭。
+
+聲東擊西：哥哥 A寶（九歲、無眼鏡、米白細條紋T恤、頸掛黑耳機、淺綠短褲）從大樹後跳出來，雙手圈在嘴邊對暴龍大喊挑釁，表情誇張勇敢；深棕綠色鱗片、金黃色眼睛的寫實暴龍猛地轉頭怒視 A寶。同一時間，弟弟 B寶（七歲、金色圓框眼鏡、同款條紋T恤、頸掛黑耳機、卡其長褲）從反方向低身衝出，雙臂一把抱起苔蘚上米白色帶紫色斑點的恐龍蛋，轉身就跑，蛋緊緊抱在懷裡不離手。手持鏡頭先拍 A寶大喊，快速甩向暴龍轉頭（whip pan），再切低角度跟拍 B寶抱蛋衝刺。一個乾淨動作，無空中拋接。
+
+全片連戲規範：兩兄弟服裝髮型眼鏡與頸上黑耳機前後一致；暴龍固定為深棕綠色鱗片、金黃色眼睛；蛋固定為米白色蛋殼帶圓形紫色斑點，全片只有一顆。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S5 · 林間追逐</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實熱帶雨林，黃昏金色光束穿過樹冠，空氣中漂浮微塵與光斑。
+
+橫向平移跟拍（一鏡到底感）：兩個男孩在巨大樹幹之間一前一後狂奔，弟弟 B寶（七歲、金色圓框眼鏡、條紋T恤、卡其長褲）雙臂把米白色帶紫色斑點的恐龍蛋緊緊抱在懷裡（蛋不離手、不拋不接），哥哥 A寶（九歲、無眼鏡、條紋T恤、淺綠短褲）在他前方回頭伸手拉他一把；後方深棕綠色鱗片、金黃色眼睛的寫實暴龍怒吼著撞斷小樹、踩碎蕨葉緊追不捨，泥土與落葉飛濺，速度感十足、動態飛躍。
+
+全片連戲規範：兩兄弟服裝髮型眼鏡與頸上黑耳機前後一致；暴龍固定為深棕綠色鱗片、金黃色眼睛；蛋固定為米白色蛋殼帶圓形紫色斑點，全片只有一顆。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S6 · 斷崖絕路，暴龍巨吼</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實熱帶雨林邊緣的斷崖，黃昏金色逆光，雲霧繚繞的深谷，手持鏡頭。
+
+兩個男孩衝出樹林後急停——前方是萬丈深谷，退無可退。A寶（九歲、無眼鏡、條紋T恤、淺綠短褲）把抱著蛋的 B寶（七歲、金色圓框眼鏡、條紋T恤、卡其長褲）護在身後，兩人緩緩後退。深棕綠色鱗片、金黃色眼睛的寫實暴龍從林中一躍而出，重重落地，步步逼近，背後夕陽逆光成巨大剪影；牠對兩人張開血盆大口巨吼，聲波震得碎石滾落谷中。低角度仰拍緩慢推近暴龍的獠牙與金黃怒目，兩兄弟在畫面邊緣顯得渺小。
+
+全片連戲規範：兩兄弟服裝髮型眼鏡與頸上黑耳機前後一致；暴龍固定為深棕綠色鱗片、金黃色眼睛；蛋固定為米白色蛋殼帶圓形紫色斑點，全片只有一顆。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S7 · 絕境相擁，蛋綻白光（全片情感頂點）</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友</span><span class="tag">→後製白閃接 S8</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實熱帶雨林斷崖邊，黃昏金色逆光，手持鏡頭。
+
+千鈞一髮：退無可退，A寶（九歲、無眼鏡、條紋T恤、頸掛黑耳機）把抱著蛋的 B寶（七歲、金色圓框眼鏡、條紋T恤）連同米白色帶紫色斑點的恐龍蛋一起緊緊抱進懷裡，兩兄弟背貼岩壁、緊閉眼睛低下頭，用身體護住蛋。就在暴龍撲下的瞬間，懷中的蛋綻放柔和白光，越來越亮（蛋殼的紫色斑點在光芒中仍隱約可辨），光芒像衝擊波一樣掃開落葉與塵土，深棕綠色鱗片的暴龍被強光逼得閉眼撇頭、雙爪遮臉。鏡頭環繞兩兄弟半圈（orbit）後快速推近巨蛋，白光炸滿全畫面、一片純白收尾。
+
+全片連戲規範：兩兄弟服裝髮型眼鏡與頸上黑耳機前後一致；暴龍固定為深棕綠色鱗片、金黃色眼睛；蛋固定為米白色蛋殼帶圓形紫色斑點，全片只有一顆。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S8 · 破殼登場，伴伴抱著圖鑑</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友＋伴伴(_movie_bban_ref.jpg)</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實熱帶雨林，柔美逆光，淺景深、背景柔焦、手持鏡頭微晃，溫暖電影調色。
+
+白光漸退：A寶雙手中的蛋殼龜裂、啪地破開成幾片，一隻圓滾滾的寶寶小龍坐在破蛋殼中登場，雙爪還抱著一本厚重古書（深紫絨面封面、琥珀金色金屬邊框與護角、封面中央鑲一顆金黃色立體星星寶石）。寶寶小龍「伴伴」外觀嚴格遵照第二張參考圖：紫水晶色細緻鱗片帶深紫色斑點、奶油白肚皮、頭頂一對金橘色分節大彎角、背脊到尾巴一排金橘色小刺、粉色內耳與帶紫斑的粉紅翼膜、金黃琥珀色大圓眼、白色小尖牙與粉紅舌頭、橘色小爪。牠慢慢睜開眼睛，對著暴龍方向打了一個大大的哈欠，慵懶可愛；深棕綠色鱗片、金黃色眼睛的暴龍愣在原地。微距推近鏡頭。兩兄弟睜大眼睛驚喜地看著牠。
+
+全片連戲規範：兩兄弟服裝髮型眼鏡與頸上黑耳機前後一致；暴龍固定為深棕綠色鱗片、金黃色眼睛；蛋殼碎片與圖鑑造型前後一致。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人；只有一隻小龍。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S9 · 圖鑑黑洞，收服暴龍（全片魔法高潮）</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友＋伴伴(_movie_bban_ref.jpg)</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實熱帶雨林，黃昏金色光束，空氣中漂浮微塵與光斑，廣角環繞鏡頭（swirl）。
+
+圓滾滾的寶寶小龍「伴伴」（紫水晶色細鱗帶深紫斑點、奶油白肚皮、金橘色分節大彎角、粉紅翼膜、金黃琥珀色大圓眼）單爪舉起那本深紫絨面、琥珀金邊、封面鑲金黃星星寶石的古書圖鑑，對準暴龍；星星寶石中心張開成一個旋轉的黑色漩渦、越轉越大，像黑洞一樣吸扯周圍的一切：落葉、藤蔓、碎石紛紛飛起被吸入；深棕綠色鱗片、金黃色眼睛的寫實暴龍驚恐地用後爪扒住地面仍被緩緩拖走，最後整隻暴龍被捲入漩渦、消失不見，漩渦收攏成一滴金色光點回到書中。伴伴與兩個男孩（條紋T恤無眼鏡的哥哥、條紋T恤戴金色圓框眼鏡的弟弟）被柔和白光罩住、毫髮無傷；地面岩石紋絲不動。氣流狂舞後歸於平靜。
+
+全片連戲規範：伴伴外觀嚴格遵照參考圖；圖鑑造型固定；兩兄弟服裝髮型眼鏡與頸上黑耳機前後一致。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人；只有一隻小龍。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S10 · 蹣跚學步（喜劇喘息）</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友＋伴伴(_movie_bban_ref.jpg)</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實熱帶雨林，暴風過後陽光灑落，空氣清新、金色光斑漂浮，淺景深，低角度跟拍。
+
+風平浪靜、陽光灑落。寶寶小龍「伴伴」（外觀嚴格遵照第二張參考圖：紫水晶色細鱗帶深紫斑點、奶油白肚皮、金橘色分節大彎角、粉色內耳與粉紅翼膜、金黃琥珀色大圓眼）手腳並用從破蛋殼裡爬出來，站在殘殼上搖搖晃晃——牠邁出不穩的第一步，翅膀張開保持平衡，尾巴晃來晃去，差點跌倒又努力站穩，表情認真又呆萌可愛。旁邊地面放著那本深紫絨面、金黃星星寶石封面的古書圖鑑。兩兄弟（條紋T恤無眼鏡的哥哥、條紋T恤戴金色圓框眼鏡的弟弟）蹲在旁邊看得入迷，忍不住微笑。低角度跟拍。
+
+全片連戲規範：伴伴外觀嚴格遵照參考圖；蛋殼碎片與圖鑑造型前後一致；兩兄弟服裝髮型眼鏡與頸上黑耳機前後一致。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人；只有一隻小龍。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<div class="shot">
+<h3>S11 · 回頭招手，喊出片名</h3>
+<div class="meta"><span class="tag">5s</span><span class="tag">720P 16:9</span><span class="tag">refs：小朋友＋伴伴(_movie_bban_ref.jpg)</span><span class="tag">後製燒字幕＋尾卡</span></div>
+<div class="copy"><button class="copybtn">複製</button><pre>電影級實拍質感（真人電影），真實熱帶雨林，陽光溫暖明亮，金色光斑漂浮，淺景深。
+
+寶寶小龍「伴伴」（外觀嚴格遵照第二張參考圖：紫水晶色細鱗帶深紫斑點、奶油白肚皮、金橘色分節大彎角、粉色內耳與粉紅翼膜、金黃琥珀色大圓眼）搖搖晃晃往前走幾步，慢慢走穩，停下來回頭看向兩個男孩，露出燦爛笑容（小尖牙與粉紅舌頭），抬起小爪對他們招手、眼睛笑成彎月，尾巴開心地擺動。哥哥 A寶（條紋T恤、頸掛黑耳機、淺綠短褲）牽起弟弟 B寶（同款條紋T恤、金色圓框眼鏡、卡其長褲）的手，開心地互看一眼、跟上前去。鏡頭低角度跟拍再慢慢拉背（dolly-out），畫面溫暖明亮，最後定格並在畫面上方留出乾淨空間。
+
+全片連戲規範：伴伴外觀嚴格遵照參考圖；兩兄弟服裝髮型眼鏡與頸上黑耳機前後一致。
+動作自然合理：每個人物都只有雙手雙腳、五根手指、無重影無複製人；只有一隻小龍。
+電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</pre></div>
+</div>
+
+<h2>五、聲音與音樂設計（後製上，生成段無聲即可）</h2>
+<table>
+  <tr><th>段落</th><th>聲音設計</th></tr>
+  <tr><td>S1–S2</td><td>公園環境音→風聲漸強；穿結界時一記神秘 whoosh＋空靈合唱 pad，進入異世界後襯低鳴世界音</td></tr>
+  <tr><td>S3</td><td>音樂抽掉只剩低頻 drone＋暴龍低吼，疊一點心跳聲</td></tr>
+  <tr><td>S4–S5</td><td>追逐打擊樂起、暴龍怒吼、撞樹與腳步聲，B寶喘息</td></tr>
+  <tr><td>S6</td><td>暴龍巨吼帶聲波低頻；音樂在急停瞬間戛然而止，只剩風聲與碎石</td></tr>
+  <tr><td>S7</td><td>一下心跳→白光 rising shimmer→滿屏白時白噪音轟鳴（後製白閃同步）</td></tr>
+  <tr><td>S8</td><td>魔法碎光聲＋寶寶哈欠聲＋暴龍困惑低鳴，音樂重新以溫暖鋼琴進入</td></tr>
+  <tr><td>S9</td><td>黑洞低頻吸力轟鳴、風暴、吸入口瞬間驟然安靜（反差）</td></tr>
+  <tr><td>S10–S11</td><td>溫暖弦樂主題旋律揚起；S11 伴伴招手時音樂到位，尾卡接遊戲 logo 音</td></tr>
+</table>
+<p class="small">可沿用森林物語 V2 的 <code>assets/dinos_2/bban_samples/audio_v2.m4a</code> 作為配樂底，依上表重剪對點。</p>
+
+<h2>六、後製與交付規格</h2>
+<ul>
+  <li>每鏡 5 秒、720P、16:9；成片 1280×720、24fps、x264 yuv420p（沿用 V2 post 腳本參數）。</li>
+  <li>轉場：S7→S8 切在白峰或加 0.3s 白閃；其餘硬切。順序 concat：S1…S7＋flash＋S8…S11＋字幕版 S11 尾巴＋尾卡。</li>
+  <li>字幕：僅一句，燒在 S11 尾巴——<b>「我們一起來恐龍快找吧」</b>（用戶指定原句；字體 msjhbd，沿用 V2 字幕模板）。</li>
+  <li>尾卡：遊戲 logo＋片名（沿用 <code>game_logo.png</code> 尾卡模板），2–3 秒。</li>
+  <li>建議成片檔名：<code>assets/intro_opening_movie_720p.mp4</code>；之後在 <code>js/main.js</code> 替換開場影片來源（現為森林物語 V2）。</li>
+  <li>QC：每鏡抽 2 幀人工檢查（沿用 <code>_forest_story_v2_post.py</code> 的驗片流程），翻車鏡單鏡重抽，別整片重來。</li>
+</ul>
+
+<h2>七、產線參數與成本</h2>
+<table>
+  <tr><th>項目</th><th>設定</th></tr>
+  <tr><td>模型</td><td>SophNet <code>happyhorse-1.0-r2v</code>（參考圖生影片，V2 已實測可用）</td></tr>
+  <tr><td>參數</td><td><code>duration=5, resolution=720P, ratio=16:9</code></td></tr>
+  <tr><td>參考圖</td><td>S1–S7：<code>_movie_kids_ref.jpg</code>（小朋友固定參考圖，本機 AppData）×1；S8–S11：<code>_movie_kids_ref.jpg</code>＋<code>_movie_bban_ref.jpg</code> ×2（endpoint 拒收雙參考時，回退單張小朋友參考圖，提示詞內的伴伴外觀卡已可獨立鎖定）</td></tr>
+  <tr><td>成本</td><td>約 ¥0.9/秒 × 5 秒 × 11 鏡 ≈ <b>¥50</b>，含重抽預算建議抓 ¥70</td></tr>
+  <tr><td>腳本骨架</td><td>複製 <code>assets/dinos_2/bban_samples/_gen_sophnet_forest_story_v2.py</code> 改 SHOTS 與參考圖路徑即可（含續跑、狀態記錄、自動下載）</td></tr>
+</table>
+
+<h2>八、防翻車清單（V1／V2 血淚教訓，逐鏡自查）</h2>
+<ul>
+  <li>兩兄弟固定穿<b>米白細條紋 T 恤＋頸掛黑耳機</b>：A寶淺綠短褲無眼鏡、B寶卡其長褲＋金色圓框眼鏡（V1 曾把衣服顏色寫錯，影片直接漂移）。</li>
+  <li>伴伴登場的三鏡（S8–S11）必傳伴伴參考圖；只有文字卡時模型會把牠渲染成深紅色爬行類。</li>
+  <li>全片<b>只有一顆蛋</b>：禁止空中拋接、禁止分身蛋（V1 發生過）。</li>
+  <li>每個人物雙手雙腳、五根手指；無複製人、無重影。</li>
+  <li>暴龍是<b>深棕綠色寫實</b>，不是遊戲圖鑑那隻紫色 Q 版。</li>
+  <li>圖鑑外觀（深紫絨面＋琥珀金邊＋金星寶石）S8–S11 必須一致，黑洞只吸鬆散物與暴龍，地面岩石不動。</li>
+  <li>生成段一律「無字幕、無文字、無浮水印」，台詞字卡全部後製燒。</li>
+  <li>S4 只允許一個乾淨動作：B寶抱蛋起跑，不做空中傳接。</li>
+</ul>
+
+<h2>九、下一步</h2>
+<ul>
+  <li><span class="todo">待你確認</span>：分鏡與角色鎖定卡 OK 後，即可複製 V2 腳本骨架＋本報告提示詞開始逐鏡生成（約 ¥50）。</li>
+  <li><span class="todo">待你決定</span>：這部 V3 開場電影是否直接取代森林物語 V2 成為遊戲開場（涉及 <code>js/main.js</code> 影片來源替換）。</li>
+  <li><span class="ok">已完成</span>：伴伴電影固定參考圖 <code>assets/dinos_2/bban_samples/_movie_bban_ref.jpg</code>。</li>
+</ul>
+
+</div>
+<script>
+document.querySelectorAll('.copybtn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var pre = btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(function(){
+      btn.textContent = '已複製'; setTimeout(function(){ btn.textContent='複製'; }, 1500);
+    });
+  });
+});
+</script>
+</body>
+</html>

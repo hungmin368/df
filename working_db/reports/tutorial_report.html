@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教學流程驗證（4×4 與固定盤面） — 恐龍快找 DragonFinder</title>
+<style>
+
+:root{
+  --page-bg:#0b1020; --panel:#111a2e; --line:rgba(148,163,184,.24);
+  --text:#e8eefc; --muted:#9fb0d0; --accent:#7dd3fc; --accent2:#c084fc;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#172554 0%,transparent 60%),var(--page-bg);
+  color:var(--text);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;line-height:1.7}
+.page-head{max-width:1220px;margin:0 auto;padding:44px 20px 10px}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 8px}
+.page-head h1{margin:0 0 10px;font-size:30px;line-height:1.3;background:linear-gradient(90deg,#7dd3fc,#c084fc,#fbbf24);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.page-head .subtitle{margin:0 0 8px;color:#cbd5e1;font-size:14.5px}
+.page-head .note{margin:0 0 14px;color:#fbbf24;font-size:13.5px}
+.page-head .meta{margin:0;color:var(--muted);font-size:12.5px}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;margin:20px 0 6px}
+.toc a{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.04);
+  color:#dbeafe;text-decoration:none;font-size:13px}
+.toc a:hover{border-color:var(--accent);background:rgba(125,211,252,.10)}
+main{max-width:1220px;margin:0 auto;padding:8px 20px 50px}
+.src-block{margin:26px 0;border:1px solid var(--line);border-radius:16px;background:#0f172a;
+  box-shadow:0 18px 50px rgba(0,0,0,.28);scroll-margin-top:14px}
+.src{border-radius:0 0 15px 15px;overflow:hidden}
+.src-meta{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  padding:9px 14px;background:#101a30;border-bottom:1px solid var(--line);color:#cbd5e1;font-size:12px;
+  border-radius:15px 15px 0 0}
+.src-badge{display:inline-block;padding:2px 8px;border-radius:999px;background:rgba(125,211,252,.16);
+  color:#bae6fd;font-weight:700;letter-spacing:.04em}
+.src-meta code{color:#fde68a;background:rgba(0,0,0,.35);padding:1px 6px;border-radius:4px}
+.foot{max-width:1220px;margin:0 auto;padding:0 20px 50px;color:var(--muted);font-size:12px;text-align:center}
+@media print{.toc{display:none}.src{break-inside:auto;box-shadow:none}.src-meta{position:static}}
+
+
+  #src-1-body{
+    --ink:#22303c; --muted:#5b6b7a; --line:#dde5ec; --bg:#f4f7fa; --card:#ffffff;
+    --gold:#c97f06; --gold-bg:#fff7e6; --green:#1d7a4f; --green-bg:#e9f7f0;
+    --blue:#1f5f9e; --blue-bg:#eaf2fb; --code:#f0f3f7;
+  }
+  #src-1-body *{box-sizing:border-box}
+  #src-1-body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+       font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+       line-height:1.75;font-size:15px}
+  #src-1-body .wrap{max-width:1000px;margin:0 auto;padding:28px 20px 64px}
+  #src-1-body header.page{background:linear-gradient(135deg,#1f5f9e,#2d8a63);color:#fff;border-radius:14px;
+       padding:26px 30px;margin-bottom:26px;box-shadow:0 4px 14px rgba(31,95,158,.25)}
+  #src-1-body header.page h1{margin:0 0 6px;font-size:26px;letter-spacing:.5px}
+  #src-1-body header.page p{margin:2px 0;opacity:.92;font-size:14px}
+  #src-1-body h2{font-size:20px;margin:34px 0 12px;padding-left:12px;border-left:5px solid #2d8a63}
+  #src-1-body h3{font-size:16.5px;margin:22px 0 8px;color:var(--blue)}
+  #src-1-body .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;
+        box-shadow:0 1px 4px rgba(34,48,60,.06)}
+  #src-1-body table{width:100%;border-collapse:collapse;margin:10px 0;background:#fff;font-size:14px}
+  #src-1-body th, #src-1-body td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  #src-1-body th{background:#eef3f8;font-weight:700;white-space:nowrap}
+  #src-1-body tr:nth-child(even) td{background:#fbfcfe}
+  #src-1-body .msg{background:var(--gold-bg);border:1px solid #f2d9a0;border-radius:8px;padding:8px 12px;
+       display:inline-block;font-weight:600;color:#6b4a00}
+  #src-1-body .note{color:var(--muted);font-size:13px}
+  #src-1-body .tag{display:inline-block;font-size:12px;font-weight:700;border-radius:20px;padding:1px 10px;margin-right:6px;vertical-align:1px}
+  #src-1-body .tag.fixed{background:var(--green-bg);color:var(--green);border:1px solid #bfe3d2}
+  #src-1-body .tag.dyn{background:var(--blue-bg);color:var(--blue);border:1px solid #bcd4ee}
+  #src-1-body .tag.act{background:#f1e8fb;color:#6b3fa0;border:1px solid #ddc8f2}
+  #src-1-body code{background:var(--code);border:1px solid #e0e6ee;border-radius:5px;padding:1px 6px;
+       font-family:Consolas,Menlo,monospace;font-size:13px;color:#31424f}
+  #src-1-body pre{background:var(--code);border:1px solid #e0e6ee;border-radius:8px;padding:12px 16px;overflow-x:auto;
+      font-family:Consolas,Menlo,monospace;font-size:13px;line-height:1.6;color:#31424f}
+  #src-1-body .kicker{font-size:13px;color:var(--muted);margin:-4px 0 10px}
+  #src-1-body .stage{margin-top:18px}
+  #src-1-body ul{margin:6px 0;padding-left:22px}
+  #src-1-body li{margin:4px 0}
+  #src-1-body .footer{margin-top:40px;color:var(--muted);font-size:12.5px;text-align:center}
+
+#src-1-body img{max-width:100%;height:auto}
+#src-1-body table{max-width:100%}
+#src-1-body header code,#src-1-body .hero code,#src-1-body .meta code{color:#7c2d12;background:#fef3c7}
+
+
+  #src-2-body{ --ink:#2b2620; --sub:#7a6f63; --line:#e6ddcf; --bg:#fbf8f2; --card:#fffdf9; --ok:#1f7a46; --warn:#b3541e; --accent:#b8860b; }
+  #src-2-body *{ box-sizing:border-box; }
+  #src-2-body{ margin:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif; line-height:1.7; }
+  #src-2-body .wrap{ max-width:980px; margin:0 auto; padding:32px 20px 64px; }
+  #src-2-body header{ border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  #src-2-body h1{ font-size:26px; margin:0 0 6px; }
+  #src-2-body .meta{ color:var(--sub); font-size:13.5px; }
+  #src-2-body h2{ font-size:19px; margin:34px 0 10px; border-left:5px solid var(--accent); padding-left:10px; }
+  #src-2-body .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:14px 0; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  #src-2-body table{ width:100%; border-collapse:collapse; font-size:14px; margin:8px 0; }
+  #src-2-body th, #src-2-body td{ border:1px solid var(--line); padding:7px 10px; text-align:center; }
+  #src-2-body th{ background:#f4ecdd; font-weight:700; }
+  #src-2-body td.l, #src-2-body th.l{ text-align:left; }
+  #src-2-body .ok{ color:var(--ok); font-weight:700; }
+  #src-2-body .warn{ color:var(--warn); font-weight:700; }
+  #src-2-body .pill{ display:inline-block; background:#f4ecdd; border:1px solid var(--line); border-radius:999px; padding:2px 12px; font-size:12.5px; margin:2px 4px 2px 0; }
+  #src-2-body .note{ background:#fff6e6; border:1px solid #f0dcb4; border-radius:12px; padding:12px 16px; font-size:14px; }
+  #src-2-body ul{ margin:6px 0; padding-left:22px; }
+  #src-2-body code{ background:#f1ece2; border-radius:5px; padding:1px 6px; font-size:13px; }
+  #src-2-body .big{ font-size:15px; }
+  #src-2-body .chg{ background:#eef7ef; border:1px solid #cfe6d2; }
+  #src-2-body .board{ font-family:ui-monospace,Consolas,monospace; font-size:14px; letter-spacing:2px; background:#f7f2e7; border:1px solid var(--line); border-radius:8px; padding:6px 12px; display:inline-block; }
+
+#src-2-body img{max-width:100%;height:auto}
+#src-2-body table{max-width:100%}
+#src-2-body header code,#src-2-body .hero code,#src-2-body .meta code{color:#7c2d12;background:#fef3c7}
+
+</style>
+</head>
+<body>
+<header class="page-head">
+  <p class="kicker">DragonFinder Report Library</p>
+  <h1>教學流程驗證（4×4 與固定盤面）</h1>
+  <p class="subtitle">整併自《4×4 教學步驟報告》與《第一次教學固定盤面驗證報告》</p>
+  <p class="note">歷史驗證紀錄。現行教學已於 2026-10-21 改為「點擊畫面推進」，程式碼為最終準據。</p>
+  <p class="meta">整併日期：2026-10-22 ・ 來源 2 份 ・ 本報告保留原始內容與圖表，僅整併版面。</p>
+  <nav class="toc">
+<a href="#src-1">1. 4×4 教學步驟報告 — DragonFinder</a>
+<a href="#src-2">2. 第一次教學固定盤面驗證報告</a>
+  </nav>
+</header>
+<main>
+<div class="src-block" id="src-1">
+<div class="src-meta"><span class="src-badge">來源 1</span><span>原報告：<code>tutorial_4x4_report.html</code></span><span>原日期：2026-10-13</span></div>
+<section class="src" id="src-1-body">
+
+<div class="wrap">
+
+<header class="page">
+  <h1>🦖 4×4 教學（示範模式）步驟報告</h1>
+  <p>DragonFinder（尋龍高手）— 首次進入 4×4 關卡的自動示範教學，逐條詳列全部教學訊息與畫面動作</p>
+  <p>報告日期：2026-10-13　｜　原始碼：<code>js/main.js</code> 教學引擎（2493 行起）＋ <code>index.html</code></p>
+</header>
+
+<h2>一、概述</h2>
+<div class="card">
+  <ul>
+    <li><b>觸發時機：</b>玩家首次從主選單進入 4×4 關卡時（進度 <code>PROG.tut4</code> 未完成）自動啟動；教學標記完成後，之後再進 4×4 就是一般關卡。</li>
+    <li><b>教學形式：</b>「demo 示範模式」— 恐龍夥伴（對話框）全程<b>自動示範一局</b>，玩家純觀看，唯一可按的按鈕是「跳過教學 ▶▶」（示範模式中「繼續」按鈕不顯示）。</li>
+    <li><b>盤面：</b>4×4 盤面由 <code>generatePuzzle(4, …, tutorial=true)</code> 生成，仍是<b>唯一解</b>盤面：4 個顏色區塊各藏 1 隻恐龍，共 4 隻，且每列、每欄各 1 隻、恐龍互不相鄰（含斜角）。</li>
+    <li><b>節奏：</b>每個主步驟訊息間隔 2 秒（程式常數 <code>D=2000</code>），自動打 ✕ 時每格 0.24～0.5 秒。</li>
+  </ul>
+</div>
+
+<h2>二、教學盤的特殊行為</h2>
+<div class="card">
+  <table>
+    <tr><th>項目</th><th>行為</th></tr>
+    <tr><td>HUD 標題</td><td>顯示「<b>4 × 4 教學盤</b>」（一般關卡顯示「4 × 4 唯一解盤面」）</td></tr>
+    <tr><td>計時器</td><td>不啟動（教學與 5×5 以下皆不計時）</td></tr>
+    <tr><td>「清除標記」按鈕</td><td>禁用</td></tr>
+    <tr><td>隱藏物</td><td>全部都是恐龍，不會出現寶箱等其他隱藏物</td></tr>
+    <tr><td>鑰匙寶箱</td><td>教學盤不放置</td></tr>
+    <tr><td>星空發現視窗</td><td>教學中不彈出</td></tr>
+    <tr><td>隨行潛能、提示功能</td><td>教學中不作用、不可用</td></tr>
+  </table>
+</div>
+
+<h2>三、完整教學訊息時間軸</h2>
+<p class="kicker">圖例：<span class="tag fixed">固定訊息</span><span class="tag dyn">動態訊息（含變數）</span><span class="tag act">畫面動作</span>　※ 所有對話訊息實際顯示時，前方會加上夥伴名字前綴「<b>{夥伴名}：</b>」（未帶夥伴則無前綴）。</p>
+
+<div class="card stage">
+  <h3>階段 A — 開場與規則介紹</h3>
+  <table>
+    <tr><th style="width:52px">步驟</th><th>教學訊息（玩家看到的文字）</th><th style="width:30%">畫面動作與節奏</th></tr>
+    <tr>
+      <td>A0</td><td class="note">（無訊息）</td>
+      <td>進入教學盤，先等待 0.6 秒。</td>
+    </tr>
+    <tr>
+      <td>A1</td>
+      <td><span class="tag fixed">固定</span><span class="msg">歡迎來到尋龍高手 🎬 我先示範一局，你看著！</span></td>
+      <td><span class="tag act">動作</span>停留 2 秒。</td>
+    </tr>
+    <tr>
+      <td>A2</td>
+      <td><span class="tag dyn">動態</span><span class="msg">盤面分成 <b>4 個顏色區塊</b>，每區剛好藏 <b>1 隻</b>恐龍</span><br><span class="note">模板：<code>盤面分成 {N} 個顏色區塊，每區剛好藏 1 隻恐龍</code></span></td>
+      <td><span class="tag act">動作</span>依序用金色光圈圈選第 1～4 個顏色區塊，每區停留 2 秒。</td>
+    </tr>
+    <tr>
+      <td>A3</td>
+      <td><span class="tag fixed">固定</span><span class="msg">每條<b>橫列</b>也各剛好 1 隻</span></td>
+      <td><span class="tag act">動作</span>金色光圈圈選第 1 列，停留 2 秒。</td>
+    </tr>
+    <tr>
+      <td>A4</td>
+      <td><span class="tag fixed">固定</span><span class="msg">每條<b>直欄</b>也一樣</span></td>
+      <td><span class="tag act">動作</span>金色光圈圈選第 1 欄，停留 2 秒。</td>
+    </tr>
+    <tr>
+      <td>A5</td>
+      <td><span class="tag fixed">固定</span><span class="msg">而且恐龍<b>絕不互相接觸</b>——連斜角都不行！</span></td>
+      <td><span class="tag act">動作</span>停留 2 秒。</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card stage">
+  <h3>階段 B — 第一隻恐龍：確定 → 排除 → 捕獲</h3>
+  <table>
+    <tr><th style="width:52px">步驟</th><th>教學訊息（玩家看到的文字）</th><th style="width:30%">畫面動作與節奏</th></tr>
+    <tr>
+      <td>B1</td>
+      <td><span class="tag fixed">固定</span><span class="msg">答案先偷偷告訴你：發光這格有一隻！為什麼？牠會佔住<b>整列、整欄、整個色塊</b>——先確定牠，就能排除一大片。<br>牠周圍 <b>8 格</b>（含斜角）也都不可能有 → 全部打 ✕</span></td>
+      <td><span class="tag act">動作</span>金色光圈圈選第一隻恐龍格並<b>聚焦盤面</b>（非圈選格變暗），停留 2 秒。</td>
+    </tr>
+    <tr>
+      <td>B2</td>
+      <td class="note">（沿用 B1 訊息）</td>
+      <td><span class="tag act">動作</span>自動對周圍 8 格<b>逐一打 ✕</b>，每格 0.5 秒，帶縮放閃爍動畫與點擊音效。</td>
+    </tr>
+    <tr>
+      <td>B3</td>
+      <td><span class="tag fixed">固定</span><span class="msg">排除完成，鎖定目標——丟<b>捕捉器</b>！</span></td>
+      <td><span class="tag act">動作</span>自動<b>切換到捕捉器模式</b>（切換音效），停留 2 秒後重新圈選目標格。</td>
+    </tr>
+    <tr>
+      <td>B4</td>
+      <td class="note">（沿用 B3 訊息）</td>
+      <td><span class="tag act">動作</span>自動朝第一隻恐龍格<b>丟出捕捉器</b>（丟球動畫），停留 2 秒。</td>
+    </tr>
+    <tr>
+      <td>B5</td>
+      <td><span class="tag fixed">固定</span><span class="msg">🦖 捕獲成功！還會登錄到圖鑑！</span></td>
+      <td><span class="tag act">動作</span>捕捉器落在格上捕獲恐龍，停留 2 秒。</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card stage">
+  <h3>階段 C — 推理示範：用「列／欄／色塊」排除（第一隻之後）</h3>
+  <table>
+    <tr><th style="width:52px">步驟</th><th>教學訊息（玩家看到的文字）</th><th style="width:30%">畫面動作與節奏</th></tr>
+    <tr>
+      <td>C1</td>
+      <td><span class="tag dyn">動態</span><span class="msg">接著推理：牠在第 <b>R 列</b> → 這列其他格不可能有 → ✕</span><br><span class="note">模板：<code>接著推理：牠在第 {R} 列 → 這列其他格不可能有 → ✕</code>（R = 恐龍所在列號）</span></td>
+      <td><span class="tag act">動作</span>自動把第 R 列其他格逐一 ✕，每格 0.42 秒。</td>
+    </tr>
+    <tr>
+      <td>C2</td>
+      <td><span class="tag dyn">動態</span><span class="msg">第 <b>C 欄</b>也一樣 ✕</span><br><span class="note">模板：<code>第 {C} 欄也一樣 ✕</code>（C = 恐龍所在欄號）</span></td>
+      <td><span class="tag act">動作</span>自動把第 C 欄其他格逐一 ✕。</td>
+    </tr>
+    <tr>
+      <td>C3</td>
+      <td><span class="tag fixed">固定（條件顯示）</span><span class="msg">牠的<b>顏色區塊</b>裡也不會有第二隻 ✕</span><br><span class="note">僅當色塊內還有未標記的格子時才出現。</span></td>
+      <td><span class="tag act">動作</span>自動把同色塊其餘格子逐一 ✕。</td>
+    </tr>
+    <tr>
+      <td>—</td>
+      <td colspan="2" class="note">※ 第二隻恐龍的排除每格 0.3 秒、第三隻起每格 0.24 秒，訊息文字相同，僅節奏加快。</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card stage">
+  <h3>階段 D — 第二～四隻恐龍：強制推理與捕獲（重複 3 次）</h3>
+  <table>
+    <tr><th style="width:52px">步驟</th><th>教學訊息（玩家看到的文字）</th><th style="width:30%">畫面動作與節奏</th></tr>
+    <tr>
+      <td>D1</td>
+      <td><span class="tag dyn">動態</span>二擇一：<br>
+        ① 找得到「唯一候選」時：<span class="msg">看！<b>{理由}</b>只剩這格沒被 ✕ → 牠<b>鐵定在這</b>！丟球！</span>（第二隻）／<span class="msg"><b>{理由}</b>只剩一個候選格 → 丟球！</span>（第三、四隻）<br>
+        ② 找不到時：<span class="msg">候選格變少了！這格有一隻——{揭示理由}丟球！</span>（第二隻）／<span class="msg">如法炮製——這格有一隻（{揭示理由}）丟球！</span>（第三、四隻）<br>
+        <span class="note">「{理由}」為 <code>第R列／第C欄／這個顏色區塊</code>；「{揭示理由}」見第四節 whyReveal。</span></td>
+      <td><span class="tag act">動作</span>確保已切到捕捉器模式，金色光圈圈選該恐龍格，停留 2 秒。</td>
+    </tr>
+    <tr>
+      <td>D2</td>
+      <td class="note">（沿用 D1 訊息）</td>
+      <td><span class="tag act">動作</span>自動<b>丟球捕獲</b>該隻恐龍，停留 2 秒。</td>
+    </tr>
+    <tr>
+      <td>D3</td>
+      <td class="note">（無訊息）</td>
+      <td><span class="tag act">動作</span>非最後一隻時，重複「階段 C」的列／欄／色塊自動 ✕ 排除，休息 0.6 秒後處理下一隻。</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card stage">
+  <h3>階段 E — 收尾、結算與後續引導</h3>
+  <table>
+    <tr><th style="width:52px">步驟</th><th>教學訊息（玩家看到的文字）</th><th style="width:30%">畫面動作與節奏</th></tr>
+    <tr>
+      <td>E1</td>
+      <td><span class="tag fixed">固定</span><span class="msg">準備好了！我們一起找恐龍吧！</span></td>
+      <td><span class="tag act">動作</span>教學對話框收起，4 隻全數捕獲後自動過關。</td>
+    </tr>
+    <tr>
+      <td>E2</td>
+      <td><span class="tag fixed">固定</span>結算視窗：<br>
+        標題：<span class="msg">過關！</span><br>
+        副標：<span class="msg">流程就是：✕ 排除 → 鎖定唯一候選 → 丟球捕獲。換你上場！</span><br>
+        明細：<span class="msg">🎯 找到隱藏物 4 / 4</span></td>
+      <td><span class="tag act">動作</span>顯示結算畫面。</td>
+    </tr>
+    <tr>
+      <td>E3</td>
+      <td><span class="tag fixed">固定</span>下一步按鈕：<span class="msg">去 5×5 引導 ▶</span></td>
+      <td><span class="tag act">動作</span>將 4×4 教學標記為完成（<code>PROG.tut4</code>）、<b>解鎖 5×5</b>，點擊後進入 5×5 的「引導模式」教學（玩家親手操作版）。</td>
+    </tr>
+  </table>
+</div>
+
+<h2>四、動態訊息模板總表</h2>
+<div class="card">
+  <h3>findForced 的「{理由}」候選值（依盤面推理結果擇一）</h3>
+  <pre>第R列        ← 該列只剩這一個候選格
+第C欄        ← 該欄只剩這一個候選格
+這個顏色區塊  ← 該色塊只剩這一個候選格</pre>
+  <h3>whyReveal 的「{揭示理由}」輸出（依盤面狀態擇一）</h3>
+  <pre>牠是第R列唯一還沒被排除的格子
+牠是第C欄唯一還沒被排除的格子
+牠是這個顏色區塊唯一還沒被排除的格子
+牠的{第R列｜第C欄｜這個色塊}只剩 N 格可能是恐龍，牠是其中最值得先試的格子</pre>
+  <p class="note">前四行會以粗體強調列／欄／色塊名稱；實際文字中的 R、C 為代入後的列號、欄號。</p>
+</div>
+
+<h2>五、操作與 UI 細節</h2>
+<div class="card">
+  <ul>
+    <li><b>對話前綴：</b>每則教學訊息前方自動加上「<b>{夥伴名}：</b>」；未攜帶夥伴時不加前綴。</li>
+    <li><b>示範期間：</b>「繼續」按鈕隱藏（全自動播放）；僅顯示「<b>跳過教學 ▶▶</b>」按鈕。</li>
+    <li><b>金色光圈：</b>圈選格顯示金色脈動光暈動畫；聚焦時非圈選格降低亮度與彩度以突出重點。</li>
+    <li><b>自動 ✕：</b>示範打 ✕ 時該格有 0.4 秒放大閃爍動畫並播放點擊音效。</li>
+    <li><b>跳過教學：</b>任何時刻按「跳過教學 ▶▶」會立即結束教學、將 4×4 教學標記為完成並回到主選單（不會出現結算畫面，也不會自動帶玩家去 5×5 引導）。</li>
+    <li><b>音效：</b>切換捕捉器時播放球類音效；打 ✕ 時播放點擊音效。</li>
+  </ul>
+</div>
+
+<h2>六、原始碼對照</h2>
+<div class="card">
+  <table>
+    <tr><th>內容</th><th>位置</th></tr>
+    <tr><td>教學觸發條件（首次 4×4 → demo）</td><td><code>js/main.js:995</code></td></tr>
+    <tr><td>HUD「教學盤」標題</td><td><code>js/main.js:1030</code></td></tr>
+    <tr><td>教學引擎基礎（tutShow / 光圈 / 聚焦 / 等待）</td><td><code>js/main.js:2493-2581</code></td></tr>
+    <tr><td>推理搜尋 findForced 與理由文案 whyReveal</td><td><code>js/main.js:2584-2620</code></td></tr>
+    <tr><td>4×4 示範教學主流程 startDemo</td><td><code>js/main.js:2620-2692</code></td></tr>
+    <tr><td>列／欄／色塊自動排除 demoEliminate</td><td><code>js/main.js:2604-2618</code></td></tr>
+    <tr><td>教學結束訊息 tutHide</td><td><code>js/main.js:2505-2511</code></td></tr>
+    <tr><td>教學結算畫面（過關副標、去 5×5 引導）</td><td><code>js/main.js:2357-2367</code></td></tr>
+    <tr><td>跳過教學按鈕行為</td><td><code>js/main.js:2777-2787</code></td></tr>
+    <tr><td>對話前綴（夥伴名）</td><td><code>js/main.js:627-630</code></td></tr>
+    <tr><td>「繼續／跳過教學」按鈕 HTML</td><td><code>index.html:95-97</code></td></tr>
+    <tr><td>光圈／聚焦／閃爍動畫樣式</td><td><code>css/style.css:224-229</code></td></tr>
+  </table>
+</div>
+
+<div class="footer">DragonFinder 4×4 教學步驟報告　·　2026-10-13　·　本檔為自包含 HTML，可直接以瀏覽器開啟</div>
+</div>
+
+</section>
+</div>
+
+<div class="src-block" id="src-2">
+<div class="src-meta"><span class="src-badge">來源 2</span><span>原報告：<code>tutorial_fixed_board_report.html</code></span><span>原日期：2026-10-14</span></div>
+<section class="src" id="src-2-body">
+
+<div class="wrap">
+<header>
+  <h1>第一次教學固定盤面驗證報告</h1>
+  <div class="meta">尋龍高手 DragonFinder ・ 日期：2026-10-13〜14 ・ Task ID：tutorial-fixed-board</div>
+</header>
+
+<h2>一、需求與變更</h2>
+<div class="card chg">
+  <p class="big">第一次教學的 <b>4×4 示範</b>與 <b>5×5 引導</b>：<s>每次隨機生成盤面</s> → <b>改用預生成的固定盤面</b>，每位首次玩家所見完全相同。</p>
+  <p>實作方式：於 <code>newBoard()</code> 開頭新增分支——教學局且該尺寸有固定盤編碼時，以龍塔同款格式（每格一個 base-36 字元＝區域 id）<code>towerDecode</code> 解碼，經 <code>solve2</code> 驗證恰唯一解後交 <code>finishBoard</code> 生成；若固定盤資料缺損或非唯一解，自動退回原本隨機生成流程（防禦性回退）。</p>
+  <p>教學腳本本身（示範的自動推理旁白、引導的逐步互動）不需改動——兩者本就依盤面動態推理，固定盤上照常運作。</p>
+</div>
+
+<h2>二、固定盤面資料</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">尺寸</th><th class="l">編碼（<code>TUT_BOARDS</code>）</th><th class="l">盤面布局</th><th class="l">唯一解（各列欄位）</th></tr>
+    <tr><td class="l">4×4 示範</td><td class="l"><code>0001201122332333</code></td><td class="l"><span class="board">A A A B<br>C A B B<br>C C D D<br>C D D D</span></td><td class="l">[1, 3, 0, 2] → 格 <code>{1, 7, 8, 14}</code></td></tr>
+    <tr><td class="l">5×5 引導</td><td class="l"><code>0000020001222314233142311</code></td><td class="l"><span class="board">A A A A A<br>C A A A B<br>C C C D B<br>E C D D B<br>E C D B B</span></td><td class="l">[2, 4, 1, 3, 0] → 格 <code>{2, 9, 11, 18, 20}</code></td></tr>
+  </table>
+  <ul>
+    <li>唯一性驗證：4×4 滿足「行列色塊各恰 1 個＋八向不相鄰」的排列僅 2 種，區域設計破壞其中 1 種，故唯一；5×5 以排列回溯暴搜程式（暫存腳本，已 gitignore）驗證恰 1 解。</li>
+    <li>教學腳本前置條件逐一核對：4×4 示範每步 <code>findForced()</code> 皆可推理（旁白原因依序為第 2 列／第 3 列／第 3 欄）；5×5 引導的安全練習格、逐隻發光格與排除集合皆成立。</li>
+  </ul>
+</div>
+
+<h2>三、實機驗證結果（清存檔模擬首次玩家，本機 :8977）</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">檢查項目</th><th class="l">結果</th></tr>
+    <tr><td class="l">4×4 首次進入＝固定盤（regionOf／cats 與資料一致）</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">教學中按「重來」→ 盤面完全相同</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">4×4 示範自動播放跑完：4/4 揭示、推理旁白正確、結果畫面「去 5×5 引導 ▶」、存檔寫入 <code>tut4:true</code></td><td class="l ok">通過</td></tr>
+    <tr><td class="l">5×5 引導進入＝固定盤；互動全流程（✕ 練習→捕捉器→列／欄／斜角／色塊排除→4 隻丟球）跑完：5/5、<code>tut5:true</code></td><td class="l ok">通過</td></tr>
+    <tr><td class="l">教學後一般 4×4 兩次進入盤面互異、一般 5×5 隨機，且不再觸發教學（<code>G.tutorial=null</code>）</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">清存檔重測：再次首次進入 4×4 仍為同一固定盤（跨存檔確定性）</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">「跳過教學」：設 <code>tut4</code>、回主選單；4×4 未過關時 5×5 維持鎖定（既有解鎖邏輯不受影響）</td><td class="l ok">通過</td></tr>
+    <tr><td class="l"><code>node --check</code> 語法；HTTP <code>/index.html</code>、<code>/js/main.js</code> 皆 200；console 無遊戲程式錯誤</td><td class="l ok">通過</td></tr>
+  </table>
+</div>
+
+<h2>四、續行（同日）：秘訣教學流程</h2>
+<div class="card chg">
+  <p class="big">教學腳本改為<b>遊戲秘訣驅動</b>的完整循環：<b>秘訣判斷可清除格 → 找出確定可捕捉格 → 捕捉後教可清除格 → 重複</b>直到找出全部隱藏物。</p>
+  <ul>
+    <li><b>4×4 示範</b>：移除「答案先偷偷告訴你」的作弊式揭示。改為——💡秘訣一「第 1、2 列含 3 色，A、B 兩色不延伸出這兩列 → C 色的 (1,0) 可 ✕」；💡秘訣二「B 色 L 形 3 格 → 共同接觸的 L 缺口 (0,2) 可 ✕」；尚無單格確定 → 挑最集中的 (0,1) 試捕（教「沒有確定格就先試最有把握的」）；捕後完整排除 → 其餘 3 隻全部「第 X 列只剩一個候選格 → 鐵定在這」確定鏈捕捉。</li>
+    <li><b>5×5 引導</b>：玩家親手操作秘訣——💡秘訣一「第 1 列整列皆 A → 行外 A 格 3 格」玩家點 ✕；💡秘訣二「E 色剩 2 格 → 同時貼著兩格的 2 格」玩家點 ✕；此時 A 色塊剩單格 →「<b>百分百確定</b>」捕捉首隻；捕後列／欄手動 ✕、斜角講解；其餘 4 隻確定鏈重複。</li>
+    <li><b>捕捉後排除補全</b>：示範的排除教學補上「<b>周圍八格（連斜角）</b>→ ✕」步驟（列 → 欄 → 八格 → 色塊），與玩法說明的高冷法則一致。</li>
+    <li><b>教學瑕疵修正</b>：引導循環原本「訊息說 A 格鐵定、發光卻是 B 格」可能不一致——改為捕捉<b>推理實際證明的格子</b>，訊息、發光、捕捉三者一致（實測捕捉順序 11 → 9 → 18 → 20，全部有推理依據）。</li>
+  </ul>
+</div>
+
+<h2>五、秘訣教學實機驗證（清存檔，:8988）</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">檢查項目</th><th class="l">結果</th></tr>
+    <tr><td class="l">4×4：秘訣一／二訊息＋(1,0)(0,2) 預標 ✕ → 試捕 (0,1) 成功</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">4×4：捕後排除含「周圍八格（連斜角）」步驟；第 2／3／4 列確定鏈跑到 4/4、<code>tut4</code> 寫入</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">5×5：玩家操作兩秘訣 ✕（6,7,8／16,21）→「A 色塊剩 1 格＝百分百確定」捕捉 (0,2)</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">5×5：確定鏈訊息與發光格全部一致（第2欄→格11、第2列→格9、第4列→格18、第5列→格20）、5/5、<code>tut5</code> 寫入</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">回歸：跳過示範後一般 4×4 為隨機盤、不再觸發教學；<code>node --check</code> 通過；console 無本 origin 錯誤</td><td class="l ok">通過</td></tr>
+  </table>
+</div>
+
+<h2>六、續行（10-14）：首捕說明與確定性宣稱修正</h2>
+<div class="card chg">
+  <p class="big">使用者回報 4×4 示範「第一顆捕抓器沒有正確說明」。逐句核對後發現<b>兩處與盤面事實不符的宣稱</b>，本次全部改正。<b>本節描述取代第四／五節中對應的舊流程</b>。</p>
+  <ul>
+    <li><b>4×4 示範</b>：舊訊息「第 1 列只剩 2 格、挑最集中」為假——預標 (1,0)(0,2) 後第 1 列實際剩 <b>3 格</b> {0,1,3}，且全盤每條線都剩至少 3 格、無任何 100% 確定格。改為誠實說明：「每條線都還剩至少 3 格——還沒有 100% 確定的格子，<b>勇敢先試一格</b>：發光這格若抓到，列＋欄＋周圍八格＋色塊能一口氣確定 <b>8 格（正好半個盤面）</b>」，並保留捕捉器容錯說明（就算沒中也是情報）。</li>
+    <li><b>5×5 引導</b>：舊訊息「A 色塊只剩這 1 格＝<b>百分百確定</b>」為假——row0 整列都是 A，預標後 A 色塊仍剩 {0,2,3,4} 四格。改為新增<b>💡秘訣三</b>「E 的兩格都在第 1 欄 → 第 1 欄唯一名額就是 E 的 → (0,0)(1,0)(2,0) 可 ✕」，讓確定首捕落在<b>真可證明</b>的「第 2 列唯一候選」(1,4)；捕捉訊息改為「第 2 列 5 格已出局 4 格——只剩這格，鐵定在這」（為真）。</li>
+    <li><b>練習格調整</b>：原練習格 (0,1) 的「緊貼等下的獵物、確定沒有恐龍」在新首捕下不再成立（且 (0,1) 在捕前無法證明為空）——改用可由秘訣一證明為空的行外 A 格 <b>(1,1)</b>；秘訣一改為只標剩餘 2 格 (1,2)(1,3)。</li>
+    <li><b>防卡死</b>：首捕後「列排除」在新流程下為空集合——<code>waitCells([])</code> 永不 resolve 會卡死教學，列／欄排除都加上空集合防護（為空時改講解「已經全被秘訣 ✕ 掉了」）。</li>
+    <li><b>強制鏈重驗</b>（含 <code>findForced()</code> 周圍八格禁區與逐隻自動 ✕）：(1,4) 第 2 列 → (3,3) 第 4 欄 → (0,2) 第 3 欄 → (2,1) 第 3 列 → (4,0) 第 5 列，全部為真單候選推理。</li>
+  </ul>
+</div>
+
+<h2>七、宣稱修正實機驗證（清存檔，:8991，driver 自動化）</h2>
+<div class="card">
+  <table>
+    <tr><th class="l">檢查項目</th><th class="l">結果</th></tr>
+    <tr><td class="l">4×4：新首捕說明正確顯示（「每條線都還剩至少 3 格…確定 8 格（半個盤面）」）→ 試捕 (0,1) 成功、捕後共 8 格 ✕</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">4×4：第 2／3／4 列確定鏈 4/4、<code>tut4</code> 寫入、「去 5×5 引導 ▶」</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">5×5：練習 (1,1) 三態 ✕ → 秘訣一 (1,2)(1,3) → 秘訣二 (3,1)(4,1) → 秘訣三 (0,0)(1,0)(2,0) 全部玩家點擊</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">5×5：「第 2 列 5 格已出局 4 格＝鐵定在這」捕捉 (1,4)（宣稱為真）；首捕後「第 2 列已全被秘訣 ✕」講解（無卡死）</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">5×5：第 5 欄 4 格＋斜角 2 格手動 ✕、色塊自動 ✕；確定鏈訊息與發光格全部一致（第 4 欄→第 3 欄→第 3 列→第 5 列）、5/5、<code>tut5</code> 寫入</td><td class="l ok">通過</td></tr>
+    <tr><td class="l">回歸：教學後一般 4×4 兩局互異（<code>2233…1100</code>／<code>3333…0111</code>）、5×5 隨機，<code>G.tutorial</code> 皆 null；<code>node --check</code> 通過；console 無遊戲程式錯誤</td><td class="l ok">通過</td></tr>
+  </table>
+</div>
+
+<h2>八、備註</h2>
+<div class="card">
+  <ul>
+    <li><b>逾時假象</b>：教學中按「重來／放棄」彈出原生 <code>confirm()</code>，自動化瀏覽器無法關閉會造成頁面凍結假象；覆寫後一切正常，屬遊戲既有行為。</li>
+    <li><b>存檔相容</b>：未新增任何 <code>localStorage</code> 鍵值（沿用既有 <code>tut4</code>／<code>tut5</code> 旗標），無需遷移。</li>
+    <li><b>版控</b>：工作樹混有其他未提交變更，本次採手術式提交（僅教學相關 hunk＋worklog＋本報告）；<code>index.html</code> 版本號提升留待使用者決定。</li>
+  </ul>
+</div>
+</div>
+
+</section>
+</div>
+
+</main>
+<div class="foot">恐龍快找 DragonFinder ・ 報告整併（2026-10-22）</div>
+
+</body>
+</html>
