@@ -197,7 +197,7 @@
 
 30. 提交推送（完成）
     - commit：`_gen_kidstyle_sophnet.py`（修正版）、`_gen_kid_style_variants.py`（Gemini 備援版）、
-      `_build_kidstyle_report.py`、報告 HTML、工作日誌；push 至 main。
+      `_build_kidstyle_report.py`、報告 HTML、工作日誌；push 至 main（`5cb72c9`）。
     - 成本如實申報：本輪 SophNet 花費≈探針空任務 2（伺服器端失敗，≤¥0.5）＋film Edit-2509
       1 張（已救回）＋疑似孤兒任務 1（kill 前在途，~¥0.25）＋Wan2.6-T2I 4 張（~¥1–2）≈
       總計 ~¥2–3。四變體成品因 `_raw/` gitignore 僅內嵌於報告中交付。
