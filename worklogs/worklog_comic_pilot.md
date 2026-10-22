@@ -85,3 +85,16 @@
 15. 提交推送（完成）
     - commit：參數化腳本 ×2、兩頁新成品 PNG、比較報告 HTML、工作日誌；push 至 main。
 
+## 第 4 輪：比較報告圖片修復（用戶回報「html裡面看不到圖片」）
+
+16. 根因診斷（完成）
+    - 報告以相對路徑引用 `../generated_assets/comics/_raw/` 的 18 張分格圖，但 `_raw/` 在 `.gitignore`（第 46 行）——GitHub Pages 上全數 404；僅 3 張整頁 PNG 有入 git。
+    - 用戶端看不到圖片即此因（本機 http 驗證時 `_raw/` 存在所以當時沒抓到）。
+
+17. 報告改為單檔自足（完成）
+    - 新腳本 `_inline_comic_report_images.py`：21 張圖（3 整頁 860px／18 分格 760px 寬）轉 JPEG q85 後以 base64 data URI 內嵌；`<a href="_raw/…">` 18 條失效連結解除（整頁 PNG 已入 git，保留點擊開原圖）。
+    - 報告同時補註：2.5-flash 已確認為正式製作模型、新方向為寫實背景＋3D 立體感；頁尾註明圖片已內嵌、原始檔位置。
+
+18. 驗證（完成）
+    - localhost 開啟：21/21 張皆 data URI、0 破圖、0 殘留 _raw 連結；檔案 3.7 MB，逐節渲染正常。
+
