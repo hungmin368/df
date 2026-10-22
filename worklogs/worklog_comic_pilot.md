@@ -240,5 +240,5 @@
 
 34. v5 驗證＋提交推送（完成）
     - 整頁目視驗收通過（對話框零臉部重疊）；`_raw/` 維持 gitignore，成品頁入 git。
-    - commit＋push 至 main；交付 commit：__V5_COMMIT__。
+    - commit＋push 至 main；交付 commit：`7236005`。
 
