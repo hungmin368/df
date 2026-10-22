@@ -22,6 +22,14 @@
    - `working_db/reports/story_redesign_report.html`：自包含 HTML、繁中、含 10 章節（設計目標/素材盤點/四案比較/四案詳案/通用畫面規範/落地實作/決策指南）；資源以相對路徑引用 ../../game_db/（map.png、伴伴、寶箱三階、s0.svg、字型 Huninn.woff2）。
    - 修正方案 C concept 區一處 `</td></dt>` 標籤筆誤。
 
-4. 驗證（待辦）：python http.server + 瀏覽器開啟檢查。
+4. 驗證（完成）
+   - `python -m http.server 8014` + 瀏覽器開啟 `http://127.0.0.1:8014/working_db/reports/story_redesign_report.html`。
+   - 結果：6 張圖（logo/map.png/s0.svg/寶箱×3）全部載入成功；Huninn 字型生效；10 個章節齊全；四案章節表各 17 行；mood 色籤與排版正常；console 無本頁錯誤。
 
-5. 提交（待辦）：驗證通過後 commit（含 worklog）。
+5. 提交（完成）
+   - 報告＋工作日誌 commit：`129aaa7`（Propose four map-linked story arcs in a story redesign report）。
+
+## 最終狀態
+
+- 已完成：四方案故事企劃報告（含畫面設計規範與落地說明），已驗證、已提交。
+- 待續：等用戶從 A/B/C/D 中選定（或指定混搭）後，才將該案文案寫入 `game_db/js/main.js` 的 STORY 陣列並規劃 16 張場景卡生成——在此之前不改動任何遊戲檔案。
