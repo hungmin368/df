@@ -331,4 +331,4 @@
       P5 泡寬不足致驚嘆號孤行 → 寬度改 x0.34。重組後整頁目視：六格氣泡（含尾尖）零臉部重疊。
     - 報告 `_build_v6_report.py` → `working_db/reports/comic_v6_photo_report.html`（867KB 自足內嵌）：
       v5.1↔v6 整頁 before/after、六格分格圖、特徵對照表、氣泡避臉表；本地伺服器＋瀏覽器截圖驗證通過。
-    - commit＋push 至 main；交付 commit：待補記。
+    - commit＋push 至 main；交付 commit：`e68e7dc`。
