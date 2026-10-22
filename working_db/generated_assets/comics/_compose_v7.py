@@ -6,7 +6,8 @@
 每格：cover_crop 背景 → 依 PANELS 規格貼上定裝（縮放/水平翻轉/底部錨定/軟陰影）
       → extras（薩爾塔項鍊光點、P4 沙上圓圈、P6 掌心碎片光）→ 對話泡／旁白銘牌。
 氣泡位置為預估值，首跑後依實際構圖校準（比照 v5/v6 慣例：泡與尾不可蓋臉）。
-用法：python _compose_v7.py [--suffix _x]
+用法：python _compose_v7.py [--suffix _x] [--check]
+  --check  不合成，只驗證 PANELS 引用的定裝與背景檔案是否齊全（Phase 2 完成前背景不存在屬預期）
 """
 import math
 import sys
@@ -18,12 +19,16 @@ BGS = HERE / "_raw" / "_bgs"
 MASTERS = HERE / "_raw" / "_masters"
 
 SUFFIX = ""
+CHECK = False
 _args = sys.argv[1:]
 _i = 0
 while _i < len(_args):
     if _args[_i] == "--suffix":
         SUFFIX = _args[_i + 1]
         _i += 2
+    elif _args[_i] == "--check":
+        CHECK = True
+        _i += 1
     else:
         _i += 1
 OUT = HERE / f"propA_ch01_page1_v7{SUFFIX}.png"
@@ -235,6 +240,23 @@ def draw_caption(page, box, spec):
         yy += line_h
 
 
+def check_assets():
+    missing = []
+    need_bg = []
+    for key, spec in PANELS.items():
+        if not (BGS / f"{spec['bg']}.png").exists():
+            need_bg.append(f"{key}:{spec['bg']}")
+        for name, *_ in spec["actors"]:
+            if not (MASTERS / f"{name}.png").exists():
+                missing.append(f"{key}:{name}")
+    for f in (FONT_BD, FONT_RG):
+        if not Path(f).exists():
+            missing.append(f"font:{f}")
+    print(f"定裝/字型缺漏: {missing or '無'}")
+    print(f"尚待 Phase 2 產出背景: {need_bg or '無'}")
+    return not missing
+
+
 def main():
     page = Image.new("RGB", (PW, PH), PAPER)
     d = ImageDraw.Draw(page)
@@ -283,4 +305,6 @@ def main():
 
 
 if __name__ == "__main__":
+    if CHECK:
+        raise SystemExit(0 if check_assets() else 1)
     main()
