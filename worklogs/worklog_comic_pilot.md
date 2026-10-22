@@ -283,6 +283,6 @@
       本地伺服器＋瀏覽器截圖驗證渲染正常）。
     - 成本：本輪共生成 10 格（6＋P1/P5 修正＋P1 構圖兩試）≈ NT$5；
       20011 NO_AVAILABLE_DEPLOYMENT 為佈署未配置錯誤，應未計費。
-    - commit＋push 至 main；交付 commit hash 於推送後補記。
+    - commit＋push 至 main；交付 commit：`8ae154c`。
     - 暫存清理：z_*.png 除錯裁圖與 P1 兩版棄圖已刪（_raw 仍 gitignore；r1 備份留 _raw/_v5r1_backup/）。
 
