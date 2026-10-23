@@ -45,40 +45,41 @@ RED = (206, 60, 52)
 PW, PH = 1826, 2236
 # 版面幾何（直排 2×3，餘白對齊 v6 慣例）
 COLS = [(24, 906), (920, 1802)]
-ROWS = [(148, 782), (794, 1428), (1440, 2230)]
+ROWS = [(148, 782), (794, 1428), (1440, 2074)]
 
 # 定裝貼圖規格：(主檔, 目標高佔格高, 中心 x, 底部 y, 是否翻轉)
 PANELS = {
-    "P1": dict(bg="bg_beach_wide", actors=[("cg_man_stand", 0.52, 0.36, 0.98, False),
-                                           ("cg_da_stand", 0.30, 0.55, 0.98, False)],
+    "P1": dict(bg="bg_beach_wide", actors=[("cg_man_stand", 0.52, 0.32, 0.98, False),
+                                           ("cg_da_stand", 0.28, 0.52, 0.98, False)],
                extras=[], bubbles=[],
-               caption=dict(x=(0.03, 0.45), y0=0.05,
+               caption=dict(x=(0.03, 0.55), y0=0.05,
                             text="傳說中，第一支尋龍探險隊的補給箱，／就沉睡在這片金沙灘——")),
-    "P2": dict(bg="bg_sand_close", actors=[("cg_da_sniff", 0.55, 0.42, 0.98, False),
-                                           ("cg_man_crouch", 0.50, 0.74, 0.98, True)],
-               extras=[], bubbles=[dict(kind="round", x=(0.55, 0.99), y0=0.05, tail=(0.50, 0.42),
+    "P2": dict(bg="bg_sand_close", actors=[("cg_da_sniff", 0.40, 0.40, 0.99, False),
+                                           ("cg_man_crouch", 0.44, 0.80, 0.99, True)],
+               extras=[], bubbles=[dict(kind="round", x=(0.55, 0.99), y0=0.05, tail=(0.38, 0.60),
                                         text="（嗅嗅……）／亮晶晶的味道！")]),
     "P3": dict(bg="bg_beach_wide", flip_bg=True,
-               actors=[("cg_db_p01", 0.58, 0.66, 0.98, False),
-                       ("cg_man_stand", 0.50, 0.18, 0.98, False),
-                       ("cg_da_stand", 0.26, 0.36, 0.98, False)],
-               extras=[dict(kind="glow", cx=0.60, cy=0.42, r=0.045, color=(255, 224, 140))],
-               bubbles=[dict(kind="round", x=(0.55, 0.99), y0=0.04, tail=(0.62, 0.36),
+               actors=[("cg_db_p01", 0.52, 0.70, 1.03, False),
+                       ("cg_man_stand", 0.44, 0.17, 0.97, False),
+                       ("cg_da_stand", 0.22, 0.38, 0.98, False)],
+               extras=[dict(kind="necklace", cx=0.70, cy=0.785, w=0.085, h=0.026)],
+               bubbles=[dict(kind="round", x=(0.55, 0.99), y0=0.04, tail=(0.70, 0.52),
                              text="撿到～／最漂亮的項鍊！"),
-                        dict(kind="burst", x=(0.02, 0.36), y0=0.04, tail=(0.30, 0.34),
+                        dict(kind="burst", x=(0.02, 0.36), y0=0.04, tail=(0.19, 0.45),
                              text="喂——那是我們／先發現的！")]),
-    "P4": dict(bg="bg_sand_close", actors=[("cg_man_crouch", 0.62, 0.50, 0.99, False)],
-               extras=[dict(kind="circle", cx=0.50, cy=0.72, rx=0.30, ry=0.13)],
-               bubbles=[dict(kind="round", x=(0.06, 0.60), y0=0.04, tail=(0.46, 0.36),
+    "P4": dict(bg="bg_sand_close", actors=[("cg_man_crouch", 0.58, 0.44, 0.99, False)],
+               extras=[dict(kind="circle", cx=0.68, cy=0.86, rx=0.22, ry=0.075)],
+               extras_under=True,
+               bubbles=[dict(kind="round", x=(0.06, 0.60), y0=0.04, tail=(0.45, 0.40),
                              text="寶貝一定藏在／最氣派的沙堡裡！")]),
     "P5": dict(bg="bg_sandcastle",
-               actors=[("cg_man_kneel", 0.50, 0.26, 0.98, False),
-                       ("cg_da_cheer", 0.34, 0.52, 0.98, False),
-                       ("cg_db_p11", 0.52, 0.78, 0.98, True)],
-               extras=[], bubbles=[dict(kind="round", x=(0.50, 0.99), y0=0.05, tail=(0.72, 0.40),
+               actors=[("cg_man_kneel", 0.36, 0.19, 1.00, False),
+                       ("cg_da_cheer", 0.30, 0.46, 1.00, False),
+                       ("cg_db_p11", 0.50, 0.79, 1.03, True)],
+               extras=[], bubbles=[dict(kind="round", x=(0.42, 0.96), y0=0.05, tail=(0.72, 0.60),
                                         text="分你一半！")]),
     "P6": dict(bg="bg_sunset_glow", actors=[("cg_man_side", 0.86, 0.50, 1.00, False)],
-               extras=[dict(kind="shard", cx=0.44, cy=0.52, s=0.06)],
+               extras=[dict(kind="shard", cx=0.365, cy=0.373, s=0.028, glow=1.7)],
                bubbles=[],
                caption=dict(x=(0.06, 0.94), y0=0.82, plaque=True,
                             text="碎片背面刻著——隊規第一條：／「永遠，把恐龍當朋友。」")),
@@ -123,13 +124,43 @@ def paste_actor(panel, name, h_frac, cx_frac, by_frac, flip):
     cx = round(panel.width * cx_frac)
     by = round(panel.height * by_frac)
     px, py = cx - im.width // 2, by - im.height
-    # 接觸陰影：腳底軟橢圓
+    # 接觸陰影：腳底軟橢圓（光自左上，投影略偏右下）
     sh = Image.new("RGBA", panel.size, (0, 0, 0, 0))
-    ImageDraw.Draw(sh).ellipse((px + im.width * 0.12, by - im.height * 0.045,
-                                px + im.width * 0.88, by + im.height * 0.02), fill=(40, 28, 16, 90))
+    ImageDraw.Draw(sh).ellipse((px + im.width * 0.22, by - im.height * 0.045,
+                                px + im.width * 0.99, by + im.height * 0.02), fill=(40, 28, 16, 90))
     sh = sh.filter(ImageFilter.GaussianBlur(7))
     panel.alpha_composite(sh)
     panel.alpha_composite(im, (px, py))
+
+
+def warm_grade(panel):
+    """全格統一暖金調：輕微暖色覆蓋＋左上暖光，讓去背角色與寫實背景同一光場。"""
+    w, h = panel.size
+    ov = Image.new("RGBA", (w, h), (255, 186, 96, 16))
+    glow = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(glow).ellipse((-w * 0.55, -h * 0.65, w * 0.85, h * 0.70), fill=48)
+    glow = glow.filter(ImageFilter.GaussianBlur(70))
+    light = Image.new("RGBA", (w, h), (255, 226, 168, 255))
+    light.putalpha(glow)
+    return Image.alpha_composite(Image.alpha_composite(panel, ov), light)
+
+
+def draw_shard(d, cx, cy, s, rainbow=True, glow=2.6):
+    for i, a in enumerate((70, 45)):
+        rr = s * (glow - i * 0.9)
+        d.ellipse((cx - rr, cy - rr, cx + rr, cy + rr), fill=(255, 216, 130, a))
+    top = (cx, cy - s * 1.05)
+    right = (cx + s * 0.62, cy - s * 0.12)
+    bot = (cx + s * 0.18, cy + s)
+    left = (cx - s * 0.58, cy - s * 0.05)
+    cols = [(255, 236, 190), (255, 168, 176), (255, 214, 120), (150, 226, 210), (150, 176, 255)] \
+        if rainbow else [(255, 238, 170)] * 5
+    d.polygon([top, right, (cx, cy + s * 0.25)], fill=cols[0] + (245,))
+    d.polygon([right, bot, (cx, cy + s * 0.25)], fill=cols[1] + (240,))
+    d.polygon([top, (cx, cy + s * 0.25), left], fill=cols[2] + (240,))
+    d.polygon([left, (cx, cy + s * 0.25), bot], fill=cols[3] + (240,))
+    d.polygon([top, right, bot, left], outline=(255, 252, 235, 255), width=max(1, round(s * 0.10)))
+    d.ellipse((cx - s * 0.16, cy - s * 0.60, cx + s * 0.10, cy - s * 0.30), fill=(255, 255, 250, 230))
 
 
 def draw_extras(panel, extras):
@@ -148,13 +179,24 @@ def draw_extras(panel, extras):
                        w * (e["cx"] + e["rx"]), h * (e["cy"] + e["ry"])),
                       outline=(120, 86, 48, 220), width=6)
         elif e["kind"] == "shard":
-            cx, cy, s = w * e["cx"], h * e["cy"], min(w, h) * e["s"]
-            for i, a in enumerate((60, 40)):
-                rr = s * (2.2 - i * 0.7)
-                d.ellipse((cx - rr, cy - rr, cx + rr, cy + rr), fill=(255, 220, 130, a))
-            d.polygon([(cx, cy - s), (cx + s * 0.62, cy - s * 0.1), (cx + s * 0.3, cy + s),
-                       (cx - s * 0.3, cy + s), (cx - s * 0.62, cy - s * 0.1)],
-                      fill=(255, 238, 170, 245), outline=(190, 140, 60, 255))
+            draw_shard(d, w * e["cx"], h * e["cy"], min(w, h) * e["s"], glow=e.get("glow", 2.6))
+        elif e["kind"] == "necklace":
+            cx, cy, nw, nh = w * e["cx"], h * e["cy"], w * e["w"], h * e["h"]
+            colors = [(255, 120, 120), (255, 186, 92), (255, 232, 130), (146, 224, 156),
+                      (130, 200, 255), (170, 150, 255)]
+            n = 11
+            for i in range(n):
+                t = i / (n - 1)
+                x = cx - nw / 2 + nw * t
+                y = cy + nh * math.sin(math.pi * t)
+                r = max(3.5, nw * 0.042)
+                d.ellipse((x - r, y - r, x + r, y + r), fill=colors[i % len(colors)] + (245,),
+                          outline=(90, 66, 30, 210), width=1)
+            pd = (cx, cy + nh + nh * 0.55)
+            for i, a in enumerate((80, 50)):
+                rr = nh * (0.95 - i * 0.4)
+                d.ellipse((pd[0] - rr, pd[1] - rr, pd[0] + rr, pd[1] + rr), fill=(255, 224, 140, a))
+            draw_shard(d, pd[0], pd[1], nh * 0.55, glow=1.4)
 
 
 def draw_bubble(page, box, spec):
@@ -286,9 +328,13 @@ def main():
         tw, th = box[2] - box[0], box[3] - box[1]
         bg = Image.open(BGS / f"{spec['bg']}.png").convert("RGB")
         panel = cover_crop(bg, tw, th, flip=spec.get("flip_bg", False)).convert("RGBA")
+        if spec.get("extras_under"):
+            draw_extras(panel, spec["extras"])
         for name, hf, cx, by, fl in spec["actors"]:
             paste_actor(panel, name, hf, cx, by, fl)
-        draw_extras(panel, spec["extras"])
+        if not spec.get("extras_under"):
+            draw_extras(panel, spec["extras"])
+        panel = warm_grade(panel)
         page.paste(panel.convert("RGB"), (box[0], box[1]))
         d.rectangle(box, outline=INK, width=9)
         for b in spec["bubbles"]:
