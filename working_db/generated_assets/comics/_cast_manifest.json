@@ -1,0 +1,2414 @@
+{
+ "char_order": [
+  "雷恩",
+  "伴伴",
+  "薩爾塔龍",
+  "格雷",
+  "雷鐸",
+  "小三角龍",
+  "三角龍媽媽",
+  "無齒翼龍媽媽",
+  "似鴯鶓龍三兄弟",
+  "腫頭龍",
+  "樹息龍",
+  "小美頜龍",
+  "棘龍",
+  "掘龍",
+  "食肉牛龍警長",
+  "艾伯塔龍",
+  "竊蛋龍盜團",
+  "風神翼龍三姊妹",
+  "超帝王龍",
+  "霸王龍",
+  "棘龍王",
+  "敦煌龍商隊",
+  "海霸龍",
+  "蛇頸龍（海王者列隊）"
+ ],
+ "cast": [
+  {
+   "serial": "001",
+   "char": "雷恩",
+   "file": "cg_man_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same character as reference image 1: identical face, hairstyle, adventure explorer outfit, colors and proportions — a character turnaround of the SAME young man. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "002",
+   "char": "雷恩",
+   "file": "cg_man_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same character as reference image 1: identical face, hairstyle, adventure explorer outfit, colors and proportions — a character turnaround of the SAME young man. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "003",
+   "char": "雷恩",
+   "file": "cg_man_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same character as reference image 1: identical face, hairstyle, adventure explorer outfit, colors and proportions — a character turnaround of the SAME young man. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "004",
+   "char": "雷恩",
+   "file": "cg_man_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same character as reference image 1: identical face, hairstyle, adventure explorer outfit, colors and proportions — a character turnaround of the SAME young man. Full body, BACK view seen directly from behind, full body visible. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "005",
+   "char": "雷恩",
+   "file": "cg_man_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same character as reference image 1: identical face, hairstyle, adventure explorer outfit, colors and proportions — a character turnaround of the SAME young man. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "006",
+   "char": "雷恩",
+   "file": "cg_man_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same character as reference image 1: identical face, hairstyle, adventure explorer outfit, colors and proportions — a character turnaround of the SAME young man. Full body, WALKING mid-step in a relaxed side view. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "007",
+   "char": "雷恩",
+   "file": "cg_man_stand",
+   "action": "站姿（自信常態）",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "008",
+   "char": "雷恩",
+   "file": "cg_man_crouch",
+   "action": "蹲下驚喜（發現線索）",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "009",
+   "char": "雷恩",
+   "file": "cg_man_kneel",
+   "action": "單膝挖掘",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "010",
+   "char": "雷恩",
+   "file": "cg_man_side",
+   "action": "側身捧發光寶物",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "011",
+   "char": "雷恩",
+   "file": "cg_man_run",
+   "action": "全力奔跑（趕路／追逐）",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "012",
+   "char": "雷恩",
+   "file": "cg_man_point",
+   "action": "推理鎖定・指向遠方",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "013",
+   "char": "雷恩",
+   "file": "cg_man_map",
+   "action": "展開地圖檢視",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "014",
+   "char": "雷恩",
+   "file": "cg_man_shock",
+   "action": "驚訝後退一步",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "015",
+   "char": "雷恩",
+   "file": "cg_man_thumbs",
+   "action": "過關歡呼・豎拇指燦笑",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "016",
+   "char": "雷恩",
+   "file": "cg_man_calm",
+   "action": "伸手安撫恐龍",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "017",
+   "char": "雷恩",
+   "file": "cg_man_shardup",
+   "action": "高舉發光碎片（羅盤共鳴）",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "018",
+   "char": "雷恩",
+   "file": "cg_man_reach",
+   "action": "終章・側身伸手向前（握住格雷）",
+   "prompt": null,
+   "desc": "主角・成年探險家「雷恩」，彩虹羅盤持有者。"
+  },
+  {
+   "serial": "019",
+   "char": "伴伴",
+   "file": "cg_da_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "020",
+   "char": "伴伴",
+   "file": "cg_da_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "021",
+   "char": "伴伴",
+   "file": "cg_da_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "022",
+   "char": "伴伴",
+   "file": "cg_da_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "023",
+   "char": "伴伴",
+   "file": "cg_da_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "024",
+   "char": "伴伴",
+   "file": "cg_da_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "025",
+   "char": "伴伴",
+   "file": "cg_da_stand",
+   "action": "站姿（好奇常態）",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "026",
+   "char": "伴伴",
+   "file": "cg_da_sniff",
+   "action": "低頭嗅地面",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "027",
+   "char": "伴伴",
+   "file": "cg_da_cheer",
+   "action": "雙爪歡呼",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "028",
+   "char": "伴伴",
+   "file": "cg_da_sit",
+   "action": "乖巧坐姿",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "029",
+   "char": "伴伴",
+   "file": "cg_da_fly",
+   "action": "飛翔（翅膀全開）",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "030",
+   "char": "伴伴",
+   "file": "cg_da_glow",
+   "action": "額頭羅盤紋發光共鳴",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "031",
+   "char": "伴伴",
+   "file": "cg_da_hug",
+   "action": "緊抱彩虹碎片",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "032",
+   "char": "伴伴",
+   "file": "cg_da_sleep",
+   "action": "抱蛋蜷睡（序章）",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "033",
+   "char": "伴伴",
+   "file": "cg_da_hide",
+   "action": "緊張躲在雷恩腿後",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "034",
+   "char": "伴伴",
+   "file": "cg_da_angry",
+   "action": "對格雷張翅生氣",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "035",
+   "char": "伴伴",
+   "file": "cg_da_tear",
+   "action": "終章・流淚微笑",
+   "prompt": null,
+   "desc": "主角搭檔・額頭羅盤紋小龍「伴伴」，造型以遊戲圖 DFD-000 為錨。"
+  },
+  {
+   "serial": "036",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "037",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "038",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "039",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "040",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "041",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "042",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p07",
+   "action": "戴碎片項鍊炫耀",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, proudly wearing a glowing rainbow-crystal shard on a necklace, showing it off. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "043",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p08",
+   "action": "前肢挖沙",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, digging the sand with its front feet, sand flying backward. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "044",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p09",
+   "action": "讓出碎片",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, gently nudging a glowing rainbow-crystal shard forward with its snout, sharing it. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "045",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p10",
+   "action": "低頭害羞",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, bowing its head shyly with eyes averted. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "046",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p11",
+   "action": "湊近好奇",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, leaning its body close to the viewer, gentle curious eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "047",
+   "char": "薩爾塔龍",
+   "file": "cg_db_p12",
+   "action": "躍起歡呼",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep its signature SPIRAL-COILED tail exactly as in reference image 1 — the tail wraps in a flat spiral against the hip; big golden-amber eyes. Full body, leaping up in a happy cheer, all four feet off the ground. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "序章登場・愛亮晶晶的薩爾塔龍，把彩虹碎片當項鍊；造型以遊戲圖 9 為錨（灰藍身體、螺旋盤卷長尾）。"
+  },
+  {
+   "serial": "048",
+   "char": "格雷",
+   "file": "cg_grey_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same character as reference image 1: identical outfit: long dark frock coat, wide-brim hat with round brass goggles on the brim, lower face wrapped in a scarf — the face must stay hidden in shadow, NEVER reveal the face, no megaphone. A character turnaround of the SAME mysterious man. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "049",
+   "char": "格雷",
+   "file": "cg_grey_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same character as reference image 1: identical outfit: long dark frock coat, wide-brim hat with round brass goggles on the brim, lower face wrapped in a scarf — the face must stay hidden in shadow, NEVER reveal the face, no megaphone. A character turnaround of the SAME mysterious man. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "050",
+   "char": "格雷",
+   "file": "cg_grey_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same character as reference image 1: identical outfit: long dark frock coat, wide-brim hat with round brass goggles on the brim, lower face wrapped in a scarf — the face must stay hidden in shadow, NEVER reveal the face, no megaphone. A character turnaround of the SAME mysterious man. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "051",
+   "char": "格雷",
+   "file": "cg_grey_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same character as reference image 1: identical outfit: long dark frock coat, wide-brim hat with round brass goggles on the brim, lower face wrapped in a scarf — the face must stay hidden in shadow, NEVER reveal the face, no megaphone. A character turnaround of the SAME mysterious man. Full body, BACK view seen directly from behind, full body visible. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "052",
+   "char": "格雷",
+   "file": "cg_grey_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same character as reference image 1: identical outfit: long dark frock coat, wide-brim hat with round brass goggles on the brim, lower face wrapped in a scarf — the face must stay hidden in shadow, NEVER reveal the face, no megaphone. A character turnaround of the SAME mysterious man. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "053",
+   "char": "格雷",
+   "file": "cg_grey_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same character as reference image 1: identical outfit: long dark frock coat, wide-brim hat with round brass goggles on the brim, lower face wrapped in a scarf — the face must stay hidden in shadow, NEVER reveal the face, no megaphone. A character turnaround of the SAME mysterious man. Full body, WALKING mid-step in a relaxed side view. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "054",
+   "char": "格雷",
+   "file": "cg_grey_back",
+   "action": "背影（飛艇前指揮）",
+   "prompt": null,
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "055",
+   "char": "格雷",
+   "file": "cg_grey_sil",
+   "action": "側影佇立（帽簷遮臉）",
+   "prompt": null,
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "056",
+   "char": "格雷",
+   "file": "cg_grey_mega",
+   "action": "手持擴音器（只聞其聲）",
+   "prompt": null,
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "057",
+   "char": "格雷",
+   "file": "cg_grey_face",
+   "action": "終章・露臉大笑",
+   "prompt": null,
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "058",
+   "char": "格雷",
+   "file": "cg_grey_hand",
+   "action": "終章・伸出手",
+   "prompt": null,
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "059",
+   "char": "格雷",
+   "file": "cg_grey_pilot",
+   "action": "飛艇駕駛艙坐姿",
+   "prompt": null,
+   "desc": "神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"
+  },
+  {
+   "serial": "060",
+   "char": "雷鐸",
+   "file": "cg_grand_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same character as reference image 1: identical face, white hair and short white beard, warm elderly explorer coat, colors and proportions — a character turnaround of the SAME elderly man. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "061",
+   "char": "雷鐸",
+   "file": "cg_grand_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same character as reference image 1: identical face, white hair and short white beard, warm elderly explorer coat, colors and proportions — a character turnaround of the SAME elderly man. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "062",
+   "char": "雷鐸",
+   "file": "cg_grand_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same character as reference image 1: identical face, white hair and short white beard, warm elderly explorer coat, colors and proportions — a character turnaround of the SAME elderly man. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "063",
+   "char": "雷鐸",
+   "file": "cg_grand_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same character as reference image 1: identical face, white hair and short white beard, warm elderly explorer coat, colors and proportions — a character turnaround of the SAME elderly man. Full body, BACK view seen directly from behind, full body visible. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "064",
+   "char": "雷鐸",
+   "file": "cg_grand_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same character as reference image 1: identical face, white hair and short white beard, warm elderly explorer coat, colors and proportions — a character turnaround of the SAME elderly man. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "065",
+   "char": "雷鐸",
+   "file": "cg_grand_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same character as reference image 1: identical face, white hair and short white beard, warm elderly explorer coat, colors and proportions — a character turnaround of the SAME elderly man. Full body, WALKING mid-step in a relaxed side view. Plain pure white studio background, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "066",
+   "char": "雷鐸",
+   "file": "cg_grand_young",
+   "action": "年輕隊長站姿（回憶）",
+   "prompt": null,
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "067",
+   "char": "雷鐸",
+   "file": "cg_grand_old",
+   "action": "老年撫羅盤坐姿",
+   "prompt": null,
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "068",
+   "char": "雷鐸",
+   "file": "cg_grand_back",
+   "action": "背影望海",
+   "prompt": null,
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "069",
+   "char": "雷鐸",
+   "file": "cg_grand_glow",
+   "action": "回憶・金色投影顯影",
+   "prompt": null,
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "070",
+   "char": "雷鐸",
+   "file": "cg_grand_photo",
+   "action": "序章・合影站姿",
+   "prompt": null,
+   "desc": "雷恩的爺爺・前探險隊隊長「雷鐸」，白髮白鬚；以老年形態為主，年輕形態僅回憶。"
+  },
+  {
+   "serial": "071",
+   "char": "小三角龍",
+   "file": "tri_baby_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "072",
+   "char": "小三角龍",
+   "file": "tri_baby_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "073",
+   "char": "小三角龍",
+   "file": "tri_baby_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "074",
+   "char": "小三角龍",
+   "file": "tri_baby_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "075",
+   "char": "小三角龍",
+   "file": "tri_baby_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "076",
+   "char": "小三角龍",
+   "file": "tri_baby_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "077",
+   "char": "小三角龍",
+   "file": "tri_baby_p07",
+   "action": "迷路哭泣",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, sitting down crying loudly with big tears, mouth wailing, looking around lost. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "078",
+   "char": "小三角龍",
+   "file": "tri_baby_p08",
+   "action": "破涕為笑",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, breaking into a sunny smile with dried tears, jumping with joy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "079",
+   "char": "小三角龍",
+   "file": "tri_baby_p09",
+   "action": "跟隨奔跑",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, trotting happily, tail bouncing. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "080",
+   "char": "小三角龍",
+   "file": "tri_baby_p10",
+   "action": "埋頭吃草",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, head down munching a mouthful of grass, cheeks stuffed. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "081",
+   "char": "小三角龍",
+   "file": "tri_baby_p11",
+   "action": "依偎",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, nuzzling against an invisible large companion's leg, eyes closed content. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "082",
+   "char": "小三角龍",
+   "file": "tri_baby_p12",
+   "action": "崇拜抬頭",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a BABY of the reference species: keep the same body colors and markings as reference image 1, but as a small chubby juvenile with an oversized head and big round eyes. Full body, looking straight up in awe and admiration, eyes sparkling. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・迷路事件主角，哭著追丟隊伍的小傢伙（造型＝遊戲三角龍的幼體）。"
+  },
+  {
+   "serial": "083",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "084",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "085",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "086",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "087",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "088",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "089",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p07",
+   "action": "溫柔俯身",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, lowering her huge head gently down to nuzzle, soft eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "090",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p08",
+   "action": "警戒護崽",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, stepping in front protectively, horns lowered, fierce watchful eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "091",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p09",
+   "action": "感激低頭",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, bowing her head deeply in gratitude, eyes closed. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "092",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p10",
+   "action": "陪伴前行",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, walking calmly side by side. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "093",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p11",
+   "action": "呼喚",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, lifting her head calling out with open mouth, gentle expression. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "094",
+   "char": "三角龍媽媽",
+   "file": "tri_mom_p12",
+   "action": "奔馳",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, charging forward at full gallop, dust at the feet. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・平原賽區評審，挑剔但溫柔的媽媽。"
+  },
+  {
+   "serial": "095",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "096",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "097",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "098",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "099",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "100",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "101",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p07",
+   "action": "巢中孵蛋",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, sitting on a nest hugging a glowing rainbow crystal shard tucked under her wings as if it were an egg, protective gentle eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "102",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p08",
+   "action": "飛翔護送",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, soaring with wings fully spread, looking back kindly. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "103",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p09",
+   "action": "降落",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, gliding down with wings spread wide and legs reaching forward to land. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "104",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p10",
+   "action": "警戒張翼",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing with wings spread wide and beak open in a warning cry. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "105",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p11",
+   "action": "溫柔注視",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, perched, tilting her head down with a warm motherly gaze. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "106",
+   "char": "無齒翼龍媽媽",
+   "file": "ptero_mom_p12",
+   "action": "收翅休息",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, folded wings, dozing peacefully, beak tucked. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・把彩虹碎片當蛋孵的翼龍媽媽。"
+  },
+  {
+   "serial": "107",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "108",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "109",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "110",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "111",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "112",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "113",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p07",
+   "action": "賽跑衝刺",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, sprinting at top speed leaning forward, wind lines, determined grin. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "114",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p08",
+   "action": "捉迷藏探頭",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, peeking out from behind an invisible rock, one eye covered by a wing tip. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "115",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p09",
+   "action": "三兄弟疊羅漢",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, THREE identical copies of the same dinosaur stacked in a totem pole: one standing, one on its shoulders, one on top waving. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "116",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p10",
+   "action": "得意叉腰",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing proudly with wings on hips, chest puffed, smug grin. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "117",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p11",
+   "action": "啄食種子",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, pecking seeds off the ground, tail up. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "118",
+   "char": "似鴯鶓龍三兄弟",
+   "file": "emu_p12",
+   "action": "驚訝跳起",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, jumping back startled, wings flapping, beak wide open. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・草原捉迷藏賽的對手，搞笑擔當三胞胎（造型＝遊戲似鴯鶓龍）。"
+  },
+  {
+   "serial": "119",
+   "char": "腫頭龍",
+   "file": "pachy_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "120",
+   "char": "腫頭龍",
+   "file": "pachy_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "121",
+   "char": "腫頭龍",
+   "file": "pachy_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "122",
+   "char": "腫頭龍",
+   "file": "pachy_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "123",
+   "char": "腫頭龍",
+   "file": "pachy_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "124",
+   "char": "腫頭龍",
+   "file": "pachy_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "125",
+   "char": "腫頭龍",
+   "file": "pachy_p07",
+   "action": "頭槌頂碎石",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, headbutting a cracked rock, pebbles flying, eyes squeezed shut. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "126",
+   "char": "腫頭龍",
+   "file": "pachy_p08",
+   "action": "抱頭喊痛",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, holding its dome head with both hands, wincing in comic pain. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "127",
+   "char": "腫頭龍",
+   "file": "pachy_p09",
+   "action": "驕傲挺胸",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, thumping its chest proudly with one hand, beaming. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "128",
+   "char": "腫頭龍",
+   "file": "pachy_p10",
+   "action": "貼石聽回音",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, pressing its dome ear against a rock surface, listening carefully with a sly smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "129",
+   "char": "腫頭龍",
+   "file": "pachy_p11",
+   "action": "低頭衝撞",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, running with head lowered ready to ram, determined. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "130",
+   "char": "腫頭龍",
+   "file": "pachy_p12",
+   "action": "微笑讓路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, stepping aside with a polite welcoming gesture, gentle smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第二篇・回音谷守門人，『腦袋清楚的傢伙才能進』。"
+  },
+  {
+   "serial": "131",
+   "char": "樹息龍",
+   "file": "tree_dw_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "132",
+   "char": "樹息龍",
+   "file": "tree_dw_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "133",
+   "char": "樹息龍",
+   "file": "tree_dw_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "134",
+   "char": "樹息龍",
+   "file": "tree_dw_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "135",
+   "char": "樹息龍",
+   "file": "tree_dw_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "136",
+   "char": "樹息龍",
+   "file": "tree_dw_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "137",
+   "char": "樹息龍",
+   "file": "tree_dw_p07",
+   "action": "倒掛樹枝",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, hanging upside down from an invisible branch by its feet, wings folded, waving. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "138",
+   "char": "樹息龍",
+   "file": "tree_dw_p08",
+   "action": "滑翔",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, gliding with membrane wings spread, mid-air, joyful. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "139",
+   "char": "樹息龍",
+   "file": "tree_dw_p09",
+   "action": "捧螢菇燈",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, holding a glowing mushroom lamp with both hands, lighting its own smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "140",
+   "char": "樹息龍",
+   "file": "tree_dw_p10",
+   "action": "霧中指路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, pointing one wing forward into fog, serious helpful expression. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "141",
+   "char": "樹息龍",
+   "file": "tree_dw_p11",
+   "action": "微笑",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, perched upright with a soft knowing smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "142",
+   "char": "樹息龍",
+   "file": "tree_dw_p12",
+   "action": "鞠躬",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, bowing deeply with wings crossed on chest, respectful. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・霧林掌燈一族，夜視導航。"
+  },
+  {
+   "serial": "143",
+   "char": "小美頜龍",
+   "file": "compso_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "144",
+   "char": "小美頜龍",
+   "file": "compso_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "145",
+   "char": "小美頜龍",
+   "file": "compso_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "146",
+   "char": "小美頜龍",
+   "file": "compso_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "147",
+   "char": "小美頜龍",
+   "file": "compso_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "148",
+   "char": "小美頜龍",
+   "file": "compso_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "149",
+   "char": "小美頜龍",
+   "file": "compso_p07",
+   "action": "受困哭哭",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, crouched trembling, tears welling, squeaking for help. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "150",
+   "char": "小美頜龍",
+   "file": "compso_p08",
+   "action": "獲救擁抱",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, hugging an invisible rescuer's finger with both arms, eyes closed in relief. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "151",
+   "char": "小美頜龍",
+   "file": "compso_p09",
+   "action": "開心轉圈",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, spinning in place gleefully, tail whirling. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "152",
+   "char": "小美頜龍",
+   "file": "compso_p10",
+   "action": "躲葉子下",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, hiding under a big leaf held above its head, peeking out. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "153",
+   "char": "小美頜龍",
+   "file": "compso_p11",
+   "action": "跟隨",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, trotting after something with eager chirpy hops. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "154",
+   "char": "小美頜龍",
+   "file": "compso_p12",
+   "action": "大笑",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. This is a small juvenile of the reference species: same colors as reference image 1, tiny body. Full body, head thrown back laughing heartily, mouth wide open. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・被困霧中的小家伙，救援對象（造型＝遊戲美頜龍的幼體）。"
+  },
+  {
+   "serial": "155",
+   "char": "棘龍",
+   "file": "spino_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "156",
+   "char": "棘龍",
+   "file": "spino_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "157",
+   "char": "棘龍",
+   "file": "spino_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "158",
+   "char": "棘龍",
+   "file": "spino_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "159",
+   "char": "棘龍",
+   "file": "spino_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "160",
+   "char": "棘龍",
+   "file": "spino_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "161",
+   "char": "棘龍",
+   "file": "spino_p07",
+   "action": "沉穩站姿",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing tall and calm with hands clasped behind, station-master dignity. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "162",
+   "char": "棘龍",
+   "file": "spino_p08",
+   "action": "溫泉閉目",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, soaking contentedly up to the shoulders in an invisible hot spring, eyes closed serene smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "163",
+   "char": "棘龍",
+   "file": "spino_p09",
+   "action": "指路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, extending one arm showing the direction, reassuring nod. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "164",
+   "char": "棘龍",
+   "file": "spino_p10",
+   "action": "憂慮望潭",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, looking down at water with worried knowing eyes, sail drooping slightly. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "165",
+   "char": "棘龍",
+   "file": "spino_p11",
+   "action": "怒吼護潭",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, roaring with jaws wide open, sail fully raised, protective fury. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "166",
+   "char": "棘龍",
+   "file": "spino_p12",
+   "action": "低音唱歌",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, eyes closed humming a deep tune, gentle ripples drawn at the feet. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・月光沼澤守潭站長，外冷內熱。"
+  },
+  {
+   "serial": "167",
+   "char": "掘龍",
+   "file": "digger_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "168",
+   "char": "掘龍",
+   "file": "digger_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "169",
+   "char": "掘龍",
+   "file": "digger_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "170",
+   "char": "掘龍",
+   "file": "digger_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "171",
+   "char": "掘龍",
+   "file": "digger_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "172",
+   "char": "掘龍",
+   "file": "digger_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "173",
+   "char": "掘龍",
+   "file": "digger_p07",
+   "action": "搬石頭",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, carrying a big stone hugged to the chest, waddling. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "174",
+   "char": "掘龍",
+   "file": "digger_p08",
+   "action": "巢中囤積",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, sitting in a nest of piled shiny stones hugging a glowing rainbow crystal shard, possessive happy grin. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "175",
+   "char": "掘龍",
+   "file": "digger_p09",
+   "action": "被發現驚訝",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, frozen mid-dig, head snapped up, wide guilty eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "176",
+   "char": "掘龍",
+   "file": "digger_p10",
+   "action": "讓出寶物",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, pushing the glowing shard forward with both claws, reluctant but sincere. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "177",
+   "char": "掘龍",
+   "file": "digger_p11",
+   "action": "挖掘",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, digging energetically, dirt flying backward. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "178",
+   "char": "掘龍",
+   "file": "digger_p12",
+   "action": "害羞",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, toeing the ground, claws together, blushing smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第三篇・愛收集石頭的『水裡住戶』，碎片六持有者。"
+  },
+  {
+   "serial": "179",
+   "char": "食肉牛龍警長",
+   "file": "carno_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "180",
+   "char": "食肉牛龍警長",
+   "file": "carno_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "181",
+   "char": "食肉牛龍警長",
+   "file": "carno_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "182",
+   "char": "食肉牛龍警長",
+   "file": "carno_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "183",
+   "char": "食肉牛龍警長",
+   "file": "carno_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "184",
+   "char": "食肉牛龍警長",
+   "file": "carno_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "185",
+   "char": "食肉牛龍警長",
+   "file": "carno_p07",
+   "action": "警長站姿",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, standing upright with thumbs hooked on the belt, brass star badge gleaming, firm kind eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "186",
+   "char": "食肉牛龍警長",
+   "file": "carno_p08",
+   "action": "指揮交通",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, raising one arm directing firmly, commanding but fair. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "187",
+   "char": "食肉牛龍警長",
+   "file": "carno_p09",
+   "action": "低聲訴說",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, leaning close, one hand cupped beside the mouth telling a secret softly. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "188",
+   "char": "食肉牛龍警長",
+   "file": "carno_p10",
+   "action": "奔跑追緝",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, charging after something with badge bouncing, determined. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "189",
+   "char": "食肉牛龍警長",
+   "file": "carno_p11",
+   "action": "敬禮",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, saluting sharply with a respectful smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "190",
+   "char": "食肉牛龍警長",
+   "file": "carno_p12",
+   "action": "溫柔注視",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small brass sheriff star badge on a strap across the chest; change nothing else about the dinosaur. Full body, looking down softly at an invisible child, tough-guy tenderness. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・峽谷警長，探險隊恐龍夥伴的後代。"
+  },
+  {
+   "serial": "191",
+   "char": "艾伯塔龍",
+   "file": "alberto_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "192",
+   "char": "艾伯塔龍",
+   "file": "alberto_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "193",
+   "char": "艾伯塔龍",
+   "file": "alberto_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "194",
+   "char": "艾伯塔龍",
+   "file": "alberto_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "195",
+   "char": "艾伯塔龍",
+   "file": "alberto_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "196",
+   "char": "艾伯塔龍",
+   "file": "alberto_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "197",
+   "char": "艾伯塔龍",
+   "file": "alberto_p07",
+   "action": "雪巡站姿",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, standing proud with a green patrol scarf, snow-dusted shoulders, warm grin. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "198",
+   "char": "艾伯塔龍",
+   "file": "alberto_p08",
+   "action": "挖雪救援",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, digging snow with both arms flying, urgent hopeful eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "199",
+   "char": "艾伯塔龍",
+   "file": "alberto_p09",
+   "action": "極光下昂首",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, looking up at the sky in awe, bathed in imagined aurora glow, smiling. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "200",
+   "char": "艾伯塔龍",
+   "file": "alberto_p10",
+   "action": "合影摟肩",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, draping an arm around an invisible friend's shoulders, photobomb grin. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "201",
+   "char": "艾伯塔龍",
+   "file": "alberto_p11",
+   "action": "滾雪球",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, pushing a huge snowball bigger than itself, tongue out in effort. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "202",
+   "char": "艾伯塔龍",
+   "file": "alberto_p12",
+   "action": "道別揮手",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a green patrol scarf around the neck; change nothing else about the dinosaur. Full body, waving both arms high with a big farewell smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第四篇・雪嶺雪巡隊，熱情到可怕的地主選手。"
+  },
+  {
+   "serial": "203",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "204",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "205",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "206",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "207",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "208",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "209",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p07",
+   "action": "潛行",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, sneaking on tiptoes, body low, sly sideways glance. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "210",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p08",
+   "action": "抱蛋偷笑",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, hugging a swiped egg, stifling a giggle. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "211",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p09",
+   "action": "機關操作",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, pulling an invisible lever with both hands, tongue out concentrating. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "212",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p10",
+   "action": "被抓包舉手",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, frozen with both hands raised in surrender, sheepish grin. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "213",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p11",
+   "action": "分贓炫耀",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, proudly presenting a pile of shiny loot. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "214",
+   "char": "竊蛋龍盜團",
+   "file": "ovi_p12",
+   "action": "改過鞠躬",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, bowing apologetically with the loot offered back, sincere. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・王陵機關攻防的對手，亦敵亦友。"
+  },
+  {
+   "serial": "215",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "216",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "217",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "218",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "219",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "220",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "221",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p07",
+   "action": "雲端站姿",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing on an invisible cloud edge, wings folded elegantly, serene. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "222",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p08",
+   "action": "試煉宣佈",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, one wing raised in proclamation, noble commanding gaze. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "223",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p09",
+   "action": "高空護送",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, soaring upward carrying an invisible passenger on her back, protective. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "224",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p10",
+   "action": "三姊妹合舞",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, THREE identical sisters flying in formation, wings overlapping gracefully. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "225",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p11",
+   "action": "微笑頷首",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, a gentle approving nod with a soft smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "226",
+   "char": "風神翼龍三姊妹",
+   "file": "quetzal_p12",
+   "action": "逆光剪影",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, backlit pose with wings spread wide and crest glowing rim light. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第五篇・雲海神殿守門人，風之試煉考官。"
+  },
+  {
+   "serial": "227",
+   "char": "超帝王龍",
+   "file": "emp_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "228",
+   "char": "超帝王龍",
+   "file": "emp_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "229",
+   "char": "超帝王龍",
+   "file": "emp_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "230",
+   "char": "超帝王龍",
+   "file": "emp_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "231",
+   "char": "超帝王龍",
+   "file": "emp_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "232",
+   "char": "超帝王龍",
+   "file": "emp_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "233",
+   "char": "超帝王龍",
+   "file": "emp_p07",
+   "action": "王座站姿",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing colossal with arms crossed, crown of golden horns gleaming, supreme dignity. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "234",
+   "char": "超帝王龍",
+   "file": "emp_p08",
+   "action": "俯視群山",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, looking down from a great height pose, vast wings half-spread, contemplative. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "235",
+   "char": "超帝王龍",
+   "file": "emp_p09",
+   "action": "讓道",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, stepping aside and lowering the head, granting passage with grace. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "236",
+   "char": "超帝王龍",
+   "file": "emp_p10",
+   "action": "注視試煉",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, leaning forward observing intently with wise evaluating eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "237",
+   "char": "超帝王龍",
+   "file": "emp_p11",
+   "action": "點頭認可",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, a slow solemn approving nod, slight warm smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "238",
+   "char": "超帝王龍",
+   "file": "emp_p12",
+   "action": "雲上背影",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, massive back view standing above clouds, wings folded, golden rim light. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰守門王者，最終試煉主考官。"
+  },
+  {
+   "serial": "239",
+   "char": "霸王龍",
+   "file": "trex_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "240",
+   "char": "霸王龍",
+   "file": "trex_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "241",
+   "char": "霸王龍",
+   "file": "trex_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "242",
+   "char": "霸王龍",
+   "file": "trex_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "243",
+   "char": "霸王龍",
+   "file": "trex_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "244",
+   "char": "霸王龍",
+   "file": "trex_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "245",
+   "char": "霸王龍",
+   "file": "trex_p07",
+   "action": "吼叫",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, roaring with jaws wide open, tiny arms flapping, mighty but friendly. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "246",
+   "char": "霸王龍",
+   "file": "trex_p08",
+   "action": "讓路上山道",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, stepping aside and gesturing an arm forward politely, toothy grin. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "247",
+   "char": "霸王龍",
+   "file": "trex_p09",
+   "action": "小短手搆不到",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, struggling to reach its own back with tiny arms, comic frustration. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "248",
+   "char": "霸王龍",
+   "file": "trex_p10",
+   "action": "打瞌睡",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, dozing standing up, wobbling, mouth slightly open. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "249",
+   "char": "霸王龍",
+   "file": "trex_p11",
+   "action": "奔雷衝刺",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, thundering run, earth-shaking stomps, focused eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "250",
+   "char": "霸王龍",
+   "file": "trex_p12",
+   "action": "溫柔鼻尖輕觸",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, lowering its huge head to gently touch noses with an invisible small friend, eyes soft. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・巔峰王者群像，讓出上山道。"
+  },
+  {
+   "serial": "251",
+   "char": "棘龍王",
+   "file": "spino_king_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "252",
+   "char": "棘龍王",
+   "file": "spino_king_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "253",
+   "char": "棘龍王",
+   "file": "spino_king_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "254",
+   "char": "棘龍王",
+   "file": "spino_king_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "255",
+   "char": "棘龍王",
+   "file": "spino_king_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "256",
+   "char": "棘龍王",
+   "file": "spino_king_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "257",
+   "char": "棘龍王",
+   "file": "spino_king_p07",
+   "action": "鍛造站姿",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, standing at an invisible anvil with a hammer on the shoulder, ember-lit stern kind face. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "258",
+   "char": "棘龍王",
+   "file": "spino_king_p08",
+   "action": "淬火焰中凝視",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, gazing into flames with reflected firelight in the eyes, ominous wisdom. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "259",
+   "char": "棘龍王",
+   "file": "spino_king_p09",
+   "action": "幻象灰白驚覺",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, rearing back from a greyscale fading vision, shielding eyes. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "260",
+   "char": "棘龍王",
+   "file": "spino_king_p10",
+   "action": "點燃爐心",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, both hands raised kindling a blazing core of light above, triumphant. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "261",
+   "char": "棘龍王",
+   "file": "spino_king_p11",
+   "action": "撫背安慰",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, one huge hand gently patting an invisible companion's back. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "262",
+   "char": "棘龍王",
+   "file": "spino_king_p12",
+   "action": "交托重任",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Full body, holding out a glowing shard on both palms, solemn entrusting gaze. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第六篇・熔火龍穴鍛造師，火焰試煉引路人。"
+  },
+  {
+   "serial": "263",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "264",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "265",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "266",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "267",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p05",
+   "action": "跑步",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, RUNNING mid-stride in a dynamic side view, full of energy. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "268",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p06",
+   "action": "走路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, WALKING mid-step in a relaxed side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "269",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p07",
+   "action": "商隊站姿",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, standing with saddle bags and a merchant staff, wise hospitable smile. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "270",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p08",
+   "action": "斷後阻敵",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, rearing up blocking the way with staff planted, brave protective. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "271",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p09",
+   "action": "指點水路",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, pointing at an underground waterway map, instructing. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "272",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p10",
+   "action": "駝隊前行",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, walking with a caravan stride, bells implied, calm. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "273",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p11",
+   "action": "講古",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, sitting telling an old tale with one hand raised mid-gesture. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "274",
+   "char": "敦煌龍商隊",
+   "file": "dunhuang_p12",
+   "action": "合掌祝福",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY small saddle bags on the back; change nothing else about the dinosaur. Full body, palms together in a blessing bow, serene. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・流沙王陵商隊長，斷後護航。"
+  },
+  {
+   "serial": "275",
+   "char": "海霸龍",
+   "file": "haiwang_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "276",
+   "char": "海霸龍",
+   "file": "haiwang_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "277",
+   "char": "海霸龍",
+   "file": "haiwang_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "278",
+   "char": "海霸龍",
+   "file": "haiwang_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "279",
+   "char": "海霸龍",
+   "file": "haiwang_p05",
+   "action": "快速游動",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, fast SWIMMING pose gliding through water with a sense of motion, full body side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "280",
+   "char": "海霸龍",
+   "file": "haiwang_p06",
+   "action": "緩慢游動",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, slowly CRUISING underwater in a calm graceful glide, full body side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "281",
+   "char": "海霸龍",
+   "file": "haiwang_p07",
+   "action": "開潮門",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, rearing up with flippers spread commanding the tide gates to open, majestic. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "282",
+   "char": "海霸龍",
+   "file": "haiwang_p08",
+   "action": "護送游弋",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, cruising with neck curved in a regal S, escorting. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "283",
+   "char": "海霸龍",
+   "file": "haiwang_p09",
+   "action": "水晶宮站姿",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, standing guard before an invisible crystal palace, noble. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "284",
+   "char": "海霸龍",
+   "file": "haiwang_p10",
+   "action": "怒吼破浪",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, roaring with jaws open, water bursting around, kingly fury. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "285",
+   "char": "海霸龍",
+   "file": "haiwang_p11",
+   "action": "低頭致謝",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, bowing the long head in gratitude. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "286",
+   "char": "海霸龍",
+   "file": "haiwang_p12",
+   "action": "沉睡守門",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Add ONLY a small coral-gold crown on the head; change nothing else about the dinosaur. Full body, coiled asleep around a gate post, peaceful guardian. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・碧海龍宮海王者，開啟潮門。"
+  },
+  {
+   "serial": "287",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p01",
+   "action": "正面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, standing FRONT view facing the camera, full body visible, head turned to look at the viewer. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "288",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p02",
+   "action": "左側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, LEFT-side profile view, full body visible, facing to the left. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "289",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p03",
+   "action": "右側面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, RIGHT-side profile view, full body visible, facing to the right. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "290",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p04",
+   "action": "背面",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, BACK view seen directly from behind, full body visible. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "291",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p05",
+   "action": "快速游動",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, fast SWIMMING pose gliding through water with a sense of motion, full body side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "292",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p06",
+   "action": "緩慢游動",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, slowly CRUISING underwater in a calm graceful glide, full body side view. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "293",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p07",
+   "action": "優雅游弋",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, gliding with flippers spread, neck in a gentle curve, serene. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "294",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p08",
+   "action": "列隊敬禮",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, holding a flipper up in a neat salute, playful. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "295",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p09",
+   "action": "探頭好奇",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, craning the small head forward curiously at something. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "296",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p10",
+   "action": "載客護送",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, carrying invisible passengers on the back, careful gentle swim pose. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "297",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p11",
+   "action": "轉圈舞蹈",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, twirling the body in a spiral dance, joyful. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  },
+  {
+   "serial": "298",
+   "char": "蛇頸龍（海王者列隊）",
+   "file": "plesio_p12",
+   "action": "噴水嬉笑",
+   "prompt": "Draw the exact same dinosaur as reference image 1: keep the identical body color, markings, proportions, face, eyes and every feature — a character turnaround of the SAME individual in the SAME art style as the reference. Keep the slate-navy blue body, cyan diamond/lightning markings, small golden nose horn, pink inner ears and big amber eyes exactly as in reference image 1, same cute chibi proportions; never lighten the body color. Full body, spouting an imagined water fountain from the mouth, laughing. Plain pure white background, no shadow, no text, no scenery, the character centered and filling most of the frame.",
+   "desc": "第七篇・龍宮護衛隊代表（滑齒龍、海王龍共用此列隊造型）。"
+  }
+ ]
+}
