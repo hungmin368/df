@@ -249,7 +249,7 @@ CORE = [
                 "lower face wrapped in a scarf — the face must stay hidden in shadow, NEVER reveal the face, "
                 "no megaphone. A character turnaround of the SAME mysterious man. "),
          existing=EXIST_GREY, thematic=[],
-         desc="神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡；終章前一律不露臉。"),
+         desc="神秘對手・飛艇船長「格雷」，深色長外套＋寬檐帽＋黃銅護目鏡＋黑鬍；終章前一律蒙面不露臉（p01-06 臉部刻意隱藏屬設計），臉孔基準＝057 終章露臉大笑。"),
     dict(key="grand", zh="雷鐸", prefix="cg_grand", dino=False,
          anchor=SRC / "cg_grand_old.png",
          ident="identical face, white hair and short white beard, warm elderly explorer coat, colors and proportions — a character turnaround of the SAME elderly man. ",
@@ -261,6 +261,21 @@ BATCH_KEYS = {"core": [ch["key"] for ch in CORE],
               "g1": [g[0] for g in GUESTS[0:7]],
               "g2": [g[0] for g in GUESTS[7:13]],
               "g3": [g[0] for g in GUESTS[13:19]]}
+
+# 用戶審核意見（2026-10-23）：雷恩臉孔應以 001（cg_man_p01）為基準——
+# 008/009/014/015/017 臉孔偏年輕圓潤、016/017 服裝漂成卡其色，定向以 001 為錨重出。
+MANFIX_ANCHOR = SRC / "cg_man_p01.png"
+MANFIX_IDENT = ("identical FACE as reference image 1 — the SAME mature slim face with a defined jaw and "
+                "short neat dark-brown hair, no rounder or younger face, normal eye size; identical "
+                "olive-green field shirt over a tan undershirt with brown leather vest straps and gear, "
+                "same colors and proportions — the SAME young man. ")
+MANFIX = [("cg_man_crouch", "crouching down with both hands on the knees, eyes wide in delighted surprise at a tiny clue on the ground"),
+          ("cg_man_kneel", "kneeling on one knee, brushing dirt away with a small brush, focused gentle smile"),
+          ("cg_man_shock", "stepping back in shock, both hands raised, mouth open in surprise"),
+          ("cg_man_thumbs", "thumbs-up toward the viewer with a big bright grin, other hand resting on the hip"),
+          ("cg_man_calm", "kneeling and reaching one hand out gently to calm a small dinosaur, warm soft smile"),
+          ("cg_man_shardup", "holding a glowing rainbow-crystal shard high overhead with one hand, looking up at it, "
+                             "warm glow on the crystal only — keep skin tone and clothing colors natural")]
 
 
 def all_chars():
@@ -347,6 +362,31 @@ def main():
     MANIFEST.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"manifest rebuilt: {len(data['cast'])} serials / {len(data['char_order'])} chars", flush=True)
     if mode == "manifest":
+        return
+    if mode == "manfix":
+        anchor_b64 = flat_png(MANFIX_ANCHOR)
+        failed = []
+        for file, action_en in MANFIX:
+            out = SRC / f"{file}.png"
+            if out.exists():
+                print(f"{file}: skip (exists)", flush=True)
+                continue
+            img = None
+            for model in MODELS:
+                got, msg = call(model, human_prompt(MANFIX_IDENT, action_en), anchor_b64)
+                if got:
+                    img = got
+                    print(f"{file}: OK via {model} ({len(got)} bytes)", flush=True)
+                    break
+                print(f"{file}: fail {model} -> {msg}", flush=True)
+                time.sleep(2)
+            if img:
+                out.write_bytes(img)
+            else:
+                failed.append(file)
+                print(f"{file}: ALL_FAILED", flush=True)
+            time.sleep(1.5)
+        print(f"DONE ok={len(MANFIX) - len(failed)} failed={failed if failed else 0}", flush=True)
         return
     keys = set()
     for k in (BATCH_KEYS if mode == "all" else [mode]):

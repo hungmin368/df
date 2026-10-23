@@ -1,0 +1,6 @@
+cg_man_crouch: cut (1024, 1024) -> (437, 681)
+
+...[snip]
+cg_man_calm: cut (1024, 1024) -> (753, 732)
+cg_man_shardup: cut (1024, 1024) -> (432, 942)
+CUT_DONE
