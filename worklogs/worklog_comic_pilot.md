@@ -546,3 +546,17 @@
       `_make_master_review.py`：298 卡片／298 流水號／298 圖／0 破圖／狀態全數「已去背」。
     - 暫存清理（_audit_*.jpg、_qc_m/、舊日誌），新日誌裁為摘要留存；
       worklog＋commit＋push；送用戶複審（硬關卡不變：核可後才進 Phase 2）。
+57. 第 15 輪：用戶核可定裝（回覆「2. 定裝可以，繼續」）→ 進入 Phase 2 背景底圖
+    - 任務 #45 結案（298/298 定裝＋去背通過審核），#46 轉進行中。
+    - `python _gen_bgs_v7.py`：4 張 4:3 空景一次成功（gemini-2.5-flash-image，鏈式風格參考）：
+      bg_beach_wide 日出金沙灘＋半埋探險補給箱（含繩圈、帆布捲、左側綠岬、海鷗）、
+      bg_sand_close 沙面微距（貝殼亮點＋左下彩虹碎光）、
+      bg_sandcastle 多塔螺旋貝頂大沙堡（貝殼裝飾、玩具桶、沙痕）、
+      bg_sunset_glow 夕陽海面逆光（大光斑 bokeh＋強鏡頭光暈）。
+    - 逐張目視驗收：全部純空景、無角色無文字、暖金色調一致、尺寸 1184×864（4:3）；
+      沙堡頂端生成紅色小三角旗（提示詞原寫 flagless 木桿），屬無傷大雅的加分細節，保留。
+58. 第 15 輪：背景送審頁＋資產校對＋收尾
+    - `python _make_bg_review.py` → `_review_bgs_v7.html`（4 卡片，標示用途 P1/P3、P2/P4、P5、P6）。
+    - `python _compose_v7.py --check`：定裝/字型缺漏＝無、待 Phase 2 背景＝無 → Phase 3 合成器資產就緒。
+    - 瀏覽器驗證（http://localhost:8017/_review_bgs_v7.html）：4 張縮圖全部載入、0 破圖、用途與描述正確。
+    - worklog＋commit＋push；待用戶裁決背景（不滿意哪張就重出），核可後進 Phase 3 合成。
