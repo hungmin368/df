@@ -575,3 +575,15 @@
     - 另加 warm_grade()：全格輕微暖色覆蓋＋左上暖光暈，統一去背角色與寫實背景的光場；
       陰影橢圓改偏右下（光自左上）。
     - 重跑後逐格複驗：氣泡尾不遮臉、六格角色比例一致、頁尾乾淨；成品 4.6MB。
+60. 第 15 輪：Phase 4 驗收報告
+    - 新增 `_build_v7_report.py` → `working_db/reports/comic_v7_master_composite_report.html`
+      （930 KB，21 張圖全部 base64 內嵌，可單檔攜出）。
+    - 內容：成品整頁、六格分格、三階段製程表、六格設定/驗收表、角色一致性舉證
+      （001 臉孔基準＋007-010、025-027、036/046 定裝卡）、4 張背景卡、氣泡避臉表、
+      已知限制、重跑指令。
+    - 瀏覽器驗證（http://localhost:8018/working_db/reports/…）：21 圖 0 破圖、
+      五個章節與表格完整、版面無溢出；逐段截圖存查。
+61. 第 15 輪：收尾
+    - `_compose_v7.py --check` 再次通過（定裝/字型/背景零缺漏）。
+    - 清除暫存 `_tmp_p1-6.png`、`_tmp_castkeys.txt`、`_tmp_want.txt`。
+    - worklog＋commit＋push；交付 v7 成品與報告，待用戶驗收（保留 worklog，任務未結案）。
