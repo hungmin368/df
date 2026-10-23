@@ -47,39 +47,58 @@ PW, PH = 1826, 2236
 COLS = [(24, 906), (920, 1802)]
 ROWS = [(148, 782), (794, 1428), (1440, 2074)]
 
+# 世界身高（雷恩站立＝1.0）與姿勢倍率（該定裝內容高度 ÷ 同角色站立定裝，實測 alpha bbox）
+WORLD_H = {"cg_man": 1.0, "cg_da": 0.50, "cg_db": 0.58}
+POSE_H = {
+    "cg_man_stand": 1.0, "cg_man_side": 1.0,
+    "cg_man_crouch": 681 / 1130, "cg_man_kneel": 695 / 1130,
+    "cg_da_stand": 1.0, "cg_da_sniff": 593 / 990, "cg_da_cheer": 682 / 990,
+    "cg_db_p01": 1.0, "cg_db_p11": 1.0,
+}
+
+
+def h(base, name, depth=1.0):
+    """base＝該格『雷恩站立』的格高比例；depth＞1 表示站得比基準地面更靠近鏡頭。"""
+    world = next(v for k, v in WORLD_H.items() if name.startswith(k))
+    return round(base * world * POSE_H[name] * depth, 4)
+
+
 # 定裝貼圖規格：(主檔, 目標高佔格高, 中心 x, 底部 y, 是否翻轉)
 PANELS = {
-    "P1": dict(bg="bg_beach_wide", actors=[("cg_man_stand", 0.52, 0.32, 0.98, False),
-                                           ("cg_da_stand", 0.28, 0.52, 0.98, False)],
+    "P1": dict(bg="bg_beach_wide", actors=[("cg_man_stand", h(0.50, "cg_man_stand"), 0.32, 0.98, False),
+                                           ("cg_da_stand", h(0.50, "cg_da_stand"), 0.52, 0.98, False)],
                extras=[], bubbles=[],
                caption=dict(x=(0.03, 0.55), y0=0.05,
                             text="傳說中，第一支尋龍探險隊的補給箱，／就沉睡在這片金沙灘——")),
-    "P2": dict(bg="bg_sand_close", actors=[("cg_da_sniff", 0.40, 0.40, 0.99, False),
-                                           ("cg_man_crouch", 0.44, 0.80, 0.99, True)],
-               extras=[], bubbles=[dict(kind="round", x=(0.55, 0.99), y0=0.05, tail=(0.38, 0.60),
+    "P2": dict(bg="bg_sand_close",
+               actors=[("cg_da_sniff", h(0.55, "cg_da_sniff", 1.58), 0.40, 0.99, False),
+                       ("cg_man_crouch", h(0.55, "cg_man_crouch"), 0.80, 0.93, True)],
+               extras=[], bubbles=[dict(kind="round", x=(0.55, 0.99), y0=0.05, tail=(0.31, 0.80),
                                         text="（嗅嗅……）／亮晶晶的味道！")]),
     "P3": dict(bg="bg_beach_wide", flip_bg=True,
-               actors=[("cg_db_p01", 0.52, 0.70, 1.03, False),
-                       ("cg_man_stand", 0.44, 0.17, 0.97, False),
-                       ("cg_da_stand", 0.22, 0.38, 0.98, False)],
-               extras=[dict(kind="necklace", cx=0.70, cy=0.785, w=0.085, h=0.026)],
-               bubbles=[dict(kind="round", x=(0.55, 0.99), y0=0.04, tail=(0.70, 0.52),
+               actors=[("cg_db_p01", h(0.50, "cg_db_p01", 1.30), 0.70, 1.02, False),
+                       ("cg_man_stand", h(0.50, "cg_man_stand"), 0.17, 0.97, False),
+                       ("cg_da_stand", h(0.50, "cg_da_stand"), 0.38, 0.98, False)],
+               extras=[dict(kind="necklace", cx=0.70, cy=0.860, w=0.090, h=0.016)],
+               bubbles=[dict(kind="round", x=(0.55, 0.99), y0=0.04, tail=(0.70, 0.64),
                              text="撿到～／最漂亮的項鍊！"),
-                        dict(kind="burst", x=(0.02, 0.36), y0=0.04, tail=(0.19, 0.45),
+                        dict(kind="burst", x=(0.02, 0.36), y0=0.04, tail=(0.19, 0.47),
                              text="喂——那是我們／先發現的！")]),
-    "P4": dict(bg="bg_sand_close", actors=[("cg_man_crouch", 0.58, 0.44, 0.99, False)],
+    "P4": dict(bg="bg_sand_close",
+               actors=[("cg_man_crouch", h(0.60, "cg_man_crouch"), 0.44, 0.99, False)],
                extras=[dict(kind="circle", cx=0.68, cy=0.86, rx=0.22, ry=0.075)],
                extras_under=True,
-               bubbles=[dict(kind="round", x=(0.06, 0.60), y0=0.04, tail=(0.45, 0.40),
+               bubbles=[dict(kind="round", x=(0.06, 0.60), y0=0.05, tail=(0.45, 0.60),
                              text="寶貝一定藏在／最氣派的沙堡裡！")]),
     "P5": dict(bg="bg_sandcastle",
-               actors=[("cg_man_kneel", 0.36, 0.19, 1.00, False),
-                       ("cg_da_cheer", 0.30, 0.46, 1.00, False),
-                       ("cg_db_p11", 0.50, 0.79, 1.03, True)],
-               extras=[], bubbles=[dict(kind="round", x=(0.42, 0.96), y0=0.05, tail=(0.72, 0.60),
+               actors=[("cg_man_kneel", h(0.62, "cg_man_kneel"), 0.19, 1.00, False),
+                       ("cg_da_cheer", h(0.62, "cg_da_cheer"), 0.46, 1.00, False),
+                       ("cg_db_p11", h(0.62, "cg_db_p11"), 0.79, 1.02, True)],
+               extras=[], bubbles=[dict(kind="round", x=(0.42, 0.96), y0=0.05, tail=(0.73, 0.66),
                                         text="分你一半！")]),
-    "P6": dict(bg="bg_sunset_glow", actors=[("cg_man_side", 0.86, 0.50, 1.00, False)],
-               extras=[dict(kind="shard", cx=0.365, cy=0.373, s=0.028, glow=1.7)],
+    "P6": dict(bg="bg_sunset_glow",
+               actors=[("cg_man_side", h(0.50, "cg_man_side", 1.32), 0.50, 1.08, False)],
+               extras=[dict(kind="shard", cx=0.397, cy=0.599, s=0.028, glow=1.7)],
                bubbles=[],
                caption=dict(x=(0.06, 0.94), y0=0.82, plaque=True,
                             text="碎片背面刻著——隊規第一條：／「永遠，把恐龍當朋友。」")),
