@@ -1,0 +1,110 @@
+[
+ {
+  "shot": "s1",
+  "status": "failed",
+  "task_id": "3y7cFRRDAimrdYu3hTzLCK",
+  "refs": 2,
+  "error": {
+   "code": "InvalidParameter",
+   "message": "Error validating image, image http://ds-restful-api-bj-prod.oss-cn-beijing.aliyuncs.com/restful/data-uri/1255568371815024/2afdb17d-3044-913d-b48c-2977f9034f1b/155b2439c9c911f1b142da0fe18370e0?Expires=1792372890&OSSAccessKeyId=LTAI5t64cnuuVx7xndFH9ULk&Signature=go0sg6%2BljTuvl7rH%2FhgKLs8%2BTt8%3D resolution must be at least 300x300, got 896x289"
+  }
+ },
+ {
+  "shot": "s1",
+  "status": "failed",
+  "task_id": "2Q2kmGIwbXOBO4QMxAs5d3",
+  "refs": 1,
+  "error": {
+   "code": "InvalidParameter",
+   "message": "Error validating image, image http://ds-restful-api-bj-prod.oss-cn-beijing.aliyuncs.com/restful/data-uri/1255568371815024/ff059d19-887f-9f73-9c1f-65595c2fb6b6/1acf799fc9c911f1b011b26e19155a0a?Expires=1792372900&OSSAccessKeyId=LTAI5t64cnuuVx7xndFH9ULk&Signature=mvhY3qXmtH00aD1Amh7qDo%2Fteqg%3D resolution must be at least 300x300, got 896x216"
+  }
+ },
+ {
+  "shot": "s2",
+  "status": "failed",
+  "task_id": "2fUy3VoWjh5UH7cy2MLbJ5",
+  "refs": 2,
+  "error": {
+   "code": "InvalidParameter",
+   "message": "Error validating image, image http://ds-restful-api-bj-prod.oss-cn-beijing.aliyuncs.com/restful/data-uri/1255568371815024/82e58b06-1077-98d1-ba91-638795b5d7ea/221ad88cc9c911f19ed31ae84ae30067?Expires=1792372912&OSSAccessKeyId=LTAI5t64cnuuVx7xndFH9ULk&Signature=oMSE3YaF8Ev7I1lLBgw37COr%2FCQ%3D resolution must be at least 300x300, got 896x289"
+  }
+ },
+ {
+  "shot": "s2",
+  "status": "failed",
+  "task_id": "sOOzbXfAgpkckoBMZU9Oe",
+  "refs": 1,
+  "error": {
+   "code": "InvalidParameter",
+   "message": "Error validating image, image http://ds-restful-api-bj-prod.oss-cn-beijing.aliyuncs.com/restful/data-uri/1255568371815024/56b499c9-ca49-9f73-8b31-30116f850f9a/2770cfd3c9c911f1ac12ce49f231e868?Expires=1792372921&OSSAccessKeyId=LTAI5t64cnuuVx7xndFH9ULk&Signature=yGQc9oCi9AJdcQO7lLbOcoRSQFY%3D resolution must be at least 300x300, got 896x216"
+  }
+ },
+ {
+  "shot": "s3",
+  "status": "failed",
+  "task_id": "7EJ9go2PHbQcwuopkTtl5r",
+  "refs": 2,
+  "error": {
+   "code": "InvalidParameter",
+   "message": "Error validating image, image http://ds-restful-api-bj-prod.oss-cn-beijing.aliyuncs.com/restful/data-uri/1255568371815024/559e5ce1-946b-991b-9ba0-26473b1528fb/2e908adac9c911f1b2d4c6aa3660cd6d?Expires=1792372933&OSSAccessKeyId=LTAI5t64cnuuVx7xndFH9ULk&Signature=SvTC1sieEMx5TznDtmJCNXRjg0s%3D resolution must be at least 300x300, got 896x289"
+  }
+ },
+ {
+  "shot": "s3",
+  "status": "failed",
+  "task_id": "2GzspQ40PPXc7Vj9ZfruW9",
+  "refs": 1,
+  "error": {
+   "code": "InvalidParameter",
+   "message": "Error validating image, image http://ds-restful-api-bj-prod.oss-cn-beijing.aliyuncs.com/restful/data-uri/1255568371815024/975ec464-715e-9a8b-9a09-1d3354934b3b/33d82a08c9c911f1ae1c0ef7d6e03a68?Expires=1792372942&OSSAccessKeyId=LTAI5t64cnuuVx7xndFH9ULk&Signature=njjmXt4MP%2BvwkJe6GDR%2Bc960ZSw%3D resolution must be at least 300x300, got 896x216"
+  }
+ },
+ {
+  "shot": "s4",
+  "status": "failed",
+  "task_id": "3Qkw6ExRfDqrvG29skRGlI",
+  "refs": 2,
+  "error": {
+   "code": "InvalidParameter",
+   "message": "Error validating image, image http://ds-restful-api-bj-prod.oss-cn-beijing.aliyuncs.com/restful/data-uri/1255568371815024/8e5fe0fb-8b89-9993-95b5-b5c08f3c8a42/3b0ccd25c9c911f1b8d2622f95d9e9e0?Expires=1792372954&OSSAccessKeyId=LTAI5t64cnuuVx7xndFH9ULk&Signature=6T5qNnqrRUxJ6n6LjSxhWclhSn8%3D resolution must be at least 300x300, got 896x289"
+  }
+ },
+ {
+  "shot": "s4",
+  "status": "failed",
+  "task_id": "3rYfPdqiX2UU31UALj56tO",
+  "refs": 1,
+  "error": {
+   "code": "InvalidParameter",
+   "message": "Error validating image, image http://ds-restful-api-bj-prod.oss-cn-beijing.aliyuncs.com/restful/data-uri/1255568371815024/d25b8d48-526b-9494-aaba-a9120c114923/405b98cfc9c911f18899bad2f3730d22?Expires=1792372963&OSSAccessKeyId=LTAI5t64cnuuVx7xndFH9ULk&Signature=UUgqaZHAs0UF4biILeE602LyKzo%3D resolution must be at least 300x300, got 896x216"
+  }
+ },
+ {
+  "shot": "s1",
+  "status": "succeeded",
+  "task_id": "382XXy7oKzlT6Tqfmc57nJ",
+  "bytes": 5927699,
+  "refs": 2
+ },
+ {
+  "shot": "s2",
+  "status": "succeeded",
+  "task_id": "2GKU1St229Mm0pNTuAe0q9",
+  "bytes": 3935242,
+  "refs": 2
+ },
+ {
+  "shot": "s3",
+  "status": "succeeded",
+  "task_id": "3oH5853mYtoG45SIb5o2mX",
+  "bytes": 4593103,
+  "refs": 2
+ },
+ {
+  "shot": "s4",
+  "status": "succeeded",
+  "task_id": "UxOq6xaKpnGZGx6kY1Tre",
+  "bytes": 4172099,
+  "refs": 2
+ }
+]

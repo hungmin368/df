@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>報告：index.html 與 dragonfinder_v1.9.10.html 內容一致性檢查</title>
+<style>
+  :root{ --ink:#2b2438; --muted:#6b6280; --line:#e6dff2; --accent:#8a63ff; --ok:#1f9d55; --bad:#d64545; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; padding:32px 16px 64px; background:#faf8ff; color:var(--ink);
+        font:15px/1.7 "Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif; }
+  .wrap{ max-width:960px; margin:0 auto; }
+  h1{ font-size:24px; margin:0 0 4px; }
+  .sub{ color:var(--muted); margin:0 0 24px; }
+  h2{ font-size:18px; margin:32px 0 10px; padding-left:10px; border-left:4px solid var(--accent); }
+  .card{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;
+         box-shadow:0 1px 2px rgba(60,40,120,.05); }
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  th,td{ padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th{ background:#f3eeff; font-weight:700; white-space:nowrap; }
+  tr:last-child td{ border-bottom:none; }
+  code{ background:#f4f1fb; border:1px solid var(--line); border-radius:6px; padding:1px 5px; font-size:13px; }
+  .ok{ color:var(--ok); font-weight:700; }
+  .bad{ color:var(--bad); font-weight:700; }
+  ul{ margin:6px 0; padding-left:22px; }
+  .foot{ color:var(--muted); font-size:13px; margin-top:28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>報告：index.html 與 dragonfinder_v1.9.10.html 內容一致性檢查</h1>
+  <p class="sub">Dragon Finder v1.9.10 ｜ 2026-10-12 ｜ 任務 ID：bundle-consistency-check</p>
+
+  <h2>結論</h2>
+  <div class="card">
+    <b class="bad">不完全一致</b>：現有單檔封裝版 <code>dragonfinder_v1.9.10.html</code> 落後網頁主線一次更新——
+    2026-09-28 的教學文案「揭露答案時說明為什麼那一格合理」（commit <code>677f484</code>）只在多檔版（<code>index.html</code>＋<code>js/main.js</code>）中，bundle 未包含。
+    除這 6 行差異外，其餘內容<b>逐位元一致</b>（外層 HTML、styles、資料、邏輯、全部內嵌資產）。
+    <br>註：單檔版依 <code>AGENTS.md</code> 定義為「測試整包打包」之產物，主線開發以 <code>index.html</code> 為準。
+  </div>
+
+  <h2>檢查方法</h2>
+  <div class="card">
+    <ul>
+      <li>以現行原始碼（<code>index.html</code>、<code>css/</code>、<code>js/</code>、<code>assets/</code>）在暫存目錄執行 <code>node build_single_file.mjs</code> 重建 bundle（成功、0.9 秒、無殘留外部資源引用檢查通過）。</li>
+      <li>排除第 2 行生成註解後，將重建檔與現有 bundle 逐行 <code>diff</code>；再以 git 歷史交叉核對差異來源提交。</li>
+    </ul>
+  </div>
+
+  <h2>差異明細（6 處，全部在內嵌 main.js 的教學區段）</h2>
+  <table>
+    <tr><th>#</th><th>內容</th><th>位置（js/main.js）</th><th>現有 bundle</th><th>現行網頁版（重建）</th></tr>
+    <tr>
+      <td>1</td><td><code>whyReveal(s)</code> 函式（依盤面算出「為什麼這格合理」）</td>
+      <td><code>:2612</code>（startDemo 前）</td>
+      <td class="bad">完全沒有（grep = 0）</td>
+      <td class="ok">已含（4 處引用）</td>
+    </tr>
+    <tr>
+      <td>2</td><td>demo 第一隻文案</td>
+      <td><code>:2642</code></td>
+      <td>「…發光這格有一隻！<br>牠周圍 8 格…」</td>
+      <td>加入「為什麼？牠會佔住整列、整欄、整個色塊——先確定牠，就能排除一大片」</td>
+    </tr>
+    <tr>
+      <td>3</td><td>demo 第二隻（非強制揭露）</td>
+      <td><code>:2663</code></td>
+      <td>「…教學直接告訴你：這格有一隻，丟球！」</td>
+      <td>改為「這格有一隻——（whyReveal 理由）丟球！」</td>
+    </tr>
+    <tr>
+      <td>4</td><td>demo 後續星格揭露</td>
+      <td><code>:2675</code></td>
+      <td>「如法炮製——丟球！」</td>
+      <td>改為「如法炮製——這格有一隻（（whyReveal 理由））丟球！」</td>
+    </tr>
+    <tr>
+      <td>5</td><td>guided 第一隻文案</td>
+      <td><code>:2711</code></td>
+      <td>「…教學偷偷報料——發光那格有一隻，點牠丟球！」</td>
+      <td>加入「先確定一隻，就能用『整列／整欄／整個色塊各 1 隻』排除其他格」</td>
+    </tr>
+    <tr>
+      <td>6</td><td>guided 後續星格揭露</td>
+      <td><code>:2750</code></td>
+      <td>「教學提示：發光那格有一隻，丟球！」</td>
+      <td>改為「教學提示：發光那格有一隻（（whyReveal 理由）），丟球！」</td>
+    </tr>
+  </table>
+
+  <h2>逐位元一致的部分</h2>
+  <div class="card">
+    <ul>
+      <li>外層 <code>index.html</code> 之全部 HTML 結構、meta、favicon、標題與內文。</li>
+      <li><code>css/fonts.css</code>、<code>css/style.css</code>（含全部內嵌 base64 資產：恐龍圖 139、伴伴圖、故事 SVG、字型、游標、地圖、logo）。</li>
+      <li><code>js/data.js</code>、<code>js/tower.js</code> 及 <code>js/main.js</code> 除上述 6 行外的全部內容。</li>
+      <li>版本標記同為 v1.9.10；唯一非內容差異為生成註解行的「來源 commit」值（重新生成時會寫入當下 HEAD）。</li>
+    </ul>
+  </div>
+
+  <h2>佐證數據與備註</h2>
+  <div class="card">
+    <ul>
+      <li>重建檔 30,963,427 bytes vs 現有 bundle 30,962,268 bytes（+1,159 bytes，即新增文案淨長度）。</li>
+      <li>diff：6 個 hunk、6 行對，全部落在重建檔行 4215–4353（內嵌 main.js 區段），其餘零差異。</li>
+      <li>現有 bundle 於 2026-09-24 19:38 由「當時工作區」生成（頭部記載來源 commit <code>1aaa76d</code>）；重建證明它其實也包含 09-25 才提交的 <code>c3e4f50</code>（logo／資料更名）之工作區變更，因此實際落差只有 <code>677f484</code> 這個提交。</li>
+    </ul>
+  </div>
+
+  <h2>建議</h2>
+  <div class="card">
+    如需讓單檔版與網頁主線同步，執行 <code>node build_single_file.mjs</code> 重新生成即可（本次檢查未執行、未變更任何檔案）。
+    <br>後續（2026-10-12）：依本檢查結論，專案改為<b>不保留單檔版</b>——<code>dragonfinder_v1.9.10.html</code> 已刪除，日後僅在發表前以同一工具生成（見 <code>worklogs/worklog_index-mainline.md</code>）。
+  </div>
+
+  <p class="foot">對應工作紀錄：<code>worklogs/worklog_bundle-consistency-check.md</code>。</p>
+
+</div>
+</body>
+</html>

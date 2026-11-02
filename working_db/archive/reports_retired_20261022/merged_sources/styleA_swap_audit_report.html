@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>風格A 批量替換前置審查報告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+    background: linear-gradient(135deg, #241539 0%, #170d24 60%, #0f2e1f 100%);
+    color: #f3eefc; line-height: 1.7; padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  h1 {
+    text-align: center; font-size: 27px; margin-bottom: 6px;
+    background: linear-gradient(90deg, #c084fc, #6ee7b7, #fbbf24);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { text-align: center; color: #b9a6d9; font-size: 14px; margin-bottom: 28px; }
+  .card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 16px; padding: 22px 26px; margin-bottom: 24px;
+  }
+  h2 { font-size: 19px; color: #e9d5ff; margin-bottom: 12px; border-left: 4px solid #c084fc; padding-left: 10px; }
+  h3 { font-size: 15px; color: #fbbf24; margin: 14px 0 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 8px 0; }
+  th, td { border: 1px solid rgba(255,255,255,0.15); padding: 7px 10px; text-align: left; }
+  th { background: rgba(192,132,252,0.15); color: #e9d5ff; }
+  td code { background: rgba(0,0,0,0.35); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  ul.feat { list-style: none; }
+  ul.feat li { padding: 4px 0 4px 26px; position: relative; font-size: 14px; }
+  ul.feat li::before { content: "◆"; position: absolute; left: 4px; color: #fbbf24; font-size: 11px; top: 9px; }
+  ul.keep li::before { content: "✔"; color: #6ee7b7; font-weight: bold; }
+  ul.improve li::before { content: "↑"; color: #60a5fa; font-weight: bold; }
+  ul.no li::before { content: "✘"; color: #f87171; font-weight: bold; }
+  .sheet { width: 100%; border-radius: 12px; border: 2px solid rgba(192,132,252,0.4); }
+  .duo { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .warn {
+    background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.3);
+    border-radius: 10px; padding: 10px 14px; font-size: 13.5px; color: #fde68a; margin-top: 10px;
+  }
+  .meta { font-size: 12.5px; color: #a78cc8; }
+  .foot { text-align: center; font-size: 12px; color: #8b76ad; margin-top: 8px; }
+  .ok { color: #6ee7b7; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>風格A 批量替換前置審查 — 遊戲恐龍圖需保留要素</h1>
+  <div class="sub">全面檢查 assets/dinos/ 139 張圖檔規格、遊戲內使用方式與視覺慣例｜2026-10-16</div>
+
+  <div class="card">
+    <h2>① 現況盤點</h2>
+    <table>
+      <tr><th>項目</th><th>現況</th></tr>
+      <tr><td>圖檔</td><td><code>assets/dinos/&lt;id&gt;.webp</code> 共 <b>139 張</b>（<code>js/data.js</code>：DINOS 76＝1★×50＋2★×26；LEGENDS 63＝3★×30＋4★×20＋5★×13）</td></tr>
+      <tr><td>規格</td><td>全部 <b>200×200 RGBA 透明 WebP</b>，6–21 KB，無重複檔（MD5 查核 0 重複）</td></tr>
+      <tr><td>構圖</td><td>單一主體水平置中；主體覆蓋率 13–41%（中位 26%）；四周邊距 ≥4%；<b>底部貼齊（下緣僅留 4–5%）</b>、上緣留白較多</td></tr>
+      <tr><td>姿勢慣例</td><td>全數<b>正面／微側 3/4 站姿、面向鏡頭</b>；無側面全身、無飛行裁切</td></tr>
+      <tr><td>星級差異</td><td>1★–4★ 素體無配件；<b>5★ 統一「金冠＋龍翼」</b>為傳說標記</td></tr>
+      <tr><td>色彩</td><td>每物種專屬鮮明體色（紅/藍/黃/綠/紫/橘…），奶油白腹部為共通特徵</td></tr>
+    </table>
+    <img class="sheet" src="../generated_assets/dinos_2/bban_samples/_audit_sheet_45.png" alt="4星5星抽樣">
+    <img class="sheet" src="../generated_assets/dinos_2/bban_samples/_audit_sheet_123.png" alt="1-3星抽樣" style="margin-top:10px">
+    <p class="meta" style="margin-top:6px">抽樣拼圖：全 5★（戴冠）＋11 張 4★；1★/2★/3★ 各抽 9–12 張。</p>
+  </div>
+
+  <div class="card">
+    <h2>② 遊戲內使用方式（新圖必須相容）</h2>
+    <table>
+      <tr><th>位置</th><th>用法</th><th>對新圖的要求</th></tr>
+      <tr><td>格子 <code>.catface img</code></td><td>square 格內 <code>object-fit:contain</code>，星級放大 88–108%，待機動畫以<b>底部為錨點</b>伸縮</td><td>主體置中、底部貼齊；避免重心偏移或懸空</td></tr>
+      <tr><td>剪影猜謎 <code>.sil</code></td><td>150px 內 <code>filter:brightness(0)</code> 轉<b>純黑剪影</b>猜物種</td><td><b>每種剪影必須有差異</b>（長頸/盾角/骨板/帆/翼…），不能全是同款圓滾 Q 版</td></tr>
+      <tr><td>圖鑑未收集</td><td><code>grayscale(1) opacity(.35)</code></td><td>去色後仍能讀出形體差異</td></tr>
+      <tr><td>星級光暈 <code>#buddy</code> 等</td><td>依星級套彩色 <code>drop-shadow</code></td><td>去背邊緣乾淨、無白色殘邊，否則光暈會曝瑕疵</td></tr>
+      <tr><td>獎勵/對話/排行</td><td>72–150px 縮圖、放大對話頭像</td><td>小尺寸下輪廓與配色仍可辨識；單一主體（無多體構圖）</td></tr>
+      <tr><td>圖鑑編號 <code>.nb</code></td><td>UI 疊加右上角</td><td><b>圖內不可烙文字/編號/浮水印</b></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>③ 批量替換需保留要素（核心結論）</h2>
+    <ul class="feat keep">
+      <li><b>檔案規格</b>：200×200 RGBA 透明 WebP（品質約 90、6–21 KB），<b>檔名維持 <code>assets/dinos/&lt;id&gt;.webp</code> 與 id 1:1 對應</b> → <code>js/data.js</code> 零改動、存檔免遷移</li>
+      <li><b>物種對應</b>：每個 id 的物種不可錯置——新圖必須就是該 id 的那一隻（名字見 data.js）</li>
+      <li><b>構圖</b>：單一主體、置中、<b>底部貼齊（下緣 4–5% 邊距）</b>、四周 ≥4% 邊距、全身含尾巴不裁切、覆蓋率抓 20–40%</li>
+      <li><b>姿勢一致</b>：全 139 張統一正面／微 3/4 站姿面向鏡頭（現行慣例），不可混入側面全身或飛行姿</li>
+      <li><b>5★ 金冠＋龍翼</b>：傳說標記必須保留；1★–4★ 維持無冠（星級一眼可辨）</li>
+      <li><b>剪影差異化</b>：每種的招牌剪影（長頸、盾角、骨板、背帆、鐮爪、翼…）要在輪廓上讀得出來——剪影猜謎玩法依賴這個</li>
+      <li><b>專屬體色</b>：每物種一個鮮明主色（風格A既有規則），且轉灰階後形體仍可辨識</li>
+      <li><b>乾淨去背</b>：純白底 → 完全透明、無白邊光暈、無陰影烙印、無浮水印文字</li>
+      <li><b>範圍界線</b>：只動 <code>assets/dinos/</code> 139 張；<b>伴伴吉祥物 7 張（1–5星/win/fail）、game_logo、故事圖、游標一概不動</b></li>
+    </ul>
+    <h3>不需保留（新風格將順便改善）</h3>
+    <ul class="feat improve">
+      <li>現行圖的<b>解剖自由發揮</b>：三角龍無盾無角、劍龍骨板變背刺、蜥腳類站雙足——風格A在 Q 版框架下會把物種特徵做清楚，圖鑑與剪影猜謎反而更好玩</li>
+      <li>千篇一律的「同款寶寶體型」——風格A每種保留可辨識體型差異</li>
+    </ul>
+    <h3>不可發生</h3>
+    <ul class="feat no">
+      <li>更動 id↔物種對應、改檔名、動 data.js／localStorage 結構</li>
+      <li>多隻恐龍合照、場景背景、文字浮水印</li>
+      <li>風格走針（非亮面公仔質感、恐怖寫實、擬真人形）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>④ 批量執行建議</h2>
+    <ul class="feat">
+      <li><b>管線</b>：雙參考圖生成（伴伴二星＝風格A ＋ 還原圖 <code>C:\MY_AI_JOBS\恐龍圖片\</code> 對應物種＝解剖）→ 提示詞強制「正面站姿、底部貼齊、5★金冠龍翼、專屬體色」→ rembg 去背 → 置中底貼 → 512 主檔 → 200×200 WebP</li>
+      <li><b>還原圖覆蓋</b>：<code>恐龍圖/</code> 現有 280 張，與遊戲 139 id 依中英文名比對（初步目視多數可對上；批量前先產出對照表標出缺漏）</li>
+      <li><b>自動驗證</b>：每張檢查尺寸/RGBA/邊距/覆蓋率/主色相帶，不合格自動重生成（每張 US$0.04，全批約 <b>US$5.6＋重生成餘裕</b>）</li>
+      <li><b>人工抽查</b>：每星級抽 3–5 張目視 + 拼圖總覽，先試產 4–6 張樣本給你過目再全批</li>
+    </ul>
+    <div class="warn">建議流程：先試產樣本 → 你確認方向 → 全批 139 張 → 拼圖總覽複審 → 換檔上線。全程遊戲程式零改動。</div>
+  </div>
+
+  <div class="foot">DragonFinder ｜ 風格A 批量替換前置審查報告 ｜ 2026-10-16</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,968 @@
+[
+ {
+  "round": 1,
+  "ts": 1792142300.407695,
+  "processed": 3,
+  "passed": [
+   3,
+   109
+  ],
+  "failed": [
+   {
+    "id": 9,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 2.63,
+    "halo": 0.0373,
+    "archived": "r1_9_Cetiosaurus_raw.png"
+   }
+  ]
+ },
+ {
+  "round": 2,
+  "ts": 1792159584.828521,
+  "processed": 124,
+  "passed": [
+   23,
+   25,
+   27,
+   29,
+   43,
+   47,
+   53,
+   57,
+   59,
+   67,
+   69,
+   71,
+   73,
+   75,
+   77,
+   79,
+   81,
+   89,
+   95,
+   99,
+   103,
+   107,
+   113,
+   115,
+   121,
+   125,
+   129,
+   131,
+   133,
+   135,
+   137,
+   139,
+   141,
+   143,
+   145,
+   147,
+   151,
+   206,
+   208,
+   210,
+   212,
+   214,
+   216,
+   222,
+   224,
+   226,
+   230,
+   234,
+   238,
+   248,
+   254,
+   256,
+   262,
+   266,
+   270,
+   272,
+   274,
+   276,
+   278,
+   280,
+   282,
+   284,
+   286,
+   290,
+   292,
+   294,
+   298,
+   300,
+   301,
+   304,
+   306,
+   308,
+   310,
+   315,
+   318,
+   322,
+   324
+  ],
+  "failed": [
+   {
+    "id": 9,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 2.18,
+    "halo": 0.0515,
+    "archived": "r2_2_9_Cetiosaurus_raw.png"
+   },
+   {
+    "id": 31,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.65,
+    "halo": 0.0935,
+    "archived": "r2_31_Parasaurolophus_raw.png"
+   },
+   {
+    "id": 33,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.68,
+    "halo": 0.0718,
+    "archived": "r2_33_Corythosaurus_raw.png"
+   },
+   {
+    "id": 35,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.8,
+    "halo": 0.1017,
+    "archived": "r2_35_Edmontosaurus_raw.png"
+   },
+   {
+    "id": 37,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.74,
+    "halo": 0.0925,
+    "archived": "r2_37_Tsintaosaurus_raw.png"
+   },
+   {
+    "id": 39,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.76,
+    "halo": 0.0455,
+    "archived": "r2_39_Prosaurolophus_raw.png"
+   },
+   {
+    "id": 41,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.83,
+    "halo": 0.1031,
+    "archived": "r2_41_Iguanodon_raw.png"
+   },
+   {
+    "id": 45,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.83,
+    "halo": 0.0963,
+    "archived": "r2_45_Lesothosaurus_raw.png"
+   },
+   {
+    "id": 49,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.37,
+    "halo": 0.1138,
+    "archived": "r2_49_Mantellisaurus_raw.png"
+   },
+   {
+    "id": 51,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.27,
+    "halo": 0.0798,
+    "archived": "r2_51_Nodosaurus_raw.png"
+   },
+   {
+    "id": 55,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.22,
+    "halo": 0.0908,
+    "archived": "r2_55_Edmontonia_raw.png"
+   },
+   {
+    "id": 61,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.64,
+    "halo": 0.1368,
+    "archived": "r2_61_Segnosaurus_raw.png"
+   },
+   {
+    "id": 63,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.74,
+    "halo": 0.1173,
+    "archived": "r2_63_Nothronychus_raw.png"
+   },
+   {
+    "id": 65,
+    "checks": [
+     "ratio_1p2",
+     "no_halo"
+    ],
+    "ratio": 0.71,
+    "halo": 0.1569,
+    "archived": "r2_65_Alxasaurus_raw.png"
+   },
+   {
+    "id": 83,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.76,
+    "halo": 0.0689,
+    "archived": "r2_83_Compsognathus_raw.png"
+   },
+   {
+    "id": 85,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.73,
+    "halo": 0.0484,
+    "archived": "r2_85_Ornitholestes_raw.png"
+   },
+   {
+    "id": 87,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.76,
+    "halo": 0.0396,
+    "archived": "r2_87_Carcharodontosaurus_raw.png"
+   },
+   {
+    "id": 91,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.7,
+    "halo": 0.0469,
+    "archived": "r2_91_Cryolophosaurus_raw.png"
+   },
+   {
+    "id": 93,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.28,
+    "halo": 0.0679,
+    "archived": "r2_93_Sinosaurus_raw.png"
+   },
+   {
+    "id": 97,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.83,
+    "halo": 0.0802,
+    "archived": "r2_97_Tawa_raw.png"
+   },
+   {
+    "id": 105,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.79,
+    "halo": 0.0676,
+    "archived": "r2_105_Micropachycephalosaurus_raw.png"
+   },
+   {
+    "id": 111,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.78,
+    "halo": 0.0836,
+    "archived": "r2_111_Giganotosaurus_raw.png"
+   },
+   {
+    "id": 117,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.77,
+    "halo": 0.0376,
+    "archived": "r2_117_Alectrosaurus_raw.png"
+   },
+   {
+    "id": 119,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.79,
+    "halo": 0.0573,
+    "archived": "r2_119_Albertosaurus_raw.png"
+   },
+   {
+    "id": 123,
+    "checks": [
+     "ratio_1p2",
+     "no_halo"
+    ],
+    "ratio": 0.69,
+    "halo": 0.1659,
+    "archived": "r2_123_Majungasaurus_raw.png"
+   },
+   {
+    "id": 127,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.78,
+    "halo": 0.041,
+    "archived": "r2_127_Torvosaurus_raw.png"
+   },
+   {
+    "id": 149,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.79,
+    "halo": 0.0565,
+    "archived": "r2_149_Large_raw.png"
+   },
+   {
+    "id": 200,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 1.65,
+    "halo": 0.052,
+    "archived": "r2_200_Sinornithosaurus_raw.png"
+   },
+   {
+    "id": 204,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.72,
+    "halo": 0.0285,
+    "archived": "r2_204_Suchomimus_raw.png"
+   },
+   {
+    "id": 218,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.76,
+    "halo": 0.0467,
+    "archived": "r2_218_Metriacanthosaurus_raw.png"
+   },
+   {
+    "id": 220,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.8,
+    "halo": 0.1151,
+    "archived": "r2_220_Vulture_raw.png"
+   },
+   {
+    "id": 228,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.25,
+    "halo": 0.0878,
+    "archived": "r2_228_Baryonyx_raw.png"
+   },
+   {
+    "id": 232,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.72,
+    "halo": 0.0251,
+    "archived": "r2_232_Adasaurus_raw.png"
+   },
+   {
+    "id": 236,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.58,
+    "halo": 0.0675,
+    "archived": "r2_236_Antarctosaurus_raw.png"
+   },
+   {
+    "id": 240,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.75,
+    "halo": 0.062,
+    "archived": "r2_240_Large_raw.png"
+   },
+   {
+    "id": 242,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 0.54,
+    "halo": 0.1119,
+    "archived": "r2_242_Small_raw.png"
+   },
+   {
+    "id": 244,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.81,
+    "halo": 0.0371,
+    "archived": "r2_244_Crested_raw.png"
+   },
+   {
+    "id": 246,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.37,
+    "halo": 0.024,
+    "archived": "r2_246_Liaoningosaurus_raw.png"
+   },
+   {
+    "id": 250,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.7,
+    "halo": 0.084,
+    "archived": "r2_250_Archaeoceratops_raw.png"
+   },
+   {
+    "id": 252,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 2.11,
+    "halo": 0.0498,
+    "archived": "r2_252_Nigersaurus_raw.png"
+   },
+   {
+    "id": 258,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.73,
+    "halo": 0.0788,
+    "archived": "r2_258_Robust_raw.png"
+   },
+   {
+    "id": 264,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2",
+     "cov_opaque",
+     "body_ok"
+    ],
+    "ratio": 1.78,
+    "halo": 0.0737,
+    "archived": "r2_264_Alamosaurus_raw.png"
+   },
+   {
+    "id": 268,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.81,
+    "halo": 0.0506,
+    "archived": "r2_268_Argentinosaurus_raw.png"
+   },
+   {
+    "id": 288,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.69,
+    "halo": 0.0864,
+    "archived": "r2_288_Ichthyosaurus_raw.png"
+   },
+   {
+    "id": 296,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.78,
+    "halo": 0.0704,
+    "archived": "r2_296_Small_raw.png"
+   },
+   {
+    "id": 302,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.83,
+    "halo": 0.0555,
+    "archived": "r2_302_Hatzegopteryx_raw.png"
+   },
+   {
+    "id": 303,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.67,
+    "halo": 0.0939,
+    "archived": "r2_303_Tupandactylus_raw.png"
+   }
+  ]
+ },
+ {
+  "round": 3,
+  "ts": 1792166707.9458275,
+  "processed": 15,
+  "passed": [
+   232,
+   236,
+   244,
+   246,
+   296,
+   302
+  ],
+  "failed": [
+   {
+    "id": 240,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.79,
+    "halo": 0.047,
+    "archived": "r3_240_Large_raw.png"
+   },
+   {
+    "id": 242,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.62,
+    "halo": 0.088,
+    "archived": "r3_242_Small_raw.png"
+   },
+   {
+    "id": 250,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.58,
+    "halo": 0.0663,
+    "archived": "r3_250_Archaeoceratops_raw.png"
+   },
+   {
+    "id": 252,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 1.93,
+    "halo": 0.0523,
+    "archived": "r3_252_Nigersaurus_raw.png"
+   },
+   {
+    "id": 258,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.77,
+    "halo": 0.0856,
+    "archived": "r3_258_Robust_raw.png"
+   },
+   {
+    "id": 264,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.79,
+    "halo": 0.1019,
+    "archived": "r3_264_Alamosaurus_raw.png"
+   },
+   {
+    "id": 268,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.35,
+    "halo": 0.0358,
+    "archived": "r3_268_Argentinosaurus_raw.png"
+   },
+   {
+    "id": 288,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.74,
+    "halo": 0.0751,
+    "archived": "r3_288_Ichthyosaurus_raw.png"
+   },
+   {
+    "id": 303,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.74,
+    "halo": 0.0335,
+    "archived": "r3_303_Tupandactylus_raw.png"
+   }
+  ]
+ },
+ {
+  "round": 4,
+  "ts": 1792169089.5738835,
+  "processed": 25,
+  "passed": [
+   19,
+   37,
+   41,
+   45,
+   91,
+   123,
+   240,
+   242,
+   258,
+   268
+  ],
+  "failed": [
+   {
+    "id": 9,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.76,
+    "halo": 0.0756,
+    "archived": "r4_9_Cetiosaurus_raw.png"
+   },
+   {
+    "id": 17,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.53,
+    "halo": 0.0876,
+    "archived": "r4_17_Miragaia_raw.png"
+   },
+   {
+    "id": 31,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.67,
+    "halo": 0.0497,
+    "archived": "r4_31_Parasaurolophus_raw.png"
+   },
+   {
+    "id": 35,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.77,
+    "halo": 0.0695,
+    "archived": "r4_35_Edmontosaurus_raw.png"
+   },
+   {
+    "id": 39,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 1.86,
+    "halo": 0.0398,
+    "archived": "r4_39_Prosaurolophus_raw.png"
+   },
+   {
+    "id": 49,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.61,
+    "halo": 0.0955,
+    "archived": "r4_49_Mantellisaurus_raw.png"
+   },
+   {
+    "id": 65,
+    "checks": [
+     "ratio_1p2",
+     "no_halo"
+    ],
+    "ratio": 0.62,
+    "halo": 0.1547,
+    "archived": "r4_65_Alxasaurus_raw.png"
+   },
+   {
+    "id": 85,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 1.73,
+    "halo": 0.0623,
+    "archived": "r4_85_Ornitholestes_raw.png"
+   },
+   {
+    "id": 117,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.27,
+    "halo": 0.0311,
+    "archived": "r4_117_Alectrosaurus_raw.png"
+   },
+   {
+    "id": 218,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 1.69,
+    "halo": 0.0347,
+    "archived": "r4_218_Metriacanthosaurus_raw.png"
+   },
+   {
+    "id": 250,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.77,
+    "halo": 0.0756,
+    "archived": "r4_250_Archaeoceratops_raw.png"
+   },
+   {
+    "id": 252,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 2.73,
+    "halo": 0.0389,
+    "archived": "r4_252_Nigersaurus_raw.png"
+   },
+   {
+    "id": 264,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2",
+     "cov_opaque",
+     "body_ok"
+    ],
+    "ratio": 1.77,
+    "halo": 0.0761,
+    "archived": "r4_264_Alamosaurus_raw.png"
+   },
+   {
+    "id": 288,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 1.27,
+    "halo": 0.136,
+    "archived": "r4_288_Ichthyosaurus_raw.png"
+   },
+   {
+    "id": 303,
+    "checks": [
+     "ratio_1p2"
+    ],
+    "ratio": 0.78,
+    "halo": 0.0761,
+    "archived": "r4_303_Tupandactylus_raw.png"
+   }
+  ]
+ },
+ {
+  "round": 5,
+  "ts": 1792200387.3583033,
+  "processed": 0,
+  "passed": [],
+  "failed": []
+ },
+ {
+  "round": 6,
+  "ts": 1792200584.6688561,
+  "processed": 1,
+  "passed": [],
+  "failed": [
+   {
+    "id": 13,
+    "checks": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "ratio": 1.97,
+    "halo": 0.0394,
+    "archived": "r6_13_Dacentrurus_raw.png"
+   }
+  ]
+ },
+ {
+  "round": 7,
+  "ts": 1792200682.6543214,
+  "processed": 1,
+  "passed": [
+   13
+  ],
+  "failed": []
+ },
+ {
+  "round": 8,
+  "ts": 1792207138.3276722,
+  "driver": "retry_stubborn",
+  "k": 6,
+  "attempted": 15,
+  "passed": [
+   9,
+   17,
+   49,
+   85,
+   218,
+   264,
+   303
+  ],
+  "failed": [
+   {
+    "id": 31,
+    "dir": "SQUAT",
+    "ratio": 1.88,
+    "flags": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "attempts": 6
+   },
+   {
+    "id": 35,
+    "dir": "SQUAT",
+    "ratio": 1.66,
+    "flags": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "attempts": 6
+   },
+   {
+    "id": 39,
+    "dir": "WIDE",
+    "ratio": 0.78,
+    "flags": [
+     "ratio_1p2"
+    ],
+    "attempts": 6
+   },
+   {
+    "id": 65,
+    "dir": "SQUAT",
+    "ratio": 0.68,
+    "flags": [
+     "ratio_1p2"
+    ],
+    "attempts": 6
+   },
+   {
+    "id": 117,
+    "dir": "WIDE",
+    "ratio": 0.75,
+    "flags": [
+     "ratio_1p2"
+    ],
+    "attempts": 6
+   },
+   {
+    "id": 250,
+    "dir": "SQUAT",
+    "ratio": 1.53,
+    "flags": [
+     "ratio_1p2"
+    ],
+    "attempts": 6
+   },
+   {
+    "id": 252,
+    "dir": "WIDE",
+    "ratio": 2.6,
+    "flags": [
+     "bbox_cov_50_60",
+     "ratio_1p2"
+    ],
+    "attempts": 6
+   },
+   {
+    "id": 288,
+    "dir": "WIDE",
+    "ratio": 0.78,
+    "flags": [
+     "ratio_1p2"
+    ],
+    "attempts": 6
+   }
+  ]
+ },
+ {
+  "round": 9,
+  "ts": 0,
+  "driver": "retry_stubborn",
+  "k": 8,
+  "attempted": 8,
+  "passed": [
+   31,
+   35,
+   65,
+   117,
+   250,
+   252
+  ],
+  "failed": [
+   {
+    "id": 39,
+    "note": "NEUTRAL_SQUARE 8 attempts best 0.80",
+    "attempts": 8
+   },
+   {
+    "id": 288,
+    "note": "killed by app restart at attempt 2 (0.82)",
+    "attempts": 2
+   }
+  ],
+  "rebuilt": "from _retry_stubborn_r9.log after the driver was killed by an app restart before writing its entry"
+ },
+ {
+  "round": 10,
+  "ts": 1792332223.1261919,
+  "driver": "retry_stubborn",
+  "k": 8,
+  "attempted": 2,
+  "passed": [
+   39,
+   288
+  ],
+  "failed": [],
+  "label_fix": "was written as r9 because the killed r9 driver never wrote its entry"
+ }
+]

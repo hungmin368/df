@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML 報告清理與整併紀錄 — 恐龍快找 DragonFinder</title>
+<style>
+  :root{
+    --bg:#f7f5ef; --paper:#fffdf9; --ink:#2b2620; --muted:#736a5e;
+    --line:#e4ded2; --accent:#b45309; --accent2:#0f766e; --soft:#f3efe5;
+    --ok:#15803d; --warn:#b45309;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,#efe9dc 0%,var(--bg) 240px);color:var(--ink);
+    font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;line-height:1.75}
+  .wrap{max-width:1120px;margin:0 auto;padding:44px 22px 70px}
+  .kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 8px}
+  h1{margin:0 0 8px;font-size:30px;line-height:1.3}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 4px}
+  .date{color:var(--muted);font-size:12.5px;margin:0 0 24px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 26px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 8px 24px rgba(80,60,30,.06)}
+  .card .num{font-size:28px;font-weight:800;line-height:1.1;color:var(--accent)}
+  .card .lbl{font-size:12.5px;color:var(--muted);margin-top:4px}
+  h2{font-size:19px;margin:34px 0 10px;padding-left:10px;border-left:4px solid var(--accent2)}
+  p{margin:8px 0}
+  ul{padding-left:22px}
+  li{margin:4px 0}
+  table{width:100%;border-collapse:collapse;background:var(--paper);font-size:13.5px;margin:10px 0 18px;
+    border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--soft);color:#4a4034;white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  code{background:#f1eadb;color:#6b3f13;padding:1px 6px;border-radius:4px;font-size:12.3px}
+  a{color:#0f5f9e;text-decoration:none;border-bottom:1px solid rgba(15,95,158,.3)}
+  a:hover{border-bottom-color:#0f5f9e}
+  .tag{display:inline-block;padding:1px 8px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap}
+  .tag.keep{background:#dcfce7;color:#166534}
+  .tag.merge{background:#dbeafe;color:#1d4ed8}
+  .tag.retire{background:#fef3c7;color:#92400e}
+  .note{background:#fff7e6;border:1px solid #f0d9a8;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#6b4a12}
+  .ok{color:var(--ok);font-weight:700}
+  footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}
+  @media(max-width:720px){th{white-space:normal}table{font-size:12.8px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">DragonFinder Report Library</p>
+  <h1>HTML 報告清理與整併紀錄</h1>
+  <p class="sub">把同主題報告整併成單一頁面，淘汰過時／重複／無長期參考價值的報告。</p>
+  <p class="date">執行日期：2026-10-22 ・ 報告庫：<code>working_db/reports/</code> ・ 封存區：<code>working_db/archive/reports_retired_20261022/</code></p>
+
+  <div class="cards">
+    <div class="card"><div class="num">41</div><div class="lbl">清理前報告數</div></div>
+    <div class="card"><div class="num">15</div><div class="lbl">清理後保留報告</div></div>
+    <div class="card"><div class="num">8</div><div class="lbl">整併後新報告</div></div>
+    <div class="card"><div class="num">34</div><div class="lbl">移出報告庫的檔案</div></div>
+  </div>
+
+  <div class="note">
+    <strong>處置原則：</strong>淘汰的報告沒有直接永久刪除，而是移到封存區，避免失去歷史脈絡；<code>working_db/reports/</code> 只保留現行 15 份報告。整併後的報告保留原始內容、表格與圖片，並用獨立樣式區塊避免各報告 CSS 互相覆蓋。
+  </div>
+
+  <h2>一、清理後報告目錄（15 份）</h2>
+  <table>
+    <tr><th>分類</th><th>報告</th><th>用途</th><th>狀態</th></tr>
+    <tr><td rowspan="7">美術與影片</td>
+      <td><a href="styleA_spec_report.html">styleA_spec_report.html</a></td>
+      <td>風格A 規格總集：批量生產規格、139 筆生成規格、批量替換前置審查、雙後端比較。</td>
+      <td><span class="tag merge">整併 4 份</span></td></tr>
+    <tr><td><a href="styleA_phase2_report.html">styleA_phase2_report.html</a></td>
+      <td>風格A Phase 2 批量成果：134 張過閘成品、失敗輪歷程與部署紀錄。</td><td><span class="tag keep">保留</span></td></tr>
+    <tr><td><a href="intro_video_report.html">intro_video_report.html</a></td>
+      <td>開場影片提示詞設計＋捉迷藏版交付驗證。</td><td><span class="tag merge">整併 2 份</span></td></tr>
+    <tr><td><a href="game_opening_movie_storyboard_report.html">game_opening_movie_storyboard_report.html</a></td>
+      <td>58 秒遊戲開場電影分鏡（導演版），待確認後進入生成。</td><td><span class="tag keep">保留</span></td></tr>
+    <tr><td><a href="bban_forest_story_camerawork_report_v2.html">bban_forest_story_camerawork_report_v2.html</a></td>
+      <td>伴伴森林大冒險 V2 運鏡、逐鏡驗證與檔案索引。</td><td><span class="tag keep">保留</span></td></tr>
+    <tr><td><a href="story_lv4_video_report.html">story_lv4_video_report.html</a></td>
+      <td>4×4 過關故事影片的分鏡、生成紀錄與遊戲整合。</td><td><span class="tag keep">保留</span></td></tr>
+    <tr><td><a href="image_generation_tools_report.html">image_generation_tools_report.html</a></td>
+      <td>圖像生成 MCP 工具調查＋圖片生成工具指揮力評估。</td><td><span class="tag merge">整併 2 份</span></td></tr>
+
+    <tr><td rowspan="4">上架與後端</td>
+      <td><a href="ios_release_report.html">ios_release_report.html</a></td>
+      <td>iOS App Store 上架前置（中繼資料、隱私標籤、截圖）＋收費方案。</td><td><span class="tag merge">整併 2 份</span></td></tr>
+    <tr><td><a href="publishing_plan_report.html">publishing_plan_report.html</a></td>
+      <td>上架平台評估＋第一／第二梯隊任務清單。</td><td><span class="tag merge">整併 2 份</span></td></tr>
+    <tr><td><a href="backend_design_report.html">backend_design_report.html</a></td>
+      <td>後端分數驗證／內購設計＋龍塔攻略留言方案。</td><td><span class="tag merge">整併 2 份</span></td></tr>
+    <tr><td><a href="english_mode_assessment_report.html">english_mode_assessment_report.html</a></td>
+      <td>多語模式（繁中／簡中／英文）工程評估，尚未實作。</td><td><span class="tag keep">保留</span></td></tr>
+
+    <tr><td rowspan="3">玩法與驗證</td>
+      <td><a href="buddy_system_report.html">buddy_system_report.html</a></td>
+      <td>隨行羈絆自動排除＋隨行閒聊進階秘訣驗證。</td><td><span class="tag merge">整併 2 份</span></td></tr>
+    <tr><td><a href="tutorial_report.html">tutorial_report.html</a></td>
+      <td>4×4 教學步驟＋第一次教學固定盤面驗證（歷史紀錄）。</td><td><span class="tag merge">整併 2 份</span></td></tr>
+    <tr><td><a href="hidden_object_ratio_report.html">hidden_object_ratio_report.html</a></td>
+      <td>隱藏物規則重設計驗證：恐龍／寶箱／石頭比例與過關條件。</td><td><span class="tag keep">保留</span></td></tr>
+
+    <tr><td>專案結構</td>
+      <td><a href="repo_root_structure_report.html">repo_root_structure_report.html</a></td>
+      <td>dragonfinder 根目錄、game_db／working_db 分類與檔案流向。</td><td><span class="tag keep">保留</span></td></tr>
+  </table>
+
+  <h2>二、整併對照（18 份 → 8 份）</h2>
+  <table>
+    <tr><th>整併後報告</th><th>來源報告</th><th>說明</th></tr>
+    <tr><td><a href="styleA_spec_report.html">styleA_spec_report.html</a></td>
+      <td><code>styleA_batch_spec_report.html</code><br><code>styleA_gen_specs_report.html</code><br><code>styleA_swap_audit_report.html</code><br><code>styleA_backend_compare_report.html</code></td>
+      <td>規格、139 筆種子化清單、替換前審查與雙後端實驗集中在同一份，避免四處查找。</td></tr>
+    <tr><td><a href="intro_video_report.html">intro_video_report.html</a></td>
+      <td><code>bban_intro_video_prompts_report.html</code><br><code>bban_intro_video_delivery_report.html</code></td>
+      <td>提示詞設計與交付驗證合併，成品與驗收一起看。</td></tr>
+    <tr><td><a href="image_generation_tools_report.html">image_generation_tools_report.html</a></td>
+      <td><code>image_gen_mcp_report.html</code><br><code>image_gen_tools_report.html</code></td>
+      <td>兩份工具調查同主題，合併後保留工具總表與建議順序。</td></tr>
+    <tr><td><a href="ios_release_report.html">ios_release_report.html</a></td>
+      <td><code>apple_ios_store_prep_report.html</code><br><code>ios_monetization_report.html</code></td>
+      <td>上架前置與收費方案合併，App Store Connect 作業可一頁完成。</td></tr>
+    <tr><td><a href="publishing_plan_report.html">publishing_plan_report.html</a></td>
+      <td><code>game_publish_platforms_report.html</code><br><code>publish_task_checklist_report.html</code></td>
+      <td>平台選擇與任務清單合併，決策與待辦不分家。</td></tr>
+    <tr><td><a href="backend_design_report.html">backend_design_report.html</a></td>
+      <td><code>backend_implementation_report.html</code><br><code>dragon_tower_comments_report.html</code></td>
+      <td>皆為 Supabase／伺服器端設計，合併為後端設計總集。</td></tr>
+    <tr><td><a href="buddy_system_report.html">buddy_system_report.html</a></td>
+      <td><code>buddy_auto_exclude_report.html</code><br><code>buddy_tips_report.html</code></td>
+      <td>同一隨行系統的兩份實機驗證合併。</td></tr>
+    <tr><td><a href="tutorial_report.html">tutorial_report.html</a></td>
+      <td><code>tutorial_4x4_report.html</code><br><code>tutorial_fixed_board_report.html</code></td>
+      <td>教學流程與固定盤面驗證合併，並標註現行教學已改為點擊推進。</td></tr>
+  </table>
+
+  <h2>三、淘汰與封存（34 份）</h2>
+  <p>下列檔案已從 <code>working_db/reports/</code> 移除，保存在 <code>working_db/archive/reports_retired_20261022/</code>：</p>
+
+  <h3>3.1 已整併的來源報告（18 份，位於 <code>merged_sources/</code>）</h3>
+  <p>內容已完整併入上表 8 份新報告；保留封存檔僅供追溯原始檔名。</p>
+
+  <h3>3.2 淘汰但未整併的報告（16 份）</h3>
+  <table>
+    <tr><th>報告</th><th>淘汰原因</th></tr>
+    <tr><td><code>bban_2star_style_report.html</code></td><td>風格A 起源測試，已被批量規格與 Phase 2 成品取代；風格定義保留在 AGENTS.md。</td></tr>
+    <tr><td><code>bban_dino_preview_report.html</code></td><td>早期四色樣本預覽，正式風格A 圖鑑磚已上線。</td></tr>
+    <tr><td><code>styleA_stegosaurus_report.html</code></td><td>單一物種試做，已被 Phase 2 的 134 張成品取代。</td></tr>
+    <tr><td><code>styleA_therizinosaurus_report.html</code></td><td>單一物種轉換試做，已被 Phase 2 成品取代。</td></tr>
+    <tr><td><code>styleA_trial5_report.html</code></td><td>Phase 1 五星試產，Phase 2 已完整交付同等內容。</td></tr>
+    <tr><td><code>gemini_vs_v4_report.html</code></td><td>pollinations v4 已退出正式管線，比較結果不再影響決策。</td></tr>
+    <tr><td><code>intro_animation_report.html</code></td><td>「蛋孵化・擬真森林」版本已被捉迷藏版開場影片取代。</td></tr>
+    <tr><td><code>bban_forest_story_camerawork_report.html</code></td><td>V1 已被 V2 取代；V2 報告內已包含 V1→V2 的驗收對照。</td></tr>
+    <tr><td><code>appstore_publish_report.html</code></td><td>2026-09-24 舊版清單，使用舊名「尋龍高手」與單檔打包時代流程，已被後續平台評估與 iOS 前置報告取代。</td></tr>
+    <tr><td><code>game_naming_report.html</code></td><td>名稱已定案「恐龍快找」，報告為決策歷史，不再需要日常參考。</td></tr>
+    <tr><td><code>pending_work_report.html</code></td><td>2026-10-13 的未提交工作盤點，後續工作與版控狀態已大幅變動。</td></tr>
+    <tr><td><code>bundle_consistency_report.html</code></td><td>單檔打包已於 2026-10-14 退役，此一致性檢查不再適用。</td></tr>
+    <tr><td><code>logo_fly_fix_report.html</code></td><td>已修復的歷史 bug 報告，現行 UI 已多次改版。</td></tr>
+    <tr><td><code>unity_archive_pause_report.html</code></td><td>Unity 轉換已暫停並封存，屬歷史紀錄。</td></tr>
+    <tr><td><code>tower193_board_report.html</code></td><td>盤面資料已變更，與現行 <code>js/tower.js</code> 的 TOWER_DATA 不一致。</td></tr>
+    <tr><td><code>tower194_board_report.html</code></td><td>單層盤面圖解，資料可由程式與遊戲內盤面取得，無長期保存必要。</td></tr>
+  </table>
+
+  <h2>四、驗證</h2>
+  <ul>
+    <li><span class="ok">HTML 結構：</span>15 份現行報告＋本紀錄共 16 份，皆為完整 <code>&lt;!doctype html&gt;…&lt;/html&gt;</code>。</li>
+    <li><span class="ok">素材引用：</span>全部報告的相對 <code>src</code>／<code>href</code> 檢查，缺失 0 筆。</li>
+    <li><span class="ok">整併內容：</span>8 份整併報告共包含 18 個來源區塊，來源標籤、原日期與原始 CSS 均保留。</li>
+    <li><span class="ok">瀏覽器實測：</span><code>styleA_spec_report.html</code> 15/15 張圖片載入；<code>intro_video_report.html</code> 8/8 張圖片載入；iOS／上架報告版面與來源標籤正常。</li>
+    <li><span class="ok">HTTP：</span>以本機 <code>python -m http.server</code> 提供，全部報告回應 200。</li>
+    <li><span class="ok">交叉引用：</span><code>working_db/docs/Imagegen_usage.md</code> 已改指 <code>styleA_spec_report.html</code> 與 <code>styleA_phase2_report.html</code>。</li>
+  </ul>
+
+  <footer>恐龍快找 DragonFinder ・ 報告庫清理紀錄（2026-10-22）</footer>
+</div>
+</body>
+</html>

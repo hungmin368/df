@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隱藏物規則重設計驗證報告</title>
+<style>
+  :root{ --ink:#2b2620; --sub:#7a6f63; --line:#e6ddcf; --bg:#fbf8f2; --card:#fffdf9; --ok:#1f7a46; --warn:#b3541e; --accent:#b8860b; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif; line-height:1.7; }
+  .wrap{ max-width:980px; margin:0 auto; padding:32px 20px 64px; }
+  header{ border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  h1{ font-size:26px; margin:0 0 6px; }
+  .meta{ color:var(--sub); font-size:13.5px; }
+  h2{ font-size:19px; margin:34px 0 10px; border-left:5px solid var(--accent); padding-left:10px; }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:14px 0; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  table{ width:100%; border-collapse:collapse; font-size:14px; margin:8px 0; }
+  th,td{ border:1px solid var(--line); padding:7px 10px; text-align:center; }
+  th{ background:#f4ecdd; font-weight:700; }
+  td.l, th.l{ text-align:left; }
+  .ok{ color:var(--ok); font-weight:700; }
+  .warn{ color:var(--warn); font-weight:700; }
+  .pill{ display:inline-block; background:#f4ecdd; border:1px solid var(--line); border-radius:999px; padding:2px 12px; font-size:12.5px; margin:2px 4px 2px 0; }
+  .note{ background:#fff6e6; border:1px solid #f0dcb4; border-radius:12px; padding:12px 16px; font-size:14px; }
+  ul{ margin:6px 0; padding-left:22px; }
+  code{ background:#f1ece2; border-radius:5px; padding:1px 6px; font-size:13px; }
+  .big{ font-size:15px; }
+  .chg{ background:#eef7ef; border:1px solid #cfe6d2; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>隱藏物規則重設計驗證報告</h1>
+  <div class="meta">尋龍高手 DragonFinder v1.9.12 ・ 日期：2026-10-13 ・ Task ID：hidden-object-ratio</div>
+</header>
+
+<h2>一、規則變更</h2>
+<div class="card chg">
+  <p class="big">謎題約束：<s>每行／每列／每色區恰 1 隻<b>恐龍</b></s> → <b>每行／每列／每色區恰 1 個「隱藏物」</b>。</p>
+  <p>隱藏物三種與機率：<span class="pill">🦕 恐龍 40%</span><span class="pill">🧰 寶箱 40%</span><span class="pill">🪨 石頭 20%（無用途）</span>；寶箱階梯 <b>鐵 49.95%／黃金 36.41%／白金 13.64%</b>（權重 33/24/9）。</p>
+  <ul>
+    <li>隱藏物總數恰為 <b>N</b>（10×10＝10 個），與「每行/列/區各 1 個」一致。</li>
+    <li>過關條件改為 <b>找齊 N 個隱藏物</b>（<code>found===N</code>），不再限定恐龍。</li>
+    <li>揭示效果：恐龍→入圖鑑＋3D＋（+30s）；寶箱→開箱得獎；石頭→無用。</li>
+    <li>教學盤（4×4/5×5）維持全恐龍，教學流程不變。</li>
+  </ul>
+</div>
+
+<h2>二、各盤面隱藏物統計（瀏覽器實測）</h2>
+<div class="card">
+<table>
+  <tr><th>盤面</th><th>來源</th><th>局數</th><th>恐龍</th><th>寶箱</th><th>石頭</th><th>總數</th><th>比例（恐/寶/石）</th><th>每行/列/區恰1</th><th>非解格隱藏物</th></tr>
+  <tr><td>6×6</td><td class="l">地圖</td><td>60</td><td>133</td><td>154</td><td>73</td><td>360</td><td>36.9 / 42.8 / 20.3</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td>7×7</td><td class="l">地圖</td><td>60</td><td>171</td><td>163</td><td>86</td><td>420</td><td>40.7 / 38.8 / 20.5</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td>8×8</td><td class="l">地圖</td><td>50</td><td>166</td><td>151</td><td>83</td><td>400</td><td>41.5 / 37.8 / 20.8</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td>9×9</td><td class="l">地圖</td><td>50</td><td>175</td><td>176</td><td>99</td><td>450</td><td>38.9 / 39.1 / 22.0</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td><b>10×10</b></td><td class="l">地圖</td><td>60</td><td>260</td><td>240</td><td>100</td><td><b>600</b></td><td>43.3 / 40.0 / 16.7</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td>11×11</td><td class="l">地圖</td><td>20</td><td>82</td><td>96</td><td>42</td><td>220</td><td>37.3 / 43.6 / 19.1</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td>12×12</td><td class="l">地圖</td><td>15</td><td>76</td><td>72</td><td>32</td><td>180</td><td>42.2 / 40.0 / 17.8</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td>13×13</td><td class="l">地圖</td><td>12</td><td>63</td><td>70</td><td>23</td><td>156</td><td>40.4 / 44.9 / 14.7</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td>10×10（塔 233）</td><td class="l">龍塔</td><td>1</td><td>6</td><td>1</td><td>3</td><td>10</td><td colspan="1">—</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td>13×13（塔 1201）</td><td class="l">龍塔</td><td>1</td><td>6</td><td>3</td><td>4</td><td>13</td><td colspan="1">—</td><td class="ok">✓</td><td class="ok">0</td></tr>
+  <tr><td>4×4（教學）</td><td class="l">教學盤</td><td>1</td><td>4</td><td>0</td><td>0</td><td>4</td><td colspan="3" class="l">教學盤強制全恐龍</td></tr>
+</table>
+<p>合計 2,786 個隱藏物 → <span class="ok">40.4 / 40.3 / 19.3</span>（≈40/40/20）；每局每行／每列／每色區皆恰 1 個；非解格隱藏物恆 0。</p>
+</div>
+
+<h2>三、機率蒙地卡羅（1,000,000 次）</h2>
+<div class="card">
+<table>
+  <tr><th>項目</th><th>規格</th><th>實測</th><th>判定</th></tr>
+  <tr><td class="l">隱藏物類型</td><td>40 / 40 / 20</td><td>39.99 / 39.92 / 20.10</td><td class="ok">✓</td></tr>
+  <tr><td class="l">寶箱階梯</td><td>49.95 / 36.41 / 13.64</td><td>49.98 / 36.33 / 13.69</td><td class="ok">✓</td></tr>
+</table>
+</div>
+
+<h2>四、互動與過關回歸（6×6 真實點擊）</h2>
+<div class="card">
+<ul>
+  <li>解格石頭：揭示為 🪨（<code>stonegot</code>）、<code>found</code> +1、無獎勵 <span class="ok">✓</span></li>
+  <li>解格寶箱：揭示為寶箱（<code>chestgot</code>）、入 <code>G.chests</code>（實測 iron）、<code>found</code> +1 <span class="ok">✓</span></li>
+  <li>解格恐龍：3D 召喚、入圖鑑、彈出發現視窗、<code>found</code> +1 <span class="ok">✓</span></li>
+  <li>揭示全部 6 個隱藏物 → 過關；結算「🎯 找到隱藏物（6 / 6）」＋兩鐵箱獎勵列＋剩餘秒數計分 <span class="ok">✓</span></li>
+  <li>Console：本機 origin 無應用程式錯誤 <span class="ok">✓</span></li>
+</ul>
+</div>
+
+<h2>五、結論</h2>
+<div class="card">
+  <ul>
+    <li>核心規則已改為「每行/每列/每色區恰 1 個隱藏物」，類型 40/40/20、寶箱階梯 50/36.4/13.6，於地圖 6~13、龍塔預生成盤與蒙地卡羅下<span class="ok">全部通過</span>。</li>
+    <li>過關條件、結算、提示、伴伴技能、玩法說明與版本號（v1.9.12）已同步。</li>
+    <li class="warn">設計提醒：解格僅約 40% 為恐龍，單局入圖鑑數量下降；+30s 僅於捕獲恐龍時觸發。</li>
+    <li>變更尚未提交（工作樹混有前幾次工作階段未提交內容），待確認提交範圍。</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "appId": "io.github.hungmin368.dragonfinder",
+  "appName": "恐龍快找 DragonFinder",
+  "webDir": "game_db",
+  "backgroundColor": "#fffdf9",
+  "ios": {
+    "contentInset": "automatic",
+    "scheme": "dragonfinder"
+  }
+}

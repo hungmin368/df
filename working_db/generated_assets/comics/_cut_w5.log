@@ -1,0 +1,7 @@
+cg_grey_p02: exists, skip
+
+...[snip progress bars]...
+cg_grey_p04: cut (1024, 1024) -> (388, 937)
+cg_grey_p05: cut (1024, 1024) -> (629, 887)
+cg_grey_p06: cut (1024, 1024) -> (373, 928)
+CUT_DONE

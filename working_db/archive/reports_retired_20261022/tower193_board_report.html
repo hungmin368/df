@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>龍塔第 193 層預生成盤面圖解</title>
+<style>
+  body{ font-family:"Microsoft JhengHei","PingFang TC",sans-serif; background:#f6f1e7; color:#4a3f35; margin:0; padding:32px 16px; }
+  .wrap{ max-width:760px; margin:0 auto; }
+  h1{ font-size:24px; margin:0 0 4px; }
+  .sub{ color:#8a7d6f; margin:0 0 20px; font-size:14px; }
+  .board{ display:grid; grid-template-columns:repeat(10,1fr); gap:4px; background:#fff; padding:12px; border-radius:14px; box-shadow:0 2px 10px rgba(0,0,0,.08); }
+  .cell{ position:relative; aspect-ratio:1; border-radius:8px; display:flex; align-items:center; justify-content:center; }
+  .cell .rid{ position:absolute; top:2px; left:5px; font-size:11px; color:rgba(0,0,0,.38); font-weight:700; }
+  .cell .star{ font-size:22px; text-shadow:0 1px 2px rgba(0,0,0,.25); }
+  table{ border-collapse:collapse; width:100%; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.08); margin-top:20px; }
+  th,td{ padding:8px 12px; text-align:left; font-size:14px; border-bottom:1px solid #efe7da; }
+  th{ background:#efe7da; }
+  code{ background:#efe7da; padding:2px 6px; border-radius:6px; word-break:break-all; font-size:13px; }
+  .sw{ display:inline-block; width:14px; height:14px; border-radius:4px; vertical-align:-2px; margin-right:6px; }
+  h2{ font-size:17px; margin:26px 0 8px; }
+  ul{ font-size:14px; line-height:1.8; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>龍塔第 193 層（10×10）預生成盤面</h1>
+  <p class="sub">資料來源：<code>js/tower.js</code> → <code>TOWER_DATA["10"][62]</code>（<code>TOWER_START["10"]=131</code>，193−131＝62）。顏色為遊戲內 <code>assignRegionColors</code> 實際產出。</p>
+
+  <div class="board" id="b"></div>
+
+  <h2>區域與解答</h2>
+  <table>
+    <tr><th>區域</th><th>顏色</th><th>解答星格（行,列）</th></tr>
+    <tr><td>0</td><td><span class="sw" style="background:#a8b2eb"></span>#a8b2eb</td><td>(2,3)</td></tr>
+    <tr><td>1</td><td><span class="sw" style="background:#eba8c5"></span>#eba8c5</td><td>(8,8)</td></tr>
+    <tr><td>2</td><td><span class="sw" style="background:#decf73"></span>#decf73</td><td>(1,1)</td></tr>
+    <tr><td>3</td><td><span class="sw" style="background:#d8eba8"></span>#d8eba8</td><td>(3,5)</td></tr>
+    <tr><td>4</td><td><span class="sw" style="background:#73deb0"></span>#73deb0</td><td>(6,2)</td></tr>
+    <tr><td>5</td><td><span class="sw" style="background:#91de73"></span>#91de73</td><td>(7,6)</td></tr>
+    <tr><td>6</td><td><span class="sw" style="background:#9173de"></span>#9173de</td><td>(4,10)</td></tr>
+    <tr><td>7</td><td><span class="sw" style="background:#de7373"></span>#de7373</td><td>(9,4)</td></tr>
+    <tr><td>8</td><td><span class="sw" style="background:#a8ebeb"></span>#a8ebeb</td><td>(5,7)</td></tr>
+    <tr><td>9</td><td><span class="sw" style="background:#73b0de"></span>#73b0de</td><td>(10,9)</td></tr>
+  </table>
+
+  <h2>原始字串（base36，長 100）</h2>
+  <p><code>2222033666220000386622003338664477778886444777858144477555114447955111477799919147779999914779999991</code></p>
+
+  <h2>驗證摘要（2026-10-12）</h2>
+  <ul>
+    <li>結構：長度 100、區域 0–9 齊備且各自四連通、無非法代號 — 通過</li>
+    <li>解數：唯一解（Star Battle 1★ 規則：每行／每列／每區各 1 貓、貓互不相鄰含斜角）</li>
+    <li>重複：與 10×10 其它 149 關無完全相同、無旋轉/鏡像重複</li>
+    <li>相鄰區域同色：無</li>
+    <li>實機：瀏覽器載入第 193 層與此圖一致，以解答走完可正常過關並推進第 194 層</li>
+  </ul>
+</div>
+<script>
+const ROWS = [
+  '2222033666',
+  '2200003866',
+  '2200333866',
+  '4477778886',
+  '4447778581',
+  '4447755511',
+  '4447955111',
+  '4777999191',
+  '4777999991',
+  '4779999991'
+];
+const COLORS = ['#a8b2eb','#eba8c5','#decf73','#d8eba8','#73deb0','#91de73','#9173de','#de7373','#a8ebeb','#73b0de'];
+const STARS = new Set([0,12,24,39,46,51,65,77,83,98]);
+const b = document.getElementById('b');
+for (let i = 0; i < 100; i++) {
+  const d = document.createElement('div');
+  d.className = 'cell';
+  const r = +ROWS[(i/10)|0][i%10];
+  d.style.background = COLORS[r];
+  d.innerHTML = '<span class="rid">'+r+'</span>' + (STARS.has(i) ? '<span class="star">★</span>' : '');
+  b.appendChild(d);
+}
+</script>
+</body>
+</html>

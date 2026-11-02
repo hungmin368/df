@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#1a7fa8"/>
+    <stop offset=".4" stop-color="#0f5c8a"/>
+    <stop offset=".75" stop-color="#0a3a68"/>
+    <stop offset="1" stop-color="#062a52"/>
+  </linearGradient>
+  <linearGradient id="ray" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bfeaff" stop-opacity=".5"/>
+    <stop offset="1" stop-color="#bfeaff" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="crystal" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fe8f2"/>
+    <stop offset=".55" stop-color="#5ab8d8"/>
+    <stop offset="1" stop-color="#3a8ab8"/>
+  </linearGradient>
+  <linearGradient id="coral" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0a3454"/>
+    <stop offset="1" stop-color="#051e38"/>
+  </linearGradient>
+  <radialGradient id="pearl" cx=".5" cy=".5" r=".5">
+    <stop offset="0" stop-color="#ffffff" stop-opacity=".95"/>
+    <stop offset=".35" stop-color="#d8f4ff" stop-opacity=".6"/>
+    <stop offset="1" stop-color="#d8f4ff" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="vig" cx=".5" cy=".45" r=".85">
+    <stop offset=".55" stop-color="#000" stop-opacity="0"/>
+    <stop offset="1" stop-color="#02182e" stop-opacity=".6"/>
+  </radialGradient>
+  <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="12"/></filter>
+</defs>
+
+<rect width="1600" height="900" fill="url(#sea)"/>
+
+<g fill="url(#ray)">
+  <polygon points="240,0 380,0 620,900 320,900" opacity=".6"/>
+  <polygon points="560,0 660,0 960,900 720,900" opacity=".5"/>
+  <polygon points="900,0 1000,0 1360,900 1120,900" opacity=".4"/>
+  <polygon points="1180,0 1280,0 1600,820 1420,860" opacity=".35"/>
+  <polygon points="60,0 140,0 380,900 180,900" opacity=".35"/>
+</g>
+
+<g opacity=".95">
+  <path d="M640 560 L640 760 l160 0 L800 560 Z" fill="url(#crystal)"/>
+  <path d="M800 560 L800 760 l150 0 L950 560 Z" fill="#6ec4e0" opacity=".9"/>
+  <path d="M950 560 L950 760 l130 0 L1080 560 Z" fill="#4aa6cf" opacity=".85"/>
+  <path d="M560 560 L560 760 l80 0 L640 560 Z" fill="#4aa6cf" opacity=".85"/>
+  <path d="M620 500 L720 400 L820 500 Z" fill="url(#crystal)"/>
+  <path d="M820 500 L900 420 L980 500 Z" fill="#6ec4e0" opacity=".9"/>
+  <path d="M540 500 L620 500 L660 440 Z" fill="#4aa6cf" opacity=".85"/>
+  <path d="M980 500 L1060 500 L1010 440 Z" fill="#4aa6cf" opacity=".85"/>
+  <ellipse cx="820" cy="560" rx="280" ry="26" fill="#bfeaff" opacity=".55"/>
+</g>
+<g stroke="#e8fbff" stroke-width="2" opacity=".5">
+  <path d="M700 560 V760"/><path d="M880 560 V760"/><path d="M1000 560 V760"/>
+</g>
+
+<circle cx="820" cy="470" r="150" fill="url(#pearl)"/>
+<circle cx="820" cy="470" r="34" fill="#ffffff"/>
+<circle cx="820" cy="470" r="34" fill="none" stroke="#d8f4ff" stroke-width="4" opacity=".7"/>
+
+<g fill="url(#coral)">
+  <path d="M0 700 Q400 650 800 700 T1600 694 V900 H0 Z"/>
+</g>
+<g fill="#0a3454">
+  <path d="M120 760 q-8 -80 20 -120 q30 46 18 120 Z"/>
+  <path d="M180 770 q-4 -60 24 -90 q20 36 12 90 Z"/>
+  <path d="M1420 760 q8 -80 -20 -120 q-30 46 -18 120 Z"/>
+  <path d="M1360 770 q4 -60 -24 -90 q-20 36 -12 90 Z"/>
+  <path d="M320 800 q-6 -50 14 -76 q20 30 12 76 Z"/>
+  <path d="M1260 810 q6 -50 -14 -76 q-20 30 -12 76 Z"/>
+</g>
+<g stroke="#2a6a8f" stroke-width="3" stroke-linecap="round" fill="none" opacity=".8">
+  <path d="M120 800 q-10 -70 6 -110"/><path d="M1420 800 q10 -70 -6 -110"/>
+  <path d="M540 830 q-8 -56 4 -84"/><path d="M1080 840 q8 -56 -4 -84"/>
+</g>
+
+<g fill="#bfeaff" opacity=".75">
+  <circle cx="260" cy="300" r="5"/><circle cx="300" cy="240" r="3.5"/>
+  <circle cx="460" cy="380" r="4"/><circle cx="520" cy="320" r="3"/>
+  <circle cx="1180" cy="300" r="5"/><circle cx="1240" cy="240" r="3.5"/>
+  <circle cx="1380" cy="380" r="4"/><circle cx="1100" cy="200" r="3"/>
+  <circle cx="200" cy="460" r="4"/><circle cx="1460" cy="460" r="4"/>
+  <circle cx="620" cy="220" r="3.5"/><circle cx="980" cy="180" r="3.5"/>
+  <circle cx="720" cy="620" r="4"/><circle cx="940" cy="660" r="4"/>
+</g>
+<g fill="#ffffff" opacity=".55">
+  <circle cx="360" cy="180" r="2.4"/><circle cx="1320" cy="170" r="2.4"/>
+  <circle cx="560" cy="420" r="2.2"/><circle cx="1060" cy="440" r="2.2"/>
+</g>
+
+<g fill="#f4c94a" opacity=".8">
+  <circle cx="180" cy="620" r="2.6"/><circle cx="380" cy="600" r="2.2"/>
+  <circle cx="1440" cy="620" r="2.6"/><circle cx="1240" cy="600" r="2.2"/>
+</g>
+<g fill="#ff8fa3" opacity=".7">
+  <circle cx="280" cy="560" r="2.4"/><circle cx="1340" cy="560" r="2.4"/>
+</g>
+
+<rect width="1600" height="900" fill="url(#vig)"/>
+</svg>

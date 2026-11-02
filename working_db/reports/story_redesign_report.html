@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恐龍快找 DragonFinder 全新故事企劃報告（四方案）</title>
+<style>
+@font-face{font-family:'Huninn';src:url('../../game_db/assets/fonts/Huninn.woff2') format('woff2');font-display:swap;}
+*{box-sizing:border-box;}
+body{margin:0;background:#f6f1e5;color:#4a3b28;font-family:'Huninn','jf open 粉圓','Microsoft JhengHei','PingFang TC',sans-serif;line-height:1.85;font-size:15.5px;}
+.wrap{max-width:1080px;margin:0 auto;padding:26px 20px 80px;}
+header.hero{background:linear-gradient(160deg,#2c3a5e 0%,#3d4e7d 45%,#6a5a9a 100%);border-radius:20px;padding:38px 34px;color:#fff;margin-bottom:26px;box-shadow:0 14px 34px rgba(60,45,20,.25);}
+header.hero h1{margin:0 0 8px;font-size:27px;letter-spacing:1px;}
+header.hero .sub{opacity:.92;font-size:14.5px;}
+header.hero .meta{margin-top:14px;font-size:12.5px;opacity:.75;}
+.logo-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.logo-row img{height:56px;border-radius:12px;background:#fffdf8;padding:5px;}
+nav.toc{position:sticky;top:0;z-index:9;background:rgba(255,253,248,.96);border:1.5px solid #e3cfa4;border-radius:14px;padding:10px 14px;margin-bottom:26px;font-size:13.5px;display:flex;flex-wrap:wrap;gap:6px 14px;box-shadow:0 4px 14px rgba(122,102,72,.12);}
+nav.toc a{color:#8a6f4d;text-decoration:none;font-weight:700;}
+nav.toc a:hover{color:#b3541e;}
+section{background:#fffdf8;border:1.5px solid #eee2cc;border-radius:18px;padding:26px 28px;margin-bottom:26px;box-shadow:0 6px 18px rgba(122,102,72,.10);}
+h2{font-size:21px;margin:0 0 14px;padding-left:12px;border-left:6px solid #b3541e;letter-spacing:.5px;}
+h3{font-size:17.5px;margin:22px 0 8px;color:#7a5a2e;}
+h4{font-size:15.5px;margin:16px 0 6px;color:#8a6f4d;}
+p{margin:8px 0;}
+ul,ol{margin:6px 0 10px;padding-left:24px;}
+li{margin:3px 0;}
+.dim{color:#a39483;font-size:12.5px;}
+.callout{background:#f7efe2;border:1.5px dashed #e3cfa4;border-radius:12px;padding:12px 16px;margin:12px 0;font-size:14px;}
+.warn{background:#fdf1ec;border-color:#e8b8a4;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:760px){.grid2,.grid4{grid-template-columns:1fr;}}
+.card{border:1.5px solid #eee2cc;border-radius:14px;padding:14px 16px;background:#fffdf8;font-size:13.5px;}
+.card b.tag{display:block;font-size:15px;margin-bottom:4px;}
+table{border-collapse:collapse;width:100%;margin:10px 0 6px;font-size:13.2px;background:#fff;}
+th,td{border:1px solid #e9dcc4;padding:7px 9px;text-align:left;vertical-align:top;}
+th{background:#f7efe2;color:#7a5a2e;font-size:13px;}
+tr:nth-child(even) td{background:#fdfaf2;}
+.tbl-scroll{overflow-x:auto;}
+.chtable td{font-size:12.8px;line-height:1.7;}
+.chtable .no{text-align:center;font-weight:800;color:#b3541e;white-space:nowrap;}
+.chtable .reg{white-space:nowrap;font-weight:700;}
+.chtable .ct{font-weight:800;white-space:nowrap;}
+.chtable .hook{color:#7a4a10;}
+.chip{display:inline-block;padding:0 9px;border-radius:99px;font-size:11px;color:#fff;line-height:19px;margin-left:5px;white-space:nowrap;vertical-align:1px;}
+.chip.gold{background:#c9962e;} .chip.forest{background:#4f9e5f;} .chip.sky{background:#5a8fd0;}
+.chip.mystery{background:#8a5fc0;} .chip.water{background:#3aa0c8;} .chip.fire{background:#d05a28;}
+.chip.snow{background:#7fa8c8;} .chip.storm{background:#6a5a9a;}
+.propA h2{border-color:#d07818;} .propA th{background:#faeeda;}
+.propB h2{border-color:#2e7fb0;} .propB th{background:#e3f0f8;}
+.propC h2{border-color:#c2452d;} .propC th{background:#fae6e0;}
+.propD h2{border-color:#7a5fb0;} .propD th{background:#efe9f8;}
+.concept{display:grid;grid-template-columns:110px 1fr;gap:4px 12px;font-size:14px;background:#f7efe2;border-radius:12px;padding:12px 16px;margin:10px 0;}
+.concept dt{font-weight:800;color:#8a6f4d;}
+.concept dd{margin:0;}
+.swatch{display:inline-block;width:13px;height:13px;border-radius:4px;vertical-align:-2px;margin-right:6px;border:1px solid rgba(0,0,0,.15);}
+figure{margin:14px 0;text-align:center;}
+figure img{max-width:100%;border-radius:14px;border:3px solid #e3cfa4;box-shadow:0 8px 22px rgba(122,102,72,.18);}
+figcaption{font-size:12.5px;color:#a39483;margin-top:8px;}
+.rec{background:#fdf6e3;border:2px solid #e3cfa4;border-radius:14px;padding:14px 18px;margin-top:14px;}
+footer{text-align:center;color:#a39483;font-size:12.5px;margin-top:30px;}
+.badge{display:inline-block;background:#b3541e;color:#fff;border-radius:8px;padding:1px 10px;font-size:12px;margin-left:8px;vertical-align:2px;}
+.kbd{background:#f1e8d6;border:1px solid #e3cfa4;border-radius:6px;padding:0 7px;font-size:12.5px;font-family:Consolas,monospace;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="logo-row">
+    <img src="../../game_db/assets/dinos_2/game_logo.png" alt="恐龍快找 DragonFinder">
+    <div>
+      <h1>恐龍快找 DragonFinder・全新故事企劃報告</h1>
+      <div class="sub">四個候選主線方案 × 15 區地圖連結 × 過關期待設計 × 畫面設計規範</div>
+    </div>
+  </div>
+  <div class="meta">企劃撰寫：遊戲編劇（SophCode）· 2026-10-22 · 適用遊戲版本 v1.9.18 · 現有主線「星願燈塔危機」依指示汰換，本報告全部為全新方案</div>
+</header>
+
+<nav class="toc">
+  <a href="#goal">① 設計目標</a>
+  <a href="#world">② 素材盤點</a>
+  <a href="#compare">③ 四方案比較</a>
+  <a href="#propA">④ 方案A 彩虹羅盤</a>
+  <a href="#propB">⑤ 方案B 時光列車</a>
+  <a href="#propC">⑥ 方案C 尋龍盃</a>
+  <a href="#propD">⑦ 方案D 星塵牧場</a>
+  <a href="#visual">⑧ 畫面規範</a>
+  <a href="#impl">⑨ 落地實作</a>
+  <a href="#decide">⑩ 決策指南</a>
+</nav>
+
+<!-- ================= 1 設計目標 ================= -->
+<section id="goal">
+  <h2>① 設計目標與創作原則</h2>
+  <p>這次重寫要解決的問題：現有主線「星願燈塔危機」走<b>懸疑感傷</b>路線（被遺忘的影子龍、爺爺的贖罪），情感門檻偏高、與「開心找恐龍」的遊玩體驗有落差。新故事必須讓<b>過關本身成為看故事的動力</b>。</p>
+  <h3>四條創作原則（每案都必須通過）</h3>
+  <ol>
+    <li><b>全家向、快樂優先</b>：調性明亮溫暖，孩子聽得懂、大人不無聊；可以有小危機，但收尾永遠是暖的。</li>
+    <li><b>每章＝一個區域</b>：序章＋15 章（4×4～18×18）一一對應地圖；該章的<b>地形、天氣、代表恐龍（取自現有圖鑑）</b>都必須寫進劇情，讀完劇情＝認識了這塊地圖。</li>
+    <li><b>過關期待迴圈</b>：每章結尾必留「章末鉤子」指向下一區；另設一個<b>看得見的收集象徵</b>（羅盤碎片／車票／徽章／星星燈），每過一關就亮一格——把「圖鑑完成度」的爽感複製到故事線上。</li>
+    <li><b>與玩法互相解釋</b>：劇情要替現有系統「說故事」——捕捉器、寶箱、星願種子、進化藥水、龍塔、區域戰績，都能在新世界觀裡找到理由。</li>
+  </ol>
+  <div class="callout"><b>過關期待的設計公式</b>：章末鉤子（想看下一幕）＋收集進度條（想集滿）＋中盤轉折（第 8 章前後爆一次料）＋終章大回饋（全地圖亮燈／全員登場）。四個方案都按此公式搭建，只是換皮。</div>
+</section>
+
+<!-- ================= 2 素材盤點 ================= -->
+<section id="world">
+  <h2>② 遊戲素材盤點（編劇的原料庫）</h2>
+  <figure>
+    <img src="../../game_db/assets/map.png" alt="尋龍地圖" style="max-width:640px;">
+    <figcaption>尋龍地圖（assets/map.png）：15 區沿地形分布——左下海灘出發，繞行平原、丘陵、森林、沼澤、峽谷、雪嶺、遺跡，登上雲上神殿與巔峰，再經火山、王陵、海宮，最後回到天上蒼穹。</figcaption>
+  </figure>
+  <h3>2-1 十五區域速查表（劇情連結的錨點）</h3>
+  <div class="tbl-scroll">
+  <table>
+    <tr><th>關卡</th><th>區域</th><th>地形關鍵字</th><th>時段氛圍</th><th>代表恐龍（現有圖鑑）</th><th>建議主色</th></tr>
+    <tr><td>4×4</td><td>🌱 起源地</td><td>金色沙灘・海浪・恐龍蛋</td><td>日出暖金</td><td>薩爾塔龍、梁龍</td><td><span class="swatch" style="background:#f2d49b"></span>#f2d49b</td></tr>
+    <tr><td>5×5</td><td>🌿 幼龍平原</td><td>開闊草地・育幼地</td><td>晴朗翠綠</td><td>三角龍、副櫛龍</td><td><span class="swatch" style="background:#a8d878"></span>#a8d878</td></tr>
+    <tr><td>6×6</td><td>🍃 翠風草原</td><td>草浪・疾風・賽跑</td><td>晨風金綠</td><td>似鴯鶓龍、橡樹龍、無齒翼龍</td><td><span class="swatch" style="background:#7ec850"></span>#7ec850</td></tr>
+    <tr><td>7×7</td><td>⛰️ 碎岩丘陵</td><td>岩谷迷宮・回音</td><td>午前赭色</td><td>腫頭龍、結節龍</td><td><span class="swatch" style="background:#c98a5b"></span>#c98a5b</td></tr>
+    <tr><td>8×8</td><td>🌲 迷霧森林</td><td>濃霧・螢光蘑菇</td><td>藍綠昏暗</td><td>樹息龍、小盜龍、美頜龍</td><td><span class="swatch" style="background:#4f9e8f"></span>#4f9e8f</td></tr>
+    <tr><td>9×9</td><td>🌙 月光沼澤</td><td>月夜・水面倒影</td><td>深藍夜</td><td>棘龍、似鱷龍、普魯斯鱷</td><td><span class="swatch" style="background:#5a6fb5"></span>#5a6fb5</td></tr>
+    <tr><td>10×10</td><td>🌵 烈陽峽谷</td><td>紅岩・熱浪・追逐</td><td>正午橙紅</td><td>食肉牛龍、瑪君龍</td><td><span class="swatch" style="background:#e07840"></span>#e07840</td></tr>
+    <tr><td>11×11</td><td>❄️ 霜牙雪嶺</td><td>暴雪・冰湖・極光</td><td>冷藍極光</td><td>艾伯塔龍、特暴龍</td><td><span class="swatch" style="background:#a8d4f0"></span>#a8d4f0</td></tr>
+    <tr><td>12×12</td><td>🏛️ 古城遺跡</td><td>石柱・壁畫・機關</td><td>金沙塵光</td><td>戈壁龍、竊蛋龍、鷲龍</td><td><span class="swatch" style="background:#d9b96c"></span>#d9b96c</td></tr>
+    <tr><td>13×13</td><td>⛩️ 雲海神殿</td><td>浮空島・鳥居・雲海</td><td>雲白鎏金</td><td>風神翼龍、古神翼龍、悟空翼龍</td><td><span class="swatch" style="background:#bcd9f5"></span>#bcd9f5</td></tr>
+    <tr><td>14×14</td><td>🐉 龍之巔峰</td><td>最高峰・雲上王座</td><td>帝王金</td><td>超帝王龍、霸王龍、泰坦巨龍</td><td><span class="swatch" style="background:#f0c14b"></span>#f0c14b</td></tr>
+    <tr><td>15×15</td><td>🌋 熔火龍穴</td><td>火山・熔岩・鍛造</td><td>熾橙黑</td><td>棘龍王、蠻龍、新獵龍</td><td><span class="swatch" style="background:#e05038"></span>#e05038</td></tr>
+    <tr><td>16×16</td><td>🏜️ 流沙王陵</td><td>流沙・陵墓・機關</td><td>金沙黃昏</td><td>敦煌龍、渝龍、黑龍江龍</td><td><span class="swatch" style="background:#e8c88f"></span>#e8c88f</td></tr>
+    <tr><td>17×17</td><td>🌊 碧海龍宮</td><td>珊瑚・水晶宮・深海</td><td>水藍夜光</td><td>蛇頸龍、滑齒龍、海王龍、海霸龍</td><td><span class="swatch" style="background:#58b8d8"></span>#58b8d8</td></tr>
+    <tr><td>18×18</td><td>🐲 蒼穹龍境</td><td>天空之境・龍塔・極光</td><td>紫羅蘭極光</td><td>帝龍、哈特茲哥翼龍</td><td><span class="swatch" style="background:#b89ae8"></span>#b89ae8</td></tr>
+  </table>
+  </div>
+  <h3>2-2 一定要用上的系統</h3>
+  <div class="grid4">
+    <div class="card"><b class="tag">🦕 伴伴（No.000）</b>從一顆蛋開始跟隨玩家的專屬夥伴，可用🧪進化到 5★。四案的「搭檔位」都由牠擔綱，是故事的情感核心。</div>
+    <div class="card"><b class="tag">🧰 寶箱三階</b>鐵箱／黃金寶箱／白金寶箱。劇情裡設定為「前人留下的補給或信物」，讓盤面上的開箱有敘事理由。</div>
+    <div class="card"><b class="tag">📖 圖鑑 140</b>常見 76＋遠古王者 63＋伴伴。四案各自把它解釋成：朋友名冊／乘客名冊／選手名冊／星星燈名冊。</div>
+    <div class="card"><b class="tag">🐉 龍塔 2000 層</b>6×6 過關後解鎖的塔狀挑戰（頂部天空帶）。四案都把它排進終盤：終點站／決賽場／信號塔。</div>
+  </div>
+  <div class="grid2" style="margin-top:12px;">
+    <div class="card"><b class="tag">現有場景卡範例（序章 s0.svg）</b><figure style="margin:6px 0 0;"><img src="../../game_db/assets/story/s0.svg" alt="序章場景卡" style="max-width:420px;"><figcaption>1600×900 SVG 場景＋打字機文案＋角色立繪浮現＋8 色 mood 粒子——新方案的畫面將沿用這套舞台。</figcaption></figure></div>
+    <div class="card"><b class="tag">寶箱三階（劇情道具感）</b><figure style="margin:6px 0 0;"><img src="../../game_db/assets/chests/iron.webp" alt="鐵箱" style="width:110px;"><img src="../../game_db/assets/chests/gold.webp" alt="黃金寶箱" style="width:110px;"><img src="../../game_db/assets/chests/plat.webp" alt="白金寶箱" style="width:110px;"><figcaption>鐵箱／黃金／白金——遊戲內 256px WebP。</figcaption></figure></div>
+  </div>
+</section>
+
+<!-- ================= 3 比較 ================= -->
+<section id="compare">
+  <h2>③ 四方案總覽與比較</h2>
+  <div class="tbl-scroll">
+  <table>
+    <tr><th style="width:11%">方案</th><th style="width:20%">一句話概念</th><th>調性</th><th>核心收集象徵</th><th>最大賣點</th><th>留意點</th><th>最適合</th></tr>
+    <tr>
+      <td><b style="color:#d07818">A 彩虹羅盤</b></td>
+      <td>集齊失落的探險隊羅盤碎片，找到「所有恐龍的樂園」</td>
+      <td>王道冒險・輕快熱血</td>
+      <td>15 枚彩色羅盤碎片</td>
+      <td>經典爽感最穩；「羅盤轉動指向下一區」把過關儀式感拉滿；與圖鑑收集主題最合</td>
+      <td>原創度中等（冒險公式成熟）</td>
+      <td>想最大化大眾緣</td>
+    </tr>
+    <tr>
+      <td><b style="color:#2e7fb0">B 時光列車</b></td>
+      <td>修復墜毀的時光列車「諾亞號」，找回散落 15 區的沉睡乘客</td>
+      <td>奇幻科普・淡淡懸念</td>
+      <td>15 張車票＋15 節車廂</td>
+      <td>世界觀最原創、記憶點最強；「地圖＝環線、過關＝通車」結構最工整；隱藏的「第二列車」懸念撑起後半</td>
+      <td>列車美術素材量最大</td>
+      <td>想要市場記憶點</td>
+    </tr>
+    <tr>
+      <td><b style="color:#c2452d">C 尋龍盃</b></td>
+      <td>全大陸推理大賽開幕！15 站資格賽闖進龍塔總決賽</td>
+      <td>熱血競技・歡樂喜劇</td>
+      <td>15 枚賽區徽章</td>
+      <td>最貼玩法系統：區域戰績＝賽區成績、龍塔＝決賽場、留言板＝選手留言；勁敵三人組戲份最好看</td>
+      <td>需新增 2~3 位人類角色立繪</td>
+      <td>想強化留存與龍塔</td>
+    </tr>
+    <tr>
+      <td><b style="color:#7a5fb0">D 星塵牧場</b></td>
+      <td>代理牧場長的夏天：把迷路的恐龍一隻隻哄睡、送回家</td>
+      <td>治愈日常・親子</td>
+      <td>15 盞星星燈</td>
+      <td>最溫柔無痛；「晚安」儀式感適合睡前遊玩；每章一個小課題，單章完整度最高</td>
+      <td>戲劇張力最低，熱血玩家可能覺得平淡</td>
+      <td>親子客群・睡前場景</td>
+    </tr>
+  </table>
+  </div>
+  <div class="rec">
+    <b>編劇推薦</b>：<b style="color:#d07818">方案 A</b> 為第一首選——它把「收集」這個遊戲DNA直接寫進主線，章章有鉤子、調性最不挑人；<b style="color:#2e7fb0">方案 B</b> 最有機會成為玩家「記得這款遊戲」的理由。若想保守中帶亮點，可採 <b>A 為骨架＋B 的隱藏懸念＋C 的勁敵點綴</b>（詳見 ⑩ 決策指南）。
+  </div>
+</section>
+
+<!-- ================= 4 方案 A ================= -->
+<section id="propA" class="propA">
+  <h2>④ 方案 A《彩虹羅盤與失落的探險隊》<span class="badge">編劇首選</span></h2>
+  <dl class="concept">
+    <dt>類型</dt><dd>王道收集冒險（歡樂・熱血・微感動）</dd>
+    <dt>一句話</dt><dd>傳說探險隊留下的彩虹羅盤碎成 15 片，散落全大陸；集齊它，羅盤就會指向「所有恐龍最初的家」。</dd>
+    <dt>主角</dt><dd>你（新手上路的尋龍人）＋伴伴（從羅盤核心破殼而出的謎樣小龍，額頭花紋會與碎片共鳴發光）</dd>
+    <dt>對手</dt><dd>「收藏家」格雷——想搶碎片強開樂園之門、把恐龍做成標本的飛艇收藏狂（全程只聞其聲／見其飛艇，終章才露臉）</dd>
+    <dt>系統呼應</dt><dd>寶箱＝探險隊補給遺留；捕捉器＝「尋龍人的眼力」；圖鑑＝朋友名冊（終章點題）；羅盤＝可做為選單的進度指示</dd>
+  </dl>
+  <h3>三幕結構（對應地圖地理）</h3>
+  <ul>
+    <li><b>第一幕・啟程（序章～8×8 迷霧森林）</b>：沿海灘→平原→草原→丘陵→森林，沿當年探險隊的路線撿碎片、交當地朋友，學會「推理的眼力」。</li>
+    <li><b>第二幕・真相（9×9～13×13）</b>：沼澤起碎片上的刻痕是警告——「收藏家」盯上了羅盤；峽谷追逐、雪嶺揭曉「隊長＝年輕時的爺爺」，神殿試煉後直上雲端。</li>
+    <li><b>第三幕・樂園之門（14×14～18×18）</b>：巔峰、龍穴、王陵、海宮一路與格雷競速，終章在蒼穹龍境開門——門後不是寶藏，而是「讓整個大陸變成樂園」的祝福。</li>
+  </ul>
+  <h3>章節總表（序章＋15 章）</h3>
+  <div class="tbl-scroll">
+  <table class="chtable">
+    <tr><th style="width:4%">#</th><th style="width:9%">區域</th><th style="width:13%">章名</th><th style="width:42%">劇情（地圖連結・粗體＝現有圖鑑恐龍）</th><th style="width:17%">章末鉤子（過關期待）</th><th style="width:15%">畫面設計</th></tr>
+    <tr><td class="no">0</td><td class="reg">🌟 序章</td><td class="ct">拾獲羅盤的早晨</td><td>你在爺爺的舊物箱翻到一張泛黃合影：探險隊站在大陸地圖前，圖釘釘著一枚<b>彩虹羅盤</b>。當晚羅盤竟出現在枕頭下，指針狂轉後指向窗外。你追到海邊，撿到半枚碎裂的羅盤與一顆淡藍的蛋——蛋殼浮出羅盤同款花紋，<b>伴伴</b>破殼而出。</td><td class="hook">羅盤指針「叮」地一聲，指向內陸深處。</td><td>閣樓暖黃→月夜海灘；羅盤金光特寫<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">1</td><td class="reg">🌱 起源地<br>4×4</td><td class="ct">沙灘上的第一片彩虹</td><td>金色沙灘散落探險隊的補給箱（寶箱）。<b>伴伴</b>嗅出埋在沙裡的第一枚碎片，卻被愛亮晶晶的<b>薩爾塔龍</b>撿去當項鍊。你靠「哪裡最容易被當藏寶點」的推理找回碎片。</td><td class="hook">碎片背面刻著隊規第一條：「永遠，把恐龍當朋友。」</td><td>日出沙灘、淺灘倒影；羅盤鑲嵌特寫<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">2</td><td class="reg">🌿 幼龍平原<br>5×5</td><td class="ct">迷路的小三角龍</td><td>草浪平原上，小<b>三角龍</b>哭著說牠追「會飛的碎片」跟丟了隊伍。你沿足跡推理找到牠，發現第二枚碎片躺在<b>無齒翼龍</b>的巢裡——翼龍媽媽一直以為那是顆蛋。溫馨歸還後，翼龍以飛行護送作謝禮。</td><td class="hook">高空俯瞰：第一次看見整張地圖與遠方雪山（終點視覺化）。</td><td>綠原風線、大地圖俯瞰鏡頭<span class="chip forest">forest</span></td></tr>
+    <tr><td class="no">3</td><td class="reg">🍃 翠風草原<br>6×6</td><td class="ct">追風者的大賽跑</td><td>草原石碑記載：碎片三在「跑得最快的傢伙」巢裡。<b>似鴯鶓龍</b>三兄弟開出條件——先在草浪裡贏過牠們的捉迷藏賽。你用排除法圈出足跡路線，終點巢中碎片閃著綠光。</td><td class="hook">石碑背面有新抓痕：「別讓『收藏家』搶走羅盤」；天邊掠過一艘飛艇剪影。</td><td>金綠草浪、奔跑速度線、飛艇伏筆<span class="chip forest">forest</span></td></tr>
+    <tr><td class="no">4</td><td class="reg">⛰️ 碎岩丘陵<br>7×7</td><td class="ct">回音谷的考驗</td><td>碎片四掉進會吃掉聲音的回音迷宮谷。守谷的<b>腫頭龍</b>放行條件：「腦袋清楚的傢伙才能進」。你在石壁回音中定位碎片（呼應排除法玩法），出谷時<b>伴伴</b>學會模仿回音，逗笑全場。</td><td class="hook">牆上刻著探險隊日記殘句：「集到一半我們才發現，樂園是有代價的。」</td><td>赭石岩壁、聲波圓環特效<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">5</td><td class="reg">🌲 迷霧森林<br>8×8</td><td class="ct">霧中燈火</td><td>濃霧森林五步外不見路。掛在枝頭當「燈」的<b>樹息龍</b>一族要你先救出被霧困住的小<b>美頜龍</b>。任務完成，最老的樹息龍爺爺交出碎片五，並說出牠見過的那個「把活恐龍做成標本的人」。</td><td class="hook">霧散的一瞬，谷外亮起格雷飛艇的探照光柱。</td><td>藍綠濃霧＋螢菇點光、遠景光柱<span class="chip forest">forest</span></td></tr>
+    <tr><td class="no">6</td><td class="reg">🌙 月光沼澤<br>9×9</td><td class="ct">水面下的星空</td><td>碎片六沉在沼澤的「星星水潭」底，倒影裡星空與水底交錯。守潭的<b>棘龍</b>說水裡住著「愛收集石頭的傢伙」——<b>掘龍</b>把碎片當寶石收進了巢。你觀察牠搬石頭的路徑，推理出巢位一舉撈起。</td><td class="hook">撈起碎片時，倒影多了一道不屬於星星的光——飛艇已到沼澤上空。</td><td>深藍月夜、水面鏡像構圖、螢火粒子<span class="chip water">water</span></td></tr>
+    <tr><td class="no">7</td><td class="reg">🌵 烈陽峽谷<br>10×10</td><td class="ct">正午的追逐</td><td>格雷的手下在紅岩峽谷張網搶碎片！<b>食肉牛龍</b>警長帶你抄岩縫近路，用「互不相鄰」的走位避開捕獸網（玩法梗），反將飛艇引進熱氣流狼狽撤退。碎片七就藏在警長徽章背面——牠是當年探險隊恐龍夥伴的後代。</td><td class="hook">警長低聲說：「你爺爺……當年也這樣保護過我們。」——爺爺和探險隊有關？！</td><td>赤紅峽谷正午、追逐速度線<span class="chip fire">fire</span></td></tr>
+    <tr><td class="no">8</td><td class="reg">❄️ 霜牙雪嶺<br>11×11</td><td class="ct">極光下的半張地圖</td><td>暴雪封山，你在雪洞裡找到探險隊營地遺址：半張地圖＋碎片八。日記寫著他們在巔峰看見「樂園之門」，但隊長決定不開——「門一開，就有人想把整個樂園搬回家。」極光亮起，<b>伴伴</b>額紋與羅盤共鳴，投影出隊長的側臉。</td><td class="hook">那側臉，像極了年輕時的爺爺——而他當年「沒能阻止另一個隊員開門」。</td><td>藍白雪嶺＋極光簾幕、雪洞暖火對比<span class="chip snow">snow</span></td></tr>
+    <tr><td class="no">9</td><td class="reg">🏛️ 古城遺跡<br>12×12</td><td class="ct">壁畫裡的真相</td><td>古城壁畫記載：百年前「收藏家協會」想強開樂園之門，探險隊與恐龍們把「鑰匙」拆成 15 片藏遍大陸。碎片九嵌在王座機關裡，<b>竊蛋龍</b>盜團也聞風而來——一場古墓機關攻防戰開打。</td><td class="hook">壁畫最後一格被鑿掉，鑿痕很新……有人不想讓你們看到結局。</td><td>金沙石柱、壁畫長卷橫移、塵光粒子<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">10</td><td class="reg">⛩️ 雲海神殿<br>13×13</td><td class="ct">風之子的試煉</td><td>浮空神殿的<b>風神翼龍</b>三姊妹守著門的最後知識：「門只回應真心。」試煉是在翻湧雲海中找出「你真正想見的那根羽毛」（把找隱藏物玩成儀式）。通過後，三姊妹以高空氣流護送你們朝巔峰飛去。</td><td class="hook">姊妹臨別警告：「收藏家的飛艇已經先出發了——剩下的碎片，你必須比牠快。」</td><td>雲海日出金、浮空鳥居剪影、風流線<span class="chip sky">sky</span></td></tr>
+    <tr><td class="no">11</td><td class="reg">🐉 龍之巔峰<br>14×14</td><td class="ct">王者的證明</td><td>巔峰雲霧中，守門的<b>超帝王龍</b>要求最終試煉：證明「尋找的眼力」。你在帝王們的注視下完成挑戰，<b>霸王龍</b>群讓出一條上山道。山頂留著探險隊最後的紀錄：爺爺把最後一枚碎片藏去了「連收藏家都想不到的地方」。</td><td class="hook">羅盤指針竟然指向——下方，海的深處。</td><td>雲上金光、巨大王者剪影俯瞰群山<span class="chip storm">storm</span></td></tr>
+    <tr><td class="no">12</td><td class="reg">🌋 熔火龍穴<br>15×15</td><td class="ct">火中的答案</td><td>最後的碎片當年被投入火山，讓「貪婪之手永遠拿不到」。守著熔岩湖的<b>棘龍王</b>說：火焰會先映出「你最害怕的事」——你看見圖鑑被燒空、朋友變成標本的幻象，差點退縮；<b>伴伴</b>把爪子搭上你的手。</td><td class="hook">碎片取出、羅盤復原的同一刻——格雷的飛艇降落在火山口。</td><td>橙紅熔岩、火星粒子、幻象轉灰階<span class="chip fire">fire</span></td></tr>
+    <tr><td class="no">13</td><td class="reg">🏜️ 流沙王陵<br>16×16</td><td class="ct">沙海遁走</td><td>飛艇追逐戰！你們跳上王陵的古陵滑道逃亡，把機關反過來變成陷阱；<b>敦煌龍</b>商隊出面斷後，格雷在沙暴中只撿到你們故意留下的「假羅盤」。</td><td class="hook">你們真正的目的地是海底——碧海龍宮。格雷發現上當，氣急敗壞。</td><td>金沙流動、陵墓滑道動感、沙暴轉海藍<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">14</td><td class="reg">🌊 碧海龍宮<br>17×17</td><td class="ct">最初的鑰匙孔</td><td>龍宮水晶大殿的中央，就是「樂園之門」的鑰匙孔——原來樂園一直在大家的腳下與身邊。<b>海霸龍</b>開啟潮門讓你們入殿；格雷的飛艇破浪而入搶走羅盤強行轉動——門開了一半，卻開始把外面的恐龍「吸」進灰白的標本世界。</td><td class="hook">門只認「心」。你敢在最後關頭，把自己的願望讓給別人嗎？</td><td>水藍水晶宮、門縫白光、灰白侵蝕對比<span class="chip water">water</span></td></tr>
+    <tr><td class="no">15</td><td class="reg">🐲 蒼穹龍境<br>18×18</td><td class="ct">所有人心裡的樂園</td><td>終章。你沒有搶回羅盤，而是握住格雷的手一起按上門——你許的願是「讓想見恐龍的人，都能再見到牠們」。格雷愣住：小時候他也曾在海邊遇過一隻恐龍。門完全開啟，不是通往另一個世界，而是讓 15 區星光全部點亮——大陸本身成為樂園。<b>伴伴</b>額紋亮起：「下次旅行，換我帶路！」</td><td class="hook">後日談：龍塔頂端亮起一盞燈——那是給「下一場冒險」的信號。</td><td>極光＋15 色星光齊亮、全員合影構圖<span class="chip storm">storm</span></td></tr>
+  </table>
+  </div>
+  <h3>過關期待設計（方案 A 專屬）</h3>
+  <ul>
+    <li><b>羅盤儀式</b>：每章結尾固定演出「碎片鑲入→該區顏色亮起→指針轉向下一區」三拍子，過關=看得見的進度。</li>
+    <li><b>五片一小結</b>：每集滿 5 枚碎片（第 5、10、15 章），羅盤投影一段探險隊回憶星圖，補完爺爺的過去。</li>
+    <li><b>中盤大轉折</b>：第 7~8 章連續兩記重拳（警長爆料→爺爺身份），把「想過下一關」變成「想知道真相」。</li>
+    <li><b>終章大回饋</b>：地圖 15 區全亮燈＋主要夥伴合影，直接呼應圖鑑完成度頁面。</li>
+  </ul>
+  <h3>畫面設計總覽（方案 A）</h3>
+  <ul>
+    <li><b>美術基調</b>：黃金年代探險風——暖金、皮件棕、銅器金屬光；場景角落埋「探險隊遺物」（旗幟、補給箱、繩結），讓每區都有「他們來過」的痕跡。</li>
+    <li><b>視覺母題</b>：彩虹羅盤。序章碎裂 → 章章補色 → 終章 15 色全亮的完整圓，是整條故事線的進度條。</li>
+    <li><b>名場面清單</b>：序章蛋殼花紋共鳴、2 章大地圖俯瞰、6 章水面星空鏡像、8 章極光爺爺剪影、10 章雲海試煉、15 章 15 色齊亮。</li>
+    <li><b>新素材需求</b>：16 張場景 SVG（沿用 s0~s18.svg 檔名）；羅盤分色 SVG 1 組（15 色＋空盤＋完整盤）；格雷飛艇剪影 2 態（遠景／降落）；cast 用現有圖鑑圖（伴伴 id=1000 固定第一位）。</li>
+  </ul>
+</section>
+
+<!-- ================= 5 方案 B ================= -->
+<section id="propB" class="propB">
+  <h2>⑤ 方案 B《時光特急・諾亞號》</h2>
+  <dl class="concept">
+    <dt>類型</dt><dd>奇幻科普冒險（原創世界觀・淡淡懸念・老少通吃）</dd>
+    <dt>一句話</dt><dd>載著各年代動物逃離大滅絕的時光列車墜毀在恐龍大陸，15 節車廂散落 15 區、乘客沉睡——見習車長的你，要把每一站「通車」。</dd>
+    <dt>主角</dt><dd>你（被列車精靈選中的見習車長）＋伴伴（車頭守護精靈，平時變成小車頭停在肩上，汽笛是牠的叫聲）</dd>
+    <dt>隱藏懸念</dt><dd>當年出發的其實有「兩列車」——為諾亞號擋下災難而墜毀的第二列車「厄科號」，撐起第 9、11、13 章的真相線</dd>
+    <dt>系統呼應</dt><dd>過關＝修好一節車廂／一座車站；獎勵券🎟＝車票；圖鑑＝乘客名冊；龍塔＝「環大陸線」的終點站與塔頂信號燈</dd>
+  </dl>
+  <h3>三幕結構</h3>
+  <ul>
+    <li><b>第一幕・復駛（序章～9×9）</b>：一站一站修車廂、喚乘客、集鑰匙——溫馨的鐵道日常，第 6 章幽靈列車事件埋下「第二列車」伏筆。</li>
+    <li><b>第二幕・真相（10×10～14×14）</b>：雲海鐵橋通到巔峰「終點站」——卻發現「明天」這個終點根本不存在；車頭之心仍在熔火龍穴裡淬火。</li>
+    <li><b>第三幕・發車（15×15～18×18）</b>：王陵下找到厄科號的殘骸與心意，海底迎回最老的乘客，終章全員發車——列車繞行大陸一週，變成永遠的環線觀光列車。</li>
+  </ul>
+  <h3>章節總表（序章＋15 章）</h3>
+  <div class="tbl-scroll">
+  <table class="chtable">
+    <tr><th style="width:4%">#</th><th style="width:9%">車站</th><th style="width:13%">章名</th><th style="width:42%">劇情（地圖連結・粗體＝現有圖鑑恐龍）</th><th style="width:17%">章末鉤子（過關期待）</th><th style="width:15%">畫面設計</th></tr>
+    <tr><td class="no">0</td><td class="reg">🌟 序章</td><td class="ct">發車前的月台</td><td>你在車站舊書攤翻開一本空白票冊，周圍瞬間變成雲上老月台——蒸汽車頭「諾亞號」靜靜停著。<b>伴伴</b>從煙囪裡鑽出來：列車在穿越「大滅絕之夜」時墜毀，15 節車廂散落大陸，乘客們沉睡至今。集齊 15 把月台鑰匙，就能載大家「抵達明天」。</td><td class="hook">票冊自動浮現第一張票：起源地站，發車在即。</td><td>現實車站→雲上月台轉場、蒸汽星夜<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">1</td><td class="reg">🌱 起源地<br>4×4</td><td class="ct">海濱月台的第一聲汽笛</td><td>車廂一停在金色沙灘，月台鑰匙被愛撿貝殼的<b>薩爾塔龍</b>寶寶埋進了沙堡。你推理出「最气派的沙堡在哪」取回鑰匙，喚醒車廂裡沉睡的<b>孔子鳥</b>晨鳥團。</td><td class="hook">鳥群醒來齊飛繞車頭三圈，諾亞號的汽笛第一次鳴響。</td><td>日出月台、燈箱亮起、汽笛白煙<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">2</td><td class="reg">🌿 幼龍平原<br>5×5</td><td class="ct">草原上的新住民</td><td>車廂二卡在草原中央，<b>三角龍</b>一家把車廂當新家，不肯讓拆。你幫牠們找到更棒的樹蔭「新家」，換得通行權與鑰匙。<b>副櫛龍</b>三胞胎醒來的第一件事，是在月台上開演唱會。</td><td class="hook">遠方傳來另一節車廂的汽笛回音——有車廂「自己醒了」？</td><td>草原彩繪車廂、音符粒子<span class="chip forest">forest</span></td></tr>
+    <tr><td class="no">3</td><td class="reg">🍃 翠風草原<br>6×6</td><td class="ct">風的號誌燈</td><td>草原站號誌燈失明，大風一吹列車就看不清前路。全草原跑最快的站務員<b>似鴯鶓龍</b>帶你收集「風的羽毛」——在翻滾草浪中用排除法找出四根發光羽毛，修好號誌，鑰匙就藏在燈座裡。</td><td class="hook">號誌亮起的瞬間，遠方雪嶺閃過一下藍光——像求救信號。</td><td>風車草浪、羽毛光點、遠景藍光<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">4</td><td class="reg">⛰️ 碎岩丘陵<br>7×7</td><td class="ct">落石隧道</td><td>丘陵隧道被落石封死。<b>腫頭龍</b>養路工班用頭槌開路，但要你先「敲聽回音、推理出哪塊石頭是空的」。隧道打通，車廂四裡的<b>結節龍</b>裝甲兵睡夢中還在滾，堵得水泄不通。</td><td class="hook">隧道深處牆上有巨大爪痕——不是恐龍的，是「那一夜」留下的。</td><td>隧道暖燈對洞口天光、石屑粒子<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">5</td><td class="reg">🌲 迷霧森林<br>8×8</td><td class="ct">霧笛與螢光之夜</td><td>濃霧中列車寸步難行，得靠「霧笛」——但霧笛被<b>小盜龍</b>惡作劇團拆成五塊藏進森林。霧裡只看得見聲音的來向，你循聲追回五塊零件。霧笛修好、長鳴一聲，整座森林的螢光蘑菇應聲齊亮。</td><td class="hook">笛聲的餘韻裡，夾著一個微弱的回應——來自沼澤深處。</td><td>藍綠濃霧＋螢菇齊亮名場面<span class="chip forest">forest</span></td></tr>
+    <tr><td class="no">6</td><td class="reg">🌙 月光沼澤<br>9×9</td><td class="ct">沼澤裡的幽靈列車</td><td>傳說沼澤有幽靈列車——其實是車廂六半沉潭中，車燈還亮著，月光下像極了幽靈。守潭的<b>棘龍</b>站長在等車廂裡的老朋友；而「鬼影」本尊是睡過頭的<b>普魯斯鱷</b>，醒來尷尬得把水攪出了漩渦。</td><td class="hook">老鱷魚交出半張燒焦的行車時刻表：「出發那晚，我們不是只有一列車。」</td><td>月夜沼澤、車燈光暈、水霧粒子<span class="chip water">water</span></td></tr>
+    <tr><td class="no">7</td><td class="reg">🌵 烈陽峽谷<br>10×10</td><td class="ct">四十度的月台</td><td>峽谷熱到鐵軌變形。扳道工<b>食肉牛龍</b>說：正午前修不好遮陽棚，列車會卡死在谷底。你在紅岩間收集「陰影碎片」（石柱影子位置的推理謎題）。乘客<b>瑪君龍</b>樂團睡醒就在月台上開演。</td><td class="hook">熱浪讓時刻表顯出隱形字——第二列車的名字：「厄科號」。</td><td>赤紅峽谷正午、熱浪扭曲特效<span class="chip fire">fire</span></td></tr>
+    <tr><td class="no">8</td><td class="reg">❄️ 霜牙雪嶺<br>11×11</td><td class="ct">雪崩與藍光</td><td>循藍光上山：是被雪崩埋住的車廂八，藍光是車內應急燈。長相兇惡的<b>艾伯塔龍</b>其實一直默默幫忙挖雪（外冷內熱的雪原暖男）。救出的<b>樹息龍</b>們抱團取暖，毛絨絨一大球。</td><td class="hook">車廂八的車票全被撕過又黏回去——有乘客「不想去明天」？</td><td>藍白雪原＋應急燈藍光、極光簾幕<span class="chip snow">snow</span></td></tr>
+    <tr><td class="no">9</td><td class="reg">🏛️ 古城遺跡<br>12×12</td><td class="ct">消失的第九節</td><td>古城壁畫記載：列車原本有 16 節，第九節是「禁忌車廂」被封存——它載的不是動物，是「不能帶去明天的東西」：大滅絕的記憶。<b>戈壁龍</b>考古隊幫你解讀機關文書，鑰匙就壓在王座之下。</td><td class="hook">壁畫落款是「厄科號車長」——第二列車真的存在。</td><td>金沙壁畫長卷、機關齒輪、塵光<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">10</td><td class="reg">⛩️ 雲海神殿<br>13×13</td><td class="ct">天空的轉轍器</td><td>列車要開上雲海？神殿原來是「天空轉轍站」，<b>風神翼龍</b>三姊妹掌管軌道，放行條件是見習車長的「風中找羽」試煉。通過後，鐵軌從雲層裡一段段亮起——雲海鐵橋通車。</td><td class="hook">轉轍器指向巔峰時卡住了——有人提前把它扳去了別的方向。</td><td>雲海鐵橋日出金、風流線<span class="chip sky">sky</span></td></tr>
+    <tr><td class="no">11</td><td class="reg">🐉 龍之巔峰<br>14×14</td><td class="ct">終點站的謊言</td><td>巔峰車站空無一人，站牌寫著「終點・明天」。老站長<b>超帝王龍</b>坦白：當年設計者發現「新世界」根本不存在，只好把終點設在最高處——「至少這裡，天天看得到日出」。你決定不拆穿謊言，而是把「明天」變成真的：讓這片大陸本身成為新世界。</td><td class="hook">老站長交出最後的鑰匙——但「車頭之心」還在熔火龍穴的熔岩裡。</td><td>雲上車站、巨大剪影、日出金光<span class="chip storm">storm</span></td></tr>
+    <tr><td class="no">12</td><td class="reg">🌋 熔火龍穴<br>15×15</td><td class="ct">淬火之心</td><td>車頭之心（發動爐心）墜入火山。鍛造師<b>棘龍王</b>一家說：爐心要「重新淬火」——火焰會映出你心底的恐懼與願望。你看到大家都抵達明天、唯獨沒有你的位置的幻象；<b>伴伴</b>拉住你的手：「才不會！」爐心重新亮起。</td><td class="hook">爐心點火的瞬間，15 站的燈同時亮起——最後一站的方向：海底。</td><td>熔岩橙紅＋爐心金光、火星粒子、幻象灰階<span class="chip fire">fire</span></td></tr>
+    <tr><td class="no">13</td><td class="reg">🏜️ 流沙王陵<br>16×16</td><td class="ct">被埋葬的厄科號</td><td>海底月台的入口在王陵之下？流沙退去，露出第二列車的殘骸——厄科號。當年牠為諾亞號擋下隕石碎片而墜毀，乘客早已疏散、融入各地的恐龍社會；王陵其實是牠的紀念墓。守陵的<b>敦煌龍</b>把厄科號的車鈴交給你：「帶去終點吧，讓大家知道——沒有誰被忘記。」</td><td class="hook">地下水路轟然開啟，通往碧海龍宮。</td><td>沙下殘骸、金色沙瀑、悼念燭光<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">14</td><td class="reg">🌊 碧海龍宮<br>17×17</td><td class="ct">最老的乘客</td><td>龍宮月台是全線最古老的一站，最後兩位乘客是 5 億歲的<b>奇蝦</b>與<b>海口魚</b>——牠們早就醒了，只是太小太安靜，一直沒被找到。海王者們（<b>海霸龍</b>、<b>蛇頸龍</b>）全體讓道，恐龍們沿著海岸線排成人牆，護送兩位小乘客上車。</td><td class="hook">全員乘車完畢——但發車，需要一位車長的宣言。</td><td>深海水晶月台、奇蝦特寫、氣泡光點<span class="chip water">water</span></td></tr>
+    <tr><td class="no">15</td><td class="reg">🐲 蒼穹龍境<br>18×18</td><td class="ct">發車！諾亞號</td><td>終章。你站上車頭舉起票冊宣言：「本列車的終點不在遠方——就在這裡，大家一起活著的每一天！」15 節車廂的燈全亮（乘客名冊＝圖鑑全亮），列車鳴笛出發——卻不是離開，而是沿雲海鐵橋繞行大陸一週，車窗裡閃過 15 站的風景與每一章的朋友，最後停在雲上，成為永遠的「環大陸觀光列車」。<b>伴伴</b>把票冊還你——第一頁寫著你的名字：正式車長任命書。</td><td class="hook">龍塔亮燈——「龍塔急行線，下個月開通！」</td><td>極光＋全車廂亮燈、繞行大陸蒙太奇、汽笛煙花<span class="chip storm">storm</span></td></tr>
+  </table>
+  </div>
+  <h3>過關期待設計（方案 B 專屬）</h3>
+  <ul>
+    <li><b>通車儀式</b>：每章通關＝該站月台燈箱點亮＋票冊蓋章，地圖上鐵軌一段段接起來（把地圖連結做成「路線圖」）。</li>
+    <li><b>懸念雙線</b>：明線修車喚乘客（溫馨），暗線「厄科號」（懸念）——第 3、6、9 章三次升溫，第 13 章引爆。</li>
+    <li><b>科普彩蛋</b>：每站乘客按真實地質年代安排（奇蝦 5 億歲→械齒鯨 4 千萬歲），把圖鑑變成「穿越時空的乘客名冊」。</li>
+    <li><b>終章大回饋</b>：繞行大陸的蒙太奇把 15 站朋友全部再登場一遍。</li>
+  </ul>
+  <h3>畫面設計總覽（方案 B）</h3>
+  <ul>
+    <li><b>美術基調</b>：復古蒸汽鐵道×史前奇幻——黃銅、煤煙灰、雲白；每站月台同一個模板換配色與植被，建立「鐵道世界」的統一感。</li>
+    <li><b>視覺母題</b>：車頭燈與汽笛白煙。從序章熄滅的車頭燈，到終章全線亮燈。</li>
+    <li><b>名場面清單</b>：序章雲上月台轉場、5 章螢菇齊亮、10 章雲海鐵橋、13 章沙下厄科號、15 章環線繞行蒙太奇。</li>
+    <li><b>新素材需求</b>：16 張場景 SVG；諾亞號車頭＋車廂側面 SVG（可換色）；票冊／車票／月台燈箱 UI 小件；cast 用現有圖鑑。</li>
+  </ul>
+</section>
+
+<!-- ================= 6 方案 C ================= -->
+<section id="propC" class="propC">
+  <h2>⑥ 方案 C《尋龍盃・全大陸推理大賽》</h2>
+  <dl class="concept">
+    <dt>類型</dt><dd>熱血競技＋歡樂喜劇（體育番公式）</dd>
+    <dt>一句話</dt><dd>第 100 屆「尋龍盃」開幕：在 15 個賽區找出傳說恐龍的位置，集滿徽章，登上龍塔頂的總決賽！</dd>
+    <dt>主角</dt><dd>你（外卡黑馬）＋伴伴（官方認證「搭檔席」，負責吐槽與賣萌）</dd>
+    <dt>勁敵</dt><dd>①明星獵人「閃電爪」布雷克（搭檔：食肉牛龍）——輸不起的萬人迷；②天才偵探艾莉（搭檔：迅猛龍）——毒舌但正直；③蒙面龍「No.000」——20 年前的傳奇冠軍，全案最大伏筆（＝主辦方主席的搭檔，守護大賽 20 年的<b>帝龍</b>）</dd>
+    <dt>系統呼應</dt><dd>區域最佳分數＝賽區成績（戰績頁直接變計分板）；龍塔＝決賽場館；塔內留言板＝選手留言牆；捕捉器＝大會指定「尋龍裝備」</dd>
+  </dl>
+  <h3>三幕結構</h3>
+  <ul>
+    <li><b>第一幕・預選（序章～8×8）</b>：一站一賽制，與布雷克、艾莉三人互相咬住積分；蒙面龍開始在夜裡默默觀察你。</li>
+    <li><b>第二幕・轉折（9×9～13×13）</b>：組隊賽拆散又重組三人關係；壁畫揭開「20 年前的傳奇 No.000」；贊助商「收藏家家族」的陰影重現。</li>
+    <li><b>第三幕・決賽（14×14～18×18）</b>：資格保衛戰、龍宮風波，最終三人同分站上龍塔頂——賽題是「找出帝龍當年藏起來的東西」。</li>
+  </ul>
+  <h3>章節總表（序章＋15 章）</h3>
+  <div class="tbl-scroll">
+  <table class="chtable">
+    <tr><th style="width:4%">#</th><th style="width:9%">賽區</th><th style="width:13%">章名</th><th style="width:42%">劇情（地圖連結・粗體＝現有圖鑑恐龍）</th><th style="width:17%">章末鉤子（過關期待）</th><th style="width:15%">畫面設計</th></tr>
+    <tr><td class="no">0</td><td class="reg">🌟 序章</td><td class="ct">外卡資格</td><td>你和<b>伴伴</b>在海灘玩捉迷藏，秒解了尋龍盃巡迴宣傳車的謎題，被主辦方「主席」當場欽點外卡資格：15 站資格賽、集徽章、上龍塔。勁敵登場：布雷克的招牌飛吻全場尖叫，艾莉只留下一句「運氣不算實力」。而主席的斗篷下——露出一截龍尾巴。</td><td class="hook">主辦方竟然是恐龍？這場大賽不簡單。</td><td>海灘開幕式、煙火、賽旗拱門<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">1</td><td class="reg">🌱 起源地<br>4×4</td><td class="ct">沙灘熱身賽</td><td>賽題：在金色沙灘區找出大會吉祥物玩偶。你輕鬆奪冠（新手教學關），布雷克被貝殼絆倒意外墊底，當場摔了望遠鏡。評審<b>薩爾塔龍</b>奶奶偷偷對你比讚。</td><td class="hook">艾莉遞來一頁分析筆記：「下一站，讓我看看你是實力還是運氣。」</td><td>沙灘賽場彩旗、頒獎台逆光<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">2</td><td class="reg">🌿 幼龍平原<br>5×5</td><td class="ct">評審長的刁難</td><td>平原賽區評審是挑剔的<b>梁龍</b>媽媽，臨時加題：限時找回跑散的三隻小恐龍。你用區塊排除法漂亮完賽，艾莉同分——兩人第一次互相打量對方。</td><td class="hook">布雷克抗議賽題太簡單；主席宣布：下一站起，「傳說級賽題」登場。</td><td>草原競技場、計分板特寫<span class="chip forest">forest</span></td></tr>
+    <tr><td class="no">3</td><td class="reg">🍃 翠風草原<br>6×6</td><td class="ct">疾風障礙賽</td><td>邊跑邊推理的障礙賽！搞笑擔當<b>似鴯鶓龍</b>選手一路搶戲。你和艾莉並排衝線、並列第一，布雷克第三——牠的搭檔<b>食肉牛龍</b>卻被<b>伴伴</b>看到偷偷在起點做手腳。</td><td class="hook">這傢伙在耍陰的？下幾站要小心。</td><td>障礙賽道、奔跑跟拍鏡頭<span class="chip forest">forest</span></td></tr>
+    <tr><td class="no">4</td><td class="reg">⛰️ 碎岩丘陵<br>7×7</td><td class="ct">回音谷計時賽</td><td>傳說級賽題①：在會吃掉聲音的回音谷裡，找出「唯一還在發聲的目標」。布雷克靠蠻力亂撞出醜，你靠回音規則取勝——牠卻惡人先告狀說你犯規。</td><td class="hook">主席裁決「證據不足、成績保留」——你注意到，主席一直在暗中記錄你的推理方式。</td><td>岩谷聲波環、裁判席俯視<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">5</td><td class="reg">🌲 迷霧森林<br>8×8</td><td class="ct">霧中目擊者</td><td>傳說級賽題②：整片濃霧裡只有一位「目擊者」知道答案。<b>小盜龍</b>目擊者的提示只有氣味與方向，你一步步圈出範圍完賽；買通線報作弊的布雷克被當場抓包，搭檔禁賽一場。</td><td class="hook">夜裡，蒙面龍出現在營地外看你練習，留下一枚舊徽章——編號 000。</td><td>霧林追蹤、螢光提示、徽章特寫<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">6</td><td class="reg">🌙 月光沼澤<br>9×9</td><td class="ct">月光夜間賽</td><td>夜賽！賽題只在月光下浮現（水面倒影謎題），毒舌嘴軟的<b>普魯斯鱷</b>評審全程緊張到沉浮不定。你和艾莉首次聯手、又暗自較勁——同時完賽，大會宣布：並列第一。</td><td class="hook">深夜撞見獨自加練的布雷克——原來牠比誰都在乎。</td><td>月光水面、燈籠夜賽、倒影構圖<span class="chip water">water</span></td></tr>
+    <tr><td class="no">7</td><td class="reg">🌵 烈陽峽谷<br>10×10</td><td class="ct">灼熱懸崖賽</td><td>傳說級賽題③：正午石柱的影子會指向目標——只給一次機會。<b>瑪君龍</b>啦啦隊把氣氛炒到最高。搭檔回歸的布雷克像變了個人，配合脫胎換骨；你們三人首次並肩過關。</td><td class="hook">艾莉收到匿名信：「決賽前，小心主席。」</td><td>赤岩正午、影子長短謎題視覺<span class="chip fire">fire</span></td></tr>
+    <tr><td class="no">8</td><td class="reg">❄️ 霜牙雪嶺<br>11×11</td><td class="ct">冰湖計時賽</td><td>極光下的雪地足跡賽。地主選手<b>艾伯塔龍</b>熱情到可怕（拉你合影三小時）。你的積分登上大會第一名；掉到第三的艾莉收到你遞的暖暖包——宿敵之間的溫柔。</td><td class="hook">主席宣布特別規則：最後四站改雙人組隊賽，隨機抽搭檔——你和布雷克一組！</td><td>極光冰湖、足跡發光序列<span class="chip snow">snow</span></td></tr>
+    <tr><td class="no">9</td><td class="reg">🏛️ 古城遺跡<br>12×12</td><td class="ct">機關協力賽</td><td>古墓機關要兩人同時解開兩半線索。從互相嫌棄到默契漸生，布雷克坦白：家族三代都是尋龍盃亞軍，牠輸不起。你說：「那就在決賽，一起拿第一。」壁畫記載 20 年前也有位「從外卡打到決賽」的傳奇——編號 000。</td><td class="hook">傳奇的下半段故事，被一層沙塵蓋住了。</td><td>機關雙人互動、壁畫閃回<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">10</td><td class="reg">⛩️ 雲海神殿<br>13×13</td><td class="ct">風之三姊妹賽道</td><td>換搭檔，與艾莉組隊闖<b>風神翼龍</b>三姊妹設計的空中賽道。賽後艾莉正式下戰帖：「決賽我不會讓你。」雲上你偷聽到主席對蒙面龍說：「那孩子跟你當年一樣。」——外卡報名表，是蒙面龍親自挑的！</td><td class="hook">半決賽場地公布：龍之巔峰。</td><td>雲上賽道、三姊妹彩帶、逆光對話<span class="chip sky">sky</span></td></tr>
+    <tr><td class="no">11</td><td class="reg">🐉 龍之巔峰<br>14×14</td><td class="ct">半決賽・王座前</td><td>榮譽裁判<b>超帝王龍</b>坐鎮巔峰賽場，你和艾莉、布雷克三方廝殺到最後一題——三人同分，史上首次「三人決賽」！看台上的布雷克父親只冷冷留下一句：「別又拿第二。」</td><td class="hook">決賽地點：龍塔頂層。同時，龍塔從未開放的頂層悄悄亮了燈。</td><td>巔峰賽場、三方對峙構圖、雲海<span class="chip storm">storm</span></td></tr>
+    <tr><td class="no">12</td><td class="reg">🌋 熔火龍穴<br>15×15</td><td class="ct">賽前特訓與真相</td><td>你到龍穴找 20 年前決賽的裁判<b>棘龍王</b>特訓，聽到全案真相：當年的冠軍<b>帝龍</b>在決賽中途棄賽消失——因為牠發現大賽被「收藏家贊助商」操控，冠軍被迫交出找到的傳說恐龍。牠蒙面抗爭 20 年，把大賽贖了回來——主席制度就是牠建立的。</td><td class="hook">但今年的贊助商名單上，那個家族的名字又出現了。</td><td>熔岩鍛鍊場、往事黑白閃回<span class="chip fire">fire</span></td></tr>
+    <tr><td class="no">13</td><td class="reg">🏜️ 流沙王陵<br>16×16</td><td class="ct">資格保衛戰</td><td>收藏家家族重金施壓，以「外卡程序瑕疵」要拔掉你的資格！<b>敦煌龍</b>法律顧問團出動，前 14 站結識的朋友——<b>梁龍</b>媽媽、<b>似鴯鶓龍</b>、<b>小盜龍</b>……聯名出庭作證。布雷克的父親也在公聽會上，第一次為兒子鼓掌。</td><td class="hook">資格保住了；決賽前夜，艾莉的必勝筆記卻被偷了。</td><td>公聽會審判感、金沙法典、朋友群像<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">14</td><td class="reg">🌊 碧海龍宮<br>17×17</td><td class="ct">龍宮風波</td><td>追到龍宮：偷筆記的不是人類，是擔心艾莉「太緊張會生病」的<b>迅猛龍</b>搭檔（蠢萌關心大作戰）。誤會解除、筆記歸還，順手救出被漁網困住的小<b>魚龍</b>。龍宮壁畫記載：龍塔頂封存著「最初的比賽之龍」——決賽的謎題，就是牠。</td><td class="hook">決賽的謎題本身，是一隻恐龍。</td><td>龍宮追逐喜劇、網中救援、水晶光<span class="chip water">water</span></td></tr>
+    <tr><td class="no">15</td><td class="reg">🐲 蒼穹龍境<br>18×18</td><td class="ct">決賽・龍塔之頂</td><td>終章。龍塔 2000 層頂，總決賽賽題：「找出帝龍當年藏起來的東西。」三人沿著整座龍塔埋藏的線索各自推理——布雷克的膽識、艾莉的縝密、你的直覺，最後同時舉起手，答案只有一個：<b>朋友</b>。蒙面龍摘下面具＝帝龍，親手為三人掛上史上首批「三冠王」金牌；收藏家家族的陰謀當眾揭穿、當眾失效。煙火中，<b>伴伴</b>胸前的外卡翻面——背面刻著「No.000 永遠的搭檔」。</td><td class="hook">主席宣布下屆新增雙人組隊制——畫面定格在你與伴伴擊掌。</td><td>龍塔頂決賽、面具揭曉、煙火合影<span class="chip storm">storm</span></td></tr>
+  </table>
+  </div>
+  <h3>過關期待設計（方案 C 專屬）</h3>
+  <ul>
+    <li><b>積分咬得很緊</b>：三人積分全程互咬（可與區域最佳分數連動顯示），每一關都可能改變排名。</li>
+    <li><b>徽章牆</b>：15 枚賽區徽章＝故事的收集進度，主選單可放徽章牆小部件。</li>
+    <li><b>勁敵先行留言</b>：勁敵會在龍塔留言板「先你一步」留下戰帖（活用現有留言系統）。</li>
+    <li><b>雙鉤子結構</b>：每章同時有「賽事鉤子」（下一站的賽制）與「真相鉤子」（No.000 之謎），過關動力雙保險。</li>
+  </ul>
+  <h3>畫面設計總覽（方案 C）</h3>
+  <ul>
+    <li><b>美術基調</b>：運動祭典風——彩旗、計分板、聚光燈；每站賽場用該區主色做拱門與旗幟，一眼可辨「這是哪一賽區」。</li>
+    <li><b>視覺母題</b>：徽章與探照燈。徽章從序章 0 枚到終章 15 枚；蒙面龍每次登場都逆光。</li>
+    <li><b>名場面清單</b>：序章開幕煙火、5 章霧中徽章、8 章極光暖暖包、12 章黑白閃回、15 章面具揭曉。</li>
+    <li><b>新素材需求</b>：16 張場景 SVG；人類角色布雷克、艾莉＋龍搭檔姿態（可用 Gemini 以 Style A 生成）；徽章 15 色＋蒙面／面具組；cast 用現有圖鑑。</li>
+  </ul>
+</section>
+
+<!-- ================= 7 方案 D ================= -->
+<section id="propD" class="propD">
+  <h2>⑦ 方案 D《星塵牧場・晚安恐龍》</h2>
+  <dl class="concept">
+    <dt>類型</dt><dd>治愈系日常（親子・睡前儀式感）</dd>
+    <dt>一句話</dt><dd>代理牧場長的夏天：白天去 15 個區域把迷路、睡不著的恐龍找回家，晚上跟牠們一句一句學回失傳的「晚安歌」。</dd>
+    <dt>主角</dt><dd>你（阿嬤的孫子、臨時代理牧場長，佩著阿嬤留下的星星鈴鐺）＋伴伴（牧場的見習守夜龍，最會唱跑調的搖籃曲）</dd>
+    <dt>暗線</dt><dd>「晚安歌」源自古代王陵的安眠祭——阿嬤是最後一位安眠祭歌者；十五段旋律，一段一區</dd>
+    <dt>系統呼應</dt><dd>圖鑑＝星星燈名冊（每收一隻亮一盞）；餵食／友好度＝保母日常；捕捉器＝「輕輕把人找出來」的牧場工具；龍塔＝終章點燈的燈塔</dd>
+  </dl>
+  <h3>三幕結構</h3>
+  <ul>
+    <li><b>第一幕・代班（序章～8×8）</b>：一區一個睡眠小課題（怕浪聲、裝睡、夢遊、打呼、怕黑），學回第一到第五段歌。</li>
+    <li><b>第二幕・歌的源頭（9×9～14×14）</b>：從沼澤的低音唱到王陵的碑文——晚安歌的起源與阿嬤的過去浮出；王者們也一個個睡著了。</li>
+    <li><b>第三幕・全大陸的晚安（15×15～18×18）</b>：第十五段「不是用唱的」——答案是大陸一起入睡的樣子，終章全圖熄燈、星空雨落下。</li>
+  </ul>
+  <h3>章節總表（序章＋15 章）</h3>
+  <div class="tbl-scroll">
+  <table class="chtable">
+    <tr><th style="width:4%">#</th><th style="width:9%">區域</th><th style="width:13%">章名</th><th style="width:42%">劇情（地圖連結・粗體＝現有圖鑑恐龍）</th><th style="width:17%">章末鉤子（過關期待）</th><th style="width:15%">畫面設計</th></tr>
+    <tr><td class="no">0</td><td class="reg">🌟 序章</td><td class="ct">星星燈塔的委託</td><td>你收到一封信與一枚舊星星鈴鐺：龍奶奶要出遠門環遊大陸，拜託「阿嬤的孫子」代班星塵牧場一個夏天。牧場夜空掛著 15 盞星星燈，各對應一個區域——燈亮著，迷路的恐龍就找得到回家的路。但今晚第一盞燈忽明忽暗。<b>伴伴</b>是牧場的見習守夜龍。</td><td class="hook">龍奶奶留言：「燈是靠『晚安歌』點亮的。歌詞我忘了——要靠你一路跟恐龍們學回來。」</td><td>黃昏牧場全景、15 盞星燈、鈴鐺特寫<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">1</td><td class="reg">🌱 起源地<br>4×4</td><td class="ct">第一夜・海風搖籃曲</td><td>沙灘上的小<b>薩爾塔龍</b>睡不著——牠怕海浪聲。你陪牠聽了一整夜，發現浪聲有節奏；<b>梁龍</b>奶奶教你們把浪聲唱成搖籃曲第一段。小龍睡著的瞬間，第一盞星燈亮了。</td><td class="hook">夜空裡，多了一顆新的星星。</td><td>月下海灘、浪光粒子、小小的身影依偎<span class="chip water">water</span></td></tr>
+    <tr><td class="no">2</td><td class="reg">🌿 幼龍平原<br>5×5</td><td class="ct">不想睡的三胞胎</td><td><b>副櫛龍</b>三胞胎白天玩太瘋，晚上輪流裝睡，<b>三角龍</b>媽媽瀕臨崩潰。你發明「數星星入眠法」（一格一顆星，數隱藏物梗），三胞胎比誰先睡著——十秒內全滅。</td><td class="hook">學到第二段歌；平原盡頭卻有隻恐龍整夜繞圈走，像在找什麼。</td><td>草原星空、三胞胎疊羅漢睡姿<span class="chip forest">forest</span></td></tr>
+    <tr><td class="no">3</td><td class="reg">🍃 翠風草原<br>6×6</td><td class="ct">夢遊的橡樹龍爺爺</td><td>繞圈的是夢遊的<b>橡樹龍</b>爺爺——夜夜夢回年輕時的遷徙路。你陪牠安安全全「遷徙」了一夜（護送關卡），天亮時牠笑著醒來：「原來我早就到家啦。」草原的風教你們第三段：風的口哨。</td><td class="hook"><b>伴伴</b>跟著吹口哨，星燈二、三一起變亮——原來這首歌，是要合奏的！</td><td>晨光草原、口哨音波、風的線條<span class="chip sky">sky</span></td></tr>
+    <tr><td class="no">4</td><td class="reg">⛰️ 碎岩丘陵<br>7×7</td><td class="ct">打呼震落石的腫頭龍</td><td><b>腫頭龍</b>大哥的呼聲震得碎石滾落，整座丘陵沒人敢睡。全員出動「側睡矯正大作戰」爆笑連連，最後是你把第四段改成搖滾版牠才聽得懂——打起了小呼嚕。</td><td class="hook">星燈四亮起時，遠方森林的黑影裡傳來小小的哭聲。</td><td>岩丘月色、呼嚕音浪的搞笑視覺<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">5</td><td class="reg">🌲 迷霧森林<br>8×8</td><td class="ct">怕黑的小美頜龍</td><td>森林太暗，小<b>美頜龍</b>不敢回家。<b>樹息龍</b>一族把羽毛做成小夜燈，螢光蘑菇一路點到洞穴口。第五段是「光的歌」——一句一句，把螢菇唱亮。</td><td class="hook">小龍睡了，卻說夢裡有「好大好大的一雙眼睛」在沼澤看她。</td><td>暗森林＋螢菇光路、羽毛夜燈<span class="chip forest">forest</span></td></tr>
+    <tr><td class="no">6</td><td class="reg">🌙 月光沼澤<br>9×9</td><td class="ct">沼澤的大眼睛</td><td>傳說的「眼睛」是<b>棘龍</b>奶奶——夜視太好，老被誤會成怪物，孤單了很久。你們陪她泡月光溫泉聊天，她教第六段：水的低音。這一夜，整座沼澤第一次睡得安安穩穩。</td><td class="hook">龍奶奶寄來明信片：她在別的區域也聽見「走調的晚安歌」……還有別的代班牧場？</td><td>月溫泉霧氣、低音漣漪水面<span class="chip water">water</span></td></tr>
+    <tr><td class="no">7</td><td class="reg">🌵 烈陽峽谷<br>10×10</td><td class="ct">午睡大作戰</td><td>峽谷白天熱到睡不著、晚上又嗨到睡不著。<b>食肉牛龍</b>警長拜託你幫全谷排班午睡（時間規劃小關卡）。第七段：熱風的節奏——手掌打大腿的拍子，全谷睡成一幅名畫。</td><td class="hook">點名時少一隻：愛冒險的小牛龍追著「會飛的光」跑進了雪嶺方向！</td><td>紅岩午後、集體午睡名畫構圖<span class="chip fire">fire</span></td></tr>
+    <tr><td class="no">8</td><td class="reg">❄️ 霜牙雪嶺<br>11×11</td><td class="ct">追光的小牛龍</td><td>那道「會飛的光」是極光碎片。<b>艾伯塔龍</b>雪巡隊和小牛龍玩成一團雪仗，你們把極光碎片做成雪嶺第一盞「冰星星燈」。第八段是全曲最溫柔處：雪的靜音拍。</td><td class="hook">冰燈照出雪地上一串「回頭望向牧場」的腳印——有誰想去牧場，卻不敢去。</td><td>極光雪原、冰燈藍光、腳印特寫<span class="chip snow">snow</span></td></tr>
+    <tr><td class="no">9</td><td class="reg">🏛️ 古城遺跡<br>12×12</td><td class="ct">睡在圖書館的戈壁龍</td><td><b>戈壁龍</b>博士失眠三十年，靠研究「古代搖籃曲碑文」助眠屢戰屢敗。你們帶來的八段歌讓牠一覺到天亮，牠哭了——碑文裡還有第九、十段的線索。</td><td class="hook">碑文最後一行寫著：「第十五段，不是用唱的。」</td><td>金沙圖書館、碑文發光、塵光<span class="chip mystery">mystery</span></td></tr>
+    <tr><td class="no">10</td><td class="reg">⛩️ 雲海神殿<br>13×13</td><td class="ct">雲上的搖籃曲</td><td><b>風神翼龍</b>三姊妹守著「天空搖籃曲」的最後傳承，傳說「唱給雲聽，雲會記得」。你們在雲海黎明合唱九、十段，雲海翻湧成浪（名場面）。</td><td class="hook">龍奶奶的明信片：「我最後一站是蒼穹龍境。那裡有一隻龍——三十年沒睡過了。」</td><td>雲海合唱、日出金、雲浪翻湧<span class="chip sky">sky</span></td></tr>
+    <tr><td class="no">11</td><td class="reg">🐉 龍之巔峰<br>14×14</td><td class="ct">王者失眠記</td><td>三十年沒睡的就是巔峰的<b>超帝王龍</b>——身為最強者，「閉上眼睛」等於示弱，全大陸都靠牠清醒守護。你什麼大道理都沒講，只是陪牠坐了一整夜，唱了前面幾段。天亮時，牠靠著山打起了呼。</td><td class="hook">牠託你帶話去龍穴：「告訴老棘，我輸了——輸給搖籃曲，真開心。」</td><td>雲上王者側臉、第一個安穩的黎明<span class="chip storm">storm</span></td></tr>
+    <tr><td class="no">12</td><td class="reg">🌋 熔火龍穴<br>15×15</td><td class="ct">熔岩工房的節奏</td><td>鍛造師<b>棘龍王</b>白天打鐵太吵、晚上自己失眠只能一直打鐵。你們把打鐵聲「編進」第十一、十二段——鐵匠搖籃曲誕生，錘聲變節拍器。</td><td class="hook">鐵砧下壓著一張舊樂譜殘頁——「星塵牧場・創校之歌」？牧場的過去不簡單。</td><td>熔岩工房、火星與音符共舞<span class="chip fire">fire</span></td></tr>
+    <tr><td class="no">13</td><td class="reg">🏜️ 流沙王陵<br>16×16</td><td class="ct">搖籃曲的起源</td><td>依樂譜殘頁深入王陵：「晚安歌」源自古代安眠祭——古恐龍們相信，唱給離開的同伴聽，牠們就會化作星星守護睡著的孩子。第十三、十四段在祭壇補完。</td><td class="hook">祭壇上刻著阿嬤的名字——阿嬤，是最後一位安眠祭歌者。</td><td>陵墓燭光、星圖穹頂、金沙瀑布<span class="chip gold">gold</span></td></tr>
+    <tr><td class="no">14</td><td class="reg">🌊 碧海龍宮<br>17×17</td><td class="ct">海底的星星</td><td>最後兩段旋律藏在「會唱歌的珍珠」裡，但珍珠只為「真心想讓誰睡個好覺」的人亮。你想起這一整個夏天陪睡過的每一隻小龍——珍珠亮了。<b>海霸龍</b>與<b>蛇頸龍</b>們全體出動護送上岸。</td><td class="hook">十五段齊了——但第十五段「不是用唱的」，到底是什麼？</td><td>珍珠光暈深海、氣泡音符、龍宮列隊<span class="chip water">water</span></td></tr>
+    <tr><td class="no">15</td><td class="reg">🐲 蒼穹龍境<br>18×18</td><td class="ct">第十五段・不是用唱的</td><td>終章。龍奶奶回來了，帶你們登上蒼穹龍境最高處。第十五段的答案：全大陸的恐龍「一起睡著」的樣子，就是歌本身——你點亮十五盞星燈，各地夥伴接力把十五段傳回家鄉（蒙太奇：每一章的朋友在各自的家鄉安然入睡），大陸第一次在同一天夜晚整片睡著，星空亮得像下星星雨。阿嬤與龍奶奶相擁而笑；你把星星鈴鐺掛上燈塔——「明年的夏天，也拜託你囉，代理牧場長。」</td><td class="hook">後日談：圖鑑裡每隻恐龍的名字旁都多了一顆小星星——牠們都到過你的夢裡。</td><td>全大陸熄燈入眠俯瞰、星空雨、鈴鐺搖曳<span class="chip storm">storm</span></td></tr>
+  </table>
+  </div>
+  <h3>過關期待設計（方案 D 專屬）</h3>
+  <ul>
+    <li><b>星燈儀式</b>：每章過關＝一盞星燈由暗轉亮＋當晚旋律入冊，主選單可見 15 盞燈的進度。</li>
+    <li><b>三章一小祭</b>：第 3、6、9、12 章後插播牧場小祭典（煙火、點心、合照），短而甜。</li>
+    <li><b>雙線期待</b>：明線「下一區誰睡不著」（好奇）＋暗線「歌與阿嬤的過去」（感動），終章一次收攏。</li>
+    <li><b>睡前場景契合</b>：每章結尾都是「入睡」畫面——天然適合睡前遊玩的收尾儀式。</li>
+  </ul>
+  <h3>畫面設計總覽（方案 D）</h3>
+  <ul>
+    <li><b>美術基調</b>：夜色與暖光——深藍夜空×燈籠橘×星塵白；每章都以「入睡瞬間」收尾構圖（依偎、合眼、燈滅）。</li>
+    <li><b>視覺母題</b>：星星燈與鈴鐺。15 盞燈的明滅就是故事進度條；鈴鐺在關鍵章節輕響。</li>
+    <li><b>名場面清單</b>：3 章口哨合奏點燈、5 章螢菇光路、10 章雲海合唱、11 章王者入睡的黎明、15 章全大陸熄燈星空雨。</li>
+    <li><b>新素材需求</b>：16 張場景 SVG；星星燈塔＋15 盞燈小件；樂譜殘頁／鈴鐺道具圖；cast 用現有圖鑑。</li>
+  </ul>
+</section>
+
+<!-- ================= 8 畫面規範 ================= -->
+<section id="visual">
+  <h2>⑧ 通用畫面設計規範（四案共用）</h2>
+  <p>新故事的演出舞台完全沿用現有 <span class="kbd">#story-stage</span> 系統，以下規範讓 16 張新場景卡「換皮不換骨」，程式改動最小。</p>
+  <h3>8-1 現有舞台能力（程式已支援，直接利用）</h3>
+  <ul>
+    <li><b>場景卡</b>：<span class="kbd">assets/story/s{lv}.svg</span>，1600×900、<span class="kbd">preserveAspectRatio="slice"</span>；播放時套用 9 秒緩慢推鏡（storyKB），storm 心情改為 1.3 秒明暗閃爍（storyStorm）。</li>
+    <li><b>上下黑邊</b>：letterbox 自動進場（上下各 5vh 漸層），電影感由舞台負責，場景卡不用再畫暗角遮罩（保留輕微 vignette 即可）。</li>
+    <li><b>打字機文案</b>：每字 25ms；文案建議 150～220 字（約 8～14 秒閱讀），超過可分兩幕。</li>
+    <li><b>角色立繪（cast）</b>：最多 5 個站位（左 5%、中 34%、右 67%、下左 14%、下右 54%，高度 38%），隨文案進度依序浮現並上下漂浮；圖源直接用現有圖鑑 PNG/WebP（<b>伴伴 id=1000 永遠第一位</b>）。</li>
+    <li><b>mood 系統</b>：8 種（gold／forest／sky／mystery／water／fire／snow／storm）控制背景光暈與 42 顆飄浮粒子顏色；每章 mood 已在各案章節表標註。</li>
+    <li><b>影片</b>：<span class="kbd">STORY_VIDEOS</span> 支援全螢幕短片（現有 lv4 先例、720p MP4）；可為各案的關鍵章（A 的 8/15、B 的 11/15、C 的 12/15、D 的 15）追加 1～2 支。</li>
+  </ul>
+  <h3>8-2 場景卡繪製規格（給美術/AI 生產用）</h3>
+  <ul>
+    <li><b>三層構圖</b>：背景＝漸層天空＋光源（日出/月夜/極光依章節表）；中景＝該區地形與本章主體（羅盤、車廂、賽場拱門、星燈……）；前景＝剪影或近景道具，做出景深。</li>
+    <li><b>一張一個記憶點</b>：每張場景卡必須有一個「本章象徵物」入畫（方案 A 的碎片、B 的車廂、C 的徽章、D 的星燈），讓玩家截圖就能認出是第幾章。</li>
+    <li><b>字幕安全區</b>：畫面下方 30%、上方 8% 保持低細節、低對比，避免與打字機文字打架。</li>
+    <li><b>配色</b>：以②的 15 區主色為基準，明度壓低 10~15% 讓文字浮出；mood 光暈色由程式自動疊加，卡片本身不必再疊同色光。</li>
+    <li><b>檔案規格</b>：SVG 手繪向量（現有做法，單檔 4~8KB、載入即時），保持 <span class="kbd">s0.svg ~ s18.svg</span> 檔名不變即可無痛替換。</li>
+  </ul>
+  <h3>8-3 演出節奏建議</h3>
+  <ul>
+    <li><b>章頭三拍</b>：場景淡入（0.8s letterbox 同步）→ 標題浮現 → 文案打字；cast 在文案 1/3、2/3 處分批登場（現有邏輯自動處理）。</li>
+    <li><b>章尾定格</b>：文案結束後場景停留 1.5 秒再淡出，給「鉤子」留餘韻。</li>
+    <li><b>過關動線</b>：結算畫面 →（首次過關）本章劇情 → 下一局。鉤子文案的最後一句一律「指向下一區」，玩家按「下一局」時動機最強。</li>
+  </ul>
+</section>
+
+<!-- ================= 9 落地實作 ================= -->
+<section id="impl">
+  <h2>⑨ 落地實作說明</h2>
+  <p>四案共用同一套替換流程，<b>不需要動任何存檔結構與玩法程式</b>：</p>
+  <table>
+    <tr><th style="width:22%">項目</th><th>內容</th></tr>
+    <tr><td>劇情本文</td><td>替換 <span class="kbd">game_db/js/main.js</span> 內的 <span class="kbd">STORY</span> 陣列（lv:0 與 4~18 共 17 條的 title / text / cast）。解鎖流程（首次過關播放、序章開場自動播）原樣保留。</td></tr>
+    <tr><td>心情映射</td><td>更新 <span class="kbd">playStoryText()</span> 內的 <span class="kbd">moodByLv</span> 對照表（各案章節表已標好每章 mood）。</td></tr>
+    <tr><td>場景卡</td><td>重繪 16 張 <span class="kbd">game_db/assets/story/s0.svg ~ s18.svg</span>（檔名不變）；生產流程可沿用現有 AI+人工修整管線（產出先放 <span class="kbd">working_db/generated_assets/</span>）。</td></tr>
+    <tr><td>cast 立繪</td><td>全部使用現有圖鑑圖（MON_BY_ID id）；伴伴 id=1000。各案每章 cast 由該章登場恐龍對應 id 組成，最多 5 位。</td></tr>
+    <tr><td>影片（可選）</td><td>關鍵章 1~2 支 720p MP4，加入 <span class="kbd">STORY_VIDEOS</span> 映射即可。</td></tr>
+    <tr><td>存檔相容</td><td><span class="kbd">dinodoku-story</span> 以關卡為 key 記錄「已觀看」。換故事後：新玩家直接看新劇情；舊玩家不會重播（如需全員重看，工程模式可清存檔，或屆時升版 key）。</td></tr>
+    <tr><td>既有小問題（選配修）</td><td><span class="kbd">openStory()</span> 清單目前只列到 13×13（lv&gt;13 直接 return），14~18 章只能靠解鎖自動播、無法回看——換新故事時建議一併放寬。</td></tr>
+    <tr><td>工作量估算</td><td>文案 17 段（已備）＋16 張 SVG 場景＋（選）1~2 支影片＋（選）方案 C 人類角色立繪 2 張。SVG 為主要工期。</td></tr>
+  </table>
+</section>
+
+<!-- ================= 10 決策指南 ================= -->
+<section id="decide">
+  <h2>⑩ 決策指南：怎麼選？</h2>
+  <ol>
+    <li><b>要大眾緣與最短工期</b> → 選 <b>A《彩虹羅盤》</b>：公式最穩、與收集玩法最合、素材需求最單純。</li>
+    <li><b>要市場記憶點與原創世界觀</b> → 選 <b>B《時光列車》</b>：「地圖＝環線」的結構最漂亮，玩家會記得這款遊戲「有輛列車」。</li>
+    <li><b>要拉高留存與龍塔使用率</b> → 選 <b>C《尋龍盃》</b>：勁敵積分直接綁區域戰績，是唯一把「重複挑戰」寫進主線的方案。</li>
+    <li><b>要親子／睡前場景</b> → 選 <b>D《星塵牧場》</b>：單章完整度最高，任何一章單獨看都成立。</li>
+  </ol>
+  <div class="callout">
+    <b>也可以混搭</b>（推薦組合，成本幾乎不變）：<b>A 為主線骨架</b>（羅盤收集＋探險隊之謎）＋<b>B 的第 6/13 章改編</b>（把「失落的第二探險隊」做成中盤懸念）＋<b>C 的勁敵二人組</b>（每 4~5 章插播一次追逐戲）＋<b>D 的終章儀式</b>（全地圖亮燈大合影）。選定後告訴我：單選哪一案，或要混搭哪幾案的哪些橋段——我隨即把該案文案正式寫入 <span class="kbd">STORY</span> 陣列、規劃 16 張場景卡的生成排程。
+  </div>
+</section>
+
+<footer>恐龍快找 DragonFinder・故事重寫企劃報告 · 2026-10-22 · 本報告為提案文件，尚未更動任何遊戲程式與素材</footer>
+</div>
+</body>
+</html>

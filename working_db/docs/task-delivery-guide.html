@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何把需求說明交付成任務 — AI 協作任務交付指南</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    background:linear-gradient(160deg,#fffdf9 0%,#f9f2e3 60%,#f4ecdb 100%);
+    color:#43382c; line-height:1.85; padding:24px 16px 80px;
+  }
+  .wrap { max-width:860px; margin:0 auto; }
+  header.hero {
+    background:linear-gradient(135deg,#fff7e8,#ffedd2);
+    border:2px solid #f0dfba; border-radius:20px;
+    padding:34px 30px; margin-bottom:28px;
+    box-shadow:0 10px 26px rgba(122,102,72,.13);
+  }
+  .hero .tag { display:inline-block; background:#c2410c; color:#fff; font-size:12px;
+    padding:3px 12px; border-radius:999px; letter-spacing:2px; margin-bottom:12px; }
+  .hero h1 { font-size:28px; color:#3e352c; margin-bottom:10px; }
+  .hero p { color:#7a6f63; font-size:15px; }
+  h2 {
+    font-size:21px; color:#3e352c; margin:38px 0 14px; padding-left:13px;
+    border-left:6px solid #ff8a50;
+  }
+  h3 { font-size:17px; color:#5c5248; margin:22px 0 8px; }
+  p { margin:8px 0; }
+  .card {
+    background:#fffdf8; border:2px solid #eee2cc; border-radius:16px;
+    padding:18px 20px; margin:14px 0;
+    box-shadow:0 4px 12px rgba(122,102,72,.08);
+  }
+  .card.bad { border-color:#f0c4c4; background:#fff8f8; }
+  .card.good { border-color:#c8e6c9; background:#f6fcf4; }
+  .card .lbl { font-weight:900; font-size:13px; letter-spacing:1px; }
+  .card.bad .lbl { color:#d64545; }
+  .card.good .lbl { color:#2e9e5b; }
+  ol,ul { margin:8px 0 8px 24px; }
+  li { margin:5px 0; }
+  code {
+    background:#f7efe2; border:1px solid #e3cfa4; border-radius:6px;
+    padding:1px 6px; font-size:.92em; color:#8a4b12;
+    font-family:Consolas,"Courier New",monospace;
+  }
+  pre {
+    background:#2d2a26; color:#f5efe0; border-radius:14px; padding:18px;
+    overflow-x:auto; font-size:13px; line-height:1.7; margin:12px 0;
+    font-family:Consolas,"Courier New",monospace;
+  }
+  pre .cm { color:#9aab8c; }
+  table { width:100%; border-collapse:collapse; margin:14px 0; font-size:14px; background:#fffdf8; }
+  th,td { border:1.5px solid #eee2cc; padding:9px 12px; text-align:left; vertical-align:top; }
+  th { background:#ffedd2; color:#3e352c; }
+  .checklist { list-style:none; margin-left:0; }
+  .checklist li {
+    background:#fffdf8; border:2px solid #eee2cc; border-radius:12px;
+    padding:10px 14px 10px 40px; margin:8px 0; position:relative;
+  }
+  .checklist li::before {
+    content:"☐"; position:absolute; left:13px; top:8px;
+    font-size:19px; color:#ff8a50; font-weight:900;
+  }
+  .flow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:14px 0; }
+  .flow .step {
+    background:#fff; border:2px solid #ffd98a; border-radius:12px;
+    padding:8px 14px; font-weight:800; font-size:13.5px; color:#5c4a2e;
+  }
+  .flow .arr { color:#c2410c; font-weight:900; }
+  .copybar { display:flex; justify-content:space-between; align-items:center; margin:14px 0 6px; }
+  .copybar span { font-size:13px; color:#a39483; }
+  button.copy {
+    background:linear-gradient(135deg,#ffb066,#ff7043); color:#fff; border:none;
+    border-radius:999px; padding:7px 18px; font-size:13.5px; font-weight:800;
+    cursor:pointer; font-family:inherit; box-shadow:0 4px 10px rgba(255,112,67,.35);
+  }
+  button.copy:active { transform:scale(.95); }
+  details { margin:12px 0; }
+  summary {
+    cursor:pointer; font-weight:800; color:#c2410c; padding:8px 0;
+  }
+  footer { margin-top:48px; text-align:center; color:#b3a795; font-size:12.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="tag">實戰教學</span>
+  <h1>如何把需求說明交付成任務</h1>
+  <p>一句「手機畫面不友善，改善一下」＋一張截圖，AI 就能一次改對嗎？
+     以 <b>尋龍高手 DragonFinder 手機版修復</b> 為實例，教你寫出 agent 能精準執行的任務交付文。</p>
+</header>
+
+<h2>一、為什麼「直接改」常常改不好？</h2>
+<p>同一個需求，兩種交付方式，結果天差地別：</p>
+
+<div class="card bad">
+  <div class="lbl">✕ 不好的交付</div>
+  <p>「手機開啟遊戲進入遊戲闖關，遊戲畫面不友善，進行改善」</p>
+  <p style="color:#a33">問題：沒有專案路徑、沒有現象描述、沒有驗收標準。agent 只能到處猜：
+  是哪個專案？哪裡不友善？改到什麼程度算好？最後做出來的東西往往不是你想要的。</p>
+</div>
+
+<div class="card good">
+  <div class="lbl">✓ 好的交付</div>
+  <p>附上<b>截圖</b>＋<b>正確專案路徑</b>＋六要素任務包（見第三節）。agent 照單施工，
+  驗證照表操課，一次到位。</p>
+</div>
+
+<div class="flow">
+  <span class="step">需求 + 截圖</span><span class="arr">→</span>
+  <span class="step">AI 診斷根因</span><span class="arr">→</span>
+  <span class="step">施工包（檔案/行號/改前改後）</span><span class="arr">→</span>
+  <span class="step">驗證步驟</span><span class="arr">→</span>
+  <span class="step">交付驗收</span>
+</div>
+
+<h2>二、有效任務的六大要素</h2>
+<table>
+  <tr><th>要素</th><th>作用</th><th>範例（來自本次實戰）</th></tr>
+  <tr><td><b>1. 專案定位</b></td><td>讓 agent 直接進對資料夾，不用全機搜尋</td><td><code>C:\MY_AI_JOBS\dragonfinder</code>（遠端 hungmin368/df）</td></tr>
+  <tr><td><b>2. 問題現象</b></td><td>描述「看得到的錯」，最好附截圖</td><td>5 顆按鈕浮起蓋住棋盤第 3、4 列；🔊 被切半</td></tr>
+  <tr><td><b>3. 根因分析</b></td><td>指出問題程式碼位置，agent 不必重新排查</td><td><code>style.css:230</code> 的 <code>position:sticky</code> 在手機視窗被拉起</td></tr>
+  <tr><td><b>4. 修改內容</b></td><td>精確到「檔名＋行號＋改前改後」，零猜測</td><td>230 行整行替換為三段；main.js 新增 <code>fitMobileBoard()</code></td></tr>
+  <tr><td><b>5. 驗證方式</b></td><td>定義「怎樣算改好」，這是驗收的依據</td><td>390×844 直向 / 844×390 橫向跑 4×4 與 18×18，按鈕不遮盤</td></tr>
+  <tr><td><b>6. 交付約定</b></td><td>遵守專案規範，別破壞既有流程</td><td>依 agents.md：建 worklog、不動 *.bak、驗證過才 push</td></tr>
+</table>
+
+<h2>三、實戰拆解：DragonFinder 手機版修復</h2>
+
+<h3>收到的原始需求</h3>
+<div class="card">
+  <p>使用者傳了一張手機截圖，只說：「手機開啟遊戲進入遊戲闖關，遊戲畫面不友善，進行改善」。</p>
+</div>
+
+<h3>第一步：補齊資訊，讓 AI 診斷</h3>
+<p>好的交付不等於你要自己會寫程式。你只要補三樣東西，剩下的診斷交給 AI：</p>
+<ul>
+  <li><b>截圖</b>：圈出/指出哪裡不對（這次是截圖本身就看得到按鈕壓在棋盤上）。</li>
+  <li><b>專案路徑</b>：<code>C:\MY_AI_JOBS\dragonfinder</code>（路徑錯了，後面全白搭）。</li>
+  <li><b>重現步驟</b>：「手機直向 → 進 4×4 關卡 → 畫面就如截圖」。</li>
+</ul>
+
+<h3>第二步：把診斷轉成施工包</h3>
+<p>AI 診斷出根因後，請它產出「可直接施工」的內容。本次的根因與修法：</p>
+<div class="card">
+  <p><b>根因</b>：按鈕列用了 <code>position:sticky; bottom:calc(var(--dlgh,118px)+18px)</code>，
+  本意是讓按鈕浮在伴伴列上方；但手機視窗矮，sticky 把按鈕整塊拉起，壓住棋盤。
+  加上 5 顆按鈕換行成 2~3 排、棋盤寬度沒扣除周圍 UI，整頁超高 → scroll + sticky = 災難。</p>
+  <p><b>修法</b>：sticky 只在桌機生效；手機改成「單排按鈕回到文件流」＋「JS 量測可用高度、動態縮放棋盤」。</p>
+</div>
+
+<details>
+<summary>▶ 點開看本次任務包的實際樣貌（精簡版）</summary>
+<pre><span class="cm">【專案】C:\MY_AI_JOBS\dragonfinder（遠端 hungmin368/df，branch main）</span>
+<span class="cm">【現象】手機直向：5 鈕蓋住棋盤 3、4 列；狀態列被遮；header 🔊 切邊</span>
+<span class="cm">【根因】style.css:230 #controls sticky；按鈕換行；棋盤未扣周圍 UI 高度</span>
+<span class="cm">【修改】</span>
+1. style.css 第 230 行 → 改為預設不 sticky，桌機媒體查詢才 sticky
+2. style.css 檔尾 → 新增 @media (max-width:720px) 區塊（緊湊 header、單排鈕、--boardw 棋盤）
+3. main.js → 新增 fitMobileBoard()，掛在 ResizeObserver / renderBoard / resize 三處
+4. index.html → 4 處 ?v=1.9.3 改 v=1.9.4
+<span class="cm">【驗證】390×844 直向、844×390 橫向：4×4 與 18×18 一屏可見、鈕不遮盤；</span>
+<span class="cm">         桌面 1280×800 行為不變；python3 -m http.server + curl 全 200</span>
+<span class="cm">【約定】依 agents.md：建 worklog、不動 *.bak、驗證過才 commit+push</span></pre>
+</details>
+
+<h2>四、萬用交付模板（複製即用）</h2>
+<div class="copybar">
+  <span>把【】中的內容換成你的，貼給任何可寫 agent 即可</span>
+  <button class="copy" onclick="copyTpl()">複製模板</button>
+</div>
+<pre id="tpl">任務：【一句話說明要改什麼】
+
+【專案】
+路徑：【本機絕對路徑】
+（若已知）遠端倉庫 / branch / 部署位置：【】
+（若該專案有 agent 規範檔）遵守：【例如 agents.md 的規定】
+
+【問題現象】
+裝置 / 環境：【手機型號或 viewport 尺寸、瀏覽器】
+重現步驟：【點哪裡、進哪個頁面，錯誤就出現】
+實際結果：【看到了什麼，附截圖】
+預期結果：【應該長什麼樣】
+
+【根因】（若已知，可留給 AI 診斷）
+檔案：行號 → 問題程式碼 → 為什麼造成現象
+
+【修改內容】
+- 檔案 A：第 N 行【改前 → 改後 / 或貼完整程式碼】
+- 檔案 B：新增函式【完整程式碼】、掛載位置【】
+（原則：精確到行號與完整程式碼，agent 不需要做任何設計決策）
+
+【驗證方式】（沒過就不算完成）
+1. 啟動方式：【例如 python3 -m http.server】
+2. 檢查點：【viewport 尺寸、要測的功能路徑、預期畫面】
+3. 迴歸檢查：【哪些既有行為必須維持不變】
+
+【交付約定】
+- 不動哪些檔案：【例如 *.bak】
+- 要不要 worklog / 文件：【】
+- 何時才能 commit/push：【驗證通過後】</pre>
+
+<h2>五、交付前檢查清單</h2>
+<ul class="checklist">
+  <li>專案路徑是「絕對路徑」，而且親自確認過存在（不是印象中的路徑）？</li>
+  <li>有截圖或具體描述「錯的樣子」，並說明怎麼重現？</li>
+  <li>有寫「預期應該長什麼樣」嗎？（沒有標準，驗收就會吵架）</li>
+  <li>修改內容精確到「檔名＋位置＋完整程式碼」，agent 不用猜？</li>
+  <li>列出「一定要維持不變」的既有行為（防 agent 改過頭）？</li>
+  <li>驗證方式具體可執行（viewport 尺寸、操作步驟、通過條件）？</li>
+  <li>交代專案特殊規範（.bak 不能動、要建 worklog、文字語言）？</li>
+  <li>環境限制說清楚了嗎？（例如：此 session 無寫入工具，請建立任務派發）</li>
+</ul>
+
+<h2>六、本次案例給你的最大啟示</h2>
+<div class="card good">
+  <div class="lbl">✓ 重點整理</div>
+  <ol>
+    <li><b>你不需要會寫程式</b>，但你需要會「描述現象、給對路徑、定義驗收」。</li>
+    <li><b>截圖是最高效的溝通</b>——這次一張圖就讓根因（按鈕壓棋盤）無從抵賴。</li>
+    <li><b>先讓 AI 診斷、再讓它出施工包</b>，兩段式進行，比一步到位更準。</li>
+    <li><b>驗證條件寫得越具體</b>（尺寸、關卡、步驟），交出來的東西越不用退件。</li>
+    <li>遇到「agent 說不能做」，先確認是<b>工具權限問題</b>還是<b>需求不清楚</b>——這次是前者，解法就是把施工包轉交給有權限的執行者。</li>
+  </ol>
+</div>
+
+<footer>
+  以「尋龍高手 DragonFinder」手機版修復為實例 · 任務交付教學 · 2026-09-23
+</footer>
+
+</div>
+<script>
+function copyTpl(){
+  const t=document.getElementById('tpl').innerText;
+  navigator.clipboard.writeText(t).then(()=>{
+    const b=document.querySelector('button.copy');
+    b.textContent='已複製 ✓';
+    setTimeout(()=>b.textContent='複製模板',1500);
+  });
+}
+</script>
+</body>
+</html>

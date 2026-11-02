@@ -1,0 +1,138 @@
+{
+ "9": {
+  "status": "pass",
+  "attempts": 2,
+  "ratio": 0.96,
+  "dir": "COIL",
+  "model": "gemini-2.5-flash-image",
+  "raw": "9_Cetiosaurus_raw.png",
+  "ts": 1792203511.32398
+ },
+ "17": {
+  "status": "pass",
+  "attempts": 3,
+  "ratio": 0.94,
+  "dir": "WIDE",
+  "model": "gemini-2.5-flash-image",
+  "raw": "17_Miragaia_raw.png",
+  "ts": 1792203712.0495305
+ },
+ "31": {
+  "status": "pass",
+  "attempts": 5,
+  "ratio": 0.85,
+  "dir": "SQUAT",
+  "model": "gemini-2.5-flash-image",
+  "raw": "31_Parasaurolophus_raw.png",
+  "ts": 1792207902.3854127
+ },
+ "35": {
+  "status": "pass",
+  "attempts": 2,
+  "ratio": 0.92,
+  "dir": "SQUAT",
+  "model": "gemini-2.5-flash-image",
+  "raw": "35_Edmontosaurus_raw.png",
+  "ts": 1792208012.1422827
+ },
+ "39": {
+  "status": "pass",
+  "attempts": 2,
+  "ratio": 1.01,
+  "dir": "WIDE",
+  "model": "gemini-2.5-flash-image",
+  "raw": "39_Prosaurolophus_raw.png",
+  "ts": 1792332103.641249
+ },
+ "49": {
+  "status": "pass",
+  "attempts": 1,
+  "ratio": 0.9,
+  "dir": "WIDE",
+  "model": "gemini-2.5-flash-image",
+  "raw": "49_Mantellisaurus_raw.png",
+  "ts": 1792204859.754121
+ },
+ "65": {
+  "status": "pass",
+  "attempts": 1,
+  "ratio": 1.02,
+  "dir": "SQUAT",
+  "model": "gemini-2.5-flash-image",
+  "raw": "65_Alxasaurus_raw.png",
+  "ts": 1792208506.3448758
+ },
+ "85": {
+  "status": "pass",
+  "attempts": 3,
+  "ratio": 0.84,
+  "dir": "WIDE",
+  "model": "gemini-2.5-flash-image",
+  "raw": "85_Ornitholestes_raw.png",
+  "ts": 1792205356.5722432
+ },
+ "117": {
+  "status": "pass",
+  "attempts": 8,
+  "ratio": 0.83,
+  "dir": "WIDE",
+  "model": "gemini-2.5-flash-image",
+  "raw": "117_Alectrosaurus_raw.png",
+  "ts": 1792208946.3645773
+ },
+ "218": {
+  "status": "pass",
+  "attempts": 2,
+  "ratio": 0.87,
+  "dir": "WIDE",
+  "model": "gemini-2.5-flash-image",
+  "raw": "218_Metriacanthosaurus_raw.png",
+  "ts": 1792205785.108216
+ },
+ "250": {
+  "status": "pass",
+  "attempts": 5,
+  "ratio": 0.87,
+  "dir": "SQUAT",
+  "model": "gemini-2.5-flash-image",
+  "raw": "250_Archaeoceratops_raw.png",
+  "ts": 1792209315.9431698
+ },
+ "252": {
+  "status": "pass",
+  "attempts": 1,
+  "ratio": 1.11,
+  "dir": "WIDE",
+  "model": "gemini-2.5-flash-image",
+  "raw": "252_Nigersaurus_raw.png",
+  "ts": 1792209437.4687872
+ },
+ "264": {
+  "status": "pass",
+  "attempts": 4,
+  "ratio": 1.16,
+  "dir": "WIDE",
+  "model": "gemini-2.5-flash-image",
+  "raw": "264_Alamosaurus_raw.png",
+  "ts": 1792206625.1996787
+ },
+ "288": {
+  "status": "pass",
+  "attempts": 3,
+  "ratio": 0.9,
+  "dir": "WIDE",
+  "model": "gemini-2.5-flash-image",
+  "raw": "288_Ichthyosaurus_raw.png",
+  "ts": 1792332223.1247036
+ },
+ "303": {
+  "status": "pass",
+  "attempts": 1,
+  "ratio": 1.13,
+  "dir": "SQUAT",
+  "model": "gemini-2.5-flash-image",
+  "raw": "303_Tupandactylus_raw.png",
+  "ts": 1792207138.3221653
+ },
+ "_retry_attempts_total": 101
+}

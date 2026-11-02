@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恐龍快找・開場影片提示詞設計《藏不住的伴伴》</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+    background: linear-gradient(135deg, #1d2b1a 0%, #12210f 45%, #2a1245 100%);
+    color: #f0efe4; line-height: 1.7; padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 {
+    text-align: center; font-size: 27px; margin-bottom: 6px;
+    background: linear-gradient(90deg, #c084fc, #f9a8d4, #fbbf24);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { text-align: center; color: #bdb8cf; font-size: 14px; margin-bottom: 28px; }
+  .card {
+    background: rgba(255,255,255,0.055); border: 1px solid rgba(192,132,252,0.22);
+    border-radius: 16px; padding: 22px 26px; margin-bottom: 22px;
+  }
+  h2 { font-size: 19px; color: #e9d5ff; margin-bottom: 14px; border-left: 4px solid #c084fc; padding-left: 10px; }
+  h3 { font-size: 15.5px; color: #fbbf24; margin: 18px 0 8px; }
+  p, li { font-size: 14px; }
+  ul.feat { list-style: none; }
+  ul.feat li { padding: 3px 0 3px 24px; position: relative; }
+  ul.feat li::before { content: "◆"; position: absolute; left: 4px; color: #fbbf24; font-size: 11px; top: 7px; }
+  ul.no li::before { content: "✕"; color: #f87171; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 4px; font-size: 13.5px; }
+  th, td { border: 1px solid rgba(192,132,252,0.28); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: rgba(192,132,252,0.16); color: #e9d5ff; white-space: nowrap; }
+  tr:nth-child(even) td { background: rgba(0,0,0,0.15); }
+  .prehead { display: flex; align-items: center; justify-content: space-between; margin: 12px 0 6px; }
+  .prehead .tag { font-size: 13px; color: #d8cbee; font-weight: bold; }
+  .prehead .tag .lg { background: rgba(0,0,0,0.35); border-radius: 6px; padding: 1px 7px; font-size: 11.5px; margin-right: 6px; color: #a78cc8; }
+  button.cp {
+    background: rgba(192,132,252,0.2); color: #e9d5ff; border: 1px solid rgba(192,132,252,0.45);
+    border-radius: 8px; padding: 3px 12px; font-size: 12.5px; cursor: pointer; font-family: inherit;
+  }
+  button.cp:hover { background: rgba(192,132,252,0.35); }
+  pre {
+    background: #14101f; border: 1px solid rgba(192,132,252,0.3); border-radius: 10px;
+    padding: 14px 16px; font-size: 12.8px; line-height: 1.75; overflow-x: auto;
+    white-space: pre-wrap; font-family: Consolas, "Microsoft JhengHei", monospace;
+  }
+  pre.zh { color: #ffd9a0; }
+  pre.en { color: #a8d8ff; }
+  pre.neg { color: #fca5a5; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 12px; margin: 10px 0 4px; }
+  .sw { width: 126px; text-align: center; font-size: 12px; color: #d8cbee; }
+  .sw .chip { height: 48px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.35); margin-bottom: 5px; }
+  .sw code { background: rgba(0,0,0,0.35); padding: 1px 5px; border-radius: 4px; font-size: 11px; }
+  .badge {
+    background: rgba(0,0,0,0.28); border-radius: 12px; padding: 10px 14px; margin-top: 12px;
+    border: 1px solid rgba(251,191,36,0.35); font-size: 13.5px;
+  }
+  .badge b { color: #fbbf24; }
+  .warn { border-color: rgba(248,113,113,0.45); }
+  .warn b { color: #f87171; }
+  .ok { color: #6ee7b7; font-weight: bold; }
+  .meta { font-size: 12.5px; color: #a79cc8; }
+  .meta code, td code, li code, p code { background: rgba(0,0,0,0.35); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  .beat { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 800px) { .beat { grid-template-columns: 1fr; } }
+  .foot { text-align: center; font-size: 12px; color: #8b84a8; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>恐龍快找・遊戲開場影片提示詞設計</h1>
+  <div class="sub">《藏不住的伴伴》捉迷藏喜劇 ｜ 電影真實場景 × 符合「快找」玩法 × 伴伴主演 ｜ 2026-10-16</div>
+
+  <div class="card">
+    <h2>① 設計概念與四項決策</h2>
+    <p><b>一句話概念：</b>把遊戲的「找隱藏物」玩法拍成實拍電影感的<b>捉迷藏喜劇</b>——伴伴自以為藏得天衣無縫，其實尾巴、翅膀全露在外面，觀眾一眼就「找到」牠（呼應「快找」）；被發現後牠打噴嚏破功、心虛傻笑，最後撿起地上的<b>捕蟲網（＝遊戲的捕捉器）</b>想反擊，撈到一顆發光的星願種子，得意地對鏡頭眨眼比讚。</p>
+    <ul class="feat" style="margin-top:10px">
+      <li><b>電影感怎麼做：</b>全片走「實拍 CG 生物」路線——像《名偵探皮卡丘》：真實雨林的光線、材質、淺景深與手持鏡頭，伴伴以寫實材質（細鱗、緞面柔光、次表面散射）置入其中。</li>
+      <li><b>怎麼搞笑：</b>笑點全部來自「藏得很爛」——只藏臉不藏屁股、眼睛從葉縫偷看、一個噴嚏把掩體吹飛。零對白、零字幕，用動作節奏搞笑。</li>
+      <li><b>怎麼對應玩法：</b>見 ② 對照表——找（鏡頭搜尋破綻）、✕（後製蓋章彩蛋）、捕捉器（真實捕蟲網道具）、過關（得意姿勢收尾）。</li>
+    </ul>
+    <div class="badge warn"><b>四項關鍵決策：</b><br>
+      1. <b>刻意不走「風格A」</b>：風格A 是遊戲內棋子的白底玩具公仔風；本片依需求走電影寫實路線，但角色配色與配件仍嚴格鎖定 2★ 定稿圖。<br>
+      2. <b>畫面中不出現人類</b>：視角＝玩家第一人稱「在森林裡找東西」，避免 AI 人臉崩壞，也最貼合「你來找」的玩法。<br>
+      3. <b>影片本體不生成任何文字</b>：AI 影片的文字必定亂碼（前例：game.mp4 木牌事件，commit 4ec580d）→ LOGO 一律後製疊上（見 ⑨）。<br>
+      4. <b>修正舊稿錯誤</b>：`_gen_sophnet_intro_video.py` 原把伴伴寫成「翠綠色小恐龍」，與 2★ 定稿（紫紅色小龍）不符，本版全面修正並新增「角色規格卡」鎖定。</div>
+  </div>
+
+  <div class="card">
+    <h2>② 玩法對照表（遊戲機制 → 影片橋段）</h2>
+    <table>
+      <tr><th>遊戲機制</th><th>影片橋段</th></tr>
+      <tr><td>盤面分顏色區塊，每區只藏 <b>1 個</b>隱藏物</td><td>森林自然分成「蕨葉叢／石堆／樹洞」幾個藏身區，伴伴藏在其中一區</td></tr>
+      <tr><td><b>快找</b>：一眼掃過去，比誰先找到</td><td>幕1 鏡頭橫移，只露出三個破綻（晃動的紫尾巴尖／整片粉紅翼膜／眨動的金瞳），讓觀眾先找到</td></tr>
+      <tr><td><b>✕ 標記排除</b>：點格子打叉</td><td>後製彩蛋：錯的藏身點啪啪蓋上紅色 ✕ 印章（貼圖疊加，見 ⑨）</td></tr>
+      <tr><td><b>捕捉器</b>（捕蟲網圖示）</td><td>幕3 伴伴撿起真實的木柄捕蟲網，揮網想抓鏡頭、結果撈住發光星籽</td></tr>
+      <tr><td><b>沙漏計時</b>：歸零＝結束、抓一隻 +30 秒</td><td>幕2 噴嚏節奏＝慌張感；選配：石頭上的小沙漏（後製素材）</td></tr>
+      <tr><td><b>過關＝剩餘秒數</b>＋得意結算</td><td>結尾伴伴叉腰、眨眼、豎起小爪比讚（勝利姿勢，尾巴開心擺動）</td></tr>
+      <tr><td><b>星願種子 🌌</b>（提示與餵食的資源）</td><td>捕蟲網撈到的「發光小星籽」，金光一閃（光效後製加）</td></tr>
+      <tr><td>發現新夥伴「NEW!」</td><td>選配：結尾角標 NEW! 徽章（後製）</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>③ 伴伴電影版・角色規格卡（每顆提示詞都要貼）</h2>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#AF48DB"></div>主體紫紅<br><code>#AF48DB</code></div>
+      <div class="sw"><div class="chip" style="background:#7818C0"></div>深紫斑點<br><code>#7818C0</code></div>
+      <div class="sw"><div class="chip" style="background:#E9901D"></div>金橘角爪<br><code>#E9901D</code></div>
+      <div class="sw"><div class="chip" style="background:#F7A007"></div>金琥珀眼<br><code>#F7A007</code></div>
+      <div class="sw"><div class="chip" style="background:#F8EBEF"></div>乳白腹部<br><code>#F8EBEF</code></div>
+      <div class="sw"><div class="chip" style="background:#CD305C"></div>粉紅翼膜<br><code>#CD305C</code></div>
+    </div>
+    <ul class="feat">
+      <li><b>造型必須有的：</b>圓滾滾寶寶小龍；頭頂<b>兩支金橘色分節大彎角</b>＋小鼻角；背脊一排小金刺；橙色小爪；<b>粉色內耳</b>與粉紅翼膜；<b>金黃琥珀色大圓眼＋白色高光</b>；開心微笑露小尖牙與粉紅舌；奶油白分節肚皮；身體有深紫斑點。</li>
+      <li><b>電影寫實化的「度」：</b>保留 Q 版比例與全部特徵（一眼認得是伴伴），但材質換成寫實生物質感——天鵝絨般細鱗、柔和緞面反光、耳朵與翼膜帶次表面散射透光、身上有淡淡森林塵土與露水，與環境有真實接觸陰影。</li>
+      <li><b>參考圖（給支援參考圖的模型）：</b><code>assets/dinos_2/DFD-000_伴伴_2star.png</code>（造型／配色定稿）、<code>assets/dinos_2/bban_samples/_ref_banban_2star.png</code>（白底壓平版）、<code>assets/dinos_2/game_logo.png</code>（LOGO 後製用）。</li>
+    </ul>
+    <ul class="feat no" style="margin-top:6px">
+      <li><b>禁止：</b>塑膠亮面／玩具公仔感（那是風格A，本片不要）、大眼縮小或變形、角變單支或無分節、全身換色（尤其不可出現綠色）、多隻伴伴、背景出現人類。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>④ 主提示詞・單鏡萬用版（一次 5 秒說完整個笑點）</h2>
+    <p class="meta">適合只想生一支影片時使用：找 → 露餡 → 噴嚏破功 → 捕蟲網英雄姿勢。中文版對 happyhorse-1.0-t2v 實測友善；英文版給可靈／Veo／Runway 等。</p>
+    <div class="prehead"><span class="tag"><span class="lg">中文</span>單鏡萬用版</span><button class="cp" data-t="p-main-zh">複製</button></div>
+    <pre id="p-main-zh" class="zh">電影級實拍質感，真實熱帶雨林，黃昏金色光束穿過高大樹冠，實拍級蕨葉、苔蘚岩石與落葉泥土，空氣中漂浮微塵與光斑，淺景深、背景柔焦、手持鏡頭微晃，溫暖電影調色。
+
+鏡頭像在森林裡「尋找什麼」，緩慢橫移掃過蕨葉叢、石堆與樹洞。蕨葉後方藏著一隻圓滾滾的寶寶小龍「伴伴」：紫紅色細緻鱗片、奶油白肚皮、頭頂兩支金橘色分節大彎角、背脊小金刺、粉色內耳與粉紅翼膜、金黃琥珀色大圓眼。牠自以為藏得天衣無縫，但紫紅色尾巴尖和一整片粉紅翅膀露在葉子外一搖一搖，金黃眼睛還從葉縫偷看鏡頭。
+
+被發現後牠慌張打了個大噴嚏——蕨葉全被吹飛，牠僵在原地，慢慢露出心虛的燦爛笑容（小尖牙與粉紅舌），順手撿起地上一支木柄捕蟲網擺出英雄姿勢，對鏡頭眨眼、豎起小爪比讚，尾巴開心地擺動。
+
+寫實皮膚與光影質感、與地面有真實接觸陰影、電影級高細節、畫面穩定流暢、無字幕、無文字、無浮水印。</pre>
+    <div class="prehead"><span class="tag"><span class="lg">EN</span>Single-shot universial</span><button class="cp" data-t="p-main-en">複製</button></div>
+    <pre id="p-main-en" class="en">Cinematic live-action look, real tropical rainforest at golden hour: warm sunbeams through the tall canopy, photoreal ferns, mossy rocks and fallen leaves on damp soil, floating dust motes, shallow depth of field, soft bokeh, gentle handheld camera, warm cinematic color grading.
+
+The camera drifts sideways like it is searching for something, gliding past fern bushes, a rock pile and a hollow log. Hidden behind the ferns is a chubby baby dragon "BanBan": fine-scaled amethyst-purple skin, creamy white belly, two golden-orange segmented curved horns, a row of tiny golden spines on his back, pink inner ears and pink wing membranes, huge round golden-amber eyes with white highlights. He thinks he is perfectly hidden, but his purple tail tip and one whole pink wing stick out of the leaves, swaying, and his golden eyes peek at the camera through the leaves.
+
+Busted, he sneezes suddenly - the fern leaves blow away, he freezes, then slowly breaks into a sheepish beaming smile (tiny white fangs, pink tongue), grabs a small wooden-handled butterfly net from the ground nearby, strikes a hero pose, winks at the camera, gives a little claw thumbs-up, tail wagging happily.
+
+Photorealistic skin and lighting, real contact shadows on the ground, cinematic high detail, stable smooth footage, no captions, no text, no watermark.</pre>
+  </div>
+
+  <div class="card">
+    <h2>⑤ 三幕分鏡版（3 × 5 秒＝約 15 秒完整開場）</h2>
+    <p class="meta">想要更完整的三拍節奏時使用。三幕共用同一場景、同一光線、同一角色規格卡；若模型支援 seed，三幕請用同一個 seed 增加連戲感。各幕中英雙版並列，附銜接要點。</p>
+
+    <h3>幕 1「找一找」— 先讓觀眾贏</h3>
+    <div class="beat">
+      <div>
+        <div class="prehead"><span class="tag"><span class="lg">中文</span></span><button class="cp" data-t="p-s1-zh">複製</button></div>
+        <pre id="p-s1-zh" class="zh">電影級實拍質感，真實熱帶雨林，黃昏金色光束穿過樹冠，蕨葉、苔蘚岩石與落葉泥土皆為實拍級真實質感，空氣中漂浮微塵與光斑，淺景深、背景柔焦，手持鏡頭。
+
+鏡頭像在森林裡尋找什麼，緩慢橫移掃過三個可疑的藏身點：蕨葉叢後露出一根一晃一晃的紫紅色尾巴尖；大石頭旁露出一整片粉紅翼膜；樹洞裡一雙金黃琥珀色的大眼睛眨了一下又縮回去。一隻彩色蝴蝶飛過鏡頭前。鏡頭停住，彷彿發現「找到了！」。
+
+高細節、畫面穩定流暢、無字幕、無文字。</pre>
+      </div>
+      <div>
+        <div class="prehead"><span class="tag"><span class="lg">EN</span></span><button class="cp" data-t="p-s1-en">複製</button></div>
+        <pre id="p-s1-en" class="en">Cinematic live-action look, real tropical rainforest at golden hour, photoreal ferns, mossy rocks and leaf litter, floating dust motes, shallow depth of field, soft bokeh, handheld camera.
+
+The camera drifts slowly sideways like it is searching for something, sweeping past three suspicious hiding spots: a purple tail tip swaying from behind a fern bush; a whole pink wing membrane sticking out beside a large rock; a pair of huge golden-amber eyes blinking inside a hollow log, then ducking back. A colorful butterfly flutters across the lens. The camera stops, as if it just "found it!".
+
+High detail, stable smooth footage, no captions, no text.</pre>
+      </div>
+    </div>
+    <p class="meta" style="margin-top:8px"><b>銜接要點：</b>三個破綻＝遊戲「要仔細找」的教學示範；不出現伴伴全身，留懸念給幕2。</p>
+
+    <h3>幕 2「破功」— 笑點主場</h3>
+    <div class="beat">
+      <div>
+        <div class="prehead"><span class="tag"><span class="lg">中文</span></span><button class="cp" data-t="p-s2-zh">複製</button></div>
+        <pre id="p-s2-zh" class="zh">電影級特寫，真實熱帶雨林午後光。圓滾滾的寶寶小龍「伴伴」躲在一片超大的蕨葉後面：紫紅色細鱗皮膚、奶油白肚皮、頭頂兩支金橘色分節大彎角、背脊小金刺、粉色內耳與粉紅翼膜、金黃琥珀色大圓眼。牠把爪子放在嘴邊對鏡頭「噓——」，眼睛得意地笑成彎月。
+
+下一秒牠忍不住打了個大噴嚏，蕨葉全被吹飛；牠僵住，慢慢轉頭看向鏡頭，露出心虛的燦爛笑容（小尖牙與粉紅舌），搔搔後腦杓。手持鏡頭晃了一下，像在憋笑。
+
+寫實皮膚與光影質感、電影級高細節、無字幕、無文字。</pre>
+      </div>
+      <div>
+        <div class="prehead"><span class="tag"><span class="lg">EN</span></span><button class="cp" data-t="p-s2-en">複製</button></div>
+        <pre id="p-s2-en" class="en">Cinematic close-up, real tropical rainforest, warm afternoon light. A chubby baby dragon "BanBan" hides behind one huge fern leaf: fine amethyst-purple scales, creamy white belly, two golden-orange segmented curved horns, tiny golden back spines, pink inner ears and pink wing membranes, big round golden-amber eyes. He raises one claw to his mouth and shushes the camera, eyes curving into a smug smile.
+
+A second later he cannot hold it and sneezes hard - the fern leaves blow away; he freezes, slowly turns to the camera with a sheepish beaming smile (tiny white fangs, pink tongue) and scratches the back of his head. The handheld camera shakes once, like it is holding back laughter.
+
+Photorealistic skin and lighting, cinematic high detail, no captions, no text.</pre>
+      </div>
+    </div>
+    <p class="meta" style="margin-top:8px"><b>銜接要點：</b>全片笑點核心；「噓——→ 噴嚏 → 心虛笑」三連拍。若只生一支，就生這支。</p>
+
+    <h3>幕 3「捕捉器」— 反擊與收尾</h3>
+    <div class="beat">
+      <div>
+        <div class="prehead"><span class="tag"><span class="lg">中文</span></span><button class="cp" data-t="p-s3-zh">複製</button></div>
+        <pre id="p-s3-zh" class="zh">電影級實拍質感，真實熱帶雨林，黃昏金色微光，淺景深。圓滾滾的寶寶小龍「伴伴」從地上撿起一支真實的木柄捕蟲網（紅棕色圓框、米白色網），牠有紫紅色細鱗、奶油白肚皮、金橘色分節大彎角、粉色內耳與粉紅翼膜、金黃琥珀色大圓眼。
+
+牠得意地朝空中一揮，網子撈住一顆漂浮的發光小星籽，金光閃閃、細微光塵灑落。牠舉著網子轉向鏡頭，單手叉腰、眨眼、豎起小爪比讚，尾巴開心地擺動。鏡頭緩慢拉遠，畫面中央留出乾淨空間。
+
+寫實光影質感、電影級高細節、無字幕、無文字。</pre>
+      </div>
+      <div>
+        <div class="prehead"><span class="tag"><span class="lg">EN</span></span><button class="cp" data-t="p-s3-en">複製</button></div>
+        <pre id="p-s3-en" class="en">Cinematic live-action look, real tropical rainforest, warm golden-hour glow, shallow depth of field. A chubby baby dragon "BanBan" picks up a real wooden-handled butterfly net from the ground (red-brown round rim, cream mesh). He has fine amethyst-purple scales, a creamy white belly, two golden-orange segmented curved horns, pink inner ears and pink wing membranes, big round golden-amber eyes.
+
+He swings it proudly through the air and catches a floating glowing star-seed; golden sparkles and fine light dust fall. He turns to the camera holding the net, one claw on his hip, winks, gives a claw thumbs-up, tail wagging. The camera slowly pulls back, leaving clean empty space in the center of frame.
+
+Photorealistic lighting, cinematic high detail, no captions, no text.</pre>
+      </div>
+    </div>
+    <p class="meta" style="margin-top:8px"><b>銜接要點：</b>「畫面中央留出乾淨空間」＝刻意留白給後製疊 LOGO（見 ⑨）；星籽光效建議後製加強，模型畫的光暈常常糊。</p>
+  </div>
+
+  <div class="card">
+    <h2>⑥ 備選笑點（想換口味時替換幕2 的橋段）</h2>
+    <ul class="feat">
+      <li><b>駝鳥式藏法：</b>頭埋進蕨葉裡，屁股和尾巴整坨在外面，還自以為很安全。</li>
+      <li><b>扮雕像：</b>站在石頭上硬撐不動裝石雕，蝴蝶停在牠角上，鼻尖冒汗、眼皮發抖。</li>
+      <li><b>樹枝太小：</b>拿一根小樹枝擋臉，根本遮不住，緊張到整根樹枝跟著抖。</li>
+      <li><b>躲寶箱：</b>想擠進寶箱後面，蓋子啪一聲夾到尾巴，痛得跳起來（寶箱＝遊戲的 🧰 彩蛋）。</li>
+      <li><b>荷葉擋臉：</b>雙手舉一片小荷葉只遮住鼻子，眼睛眨巴眨巴看著鏡頭（單鏡版已是此變體）。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⑦ 負向提示詞</h2>
+    <p class="meta">happyhorse-1.0-t2v 的 negative 欄位未經實測，先不放進腳本；支援負向詞的模型（可靈／Veo 等）直接整段帶入。</p>
+    <div class="prehead"><span class="tag"><span class="lg">中文</span>負向詞</span><button class="cp" data-t="p-neg-zh">複製</button></div>
+    <pre id="p-neg-zh" class="neg">塑膠感, 硬塑料光澤, 乙烯基公仔感, 玻璃般光滑, 卡通扁平淡渲, 蠟像感, 過曝, 灰暗濁色, 模糊, 低解析度, 變形, 五官不穩, 眼睛不對稱, 多餘肢體, 多隻主角, 綠色身體, 文字, 字幕, 浮水印, 簽名, 邊框, 慢動作, 定格, 畫面閃爍撕裂, 背景出現人類</pre>
+    <div class="prehead"><span class="tag"><span class="lg">EN</span>Negative</span><button class="cp" data-t="p-neg-en">複製</button></div>
+    <pre id="p-neg-en" class="neg">plastic toy look, vinyl gloss, glassy smooth skin, flat cartoon shading, wax figure, overexposed, muddy color, blurry, low resolution, deformed anatomy, unstable face, asymmetric eyes, extra limbs, multiple protagonists, green body, text, subtitles, watermark, signature, border, slow motion, freeze frame, flicker, tearing, humans in background</pre>
+  </div>
+
+  <div class="card">
+    <h2>⑧ 技術參數與成本</h2>
+    <table>
+      <tr><th>項目</th><th>值</th></tr>
+      <tr><td>管線 / 端點</td><td>SophNet <code>/videogenerator/generate</code>（Bearer 認證；金鑰檔 <code>assets/dinos_2/bban_samples/_sophnet_key.txt</code>，已 gitignore）</td></tr>
+      <tr><td>模型</td><td><code>happyhorse-1.0-t2v</code>（2026-10-16 探針確認可部署）</td></tr>
+      <tr><td>生成參數</td><td><code>duration 5</code> · <code>resolution 720P</code> · <code>ratio 16:9</code></td></tr>
+      <tr><td>成本</td><td>720P ¥0.9/秒 → 單鏡 ≈ <b>¥4.5</b>；三幕 ≈ <b>¥13.5</b></td></tr>
+      <tr><td>執行腳本</td><td><code>assets/dinos_2/bban_samples/_gen_sophnet_intro_video.py single|1|2|3</code></td></tr>
+      <tr><td>輸出位置</td><td><code>assets/intro_bban_hide_720p.mp4</code>（單鏡）／<code>assets/intro_bban_hide_s1..3_720p.mp4</code>（三幕）</td></tr>
+      <tr><td>跨模型通用</td><td>同組提示詞可直貼可靈 Kling／Veo／Runway／Sora 等（優先英文版）</td></tr>
+      <tr><td>比例備註</td><td>16:9 適合橫式宣傳／商店預告；若要塞進手機直式開場，另生成 9:16 版本（改 ratio 參數）</td></tr>
+      <tr><td>連戲建議</td><td>三幕同 seed（若模型支援）；成品逐幀抽查可用既有 <code>_check_intro_frames.py</code>（cv2）</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>⑨ 後製與音效建議（沿用 game.mp4 的實戰教訓）</h2>
+    <ul class="feat">
+      <li><b>LOGO 疊字：</b>影片保持無文字，用 OpenCV＋imageio-ffmpeg 把 <code>assets/dinos_2/game_logo.png</code> 疊上去——滿版置中淡入 → smoothstep 縮小飛向畫面左上角（沿用既有 splash「logo 飛進主選單」的動效曲線，結尾可無縫接上遊戲開場）。</li>
+      <li><b>遊戲 UI 彩蛋（全部後製貼圖，別讓模型畫）：</b>錯的藏身點啪啪蓋紅色 ✕ 印章（＝標記排除）；捕捉器游標飛入；星願種子光暈加強；選配小沙漏與 NEW! 徽章。</li>
+      <li><b>音效點：</b>搜尋段＝樹葉沙沙＋鳥鳴；尾梢／眼睛破綻＝輕巧木琴「叮」；噴嚏＝卡通 sneeze；葉子飛散＝whoosh；撈到星籽＝晶亮鈴聲；LOGO 落點＝勝利音效。</li>
+      <li><b>接入點：</b>放在現有 <code>#splash</code>（logo 飛入動畫）之前作為點擊後開場影片；幕3 最後 1 秒乾淨定格最適合切 LOGO。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⑩ 使用方式</h2>
+    <pre>cd assets/dinos_2/bban_samples
+python _gen_sophnet_intro_video.py          # 單鏡萬用版（5s，預設）
+python _gen_sophnet_intro_video.py 1        # 三幕・幕1「找一找」
+python _gen_sophnet_intro_video.py 2        # 三幕・幕2「破功」
+python _gen_sophnet_intro_video.py 3        # 三幕・幕3「捕捉器」</pre>
+    <p class="meta" style="margin-top:8px">每次呼叫 ≈ ¥4.5（5 秒 × ¥0.9/秒），完成後自動下載到 <code>assets/</code>。想換笑點：直接改腳本 <code>SHOTS</code> 裡的文字或用 ⑥ 備選橋段替換，再跑一次。</p>
+  </div>
+
+  <div class="foot">恐龍快找 DragonFinder ｜ 開場影片提示詞設計報告 ｜ 產出日期 2026-10-16 ｜ 對應 worklog：worklogs/worklog_intro-video.md</div>
+</div>
+<script>
+document.querySelectorAll('button.cp').forEach(function(b){
+  b.addEventListener('click', function(){
+    var t = document.getElementById(b.dataset.t);
+    if(!t) return;
+    var txt = t.innerText;
+    function done(ok){ b.textContent = ok ? '已複製 ✓' : '請按 Ctrl+C'; setTimeout(function(){ b.textContent = '複製'; }, 1600); }
+    function fallback(){
+      var ta = document.createElement('textarea'); ta.value = txt;
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch(e){}
+      document.body.removeChild(ta);
+      if(!ok){
+        var r = document.createRange(); r.selectNodeContents(t);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }
+      done(ok);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ done(true); }, fallback);
+    } else { fallback(); }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+[
+ {
+  "shot": "s1",
+  "status": "succeeded",
+  "task_id": "fBW9nYgFOSCpt6F09KthA",
+  "bytes": 5503901,
+  "refs": 1
+ },
+ {
+  "shot": "s2",
+  "status": "succeeded",
+  "task_id": "2ZBP12XcusPCNkSAi1mznI",
+  "bytes": 5358826,
+  "refs": 1
+ },
+ {
+  "shot": "s3",
+  "status": "succeeded",
+  "task_id": "7KjbnZ4XpRo8PnBZaFqQRu",
+  "bytes": 8501157,
+  "refs": 1
+ },
+ {
+  "shot": "s4",
+  "status": "succeeded",
+  "task_id": "2IMEUTr9UBoATrIFo0OOqC",
+  "bytes": 7169811,
+  "refs": 1
+ },
+ {
+  "shot": "s5",
+  "status": "succeeded",
+  "task_id": "5v1VqPOgdWg61EkvqxAnu8",
+  "bytes": 8102680,
+  "refs": 1
+ },
+ {
+  "shot": "s6",
+  "status": "succeeded",
+  "task_id": "5J9LzqJ5z7bIHtPutaRj1c",
+  "bytes": 4724326,
+  "refs": 1
+ },
+ {
+  "shot": "s7",
+  "status": "succeeded",
+  "task_id": "5CSGlfjF5C2jQdFwOCNU58",
+  "bytes": 4330686,
+  "refs": 2
+ },
+ {
+  "shot": "s8",
+  "status": "succeeded",
+  "task_id": "1aq42Y67Jv4EIMgt2TmP9G",
+  "bytes": 4905677,
+  "refs": 2
+ },
+ {
+  "shot": "s9",
+  "status": "succeeded",
+  "task_id": "4sZv4CEZ72g99HLOdXYPe",
+  "bytes": 5244443,
+  "refs": 2
+ }
+]

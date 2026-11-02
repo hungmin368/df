@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伴伴二星風格 × Gemini 生成測試報告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+    background: linear-gradient(135deg, #2a1245 0%, #1a0b2e 60%, #3d0f1a 100%);
+    color: #f3eefc; line-height: 1.7; padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 {
+    text-align: center; font-size: 28px; margin-bottom: 6px;
+    background: linear-gradient(90deg, #c084fc, #f9a8d4, #fca5a5);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { text-align: center; color: #b9a6d9; font-size: 14px; margin-bottom: 28px; }
+  .card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 16px; padding: 22px 26px; margin-bottom: 24px;
+  }
+  h2 { font-size: 20px; color: #e9d5ff; margin-bottom: 14px; border-left: 4px solid #c084fc; padding-left: 10px; }
+  h3 { font-size: 15px; color: #f9a8d4; margin: 14px 0 8px; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 12px; margin: 10px 0 4px; }
+  .sw { width: 128px; text-align: center; font-size: 12px; color: #d8cbee; }
+  .sw .chip { height: 52px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.35); margin-bottom: 5px; }
+  .sw code { background: rgba(0,0,0,0.35); padding: 1px 5px; border-radius: 4px; font-size: 11px; }
+  ul.feat { list-style: none; }
+  ul.feat li { padding: 3px 0 3px 24px; position: relative; font-size: 14px; }
+  ul.feat li::before { content: "◆"; position: absolute; left: 4px; color: #fbbf24; font-size: 11px; top: 7px; }
+  pre {
+    background: #120826; border: 1px solid rgba(192,132,252,0.3); border-radius: 10px;
+    padding: 14px 16px; font-size: 12.5px; line-height: 1.6; overflow-x: auto;
+    color: #d9c9f5; white-space: pre-wrap; font-family: Consolas, monospace;
+  }
+  .zh-prompt { color: #ffd9a0; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  @media (max-width: 760px) { .duo { grid-template-columns: 1fr; } }
+  .fig { text-align: center; }
+  .fig img {
+    width: 100%; max-width: 460px; border-radius: 14px;
+    border: 2px solid rgba(192,132,252,0.4);
+    background:
+      repeating-conic-gradient(#3a2a52 0% 25%, #2e2044 0% 50%) 0 0 / 28px 28px;
+  }
+  .fig .cap { font-size: 13px; color: #cbb8ec; margin-top: 8px; }
+  .fig .cap b { color: #fbbf24; }
+  .badges { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  @media (max-width: 760px) { .badges { grid-template-columns: 1fr; } }
+  .badge {
+    background: rgba(0,0,0,0.28); border-radius: 12px; padding: 12px 14px;
+    border: 1px solid rgba(251,191,36,0.35); font-size: 13.5px;
+  }
+  .badge b { color: #fbbf24; }
+  .ok { color: #6ee7b7; font-weight: bold; }
+  .meta { font-size: 12.5px; color: #a78cc8; }
+  .meta code { background: rgba(0,0,0,0.35); padding: 1px 5px; border-radius: 4px; }
+  .foot { text-align: center; font-size: 12px; color: #8b76ad; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>伴伴二星風格 × Gemini 生成測試</h1>
+  <div class="sub">讀入 DFD-000_伴伴_2star.png → 分析風格 → 以其提示詞生成全新恐龍（食肉牛龍）｜2026-10-16</div>
+
+  <div class="card">
+    <h2>① 伴伴二星圖風格分析</h2>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#AF48DB"></div>主體亮紫<br><code>#AF48DB</code></div>
+      <div class="sw"><div class="chip" style="background:#7818C0"></div>深紫陰影斑點<br><code>#7818C0</code></div>
+      <div class="sw"><div class="chip" style="background:#E9901D"></div>金橘角刺爪<br><code>#E9901D</code></div>
+      <div class="sw"><div class="chip" style="background:#F7A007"></div>金色大眼<br><code>#F7A007</code></div>
+      <div class="sw"><div class="chip" style="background:#F8EBEF"></div>乳白腹部<br><code>#F8EBEF</code></div>
+      <div class="sw"><div class="chip" style="background:#CD305C"></div>粉紅內膜<br><code>#CD305C</code></div>
+    </div>
+    <ul class="feat">
+      <li><b>材質：</b>精緻 3D 亮面公仔感（vinyl-toy gloss），細緻鱗片紋理，高解析數位藝術</li>
+      <li><b>五官：</b>超大金琥珀色圓眼＋白色高光、開心微笑露出小白牙與粉舌、Q 版比例</li>
+      <li><b>特徵件：</b>金橘色分節大角、背線金色小刺、金色爪、粉紅內耳／粉紅內膜翅膀、乳白分節腹甲</li>
+      <li><b>姿勢：</b>動態站立——單手舉起揮舞、尾巴彎翹，白底去背</li>
+      <li><b>原始提示詞（使用者提供）：</b><span class="zh-prompt">紫色龍寶寶、金色大眼、亮黃橘色的角、微笑露小牙、細緻鱗片、乳白腹部、粉紅內膜翅膀、動態姿勢、白底、高解析數位藝術</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>② 本輪使用提示詞（Gemini，附參考圖）</h2>
+    <p class="meta" style="margin-bottom:10px">策略：保留伴伴家族特徵（金眼、金橘角爪、乳白腹、粉紅內耳、細鱗、白底），物種改為 2★ 遊戲內的<b style="color:#fbbf24">食肉牛龍 Carnotaurus</b>，並明確指定「專屬辨識色＝緋紅全身」＋「表情＝開心露小牙」＋「動作＝全速衝刺」，三項都要一眼可辨。</p>
+<pre>Using the baby dragon in the reference image as an exact style guide, create a
+Carnotaurus in the same family style: cute chibi glossy 3D render, big round
+golden-amber eyes, cheerful open smile showing tiny white fangs, creamy white
+belly, small yellow-orange claws, subtle fine scale texture, plain pure white
+studio background, high-resolution digital art.
+Keep the family identity (golden eyes, bright yellow-orange horns and claws,
+cream belly, pink inner ears) but give this species its own instantly
+recognizable color: the entire body is vibrant crimson red.
+Carnotaurus anatomy: two short bull horns in bright yellow-orange right above
+the eyes, a short blunt crocodile-like snout, tiny stubby arms, thick muscular
+tail. No wings, no back spikes.
+Action: full-speed charging dash, body leaning forward, one hind foot lifted
+mid-stride, tail streaming behind for balance, mouth open in an excited happy
+roar.
+Keep the same lighting, materials, proportions and overall cuteness as the
+reference. Single full-body creature only, centered.</pre>
+  </div>
+
+  <div class="card">
+    <h2>③ 生成成果對照</h2>
+    <div class="duo">
+      <div class="fig">
+        <img src="../../game_db/assets/dinos_2/DFD-000_伴伴_2star.png" alt="伴伴二星參考圖">
+        <div class="cap"><b>參考圖</b>：伴伴二星（紫色龍寶寶）</div>
+      </div>
+      <div class="fig">
+        <img src="../generated_assets/dinos_2/bban_samples/gemini_carnotaurus_red.png" alt="Gemini 生成的緋紅食肉牛龍">
+        <div class="cap"><b>生成結果</b>：食肉牛龍（緋紅 × 金角）</div>
+      </div>
+    </div>
+    <div class="badges">
+      <div class="badge"><b>顏色辨識</b> <span class="ok">高 ✔</span><br>全身緋紅（實測主色 <code>#D84848</code>／色相 0°），金橘牛角＋金爪＋金眼、乳白腹——與紫色伴伴明顯區隔又同家族</div>
+      <div class="badge"><b>表情辨識</b> <span class="ok">高 ✔</span><br>超大金色圓眼＋白色高光，開心張口笑、露小白牙與粉舌——伴伴同款笑容完整重現</div>
+      <div class="badge"><b>動作辨識</b> <span class="ok">高 ✔</span><br>全速衝刺：身體前傾、後腳抬步、粗尾後伸平衡、短小前肢擺動——動態感一眼可讀</div>
+      <div class="badge"><b>物種辨識</b> <span class="ok">高 ✔</span><br>雙短牛角位於眼上方、鈍短吻部、粗壯尾巴——食肉牛龍招牌特徵齊備，無翼無背刺</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>④ 管線資訊</h2>
+    <ul class="feat">
+      <li>模型：<code>gemini-2.5-flash-image</code>，一次成功（首張即通過審查）</li>
+      <li>輸入：伴伴二星圖壓平至白底、縮至 1024px 作為風格參考</li>
+      <li>輸出：<code>assets/dinos_2/bban_samples/gemini_carnotaurus_red.png</code>（1024×1024 白底；遊戲用可再走 rembg 去背 → 512 主檔 → 200×200 WebP 管線）</li>
+      <li>成本：本張約 US$0.04</li>
+      <li>腳本：<code>assets/dinos_2/bban_samples/_gen_gemini_2star_style.py</code>（可改物種與顏色批量生產）</li>
+    </ul>
+  </div>
+
+  <div class="foot">DragonFinder ｜ 伴伴風格轉移測試報告 ｜ 2026-10-16</div>
+</div>
+</body>
+</html>

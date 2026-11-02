@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《彩虹羅盤與失落的探險隊》全篇漫畫分鏡腳本（序章→終章）</title>
+<style>
+  :root{
+    --ink:#2b2620; --paper:#f7f3ea; --card:#fffdf7; --line:#e3d9c2;
+    --gold:#c9a227; --mut:#8a7f6a;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.75;}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 22px 80px;}
+  header.hero{background:linear-gradient(135deg,#2b2620 0%,#4a3b28 55%,#7a5c22 100%);
+    color:#fdf8ec;border-radius:18px;padding:38px 40px;margin-bottom:28px;}
+  header.hero h1{margin:0 0 10px;font-size:30px;letter-spacing:1px;}
+  header.hero .sub{opacity:.85;font-size:15px;}
+  .tagrow{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);
+    padding:3px 12px;border-radius:999px;font-size:13px;}
+  h2.sec{font-size:23px;margin:44px 0 6px;padding-left:14px;border-left:6px solid var(--gold);}
+  h2.sec small{font-size:13px;color:var(--mut);font-weight:normal;margin-left:10px;}
+  .note{color:var(--mut);font-size:14px;margin:6px 0 18px;}
+  table{border-collapse:collapse;width:100%;background:var(--card);font-size:14px;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:#efe6d0;}
+  tr:nth-child(even) td{background:#fbf7ec;}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px;}
+  .legend span{font-size:12.5px;background:#efe6d0;border-radius:6px;padding:2px 9px;}
+  .cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:16px;margin-top:14px;}
+  .ccard{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .ccard .ph{height:190px;background:#fff;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;}
+  .ccard .ph img{max-height:190px;max-width:100%;object-fit:contain;}
+  .ccard .bd{padding:12px 14px 16px;}
+  .ccard h3{margin:0 0 2px;font-size:18px;}
+  .ccard .role{font-size:12px;color:#9c7320;font-weight:bold;margin-bottom:6px;}
+  .ccard p{margin:0;font-size:13px;color:#4c463b;}
+  .issue{margin-top:46px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--card);}
+  .ihead{padding:20px 26px 16px;color:#fff;}
+  .ihead .kicker{font-size:12.5px;opacity:.85;letter-spacing:2px;}
+  .ihead h2{margin:2px 0 6px;font-size:24px;}
+  .ihead .meta{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;opacity:.92;}
+  .ihead .hookline{margin-top:10px;background:rgba(0,0,0,.22);border-radius:10px;padding:8px 14px;font-size:13.5px;}
+  .ibody{padding:20px 22px 26px;}
+  .pagegrid{margin-bottom:20px;}
+  .pagegrid:last-child{margin-bottom:0;}
+  .phead-row{display:flex;align-items:baseline;gap:10px;margin:6px 0 10px;}
+  .phead-row .pno{font-size:16px;font-weight:bold;background:#2b2620;color:#fdf8ec;border-radius:8px;padding:2px 12px;}
+  .phead-row .ptitle{font-size:14px;color:var(--mut);}
+  .panels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  @media(max-width:900px){.panels{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.panels{grid-template-columns:1fr;}}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;}
+  .panel .top{display:flex;justify-content:space-between;align-items:center;}
+  .panel .pid{font-weight:bold;font-size:13.5px;color:#8a6a1c;}
+  .shot{font-size:11.5px;background:#2b2620;color:#fdf8ec;border-radius:999px;padding:1px 9px;white-space:nowrap;}
+  .panel .desc{font-size:13px;margin:0;color:#3c362c;flex:1;}
+  .panel .line{margin:0;font-size:13px;background:#f3edd9;border-left:3px solid var(--gold);padding:5px 9px;border-radius:0 8px 8px 0;color:#423a2a;}
+  .panel .line b{color:#7c5a12;}
+  .panel .line.nar{background:#e8ecf7;border-left-color:#5a6fb5;}
+  .panel .line.nar b{color:#3d4f9e;}
+  .hook{background:#2b2620;color:#fdf8ec;border-radius:12px;padding:12px 16px;font-size:14px;margin-top:16px;}
+  .hook b{color:#ffd970;}
+  footer{margin-top:50px;text-align:center;color:var(--mut);font-size:13px;}
+  .toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:12px;}
+  .toc a{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;text-decoration:none;color:var(--ink);font-size:14px;}
+  .toc a:hover{background:#efe6d0;}
+  .toc .n{color:#9c7320;font-weight:bold;margin-right:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>《彩虹羅盤與失落的探險隊》<br>全篇漫畫分鏡腳本</h1>
+  <div class="sub">序章 → 終章・9 篇 × 5 頁 × 6 格・電影分鏡式・2026-10-23・企劃撰寫：SophCode</div>
+  <div class="tagrow">
+    <span class="tag">王道收集冒險</span><span class="tag">歡樂・熱血・微感動</span>
+    <span class="tag">3A 遊戲 CG 皮膚</span><span class="tag">成年探險家・雷恩</span>
+    <span class="tag">45 頁・270 格</span>
+  </div>
+</header>
+
+<p class="note">本腳本以「方案A《彩虹羅盤與失落的探險隊》」為骨架，主角依 2026-10-23 裁決改為成年探險家<b>雷恩</b>；第一篇為已試閱的試閱章擴寫版，對白沿用試閱章定案。每格標示電影式鏡位（分鏡標記），供後續 Method A「角色定裝＋去背合成」直接對照合成。灰藍底台詞為旁白／字幕／刻字。</p>
+
+<h2 class="sec">分鏡標記說明</h2>
+<div class="legend">
+  <span>大遠景＝establish 環境</span><span>遠景＝全身與場景</span><span>中景＝膝上人物戲</span>
+  <span>近景＝胸上情緒</span><span>特寫＝臉/道具</span><span>大特寫＝眼/刻字</span>
+  <span>俯瞰＝上帝視角</span><span>仰視＝壓迫/威嚴</span><span>剪影＝神秘/背影</span>
+  <span>插入＝道具鏡頭</span><span>蒙太奇＝連續短鏡</span><span>閃回＝回憶畫面</span>
+</div>
+
+<h2 class="sec">全篇總覽</h2>
+<table>
+  <tr><th>篇</th><th>標題</th><th>對應區域（關卡）</th><th>碎片進度</th><th>幕</th></tr>
+  <tr><td>序章</td><td>拾獲羅盤的早晨</td><td>海邊小鎮（出發點）</td><td>0/15（半枚＋蛋）</td><td rowspan="4">第一幕・啟程</td></tr>
+  <tr><td>一</td><td>沙灘上的第一片彩虹</td><td>🌱 起源地 4×4</td><td>1/15</td></tr>
+  <tr><td>二</td><td>風與回音的考驗</td><td>🌿 幼龍平原 5×5／🍃 翠風草原 6×6／⛰️ 碎岩丘陵 7×7</td><td>4/15</td></tr>
+  <tr><td>三</td><td>霧中燈火</td><td>🌲 迷霧森林 8×8／🌙 月光沼澤 9×9</td><td>6/15</td></tr>
+  <tr><td>四</td><td>極光下的半張地圖</td><td>🌵 烈陽峽谷 10×10／❄️ 霜牙雪嶺 11×11</td><td>8/15</td><td rowspan="3">第二幕・真相</td></tr>
+  <tr><td>五</td><td>壁畫與風之試煉</td><td>🏛️ 古城遺跡 12×12／⛩️ 雲海神殿 13×13</td><td>10/15</td></tr>
+  <tr><td>六</td><td>火中的答案</td><td>🐉 龍之巔峰 14×14／🌋 熔火龍穴 15×15</td><td>12/15</td></tr>
+  <tr><td>七</td><td>沙海遁走</td><td>🏜️ 流沙王陵 16×16／🌊 碧海龍宮 17×17</td><td>14/15</td><td rowspan="2">第三幕・樂園之門</td></tr>
+  <tr><td>終章</td><td>所有人心裡的樂園</td><td>🐲 蒼穹龍境 18×18</td><td>15/15</td></tr>
+</table>
+
+<h2 class="sec">目錄</h2>
+<div class="toc">
+  <a href="#cast"><span class="n">★</span>登場角色圖鑑</a>
+  <a href="#prologue"><span class="n">序</span>序章《拾獲羅盤的早晨》</a>
+  <a href="#ch1"><span class="n">一</span>第一篇《沙灘上的第一片彩虹》</a>
+  <a href="#ch2"><span class="n">二</span>第二篇《風與回音的考驗》</a>
+  <a href="#ch3"><span class="n">三</span>第三篇《霧中燈火》</a>
+  <a href="#ch4"><span class="n">四</span>第四篇《極光下的半張地圖》</a>
+  <a href="#ch5"><span class="n">五</span>第五篇《壁畫與風之試煉》</a>
+  <a href="#ch6"><span class="n">六</span>第六篇《火中的答案》</a>
+  <a href="#ch7"><span class="n">七</span>第七篇《沙海遁走》</a>
+  <a href="#finale"><span class="n">終</span>終章《所有人心裡的樂園》</a>
+  <a href="#motifs"><span class="n">附</span>隊規・名場面・視覺母題</a>
+</div>
+
+<h2 class="sec" id="cast">登場角色圖鑑<small>主角三人採 3A 遊戲 CG 定裝（Method A 合成用已去背 PNG）</small></h2>
+<div class="cast">
+  <div class="ccard">
+    <div class="ph"><img src="../generated_assets/comics/_raw/_masters/cg_man_stand.png" alt="雷恩"></div>
+    <div class="bd"><h3>雷恩</h3><div class="role">主角・成年尋龍人（25 歲）</div>
+      <p>短側分棕髮、淡鬍渣；橄欖綠獵裝夾克、灰綠 T 恤、橄欖工裝褲；皮帶掛包收著羅盤，背包側掛睡袋、地圖卷軸與繩圈。爺爺<b>雷鐸</b>的孫子。觀察力強、溫柔而堅定，口頭禪「<b>足跡會說話</b>」。旅途中與碎片上的隊規產生共鳴，逐漸理解爺爺當年的選擇。</p></div>
+  </div>
+  <div class="ccard">
+    <div class="ph"><img src="../generated_assets/comics/_raw/_masters/cg_da_stand.png" alt="伴伴"></div>
+    <div class="bd"><h3>伴伴</h3><div class="role">主角・羅盤核心之龍</div>
+      <p>從淡藍羅盤蛋破殼而出的小龍（造型＝遊戲伴伴：紫身金角、粉耳、額頭有羅盤花紋）。額紋會與碎片共鳴發光。貪吃、愛學回音，害怕或撒嬌時會咬住雷恩的袖子。是整條故事線的情感核心。</p></div>
+  </div>
+  <div class="ccard">
+    <div class="ph"><img src="../generated_assets/comics/_raw/_masters/cg_db_stand.png" alt="薩爾塔"></div>
+    <div class="bd"><h3>薩爾塔</h3><div class="role">主角・長頸龍夥伴（第一篇加入）</div>
+      <p>住在起源地的薩爾塔龍，愛收藏亮晶晶的東西（曾把第一枚碎片當項鍊）。溫吞、貪亮晶晶，被雷恩「分你一半」的分享打動後加入隊伍，之後兼任交通工具——長頸讓牠看得又高又遠。</p></div>
+  </div>
+  <div class="ccard">
+    <div class="bd"><h3>收藏家・格雷</h3><div class="role">對手・飛艇收藏狂</div>
+      <p>想搶齊碎片、強開樂園之門，把恐龍做成「永遠不會離開的標本」。全程只聞其聲、只見飛艇剪影與探照光柱，<b>終章才露臉</b>。動機：小時候在海邊遇過一隻恐龍，此生只想「再見牠一面」，卻用錯了方法。</p></div>
+  </div>
+  <div class="ccard">
+    <div class="bd"><h3>雷鐸（爺爺）</h3><div class="role">關鍵人物・初代探險隊隊長</div>
+      <p>雷恩的爺爺，百年前「尋龍探險隊」隊長。當年在巔峰看見樂園之門，卻決定不開——「門一開，就有人想把整個樂園搬回家。」與恐龍們把鑰匙拆成十五片藏遍大陸。已離世，序章留下的舊物箱與日誌指引雷恩上路。</p></div>
+  </div>
+</div>
+
+<h2 class="sec">篇章嘉賓速查表</h2>
+<table>
+  <tr><th>篇</th><th>登場恐龍/角色（粗體＝現有圖鑑代表種）</th><th>在該篇的戲份</th></tr>
+  <tr><td>序章</td><td>海邊小鎮居民（背景）</td><td>交代雷恩與爺爺老屋的出發點</td></tr>
+  <tr><td>一</td><td><b>薩爾塔龍</b></td><td>碎片守護者→夥伴</td></tr>
+  <tr><td>二</td><td>小三角龍、三角龍媽媽、<b>無齒翼龍</b>媽媽、似鴯鶓龍三兄弟、腫頭龍</td><td>迷路事件、碎片二、捉迷藏賽、回音谷考驗</td></tr>
+  <tr><td>三</td><td>樹息龍一族（老樹息龍）、小美頜龍、<b>棘龍</b>、掘龍</td><td>霧林救援、碎片五、星星水潭、碎片六；首次點出「標本人」</td></tr>
+  <tr><td>四</td><td><b>食肉牛龍</b>警長、（帶到）艾伯塔龍雪巡隊</td><td>峽谷反擊戰、碎片七；「你爺爺當年也這樣保護過我們」、雪洞遺址、碎片八</td></tr>
+  <tr><td>五</td><td><b>竊蛋龍</b>盜團、<b>風神翼龍</b>三姊妹</td><td>王陵機關攻防、碎片九；風之試煉、碎片十</td></tr>
+  <tr><td>六</td><td><b>超帝王龍</b>、霸王龍群、<b>棘龍王</b></td><td>巔峰眼力試煉；熔岩幻象與碎片十二；格雷首次正面登場</td></tr>
+  <tr><td>七</td><td><b>敦煌龍</b>商隊、<b>海霸龍</b>、蛇頸龍/滑齒龍/海王龍（海王者列隊）</td><td>滑道斷後、假羅盤；潮門護送；門開一半危機</td></tr>
+  <tr><td>終章</td><td>全員</td><td>15 區星光齊亮、大合影</td></tr>
+</table>
+
+<!-- ============ 序章 ============ -->
+<div class="issue" id="prologue">
+  <div class="ihead" style="background:linear-gradient(120deg,#4a3b28,#c9a227);">
+    <div class="kicker">PROLOGUE</div>
+    <h2>序章《拾獲羅盤的早晨》</h2>
+    <div class="meta"><span>📍 海邊小鎮・爺爺的老屋</span><span>🧩 碎片 0/15（半枚碎盤＋淡藍之蛋）</span><span>🎨 閣樓暖黃 → 月夜海灘</span></div>
+    <div class="hookline">【本篇任務】翻開爺爺的舊物箱，讓羅盤與蛋選中雷恩。</div>
+  </div>
+  <div class="ibody">
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">序・第 1 頁</span><span class="ptitle">閣樓上的合影</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">序-1</span><span class="shot">大遠景</span></div><p class="desc">晨光灑在沿海小鎮，浪花聲遠遠傳來；山坡上是一棟爬滿藤蔓的老屋。</p><p class="line nar"><b>旁白：</b>「海風鎮的早晨，總是從浪聲開始。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-2</span><span class="shot">中景</span></div><p class="desc">閣樓。雷恩戴著手套，掀開爺爺留下的舊木箱，灰塵在光束中飛舞。</p><p class="line"><b>雷恩：</b>「爺爺走後，這箱子就一直鎖著……鑰匙居然藏在相框後面。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-3</span><span class="shot">特寫</span></div><p class="desc">箱底一張泛黃合影：一支探險隊站在大陸地圖前，意氣風發。</p><p class="line"><b>雷恩：</b>「這是……爺爺年輕的時候？他身邊這些人是……探險隊？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-4</span><span class="shot">大特寫</span></div><p class="desc">合影中央，隊長胸前掛著一枚羅盤——鑲著一圈七色寶石，彩虹般流轉。</p><p class="line nar"><b>旁白：</b>「彩虹羅盤。傳說中第一支尋龍探險隊的信物。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-5</span><span class="shot">近景</span></div><p class="desc">雷恩翻到照片背面，一行褪色的字。</p><p class="line"><b>雷恩（讀）：</b>「給找到它的人——去找吧，門還開著。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-6</span><span class="shot">遠景</span></div><p class="desc">夕陽沉入海面。雷恩把照片收進外套內袋，望著窗外出神。</p><p class="line"><b>雷恩：</b>「爺爺……你年輕時到底做過什麼啊。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">序・第 2 頁</span><span class="ptitle">枕下的羅盤</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">序-7</span><span class="shot">中景</span></div><p class="desc">深夜。雷恩在床上輾轉，窗外月光如水。</p><p class="line nar"><b>旁白：</b>「當天深夜——」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-8</span><span class="shot">大特寫</span></div><p class="desc">枕頭下透出七彩微光，一明一滅，像呼吸一樣。</p><p class="line"><b>雷恩：</b>「……什麼光？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-9</span><span class="shot">特寫</span></div><p class="desc">雷恩掀開枕頭——彩虹羅盤赫然躺在下方，完好無損。</p><p class="line"><b>雷恩：</b>「？！它、它怎麼會在這裡？！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-10</span><span class="shot">插入</span></div><p class="desc">指針瘋狂旋轉，拖出殘影成環，七色寶石依次亮起。</p><p class="line nar"><b>音效字：</b>「叮——叮——叮——」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-11</span><span class="shot">特寫</span></div><p class="desc">指針驟然停住，穩穩指向窗外、指向海的方向。</p><p class="line"><b>雷恩：</b>「指著……海邊？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-12</span><span class="shot">遠景</span></div><p class="desc">雷恩披上外套衝出門，月光小巷裡只剩他的腳步聲。</p><p class="line"><b>雷恩：</b>「好，就去看看！……反正睡不著。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">序・第 3 頁</span><span class="ptitle">月夜沙灘的蛋</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">序-13</span><span class="shot">大遠景</span></div><p class="desc">月夜海灘。銀色浪線一遍遍刷上沙灘，星空低垂。</p><p class="line nar"><b>旁白：</b>「滿月的海，亮得像另一片天。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-14</span><span class="shot">中景</span></div><p class="desc">雷恩沿沙奔跑，掌心的羅盤發光指路，像在催促。</p><p class="line"><b>雷恩：</b>「喘、喘不過氣了……這東西到底有多急啊！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-15</span><span class="shot">近景</span></div><p class="desc">雷恩腳步一停——前方沙灘上有東西在月光下反光。</p><p class="line"><b>雷恩：</b>「那是……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-16</span><span class="shot">特寫</span></div><p class="desc">沙裡埋著半枚碎裂的羅盤，斷口整齊，像被什麼精準剖開。</p><p class="line nar"><b>旁白：</b>「半枚碎盤。它就是半夜呼喚雷恩的東西。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-17</span><span class="shot">大特寫</span></div><p class="desc">碎盤旁邊，一顆淡藍色的蛋；蛋殼上浮出與羅盤同款的花紋。</p><p class="line"><b>雷恩：</b>「這花紋……跟羅盤一模一樣？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-18</span><span class="shot">近景</span></div><p class="desc">雷恩伸出手，指尖剛觸到蛋殼——蛋輕輕晃了一下。</p><p class="line"><b>雷恩：</b>「活的？！」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">序・第 4 頁</span><span class="ptitle">破殼的伙伴</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">序-19</span><span class="shot">特寫</span></div><p class="desc">蛋殼「啪」地裂開一道縫，柔和的光從縫裡迸出。</p><p class="line nar"><b>音效字：</b>「啪——」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-20</span><span class="shot">中景</span></div><p class="desc">一隻紫色小龍頂開蛋殼，睜開一雙金色大眼睛，濕漉漉地看著雷恩。</p><p class="line"><b>小龍：</b>「……嘎？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-21</span><span class="shot">近景</span></div><p class="desc">小龍額頭的花紋與雷恩手中的半枚羅盤同時亮起，共鳴般一閃一閃。</p><p class="line"><b>雷恩：</b>「又發光了……你和這羅盤，是同一個來歷？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-22</span><span class="shot">特寫</span></div><p class="desc">小龍二話不說，一口咬住雷恩的袖口。</p><p class="line"><b>雷恩：</b>「哇！袖子！好好好，我不會丟下你。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-23</span><span class="shot">中景</span></div><p class="desc">雷恩把小龍捧到月光下，小龍眯起眼睛打哈欠。</p><p class="line"><b>雷恩：</b>「以後請多指教……就叫你『<b>伴伴</b>』吧。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-24</span><span class="shot">特寫</span></div><p class="desc">伴伴額紋愉快地閃了閃，尾巴捲上雷恩的手腕。</p><p class="line"><b>伴伴：</b>「嘎！」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">序・第 5 頁</span><span class="ptitle">指針指向內陸</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">序-25</span><span class="shot">遠景</span></div><p class="desc">清晨。雷恩背起行囊站在老屋門前，回頭望了一眼。</p><p class="line"><b>雷恩：</b>「爺爺，我去去就回。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-26</span><span class="shot">插入</span></div><p class="desc">桌上留著字條，旁邊壓著那張泛黃合影。</p><p class="line"><b>字條：</b>「去去就回。——雷恩」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-27</span><span class="shot">中景</span></div><p class="desc">伴伴蹲在雷恩肩頭，抱著半枚羅盤，一臉滿足。</p><p class="line"><b>伴伴：</b>「嘎～」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-28</span><span class="shot">大特寫</span></div><p class="desc">羅盤指針「叮」地一聲輕響，穩穩指向內陸深處。</p><p class="line nar"><b>音效字：</b>「叮。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-29</span><span class="shot">遠景</span></div><p class="desc">一人一龍的背影，沿著晨曦中的大路走向廣闊大陸。</p><p class="line"><b>雷恩：</b>「好——第一站，金沙灘！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">序-30</span><span class="shot">俯瞰</span></div><p class="desc">鏡頭拉高：小鎮、海灣、大路延伸向地圖深處。</p><p class="line nar"><b>旁白：</b>「傳說中，第一支尋龍探險隊的羅盤，選中了新的主人——」</p></div>
+      </div>
+    </div>
+    <div class="hook">【章末鉤子】羅盤指針「叮」地指向內陸深處——<b>第一枚碎片就在起源地的金沙灘。</b>下一篇：第一篇《沙灘上的第一片彩虹》。</div>
+  </div>
+</div>
+
+<!-- ============ 第一篇 ============ -->
+<div class="issue" id="ch1">
+  <div class="ihead" style="background:linear-gradient(120deg,#b8892e,#f2d49b);">
+    <div class="kicker">CHAPTER 1・試閱章擴寫版</div>
+    <h2>第一篇《沙灘上的第一片彩虹》</h2>
+    <div class="meta"><span>📍 🌱 起源地 4×4・金色沙灘</span><span>🧩 碎片 1/15</span><span>🎨 日出暖金 #f2d49b</span></div>
+    <div class="hookline">【本篇任務】沿用試閱章六格對白：補給箱→嗅嗅→撿到→「我們先發現的」→最氣派的沙堡→挖到了／分你一半→隊規第一條。</div>
+  </div>
+  <div class="ibody">
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">一・第 1 頁</span><span class="ptitle">沉睡的補給箱</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">1-1</span><span class="shot">大遠景</span></div><p class="desc">日出。金色沙灘在晨光裡泛金，浪花在淺灘碎成白沫。</p><p class="line nar"><b>旁白：</b>「傳說中，第一支尋龍探險隊的補給箱，就沉睡在這片金沙灘——」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-2</span><span class="shot">遠景</span></div><p class="desc">雷恩與伴伴踏上沙灘，腳印一路延伸。</p><p class="line"><b>雷恩：</b>「羅盤的反應越來越強了……就在這附近。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-3</span><span class="shot">中景</span></div><p class="desc">伴伴興奮地在沙上打滾，滾成一隻沙糰子。</p><p class="line"><b>伴伴：</b>「嘎——！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-4</span><span class="shot">近景</span></div><p class="desc">雷恩攤開地圖，半枚羅盤放在圖角。</p><p class="line"><b>雷恩：</b>「第一枚碎片……就在這一帶。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-5</span><span class="shot">特寫</span></div><p class="desc">半枚羅盤微微發光，伴伴的額紋同步閃爍，像在打暗號。</p><p class="line"><b>伴伴：</b>「嘎？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-6</span><span class="shot">插入</span></div><p class="desc">不遠處的沙丘上，露出一只生鏽鐵箱的箱角。</p><p class="line nar"><b>旁白：</b>「探險隊的補給箱，歷經百年風沙仍守著原處。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">一・第 2 頁</span><span class="ptitle">日誌與嗅嗅</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">1-7</span><span class="shot">中景</span></div><p class="desc">雷恩跪地刨沙，挖出整只鐵箱，箱蓋「吱呀」掀開。</p><p class="line"><b>雷恩：</b>「有了！……哇，沉得要命。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-8</span><span class="shot">特寫</span></div><p class="desc">箱內：乾糧、繩索、火石，還有一本包著防水布的小日誌。</p><p class="line nar"><b>旁白：</b>「前人留下的補給——如今原封不動地交到新的尋龍人手上。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-9</span><span class="shot">近景</span></div><p class="desc">雷恩翻開日誌，某一頁被整齊撕掉。</p><p class="line"><b>雷恩（讀）：</b>「『隊規第一條……』後面——被撕掉了？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-10</span><span class="shot">中景</span></div><p class="desc">伴伴忽然豎起耳朵，鼻子對著空氣一抽一抽。</p><p class="line"><b>伴伴：</b>「……嘎？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-11</span><span class="shot">大特寫</span></div><p class="desc">伴伴的鼻子貼近沙地，額紋亮起七彩微光。</p><p class="line"><b>伴伴：</b>「（嗅嗅……）亮晶晶的味道！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-12</span><span class="shot">中景</span></div><p class="desc">伴伴沿氣味一路小跑，雷恩慌忙收好日誌追上。</p><p class="line"><b>雷恩：</b>「等等等等——別跑那麼快！」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">一・第 3 頁</span><span class="ptitle">愛亮晶晶的薩爾塔</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">1-13</span><span class="shot">遠景</span></div><p class="desc">沙灘另一頭，一隻長頸龍（薩爾塔）正低頭用鼻尖撥沙。</p><p class="line nar"><b>旁白：</b>「氣味的盡頭，是一位愛收藏亮晶晶的鄰居。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-14</span><span class="shot">特寫</span></div><p class="desc">薩爾塔叼起一枚七彩碎片，雙眼瞬間變成星星狀。</p><p class="line"><b>薩爾塔：</b>「哦哦……亮晶晶……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-15</span><span class="shot">近景</span></div><p class="desc">薩爾塔把碎片往自己脖子上一掛，滿意地左看右看。</p><p class="line"><b>薩爾塔：</b>「撿到～亮晶晶的寶物！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-16</span><span class="shot">中景</span></div><p class="desc">伴伴氣呼呼衝到薩爾塔面前，跳起來比劃。</p><p class="line"><b>伴伴：</b>「嘎！嘎嘎嘎！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-17</span><span class="shot">近景</span></div><p class="desc">雷恩跟上，看見碎片在薩爾塔頸上發光。</p><p class="line"><b>雷恩：</b>「那就是……第一片碎片。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-18</span><span class="shot">特寫</span></div><p class="desc">薩爾塔護住碎片，警惕地盯著這兩個陌生人。</p><p class="line"><b>薩爾塔：</b>「你們……也想搶我的項鍊？」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">一・第 4 頁</span><span class="ptitle">先發現的爭奪戰</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">1-19</span><span class="shot">中景</span></div><p class="desc">伴伴跳到最高，氣鼓鼓地指向碎片。</p><p class="line"><b>伴伴：</b>「喂——那是我們先發現的！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-20</span><span class="shot">近景</span></div><p class="desc">薩爾塔扭過頭，碎片的七彩映在牠的眼裡。</p><p class="line"><b>薩爾塔：</b>「最漂亮的項鍊～」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-21</span><span class="shot">特寫</span></div><p class="desc">雷恩攤手苦笑，看著這一龍一龍的拉鋸戰。</p><p class="line"><b>雷恩：</b>「跟牠講道理好像沒用……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-22</span><span class="shot">近景</span></div><p class="desc">雷恩環顧四周——沙灘上到處是大大小小的沙堡。</p><p class="line"><b>雷恩：</b>「沙堡……對了，收藏寶物的話——」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-23</span><span class="shot">中景</span></div><p class="desc">雷恩靈機一動，指向遠方最大的一座沙堡。</p><p class="line"><b>雷恩：</b>「寶貝一定藏在最氣派的沙堡裡！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-24</span><span class="shot">遠景</span></div><p class="desc">薩爾塔眼睛一亮，轉身就奔向大沙堡，長頸甩成一道弧。</p><p class="line"><b>薩爾塔：</b>「最氣派的沙堡——!!」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">一・第 5 頁</span><span class="ptitle">挖到了！與隊規第一條</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">1-25</span><span class="shot">中景</span></div><p class="desc">薩爾塔把「項鍊」取下，珍重地埋進沙堡頂端，又自己動手挖。</p><p class="line"><b>薩爾塔：</b>「挖寶藏～挖寶藏～」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-26</span><span class="shot">近景</span></div><p class="desc">伴伴撲上去幫忙，四爪齊飛，沙塵滾滾。</p><p class="line"><b>伴伴：</b>「耶——挖到了！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-27</span><span class="shot">中景</span></div><p class="desc">雷恩捧起完整的第一枚碎片，薩爾塔與伴伴湊近看，光映在三張臉上。</p><p class="line"><b>雷恩：</b>「找到了……第一片彩虹。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-28</span><span class="shot">近景</span></div><p class="desc">雷恩把補給箱裡的貝殼項鍊遞給薩爾塔。</p><p class="line"><b>雷恩：</b>「這個送你——<b>分你一半！</b>」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-29</span><span class="shot">中景</span></div><p class="desc">薩爾塔愣住，看看項鍊又看看雷恩，眼睛濕潤發亮。</p><p class="line"><b>薩爾塔：</b>「分我……一半？從來沒有人……跟我分過東西。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">1-30</span><span class="shot">大特寫</span></div><p class="desc">碎片背面刻著一行小字。</p><p class="line nar"><b>旁白：</b>「碎片背面刻著——<b>隊規第一條：『永遠，把恐龍當朋友。』</b>」</p></div>
+      </div>
+    </div>
+    <div class="hook">【章末鉤子】碎片鑲入羅盤，起源地的金色亮起一格，指針轉向翠綠的內陸平原。<b>薩爾塔正式加入隊伍。</b>下一篇：第二篇《風與回音的考驗》。</div>
+  </div>
+</div>
+
+<!-- ============ 第二篇 ============ -->
+<div class="issue" id="ch2">
+  <div class="ihead" style="background:linear-gradient(120deg,#4c8a3a,#a8d878);">
+    <div class="kicker">CHAPTER 2</div>
+    <h2>第二篇《風與回音的考驗》</h2>
+    <div class="meta"><span>📍 🌿 幼龍平原 5×5／🍃 翠風草原 6×6／⛰️ 碎岩丘陵 7×7</span><span>🧩 碎片 2→4/15</span><span>🎨 晴朗翠綠→晨風金綠→赭石岩壁</span></div>
+    <div class="hookline">【本篇任務】撿碎片二、三、四；首次看見格雷飛艇剪影；發現探險隊日記殘句。</div>
+  </div>
+  <div class="ibody">
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">二・第 1 頁</span><span class="ptitle">哭泣的小三角龍</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">2-1</span><span class="shot">大遠景</span></div><p class="desc">開闊的幼龍平原，草浪起伏，遠處恐龍家族成群。</p><p class="line nar"><b>旁白：</b>「翠綠的平原上，住著成群結隊的恐龍家族——」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-2</span><span class="shot">中景</span></div><p class="desc">草叢裡，一隻小三角龍蜷著身體哭泣，角上還纏著斷掉的牽繩。</p><p class="line"><b>小三角龍：</b>「嗚嗚……媽媽……嗚嗚……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-3</span><span class="shot">近景</span></div><p class="desc">雷恩蹲到與小三角龍視線同高，語氣放輕。</p><p class="line"><b>雷恩：</b>「你怎麼一個人在這裡？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-4</span><span class="shot">中景</span></div><p class="desc">小三角龍抽噎著指向天空。</p><p class="line"><b>小三角龍：</b>「我追著一道<b>會飛的光</b>……跟丟了隊伍……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-5</span><span class="shot">特寫</span></div><p class="desc">雷恩低頭看草地：一串小小足跡旁，還有一排三道細爪印。</p><p class="line"><b>雷恩：</b>「會飛的光……原來如此。足跡會說話——跟著走就知道了。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-6</span><span class="shot">近景</span></div><p class="desc">伴伴拍拍小三角龍的頭，露出可靠的小表情。</p><p class="line"><b>伴伴：</b>「嘎！」（放心交給我們！）</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">二・第 2 頁</span><span class="ptitle">翼龍巢裡的蛋</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">2-7</span><span class="shot">俯瞰</span></div><p class="desc">小小足跡與爪印在草原上延伸成線，直指一座岩架。</p><p class="line nar"><b>旁白：</b>「三串足跡、一排爪印，拼出一條回家的路。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-8</span><span class="shot">遠景</span></div><p class="desc">先送小三角龍回到急得原地打轉的三角龍媽媽身邊。</p><p class="line"><b>三角龍媽媽：</b>「孩子——！你跑去哪裡了！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-9</span><span class="shot">中景</span></div><p class="desc">小三角龍撲進媽媽懷裡，母子倆又哭又笑。</p><p class="line"><b>小三角龍：</b>「是大哥哥他們帶我回來的！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-10</span><span class="shot">近景</span></div><p class="desc">三角龍媽媽低頭致謝，忽然想起什麼。</p><p class="line"><b>三角龍媽媽：</b>「謝謝你們……對了，你們在找『發光的石頭』嗎？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-11</span><span class="shot">特寫</span></div><p class="desc">雷恩與伴伴同時睜大眼睛。</p><p class="line"><b>雷恩：</b>「發光的石頭……妳見過？！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-12</span><span class="shot">近景</span></div><p class="desc">媽媽望向草原盡頭的岩架。</p><p class="line"><b>三角龍媽媽：</b>「翼龍太太的巢裡，有一顆『蛋』……孵了三個月都孵不出來。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">二・第 3 頁</span><span class="ptitle">孵不出來的蛋</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">2-13</span><span class="shot">大遠景</span></div><p class="desc">草原盡頭的岩架上，無齒翼龍巢裡一顆七彩「蛋」在陽下發亮。</p><p class="line nar"><b>旁白：</b>「那不是蛋——是第二枚羅盤碎片。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-14</span><span class="shot">中景</span></div><p class="desc">翼龍媽媽張翼護巢，戒備地看著靠近的一行人。</p><p class="line"><b>翼龍媽媽：</b>「離我的寶寶遠一點！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-15</span><span class="shot">近景</span></div><p class="desc">雷恩高舉雙手慢慢靠近，語氣誠懇。</p><p class="line"><b>雷恩：</b>「打擾了……那顆蛋，其實是我們在找的碎片。它三個月都沒有動靜對吧？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-16</span><span class="shot">中景</span></div><p class="desc">翼龍媽媽低頭看看巢裡紋絲不動的「蛋」，又看看雷恩，緩緩收翼。</p><p class="line"><b>翼龍媽媽：</b>「……真的。它從來不動，也不會發燙。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-17</span><span class="shot">特寫</span></div><p class="desc">碎片被輕輕放回雷恩掌心，翼龍媽媽用鼻尖碰了碰，像道別。</p><p class="line"><b>翼龍媽媽：</b>「原來你不是我的孩子……去吧，回到你真正的家。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-18</span><span class="shot">遠景</span></div><p class="desc">無齒翼龍振翅而起盤旋護送；鏡頭裡第一次看見整張大陸與遠方雪山。</p><p class="line"><b>翼龍媽媽：</b>「跟著風往草原深處去吧——那裡有『跑得最快的傢伙』，牠也藏著你們的東西。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">二・第 4 頁</span><span class="ptitle">草浪捉迷藏賽</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">2-19</span><span class="shot">大遠景</span></div><p class="desc">金綠草浪翻湧，一座古老石碑立在風裡，碑面刻著翼龍紋。</p><p class="line nar"><b>旁白：</b>「草原石碑記載：碎片三，在『跑得最快的傢伙』巢裡。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-20</span><span class="shot">中景</span></div><p class="desc">似鴯鶓龍三兄弟一字排開，擋住去路。</p><p class="line"><b>三兄弟：</b>「想拿碎片？先贏過我們的草浪捉迷藏賽！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-21</span><span class="shot">近景</span></div><p class="desc">雷恩捲起袖子，露出笑容。</p><p class="line"><b>雷恩：</b>「來吧。草葉的倒向、足跡的深淺、風吹的方向……都會說話。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-22</span><span class="shot">蒙太奇</span></div><p class="desc">三格連環：排除被風吹亂的假路線→鎖定三道真足跡→衝過終點線。</p><p class="line nar"><b>旁白：</b>「排除法，是尋龍人的第二雙眼睛。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-23</span><span class="shot">中景</span></div><p class="desc">終點巢中，第三枚碎片閃著綠光；三兄弟抱頭哀號。</p><p class="line"><b>三兄弟：</b>「輸、輸了——！連風都背叛我們！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-24</span><span class="shot">特寫</span></div><p class="desc">石碑背面，一道<b>很新的抓痕</b>刻著警告；天邊掠過一艘細長的飛艇剪影。</p><p class="line nar"><b>刻字：</b>「別讓『收藏家』搶走羅盤。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">二・第 5 頁</span><span class="ptitle">回音谷的腦袋</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">2-25</span><span class="shot">大遠景</span></div><p class="desc">赭石色岩谷兩壁夾峙，谷口一道石門，門上刻著問號紋。</p><p class="line nar"><b>旁白：</b>「碎片的指向，沒入會吃掉聲音的回音迷宮谷。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-26</span><span class="shot">中景</span></div><p class="desc">腫頭龍抱臂守在門口，頭殼在陽下油亮。</p><p class="line"><b>腫頭龍：</b>「想進谷？<b>腦袋清楚的傢伙才能進。</b>」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-27</span><span class="shot">中景</span></div><p class="desc">谷內，喊出去的聲音被石壁「吃掉」，只剩扭曲殘響。</p><p class="line"><b>伴伴：</b>「嘎——……嘎——……」（回音怪怪的！）</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-28</span><span class="shot">特寫</span></div><p class="desc">雷恩閉上眼，用手指敲著石壁聽聲辨位。</p><p class="line"><b>雷恩：</b>「聲音被吃掉的位置……反過來就是通道。在那裡！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-29</span><span class="shot">近景</span></div><p class="desc">第四枚碎片入手；伴伴學舌谷內回音，「嘎——嘎——嘎——」逗得腫頭龍笑到捶地。</p><p class="line"><b>腫頭龍：</b>「哈哈、哈哈哈！這小傢伙比回音還有趣！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">2-30</span><span class="shot">特寫</span></div><p class="desc">出谷石壁上，刻著探險隊日記的殘句。</p><p class="line nar"><b>日記殘句：</b>「集到一半我們才發現——<b>樂園，是有代價的。</b>」</p></div>
+      </div>
+    </div>
+    <div class="hook">【章末鉤子】碎片二、三、四入盤，「收藏家」之名第一次出現。<b>日記說「樂園是有代價的」——什麼代價？</b>下一篇：第三篇《霧中燈火》。</div>
+  </div>
+</div>
+
+<!-- ============ 第三篇 ============ -->
+<div class="issue" id="ch3">
+  <div class="ihead" style="background:linear-gradient(120deg,#2f6e62,#4f9e8f 55%,#5a6fb5);">
+    <div class="kicker">CHAPTER 3</div>
+    <h2>第三篇《霧中燈火》</h2>
+    <div class="meta"><span>📍 🌲 迷霧森林 8×8／🌙 月光沼澤 9×9</span><span>🧩 碎片 5→6/15</span><span>🎨 藍綠濃霧＋螢菇點光→深藍月夜水面鏡像</span></div>
+    <div class="hookline">【本篇任務】碎片五、六入手；老樹息龍講述「標本人」；格雷飛艇探照光柱首次直射。</div>
+  </div>
+  <div class="ibody">
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">三・第 1 頁</span><span class="ptitle">枝頭上的小燈</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">3-1</span><span class="shot">大遠景</span></div><p class="desc">藍綠色的濃霧森林，霧濃到五步外不見路，只有點點微光在枝頭閃爍。</p><p class="line nar"><b>旁白：</b>「濃霧森林，五步外不見路——但霧裡有燈。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-2</span><span class="shot">中景</span></div><p class="desc">一隻隻樹息龍倒掛枝頭，腹部發著溫柔的螢光，像掛滿樹的小燈籠。</p><p class="line"><b>樹息龍們：</b>「迷路的客人……跟著光走，別踩進霧坑。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-3</span><span class="shot">近景</span></div><p class="desc">雷恩取出半枚羅盤給最老的一隻看。</p><p class="line"><b>雷恩：</b>「謝謝你們。請問……有沒有見過這樣的碎片？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-4</span><span class="shot">特寫</span></div><p class="desc">老樹息龍看見羅盤，神情猛地一變。</p><p class="line"><b>老樹息龍：</b>「有。但在交出它之前……求你們一件事。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-5</span><span class="shot">中景</span></div><p class="desc">霧深處傳來小小的哭聲——小美頜龍被困在霧裡，越哭越遠。</p><p class="line"><b>小美頜龍：</b>「救命……我看不見路了……嗚……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-6</span><span class="shot">近景</span></div><p class="desc">伴伴挺起小胸膛，一臉赴湯蹈火。</p><p class="line"><b>伴伴：</b>「嘎！」（交給我們！）</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">三・第 2 頁</span><span class="ptitle">光路救援</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">3-7</span><span class="shot">中景</span></div><p class="desc">樹息龍們齊動員，把發光的蘑菇一根根排進霧裡。</p><p class="line"><b>老樹息龍：</b>「霧裡我們只看見光——把光鋪成一條路！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-8</span><span class="shot">遠景</span></div><p class="desc">螢光蘑菇在濃霧中蜿蜒成一條光路，雷恩循光前行。</p><p class="line nar"><b>旁白：</b>「一盞燈到不了的地方，一條路可以。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-9</span><span class="shot">中景</span></div><p class="desc">雷恩在霧坑邊緣一把抱住滑落的小美頜龍。</p><p class="line"><b>雷恩：</b>「抓穩了——！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-10</span><span class="shot">近景</span></div><p class="desc">小美頜龍抱著雷恩的脖子，破涕為笑。</p><p class="line"><b>小美頜龍：</b>「謝謝大哥哥……霧裡的光，好溫暖。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-11</span><span class="shot">中景</span></div><p class="desc">回到枝頭燈群，老樹息龍看著安然無恙的小孫輩，緩緩點頭。</p><p class="line"><b>老樹息龍：</b>「好孩子。你們的心，配得上那塊碎片。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-12</span><span class="shot">特寫</span></div><p class="desc">老樹息龍從樹洞裡捧出第五枚碎片，碎片在霧中發著柔柔的藍光。</p><p class="line"><b>老樹息龍：</b>「拿去吧。還有……聽我這把老骨頭，說一個故事。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">三・第 3 頁</span><span class="ptitle">標本人的故事</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">3-13</span><span class="shot">近景</span></div><p class="desc">老樹息龍望著霧，聲音壓得很低。</p><p class="line"><b>老樹息龍：</b>「很多年前，有個人來過這片森林……他把活生生的恐龍，做成了<b>標本</b>。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-14</span><span class="shot">特寫</span></div><p class="desc">伴伴渾身發抖，雷恩握緊拳頭。</p><p class="line"><b>雷恩：</b>「標本……？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-15</span><span class="shot">近景</span></div><p class="desc">雷恩追問，老樹息龍緩緩搖頭又點頭。</p><p class="line"><b>雷恩：</b>「那個人……還在嗎？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-16</span><span class="shot">中景</span></div><p class="desc">老樹息龍抬起頭，望向霧外漸暗的天色。</p><p class="line"><b>老樹息龍：</b>「牠的飛艇……最近，又出現在森林上空了。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-17</span><span class="shot">遠景</span></div><p class="desc">話音未落，濃霧忽然散開一瞬——谷外夜空，一道巨大的<b>探照光柱</b>掃過森林。</p><p class="line"><b>伴伴：</b>「嘎?!!」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-18</span><span class="shot">特寫</span></div><p class="desc">雷恩把伴伴護進懷裡，眼神從未如此堅定。</p><p class="line"><b>雷恩：</b>「不管是誰——<b>別想傷害我的朋友。</b>」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">三・第 4 頁</span><span class="ptitle">星星水潭</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">3-19</span><span class="shot">大遠景</span></div><p class="desc">深藍月夜，月光沼澤如一面黑鏡，完整倒映著滿天星空。</p><p class="line nar"><b>旁白：</b>「沼澤裡有一潭水，倒影裡的星空，比真的還亮。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-20</span><span class="shot">中景</span></div><p class="desc">巨大的棘龍立在水潭邊，背帆在月光下投下長影。</p><p class="line"><b>棘龍：</b>「碎片沉在星星水潭底。但水裡……住著<b>愛收集石頭的傢伙</b>。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-21</span><span class="shot">近景</span></div><p class="desc">雷恩蹲在水邊，觀察一條被踏平的草徑和沿途散落的石堆。</p><p class="line"><b>雷恩：</b>「掘龍的搬運路徑……原來如此，巢在那裡。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-22</span><span class="shot">俯瞰</span></div><p class="desc">沼澤地形盡收眼底：石頭路徑一圈圈繞向中央巢位。</p><p class="line nar"><b>旁白：</b>「每一顆被搬走的小石頭，都是路標。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-23</span><span class="shot">中景</span></div><p class="desc">掘龍巢中一舉撈起第六枚碎片，掘龍在旁看得目瞪口呆。</p><p class="line"><b>掘龍：</b>「我的寶石……！……好吧，你比較會找。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-24</span><span class="shot">特寫</span></div><p class="desc">碎片出水的一瞬——平靜的星空倒影裡，多了一道<b>不屬於星星的光</b>。</p><p class="line"><b>雷恩：</b>「……那是什麼？」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">三・第 5 頁</span><span class="ptitle">頭頂上的飛艇</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">3-25</span><span class="shot">仰視</span></div><p class="desc">抬頭——格雷的飛艇已到沼澤上空，探照燈緩緩掃過水面。</p><p class="line nar"><b>旁白：</b>「收藏家，到達月光沼澤。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-26</span><span class="shot">近景</span></div><p class="desc">棘龍壓低聲音，背帆微微豎起。</p><p class="line"><b>棘龍：</b>「牠們在找碎片……也在找你們。快走吧。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-27</span><span class="shot">中景</span></div><p class="desc">雷恩把碎片收入行囊，扣緊袋口。</p><p class="line"><b>雷恩：</b>「那我們就要更快。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-28</span><span class="shot">特寫</span></div><p class="desc">六片碎片鑲入羅盤，指針轉向赤紅的峽谷方向。</p><p class="line nar"><b>旁白：</b>「六片齊亮。指針，轉向烈陽峽谷。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-29</span><span class="shot">遠景</span></div><p class="desc">月夜下，雷恩與夥伴們奔向峽谷方向。</p><p class="line"><b>伴伴：</b>「嘎——！」（衝啊——！）</p></div>
+        <div class="panel"><div class="top"><span class="pid">3-30</span><span class="shot">俯瞰</span></div><p class="desc">沼澤如鏡，飛艇的陰影緩緩掠過水面。</p><p class="line nar"><b>旁白：</b>「第六片碎片入手。而不知不覺中，『收藏家』的影子已緊跟在後——」</p></div>
+      </div>
+    </div>
+    <div class="hook">【章末鉤子】「標本人」的存在證實了，飛艇已追到頭頂。<b>碎片七所在的峽谷，正等著一場正午的追逐。</b>下一篇：第四篇《極光下的半張地圖》。</div>
+  </div>
+</div>
+
+<!-- ============ 第四篇 ============ -->
+<div class="issue" id="ch4">
+  <div class="ihead" style="background:linear-gradient(120deg,#b4462a 0%,#e07840 45%,#5a7ea8 100%);">
+    <div class="kicker">CHAPTER 4・中盤轉折其一</div>
+    <h2>第四篇《極光下的半張地圖》</h2>
+    <div class="meta"><span>📍 🌵 烈陽峽谷 10×10／❄️ 霜牙雪嶺 11×11</span><span>🧩 碎片 7→8/15</span><span>🎨 正午橙紅→冷藍極光</span></div>
+    <div class="hookline">【本篇任務】峽谷反擊戰與碎片七；警長爆料「你爺爺當年也這樣保護過我們」；雪洞遺址與碎片八；爺爺＝隊長身份浮現。</div>
+  </div>
+  <div class="ibody">
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">四・第 1 頁</span><span class="ptitle">正午的網</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">4-1</span><span class="shot">大遠景</span></div><p class="desc">烈陽峽谷，紅岩被正午晒得發燙，熱浪扭曲了遠處的景物。</p><p class="line nar"><b>旁白：</b>「烈陽峽谷，一年裡最熱的正午——也是最危險的正午。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-2</span><span class="shot">遠景</span></div><p class="desc">飛艇放下機械鉤爪，巨大的捕獸網在峽谷間張開。</p><p class="line nar"><b>旁白：</b>「格雷的手下，搶先一步張好了網。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-3</span><span class="shot">近景</span></div><p class="desc">雷恩護著伴伴後退，薩爾塔長頸橫擋在前。</p><p class="line"><b>雷恩：</b>「可惡……前後都被封死了！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-4</span><span class="shot">中景</span></div><p class="desc">一聲低沉的吼聲迴盪峽谷——一頭食肉牛龍緩步走出陰影，角上掛著褪色的警徽。</p><p class="line"><b>警長：</b>「在咱們峽谷搶東西——先問問我的角。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-5</span><span class="shot">近景</span></div><p class="desc">警長向雷恩偏了偏頭，示意跟上。</p><p class="line"><b>警長：</b>「那邊的小子，會鑽岩縫嗎？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-6</span><span class="shot">遠景</span></div><p class="desc">警長帶領一行人鑽進只有在地龍知道的岩縫近路。</p><p class="line"><b>雷恩：</b>「會學！帶路吧！」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">四・第 2 頁</span><span class="ptitle">互不相鄰</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">4-7</span><span class="shot">中景</span></div><p class="desc">狹窄岩縫中，警長回頭教大家走位。</p><p class="line"><b>警長：</b>「聽好——<b>互不相鄰</b>。網一旦罩下來，罩住一個就罩不住第二個。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-8</span><span class="shot">俯瞰</span></div><p class="desc">俯瞰峽谷：三張捕獸網接連落空，網與網之間露出安全的空隙。</p><p class="line nar"><b>旁白：</b>「網，永遠追不上分散而清醒的腳步。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-9</span><span class="shot">近景</span></div><p class="desc">雷恩看見峽谷上方翻滾的熱氣流，靈機一動。</p><p class="line"><b>雷恩：</b>「警長！把牠們引進熱氣流——那裡的上升氣流會掀翻飛艇！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-10</span><span class="shot">大遠景</span></div><p class="desc">飛艇追入熱氣流，瞬間被吹得搖搖晃晃，鉤爪亂甩，狼狽撤退。</p><p class="line"><b>警長：</b>「哈哈！再見了，空中的大笨鳥！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-11</span><span class="shot">中景</span></div><p class="desc">眾人歡呼。警長卻忽然安靜，凝視雷恩行囊裡發光的羅盤。</p><p class="line"><b>警長：</b>「……那個羅盤。你是在哪裡得到的。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-12</span><span class="shot">特寫</span></div><p class="desc">警長緩緩取下胸前的舊徽章，翻到背面——嵌著一枚七彩碎片。</p><p class="line nar"><b>旁白：</b>「碎片七，就藏在警長的徽章背面。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">四・第 3 頁</span><span class="ptitle">你爺爺的事</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">4-13</span><span class="shot">近景</span></div><p class="desc">警長把徽章鄭重放在雷恩掌心。</p><p class="line"><b>警長：</b>「這是咱們一族守了兩代的東西。今天，交給對的人。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-14</span><span class="shot">特寫</span></div><p class="desc">警長盯著雷恩的臉，一字一句地說。</p><p class="line"><b>警長：</b>「你爺爺……當年也這樣保護過我們。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-15</span><span class="shot">大特寫</span></div><p class="desc">雷恩瞳孔猛地一震。</p><p class="line"><b>雷恩：</b>「爺爺……？！你認識我爺爺？！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-16</span><span class="shot">中景</span></div><p class="desc">伴伴歪著頭看看雷恩又看看警長；薩爾塔若有所思地垂下長頸。</p><p class="line"><b>伴伴：</b>「嘎？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-17</span><span class="shot">遠景</span></div><p class="desc">遠方雪嶺方向，暴雪與極光在天際交織。</p><p class="line nar"><b>旁白：</b>「羅盤的指針，指向白茫茫的雪嶺。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-18</span><span class="shot">近景</span></div><p class="desc">雷恩握緊徽章，眼神複雜。</p><p class="line"><b>雷恩：</b>「爺爺……你到底是什麼人……」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">四・第 4 頁</span><span class="ptitle">雪洞遺址</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">4-19</span><span class="shot">大遠景</span></div><p class="desc">霜牙雪嶺，暴雪封山，天地蒼茫一片白。</p><p class="line nar"><b>旁白：</b>「暴雪封山的日子，雪嶺不歡迎訪客——除了非去不可的人。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-20</span><span class="shot">中景</span></div><p class="desc">一行人躲進雪洞，洞中竟藏著一座探險隊營地遺址：熄滅的營火、舊背包、帳架。</p><p class="line"><b>雷恩：</b>「這是……探險隊的營地？！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-21</span><span class="shot">特寫</span></div><p class="desc">營地中央：半張地圖，與第八枚碎片並排安放，像有人刻意留置。</p><p class="line nar"><b>旁白：</b>「半張地圖＋碎片八。是留給後來者的路標。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-22</span><span class="shot">近景</span></div><p class="desc">雷恩翻開一旁凍脆的日誌，顫聲讀出。</p><p class="line"><b>雷恩（讀）：</b>「『我們在巔峰看見了樂園之門……但隊長決定不開。』」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-23</span><span class="shot">特寫</span></div><p class="desc">日誌續行，字跡潦草而用力。</p><p class="line"><b>雷恩（讀）：</b>「『門一開，就有人想把整個樂園搬回家。』」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-24</span><span class="shot">近景</span></div><p class="desc">雷恩的手指停在「隊長」二字上。</p><p class="line"><b>雷恩：</b>「隊長……」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">四・第 5 頁</span><span class="ptitle">極光下的側臉</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">4-25</span><span class="shot">中景</span></div><p class="desc">洞外，極光驟然亮起，綠紫色光簾垂滿夜空。</p><p class="line nar"><b>旁白：</b>「那一夜，雪嶺的極光特別亮。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-26</span><span class="shot">特寫</span></div><p class="desc">伴伴額紋與羅盤共鳴，光芒在洞壁上投射出一幅光影。</p><p class="line"><b>伴伴：</b>「嘎……？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-27</span><span class="shot">大特寫</span></div><p class="desc">光影中浮現探險隊<b>隊長的側臉</b>——堅毅、溫和，望向遠方。</p><p class="line nar"><b>旁白：</b>「百年前隊長的側臉，穿越時光落在雪洞裡。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-28</span><span class="shot">大特寫</span></div><p class="desc">雷恩顫抖著掏出懷中的泛黃合影，光影中的側臉與照片上的年輕爺爺重合。</p><p class="line"><b>雷恩：</b>「這個人……和爺爺年輕時……一模一樣……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-29</span><span class="shot">中景</span></div><p class="desc">伴伴依偎進雷恩懷裡，薩爾塔垂下長頸輕碰他的肩。</p><p class="line"><b>雷恩：</b>「爺爺是隊長……爺爺當年……沒能阻止另一個隊員開門……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">4-30</span><span class="shot">遠景</span></div><p class="desc">極光之下，雪山連綿無盡。</p><p class="line nar"><b>旁白：</b>「第八片碎片，與半張地圖。而雷恩第一次知道——爺爺雷鐸，就是當年的探險隊隊長。」</p></div>
+      </div>
+    </div>
+    <div class="hook">【章末鉤子】爺爺＝隊長，震撼彈落下；而古城遺跡的壁畫，記載著當年「另一個隊員」的真相。<b>有人不想讓他們看到壁畫的結局。</b>下一篇：第五篇《壁畫與風之試煉》。</div>
+  </div>
+</div>
+
+<!-- ============ 第五篇 ============ -->
+<div class="issue" id="ch5">
+  <div class="ihead" style="background:linear-gradient(120deg,#a8863a,#d9b96c 45%,#7fa8d0 100%);">
+    <div class="kicker">CHAPTER 5</div>
+    <h2>第五篇《壁畫與風之試煉》</h2>
+    <div class="meta"><span>📍 🏛️ 古城遺跡 12×12／⛩️ 雲海神殿 13×13</span><span>🧩 碎片 9→10/15</span><span>🎨 金沙塵光→雲白鎏金</span></div>
+    <div class="hookline">【本篇任務】壁畫揭開拆鑰匙的真相；碎片九機關攻防；碎片十風之試煉；飛艇已先出發前往巔峰。</div>
+  </div>
+  <div class="ibody">
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">五・第 1 頁</span><span class="ptitle">壁畫長卷</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">5-1</span><span class="shot">大遠景</span></div><p class="desc">金沙塵光灑落的古城遺跡，石柱林立于晨光中。</p><p class="line nar"><b>旁白：</b>「古城遺跡。百年前，探險隊與收藏家協會最後交鋒的地方。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-2</span><span class="shot">中景</span></div><p class="desc">長廊兩側，壁畫長卷徐徐展開：戴高帽的收藏家協會，與背背包的探險隊並立。</p><p class="line"><b>雷恩：</b>「這些壁畫……在講一百年前的事。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-3</span><span class="shot">特寫</span></div><p class="desc">壁畫一格：百年前「收藏家協會」想強開樂園之門；下一格，探險隊與恐龍並肩把「鑰匙」拆成十五片。</p><p class="line nar"><b>旁白：</b>「鑰匙，被拆成十五片；恐龍們帶著碎片，奔向大陸的每一個角落。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-4</span><span class="shot">近景</span></div><p class="desc">雷恩撫上壁畫，指尖沾滿金沙。</p><p class="line"><b>雷恩：</b>「原來碎片散落各地……是爺爺他們親手安排的。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-5</span><span class="shot">中景</span></div><p class="desc">大殿深處，王座機關轟鳴運轉，第九枚碎片嵌於王座之額。</p><p class="line"><b>伴伴：</b>「嘎！」（在那裡！）</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-6</span><span class="shot">特寫</span></div><p class="desc">牆角的陰影裡，幾雙發亮的眼睛正窺視著王座。</p><p class="line nar"><b>旁白：</b>「竊蛋龍盜團，聞風而至。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">五・第 2 頁</span><span class="ptitle">古墓機關攻防</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">5-7</span><span class="shot">中景</span></div><p class="desc">竊蛋龍盜團蜂擁撲向王座，尖爪直取碎片。</p><p class="line"><b>盜團頭目：</b>「那個亮晶晶，是我們的啦！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-8</span><span class="shot">近景</span></div><p class="desc">雷恩一掌拍上機關樞紐。</p><p class="line"><b>雷恩：</b>「這座城的機關，可不只會開門！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-9</span><span class="shot">蒙太奇</span></div><p class="desc">三格連環：石磚翻轉、石柱移位、地板傾斜——盜團東倒西歪，抱頭鼠竄。</p><p class="line"><b>盜團：</b>「哇啊啊啊——這城會打人！！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-10</span><span class="shot">中景</span></div><p class="desc">第九枚碎片穩穩落進雷恩掌心。</p><p class="line"><b>雷恩：</b>「碎片九，入手。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-11</span><span class="shot">近景</span></div><p class="desc">雷恩回到壁畫長廊末端，腳步忽然停住。</p><p class="line"><b>雷恩：</b>「等等……長卷的最後一格呢？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-12</span><span class="shot">特寫</span></div><p class="desc">壁畫最後一格被整塊鑿掉，石屑猶新。</p><p class="line nar"><b>旁白：</b>「壁畫的結局，被人鑿掉了。鑿痕，很新。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">五・第 3 頁</span><span class="ptitle">雲海神殿</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">5-13</span><span class="shot">大遠景</span></div><p class="desc">雲海之上，浮空島與鳥居懸於天際，金光鎏邊。</p><p class="line nar"><b>旁白：</b>「雲海神殿——浮在雲上的最後一站。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-14</span><span class="shot">中景</span></div><p class="desc">風神翼龍三姊妹佇立鳥居前，翼尖繫著祈福飄帶。</p><p class="line"><b>三姊妹：</b>「尋龍人。門只回應真心——想過此門，先通過試煉。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-15</span><span class="shot">近景</span></div><p class="desc">雷恩毫不退縮，上前一步。</p><p class="line"><b>雷恩：</b>「什麼試煉，我接。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-16</span><span class="shot">特寫</span></div><p class="desc">試煉內容浮現於雲鏡：在翻湧雲海中，找出「<b>你真正想見的那根羽毛</b>」。</p><p class="line"><b>三姊妹：</b>「雲海裡有千萬根羽毛。只有一根，是你真正想見的。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-17</span><span class="shot">中景</span></div><p class="desc">雲海翻湧，千羽飄旋。伴伴毫不猶豫，直直飛向一根樸素的白羽。</p><p class="line"><b>伴伴：</b>「嘎！」（是這個！）</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-18</span><span class="shot">近景</span></div><p class="desc">雷恩怔了怔，隨即笑了，眼眶微熱。</p><p class="line"><b>雷恩：</b>「原來如此……那根羽毛，是伴伴破殼那晚，海鳥留下的。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">五・第 4 頁</span><span class="ptitle">通過，與警告</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">5-19</span><span class="shot">中景</span></div><p class="desc">三姊妹相視而笑，同時俯首。</p><p class="line"><b>三姊妹：</b>「通過。<b>真心，就是記得自己為什麼出發。</b>」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-20</span><span class="shot">特寫</span></div><p class="desc">第十枚碎片自雲鏡中浮現，落入雷恩掌心。</p><p class="line nar"><b>旁白：</b>「碎片十——五片一小結，第一組星圖在羅盤上亮起。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-21</span><span class="shot">近景</span></div><p class="desc">三姊妹的神情忽然一凜，望向巔峰方向。</p><p class="line"><b>三姊妹：</b>「但有一件事，你必須知道——收藏家的飛艇，<b>已經先出發了</b>。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-22</span><span class="shot">大特寫</span></div><p class="desc">雷恩瞳孔一縮。</p><p class="line"><b>雷恩：</b>「牠去巔峰了？！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-23</span><span class="shot">中景</span></div><p class="desc">三姊妹展翼，風在腳下聚成上升氣流。</p><p class="line"><b>三姊妹：</b>「剩下的碎片，你必須比牠快——上來吧！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-24</span><span class="shot">大遠景</span></div><p class="desc">高空氣流託著一行人衝上雲海之上，腳下雲浪翻成金色。</p><p class="line nar"><b>旁白：</b>「雲端之路，向龍之巔峰延伸。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">五・第 5 頁</span><span class="ptitle">雲端追擊</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">5-25</span><span class="shot">俯瞰</span></div><p class="desc">雲海之上，群山如島，巔峰在遠方露出金色山尖。</p><p class="line nar"><b>旁白：</b>「最後五片。每一區的顏色，都在羅盤上等他點亮。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-26</span><span class="shot">近景</span></div><p class="desc">伴伴站在雷恩肩頭迎風而立，小翼被吹得噗啦噗啦響。</p><p class="line"><b>伴伴：</b>「嘎——！」（我不怕風！）</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-27</span><span class="shot">特寫</span></div><p class="desc">十片碎片在羅盤上交相輝映。</p><p class="line"><b>雷恩：</b>「十片了……爺爺，你看見了嗎。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-28</span><span class="shot">遠景</span></div><p class="desc">前方雲層間，飛艇的剪影已先一步掠向巔峰。</p><p class="line"><b>雷恩：</b>「格雷……這次不會讓你先到的。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-29</span><span class="shot">中景</span></div><p class="desc">雷恩壓低重心，薩爾塔長頸破風前傾。</p><p class="line"><b>雷恩：</b>「薩爾塔、伴伴——最後五片，衝了！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">5-30</span><span class="shot">大遠景</span></div><p class="desc">朝陽中的龍之巔峰，雲霧繚繞如王者加冕。</p><p class="line nar"><b>旁白：</b>「第十片碎片入手。雲端之戰，即將開始——」</p></div>
+      </div>
+    </div>
+    <div class="hook">【章末鉤子】壁畫的最後一格被誰鑿掉？飛艇已搶先一步。<b>巔峰上的王者，正等著驗證雷恩的「眼力」。</b>下一篇：第六篇《火中的答案》。</div>
+  </div>
+</div>
+
+<!-- ============ 第六篇 ============ -->
+<div class="issue" id="ch6">
+  <div class="ihead" style="background:linear-gradient(120deg,#8a6a1c,#f0c14b 40%,#c23a22 100%);">
+    <div class="kicker">CHAPTER 6・中盤轉折其二</div>
+    <h2>第六篇《火中的答案》</h2>
+    <div class="meta"><span>📍 🐉 龍之巔峰 14×14／🌋 熔火龍穴 15×15</span><span>🧩 碎片 11→12/15</span><span>🎨 帝王金→熾橙熔岩（幻象轉灰階）</span></div>
+    <div class="hookline">【本篇任務】巔峰眼力試煉與碎片十一；爺爺把最後一枚碎片藏向海底；熔岩幻象考驗與碎片十二；羅盤復原之刻——格雷正面降臨。</div>
+  </div>
+  <div class="ibody">
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">六・第 1 頁</span><span class="ptitle">王者的試煉</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">6-1</span><span class="shot">大遠景</span></div><p class="desc">龍之巔峰，雲霧繚繞，帝王金的陽光灑滿山頂平台。</p><p class="line nar"><b>旁白：</b>「龍之巔峰——全大陸最高的地方，離門最近的地方。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-2</span><span class="shot">仰視</span></div><p class="desc">超帝王龍從雲霧中俯身而下，巨大的影子罩住一行人。</p><p class="line"><b>超帝王龍：</b>「尋找的眼力……證明給我看。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-3</span><span class="shot">中景</span></div><p class="desc">試煉開始：雲霧中浮現無數發光的幻影碎片，真假難辨。</p><p class="line"><b>超帝王龍：</b>「找出真正的碎片。只有一次機會。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-4</span><span class="shot">近景</span></div><p class="desc">雷恩閉上眼再睜開，掃過千百幻影——鎖定其中一道微光。</p><p class="line"><b>雷恩：</b>「真正的碎片，反光裡有羅盤的紋路……<b>在那裡！</b>」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-5</span><span class="shot">中景</span></div><p class="desc">霸王龍群齊刷刷讓出一條上山道，低吼聲如鼓。</p><p class="line nar"><b>旁白：</b>「王者認可了王者之外，另一種強大。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-6</span><span class="shot">特寫</span></div><p class="desc">超帝王龍微微頷首，目光移向山頂深處。</p><p class="line"><b>超帝王龍：</b>「去吧。山頂……有留給你的東西。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">六・第 2 頁</span><span class="ptitle">山頂的紀錄</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">6-7</span><span class="shot">遠景</span></div><p class="desc">雲霧之上的山頂平台，一座石碑靜立，碑前供著第十一枚碎片。</p><p class="line nar"><b>旁白：</b>「碎片十一，就供在探險隊最後的紀錄碑前。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-8</span><span class="shot">特寫</span></div><p class="desc">碑身刻滿名字——探險隊全員，與一路上幫助過他們的恐龍。</p><p class="line"><b>雷恩：</b>「這些名字……是隊員，也是朋友。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-9</span><span class="shot">近景</span></div><p class="desc">雷恩讀出碑文末行，聲音漸沉。</p><p class="line"><b>雷恩（讀）：</b>「『最後一枚碎片，藏在連收藏家都想不到的地方。』」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-10</span><span class="shot">特寫</span></div><p class="desc">羅盤指針緩緩轉動——不是指向山，不是指向谷，而是指向<b>下方，海的深處</b>。</p><p class="line"><b>伴伴：</b>「嘎?!!」（海底?!）</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-11</span><span class="shot">大遠景</span></div><p class="desc">從巔峰俯瞰：雲海之下，碧海如一枚深藍的寶石鑲在大陸盡頭。</p><p class="line"><b>雷恩：</b>「海啊……難怪格雷怎麼也想不到。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-12</span><span class="shot">中景</span></div><p class="desc">薩爾塔望向遠方火山的方向，打了個寒顫。</p><p class="line"><b>薩爾塔：</b>「要去海底……得先經過熔火龍穴那一關。那裡的火焰，會看人哦。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">六・第 3 頁</span><span class="ptitle">熔岩湖邊</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">6-13</span><span class="shot">大遠景</span></div><p class="desc">熔火龍穴，橙紅熔岩在火山腹中緩緩流動，火星飄滿洞窟。</p><p class="line nar"><b>旁白：</b>「第十二枚碎片，當年被投入火山——讓貪婪之手永遠拿不到。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-14</span><span class="shot">中景</span></div><p class="desc">棘龍王立在熔岩湖邊，背帆映著火光。</p><p class="line"><b>棘龍王：</b>「碎片在湖底。但火焰……會先映出你<b>最害怕的事</b>。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-15</span><span class="shot">特寫</span></div><p class="desc">雷恩凝視熔岩——幻象浮現：圖鑑一頁頁燒空，朋友們的身影化成灰白標本。</p><p class="line"><b>雷恩：</b>「這是……幻象……！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-16</span><span class="shot">大特寫</span></div><p class="desc">雷恩冷汗直流，呼吸急促。</p><p class="line"><b>雷恩：</b>「我……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-17</span><span class="shot">近景</span></div><p class="desc">伴伴把小小的爪子，穩穩搭上雷恩的手背。</p><p class="line"><b>伴伴：</b>「嘎。」（我們一起。）</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-18</span><span class="shot">特寫</span></div><p class="desc">雷恩深吸一口氣，眼神重新聚焦，踏上湖邊的取物機關。</p><p class="line"><b>雷恩：</b>「幻象再真，也不是真的。<b>真的，是我身邊的夥伴。</b>」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">六・第 4 頁</span><span class="ptitle">火中的答案</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">6-19</span><span class="shot">中景</span></div><p class="desc">機關運轉，長桿探入熔岩湖，緩緩提起——第十二枚碎片在火光中完好如初。</p><p class="line nar"><b>旁白：</b>「火焰認可了不被貪婪蒙蔽的心。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-20</span><span class="shot">特寫</span></div><p class="desc">碎片入手，十二色在羅盤上第一次同時流轉。</p><p class="line"><b>棘龍王：</b>「『貪婪之手永遠拿不到』——老隊長，沒說錯。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-21</span><span class="shot">近景</span></div><p class="desc">雷恩將碎片嵌入羅盤——盤面光芒暴漲，開始自我復原。</p><p class="line"><b>雷恩：</b>「羅盤……在變完整？！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-22</span><span class="shot">大特寫</span></div><p class="desc">羅盤中央浮現最後三片的方位：王陵、龍宮——以及終點。</p><p class="line nar"><b>旁白：</b>「十三、十四、十五。最後三片，各有其主，各有其關。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-23</span><span class="shot">中景</span></div><p class="desc">忽然，大地震動，洞窟火光被一大片陰影罩住。</p><p class="line"><b>伴伴：</b>「嘎?!!」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-24</span><span class="shot">仰視</span></div><p class="desc">火山口的天光被遮蔽——格雷的飛艇，緩緩降落。</p><p class="line nar"><b>旁白：</b>「羅盤復原的同一刻——收藏家，到了。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">六・第 5 頁</span><span class="ptitle">收藏家現身</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">6-25</span><span class="shot">剪影</span></div><p class="desc">飛艇艙門開啟。背光中，一個修長的人影立在門口——全程只聞其聲的收藏家，第一次現形。</p><p class="line nar"><b>旁白：</b>「收藏家・格雷。剪影之外，仍看不清他的臉。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-26</span><span class="shot">中景</span></div><p class="desc">格雷的聲音不高，卻壓得整個洞窟鴉雀無聲。</p><p class="line"><b>格雷：</b>「把羅盤……交給我。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-27</span><span class="shot">近景</span></div><p class="desc">雷恩一步不退，把伴伴和羅盤護在身後。</p><p class="line"><b>雷恩：</b>「格雷……！你收集的東西已經夠多了！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-28</span><span class="shot">特寫</span></div><p class="desc">格雷靜了一瞬，語調微微起伏。</p><p class="line"><b>格雷：</b>「夠多？……我只是在，把我失去的拿回來。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-29</span><span class="shot">遠景</span></div><p class="desc">火山口對峙：熔岩的橙紅映著雙方，誰也不讓。</p><p class="line"><b>棘龍王（低語）：</b>「小子，別在這裡開戰……去王陵，那裡有條古道能甩掉牠。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">6-30</span><span class="shot">大特寫</span></div><p class="desc">伴伴額紋大亮，照出雷恩緊抿的嘴角。</p><p class="line nar"><b>旁白：</b>「同一刻，最後的競速開始了——」</p></div>
+      </div>
+    </div>
+    <div class="hook">【章末鉤子】格雷正面壓境，最後三片碎片的方位已現。<b>王陵古道、碧海深處——誰先到，誰開門。</b>下一篇：第七篇《沙海遁走》。</div>
+  </div>
+</div>
+
+<!-- ============ 第七篇 ============ -->
+<div class="issue" id="ch7">
+  <div class="ihead" style="background:linear-gradient(120deg,#a8823e,#e8c88f 45%,#2e86a8 100%);">
+    <div class="kicker">CHAPTER 7</div>
+    <h2>第七篇《沙海遁走》</h2>
+    <div class="meta"><span>📍 🏜️ 流沙王陵 16×16／🌊 碧海龍宮 17×17</span><span>🧩 碎片 13→14/15</span><span>🎨 金沙黃昏→水藍夜光</span></div>
+    <div class="hookline">【本篇任務】王陵滑道追逐與假羅盤；碎片十三、十四入手；龍宮鑰匙孔現形；門被強開一半——危機降臨。</div>
+  </div>
+  <div class="ibody">
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">七・第 1 頁</span><span class="ptitle">黃昏追逐</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">7-1</span><span class="shot">大遠景</span></div><p class="desc">流沙王陵，金沙如瀑從陵墓高處傾瀉而下，黃昏把整片沙海染成琥珀色。</p><p class="line nar"><b>旁白：</b>「王陵——沙丘之下，沉著一座會移動的古墓。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-2</span><span class="shot">遠景</span></div><p class="desc">飛艇緊追而至，鉤爪在夕陽裡閃著寒光。</p><p class="line nar"><b>旁白：</b>「格雷沒有打算讓他們離開火山太遠。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-3</span><span class="shot">近景</span></div><p class="desc">雷恩回頭看了一眼追兵，迅速判斷地形。</p><p class="line"><b>雷恩：</b>「薩爾塔——那邊！上滑道！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-4</span><span class="shot">遠景</span></div><p class="desc">一行人跳上古陵滑道，在金沙上疾速下滑，沙浪四濺。</p><p class="line"><b>伴伴：</b>「嘎————！！」（好快————！！）</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-5</span><span class="shot">中景</span></div><p class="desc">斜刺裡，一支馱著貨箱的敦煌龍商隊橫空殺出，擋在飛艇航線上。</p><p class="line"><b>商隊頭領：</b>「客人們，先走一步——<b>斷後交給我們！</b>」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-6</span><span class="shot">特寫</span></div><p class="desc">雷恩從行囊掏出備用的<b>假羅盤</b>（仿製品），拋向另一側沙丘。</p><p class="line"><b>雷恩：</b>「格雷想要的是這個吧——來拿啊！」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">七・第 2 頁</span><span class="ptitle">假羅盤與真方向</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">7-7</span><span class="shot">中景</span></div><p class="desc">滑道盡頭，雷恩反手扳動機關——石門轟然封死追兵的路。</p><p class="line"><b>雷恩：</b>「這座陵墓的機關，商隊說過——<b>反過來用，就是陷阱。</b>」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-8</span><span class="shot">遠景</span></div><p class="desc">沙暴初起。格雷的飛艇低空掠過，鉤爪抓住了發光的假羅盤。</p><p class="line"><b>格雷：</b>「……拿到了。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-9</span><span class="shot">特寫</span></div><p class="desc">艙內，格雷捏碎外殼——裡面是空心的，只有一張字條。</p><p class="line"><b>字條：</b>「真的在海底。——不客氣。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-10</span><span class="shot">特寫</span></div><p class="desc">格雷捏碎字條，第一次失態怒吼。</p><p class="line"><b>格雷：</b>「——上當了！！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-11</span><span class="shot">近景</span></div><p class="desc">雷恩回望沙暴深處，轉身面向大海。</p><p class="line"><b>雷恩：</b>「抱歉了，格雷。真正的門在……海底。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-12</span><span class="shot">大遠景</span></div><p class="desc">碧藍大海，夕陽熔金；海面分開一道潮路，延伸至深海。</p><p class="line nar"><b>旁白：</b>「沙暴的盡頭，是大陸的盡頭——海的開始。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">七・第 3 頁</span><span class="ptitle">碧海龍宮</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">7-13</span><span class="shot">中景</span></div><p class="desc">巨大的海霸龍自潮路盡頭浮出海面，鱗甲映著水光。</p><p class="line"><b>海霸龍：</b>「尋龍人，潮門為你而開。來吧，龍宮等你很久了。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-14</span><span class="shot">大遠景</span></div><p class="desc">水下世界：水藍色的龍宮水晶大殿，光柱自海面直貫殿心。</p><p class="line nar"><b>旁白：</b>「碧海龍宮——全大陸最古老的宮殿。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-15</span><span class="shot">中景</span></div><p class="desc">大殿中央，矗立著一個巨大的<b>鑰匙孔</b>。</p><p class="line"><b>雷恩：</b>「這是……樂園之門的鑰匙孔？！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-16</span><span class="shot">近景</span></div><p class="desc">雷恩望著鑰匙孔，恍然大悟。</p><p class="line"><b>雷恩：</b>「原來……樂園之門一直都在大家腳下。在我們身邊。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-17</span><span class="shot">特寫</span></div><p class="desc">第十三、十四枚碎片同時亮起，自雷恩行囊緩緩浮起。</p><p class="line nar"><b>旁白：</b>「碎片十三，在王陵機關裡；碎片十四，在龍宮王座之下。如今，歸位在即。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-18</span><span class="shot">剪影</span></div><p class="desc">轟然一聲巨響——飛艇竟破浪而入，強行闖進水晶大殿！</p><p class="line"><b>格雷：</b>「把碎片，放下。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">七・第 4 頁</span><span class="ptitle">門開一半</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">7-19</span><span class="shot">中景</span></div><p class="desc">格雷一把奪過兩枚碎片與羅盤，強行壓向鑰匙孔。</p><p class="line"><b>格雷：</b>「我等這一刻，等了一輩子——開門！！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-20</span><span class="shot">大遠景</span></div><p class="desc">門，開了一半。刺目的白光從門縫中噴湧而出。</p><p class="line nar"><b>旁白：</b>「白光如晨曦——卻帶著刺骨的寒意。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-21</span><span class="shot">特寫</span></div><p class="desc">白光驟然轉成<b>灰白的漩渦</b>——大殿外，無數恐龍被吸力拖向門縫！</p><p class="line"><b>雷恩：</b>「不妙——門在把牠們吸進去！！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-22</span><span class="shot">中景</span></div><p class="desc">小恐龍們驚恐掙扎，身體卻一點點被拖向灰白漩渦。</p><p class="line"><b>小恐龍們：</b>「救命——！救——命——！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-23</span><span class="shot">近景</span></div><p class="desc">雷恩向格雷大吼。</p><p class="line"><b>雷恩：</b>「門在把牠們變成標本……！停下來，格雷！這不是你要的！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-24</span><span class="shot">特寫</span></div><p class="desc">格雷瞳孔收縮，指節發白，仍死握著羅盤。</p><p class="line"><b>格雷：</b>「樂園……是我的收藏館了！」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">七・第 5 頁</span><span class="ptitle">你敢讓出願望嗎</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">7-25</span><span class="shot">中景</span></div><p class="desc">伴伴被吸力拖向門縫，雷恩死死拉住牠的爪子。</p><p class="line"><b>雷恩：</b>「伴伴——！抓住我！！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-26</span><span class="shot">大特寫</span></div><p class="desc">風中，三姊妹的聲音穿越雲海迴響而來。</p><p class="line nar"><b>三姊妹之聲：</b>「門只認『心』。你敢在最後關頭……<b>把自己的願望讓給別人嗎？</b>」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-27</span><span class="shot">特寫</span></div><p class="desc">雷恩望向格雷——那張瘋狂的臉上，他彷彿看見一絲熟悉的孤單。</p><p class="line"><b>雷恩：</b>「格雷……你也只是，想再見牠一面吧。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-28</span><span class="shot">近景</span></div><p class="desc">雷恩向格雷，伸出了手。</p><p class="line"><b>雷恩：</b>「格雷——手給我！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-29</span><span class="shot">大特寫</span></div><p class="desc">格雷愣住，握著羅盤的手第一次鬆動。</p><p class="line"><b>格雷：</b>「……什麼？」</p></div>
+        <div class="panel"><div class="top"><span class="pid">7-30</span><span class="shot">大遠景</span></div><p class="desc">門縫的白光中，雷恩向格雷伸出手；整個世界屏住了呼吸。</p><p class="line nar"><b>旁白：</b>「終章的大門，在海的深處開啟了一半——而決定它完全打開的，不是羅盤，是一顆心。」</p></div>
+      </div>
+    </div>
+    <div class="hook">【章末鉤子】門開一半，恐龍被吸向灰白世界；雷恩卻向宿敵伸出了手。<b>格雷會握住嗎？</b>最終篇：終章《所有人心裡的樂園》。</div>
+  </div>
+</div>
+
+<!-- ============ 終章 ============ -->
+<div class="issue" id="finale">
+  <div class="ihead" style="background:linear-gradient(120deg,#4a3b78,#b89ae8 50%,#2b2620 100%);">
+    <div class="kicker">FINALE</div>
+    <h2>終章《所有人心裡的樂園》</h2>
+    <div class="meta"><span>📍 🐲 蒼穹龍境 18×18・天空之境・龍塔・極光</span><span>🧩 碎片 15/15</span><span>🎨 紫羅蘭極光＋15 色星光齊亮</span></div>
+    <div class="hookline">【本篇任務】握住格雷的手一起開門；格雷的童年回憶；15 區星光齊亮、大陸成為樂園；伴伴的下一場旅行預告。</div>
+  </div>
+  <div class="ibody">
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">終・第 1 頁</span><span class="ptitle">握住敵人的手</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">終-1</span><span class="shot">大遠景</span></div><p class="desc">蒼穹龍境，紫羅蘭極光之下，浮空島與龍塔靜靜懸在天際。</p><p class="line nar"><b>旁白：</b>「蒼穹龍境——天空之境，一切開始與結束的地方。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-2</span><span class="shot">中景</span></div><p class="desc">雷恩沒有搶回羅盤，反而向前一步，握住了格雷的手。</p><p class="line"><b>格雷：</b>「你……做什麼？！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-3</span><span class="shot">近景</span></div><p class="desc">雷恩直視格雷的眼睛，一字一句。</p><p class="line"><b>雷恩：</b>「門只認心——那就讓我們的心，一起按上去。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-4</span><span class="shot">特寫</span></div><p class="desc">格雷怔在原地，握著羅盤的手微微發抖。</p><p class="line"><b>格雷：</b>「一起……？我搶了你的心血，你卻……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-5</span><span class="shot">中景</span></div><p class="desc">伴伴飛過來，把小小的爪子疊在兩人手上；薩爾塔的鼻尖、海霸龍的額、三姊妹的翼尖……一一搭上。</p><p class="line"><b>伴伴：</b>「嘎。」（一起。）</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-6</span><span class="shot">大特寫</span></div><p class="desc">無數隻手——恐龍的、人的——一層層疊上羅盤。</p><p class="line nar"><b>旁白：</b>「這一次，沒有誰獨自握著羅盤。」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">終・第 2 頁</span><span class="ptitle">格雷的記憶</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">終-7</span><span class="shot">特寫</span></div><p class="desc">白光中，格雷的眼神第一次動搖。</p><p class="line"><b>格雷：</b>「你們……為什麼……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-8</span><span class="shot">閃回</span></div><p class="desc">回憶的剪影：小小的格雷坐在海邊哭泣，一隻恐龍輕輕走來，用鼻尖蹭去他的眼淚。</p><p class="line nar"><b>旁白：</b>「很多年前，一個孤單的孩子，在海邊遇見了一隻恐龍。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-9</span><span class="shot">近景</span></div><p class="desc">格雷的聲音發顫，幾乎不成句。</p><p class="line"><b>格雷：</b>「那隻恐龍……我找牠，找了一輩子……」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-10</span><span class="shot">中景</span></div><p class="desc">雷恩望著他，聲音很輕。</p><p class="line"><b>雷恩：</b>「牠一直都在。在每一隻你收集過的恐龍眼睛裡——你只是，沒有看牠們的眼睛。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-11</span><span class="shot">特寫</span></div><p class="desc">格雷的眼眶，第一次濕潤。</p><p class="line"><b>格雷：</b>「……眼睛。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-12</span><span class="shot">近景</span></div><p class="desc">格雷鬆開羅盤，手覆上疊在一起的那無數隻手。</p><p class="line"><b>格雷：</b>「我不想再收集了。我想……<b>再見牠。</b>」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">終・第 3 頁</span><span class="ptitle">門，完全開啟</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">終-13</span><span class="shot">大遠景</span></div><p class="desc">門，完全開啟。白光如溫暖的晨曦，灑滿整個蒼穹龍境。</p><p class="line nar"><b>旁白：</b>「沒有轟鳴，沒有漩渦。只有光。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-14</span><span class="shot">特寫</span></div><p class="desc">雷恩對著門，許下願望。</p><p class="line"><b>雷恩：</b>「讓想見恐龍的人，都能再見到牠們！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-15</span><span class="shot">大遠景</span></div><p class="desc">白光化作十五道光柱，射向大陸的十五個方向。</p><p class="line nar"><b>旁白：</b>「十五道光，照亮十五個區域。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-16</span><span class="shot">蒙太奇</span></div><p class="desc">連環小格：起源地浪光、平原綠風、草原疾風、丘陵回音、森林燈火、沼澤星空、峽谷赤岩、雪嶺極光、遺跡塵光、神殿雲海、巔峰金陽、龍穴熔火、王陵金沙、龍宮水光——一區一區亮起。</p><p class="line nar"><b>旁白：</b>「他們走過的每一站，都被點亮。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-17</span><span class="shot">中景</span></div><p class="desc">格雷望著重新亮起十五色光輝的完整羅盤，淚光閃爍。</p><p class="line"><b>格雷：</b>「原來……我一直找錯了方向。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-18</span><span class="shot">遠景</span></div><p class="desc">被吸向門的小恐龍們安然落回同伴身邊，大殿充滿歡呼。</p><p class="line"><b>小恐龍們：</b>「得救了——！！」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">終・第 4 頁</span><span class="ptitle">大陸，即樂園</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">終-19</span><span class="shot">大遠景</span></div><p class="desc">俯瞰全大陸：十五區星光點點，如地上銀河。</p><p class="line nar"><b>旁白：</b>「門後沒有另一個世界。門後，是讓這片大陸本身，成為樂園的祝福。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-20</span><span class="shot">中景</span></div><p class="desc">老樹息龍、警長、棘龍王、三姊妹、海霸龍、商隊、三兄弟……一路結識的朋友們齊聚龍境。</p><p class="line"><b>警長：</b>「哈！這才叫大團圓！」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-21</span><span class="shot">近景</span></div><p class="desc">雷恩展開完整的彩虹羅盤——十五色齊亮，拼成一個完整的圓。</p><p class="line"><b>雷恩：</b>「十五片……全部回家了。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-22</span><span class="shot">特寫</span></div><p class="desc">伴伴額紋大亮，對著整片大陸喊出。</p><p class="line"><b>伴伴：</b>「嘎——！（<b>下次旅行，換我帶路！</b>）」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-23</span><span class="shot">遠景</span></div><p class="desc">歡呼聲中，群龍齊飛，掠過極光下的天際。</p><p class="line nar"><b>旁白：</b>「從海邊出發的尋龍人，如今被整片天空迎接。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-24</span><span class="shot">大特寫</span></div><p class="desc">完整的羅盤上，三條隊規並排閃耀。</p><p class="line nar"><b>旁白：</b>「隊規三條，一條不缺——它們本就是同一句話：<b>把恐龍當朋友的人，永遠找得到回家的路。</b>」</p></div>
+      </div>
+    </div>
+    <div class="pagegrid">
+      <div class="phead-row"><span class="pno">終・第 5 頁</span><span class="ptitle">給下一場冒險</span></div>
+      <div class="panels">
+        <div class="panel"><div class="top"><span class="pid">終-25</span><span class="shot">中景</span></div><p class="desc">後日談。雷恩回到海風鎮，在老屋前放下完整羅盤的拓印。</p><p class="line"><b>雷恩：</b>「爺爺，門打開了。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-26</span><span class="shot">近景</span></div><p class="desc">夕陽下，雷恩望著老屋的窗，窗裡透著暖暖的燈火。</p><p class="line"><b>雷恩：</b>「你守護的大陸……現在是所有人的樂園了。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-27</span><span class="shot">特寫</span></div><p class="desc">伴伴蹭著雷恩的臉，尾巴捲著他的衣領不放。</p><p class="line"><b>伴伴：</b>「嘎～」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-28</span><span class="shot">遠景</span></div><p class="desc">隊伍再度出發——這一次，是為了旅行，不只是為了尋找。</p><p class="line"><b>格雷（同行）：</b>「下一個想再見的傢伙……我們一起找吧。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-29</span><span class="shot">遠景</span></div><p class="desc">龍塔頂端，一盞燈悄然亮起。</p><p class="line nar"><b>旁白：</b>「後日談——龍塔頂端亮起一盞燈。那是給『下一場冒險』的信號。」</p></div>
+        <div class="panel"><div class="top"><span class="pid">終-30</span><span class="shot">大特寫</span></div><p class="desc">塔頂刻字被燈光照亮。</p><p class="line nar"><b>刻字：</b>「給下一場冒險。——傳說永遠不會結束，因為每一次出發，都是新的序章。」</p></div>
+      </div>
+    </div>
+    <div class="hook">【全篇完】15/15。大陸即樂園。<b>下一次，換伴伴帶路。</b></div>
+  </div>
+</div>
+
+<!-- ============ 附錄 ============ -->
+<h2 class="sec" id="motifs">附錄・隊規・名場面・視覺母題</h2>
+
+<h2 class="sec" style="font-size:19px;">尋龍探險隊・隊規三條</h2>
+<table>
+  <tr><th>條</th><th>出現篇</th><th>載體</th><th>內容</th></tr>
+  <tr><td>第一條</td><td>第一篇</td><td>碎片一背面刻字</td><td>「永遠，把恐龍當朋友。」</td></tr>
+  <tr><td>第二條</td><td>第四篇</td><td>雪洞日誌殘頁</td><td>「門是給大家的路，不是給一個人的寶物。」</td></tr>
+  <tr><td>第三條</td><td>第六篇</td><td>熔火龍穴碑側</td><td>「最後一關，考驗的不是眼力，是心。」</td></tr>
+</table>
+<p class="note">三條隊規分別於「得（第一篇）→ 疑（第四篇）→ 捨（第六篇）」三個節點出現，在終章萬手按門時一次收攏。</p>
+
+<h2 class="sec" style="font-size:19px;">名場面清單</h2>
+<table>
+  <tr><th>#</th><th>名場面</th><th>所在篇</th></tr>
+  <tr><td>1</td><td>蛋殼花紋與羅盤共鳴，伴伴破殼</td><td>序章</td></tr>
+  <tr><td>2</td><td>高空俯瞰整張大陸與遠方雪山（翼龍護送）</td><td>第二篇</td></tr>
+  <tr><td>3</td><td>星星水潭：碎片出水，倒影多了一道不屬於星星的光</td><td>第三篇</td></tr>
+  <tr><td>4</td><td>極光下，隊長側臉與年輕爺爺的照片重合</td><td>第四篇</td></tr>
+  <tr><td>5</td><td>雲海千羽之中，伴伴找出真正的白羽</td><td>第五篇</td></tr>
+  <tr><td>6</td><td>熔岩幻象轉灰階，伴伴把爪子搭上雷恩的手</td><td>第六篇</td></tr>
+  <tr><td>7</td><td>門縫白光轉灰白漩渦，恐龍被吸向標本世界</td><td>第七篇</td></tr>
+  <tr><td>8</td><td>雷恩握住格雷的手，萬手疊上羅盤</td><td>終章</td></tr>
+  <tr><td>9</td><td>15 區星光齊亮，大陸成為樂園（大合影）</td><td>終章</td></tr>
+</table>
+
+<h2 class="sec" style="font-size:19px;">視覺母題與固定儀式</h2>
+<table>
+  <tr><th>項目</th><th>設計</th></tr>
+  <tr><td>彩虹羅盤＝進度條</td><td>序章碎裂 → 篇篇補色 → 終章 15 色全亮的完整圓。每篇末固定三拍子：<b>碎片鑲入 → 該區顏色亮起 → 指針轉向下一區</b>。</td></tr>
+  <tr><td>五片一小結</td><td>第 5、10、15 片入手時，羅盤投影一段探險隊回憶星圖，補完爺爺的過去（本篇以「星圖亮起」字幕帶過）。</td></tr>
+  <tr><td>格雷的出場規則</td><td>第二篇僅剪影 → 第三篇探照光柱 → 第六篇背光剪影正面 → 第七篇全形 → 終章正式露臉。全程配合「聲先到、形後至」。</td></tr>
+  <tr><td>伴伴額紋</td><td>情緒與羅盤共鳴的視覺錨：害怕時微亮、開心時閃爍、關鍵時刻大亮（終章照亮隊規）。</td></tr>
+  <tr><td>美術基調</td><td>3A 遊戲 CG 皮膚（PBR 材質、柔和全局光照）；黃金年代探險風——暖金、皮件棕、銅器金屬光；每區場景角落埋「探險隊遺物」（旗幟、補給箱、繩結），讓每區都有「他們來過」的痕跡。</td></tr>
+</table>
+
+<h2 class="sec" style="font-size:19px;">落地說明（銜接 Method A 合成管線）</h2>
+<p class="note">
+① 角色：雷恩（cg_man×4 姿態）、伴伴（cg_da×4）、薩爾塔（cg_db×2）已定裝去背；篇章嘉賓恐龍建議以遊戲圖鑑圖或追加定裝補齊。<br>
+② 背景：每篇 3–4 張區域底圖（依 15 區主色）， Phase 2 產出。<br>
+③ 合成：本腳本的每格「鏡位＋畫面描述」即合成腳本的格位腳本；對話泡位置沿用既有「避臉」校準流程。<br>
+④ 字體/語言：全部玩家可見文字為繁體中文。
+</p>
+
+<footer>《彩虹羅盤與失落的探險隊》全篇漫畫分鏡腳本・2026-10-23・本文件為提案文件，尚未更動任何遊戲程式與素材</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worklog 未完成工作盤點</title>
+<style>
+  :root{--ink:#2b2118;--muted:#7a6a58;--line:#e4d8c6;--bg:#f7f1e6;--card:#fffdf8;--accent:#8a5a2b;--warn:#b3541e;--done:#3e7a4e;--hold:#8a6d1f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;line-height:1.65}
+  .page{max-width:960px;margin:0 auto;padding:28px 20px 60px}
+  h1{font-size:1.65rem;margin:.2em 0 .1em}
+  .meta{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+  .lede{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:10px;padding:14px 18px;margin:18px 0}
+  h2{font-size:1.2rem;margin:30px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.92rem}
+  th,td{padding:9px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0e6d4;font-weight:600;white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  code{background:#f0e6d4;border-radius:4px;padding:1px 5px;font-size:.86em}
+  .tag{display:inline-block;border-radius:999px;padding:1px 10px;font-size:.8rem;font-weight:600;white-space:nowrap}
+  .t-todo{background:#fde8d8;color:var(--warn)}
+  .t-hold{background:#f5edcf;color:var(--hold)}
+  .t-info{background:#e3ecdf;color:var(--done)}
+  ul{margin:.3em 0 .3em 1.2em;padding:0}
+  li{margin:.25em 0}
+  .note{color:var(--muted);font-size:.88rem}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:12px 0}
+  .box h3{margin:.1em 0 .5em;font-size:1rem}
+  .count{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+  .count .c{flex:1 1 180px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+  .count .n{font-size:1.5rem;font-weight:700}
+  .count .l{color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Worklog 未完成工作盤點</h1>
+  <div class="meta">日期：2026-10-13 ｜ 來源：<code>worklogs/</code> 全部 37 份工作紀錄 ＋ git 工作區狀態 ｜ Task ID：pending-work-inventory</div>
+
+  <div class="lede">
+    <strong>結論：</strong>程式功能層面已完成且驗證，但有一批已驗收的工作尚未 commit；另有 1 項調查等待使用者補充資訊、1 項評估依指示暫不提交。
+    「未完成」目前集中在<strong>版控收尾</strong>，不是功能缺漏。
+  </div>
+
+  <div class="count">
+    <div class="c"><div class="n" style="color:var(--warn)">1</div><div class="l">批次未提交（含 6 份已完成 worklog 與其變更）</div></div>
+    <div class="c"><div class="n" style="color:var(--hold)">1</div><div class="l">等待使用者補充資訊（調查未結案）</div></div>
+    <div class="c"><div class="n" style="color:var(--done)">1</div><div class="l">依指示刻意不提交</div></div>
+    <div class="c"><div class="n">2</div><div class="l">暫存檔待處置（不受 gitignore 覆蓋）</div></div>
+  </div>
+
+  <h2>一、未提交的工作（worklog 皆載明「未 commit」，均已驗證通過）</h2>
+  <table>
+    <tr><th>#</th><th>Task ID ／ 任務</th><th>完成內容</th><th>狀態</th></tr>
+    <tr>
+      <td>1</td>
+      <td><code>hidden-object-ratio</code><br>隱藏物規格重設計（核心規則）</td>
+      <td>謎題改為「每行／每列／每色區恰 1 個隱藏物」（恐龍 40%／寶箱 40%／石頭 20%）、寶箱階梯 50/36.4/13.6、過關＝找齊 N 個隱藏物、文案與版本號 v1.9.12。<br><span class="note">變更位於 <code>js/main.js</code>、<code>index.html</code>（工作區）；後續 2 個寶箱任務（<code>chest-dino-same-color</code> <code>fd999e8</code>、<code>chest-tier-fifty</code> <code>d502f11</code>）是疊在此工作區改動上以手術式暫存提交，本體仍未入版控。</span></td>
+      <td><span class="tag t-todo">未 commit</span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><code>ui-status-foot-towerlabel</code><br>移除狀態列／頁尾、龍塔 HUD 標籤</td>
+      <td>移除 <code>#status</code>／<code>#foot</code> 與 <code>updateStatus()</code>（15 處呼叫）、龍塔標籤改「龍塔第N局」；修復 2 項既有缺陷（<code>sizeFont()</code> 不收斂、<code>newBoard()</code> 非同步競態）。<br><span class="note">變更位於 <code>index.html</code>、<code>js/main.js</code>、<code>css/style.css</code>（工作區）。</span></td>
+      <td><span class="tag t-todo">未 commit</span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><code>buddy-auto-exclude</code><br>隨行滿好感自動排除擴及全部隱藏物</td>
+      <td>捕獲任一隱藏物（恐龍／寶箱／石頭）＋星願爆發技能揭示時，自動標 ✕ 同行／同列／周圍八格；修正多解盤與關鍵寶箱誤標。<br><span class="note">變更位於 <code>js/main.js</code>、<code>index.html</code>（v1.9.13）；worklog 載明「待使用者確認提交範圍後回填 hash」。</span></td>
+      <td><span class="tag t-todo">未 commit</span></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><code>tower193-pregen-check</code><br>龍塔 193 預生成檢查＋工程模式跳層</td>
+      <td>盤面檢查全部通過（結構、唯一解、無重複、線上版本一致）；已交付 <code>tower193/194_board_report.html</code>；工程模式「龍塔指定開始層」完成並實測通過。<br><span class="note"><code>DEV_TOWER_GATE</code> 等變更位於工作區，未 commit。</span></td>
+      <td><span class="tag t-todo">未 commit</span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><code>bundle-consistency-check</code><br>單檔版一致性檢查</td>
+      <td>結論：舊單檔版落後一次更新（教學文案 6 行），其餘逐位元一致；產出 <code>bundle_consistency_report.html</code>，並附帶還原／複驗 Unity 封存檔。<br><span class="note">worklog、報告與 <code>worklog_unity-archive-pause.md</code> 後記尚未 commit。</span></td>
+      <td><span class="tag t-todo">未 commit</span></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><code>index-mainline</code><br>確立 index.html 為唯一開發主線</td>
+      <td>刪除舊單檔 <code>dragonfinder_v1.9.10.html</code>（刪除已隨 <code>d92f7de</code> 進版控）、更新 <code>AGENTS.md</code>／<code>.gitignore</code> 規則、報告追加後續註記。<br><span class="note"><code>AGENTS.md</code>、<code>.gitignore</code> 的規則更新仍在工作區，未 commit。</span></td>
+      <td><span class="tag t-todo">未 commit</span></td>
+    </tr>
+  </table>
+  <div class="note">上述 6 份 worklog 檔案本身目前皆為未追蹤（除 <code>worklog_unity-archive-pause.md</code> 已追蹤、有未提交後記），按慣例須與對應變更一併提交並回填 hash。</div>
+
+  <h2>二、等待使用者補充資訊（未結案）</h2>
+  <div class="box">
+    <h3><span class="tag t-hold">等待回覆</span> 龍塔 193「預生成地圖有問題」回報</h3>
+    <ul>
+      <li>以可量測標準（結構、連通、唯一解、無重複、渲染、可玩性、線上版本一致性）檢查，<strong>未發現盤面缺陷</strong>。</li>
+      <li>期間曾見一次 <code>Uncaught TypeError: Assignment to constant variable.</code>，無法重現，暫判與 193 盤面無關（詳見 worklog 步驟 10）。</li>
+      <li><strong>待辦：</strong>等待使用者補充實際症狀（重現步驟／截圖／當下操作），才能繼續定位；<code>tmp_solve_233.mjs</code> 為此調查保留。</li>
+    </ul>
+  </div>
+
+  <h2>三、依指示刻意不提交</h2>
+  <div class="box">
+    <h3><span class="tag t-info">已完成 ／ 不提交</span> <code>english-mode-assessment</code> 多語模式工程評估</h3>
+    <ul>
+      <li>純評估任務、未改應用程式碼；使用者明確指示「只是評估不做修改」。</li>
+      <li>交付物：<code>english_mode_assessment_report.html</code>（英文基準 7.5～10 人日＋三語漸進架構合計 9.5～13 人日、8 決策點）。</li>
+      <li>報告與 worklog 留在工作區，待使用者決定是否入版控。</li>
+    </ul>
+  </div>
+
+  <h2>四、暫存檔與小缺口</h2>
+  <table>
+    <tr><th>項目</th><th>說明</th></tr>
+    <tr><td><code>tmp_game_solve.mjs</code></td><td>解盤診斷腳本，已無任何檔引用（排查用、暫存）。現行 <code>.gitignore</code> 僅排除 <code>tmp_*.js</code>／<code>tmp_*.html</code>，<strong>.mjs 不受覆蓋</strong>，目前顯示為未追蹤檔。</td></tr>
+    <tr><td><code>tmp_solve_233.mjs</code></td><td>第 233 層求解器，被 Chest-Dino 調查 worklog 引用，<strong>先保留</strong>至龍塔調查結案。</td></tr>
+    <tr><td>建議</td><td>於 <code>.gitignore</code> 補上 <code>tmp_*.mjs</code>；待調查結案後刪除兩個暫存腳本。</td></tr>
+  </table>
+
+  <h2>五、決策點（下一步建議）</h2>
+  <ul>
+    <li><strong>提交範圍：</strong>6 項未提交工作橫跨相同檔案（<code>js/main.js</code>／<code>index.html</code>／<code>css/style.css</code>），彼此交錯；建議確認後一次性提交（或依邏輯分組），並回填各 worklog 的 commit hash。</li>
+    <li><strong>報告檔是否入版控：</strong><code>buddy_auto_exclude_report.html</code>、<code>bundle_consistency_report.html</code>、<code>hidden_object_ratio_report.html</code>、<code>tower193/194_board_report.html</code> 目前未追蹤（<code>english_mode_assessment_report.html</code> 依指示觀望）——是否比照先前報告入庫需確認。</li>
+    <li><strong>龍塔調查：</strong>請提供 193 層問題的具體症狀以恢復調查。</li>
+  </ul>
+
+  <p class="note">本報告依 <code>AGENTS.md</code>「HTML reports」慣例產出；內容對應盤點當下（2026-10-13）的 git 工作區狀態。</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+[
+ {
+  "raw": "1_Diplodocus_raw.png",
+  "out": "1.webp",
+  "kb": 25.0,
+  "bbox_cov_pct": 55.1,
+  "ratio": 1.05,
+  "coverage": 22.2,
+  "bottom_pct": 5.1,
+  "margins_pct": [
+   11.9,
+   22.5,
+   12.1
+  ],
+  "components": 1,
+  "main_pct": 22.2,
+  "largest_stray_pct": 0,
+  "halo": 0.0665,
+  "checks": {
+   "size": true,
+   "rgba": true,
+   "bbox_ok": true,
+   "bbox_cov_50_60": true,
+   "ratio_1p2": true,
+   "cov_opaque": true,
+   "margins_4pct": true,
+   "bottom_4_6pct": true,
+   "body_ok": true,
+   "no_halo": true,
+   "size_kb": true
+  },
+  "pass": true
+ },
+ {
+  "raw": "101_Pachycephalosaurus_raw.png",
+  "out": "101.webp",
+  "kb": 30.4,
+  "bbox_cov_pct": 55.1,
+  "ratio": 1.01,
+  "coverage": 31.8,
+  "bottom_pct": 5.1,
+  "margins_pct": [
+   12.7,
+   20.9,
+   12.9
+  ],
+  "components": 1,
+  "main_pct": 31.8,
+  "largest_stray_pct": 0,
+  "halo": 0.0998,
+  "checks": {
+   "size": true,
+   "rgba": true,
+   "bbox_ok": true,
+   "bbox_cov_50_60": true,
+   "ratio_1p2": true,
+   "cov_opaque": true,
+   "margins_4pct": true,
+   "bottom_4_6pct": true,
+   "body_ok": true,
+   "no_halo": true,
+   "size_kb": true
+  },
+  "pass": true
+ },
+ {
+  "raw": "202_Spinosaurus_raw.png",
+  "out": "202.webp",
+  "kb": 39.5,
+  "bbox_cov_pct": 55.1,
+  "ratio": 0.98,
+  "coverage": 30.2,
+  "bottom_pct": 5.1,
+  "margins_pct": [
+   13.3,
+   19.9,
+   13.3
+  ],
+  "components": 2,
+  "main_pct": 30.1,
+  "largest_stray_pct": 0.121,
+  "halo": 0.0406,
+  "checks": {
+   "size": true,
+   "rgba": true,
+   "bbox_ok": true,
+   "bbox_cov_50_60": true,
+   "ratio_1p2": true,
+   "cov_opaque": true,
+   "margins_4pct": true,
+   "bottom_4_6pct": true,
+   "body_ok": true,
+   "no_halo": true,
+   "size_kb": true
+  },
+  "pass": true
+ },
+ {
+  "raw": "260_Tyrannosaurus_rex_raw.png",
+  "out": "260.webp",
+  "kb": 38.3,
+  "bbox_cov_pct": 55.0,
+  "ratio": 1.17,
+  "coverage": 26.4,
+  "bottom_pct": 5.1,
+  "margins_pct": [
+   9.8,
+   26.4,
+   10.0
+  ],
+  "components": 1,
+  "main_pct": 26.4,
+  "largest_stray_pct": 0,
+  "halo": 0.0464,
+  "checks": {
+   "size": true,
+   "rgba": true,
+   "bbox_ok": true,
+   "bbox_cov_50_60": true,
+   "ratio_1p2": true,
+   "cov_opaque": true,
+   "margins_4pct": true,
+   "bottom_4_6pct": true,
+   "body_ok": true,
+   "no_halo": true,
+   "size_kb": true
+  },
+  "pass": true
+ },
+ {
+  "raw": "325_Dilong_raw.png",
+  "out": "325.webp",
+  "kb": 37.6,
+  "bbox_cov_pct": 55.0,
+  "ratio": 1.06,
+  "coverage": 25.7,
+  "bottom_pct": 5.1,
+  "margins_pct": [
+   11.7,
+   22.9,
+   11.9
+  ],
+  "components": 1,
+  "main_pct": 25.7,
+  "largest_stray_pct": 0,
+  "halo": 0.0372,
+  "checks": {
+   "size": true,
+   "rgba": true,
+   "bbox_ok": true,
+   "bbox_cov_50_60": true,
+   "ratio_1p2": true,
+   "cov_opaque": true,
+   "margins_4pct": true,
+   "bottom_4_6pct": true,
+   "body_ok": true,
+   "no_halo": true,
+   "size_kb": true
+  },
+  "pass": true
+ }
+]

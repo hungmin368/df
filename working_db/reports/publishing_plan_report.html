@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上架平台評估與任務清單 — 恐龍快找 DragonFinder</title>
+<style>
+
+:root{
+  --page-bg:#0b1020; --panel:#111a2e; --line:rgba(148,163,184,.24);
+  --text:#e8eefc; --muted:#9fb0d0; --accent:#7dd3fc; --accent2:#c084fc;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#172554 0%,transparent 60%),var(--page-bg);
+  color:var(--text);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;line-height:1.7}
+.page-head{max-width:1220px;margin:0 auto;padding:44px 20px 10px}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 8px}
+.page-head h1{margin:0 0 10px;font-size:30px;line-height:1.3;background:linear-gradient(90deg,#7dd3fc,#c084fc,#fbbf24);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.page-head .subtitle{margin:0 0 8px;color:#cbd5e1;font-size:14.5px}
+.page-head .note{margin:0 0 14px;color:#fbbf24;font-size:13.5px}
+.page-head .meta{margin:0;color:var(--muted);font-size:12.5px}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;margin:20px 0 6px}
+.toc a{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.04);
+  color:#dbeafe;text-decoration:none;font-size:13px}
+.toc a:hover{border-color:var(--accent);background:rgba(125,211,252,.10)}
+main{max-width:1220px;margin:0 auto;padding:8px 20px 50px}
+.src-block{margin:26px 0;border:1px solid var(--line);border-radius:16px;background:#0f172a;
+  box-shadow:0 18px 50px rgba(0,0,0,.28);scroll-margin-top:14px}
+.src{border-radius:0 0 15px 15px;overflow:hidden}
+.src-meta{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  padding:9px 14px;background:#101a30;border-bottom:1px solid var(--line);color:#cbd5e1;font-size:12px;
+  border-radius:15px 15px 0 0}
+.src-badge{display:inline-block;padding:2px 8px;border-radius:999px;background:rgba(125,211,252,.16);
+  color:#bae6fd;font-weight:700;letter-spacing:.04em}
+.src-meta code{color:#fde68a;background:rgba(0,0,0,.35);padding:1px 6px;border-radius:4px}
+.foot{max-width:1220px;margin:0 auto;padding:0 20px 50px;color:var(--muted);font-size:12px;text-align:center}
+@media print{.toc{display:none}.src{break-inside:auto;box-shadow:none}.src-meta{position:static}}
+
+
+  #src-1-body{
+    --bg:#fffdf9; --ink:#3b3228; --muted:#8a7d6d; --line:#e8dfd2;
+    --amber:#b45309; --amber-bg:#fff7e8;
+    --green:#15803d; --green-bg:#ecfdf3;
+    --red:#b91c1c; --red-bg:#fef2f2;
+    --blue:#1d4ed8; --blue-bg:#eff6ff;
+    --gray-bg:#f6f5f3;
+  }
+  #src-1-body *{box-sizing:border-box;}
+  #src-1-body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    line-height:1.7;}
+  #src-1-body .wrap{max-width:1120px;margin:0 auto;padding:24px 18px 80px;}
+  #src-1-body header.hero{background:linear-gradient(135deg,#78350f,#b45309 55%,#f59e0b);
+    color:#fff;border-radius:18px;padding:34px 30px;margin-bottom:26px;
+    box-shadow:0 10px 30px rgba(180,83,9,.25);}
+  #src-1-body header.hero h1{margin:0 0 10px;font-size:1.75rem;letter-spacing:.5px;}
+  #src-1-body header.hero p{margin:5px 0;opacity:.96;}
+  #src-1-body header.hero .meta{font-size:.85rem;opacity:.85;margin-top:14px;border-top:1px solid rgba(255,255,255,.3);padding-top:10px;}
+  #src-1-body h2{font-size:1.3rem;color:var(--amber);border-bottom:2px solid var(--line);
+    padding-bottom:8px;margin:44px 0 14px;}
+  #src-1-body h3{font-size:1.08rem;margin:24px 0 8px;color:#78350f;}
+  #src-1-body h4{font-size:.98rem;margin:16px 0 6px;}
+  #src-1-body p{margin:8px 0;}
+  #src-1-body ul, #src-1-body ol{margin:8px 0 8px 4px;padding-left:22px;}
+  #src-1-body li{margin:5px 0;}
+  #src-1-body code{background:var(--gray-bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:.9em;}
+  #src-1-body .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0;}
+  #src-1-body .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  #src-1-body .card b{display:block;margin-bottom:5px;color:var(--amber);}
+  #src-1-body .note{background:var(--amber-bg);border:1px solid #fde68a;border-left:5px solid var(--amber);
+    border-radius:10px;padding:12px 16px;margin:14px 0;}
+  #src-1-body .good{background:var(--green-bg);border:1px solid #bbf7d0;border-left:5px solid var(--green);
+    border-radius:10px;padding:12px 16px;margin:14px 0;}
+  #src-1-body .risk{background:var(--red-bg);border:1px solid #fecaca;border-left:5px solid var(--red);
+    border-radius:10px;padding:12px 16px;margin:14px 0;}
+  #src-1-body .note b, #src-1-body .good b, #src-1-body .risk b{display:block;margin-bottom:4px;}
+  #src-1-body .good b{color:var(--green);} #src-1-body .risk b{color:var(--red);} #src-1-body .note b{color:var(--amber);}
+  #src-1-body .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:14px 0;background:#fff;}
+  #src-1-body table{border-collapse:collapse;width:100%;min-width:820px;font-size:.93rem;}
+  #src-1-body th{background:var(--amber-bg);color:var(--amber);text-align:left;
+    padding:10px 12px;border-bottom:2px solid #fde68a;white-space:nowrap;}
+  #src-1-body td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  #src-1-body tr:nth-child(even) td{background:#fffaf2;}
+  #src-1-body td.name{font-weight:700;white-space:nowrap;}
+  #src-1-body .badge{display:inline-block;border-radius:999px;padding:1px 11px;font-size:.82rem;font-weight:700;white-space:nowrap;}
+  #src-1-body .b-go{background:var(--green-bg);color:var(--green);border:1px solid #bbf7d0;}
+  #src-1-body .b-mid{background:var(--amber-bg);color:var(--amber);border:1px solid #fde68a;}
+  #src-1-body .b-no{background:var(--red-bg);color:var(--red);border:1px solid #fecaca;}
+  #src-1-body .b-info{background:var(--blue-bg);color:var(--blue);border:1px solid #bfdbfe;}
+  #src-1-body .tier{background:#78350f;color:#fff;font-size:.92rem;padding:6px 13px;letter-spacing:1px;border-radius:8px 8px 0 0;display:inline-block;}
+  #src-1-body .stars{font-weight:700;color:var(--amber);letter-spacing:1px;white-space:nowrap;}
+  #src-1-body footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:.85rem;color:var(--muted);}
+  #src-1-body a{color:var(--blue);}
+
+#src-1-body img{max-width:100%;height:auto}
+#src-1-body table{max-width:100%}
+#src-1-body header code,#src-1-body .hero code,#src-1-body .meta code{color:#7c2d12;background:#fef3c7}
+
+
+  #src-2-body{
+    --bg:#fffdf9; --ink:#3b3228; --muted:#8a7d6d; --line:#e8dfd2;
+    --amber:#b45309; --amber-bg:#fff7e8;
+    --green:#15803d; --green-bg:#ecfdf3;
+    --red:#b91c1c; --red-bg:#fef2f2;
+    --blue:#1d4ed8; --blue-bg:#eff6ff;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --gray-bg:#f6f5f3;
+  }
+  #src-2-body *{box-sizing:border-box;}
+  #src-2-body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    line-height:1.7;}
+  #src-2-body .wrap{max-width:1180px;margin:0 auto;padding:24px 18px 80px;}
+  #src-2-body header.hero{background:linear-gradient(135deg,#312e81,#4338ca 55%,#6366f1);
+    color:#fff;border-radius:18px;padding:34px 30px;margin-bottom:26px;
+    box-shadow:0 10px 30px rgba(67,56,202,.25);}
+  #src-2-body header.hero h1{margin:0 0 10px;font-size:1.7rem;letter-spacing:.5px;}
+  #src-2-body header.hero p{margin:5px 0;opacity:.96;}
+  #src-2-body header.hero .meta{font-size:.85rem;opacity:.88;margin-top:14px;border-top:1px solid rgba(255,255,255,.3);padding-top:10px;}
+  #src-2-body h2{font-size:1.3rem;color:var(--amber);border-bottom:2px solid var(--line);
+    padding-bottom:8px;margin:44px 0 14px;}
+  #src-2-body h3{font-size:1.08rem;margin:26px 0 8px;color:#78350f;}
+  #src-2-body p{margin:8px 0;}
+  #src-2-body ul, #src-2-body ol{margin:8px 0 8px 4px;padding-left:22px;}
+  #src-2-body li{margin:5px 0;}
+  #src-2-body code{background:var(--gray-bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:.9em;}
+  #src-2-body .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:16px 0;}
+  #src-2-body .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  #src-2-body .card b{display:block;margin-bottom:5px;color:var(--amber);font-size:1.05rem;}
+  #src-2-body .card span{font-size:.9rem;color:var(--muted);}
+  #src-2-body .note{background:var(--amber-bg);border:1px solid #fde68a;border-left:5px solid var(--amber);
+    border-radius:10px;padding:12px 16px;margin:14px 0;}
+  #src-2-body .good{background:var(--green-bg);border:1px solid #bbf7d0;border-left:5px solid var(--green);
+    border-radius:10px;padding:12px 16px;margin:14px 0;}
+  #src-2-body .risk{background:var(--red-bg);border:1px solid #fecaca;border-left:5px solid var(--red);
+    border-radius:10px;padding:12px 16px;margin:14px 0;}
+  #src-2-body .note b, #src-2-body .good b, #src-2-body .risk b{display:block;margin-bottom:4px;}
+  #src-2-body .good b{color:var(--green);} #src-2-body .risk b{color:var(--red);} #src-2-body .note b{color:var(--amber);}
+  #src-2-body .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:14px 0;background:#fff;}
+  #src-2-body table{border-collapse:collapse;width:100%;min-width:900px;font-size:.92rem;}
+  #src-2-body th{background:var(--amber-bg);color:var(--amber);text-align:left;
+    padding:10px 12px;border-bottom:2px solid #fde68a;white-space:nowrap;}
+  #src-2-body td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  #src-2-body tr:nth-child(even) td{background:#fffaf2;}
+  #src-2-body td.id{font-weight:700;white-space:nowrap;color:var(--muted);}
+  #src-2-body td.task{font-weight:700;}
+  #src-2-body td.ev{font-size:.86rem;color:var(--muted);}
+  #src-2-body td.acc{font-size:.86rem;}
+  #src-2-body .badge{display:inline-block;border-radius:999px;padding:2px 12px;font-size:.82rem;font-weight:700;white-space:nowrap;}
+  #src-2-body .w-me{background:var(--green-bg);color:var(--green);border:1px solid #bbf7d0;}
+  #src-2-body .w-split{background:var(--blue-bg);color:var(--blue);border:1px solid #bfdbfe;}
+  #src-2-body .w-you{background:var(--red-bg);color:var(--red);border:1px solid #fecaca;}
+  #src-2-body tr.row-you td{background:var(--red-bg) !important;}
+  #src-2-body .tier{background:#78350f;color:#fff;font-size:.92rem;padding:6px 13px;letter-spacing:1px;border-radius:8px 8px 0 0;display:inline-block;}
+  #src-2-body .legend{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 6px;align-items:center;}
+  #src-2-body .legend span.lab{font-size:.9rem;color:var(--muted);}
+  #src-2-body footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:.85rem;color:var(--muted);}
+  #src-2-body a{color:var(--blue);}
+
+#src-2-body img{max-width:100%;height:auto}
+#src-2-body table{max-width:100%}
+#src-2-body header code,#src-2-body .hero code,#src-2-body .meta code{color:#7c2d12;background:#fef3c7}
+
+</style>
+</head>
+<body>
+<header class="page-head">
+  <p class="kicker">DragonFinder Report Library</p>
+  <h1>上架平台評估與任務清單</h1>
+  <p class="subtitle">整併自《上架平台評估報告》與《上架任務清單（第一／第二梯隊）》</p>
+  <p class="note">2026-09-24 的舊版上架準備報告（尋龍高手名稱、單檔打包時代）已淘汰；最新 iOS 狀態見 <a href="ios_release_report.html">ios_release_report.html</a>。</p>
+  <p class="meta">整併日期：2026-10-22 ・ 來源 2 份 ・ 本報告保留原始內容與圖表，僅整併版面。</p>
+  <nav class="toc">
+<a href="#src-1">1. 恐龍快找 DragonFinder — 上架平台評估報告</a>
+<a href="#src-2">2. 恐龍快找 DragonFinder — 上架任務清單（第一／第二梯隊）</a>
+  </nav>
+</header>
+<main>
+<div class="src-block" id="src-1">
+<div class="src-meta"><span class="src-badge">來源 1</span><span>原報告：<code>game_publish_platforms_report.html</code></span><span>原日期：2026-10-17</span></div>
+<section class="src" id="src-1-body">
+
+<div class="wrap">
+
+<header class="hero">
+  <h1>⚡ 恐龍快找 DragonFinder — 上架平台評估報告</h1>
+  <p>題目：如果想把遊戲上架，哪些平台合適？</p>
+  <p>結論：先走「零移植成本」的網頁平台（itch.io → CrazyGames → GitHub Pages/PWA），有數據後再談 Poki；原生商店只建議先做 Google Play；中國大陸渠道本階段不建議。</p>
+  <div class="meta">
+    版本：v1.9.17　|　產出日期：2026-10-17　|　前份相關報告：<code>appstore_publish_report.html</code>（Google Play / App Store 準備清單，本報告不重複其 44 項細項，只做「平台選擇」決策）
+  </div>
+</header>
+
+<h2>一、一句話結論</h2>
+<div class="good">
+  <b>最合適的路徑</b>
+  本作是<strong>純靜態 HTML/CSS/JS、無建置步驟、總載入約 25MB、進度存 localStorage</strong> 的網頁遊戲，
+  所以「網頁遊戲平台」的移植成本是 <strong>0</strong>，而「原生商店」需要包裝、費用與審核，「中國小遊戲/安卓渠道」需要<strong>重寫渲染層＋版號資質</strong>。
+  因此優先順序是：<strong>itch.io（今天就可上）→ CrazyGames / GameDistribution（接 SDK 換流量）→ GitHub Pages 補 PWA（可安裝、也是 Play 上架前提）→ Google Play（US$25）</strong>；
+  App Store 只在有 Mac 且願意為審核做原生化增強時才做；Steam、微信/抖音小遊戲、中國安卓商店本階段不建議。
+</div>
+
+<h2>二、現況盤點（決策依據的技術事實）</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>項目</th><th>現況</th><th>對上架的意義</th></tr>
+  <tr><td class="name">技術棧</td><td>單頁靜態網頁：<code>index.html</code> + <code>css/</code> + <code>js/</code>，<strong>無任何相依套件、無建置步驟</strong></td><td>網頁平台可直接打包上傳；原生商店可用 WebView 包裝</td></tr>
+  <tr><td class="name">UI 渲染方式</td><td><strong>DOM + CSS</strong>（非 canvas / WebGL），含影片、字型、CSS 動畫</td><td>瀏覽器 iframe 與 WebView 都能跑；<strong>但微信/抖音小遊戲沒有 DOM，等於要重寫</strong></td></tr>
+  <tr><td class="name">實際出貨體積</td><td>約 <strong>25MB</strong>：恐龍圖 4.7MB（139 張 webp）、地圖 3MB、字型 0.66MB、<code>game.mp4</code> 2.4MB、<code>story_lv4_720p.mp4</code> 13MB、JS/CSS 約 0.7MB</td><td>遠低於所有平台的體積上限；但 13MB 劇情影片是<strong>首次載入時間</strong>的最大變數</td></tr>
+  <tr><td class="name">存檔</td><td>瀏覽器 <code>localStorage</code>（<code>dinodoku-*</code>），無伺服器、無帳號</td><td>隱私政策容易寫（不蒐集個資）；但換裝置不同步，是商店評論的常見扣分點</td></tr>
+  <tr><td class="name">目前发布狀態</td><td>已上線 GitHub Pages：<code>https://hungmin368.github.io/df/</code></td><td>「已經有一个可公開遊玩的網址」= 所有網頁平台的投稿門檻都满足了</td></tr>
+  <tr><td class="name">PWA 就緒度</td><td><strong>沒有</strong> <code>manifest.json</code>、<strong>沒有</strong> service worker</td><td>目前手機不能「安裝到主畫面」；<strong>也是 TWA 方式上 Google Play 的前提</strong></td></tr>
+  <tr><td class="name">語言</td><td>玩家介面<strong>只有繁體中文</strong>（另有 <code>english_mode_assessment_report.html</code> 評估過英文模式）</td><td>繁中利基市場很精準；但 Poki / CrazyGames 的流量以歐美英語為主，<strong>沒有英文會明顯压低留存與分成收入</strong></td></tr>
+  <tr><td class="name">字型授權</td><td><code>Huninn.woff2</code>（jf open 粉圓）與 <code>Iansui.woff2</code>（粉圓）皆為 justfont 開源字型，可商用與重散布</td><td>不是阻礙；但重散布時<strong>需在包內附上授權文字（OFL 類）</strong></td></tr>
+  <tr><td class="name">素材來源</td><td>AI 生成（Gemini 圖像模型）+ 自行後製；详见 <code>appstore_publish_report.html</code> 的「素材來源盤點」</td><td>各商店對 AI 生成素材的揭露要求不同，<strong>Google Play 與 Steam 都要求在表單中揭露</strong></td></tr>
+</table>
+</div>
+
+<h2>三、平台總表（三梯隊）</h2>
+
+<div class="tier">第一梯隊 — 零／低移植成本，建议立刻做</div>
+<div class="tbl-wrap">
+<table>
+  <tr><th>平台</th><th>移植成本</th><th>費用</th><th>分成／收入</th><th>審核</th><th>流量</th><th>適合度</th><th>關鍵限制</th></tr>
+  <tr>
+    <td class="name">itch.io</td>
+    <td>零（上傳 zip，瀏覽器直接玩）</td><td>免費</td>
+    <td>分成比例自己設（可 0%），支援打賞／自訂定價</td>
+    <td>自助，几乎即时</td><td>小～中（獨立遊戲社群）</td>
+    <td class="stars">★★★★★</td>
+    <td>自然流量有限；適合当「官方可玩頁 + 作品集 + 收反馈」</td>
+  </tr>
+  <tr>
+    <td class="name">GitHub Pages<br>（已上線）+ PWA</td>
+    <td>低（补 manifest + service worker + 圖標）</td><td>免費</td>
+    <td>無（自有渠道）</td><td>無</td><td>靠自己導流</td>
+    <td class="stars">★★★★★</td>
+    <td>补 PWA 後手機可「安裝到主畫面」，也是 TWA 上 Play 的前提</td>
+  </tr>
+  <tr>
+    <td class="name">CrazyGames</td>
+    <td>低～中（接官方 SDK：載入完成、廣告、遊戲開始/結束事件）</td><td>免費</td>
+    <td>廣告收入分成（開發者約五成上下，依合約）</td>
+    <td>人工審核，重視品質與載入速度</td><td><strong>大</strong></td>
+    <td class="stars">★★★★☆</td>
+    <td>要用它的廣告就必須接 SDK；對首次載入時間敏感</td>
+  </tr>
+  <tr>
+    <td class="name">GameDistribution /<br>GameMonetize / GamePix</td>
+    <td>低（接 SDK）</td><td>免費</td>
+    <td>約 <strong>45%</strong> 廣告分成</td>
+    <td>門檻低</td><td>聚合到上千個小遊戲站，單站小、總量可觀</td>
+    <td class="stars">★★★★☆</td>
+    <td>非獨家、可同時上多家；單價低，屬於「量」的生意</td>
+  </tr>
+  <tr>
+    <td class="name">Newgrounds</td>
+    <td>零</td><td>免費</td><td>廣告分成（小額）</td>
+    <td>社群審核</td><td>中（歐美獨立社群）</td>
+    <td class="stars">★★★☆☆</td>
+    <td>適合曝光與收反馈；對繁中介面較不友善</td>
+  </tr>
+</table>
+</div>
+
+<div class="tier">第二梯隊 — 原生商店：需要包裝、費用與審核</div>
+<div class="tbl-wrap">
+<table>
+  <tr><th>平台</th><th>移植成本</th><th>費用</th><th>審核難點</th><th>流量</th><th>適合度</th><th>關鍵限制</th></tr>
+  <tr>
+    <td class="name">Google Play</td>
+    <td>中（Capacitor 包裝，或先做 PWA 再走 TWA / Bubblewrap）</td>
+    <td><strong>US$25 一次性</strong></td>
+    <td>個人帳號（2023-11-13 之後建立）必須先跑<strong>封閉測試：12 名測試者、連續 14 天</strong>，才能解鎖正式上架</td>
+    <td>大（但需要 ASO 與買量）</td>
+    <td class="stars">★★★★☆</td>
+    <td>WebView 內<strong>不能用 AdSense</strong>，廣告要接 AdMob；需內容分級、隱私政策、AI 素材揭露</td>
+  </tr>
+  <tr>
+    <td class="name">Microsoft Store</td>
+    <td>低～中（PWA 上架，或 Tauri / Electron 包）</td>
+    <td><strong>個人開發者註冊已免費</strong>（原本 US$19）</td>
+    <td>相對寬鬆</td><td>小</td>
+    <td class="stars">★★★☆☆</td>
+    <td>成本幾乎為零，適合「順手多一個渠道」，但別期待流量</td>
+  </tr>
+  <tr>
+    <td class="name">Apple App Store</td>
+    <td>中高（Capacitor + <strong>必須有 Mac 與 Xcode</strong> 才能簽章上傳）</td>
+    <td><strong>US$99／年</strong></td>
+    <td><strong>Guideline 4.2「最低功能性」</strong>：純 WebView 套殼很容易被判定為「只是網站」而拒審</td>
+    <td>大，且付费意愿高</td>
+    <td class="stars">★★☆☆☆</td>
+    <td>要嘛加原生能力（離線包、原圖通知、Game Center、原生導覽列），要嘛先不做</td>
+  </tr>
+  <tr>
+    <td class="name">Amazon Appstore</td>
+    <td>中（同 Android 包重簽）</td><td>免費</td>
+    <td>寬鬆</td><td>小（Fire 裝置為主）</td>
+    <td class="stars">★★☆☆☆</td>
+    <td>做完 Google Play 後順手上，邊際成本低</td>
+  </tr>
+  <tr>
+    <td class="name">Steam</td>
+    <td>中高（Tauri / Electron 打包 + Steamworks 整合：成就、雲存檔）</td>
+    <td><strong>US$100／款</strong>（營收達門檻可退還）</td>
+    <td>審核不難，但玩家期待高</td><td>大，但對「網頁小遊戲」轉換差</td>
+    <td class="stars">★☆☆☆☆</td>
+    <td>Steam 玩家對純網頁包裝、無原生成就/雲存檔的作品普遍給負評；<strong>不建議現階段投入</strong></td>
+  </tr>
+</table>
+</div>
+
+<div class="tier">第三梯隊 — 中國大陸渠道：資質與重寫雙重門檻，本階段不建議</div>
+<div class="tbl-wrap">
+<table>
+  <tr><th>平台</th><th>移植成本</th><th>資質要求</th><th>適合度</th><th>為什麼不建議</th></tr>
+  <tr>
+    <td class="name">微信小遊戲</td>
+    <td><strong>高（重寫）</strong></td>
+    <td>需<strong>軟件著作權（軟著）</strong>；若要開<strong>虛擬支付／IAP，還必須有版號</strong>，官方文件未免除個人主體的這兩項要求</td>
+    <td class="stars">★☆☆☆☆</td>
+    <td>①小遊戲環境<strong>沒有 DOM</strong>，本作的 DOM+CSS 介面要改成 canvas 渲染，等於重做整個 UI 層；②版號對個人幾乎不可得。若只做廣告變現、不做 IAP，有「免版號」的個人主體路線，但政策需逐次向官方確認</td>
+  </tr>
+  <tr>
+    <td class="name">抖音小遊戲</td>
+    <td>高（重寫）</td><td>軟著 +（變現時）版號</td>
+    <td class="stars">★☆☆☆☆</td><td>同上</td>
+  </tr>
+  <tr>
+    <td class="name">華為 / 小米 / OPPO / vivo / 應用寶</td>
+    <td>中（Android 包重簽）</td>
+    <td><strong>遊戲類目普遍要求版號 + 軟著</strong></td>
+    <td class="stars">★☆☆☆☆</td>
+    <td>個人開發者拿不到版號；把遊戲偽裝成「工具類應用」上架有被下架與封號的風險，不建議</td>
+  </tr>
+</table>
+</div>
+
+<h2>四、重點平台詳評</h2>
+
+<h3>itch.io — 今天就該上，成本為零</h3>
+<p>自助上傳、不需 SDK、可設定「瀏覽器內直接遊玩」。把專案壓成 zip（只放 <code>index.html</code>、<code>css/</code>、<code>js/</code>、<code>assets/</code> 中實際被引用的檔案，<strong>不要把 <code>assets/dinos_2/</code> 那 461MB 素材工作區放進去</strong>）即可。</p>
+<ul>
+  <li>價值：一個比 GitHub Pages 更像「產品頁」的公開網址，可放截圖、說明、更新日誌，並開啟留言收反馈。</li>
+  <li>定價：可選免費 + 打賞，或自訂分成比例（含 0%）。繁中利基遊戲在這裡通常量不大，但零成本。</li>
+  <li>注意：<code>file://</code> 與跨域限制不同，上傳前用靜態伺服器完整跑一輪（影片、字型、恐龍圖、存檔）。</li>
+</ul>
+
+<h3>CrazyGames — 性價比最高的流量來源</h3>
+<p>接受 HTML5／JS 遊戲，流量在網頁遊戲平台中属第一梯隊。要吃到廣告分成就得接官方 SDK，並在程式中打出幾個事件：<em>載入完成</em>、<em>請求廣告（關卡間）</em>、<em>gameplayStart / gameplayStop</em>（讓它在遊玩中不要播廣告、並正確計時）。</p>
+<ul>
+  <li>本作的接法：在關卡／塔關結算畫面之間插入「商業廣告」節點，是最自然的置入位置。</li>
+  <li>審核看重的點：載入速度、可玩性、行動端操作。<strong>13MB 的 <code>story_lv4_720p.mp4</code> 建議改成延後載入或可略過</strong>，否則首次載入會被扣分。</li>
+  <li>語言：平台流量以英語為主，<strong>沒有英文版會明顯压低平均遊玩時長</strong>，也就压低廣告收入。</li>
+</ul>
+
+<h3>Poki — 流量最大，但代價是合約</h3>
+<p>Poki 提供兩種合作型態：<strong>網頁獨家（web-exclusive，約 5 年合約）</strong>與<strong>非獨家</strong>，兩者都是收入分成，且<strong>必須整合 Poki SDK</strong>。</p>
+<div class="note">
+  <b>決策提醒</b>
+  獨家條款會擋掉你自己網站與其他平台的收入。建議：<strong>先用 CrazyGames / GameDistribution 的非獨家渠道跑出真實數據（留存、平均遊玩時長）</strong>，
+  等手上有了數字，再評估 Poki 的獨家條件值不值得。不要在沒有數據時就簽長期獨家。
+</div>
+
+<h3>GitHub Pages + PWA — 你已經有的一半</h3>
+<p>目前缺三樣東西就能變成可安裝的 PWA：</p>
+<ol>
+  <li><code>manifest.webmanifest</code>（名稱、短名、<code>display: standalone</code>、主題色、各尺寸圖標 — 已有 <code>app_icon.png</code> 可切）</li>
+  <li>Service worker（把 <code>index.html</code>、<code>css/</code>、<code>js/</code>、<code>assets/dinos/</code>、字型做成<strong>預快取離線包</strong>；兩段影片用「執行期快取」或干脆不快取）</li>
+  <li>HTTPS（GitHub Pages 已具備）</li>
+</ol>
+<p>好處是雙重的：手機用戶可以「安裝到主畫面」得到近似原生 App 的體驗；而且<strong>TWA（Trusted Web Activity）是上 Google Play 成本最低的路線</strong>，前提就是先有合格的 PWA。</p>
+
+<h3>Google Play — 原生商店裡唯一建議先做的</h3>
+<ul>
+  <li>費用只有 US$25 一次性，且 Android 的 WebView 對 DOM 遊戲支援良好，Capacitor 或 TWA 都能包裝。</li>
+  <li><strong>時程瓶頸是測試要求，不是技術</strong>：個人帳號需先建立封閉測試軌道，湊到 <strong>12 名測試者並持續 14 天</strong>，才能申請正式版。請把這 14 天排進時程，別以為打包完就能上。</li>
+  <li>廣告：WebView 內不能放 AdSense，要接 AdMob（Capacitor 有官方插件）。</li>
+  <li>文件：隱私政策網址（本作不蒐集個資，內容可以很短，但必須有）、內容分級問卷、AI 生成素材揭露。</li>
+  <li>細項工作請照 <code>appstore_publish_report.html</code> 的 01–44 清單執行，本報告不重複。</li>
+</ul>
+
+<h3>Apple App Store — 建議晚一點，或先不做</h3>
+<div class="risk">
+  <b>最大風險：Guideline 4.2（最低功能性）</b>
+  把靜態網頁用 Capacitor／WebView 套殼送上 App Store，<strong>被判定為「只是把網站包起來」而拒審的機率很高</strong>。
+  另外還需要 Mac + Xcode 才能簽章，以及 US$99／年。
+  若要上，先補：完整離線包、原生啟動畫面與圖標規範、至少一項「只有原生才有」的能力（例如原生通知、Game Center、或把 UI 改成原生導覽）。
+</div>
+
+<h2>五、不分平台都要先做的共同前置工作</h2>
+<div class="cards">
+  <div class="card"><b>1. 出货包瘦身</b>只包實際被引用的檔案。<code>assets/dinos_2/</code>（461MB，含生成中間檔與 log）、<code>js/*.bak*</code>、<code>tmp_*.mjs</code>、各 <code>*_report.html</code> 一律排除。</div>
+  <div class="card"><b>2. 載入效能</b>13MB 劇情影片延後載入或可略過；<code>map.png</code>（3MB）考慮切片或降解析；139 張恐龍圖改 lazy-load。</div>
+  <div class="card"><b>3. PWA 三件套</b>manifest + service worker + 多尺寸圖標（192/512、maskable）。</div>
+  <div class="card"><b>4. 隱私政策 / 服務條款</b>兩個公開網址。內容重點：無帳號、無伺服器、進度只存本機 localStorage、廣告由第三方平台 SDK 提供。</div>
+  <div class="card"><b>5. 授權文件</b>字型（jf open 粉圓 / 粉圓）的 OFL 授權文字放進出貨包；AI 素材的生成與後製說明留檔，商店表單會問。</div>
+  <div class="card"><b>6. 商店素材</b>圖標（512）、各平台尺寸截圖（手機 + 桌面）、一段 15–30 秒影片、簡短與完整描述。</div>
+  <div class="card"><b>7. 語言策略</b>決定是否做英文介面。若目標是國際網頁平台，英文模式的優先級應該提高（已有 <code>english_mode_assessment_report.html</code>）。</div>
+  <div class="card"><b>8. 廣告節點設計</b>先規劃「關卡間插頁廣告」的位置，這決定了 SDK 要插在哪幾行，也決定收入。</div>
+</div>
+
+<h2>六、建議啟動順序</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>階段</th><th>動作</th><th>預估投入</th><th>現金成本</th></tr>
+  <tr><td>1</td><td>本周</td><td>出货包瘦身 + 用靜態伺服器跑完整迴歸（影片／字型／存檔／手機版）</td><td>0.5–1 天</td><td>0</td></tr>
+  <tr><td>2</td><td>本周</td><td>補 PWA（manifest + service worker + 圖標），GitHub Pages 驗證可安裝、可離線</td><td>1 天</td><td>0</td></tr>
+  <tr><td>3</td><td>本周</td><td>上架 itch.io（含截圖、說明、更新日誌），並在页面導回官方網址</td><td>0.5 天</td><td>0</td></tr>
+  <tr><td>4</td><td>第 2 週</td><td>投 CrazyGames 與 GameDistribution／GameMonetize（非獨家），接 SDK 與廣告節點</td><td>2–3 天</td><td>0</td></tr>
+  <tr><td>5</td><td>第 2–3 週</td><td>寫好隱私政策／服務條款、內容分級、AI 素材揭露</td><td>0.5 天</td><td>0</td></tr>
+  <tr><td>6</td><td>第 3 週起</td><td>Capacitor 或 TWA 打包 → Google Play 封閉測試（12 人 × 14 天）→ 正式版</td><td>2 天工作 + <strong>14 天等待</strong></td><td>US$25</td></tr>
+  <tr><td>7</td><td>看數據再定</td><td>有留存數據後，評估 Poki（注意獨家條款）與英文介面</td><td>—</td><td>0</td></tr>
+  <tr><td>8</td><td>看數據再定</td><td>Microsoft Store（PWA 上架，註冊免費）、Amazon Appstore（沿用 Android 包）</td><td>0.5 天</td><td>0</td></tr>
+  <tr><td>—</td><td>暫緩</td><td>Apple App Store（需 Mac + 原生化改造 + US$99/年）、Steam（US$100 + 期待落差）、微信/抖音小遊戲與中國安卓商店（重寫 + 版號）</td><td>—</td><td>—</td></tr>
+</table>
+</div>
+
+<h2>七、風險與注意事項</h2>
+<div class="risk">
+  <b>三個最容易踩的坑</b>
+  <ol style="margin-bottom:0">
+    <li><strong>把素材工作區一起出貨。</strong><code>assets/dinos_2/</code> 有 461MB（含生成中間檔、13MB 的 log、影片片段），一旦打包會讓上傳體積暴增 20 倍。出貨包只要約 25MB。</li>
+    <li><strong>低估 Google Play 的 14 天。</strong>個人帳號的封閉測試要求是<strong>日曆時間</strong>，不是工時，排程時要提前兩週啟動。</li>
+    <li><strong>太早簽 Poki 獨家。</strong>獨家會關掉自己網站與其他平台的收入；先拿非獨家渠道的數據，再談條件。</li>
+  </ol>
+</div>
+<div class="note">
+  <b>政策會變，上架前務必複查</b>
+  本報告的費用與規則以 2026-10 查詢到的公開資料為準（Google Play 個人帳號 12 人 × 14 天、Microsoft Store 個人註冊免費、微信小遊戲 IAP 需版號 + 軟著）。
+  這些門檻各家常在調整，<strong>正式送審前請到各平台官方開發者文件再確認一次</strong>。
+</div>
+
+<h2>八、參考來源</h2>
+<ul>
+  <li><a href="https://www.bountyboard.gg/blog/how-to-submit-an-html5-game-to-web-platforms">How to Submit an HTML5 Game to Web Game Platforms — Bounty Board</a></li>
+  <li><a href="https://www.bountyboard.gg/blog/best-web-game-platforms-for-indie-developers">Best Web Game Platforms for Indie Developers — Bounty Board</a></li>
+  <li><a href="https://developers.poki.com/guide/revenue-deal-types">How we partner with you — Poki Documentation（獨家／非獨家方案）</a></li>
+  <li><a href="https://developer.crazygames.com/">CrazyGames Developer Portal</a></li>
+  <li><a href="https://gamedistribution.com/">GameDistribution</a></li>
+  <li><a href="https://www.testerscommunity.com/blog/google-play-12-testers-policy">Google Play 12 Testers Policy Explained (2026)</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/apps/publish/whats-new-individual-developer">Free developer registration for individual developers — Microsoft Learn</a></li>
+  <li><a href="https://developers.weixin.qq.com/minigame/introduction/guide/zzsh-iap.html">小遊戲接入指南／資質審核-IAP — 微信開放社區</a></li>
+  <li><a href="https://zhuanlan.zhihu.com/p/2078517342133281890">免版號！Unity 微信小遊戲個人主體接入發布全流程（政策需再向官方確認）</a></li>
+  <li><a href="https://github.com/justfont/open-huninn-font">justfont/open-huninn-font（jf open 粉圓，開源可商用）</a></li>
+  <li><a href="https://justfont.com/huninn/">open 粉圓 — justfont</a></li>
+</ul>
+
+<footer>
+  恐龍快找 DragonFinder v1.9.17　|　上架平台評估報告　|　產出日期 2026-10-17　|
+  相關文件：<code>appstore_publish_report.html</code>（Google Play / App Store 準備清單）、<code>english_mode_assessment_report.html</code>（英文模式評估）、<code>AGENTS.md</code>（專案規範）
+</footer>
+
+</div>
+
+</section>
+</div>
+
+<div class="src-block" id="src-2">
+<div class="src-meta"><span class="src-badge">來源 2</span><span>原報告：<code>publish_task_checklist_report.html</code></span><span>原日期：2026-10-17</span></div>
+<section class="src" id="src-2-body">
+
+<div class="wrap">
+
+<header class="hero">
+  <h1>⚡ 恐龍快找 DragonFinder — 上架任務清單</h1>
+  <p>範圍：第一梯隊（itch.io、GitHub Pages+PWA、CrazyGames、GameDistribution 系、Newgrounds）＋第二梯隊（Google Play、Microsoft Store、Apple App Store、Amazon Appstore、Steam）</p>
+  <p>內容：① 這些平台「共同要求」但<strong>尚未完成</strong>的任務清單；② 各平台「特別要求」的任務清單；③ 其中<strong>只能你來做</strong>的任務以紅色標記並獨立成快速清單。</p>
+  <div class="meta">
+    版本：v1.9.17　|　產出日期：2026-10-17　|　證據來源：本倉庫實際稽核（grep / 檔案清單）　|　前份決策報告：<code>game_publish_platforms_report.html</code>
+  </div>
+</header>
+
+<h2>〇、怎麼讀這份報告</h2>
+<div class="legend">
+  <span class="badge w-me">🤖 我可獨立完成</span>
+  <span class="badge w-split">🤝 分工：我產出、你按鍵／申報</span>
+  <span class="badge w-you">👤 只能你來做</span>
+  <span class="lab">（紅底整列 = 👤 只能你來做；每列附「現況證據」與「驗收標準」）</span>
+</div>
+<div class="cards">
+  <div class="card"><b>20 項</b><span>清單 A：共同要求・尚未完成</span></div>
+  <div class="card"><b>33 項</b><span>清單 B：平台特別要求</span></div>
+  <div class="card"><b>17 項</b><span>👤 只能你來做（A 5 項 + B 12 項）</span></div>
+  <div class="card"><b>6 項</b><span>已完成、不必重做（見第五節）</span></div>
+</div>
+<div class="note">
+  <b> badge 判定原則</b>
+  🤖 = 我在倉庫內就能做完，你只需看結果；🤝 = 我產出成品／草稿／打包，但最後一步需要你的帳號點擊、上傳或拍板；
+  👤 = <strong>我無法代替你完成</strong>：身分與信箱驗證、付費與收款稅務、硬體（Mac）、找人（封測測試者）、法律性質的最終申報與合約簽署。
+</div>
+
+<h2>一、👤 只能你來做 — 快速清單（17 項）</h2>
+<p>這些是整條上架路線的<strong>人為瓶頸</strong>，建議盡早並行啟動（尤其是 Google Play 的 14 天封測與各平台帳號），否則我這邊做完也會卡住。</p>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>為什麼只能你來做</th><th>我可以先幫你備好的部分</th></tr>
+  <tr class="row-you"><td class="id">Y01</td><td class="task">各平台開發者帳號註冊與信箱驗證</td><td>itch.io、CrazyGames、GameDistribution、Newgrounds、Play Console、Partner Center、Apple、Amazon、Steamworks 都要本人信箱與身分</td><td>各平台註冊網址、所需資料清單、步驟說明</td></tr>
+  <tr class="row-you"><td class="id">Y02</td><td class="task">付費：Play US$25、Apple US$99/年、Steam US$100</td><td>付款卡與帳戶只能你的（Microsoft Store 個人註冊已免費）</td><td>費用對照表（已在前份報告）</td></tr>
+  <tr class="row-you"><td class="id">Y03</td><td class="task">收款與稅務資料（銀行帳戶、W-8BEN 等稅表）</td><td>金流與稅務申報屬本人法律行為</td><td>各平台稅表填寫說明整理</td></tr>
+  <tr class="row-you"><td class="id">Y04</td><td class="task">Google Play 封閉測試：湊 12 名測試者 × 連續 14 天</td><td>「找人」與維持測試者活躍只能你來；這是日曆時間，不是工時</td><td>封測軌道設定步驟、測試者邀請文案、APK/AAB 檔</td></tr>
+  <tr class="row-you"><td class="id">Y05</td><td class="task">Mac + Xcode 環境（Apple 路線）</td><td>硬體與 Apple ID 簽章只能你的</td><td>Capacitor iOS 工程設定、4.2 原生化改造清單</td></tr>
+  <tr class="row-you"><td class="id">Y06</td><td class="task">提供並驗證「支援聯絡信箱」</td><td>信箱與對外窗口只能你提供；所有平台 listing 必填</td><td>接線到遊戲內「關於」頁與各 listing 欄位</td></tr>
+  <tr class="row-you"><td class="id">Y07</td><td class="task">年齡分級問卷最終申報（IARC / 各商店）</td><td>分級申報是帳號持有人的法律聲明</td><td>依遊戲內容預填建議答案（無暴力／無賭博／無聊天）</td></tr>
+  <tr class="row-you"><td class="id">Y08</td><td class="task">隱私政策與服務條款的最終法務確認</td><td>我可起草全文，但對外發布的法律文件需你確認</td><td>完整草稿（本作零網路請求、零個資蒐集，內容很短）</td></tr>
+  <tr class="row-you"><td class="id">Y09</td><td class="task">AI 生成素材揭露的最終申報</td><td>Play / Steam / Apple 表單的揭露聲明屬帳號持有人</td><td>揭露文字草稿（生成模型、後製流程、來源盤點）</td></tr>
+  <tr class="row-you"><td class="id">Y10</td><td class="task">Data safety / App Privacy 標籤申報</td><td>同上，屬法律申報</td><td>答案草稿：「不蒐集任何使用者資料」</td></tr>
+  <tr class="row-you"><td class="id">Y11</td><td class="task">廣告／變現帳號（AdMob、portal 收款設定）</td><td>AdMob 與 portal 收款綁定本人身分與稅務</td><td>AdMob 廣告單元的程式接線</td></tr>
+  <tr class="row-you"><td class="id">Y12</td><td class="task">itch.io 定價／打賞／revenue 滑桿設定</td><td>涉及你的收入分配決定</td><td>建議設定（免費＋打賞起步）</td></tr>
+  <tr class="row-you"><td class="id">Y13</td><td class="task">自訂網域購買與 DNS（選做）</td><td>網域註冊屬個人財產行為</td><td>GitHub Pages 自訂網域設定步驟</td></tr>
+  <tr class="row-you"><td class="id">Y14</td><td class="task">非獨家提交矩陣的合約確認（避免誤簽獨家）</td><td>合約簽署只能你</td><td>各平台合約條款對照（Poki 獨家條款風險已標註）</td></tr>
+  <tr class="row-you"><td class="id">Y15</td><td class="task">Newgrounds／portal 社群回饋的對外回應</td><td>以作者身分發言只能你</td><td>回饋整理與建議回覆草稿</td></tr>
+  <tr class="row-you"><td class="id">Y16</td><td class="task">英文介面的範圍拍板（先英文 or 三語架構）</td><td>影響 2–4 天工時與後續維護，屬產品決策</td><td>兩案工時對照（<code>english_mode_assessment_report.html</code> 已有拆解）</td></tr>
+  <tr class="row-you"><td class="id">Y17</td><td class="task">截圖組與宣傳短片的最終選片</td><td>我可拍攝／剪輯全部候選，但「哪幾張代表產品」是你的判斷</td><td>候選截圖與 15–30 秒短片成品</td></tr>
+</table>
+</div>
+
+<h2>二、清單 A — 共同要求・尚未完成（20 項）</h2>
+<p>以下每一項都是<strong>第一＋第二梯隊全部或絕大多數平台的共同要求</strong>，且經倉庫稽核確認<strong>目前尚未完成</strong>。</p>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>哪些平台共同要求</th><th>現況證據（稽核結果）</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr><td class="id">A01</td><td class="task">出貨包瘦身與打包腳本</td><td>全部（上傳體積、審核時間、portal 載入速度）</td><td class="ev"><code>assets/dinos_2/</code> 461MB、<code>js/*.bak*</code> 4 檔、<code>tmp_*.mjs</code> 3 檔、30+ 份 <code>*_report.html</code> 都在倉庫內，無 dist 腳本</td><td><span class="badge w-me">🤖</span></td><td>0.5d</td><td class="acc">產出 <code>dist/</code> 僅含被引用檔且 &lt;30MB；有可重跑腳本</td></tr>
+  <tr><td class="id">A02</td><td class="task">manifest.webmanifest</td><td>GH Pages+PWA、Play(TWA)、MS Store(PWA)、手機安裝體驗</td><td class="ev"><code>index.html</code> 無 <code>&lt;link rel="manifest"&gt;</code>，僅有 theme-color meta</td><td><span class="badge w-me">🤖</span></td><td>0.2d</td><td class="acc">Chrome／Android 出現「安裝到主畫面」提示</td></tr>
+  <tr><td class="id">A03</td><td class="task">service worker 離線快取</td><td>同上＋portal 重複遊玩載入速度</td><td class="ev">全倉無 <code>navigator.serviceWorker</code> 註冊</td><td><span class="badge w-me">🤖</span></td><td>0.5d</td><td class="acc">斷網重開仍可進入主選單並遊玩已快取關卡</td></tr>
+  <tr><td class="id">A04</td><td class="task">圖標組（favicon／192／512／maskable／apple-touch）</td><td>全部商店與 PWA</td><td class="ev">僅單一 <code>app_icon.png</code> 1254×1254；無 <code>&lt;link rel="icon"&gt;</code></td><td><span class="badge w-me">🤖</span></td><td>0.3d</td><td class="acc">各尺寸檔存在且被 manifest／index.html 引用</td></tr>
+  <tr><td class="id">A05</td><td class="task">隱私政策公開頁</td><td>Play／App Store／Amazon／MS／Steam＋CrazyGames／Poki／GD 表單皆要網址</td><td class="ev">全倉 grep privacy／隱私 = 0 筆</td><td><span class="badge w-split">🤝</span></td><td>0.3d</td><td class="acc">公開 URL 可開啟；內容含「無帳號、無伺服器、localStorage 本機存檔」</td></tr>
+  <tr><td class="id">A06</td><td class="task">服務條款／最終用戶協議</td><td>商店與 portal 上架表單欄位</td><td class="ev">全倉 grep terms／服務條款 = 0 筆</td><td><span class="badge w-split">🤝</span></td><td>0.2d</td><td class="acc">公開 URL 可開啟並被 listing 引用</td></tr>
+  <tr class="row-you"><td class="id">A07</td><td class="task">支援聯絡窗口（信箱＋遊戲內關於頁入口）</td><td>全部平台 listing 必填</td><td class="ev">全倉無 mailto／聯絡／support 字樣</td><td><span class="badge w-you">👤</span></td><td>0.2d</td><td class="acc">信箱可收信；遊戲內關於頁與各 listing 顯示同一信箱（見 Y06）</td></tr>
+  <tr><td class="id">A08</td><td class="task">遊戲截圖組（手機＋桌面各尺寸）</td><td>全部 listing</td><td class="ev">倉庫只有 logo 與圖標源檔，無 gameplay 截圖</td><td><span class="badge w-split">🤝</span></td><td>0.5d</td><td class="acc">每平台所需尺寸齊備（見清單 B 各平台尺寸列）</td></tr>
+  <tr><td class="id">A09</td><td class="task">宣傳短片 15–30 秒</td><td>Play／App Store／Steam listing＋portal 產品頁</td><td class="ev">僅 2.4MB 開場與 13MB 劇情片，無短預告</td><td><span class="badge w-split">🤝</span></td><td>0.5d</td><td class="acc">一支 ≤30s、無旁白、含玩法畫面的 mp4</td></tr>
+  <tr><td class="id">A10</td><td class="task">商店文案（短／長描述、更新日誌）繁中＋英文</td><td>全部 listing</td><td class="ev">無任何描述文案檔</td><td><span class="badge w-split">🤝</span></td><td>0.5d</td><td class="acc">短描述 ≤80 字、長描述含玩法／特色／存檔說明，雙語</td></tr>
+  <tr><td class="id">A11</td><td class="task">英文介面（i18n）</td><td>T1 portal 流量主體為英語；商店全球 listing 轉換率</td><td class="ev"><code>js/main.js</code> 無 i18n 機制；<code>english_mode_assessment_report.html</code> 僅評估未實施</td><td><span class="badge w-split">🤝</span></td><td>2–4d</td><td class="acc">語言切換可持久化；繁中回歸無破版（範圍先經 Y16 拍板）</td></tr>
+  <tr><td class="id">A12</td><td class="task">廣告節點設計＋portal SDK 接線</td><td>CrazyGames／GD／GamePix 變現前提</td><td class="ev">全倉無任何 SDK 程式碼</td><td><span class="badge w-me">🤖</span></td><td>1d</td><td class="acc">關卡結算觸發 commercialBreak；遊玩中不彈廣告；SDK 未載入時遊戲仍可玩</td></tr>
+  <tr><td class="id">A13</td><td class="task">首次載入效能最佳化</td><td>portal 審核看載入速度；商店看評語</td><td class="ev"><code>index.html:15</code> 開場影片 <code>preload="auto"</code>（2.4MB）；<code>map.png</code> 3MB；139 張恐龍圖無 lazy-load</td><td><span class="badge w-me">🤖</span></td><td>0.5d</td><td class="acc">首屏關鍵資源 &lt;5MB；恐龍圖 lazy-load；影片不阻塞互動</td></tr>
+  <tr><td class="id">A14</td><td class="task">og／twitter／description meta</td><td>itch.io／portal 嵌入預覽與社群分享卡</td><td class="ev"><code>index.html</code> 無任何 og:／twitter:／description</td><td><span class="badge w-me">🤖</span></td><td>0.1d</td><td class="acc">分享預覽顯示標題＋描述＋封面圖</td></tr>
+  <tr><td class="id">A15</td><td class="task">遊戲內「關於／授權／版權」頁（含 OFL 文字與 AI 揭露）</td><td>字型重散布合規＋商店 AI 揭露＋portal 信用頁慣例</td><td class="ev">無 LICENSE／OFL 檔；無關於頁</td><td><span class="badge w-me">🤖</span></td><td>0.3d</td><td class="acc">關於頁列出字型 OFL 全文連結、AI 素材說明、版本號、支援信箱</td></tr>
+  <tr><td class="id">A16</td><td class="task">版本號與 CHANGELOG 文件</td><td>itch.io／Steam／商店更新流程</td><td class="ev">僅 UI 上 ver-badge v1.9.17，無 changelog 檔</td><td><span class="badge w-me">🤖</span></td><td>0.2d</td><td class="acc">CHANGELOG 與 UI 版本號一致；每次出貨同步更新</td></tr>
+  <tr class="row-you"><td class="id">A17</td><td class="task">年齡分級問卷最終申報</td><td>Play／MS／Amazon／Apple＋部分 portal</td><td class="ev">未申報（尚未有任何帳號）</td><td><span class="badge w-you">👤</span></td><td>0.2d</td><td class="acc">各平台取得分級結果（見 Y07）</td></tr>
+  <tr class="row-you"><td class="id">A18</td><td class="task">AI 生成素材揭露申報</td><td>Play／Steam／Apple 表單</td><td class="ev">未申報</td><td><span class="badge w-you">👤</span></td><td>0.1d</td><td class="acc">表單揭露完成並留檔（見 Y09）</td></tr>
+  <tr class="row-you"><td class="id">A19</td><td class="task">Data safety／App Privacy 申報</td><td>Play／App Store</td><td class="ev">未申報；稽核確認全倉 0 筆 fetch／XHR／analytics，可填「不蒐集」</td><td><span class="badge w-you">👤</span></td><td>0.2d</td><td class="acc">兩平台標籤顯示「不蒐集資料」（見 Y10）</td></tr>
+  <tr class="row-you"><td class="id">A20</td><td class="task">開發者帳號、付費、收款稅務</td><td>全部平台</td><td class="ev">尚未註冊任何平台帳號</td><td><span class="badge w-you">👤</span></td><td>1–2d</td><td class="acc">各帳號可登入且收款設定完成（見 Y01–Y03、Y11）</td></tr>
+</table>
+</div>
+
+<h2>三、清單 B — 平台特別要求（33 項）</h2>
+<p>只列「該平台独有、清單 A 未涵蓋」的要求。平台內依建議執行順序排列。</p>
+
+<div class="tier">第一梯隊</div>
+<h3>itch.io（3 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr><td class="id">B01</td><td class="task">可玩 zip 打包＋專案頁建立（browser-playable）</td><td>itch.io 的「在瀏覽器中遊玩」需 zip 內含入口 index.html 且無外部依賴</td><td><span class="badge w-split">🤝</span></td><td>0.3d</td><td class="acc">itch 內嵌 iframe 可直接進主選單並玩一關</td></tr>
+  <tr><td class="id">B02</td><td class="task">封面 630×500、縮圖 315×250、分類標籤</td><td>itch 專案頁素材規格</td><td><span class="badge w-me">🤖</span></td><td>0.2d</td><td class="acc">兩張圖符合尺寸且通過 itch 上傳檢查</td></tr>
+  <tr class="row-you"><td class="id">B03</td><td class="task">定價／打賞／revenue 滑桿</td><td>itch 的收入分配由作者設定</td><td><span class="badge w-you">👤</span></td><td>0.1d</td><td class="acc">定價策略上架生效（見 Y12）</td></tr>
+</table>
+</div>
+
+<h3>GitHub Pages + PWA（3 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr><td class="id">B04</td><td class="task">SW 版本化與發布流程（cache-busting）</td><td>PWA 更新機制：舊快取不能卡住新版本</td><td><span class="badge w-me">🤖</span></td><td>0.3d</td><td class="acc">改版發布後，已安裝用戶重開取得新版本</td></tr>
+  <tr><td class="id">B05</td><td class="task">安裝性與離線 Lighthouse 驗證</td><td>PWA installable 的官方檢查項</td><td><span class="badge w-me">🤖</span></td><td>0.2d</td><td class="acc">Lighthouse PWA 項通過；離線載入成功</td></tr>
+  <tr class="row-you"><td class="id">B06</td><td class="task">自訂網域（選做）</td><td>自有品牌網址與 DNS 設定</td><td><span class="badge w-you">👤</span></td><td>0.2d</td><td class="acc">HTTPS 自訂網域指向 Pages（見 Y13）</td></tr>
+</table>
+</div>
+
+<h3>CrazyGames（3 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr><td class="id">B07</td><td class="task">CrazyGames SDK 事件接線</td><td>init／gameplayStart／gameplayStop／commercialBreak／happytime 事件</td><td><span class="badge w-me">🤖</span></td><td>0.5d</td><td class="acc">SDK 模擬器下事件順序正確；無 SDK 時降級可玩</td></tr>
+  <tr><td class="id">B08</td><td class="task">送審資料包（描述、截圖、操作說明、測試指引）</td><td>人工審核需完整資料</td><td><span class="badge w-split">🤝</span></td><td>0.3d</td><td class="acc">資料包齊備並送出</td></tr>
+  <tr><td class="id">B09</td><td class="task">審核回饋修正回合</td><td>審核常見：載入速度、行動端操作、廣告節點位置</td><td><span class="badge w-split">🤝</span></td><td>0.5–1d</td><td class="acc">回饋逐項回覆並重新送審通過</td></tr>
+</table>
+</div>
+
+<h3>GameDistribution / GameMonetize / GamePix（2 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr><td class="id">B10</td><td class="task">GD 系 SDK 接線（複用 A12 廣告節點）</td><td>各家 SDK API 不同但節點相同</td><td><span class="badge w-me">🤖</span></td><td>0.5d</td><td class="acc">同一廣告節點可在三家 SDK 間切換</td></tr>
+  <tr class="row-you"><td class="id">B11</td><td class="task">非獨家提交矩陣管理（避免誤簽獨家）</td><td>多家同時上架時，任一家的獨家條款都會衝突</td><td><span class="badge w-you">👤</span></td><td>0.2d</td><td class="acc">提交清單與合約狀態表維持更新（見 Y14）</td></tr>
+</table>
+</div>
+
+<h3>Newgrounds（2 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr><td class="id">B12</td><td class="task">上傳與社群頁（標籤、說明、封面）</td><td>Newgrounds 的項目頁格式</td><td><span class="badge w-split">🤝</span></td><td>0.2d</td><td class="acc">項目頁公開且可玩</td></tr>
+  <tr class="row-you"><td class="id">B13</td><td class="task">社群回饋回合</td><td>以作者身分回應評論</td><td><span class="badge w-you">👤</span></td><td>持續</td><td class="acc">首週評論皆有回應（見 Y15）</td></tr>
+</table>
+</div>
+
+<div class="tier">第二梯隊</div>
+<h3>Google Play（5 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr><td class="id">B14</td><td class="task">Capacitor／TWA 包裝＋AAB＋簽章金鑰保管</td><td>Play 只收 AAB；TWA 前提是先有合格 PWA（A02/A03）</td><td><span class="badge w-split">🤝</span></td><td>1d</td><td class="acc">AAB 通過 Play Console 預檢；金鑰備份流程寫明</td></tr>
+  <tr class="row-you"><td class="id">B15</td><td class="task">封閉測試 12 人 × 連續 14 天</td><td>個人帳號（2023-11-13 後建立）解鎖正式版的強制門檻</td><td><span class="badge w-you">👤</span></td><td>14 天日曆</td><td class="acc">14 天期滿且可申請正式版（見 Y04）</td></tr>
+  <tr><td class="id">B16</td><td class="task">Play listing 素材（512 圖標、1024 特徵圖、手機＋7" 平板截圖）</td><td>Play Console 素材規格</td><td><span class="badge w-me">🤖</span></td><td>0.3d</td><td class="acc">全部尺寸通過 Console 上傳檢查</td></tr>
+  <tr class="row-you"><td class="id">B17</td><td class="task">AdMob 帳號＋廣告單元（WebView 內不可用 AdSense）</td><td>Play 政策：WebView 內廣告須用行動廣告 SDK</td><td><span class="badge w-you">👤</span></td><td>0.3d</td><td class="acc">廣告單元在包裝版可顯示（帳號見 Y11，接線我來）</td></tr>
+  <tr><td class="id">B18</td><td class="task">target SDK／WebView 政策合規檢查</td><td>Play 的 target API level 與 WebView 政策</td><td><span class="badge w-me">🤖</span></td><td>0.2d</td><td class="acc">Capacitor 版本與 targetSdk 符合當期 Play 要求</td></tr>
+</table>
+</div>
+
+<h3>Microsoft Store（3 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr class="row-you"><td class="id">B19</td><td class="task">Partner Center 帳號建立（個人已免費）</td><td>提交前提</td><td><span class="badge w-you">👤</span></td><td>0.2d</td><td class="acc">帳號可登入並建立應用程式保留名稱（見 Y01）</td></tr>
+  <tr><td class="id">B20</td><td class="task">PWA／MSIX 打包與 listing 草稿</td><td>Store 接受 PWA 提交或 MSIX 包</td><td><span class="badge w-me">🤖</span></td><td>0.5d</td><td class="acc">包體通過 Partner Center 驗證</td></tr>
+  <tr><td class="id">B21</td><td class="task">提交與年齡分級（IARC 答案複用）</td><td>Store 的 IARC 問卷</td><td><span class="badge w-split">🤝</span></td><td>0.2d</td><td class="acc">送出並取得分級</td></tr>
+</table>
+</div>
+
+<h3>Apple App Store（5 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr class="row-you"><td class="id">B22</td><td class="task">Mac + Xcode 環境</td><td>iOS 簽章與上傳只能在 macOS 完成</td><td><span class="badge w-you">👤</span></td><td>—</td><td class="acc">可執行 <code>xcodebuild</code> 與 Archive（見 Y05）</td></tr>
+  <tr class="row-you"><td class="id">B23</td><td class="task">Apple Developer Program US$99/年</td><td>提交前提</td><td><span class="badge w-you">👤</span></td><td>—</td><td class="acc">會員資格生效（見 Y02）</td></tr>
+  <tr><td class="id">B24</td><td class="task">Guideline 4.2 原生化增強</td><td>純 WebView 套殼高機率被拒：需原生啟動畫面、完整離線包、≥1 項原生能力</td><td><span class="badge w-split">🤝</span></td><td>1–2d</td><td class="acc">TestFlight 安裝後無網路可玩；具原生導覽或通知等能力</td></tr>
+  <tr class="row-you"><td class="id">B25</td><td class="task">App Privacy 標籤申報</td><td>App Store Connect 強制欄位</td><td><span class="badge w-you">👤</span></td><td>0.2d</td><td class="acc">標籤顯示「不蒐集資料」（見 Y10）</td></tr>
+  <tr><td class="id">B26</td><td class="task">審核截圖尺寸（6.9"／6.5"／iPad 13"）</td><td>App Store Connect 素材規格</td><td><span class="badge w-me">🤖</span></td><td>0.3d</td><td class="acc">各尺寸截圖通過上傳檢查</td></tr>
+</table>
+</div>
+
+<h3>Amazon Appstore（3 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr class="row-you"><td class="id">B27</td><td class="task">Amazon 開發者帳號</td><td>提交前提</td><td><span class="badge w-you">👤</span></td><td>0.2d</td><td class="acc">帳號可登入（見 Y01）</td></tr>
+  <tr><td class="id">B28</td><td class="task">Android 包重簽與 listing</td><td>Amazon 使用自有簽章與素材規格</td><td><span class="badge w-split">🤝</span></td><td>0.3d</td><td class="acc">APK 通過 Amazon 驗證工具</td></tr>
+  <tr><td class="id">B29</td><td class="task">Amazon 內容分級與隱私 URL 填寫</td><td>Amazon 表單欄位（複用 A05/A17 產出）</td><td><span class="badge w-split">🤝</span></td><td>0.2d</td><td class="acc">表單完成送出</td></tr>
+</table>
+</div>
+
+<h3>Steam（4 項）</h3>
+<div class="tbl-wrap">
+<table>
+  <tr><th>#</th><th>任務</th><th>平台特別要求</th><th>負責</th><th>工時</th><th>驗收標準</th></tr>
+  <tr><td class="id">B30</td><td class="task">Tauri／Electron 包裝＋Steamworks 整合</td><td>Steam 玩家期待原生視窗、成就、雲存檔</td><td><span class="badge w-me">🤖</span></td><td>2–3d</td><td class="acc">桌面端可離線啟動；成就與雲存檔在 Steam 客戶端可見</td></tr>
+  <tr class="row-you"><td class="id">B31</td><td class="task">Steamworks 帳號＋Steam Direct US$100</td><td>每款遊戲一次性費用（營收達門檻可退）</td><td><span class="badge w-you">👤</span></td><td>—</td><td class="acc">取得 AppID（見 Y02）</td></tr>
+  <tr><td class="id">B32</td><td class="task">capsule 圖組＋商店頁截圖／預告片規格</td><td>Steam 商店頁素材規格（header/main/vertical capsule）</td><td><span class="badge w-me">🤖</span></td><td>0.5d</td><td class="acc">全部尺寸通過 Steamworks 檢查</td></tr>
+  <tr><td class="id">B33</td><td class="task">成就與雲存檔設計（對接 localStorage 存檔）</td><td>Steam 雲存檔需明確的存檔檔格式</td><td><span class="badge w-split">🤝</span></td><td>1d</td><td class="acc">存檔可匯出／匯入且跨裝置還原</td></tr>
+</table>
+</div>
+
+<h2>四、建議執行波次</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>波次</th><th>時間</th><th>內容</th><th>瓶頸提醒</th></tr>
+  <tr><td>Wave 0</td><td>本週</td><td>全 🤖：A01、A02、A03、A04、A13、A14、A15、A16</td><td>無——我可直接開工</td></tr>
+  <tr><td>Wave 1</td><td>本週</td><td>🤝 小件：A05、A06、A08、A09、A10；👤：Y06 信箱</td><td>隱私政策與信箱要你先確認／提供</td></tr>
+  <tr><td>Wave 2</td><td>第 2 週</td><td>A12、B07、B10、B01、B02 → 提交 itch.io／CrazyGames／GD 系／Newgrounds</td><td>👤 Y01 帳號註冊必須先完成，否則我只能備料不能送出</td></tr>
+  <tr><td>Wave 3</td><td>第 2–3 週</td><td>B04、B05（PWA 收尾）；A11 英文（先經 Y16 拍板）</td><td>英文範圍未拍板前不要動工</td></tr>
+  <tr><td>Wave 4</td><td>第 3 週起</td><td>B14、B16、B18 → 送封測；<strong>同日啟動 B15 的 14 天</strong></td><td>👤 Y04 測試者越早湊越好，這 14 天是整條路線最長的單一等待</td></tr>
+  <tr><td>Wave 5</td><td>看數據</td><td>MS（B19–B21）、Amazon（B27–B29）、Apple（B22–B26）、Steam（B30–B33）</td><td>Apple 與 Steam 成本高，建議有 T1 數據後再決定</td></tr>
+</table>
+</div>
+
+<h2>五、已完成、不必重做（6 項）</h2>
+<div class="good">
+  <b>稽核確認已就緒</b>
+  <ul style="margin-bottom:0">
+    <li><strong>HTTPS 公開網址</strong>：GitHub Pages 已上線（<code>https://hungmin368.github.io/df/</code>），所有「需公開網址」的欄位都有落點。</li>
+    <li><strong>零網路請求、零個資蒐集</strong>：全倉 grep <code>fetch(</code>／<code>XMLHttpRequest</code>／<code>analytics</code>／<code>sendBeacon</code> = 0 筆 → Data safety／App Privacy 可誠實填「不蒐集」，隱私政策內容極簡。</li>
+    <li><strong>手機版版面</strong>：已有行動裝置遊玩版面（工作紀錄見 git commit log），portal 的行動端審核基礎具備。</li>
+    <li><strong>字型來源可商用</strong>：jf open 粉圓／粉圓為開源字型，可隨包重散布（尚缺隨包授權文字 → A15）。</li>
+    <li><strong>劇情影片按需載入</strong>：<code>story-vid</code> 無初始 src、進入該關才載入（開場 2.4MB 的 preload 待最佳化 → A13）。</li>
+    <li><strong>高解析圖標源檔</strong>：<code>app_icon.png</code> 1254×1254 足夠切出所有尺寸（尚缺尺寸組 → A04）。</li>
+  </ul>
+</div>
+
+<h2>六、風險提醒</h2>
+<div class="risk">
+  <b>三個會直接卡住上架的坑</b>
+  <ol style="margin-bottom:0">
+    <li><strong>461MB 工作區誤上傳</strong>：<code>assets/dinos_2/</code> 是素材生成工作區（含 13MB log 與影片片段）。任何平台上傳前都必須先跑 A01 的 dist 腳本。</li>
+    <li><strong>14 天封測是日曆時間</strong>：B15 無法用加班壓縮；Wave 4 啟動當天就要開始湊人（Y04）。</li>
+    <li><strong>帳號類任務（Y01–Y03、Y11）是所有人的共同前置</strong>：我這邊的 🤝 任務做完後，若帳號不存在就無法送出。建議第 1 週就把帳號與稅務資料辦完。</li>
+  </ol>
+</div>
+<div class="note">
+  <b>範圍說明</b>
+  Poki 未列入本清單：依前份報告建議，先以非獨家渠道跑出留存數據再談其獨家合約。中國大陸渠道（微信／抖音小遊戲、安卓商店）亦不在本範圍。
+  各平台費用與規則以 2026-10 查詢為準，送審前請再核對官方文件。
+</div>
+
+<footer>
+  恐龍快找 DragonFinder v1.9.17　|　上架任務清單（T1+T2）　|　產出日期 2026-10-17　|
+  相關文件：<code>game_publish_platforms_report.html</code>（平台選擇決策）、<code>appstore_publish_report.html</code>（Play/App Store 細項 01–44）、<code>english_mode_assessment_report.html</code>（英文工程拆解）
+</footer>
+
+</div>
+
+</section>
+</div>
+
+</main>
+<div class="foot">恐龍快找 DragonFinder ・ 報告整併（2026-10-22）</div>
+
+</body>
+</html>

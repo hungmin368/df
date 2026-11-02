@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伴伴森林大冒險（A寶・B寶）— 影片運鏡與過場說明</title>
+<style>
+  body { font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; background: #0f1626; color: #e8ecf5; margin: 0; padding: 32px 16px; }
+  .wrap { max-width: 1020px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  h2 { font-size: 18px; margin: 30px 0 10px; color: #9fc1ff; border-left: 4px solid #4a7de0; padding-left: 10px; }
+  h3 { font-size: 15px; margin: 16px 0 8px; color: #cfe0ff; }
+  .sub { color: #8b96b0; font-size: 13px; margin-bottom: 18px; }
+  .card { background: #182238; border: 1px solid #2a3a5c; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+  video { width: 100%; border-radius: 10px; background: #000; display: block; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { border: 1px solid #2a3a5c; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #1f2c48; color: #cfe0ff; }
+  td.ok { color: #7ee2a8; white-space: nowrap; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 2px; }
+  .chip { background: #1f2c48; border: 1px solid #35507f; border-radius: 999px; padding: 4px 12px; font-size: 12.5px; color: #bcd0f7; }
+  .shot { background: #182238; border: 1px solid #2a3a5c; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+  .shot h3 { margin-top: 0; color: #ffe8a3; }
+  .shot .meta { font-size: 13px; line-height: 1.9; color: #c8d4ee; }
+  .shot .meta b { color: #9fc1ff; }
+  .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .strip figure { margin: 0; }
+  .strip img { width: 100%; border-radius: 8px; border: 1px solid #2a3a5c; display: block; }
+  .strip figcaption { font-size: 11px; color: #8b96b0; margin-top: 4px; text-align: center; }
+  details { margin-top: 10px; }
+  summary { cursor: pointer; color: #9fc1ff; font-size: 13px; }
+  .prompt { background: #0d1420; border-radius: 8px; padding: 12px 14px; font-size: 12.5px; line-height: 1.85; white-space: pre-wrap; word-break: break-all; color: #c8d4ee; margin-top: 8px; }
+  .note { font-size: 13px; color: #ffd98a; background: #2a2314; border: 1px solid #5c4a2a; border-radius: 8px; padding: 10px 14px; margin-top: 10px; }
+  .note.blue { color: #bcd8ff; background: #14203a; border-color: #2a4a7c; }
+  .foot { text-align: center; font-size: 12px; color: #7c8db5; margin-top: 6px; }
+  code { background: #0d1420; padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+  ul, ol { margin: 6px 0; padding-left: 22px; font-size: 13.5px; line-height: 1.9; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>伴伴森林大冒險（A寶・B寶）— 影片運鏡與過場說明</h1>
+  <div class="sub">SophNet videogenerator ・ <code>happyhorse-1.0-r2v</code>（參考生視頻：以小朋友照片為 role=reference_image）｜1280×720 16:9・24fps・每鏡 5 秒 ×9 鏡 → 拼接成片｜2026-10-16｜任務 ID：forest-story-video</div>
+
+  <div class="chips">
+    <span class="chip">電影級實拍質感</span>
+    <span class="chip">720P 等同前作《藏不住的伴伴》</span>
+    <span class="chip">照片角色參考（R2V）</span>
+    <span class="chip">9 鏡敘事弧</span>
+    <span class="chip">白閃轉場 S6→S7</span>
+    <span class="chip">字幕＋片尾卡後製</span>
+  </div>
+
+  <div class="card">
+    <video src="../generated_assets/videos/intro_forest_story_720p.mp4" controls preload="metadata"></video>
+    <div class="foot">完整成片：assets/intro_forest_story_720p.mp4（九鏡拼接＋白閃轉場＋字幕＋片尾字卡；各鏡原始檔於 <code>_forest_story_clips/</code>）</div>
+  </div>
+
+  <h2>一、角色設定（照片 → 電影角色）</h2>
+  <div class="card">
+    <table>
+      <tr><th>角色</th><th>設定</th><th>照片參考來源</th></tr>
+      <tr><td><b>A寶</b>（哥哥）</td><td>九歲亞洲男孩、短黑髮、<b>無眼鏡</b>、淺藍色短袖T恤、卡其短褲；勇敢、表情生動</td><td rowspan="2">兩兄弟合照——以 data URI 作為 <code>role=reference_image</code> 參考圖，九鏡共用同一張，維持人物一致</td></tr>
+      <tr><td><b>B寶</b>（弟弟）</td><td>七歲亞洲男孩、短黑髮、<b>透明圓框眼鏡</b>、橘色短袖T恤、深色短褲；機靈、身手矯健</td></tr>
+      <tr><td><b>伴伴</b></td><td>圓滾滾寶寶小龍：紫紅色細鱗、奶油白肚皮、金橘色分節小角與背脊小刺、粉紅內耳與翼膜、金黃琥珀大眼、小尖牙粉舌（對照 DFD-000 定稿）</td><td>遊戲角色規格卡</td></tr>
+      <tr><td>暴龍</td><td>巨大寫實 T-Rex，電影級材料與接觸陰影；全片反派擔當</td><td>—</td></tr>
+      <tr><td>紫斑巨蛋</td><td>米白色蛋殼＋紫色圓斑（與伴伴 1★ 破殼圖的蛋一致）；全片麥高芬（MacGuffin）</td><td>—</td></tr>
+    </table>
+    <div class="note blue">🔒 隱私說明：參考照片只在生成時以資料 URI 傳給 SophNet（模型的參考圖機制要求伺服器可讀取的圖片輸入），未上傳任何其他服務、未收錄進本報告或 repo；報告中僅以文字描述角色，不含真實照片。</div>
+    <div class="note blue">🧠 技術說明：本片使用 <b>R2V（參考生視頻）</b>而非前作的 T2V——文字提示詞之外，額外帶入參考圖，讓模型鎖定兩位小朋友的面貌與造型；每鏡提示詞再補上年齡、髮型、眼鏡、衣服顏色等文字規格，達成跨鏡一致性。</div>
+  </div>
+
+  <h2>二、故事大綱（16 拍 → 9 鏡）</h2>
+  <div class="card">
+    <ol>
+      <li>暴龍正要吃掉一顆未孵化的蛋；兩個小朋友躲在蕨葉後目擊（鏡1）</li>
+      <li>A寶大叫引開暴龍目光；暴龍憤怒轉身怒吼（鏡2）</li>
+      <li>B寶趁隙抓著樹藤盪鞦韆，掠過暴龍手爪旁抱走蛋（鏡3）</li>
+      <li>兩人在樹間不斷用樹藤交換盪鞦韆前進；暴龍在後追趕（鏡4）</li>
+      <li>兩人到懸崖邊停住、回頭轉身；暴龍追上來，雙方眼神對上（鏡5）</li>
+      <li>暴龍張口正要吃下兩人；A寶手上的蛋綻放耀眼白光，暴龍被逼得睜不開眼（鏡6）</li>
+      <li>光芒退去，蛋殼中冒出伴伴（嬰兒龍型態）；牠慢慢睜開眼，朝暴龍打了一個哈欠（鏡7）</li>
+      <li>伴伴嘴裡冒出白色漩渦越變越大，把周遭（除了兩人附近）全吸進去（岩石等死物留在原地）；暴龍驚恐抱住大樹，連樹一起被吸走（鏡8）</li>
+      <li>伴伴打嗝、跳到地上往前走，回頭說：「來吧，我們一起來恐龍快找」（鏡9＋字幕＋片尾卡）</li>
+    </ol>
+  </div>
+
+  <h2>三、運鏡總表（Shot List）</h2>
+  <div class="card">
+    <table>
+      <tr><th>鏡</th><th>時間碼</th><th>場景</th><th>鏡位</th><th>運鏡</th><th>轉場（出）</th></tr>
+      <tr><td>S1</td><td>0:00–0:05</td><td>雨林空地（建立鏡）</td><td>前景蕨葉遮罩・低視角</td><td>穿葉緩慢推軌 <b>Dolly-in</b></td><td>硬切</td></tr>
+      <tr><td>S2</td><td>0:05–0:10</td><td>同一空地</td><td>中景 → 特寫</td><td>手持甩鏡 <b>Whip-pan</b>（A寶→暴龍）</td><td>甩鏡動態接</td></tr>
+      <tr><td>S3</td><td>0:10–0:15</td><td>蕨葉叢／暴龍手爪旁</td><td>低角度仰拍</td><td>慢動作＋跟隨 <b>Tracking</b></td><td>動作匹配剪</td></tr>
+      <tr><td>S4</td><td>0:15–0:20</td><td>巨樹林間</td><td>側向長鏡</td><td>橫移跟拍 <b>Lateral tracking</b></td><td>硬切</td></tr>
+      <tr><td>S5</td><td>0:20–0:25</td><td>懸崖邊</td><td>雙人背身 → 正反打</td><td>環繞半圈 <b>Orbit</b>＋眼神對切</td><td>硬切</td></tr>
+      <tr><td>S6</td><td>0:25–0:30</td><td>懸崖邊（正面）</td><td>近景 → 特寫</td><td>快速推近 <b>Punch-in</b>＋爆閃</td><td><b>閃白轉場</b>（Flash white）</td></tr>
+      <tr><td>S7</td><td>0:30–0:35</td><td>懸崖邊（柔光）</td><td>微距</td><td>微距推近 <b>Macro push-in</b>・柔焦逆光</td><td>硬切</td></tr>
+      <tr><td>S8</td><td>0:35–0:40</td><td>森林全景</td><td>廣角</td><td>環繞＋手搖 <b>Swirl handheld</b></td><td>硬切</td></tr>
+      <tr><td>S9</td><td>0:40–0:45</td><td>場地全景</td><td>低角度 → 背後</td><td>跟拍轉拉背 <b>Dolly-out</b>・定格</td><td>壓黑淡出</td></tr>
+      <tr><td>片尾卡</td><td>0:45–0:48</td><td>—</td><td>—</td><td>靜態字卡（淡出）</td><td>—</td></tr>
+      <tr><td colspan="6" style="color:#8b96b0">實測：每鏡 122 幀（5.08s）、閃白 7 幀（0.29s）、片尾卡 81 幀（3.38s），全片 <b>1186 幀／49.42s</b>；表列時間碼為 nominal 5s 設計值，S6 之後實際落點約 +0.5–1s。</td></tr>
+    </table>
+  </div>
+
+  <h2>四、逐鏡分鏡與運鏡細節</h2>
+
+  <div class="shot">
+    <h3>S1｜建立鏡：暴龍與未孵化的蛋（0:00–0:05）</h3>
+    <div class="meta">
+      <b>運鏡</b>：起幅滿版虛焦蕨葉、從葉隙窺視；緩慢 dolly-in 穿越葉層，視野漸開，暴龍與紫斑巨蛋在畫面正中浮現，最後停在兩兄弟肩後視角（過肩構圖）。<br>
+      <b>轉場</b>：硬切——把懸念原封不動交給 S2。<br>
+      <b>聲音建議</b>：森林環境底噪、遠處鳥鳴、暴龍低吼漸強。
+    </div>
+    <div class="strip">
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s1_a_f36.jpg" alt=""><figcaption>穿葉推近中：兩兄弟藏身偷看</figcaption></figure>
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s1_b_f88.jpg" alt=""><figcaption>落幅：暴龍逼近巨蛋</figcaption></figure>
+    </div>
+    <details><summary>生成提示詞（S1）</summary><div class="prompt">電影級實拍質感（真人電影），真實熱帶雨林，黃昏金色光束穿過高大樹冠，實拍級蕨葉、苔蘚岩石與落葉泥土，空氣中漂浮微塵與光斑，淺景深、背景柔焦、手持鏡頭微晃，溫暖電影調色，畫面穩定流暢。
+
+主角為參考圖片中的兩兄弟（容貌與髮型參照參考圖）：哥哥 A寶（九歲、短黑髮、無眼鏡、淺藍色短袖T恤、卡其短褲），弟弟 B寶（七歲、短黑髮、透明圓框眼鏡、橘色短袖T恤、深色短褲）。表情生動、勇敢。
+
+前景的巨大蕨葉後面躲著兩個亞洲小男孩，屏住呼吸偷偷往外看。
+前方空地中央，一顆米白色帶紫色圓斑的巨大恐龍蛋立在苔蘚上微微透光；一隻巨大寫實的暴龍（T-Rex）低著頭、張開長滿利牙的大嘴，慢慢逼近這顆蛋準備一口吞下。
+鏡頭穿過前景蕨葉緩慢向前推近（dolly-in）。電影級高細節、畫面穩定流暢，無字幕、無文字、無浮水印。</div></details>
+  </div>
+
+  <div class="shot">
+    <h3>S2｜A寶大叫引開目光、暴龍怒吼（0:05–0:10）</h3>
+    <div class="meta">
+      <b>運鏡</b>：起幅中景定在 A寶（從大樹後跳出、雙手圈嘴大喊）；手持甩鏡（whip-pan）順著 A 的喊聲方向掃向暴龍，落定獠牙怒目特寫；B寶在景深內探頭。<br>
+      <b>轉場</b>：甩鏡的動態方向延續——S3 由藤蔓弧線接住這股動能（whip-pan match）。<br>
+      <b>聲音建議</b>：A寶喊聲（清亮、破空）、暴龍怒吼（低頻爆量、樹葉沙沙）。
+    </div>
+    <div class="strip">
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s2_a_f36.jpg" alt=""><figcaption>A寶大喊瞬間</figcaption></figure>
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s2_b_f88.jpg" alt=""><figcaption>甩鏡落定：暴龍怒吼</figcaption></figure>
+    </div>
+    <details><summary>生成提示詞（S2）</summary><div class="prompt">（同 S1 共通風格與角色卡）哥哥 A寶從大樹後跳出來，雙手圈在嘴邊，對暴龍大喊，嘴巴張大、表情誇張勇敢；弟弟 B寶躲在另一棵大樹後緊張探頭。暴龍猛地轉頭，怒目瞪視，張開大嘴對空怒吼，聲波震得樹葉紛飛。手持鏡頭先拍 A寶大喊，再快速甩向暴龍（whip pan），特寫暴龍的獠牙與怒目。無字幕、無文字、無浮水印。</div></details>
+  </div>
+
+  <div class="shot">
+    <h3>S3｜B寶盪藤奪蛋（0:10–0:15）</h3>
+    <div class="meta">
+      <b>運鏡</b>：起幅低角度仰拍樹冠（金色逆光）；慢動作跟着 B寶的藤蔓大弧線劃過前景，掠過暴龍手爪旁；落幅 B寶抱蛋盪出畫面右側，暴龍撲空甩頭。<br>
+      <b>轉場</b>：動作匹配剪——藤蔓弧線直接接進 S4 的橫移追逐。<br>
+      <b>聲音建議</b>：藤蔓摩擦、呼嘯風聲、慢動作低頻共鳴。
+    </div>
+    <div class="strip">
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s3_a_f36.jpg" alt=""><figcaption>盪藤掠過暴龍手爪</figcaption></figure>
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s3_b_f88.jpg" alt=""><figcaption>抱起紫斑巨蛋盪離</figcaption></figure>
+    </div>
+    <details><summary>生成提示詞（S3）</summary><div class="prompt">（同 S1 共通風格與角色卡）低角度仰拍＋慢動作：弟弟 B寶抓著一條長藤蔓從高處盪下，身體盪出大弧線，掠過暴龍的手爪旁邊，一把抱起苔蘚上的紫斑巨蛋，順勢盪離畫面；哥哥 A寶在對面樹上伸手準備接應。暴龍撲空，憤怒甩頭。巨蛋在 B寶懷中微微透光。藤蔓與落葉飛舞，緊張刺激。無字幕、無文字、無浮水印。</div></details>
+  </div>
+
+  <div class="shot">
+    <h3>S4｜樹藤追逐（0:15–0:20）</h3>
+    <div class="meta">
+      <b>運鏡</b>：側向平行橫移跟拍（lateral tracking、一鏡到底感）；A/B 一前一後盪躍、空中互相傳接蛋，後方暴龍撞倒小樹入畫。<br>
+      <b>轉場</b>：硬切——節奏換氣，為懸崖對峙讓位。<br>
+      <b>聲音建議</b>：擊鼓節奏漸快、枝幹斷裂、兩人吆喝聲。
+    </div>
+    <div class="strip">
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s4_a_f36.jpg" alt=""><figcaption>藤蔓盪躍前進</figcaption></figure>
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s4_b_f88.jpg" alt=""><figcaption>暴龍撞樹緊追</figcaption></figure>
+    </div>
+    <details><summary>生成提示詞（S4）</summary><div class="prompt">（同 S1 共通風格與角色卡）橫向平移跟拍（一鏡到底感）：兩個男孩在巨大樹幹之間一前一後抓著藤蔓盪躍前進，合作把發光紫斑巨蛋互相傳接，神情專注興奮；後方暴龍怒吼著撞倒小樹與蕨葉，緊追不捨。速度感十足、動態飛躍。無字幕、無文字、無浮水印。</div></details>
+  </div>
+
+  <div class="shot">
+    <h3>S5｜懸崖邊眼神對峙（0:20–0:25）</h3>
+    <div class="meta">
+      <b>運鏡</b>：起幅兩兄弟背身落地、觀眾望向萬丈深谷；兩人同時回頭，環繞 orbit 半圈互換視角；暴龍躍出重落，鏡頭定在對峙軸線，暴龍與兩人的視線正反打（eye-line match）。<br>
+      <b>轉場</b>：硬切——暴龍撲近隨即入 S6。<br>
+      <b>聲音建議</b>：風聲、心跳聲；雙方對視時短暫留白。
+    </div>
+    <div class="strip">
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s5_a_f36.jpg" alt=""><figcaption>懸崖急停回頭</figcaption></figure>
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s5_b_f88.jpg" alt=""><figcaption>暴龍躍出、眼神對上</figcaption></figure>
+    </div>
+    <details><summary>生成提示詞（S5）</summary><div class="prompt">（同 S1 共通風格與角色卡）黃昏懸崖邊：兩個男孩落地急停、同時回頭轉身，背對萬丈深谷；暴龍從林中一躍而出，重重落在幾步之外，兩邊眼神對上（暴龍與兩個男孩的視線正反打）。環繞鏡頭繞著雙方轉半圈（orbit），風聲與落葉飛舞，金色逆光。無字幕、無文字、無浮水印。</div></details>
+  </div>
+
+  <div class="shot">
+    <h3>S6｜蛋綻放白光（0:25–0:30）</h3>
+    <div class="meta">
+      <b>運鏡</b>：起幅暴龍大口近景；鏡頭快速推近（punch-in）至 A寶懷中的巨蛋；落幅白光爆滿全畫面（過曝到白）。<br>
+      <b>轉場</b>：<b>閃白轉場</b>（Flash white）——白到白無縫接 S7，模擬強光餘韻。<br>
+      <b>聲音建議</b>：尖銳高頻蜂鳴、爆發低音、瞬間靜音（留白給下一鏡）。
+    </div>
+    <div class="strip">
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s6_a_f36.jpg" alt=""><figcaption>暴龍張口撲近</figcaption></figure>
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s6_b_f88.jpg" alt=""><figcaption>巨蛋綻放耀眼白光</figcaption></figure>
+    </div>
+    <details><summary>生成提示詞（S6）</summary><div class="prompt">（同 S1 共通風格與角色卡）千鈞一髮：暴龍張開血盆大口傾身撲向兩個男孩；就在這一瞬間，A寶懷中的紫斑巨蛋綻放刺眼白光，光芒像衝擊波一樣掃開落葉與塵土，暴龍被強光逼得閉眼撇頭、雙爪遮臉。弟弟 B寶緊緊抓住 A寶的手臂。鏡頭快速推近巨蛋，然後白光炸滿全畫面。無字幕、無文字、無浮水印。</div></details>
+  </div>
+
+  <div class="shot">
+    <h3>S7｜伴伴破殼・打哈欠（0:30–0:35）</h3>
+    <div class="meta">
+      <b>運鏡</b>：起幅白霧漸散、柔焦逆光；微距推近（macro push-in）對準 A寶掌中蛋殼裂縫；落幅伴伴睜眼、對暴龍打哈欠的特寫。<br>
+      <b>轉場</b>：硬切——從白光餘韻轉入喜感節拍。<br>
+      <b>聲音建議</b>：輕柔鋼琴／玩具音色、蛋殼喀啦、哈欠氣音。
+    </div>
+    <div class="strip">
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s7_a_f36.jpg" alt=""><figcaption>白光漸退、蛋殼破開</figcaption></figure>
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s7_b_f88.jpg" alt=""><figcaption>伴伴現身打哈欠</figcaption></figure>
+    </div>
+    <details><summary>生成提示詞（S7）</summary><div class="prompt">電影級實拍質感（真人電影），真實熱帶雨林，柔美逆光，淺景深、背景柔焦、手持鏡頭微晃，溫暖電影調色。
+白光漸退：A寶雙手中的蛋殼出現裂痕、啪地破開，一隻圓滾滾的寶寶小龍「伴伴」（紫紅色細緻鱗片、奶油白肚皮、金橘色分節小角與背脊小刺、粉色內耳與粉紅翼膜、金黃琥珀色大圓眼、小尖牙與粉紅舌）在 A寶手中登場，慢慢睜開眼睛，對著暴龍打了一個大大的哈欠，慵懶可愛。兩個男孩睜大眼睛、驚喜地看著牠。暴龍愣在原地。微距推近鏡頭。無字幕、無文字、無浮水印。</div></details>
+  </div>
+
+  <div class="shot">
+    <h3>S8｜白色漩渦吞噬暴龍（0:35–0:40）</h3>
+    <div class="meta">
+      <b>運鏡</b>：起幅廣角全景、風起；環繞＋手搖（swirl handheld）跟着白色漩渦由伴伴口中擴張、掃過全景；落幅暴龍連樹被吸走、畫面歸於平靜——兩兄弟與岩石留在原地。<br>
+      <b>轉場</b>：硬切——風平浪靜。<br>
+      <b>聲音建議</b>：龍捲低頻、木裂聲，末尾收在單聲木魚／風鈴。
+    </div>
+    <div class="strip">
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s8_a_f36.jpg" alt=""><figcaption>白色漩渦擴張</figcaption></figure>
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s8_b_f88.jpg" alt=""><figcaption>暴龍抱樹被吸走・岩石不動</figcaption></figure>
+    </div>
+    <details><summary>生成提示詞（S8・v2 重生版）</summary><div class="prompt">（同 S1 共通風格與角色卡）圓滾滾的寶寶小龍「伴伴」（體型與剛破殼時相同、約幼兒雙手可捧的大小）嘴裡冒出一個白色漩渦，越轉越大，像龍捲風一樣掃過森林：樹木、藤蔓、落葉、塵土全被吸進漩渦裡；一隻巨大寫實的暴龍驚恐地想逃，緊緊抱住一棵大樹，結果連人帶樹一起被吸走消失。兩個男孩站在伴伴身旁、毫髮無傷，服裝與配件必須清楚可辨、不得被任何光暈沖淡或改變：哥哥 A寶穿淺藍色短袖T恤與卡其短褲、無眼鏡；弟弟 B寶穿橘色短袖T恤、戴透明圓框眼鏡；地面上的岩石與石頭紋絲不動。廣角環繞鏡頭（swirl），氣流狂舞後歸於平靜。無字幕、無文字、無浮水印。</div></details>
+    <div class="note">⚠️ S8 曾重生一次：v1（<code>24B33b9UaNAeborz76z61h</code>）兩男孩服裝被白光沖成白色、B寶眼鏡消失（角色漂移）而棄用；v2 在提示詞加入「服裝與配件必須清楚可辨、不得被任何光暈沖淡或改變」硬約束、並移除「被柔和白光罩住」措辭後通過驗證。教訓：強光場景會沖淡參考圖鎖定的服裝顏色，提示詞需顯式保護。</div>
+  </div>
+
+  <div class="shot">
+    <h3>S9｜打嗝・落地・回頭（0:40–0:45）＋字幕</h3>
+    <div class="meta">
+      <b>運鏡</b>：起幅低角度全景（陽光灑落）；伴伴打嗝、跳下地、搖尾前行，鏡頭緩跟；牠回頭看向兩兄弟、笑眼招手時鏡頭拉背（dolly-out），最後定格。<br>
+      <b>字幕</b>：後製疊上伴伴的台詞「<b>來吧，我們一起來恐龍快找</b>」（AI 直出文字易亂碼，依《game.mp4》教訓由本機自繪中文字幕）。<br>
+      <b>轉場</b>：壓黑淡出 → 片尾字卡。<br>
+      <b>聲音建議</b>：俏皮撥弦、收尾和弦；台詞可由配音或語音合成於後製加上。
+    </div>
+    <div class="strip">
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s9_a_f36.jpg" alt=""><figcaption>打嗝跳下地、往前走的伴伴</figcaption></figure>
+      <figure><img src="../generated_assets/dinos_2/bban_samples/_forest_story_frames/s9_b_f88.jpg" alt=""><figcaption>回頭笑＋招手（字幕時點）</figcaption></figure>
+    </div>
+    <details><summary>生成提示詞（S9）</summary><div class="prompt">（同 S1 共通風格與角色卡）風平浪靜、陽光灑落。圓滾滾的寶寶小龍「伴伴」打了一個小小的嗝，輕巧地跳下地，搖著尾巴往前走幾步，停下來回頭看向兩個男孩，露出燦爛笑容，抬起小爪對他們招手，眼睛笑成彎月。兩個男孩開心地互看、跟上前去。鏡頭低角度跟拍再慢慢拉背（dolly-out），畫面溫暖明亮，最後定格。無字幕、無文字、無浮水印。</div></details>
+  </div>
+
+  <h2>五、技術規格與成本</h2>
+  <div class="card">
+    <table>
+      <tr><th>項目</th><th>值</th></tr>
+      <tr><td>模型 / 端點</td><td><code>happyhorse-1.0-r2v</code>（參考生視頻）・ <code>POST /videogenerator/generate</code>，輪詢 <code>GET {BASE}/{task_id}</code></td></tr>
+      <tr><td>畫質</td><td>1280×720（16:9）・24fps・每鏡 5.12 秒（123 幀）——與前作《藏不住的伴伴》相同</td></tr>
+      <tr><td>成片實測</td><td><code>assets/intro_forest_story_720p.mp4</code>：1186 幀／49.42s／44,176,130 B（九鏡＋閃白 7 幀＋片尾卡 81 幀）</td></tr>
+      <tr><td>角色參考</td><td>兩兄弟合照 1 張（768px JPEG）→ data URI → <code>role=reference_image</code>（九鏡共用，維持一致）</td></tr>
+      <tr><td>每鏡成本</td><td>720P ¥0.9/秒 × 5 秒 ≈ <b>¥4.5</b>；本片共 10 次生成（9 鏡＋S8 重生 1 次）≈ <b>¥45</b></td></tr>
+      <tr><td>後製</td><td>ffmpeg（imageio-ffmpeg）拼接 11 段＋白閃轉場；PIL 自繪中文字幕與片尾卡（免 AI 亂碼）</td></tr>
+      <tr><td>探索成本（誠實揭露）</td><td>探索 i2v/r2v 格式期間，一次「無效網址」探針意外建立了 i2v 失敗任務（無產出、無內容，是否計費待平台帳單確認，上限 +¥4.5）</td></tr>
+    </table>
+  </div>
+
+  <h2>六、生成任務紀錄</h2>
+  <div class="card">
+    <table>
+      <tr><th>鏡</th><th>任務 ID</th><th>狀態</th><th>檔案</th></tr>
+      <tr><td>S1</td><td><code>4j40Y3XzHGw83jCmfkEYLl</code></td><td class="ok">✅ succeeded</td><td><code>_forest_story_clips/s1.mp4</code>（5,968,940 B）</td></tr>
+      <tr><td>S2</td><td><code>34mlSBYCO9O6cxtgrt6CHL</code></td><td class="ok">✅ succeeded</td><td><code>_forest_story_clips/s2.mp4</code>（5,851,773 B）</td></tr>
+      <tr><td>S3</td><td><code>5khU31Nd8De2HofE0BrsMK</code></td><td class="ok">✅ succeeded</td><td><code>_forest_story_clips/s3.mp4</code>（7,620,771 B）</td></tr>
+      <tr><td>S4</td><td><code>6ebxzM06KWacoN1zuwqmrx</code></td><td class="ok">✅ succeeded</td><td><code>_forest_story_clips/s4.mp4</code>（6,893,841 B）</td></tr>
+      <tr><td>S5</td><td><code>4kHNYeF0Bg2ft2NpvEhlNA</code></td><td class="ok">✅ succeeded</td><td><code>_forest_story_clips/s5.mp4</code>（6,523,523 B）</td></tr>
+      <tr><td>S6</td><td><code>74YIFoqrVywQg5mHbsWbBz</code></td><td class="ok">✅ succeeded</td><td><code>_forest_story_clips/s6.mp4</code>（4,786,948 B）</td></tr>
+      <tr><td>S7</td><td><code>305CbV7EqYtXHhsPWbbtuf</code></td><td class="ok">✅ succeeded</td><td><code>_forest_story_clips/s7.mp4</code>（4,431,452 B）</td></tr>
+      <tr><td>S8（v1）</td><td><code>24B33b9UaNAeborz76z61h</code></td><td style="color:#ffb4b4">❌ 棄用（角色漂移）</td><td><code>_forest_story_clips/s8_drift_rejected.mp4</code>（7,218,863 B）</td></tr>
+      <tr><td>S8（v2）</td><td><code>1Y0A3lubD4uqPCUL3U2HQN</code></td><td class="ok">✅ succeeded</td><td><code>_forest_story_clips/s8.mp4</code>（7,410,994 B）</td></tr>
+      <tr><td>S9</td><td><code>4sGgt5ugZsIbgIvP0VmAaL</code></td><td class="ok">✅ succeeded</td><td><code>_forest_story_clips/s9.mp4</code>（5,825,988 B）</td></tr>
+    </table>
+  </div>
+
+  <h2>七、逐鏡驗證與角色一致性</h2>
+  <div class="card">
+    <table>
+      <tr><th>鏡</th><th>判定</th><th>驗證重點（抽幀目視）</th></tr>
+      <tr><td>S1</td><td class="ok">✅</td><td>兩兄弟藏身蕨葉後：橘T＋透明圓框眼鏡、淺藍T，與參考照片特徵吻合；暴龍於金色光束中逼近紫斑巨蛋</td></tr>
+      <tr><td>S2</td><td class="ok">✅</td><td>A寶（淺藍T）雙手圈嘴大喊、B寶（橘T圓框眼鏡）抱樹探頭；甩鏡落定暴龍怒吼</td></tr>
+      <tr><td>S3</td><td class="ok">✅</td><td>B寶（橘T）盪藤掠爪奪蛋、A寶對面樹上接應；巨蛋透光</td></tr>
+      <tr><td>S4</td><td class="ok">✅</td><td>兩兄弟凌空盪藤傳接發光巨蛋、服裝正確；暴龍撞樹緊追</td></tr>
+      <tr><td>S5</td><td class="ok">✅</td><td>懸崖急停回頭＋暴龍躍出對峙（orbit）；A寶淺藍T無眼鏡、B寶橘T圓框眼鏡</td></tr>
+      <tr><td>S6</td><td class="ok">✅</td><td>暴龍張口撲近、巨蛋綻放白光逼退暴龍；小瑕疵：爆光特寫幀蛋旁為 B寶而非 A寶</td></tr>
+      <tr><td>S7</td><td class="ok">✅</td><td>蛋殼破開、伴伴（紫紅鱗／奶油白肚／金橘角／粉紅翼膜）打哈欠、兩兄弟驚喜圍觀</td></tr>
+      <tr><td>S8</td><td class="ok">✅（v2）</td><td>服裝與眼鏡近景、遠景幀皆清楚可辨；白色漩渦擴張、暴龍抱樹被吸走、岩石紋絲不動；v1 漂移棄用（見 S8 註記）</td></tr>
+      <tr><td>S9</td><td class="ok">✅</td><td>伴伴打嗝前行、回頭笑眼招手；兩兄弟跟上，淺藍T／橘T＋圓框眼鏡全對</td></tr>
+    </table>
+    <div class="note blue">驗證方法：每鏡抽 3 幀（12%／45%／80% 時點）目視比對角色卡（服裝顏色、眼鏡、伴伴配色）與分鏡動作；成片另抽閃白轉場、S8、字幕、片尾卡四個時間點複驗。</div>
+  </div>
+
+  <h2>八、後製與音效建議</h2>
+  <div class="card">
+    <ul>
+      <li><b>白閃轉場</b>：S6 落幅白光 →0.3 秒純白格→ S7 白霧漸散，成片已內建（實測幀 732–738 純白）。</li>
+      <li><b>字幕</b>：S9 尾段（約 2.6 秒起）疊「來吧，我們一起來恐龍快找」，片尾卡完整重現台詞與遊戲字樣。</li>
+      <li><b>配樂</b>：建議 S1–S2 探險懸疑、S3–S4 快節奏追逐、S5 心跳留白、S6 高頻爆量、S7 玩具音色、S8 龍捲低頻、S9 俏皮撥弦收尾。</li>
+      <li><b>對白</b>：目前為字幕呈現（AI 影片無音軌）；若要人聲，建議以 TTS 或真人錄音於後製加入。</li>
+      <li><b>去浮水印</b>：平台 Happy Horse 浮水印為端點固定行為（本端點無 watermark 參數），可後製遮罩或等待無浮水印端點。</li>
+    </ul>
+  </div>
+
+  <h2>九、已知限制</h2>
+  <div class="card">
+    <ul>
+      <li>角色為「參考圖引導的 AI 生成」，神似但不保證 100% 還原照片；跨鏡一致性為 AI 影片先天限制（本片以單一參考圖＋固定角色卡文字把變異壓到最低）。</li>
+      <li>強光／爆閃場景仍可能沖淡參考圖鎖定的服裝顏色（S8 v1 教訓）；遇漂移需以提示詞硬約束重生該鏡。</li>
+      <li>台詞由字幕呈現：AI 直出不含語音；「岩石死物不動、只吸生物與植物」為提示詞指令，模型可能僅部分遵守。</li>
+      <li>成品右下角有平台浮水印（與前作相同）。</li>
+      <li>探索期間一個失敗探針任務（見第五節），無產出、誠實記錄。</li>
+    </ul>
+  </div>
+
+  <h2>十、檔案索引</h2>
+  <div class="card">
+    <table>
+      <tr><th>檔案</th><th>用途</th></tr>
+      <tr><td><code>assets/intro_forest_story_720p.mp4</code></td><td>本片完整成片（報告頂部可直接播放）</td></tr>
+      <tr><td><code>assets/dinos_2/bban_samples/_forest_story_clips/s1..s9.mp4</code></td><td>九鏡原始素材（未拼接、未上字幕）</td></tr>
+      <tr><td><code>assets/dinos_2/bban_samples/_forest_story_clips/s8_drift_rejected.mp4</code></td><td>S8 v1 漂移棄用檔（僅本地留存，作重生對照證據）</td></tr>
+      <tr><td><code>assets/dinos_2/bban_samples/_forest_story_frames/</code></td><td>各鏡驗證影格（18 張）</td></tr>
+      <tr><td><code>assets/dinos_2/bban_samples/_forest_story_state.json</code></td><td>生成任務狀態（task id／bytes，可續傳依據）</td></tr>
+      <tr><td><code>assets/dinos_2/bban_samples/_gen_sophnet_forest_story.py</code></td><td>九鏡生成腳本（r2v＋參考圖、可續傳）</td></tr>
+      <tr><td><code>assets/dinos_2/bban_samples/_forest_story_post.py</code></td><td>後製腳本（驗證、抽幀、字幕、片尾卡、拼接）</td></tr>
+      <tr><td><code>assets/dinos_2/bban_samples/_probe_r2v_s1.py</code></td><td>R2V 資料 URI 決定性測試（S1 即由它產出）</td></tr>
+      <tr><td>本報告</td><td>運鏡與過場說明（即本文件）</td></tr>
+    </table>
+  </div>
+</div>
+</body>
+</html>

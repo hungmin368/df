@@ -1,0 +1,3 @@
+/* 内嵌字体（子集化，100% 离线）：Huninn、Iansui */
+@font-face { font-family:'Huninn'; font-style:normal; font-weight:400; src:url(../assets/fonts/Huninn.woff2) format('woff2'); }
+@font-face { font-family:'Iansui'; font-style:normal; font-weight:400; src:url(../assets/fonts/Iansui.woff2) format('woff2'); }
